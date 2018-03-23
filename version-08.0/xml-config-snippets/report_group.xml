@@ -1,0 +1,19 @@
+<entry name="App Usage">
+  <all>
+    <entry>
+      <include-user-groups-info>no</include-user-groups-info>
+    </entry>
+  </all>
+  <variable>
+    <entry name="include-detailed-app-category">
+      <value>yes</value>
+    </entry>
+    <entry name="time-period">
+      <value>last-7-days</value>
+    </entry>
+    <entry name="limit-max-subcat">
+      <value>All</value>
+    </entry>
+  </variable>
+  <predefined>saas-application-usage-report</predefined>
+</entry>

@@ -1,0 +1,25 @@
+<entry name="Recommended_Decryption_Profile">
+  <ssl-forward-proxy>
+    <block-expired-certificate>yes</block-expired-certificate>
+    <block-untrusted-issuer>yes</block-untrusted-issuer>
+    <block-unknown-cert>yes</block-unknown-cert>
+    <block-timeout-cert>yes</block-timeout-cert>
+    <block-unsupported-version>yes</block-unsupported-version>
+    <block-unsupported-cipher>yes</block-unsupported-cipher>
+  </ssl-forward-proxy>
+  <ssl-no-proxy>
+    <block-expired-certificate>yes</block-expired-certificate>
+    <block-untrusted-issuer>yes</block-untrusted-issuer>
+  </ssl-no-proxy>
+  <ssl-inbound-proxy>
+    <block-unsupported-version>no</block-unsupported-version>
+    <block-unsupported-cipher>no</block-unsupported-cipher>
+  </ssl-inbound-proxy>
+  <ssh-proxy>
+    <block-unsupported-version>yes</block-unsupported-version>
+    <block-unsupported-alg>yes</block-unsupported-alg>
+  </ssh-proxy>
+  <ssl-protocol-settings>
+    <min-version>tls1-1</min-version>
+  </ssl-protocol-settings>
+</entry>

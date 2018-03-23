@@ -1,0 +1,5 @@
+Panorama Deviceconfig
+. Left out the hostname, ip-address, netmask, and default-gateway
+
+
+
