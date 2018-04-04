@@ -1,5 +1,15 @@
 Panorama Deviceconfig
 . Left out the hostname, ip-address, netmask, and default-gateway
 
+PYTHON FILES
+
+xpaths_list.py is a text list of xpaths as a python dictionary
+. key is a text  name for the xpath
+. value is the xpath including Panorama variable substituion variables
+
+snippet_load_order.py is a python ordered dictionary since load is order dependent
+. key is the xpath name
+. value is the xml snippet file name
+
 
 
