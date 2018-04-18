@@ -1,0 +1,9 @@
+<entry name="Outbound">
+	<comments>Outbound to the Internet</comments>
+</entry>
+<entry name="Inbound">
+	<comments>Inbound from the Internet</comments>
+</entry>
+<entry name="Internal">
+	<comments>Internal to Internal</comments>
+</entry>
