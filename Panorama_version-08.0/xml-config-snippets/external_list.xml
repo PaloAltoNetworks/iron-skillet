@@ -1,110 +1,11 @@
-<entry name="Spamhaus DROP List">
+<entry name="Team Cymru Bogon List">
   <type>
     <ip>
       <recurring>
         <hourly/>
       </recurring>
-      <url>http://panwdbl.appspot.com/lists/shdrop.txt</url>
-      <description>DROP (Don't Route Or Peer) and EDROP are advisory "drop all traffic" lists, consisting of stolen 'hijacked' netblocks and netblocks controlled entirely by criminals and professional spammers. See http://www.spamhaus.org/drop/</description>
-    </ip>
-  </type>
-</entry>
-<entry name="Spamhaus EDROP List">
-  <type>
-    <ip>
-      <recurring>
-        <hourly/>
-      </recurring>
-      <url>http://panwdbl.appspot.com/lists/shedrop.txt</url>
-      <description>DROP (Don't Route Or Peer) and EDROP are advisory "drop all traffic" lists, consisting of stolen 'hijacked' netblocks and netblocks controlled entirely by criminals and professional spammers. See http://www.spamhaus.org/drop/</description>
-    </ip>
-  </type>
-</entry>
-<entry name="OpenBL Block List">
-  <type>
-    <ip>
-      <recurring>
-        <hourly/>
-      </recurring>
-      <url>http://panwdbl.appspot.com/lists/openbl.txt</url>
-      <description>The OpenBL.org project (formerly known as the SSH blacklist) is about detecting, logging and reporting bruteforce attacks. See http://www.openbl.org/</description>
-    </ip>
-  </type>
-</entry>
-<entry name="BruteForceBlocker List">
-  <type>
-    <ip>
-      <recurring>
-        <hourly/>
-      </recurring>
-      <url>http://panwdbl.appspot.com/lists/bruteforceblocker.txt</url>
-      <description>See http://danger.rulez.sk/index.php/bruteforceblocker/</description>
-    </ip>
-  </type>
-</entry>
-<entry name="Malware Domain List">
-  <type>
-    <ip>
-      <recurring>
-        <hourly/>
-      </recurring>
-      <url>http://panwdbl.appspot.com/lists/mdl.txt</url>
-      <description>See http://www.malwaredomainlist.com/</description>
-    </ip>
-  </type>
-</entry>
-<entry name="Emerging Threats TOR List">
-  <type>
-    <ip>
-      <recurring>
-        <hourly/>
-      </recurring>
-      <url>http://panwdbl.appspot.com/lists/ettor.txt</url>
-      <description>Emerging Threats Tor rules. See http://doc.emergingthreats.net/bin/view/Main/TorRules</description>
-    </ip>
-  </type>
-</entry>
-<entry name="Emerging Threats Known Compromised Hosts List">
-  <type>
-    <ip>
-      <recurring>
-        <hourly/>
-      </recurring>
-      <url>http://panwdbl.appspot.com/lists/etcompromised.txt</url>
-      <description>See http://doc.emergingthreats.net/bin/view/Main/CompromisedHost</description>
-    </ip>
-  </type>
-</entry>
-<entry name="DShield Recommended Block List">
-  <type>
-    <ip>
-      <recurring>
-        <hourly/>
-      </recurring>
-      <url>http://panwdbl.appspot.com/lists/dshieldbl.txt</url>
-      <description>DShield.org Recommended Block List. See http://feeds.dshield.org/block.txt</description>
-    </ip>
-  </type>
-</entry>
-<entry name="SSL Abuse IP List">
-  <type>
-    <ip>
-      <recurring>
-        <hourly/>
-      </recurring>
-      <url>http://panwdbl.appspot.com/lists/sslabuseiplist.txt</url>
-      <description>SSLBL 30 days block list. See https://sslbl.abuse.ch/blacklist/</description>
-    </ip>
-  </type>
-</entry>
-<entry name="Emerging Threats RBN">
-  <type>
-    <ip>
-      <recurring>
-        <hourly/>
-      </recurring>
-      <url>http://panwdbl.appspot.com/lists/etrbn.txt</url>
-      <description>From Emerging Threats RBN rules. See http://doc.emergingthreats.net/bin/view/Main/RussianBusinessNetwork</description>
+      <url>http://www.team-cymru.org/Services/Bogons/fullbogons-ipv4.txt</url>
+      <description>IP addresses that should not be routed across the Internet. Either reserved IP address space or unassigned and may be used for malicious purposes. More information: http://www.team-cymru.com/bogon-reference.html</description>
     </ip>
   </type>
 </entry>

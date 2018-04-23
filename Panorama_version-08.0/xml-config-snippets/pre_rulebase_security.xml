@@ -69,43 +69,6 @@
     <action>deny</action>
     <log-setting>default</log-setting>
   </entry>
-  <entry name="Block Malicious URL Categories">
-    <target>
-      <negate>no</negate>
-    </target>
-    <to>
-      <member>any</member>
-    </to>
-    <from>
-      <member>any</member>
-    </from>
-    <source>
-      <member>any</member>
-    </source>
-    <destination>
-      <member>any</member>
-    </destination>
-    <source-user>
-      <member>any</member>
-    </source-user>
-    <category>
-      <member>command-and-control</member>
-      <member>hacking</member>
-      <member>malware</member>
-      <member>phishing</member>
-    </category>
-    <application>
-      <member>any</member>
-    </application>
-    <service>
-      <member>any</member>
-    </service>
-    <hip-profiles>
-      <member>any</member>
-    </hip-profiles>
-    <action>deny</action>
-    <log-setting>default</log-setting>
-  </entry>
   <entry name="DNS Sinkhole Block">
     <target>
       <negate>no</negate>
@@ -140,5 +103,75 @@
     </hip-profiles>
     <action>deny</action>
     <log-setting>default</log-setting>
+  </entry>
+    <entry name="Outbound Bogon Block Rule">
+    <target>
+      <negate>no</negate>
+    </target>
+    <to>
+      <member>any</member>
+    </to>
+    <from>
+      <member>any</member>
+    </from>
+    <source>
+      <member>any</member>
+    </source>
+    <destination>
+      <member>Team Cymru Bogon List</member>
+    </destination>
+    <source-user>
+      <member>any</member>
+    </source-user>
+    <category>
+      <member>any</member>
+    </category>
+    <application>
+      <member>any</member>
+    </application>
+    <service>
+      <member>any</member>
+    </service>
+    <hip-profiles>
+      <member>any</member>
+    </hip-profiles>
+    <action>deny</action>
+    <log-setting>default</log-setting>
+    <disabled>yes</disabled>
+  </entry>
+  <entry name="Inbound Bogon Block Rule">
+    <target>
+      <negate>no</negate>
+    </target>
+    <to>
+      <member>any</member>
+    </to>
+    <from>
+      <member>any</member>
+    </from>
+    <source>
+      <member>Team Cymru Bogon List</member>
+    </source>
+    <destination>
+      <member>any</member>
+    </destination>
+    <source-user>
+      <member>any</member>
+    </source-user>
+    <category>
+      <member>any</member>
+    </category>
+    <application>
+      <member>any</member>
+    </application>
+    <service>
+      <member>any</member>
+    </service>
+    <hip-profiles>
+      <member>any</member>
+    </hip-profiles>
+    <action>deny</action>
+    <log-setting>default</log-setting>
+    <disabled>yes</disabled>
   </entry>
 </rules>
