@@ -33,6 +33,7 @@ xpaths_Panos = {
       "security_rules": "/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase/security",
       "server_profile": "/config/shared/server-profile",
       "service": "/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/service",
+      "shared_log_settings": "/config/shared/log-settings",
       "tag": "/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag",
       "update_schedule": "/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system/update-schedule",
       "userid_agent": "/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/user-id-agent",

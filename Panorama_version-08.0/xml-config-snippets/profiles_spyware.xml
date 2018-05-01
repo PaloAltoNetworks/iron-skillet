@@ -8,8 +8,8 @@
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>pan-sinkhole-default-ip</ipv4-address>
-      <ipv6-address>2600:5200::1</ipv6-address>
+      <ipv4-address>72.5.65.111</ipv4-address>
+      <ipv6-address>2600:5200::1/128</ipv6-address>
     </sinkhole>
     <packet-capture>single-packet</packet-capture>
   </botnet-domains>
@@ -25,7 +25,7 @@
       </severity>
       <threat-name>any</threat-name>
       <category>any</category>
-      <packet-capture>disable</packet-capture>
+      <packet-capture>single-packet</packet-capture>
     </entry>
     <entry name="Default-Low-Info">
       <action>
@@ -51,8 +51,8 @@
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>pan-sinkhole-default-ip</ipv4-address>
-      <ipv6-address>2600:5200::1</ipv6-address>
+      <ipv4-address>72.5.65.111</ipv4-address>
+      <ipv6-address>2600:5200::1/128</ipv6-address>
     </sinkhole>
     <packet-capture>single-packet</packet-capture>
   </botnet-domains>
@@ -94,8 +94,8 @@
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>pan-sinkhole-default-ip</ipv4-address>
-      <ipv6-address>2600:5200::1</ipv6-address>
+      <ipv4-address>72.5.65.111</ipv4-address>
+      <ipv6-address>2600:5200::1/128</ipv6-address>
     </sinkhole>
     <packet-capture>single-packet</packet-capture>
   </botnet-domains>
@@ -137,7 +137,7 @@
       </entry>
     </lists>
     <sinkhole>
-      <ipv6-address>2600:5200::1</ipv6-address>
+      <ipv6-address>2600:5200::1/128</ipv6-address>
     </sinkhole>
     <packet-capture>disable</packet-capture>
   </botnet-domains>
@@ -165,8 +165,8 @@
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>pan-sinkhole-default-ip</ipv4-address>
-      <ipv6-address>2600:5200::1</ipv6-address>
+      <ipv4-address>72.5.65.111</ipv4-address>
+      <ipv6-address>2600:5200::1/128</ipv6-address>
     </sinkhole>
     <packet-capture>single-packet</packet-capture>
   </botnet-domains>

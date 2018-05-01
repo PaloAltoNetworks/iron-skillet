@@ -1,8 +1,9 @@
 # xpaths as python dictionary with name as a key
 # %(text)s variables showing xpath variables - python substitution
 
-xpaths_list = { 
+xpaths_Panorama = { 
       "address": "/config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='%(devicegroup)s']/address",
+      "decryption_rules_post": "/config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='%(devicegroup)s']/post-rulebase/decryption", 
       "decryption_rules_pre": "/config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='%(devicegroup)s']/pre-rulebase/decryption", 
       "default_security_rules": "/config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='%(devicegroup)s']/post-rulebase/default-security-rules",
       "device_group": "/config/devices/entry[@name='localhost.localdomain']/device-group",
@@ -41,7 +42,7 @@ xpaths_list = {
       "security_rules_pre": "/config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='%(devicegroup)s']/pre-rulebase/security",
       "server_profile": "/config/devices/entry[@name='localhost.localdomain']/template/entry[@name='%(pan_template)s']/config/shared/server-profile",
       "service": "/config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='%(devicegroup)s']/service",
-      "shared_log_settings": "/config/shared/log_settings",
+      "shared_log_settings": "/config/shared/log-settings",
       "shared_profiles": "/config/shared/profiles",
       "shared_tag": "/config/shared/tag",
       "tag": "/config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='%(devicegroup)s']/tag",

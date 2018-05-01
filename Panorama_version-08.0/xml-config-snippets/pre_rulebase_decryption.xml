@@ -1,10 +1,12 @@
 <rules>
-  <entry name="NO-Decrypt Rule">
+  <entry name="NO-Decrypt URL Categories">
     <target>
       <negate>no</negate>
     </target>
     <category>
-      <member>any</member>
+      <member>financial-services</member>
+      <member>government</member>
+      <member>health-and-medicine</member>
     </category>
     <service>
       <member>any</member>
@@ -13,10 +15,10 @@
       <ssl-forward-proxy/>
     </type>
     <from>
-      <member>Trust</member>
+      <member>any</member>
     </from>
     <to>
-      <member>Untrust</member>
+      <member>any</member>
     </to>
     <source>
       <member>any</member>
@@ -29,6 +31,7 @@
     </source-user>
     <profile>Recommended_Decryption_Profile</profile>
     <action>no-decrypt</action>
+    <disabled>yes</disabled>
     <description>This rule does not do Decryption.  This rule is validating SSL Protocol Communications.</description>
   </entry>
 </rules>

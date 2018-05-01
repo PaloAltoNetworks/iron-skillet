@@ -118,7 +118,8 @@
       <member>any</member>
     </source>
     <destination>
-      <member>Team Cymru Bogon List</member>
+      <member>Team Cymru Bogons IPv4</member>
+      <member>Team Cymru Bogons IPv6</member>
     </destination>
     <source-user>
       <member>any</member>
@@ -150,7 +151,8 @@
       <member>any</member>
     </from>
     <source>
-      <member>Team Cymru Bogon List</member>
+      <member>Team Cymru Bogons IPv4</member>
+      <member>Team Cymru Bogons IPv6</member>
     </source>
     <destination>
       <member>any</member>

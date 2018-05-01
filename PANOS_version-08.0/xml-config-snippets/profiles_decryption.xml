@@ -20,6 +20,10 @@
     <block-unsupported-alg>yes</block-unsupported-alg>
   </ssh-proxy>
   <ssl-protocol-settings>
-    <min-version>tls1-1</min-version>
+    <min-version>tls1-2</min-version>
+    <keyxchg-algo-rsa>no</keyxchg-algo-rsa>
+    <enc-algo-3des>no</enc-algo-3des>
+    <enc-algo-rc4>no</enc-algo-rc4>
+    <auth-algo-sha1>no</auth-algo-sha1>
   </ssl-protocol-settings>
 </entry>
