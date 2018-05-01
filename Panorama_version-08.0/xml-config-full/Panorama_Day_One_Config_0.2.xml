@@ -3,13 +3,13 @@
   <mgt-config>
     <devices/>
     <users>
-      <entry name={{ username }} >
+      <entry name="admin" >
         <permissions>
           <role-based>
             <superuser>yes</superuser>
           </role-based>
         </permissions>
-        <phash>{{ phash }}</phash>
+        <phash>fnRL/G5lXVMug</phash>
       </entry>
     </users>
   </mgt-config>
@@ -17,7 +17,7 @@
     <entry name="localhost.localdomain">
       <deviceconfig>
         <system>
-          <ip-address>{{ MGMT_IP }}</ip-address>
+          <ip-address>192.168.55.7</ip-address>
           <netmask>255.255.255.0</netmask>
           <update-server>updates.paloaltonetworks.com</update-server>
           <update-schedule>
@@ -52,11 +52,11 @@
             <disable-http>yes</disable-http>
           </service>
           <hostname>Panorama_8_Logging_and_Security</hostname>
-          <default-gateway>{{ MGMT_DG }}</default-gateway>
+          <default-gateway>192.168.55.2</default-gateway>
           <dns-setting>
             <servers>
-              <primary>{{DNS_1}}</primary>
-              <secondary>{{DNS_2}}</secondary>
+              <primary>8.8.8.8</primary>
+              <secondary>4.4.2.2</secondary>
             </servers>
           </dns-setting>
           <server-verification>yes</server-verification>

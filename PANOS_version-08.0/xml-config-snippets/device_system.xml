@@ -55,4 +55,5 @@
     <ntp-server-address>1.pool.ntp.org</ntp-server-address>
   </secondary-ntp-server>
 </ntp-servers>
+<login-banner>Gold 1.0 - PANOS 8.0</login-banner>
 <timezone>UTC</timezone>

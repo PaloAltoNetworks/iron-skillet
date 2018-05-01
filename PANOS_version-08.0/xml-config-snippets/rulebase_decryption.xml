@@ -4,6 +4,7 @@
       <member>financial-services</member>
       <member>government</member>
       <member>health-and-medicine</member>
+      <member>Custom-No-Decrypt</member>
     </category>
     <service>
       <member>any</member>
