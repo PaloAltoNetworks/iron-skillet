@@ -41,3 +41,6 @@
 <application>
   <notify-user>yes</notify-user>
 </application>
+<logging>
+  <log-suppression>no</log-suppression>
+</logging>
