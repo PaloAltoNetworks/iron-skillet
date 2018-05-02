@@ -27,7 +27,10 @@
   <match-list>
     <entry name="System_Log_Forwarding">
       <filter>All Logs</filter>
-      <send-to-panorama>yes</send-to-panorama>
+      <send-to-panorama>no</send-to-panorama>
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
     </entry>
   </match-list>
 </system>
@@ -35,7 +38,10 @@
   <match-list>
     <entry name="Configuration_Log_Forwarding">
       <filter>All Logs</filter>
-      <send-to-panorama>yes</send-to-panorama>
+      <send-to-panorama>no</send-to-panorama>
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
     </entry>
   </match-list>
 </config>
@@ -43,7 +49,10 @@
   <match-list>
     <entry name="User-ID_Log_Forwarding">
       <filter>All Logs</filter>
-      <send-to-panorama>yes</send-to-panorama>
+      <send-to-panorama>no</send-to-panorama>
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
     </entry>
   </match-list>
 </userid>
@@ -51,17 +60,10 @@
   <match-list>
     <entry name="HIP_Log_Forwarding">
       <filter>All Logs</filter>
-      <send-to-panorama>yes</send-to-panorama>
-    </entry>
-  </match-list>
-</hipmatch>
-<correlation>
-  <match-list>
-    <entry name="Correlation_Log_Forwarding">
+      <send-to-panorama>no</send-to-panorama>
       <send-syslog>
         <member>Sample_Syslog_Profile</member>
       </send-syslog>
-      <filter>All Logs</filter>
     </entry>
   </match-list>
-</correlation>
+</hipmatch>
