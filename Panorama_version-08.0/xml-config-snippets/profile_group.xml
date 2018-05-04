@@ -52,3 +52,23 @@
     <member>Internal-WF</member>
   </wildfire-analysis>
 </entry>
+<entry name="Alert-Only">
+  <virus>
+    <member>Alert-Only-AV</member>
+  </virus>
+  <spyware>
+    <member>Alert-Only-AS</member>
+  </spyware>
+  <vulnerability>
+    <member>Alert-Only-VP</member>
+  </vulnerability>
+  <url-filtering>
+    <member>Alert-Only-URL</member>
+  </url-filtering>
+  <file-blocking>
+    <member>Alert-Only-FB</member>
+  </file-blocking>
+  <wildfire-analysis>
+    <member>Alert-Only-WF</member>
+  </wildfire-analysis>
+</entry>
