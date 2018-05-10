@@ -1,5 +1,6 @@
 <rules>
   <entry name="Outbound Block Rule">
+    <description>Block outbound sessions with destination address matching one of the Palo Alto Networks external dynamic lists for high risk and known malicious IP addresses.</description>
     <target>
       <negate>no</negate>
     </target>
@@ -33,8 +34,12 @@
     </hip-profiles>
     <action>deny</action>
     <log-setting>default</log-setting>
+    <tag>
+      <member>Outbound</member>
+    </tag>
   </entry>
   <entry name="Inbound Block Rule">
+    <description>Block inbound sessions with source address matching one of the Palo Alto Networks external dynamic lists for high risk and known malicious IP addresses.</description>
     <target>
       <negate>no</negate>
     </target>
@@ -68,8 +73,12 @@
     </hip-profiles>
     <action>deny</action>
     <log-setting>default</log-setting>
+    <tag>
+      <member>Inbound</member>
+    </tag>
   </entry>
   <entry name="DNS Sinkhole Block">
+<description>Block outbound sessions that match a malicious domain and have been redirected to a configured sinkhole IP address.</description>
     <target>
       <negate>no</negate>
     </target>
@@ -103,8 +112,12 @@
     </hip-profiles>
     <action>deny</action>
     <log-setting>default</log-setting>
+    <tag>
+      <member>Outbound</member>
+    </tag>
   </entry>
     <entry name="Outbound Bogon Block Rule">
+    <description>Block outbound sessions with a destination address matching a known bogon address that should not be transitting the firewall. Add known exceptions to the rule before activating.</description>
     <target>
       <negate>no</negate>
     </target>
@@ -138,9 +151,13 @@
     </hip-profiles>
     <action>deny</action>
     <log-setting>default</log-setting>
+    <tag>
+      <member>Outbound</member>
+    </tag>
     <disabled>yes</disabled>
   </entry>
   <entry name="Inbound Bogon Block Rule">
+    <description>Block inbound sessions with a source address matching a known bogon address that should not be transitting the firewall. Add known exceptions to the rule before activating.</description>
     <target>
       <negate>no</negate>
     </target>
@@ -174,6 +191,9 @@
     </hip-profiles>
     <action>deny</action>
     <log-setting>default</log-setting>
+    <tag>
+      <member>Inbound</member>
+    </tag>
     <disabled>yes</disabled>
   </entry>
 </rules>
