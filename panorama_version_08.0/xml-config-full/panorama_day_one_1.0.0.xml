@@ -1616,8 +1616,8 @@
     <entry name="localhost.localdomain">
       <deviceconfig>
         <system>
-          <ip-address>192.168.55.7</ip-address>
-          <netmask>255.255.255.0</netmask>
+          <ip-address>{{mgmt-ipaddr}}</ip-address>
+          <netmask>{{mgmt-netmask}}</netmask>
           <update-server>updates.paloaltonetworks.com</update-server>
           <update-schedule>
             <threats>
@@ -1651,7 +1651,7 @@
             <disable-http>yes</disable-http>
           </service>
           <hostname>Panorama</hostname>
-          <default-gateway>192.168.55.2</default-gateway>
+          <default-gateway>{{mgmt-gateway}}</default-gateway>
           <dns-setting>
             <servers>
               <primary>8.8.8.8</primary>
