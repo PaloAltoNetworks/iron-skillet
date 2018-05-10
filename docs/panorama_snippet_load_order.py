@@ -1,3 +1,7 @@
+# This dictionary option loads to shared top of the hierarchy, not each device group
+# Useful for enterprise deployments sharing the same configuration elements
+# Remove doc comment quotes from here to dictionary above to switch load options
+
 Panorama_gold_template_dict = OrderedDict([
       ('panorama_system', ['panorama_system']),
       ('panorama_setting', ['panorama_setting']),
@@ -26,7 +30,7 @@ Panorama_gold_template_dict = OrderedDict([
       ('shared_post_rulebase_decryption', ['post_rulebase_decryption']),
       ('zone_protection_profile', ['zone_protection_profile']),
       ('log_collector_group', ['log_collector_group']),
-      ('reports', ['reports']),
-      ('report_group', ['report_group']),
-      ('email_scheduler', ['email_scheduler']),
+      ('reports', ['reports_simple']),
+      ('report_group', ['report_group_simple']),
+      ('email_scheduler', ['email_scheduler_simple']),
                           ])

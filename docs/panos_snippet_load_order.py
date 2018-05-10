@@ -1,3 +1,6 @@
+# This ordered dictionary does not use Panorama and goes direct to the firewall
+# This is api type = firewall in the web portal
+
 Panos_gold_template_dict = OrderedDict([
       ('shared_log_settings', ['shared_log_settings']),
       ('tag', ['tag']),
@@ -19,7 +22,7 @@ Panos_gold_template_dict = OrderedDict([
       ('security_rules', ['rulebase_security']),
       ('decryption_rules', ['rulebase_decryption']),
       ('zone_protection_profile', ['zone_protection_profile']),
-      ('shared_reports', ['reports']),
-      ('shared_report_group', ['report_group']),
-      ('shared_email_scheduler', ['email_scheduler']),
+      ('shared_reports', ['reports_simple']),
+      ('shared_report_group', ['report_group_simple']),
+      ('shared_email_scheduler', ['email_scheduler_simple']),
                           ])
