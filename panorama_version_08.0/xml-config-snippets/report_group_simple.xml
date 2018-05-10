@@ -21,3 +21,11 @@
     <entry name="7">
       <custom-report>Host-visit quest sites plus</custom-report>
     </entry>
+  </custom-widget>
+  <title-page>yes</title-page>
+  <variable>
+    <entry name="title">
+      <value>Possible Compromise</value>
+    </entry>
+  </variable>
+</entry>
