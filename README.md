@@ -13,9 +13,9 @@ The goal of iron-skillet is to create a template model for the most common, user
 Loading the configuration snippets can be done in multiple ways using the xml format. See the repo wiki for more information.
 [Iron Skillet Github Wiki](https://github.com/PaloAltoNetworks/iron-skillet/wiki "Iron Skillet Wiki")
 
-## VERSION SUPPORT
+### VERSION SUPPORT
 The templates are specific to PAN-OS and Panorama 8.0 and also can be used for 8.1. Currently no template support for 7.1 or prior releases.
 
-## CUSTOM REPORTS
+### CUSTOM REPORTS
 The folder custom reports contains additional reports that can be loaded along with the base templates. Currently the reports support a single zone exception with additional work and toolkits to add in multiple zones/subnets to provide a better data experience.
 
