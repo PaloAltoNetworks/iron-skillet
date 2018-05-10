@@ -1,4 +1,4 @@
-# Day One reference configuration for Panorama and Panos devices.
+# Day One Templates for Panorama and Panos devices.
 
 The Palo Alto Networks NGFW provides a wealth of features and capabilities well beyond what is provided in a legacy or single function firewall. Although highly beneficial from a security posture and operations perspective, the learning curve for the various features can be higher than a single function device.
 
@@ -13,9 +13,9 @@ The goal of iron-skillet is to create a template model for the most common, user
 Loading the configuration snippets can be done in multiple ways using the xml format. See the repo wiki for more information.
 [Iron Skillet Github Wiki](https://github.com/PaloAltoNetworks/iron-skillet/wiki "Iron Skillet Wiki")
 
-##VERSION SUPPORT
+### Version Support
 The templates are specific to PAN-OS and Panorama 8.0 and also can be used for 8.1. Currently no template support for 7.1 or prior releases.
 
-##CUSTOM REPORTS
+### Custom Reports
 The folder custom reports contains additional reports that can be loaded along with the base templates. Currently the reports support a single zone exception with additional work and toolkits to add in multiple zones/subnets to provide a better data experience.
 
