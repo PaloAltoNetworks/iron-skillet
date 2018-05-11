@@ -1,6 +1,6 @@
 # Day One Templates for Panorama and Panos devices.
 
-[![GitHub release](https://img.shields.io/github/release/PaloAltoNetworks/iron-skillet.svg?style=for-the-badge)](https://github.com/PaloAltoNetworks/iron-skillet/releases/tag/v1.0-rc)
+[![GitHub Pre-Releases](https://img.shields.io/github/release/PaloAltoNetworks/iron-skillet.svg?style=for-the-badge)](https://github.com/PaloAltoNetworks/iron-skillet/releases/tag/v1.0-rc)
 ![GitHub repo size in bytes](https://img.shields.io/github/repo-size/PaloAltoNetworks/iron-skillet.svg?style=for-the-badge)
 
 The Palo Alto Networks NGFW provides a wealth of features and capabilities well beyond what is provided in a legacy or single function firewall. Although highly beneficial from a security posture and operations perspective, the learning curve for the various features can be higher than a single function device.
