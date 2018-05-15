@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <config urldb="paloaltonetworks" version="8.0.0">
   <mgt-config>
     <users>
@@ -687,7 +688,12 @@
       <deviceconfig>
         <system>
           <type>
-            <static/>
+            <dhcp-client>
+              <send-hostname>yes</send-hostname>
+              <send-client-id>no</send-client-id>
+              <accept-dhcp-hostname>no</accept-dhcp-hostname>
+              <accept-dhcp-domain>no</accept-dhcp-domain>
+            </dhcp-client>
           </type>
           <update-server>updates.paloaltonetworks.com</update-server>
           <update-schedule>
@@ -732,9 +738,6 @@
             <disable-http>yes</disable-http>
           </service>
           <hostname>PA-VM</hostname>
-          <ip-address>{{mgmt-ipaddr}}</ip-address>
-          <netmask>{{mgmt-netmask}}</netmask>
-          <default-gateway>{{mgmt-gateway}}</default-gateway>
           <snmp-setting>
             <access-setting>
               <version>
@@ -742,20 +745,6 @@
               </version>
             </access-setting>
           </snmp-setting>
-          <dns-setting>
-            <servers>
-              <primary>4.4.2.2</primary>
-              <secondary>8.8.8.8</secondary>
-            </servers>
-          </dns-setting>
-          <ntp-servers>
-            <primary-ntp-server>
-              <ntp-server-address>0.pool.ntp.org</ntp-server-address>
-            </primary-ntp-server>
-            <secondary-ntp-server>
-              <ntp-server-address>1.pool.ntp.org</ntp-server-address>
-            </secondary-ntp-server>
-          </ntp-servers>
           <login-banner>Gold 1.0 - PANOS 8.0</login-banner>
         </system>
         <setting>
@@ -764,6 +753,17 @@
           </config>
           <management>
             <hostname-type-in-syslog>FQDN</hostname-type-in-syslog>
+            <initcfg>
+              <type>
+                <dhcp-client>
+                  <send-hostname>yes</send-hostname>
+                  <send-client-id>no</send-client-id>
+                  <accept-dhcp-hostname>no</accept-dhcp-hostname>
+                  <accept-dhcp-domain>no</accept-dhcp-domain>
+                </dhcp-client>
+              </type>
+              <public-key>c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFEUjBabFJNekwyaWpNdkxHSnp3cVlKeUNqNXh1T2NpbDRDR1AvVUdYMWpaa3NFVHlFdjNCaGpKZ3JPYVN3N3B4TlRUMUNGdGF0VW9jWHZCeWhKQ1hBS3pIdjJ5RlpLL1pSd0lEOVVTNVhHWHpyWFhWVFlSNklIVzJzSkloU0NGN3hzZ3AzbWJON2p2M1NxbXVmVi8rMW90aGxuM0hpM21UOWplMHNkaWhkbHlHaXgzYWx2TDU0RVI3b29JOTVocS9tRVFtOTZGTUErMUtlNEsvL0FSbm1vMzlEemw0MzZ5cUZPUjVnTHdxeW92VCtuZnI3ZklWZ1h4TFY5NTlFQmNMQjRibkJmbTMwY1lkK3FIczZJQVRHWVhvM2ZRTk1vR3BZaWZpQjhMc3RiVjFVN2ZCNnp0ZkhVR1dXb0N6RlJ0SGgzZFF0NHJVRVlkUUJ4RkJCRDBNd0YgdG9tLW9yZWdvbgo=</public-key>
+            </initcfg>
           </management>
           <ctd>
             <strip-x-fwd-for>yes</strip-x-fwd-for>
