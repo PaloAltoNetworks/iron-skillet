@@ -2,7 +2,7 @@
 The purpose of the Iron Skillet project is to provide a repository of XML configuration snippets that may be used to secure a Palo Alto Networks NGFW in accordance with our best practice recommendations.  These configuration snippets can be easily loaded into a firewall or Panorama minimizing configuration time to reducing errors.
 
 ## Getting Started
-Prior to utilizing these XML configuration snippets is important to familiarize yourself with the best practice recommendations for Internet Gateway, Datacenter, Wildfire, L4-L7 evasions and other use cases. 
+Prior to utilizing these XML configuration snippets is important to familiarize yourself with the best practice recommendations for Internet Gateway, Datacenter, Wildfire, L4-L7 evasions and other use cases.
 
 [Best Practice Recommendations](https://www.paloaltonetworks.com/documentation/best-practices)
 
@@ -26,7 +26,7 @@ This is a Palo Alto Networks contributed project.
 
 ## Authors
 
-* Scott Schoaf [(@sshoaf)](https://github.com/sshoaf)
+* Scott Schoaf [(@scotchoaf)](https://github.com/scotchoaf)
 * Suzi VanPatten - [(@suzivp)](https://github.com/suzivp)
 * Edward Arcuri - [(@sdndude)](https://github.com/sdndude)
 * Nate Bitting - [(@nbitting)](https://github.com/nbitting)
