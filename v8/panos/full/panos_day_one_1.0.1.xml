@@ -73,7 +73,7 @@
           <server>
             <entry name="Sample_Email_Profile">
               <display-name>Panorama</display-name>
-              <gateway>1.2.3.4</gateway>
+              <gateway>192.0.2.1</gateway>
               <from>test@yourdomain.com</from>
               <to>test@yourdomain.com</to>
             </entry>
@@ -87,7 +87,7 @@
               <transport>UDP</transport>
               <port>514</port>
               <format>BSD</format>
-              <server>1.2.3.4</server>
+              <server>192.0.2.2</server>
               <facility>LOG_USER</facility>
             </entry>
           </server>
@@ -1109,7 +1109,7 @@
               <ip-netmask>72.5.65.111</ip-netmask>
             </entry>
             <entry name="Sinkhole-IPv6">
-              <ip-netmask>2600:5200::1</ip-netmask>
+              <ip-netmask>FD00::1</ip-netmask>
             </entry>
           </address>
           <external-list>
@@ -1314,7 +1314,7 @@
                   </lists>
                   <sinkhole>
                     <ipv4-address>72.5.65.111</ipv4-address>
-                    <ipv6-address>2600:5200::1</ipv6-address>
+                    <ipv6-address>FD00::1</ipv6-address>
                   </sinkhole>
                   <packet-capture>single-packet</packet-capture>
                 </botnet-domains>
@@ -1357,7 +1357,7 @@
                   </lists>
                   <sinkhole>
                     <ipv4-address>72.5.65.111</ipv4-address>
-                    <ipv6-address>2600:5200::1</ipv6-address>
+                    <ipv6-address>FD00::1</ipv6-address>
                   </sinkhole>
                   <packet-capture>single-packet</packet-capture>
                 </botnet-domains>
@@ -1400,7 +1400,7 @@
                   </lists>
                   <sinkhole>
                     <ipv4-address>72.5.65.111</ipv4-address>
-                    <ipv6-address>2600:5200::1</ipv6-address>
+                    <ipv6-address>FD00::1</ipv6-address>
                   </sinkhole>
                   <packet-capture>single-packet</packet-capture>
                 </botnet-domains>
@@ -1442,7 +1442,8 @@
                     </entry>
                   </lists>
                   <sinkhole>
-                    <ipv6-address>2600:5200::1</ipv6-address>
+                    <ipv4-address>72.5.65.111</ipv4-address>
+                    <ipv6-address>FD00::1</ipv6-address>
                   </sinkhole>
                   <packet-capture>disable</packet-capture>
                 </botnet-domains>
@@ -1471,7 +1472,7 @@
                   </lists>
                   <sinkhole>
                     <ipv4-address>72.5.65.111</ipv4-address>
-                    <ipv6-address>2600:5200::1</ipv6-address>
+                    <ipv6-address>FD00::1</ipv6-address>
                   </sinkhole>
                   <packet-capture>single-packet</packet-capture>
                 </botnet-domains>
@@ -1645,6 +1646,7 @@
                     <member>alcohol-and-tobacco</member>
                     <member>auctions</member>
                     <member>business-and-economy</member>
+                    <member>command-and-control</member>
                     <member>computer-and-internet-info</member>
                     <member>content-delivery-networks</member>
                     <member>copyright-infringement</member>
@@ -1714,6 +1716,7 @@
                   <member>alcohol-and-tobacco</member>
                   <member>auctions</member>
                   <member>business-and-economy</member>
+                  <member>command-and-control</member>
                   <member>computer-and-internet-info</member>
                   <member>content-delivery-networks</member>
                   <member>copyright-infringement</member>

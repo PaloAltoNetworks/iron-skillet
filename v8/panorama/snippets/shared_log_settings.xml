@@ -3,7 +3,7 @@
     <server>
       <entry name="Sample_Email_Profile">
         <display-name>Panorama</display-name>
-        <gateway>1.2.3.4</gateway>
+        <gateway>192.0.2.1</gateway>
         <from>test@yourdomain.com</from>
         <to>test@yourdomain.com</to>
       </entry>
@@ -17,7 +17,7 @@
         <transport>UDP</transport>
         <port>514</port>
         <format>BSD</format>
-        <server>1.2.3.4</server>
+        <server>192.0.2.2</server>
         <facility>LOG_USER</facility>
       </entry>
     </server>
