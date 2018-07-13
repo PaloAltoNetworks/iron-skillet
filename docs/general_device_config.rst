@@ -7,28 +7,29 @@ This section provides templated configurations for general device settings.
 Security-related Device Settings
 --------------------------------
 
-.. _device_setting: https://github.com/scotchoaf/iron-skillet/blob/rev-1.0.1/v8/panos/snippets-variables/device_setting.xml
-
 `device_setting.xml
 <https://github.com/scotchoaf/iron-skillet/blob/rev-1.0.1/v8/panos/snippets-variables/device_setting.xml>`_
 
-device_setting_.xml
-
 General device settings that effect security posture. Found in Device > Setup in the GUI.
 
-- X-Forwarded-For: To ensure that attackers can’t read and exploit the XFF values in web request packets that exit the firewall.
-Enable the firewall to use XFF values in policies and in the source user fields of logs Remove XFF values from outgoing web requests.
+* X-Forwarded-For: To ensure that attackers can’t read and exploit the XFF values in web request packets that exit the firewall.
+		+ Enable the firewall to use XFF values in policies and in the source user fields of logs 
+		+ Remove XFF values from outgoing web requests.
 
-- Wildfire: set optimal file size limits for Wildfire uploads and show verdict responses for grayware, malware and phishing
-
-
-- Session rematch: the firewall will go through all the existing sessions and apply the new security policy to any matching traffic
-
-- Notify User: user should be notified when web-application is blocked; enables the application response page 
-
-- Log Suppression: disabled to ensure unique log entries even if similar session types
+* Wildfire: set optimal file size limits for Wildfire uploads and show verdict responses for grayware, malware and phishing
 
 
+* Session rematch: the firewall will go through all the existing sessions and apply the new security policy to any matching traffic
+
+* Notify User: user should be notified when web-application is blocked; enables the application response page 
+
+* Log Suppression: disabled to ensure unique log entries even if similar session types
+
+
+* unordered list
+    + sub-item 1 
+    + sub-item 2 
+        - sub-sub-item 1
 
 
 System Configuration
