@@ -9,6 +9,9 @@ Security-related Device Settings
 
 .. _device_setting: https://github.com/scotchoaf/iron-skillet/blob/rev-1.0.1/v8/panos/snippets-variables/device_setting.xml
 
+`device_setting.xml
+<https://github.com/scotchoaf/iron-skillet/blob/rev-1.0.1/v8/panos/snippets-variables/device_setting.xml>`_
+
 device_setting_.xml
 
 General device settings that effect security posture. Found in Device > Setup in the GUI.
@@ -26,31 +29,6 @@ Enable the firewall to use XFF values in policies and in the source user fields 
 - Log Suppression: disabled to ensure unique log entries even if similar session types
 
 
-
-Docker
-------
-
-.. _Docker: https://docker.io
-
-The fastest way to start this tool is using Docker_. New container images are built periodically and will always be up
-to date.
-
-.. code-block:: bash
-    docker build -t panos_bootstrapper:v0.4 .
-    docker run --entrypoint python -p 8002:5000 --name panos_bootstrapper panos_bootstrapper:v0.4 /app/bootstrapper/bootstrapper.py
-
-
-Standalone
-----------
-
-For local development, start the tool directly using these commands:
-
-.. code-block:: bash
-    export FLASK_APP=./bootstrapper/bootstrapper.py
-    flask run --host=0.0.0.0 --port=5002
-
-This will start the API and listen on all interfaces on port 5002. Browsing to http://localhost:5002 will show the
-OpenAPI 2.0 documentation.
 
 
 System Configuration
