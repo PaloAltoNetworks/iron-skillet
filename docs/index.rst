@@ -12,3 +12,4 @@ Welcome to Iron Skillet template documentation!
 
 
    panos_template_guide
+   panorama_template_guide
