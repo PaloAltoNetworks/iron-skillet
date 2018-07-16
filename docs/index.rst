@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to test_rst's documentation!
+Welcome to Iron Skillet template documentation!
 ====================================
 
 .. toctree::
