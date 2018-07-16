@@ -2,8 +2,8 @@
 
 
 
-Project IronSkillet : Panorama version 8.0
-============================================
+Panorama templates: version 8.0
+===============================
 
 
 The configuration snippet descriptions and the associated GitHub

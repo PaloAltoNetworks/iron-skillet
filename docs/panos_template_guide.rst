@@ -2,8 +2,8 @@
 
 
 
-Project IronSkillet : PAN-OS version 8.0
-============================================
+PAN-OS templates: version 8.0
+=============================
 
 
 The configuration snippet descriptions and the associated GitHub
