@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5c0c3eb4-38e1-4781-84b8-1db56fc81714" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/docs/general_device_config.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/general_device_config.rst" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/iron_skillet$docutils_task_in_general_device_config_rst.coverage" NAME="docutils task in general_device_config.rst Coverage Results" MODIFIED="1531510809017" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/docs" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="general_device_config.rst" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/docs/general_device_config.rst">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="139">
+              <caret line="16" column="55" lean-forward="true" selection-start-line="16" selection-start-column="55" selection-end-line="16" selection-end-column="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="panos_day_one_1.0.1.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/panos/full/panos_day_one_1.0.1.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="7515">
+              <caret line="746" column="40" lean-forward="true" selection-start-line="746" selection-start-column="40" selection-end-line="746" selection-end-column="40" />
+              <folding>
+                <element signature="n#mgt-config#0;n#config#0;n#!!top" />
+                <element signature="n#profiles#0;n#network#0;n#entry#0;n#devices#0;n#config#0;n#!!top" />
+                <element signature="n#ike#0;n#network#0;n#entry#0;n#devices#0;n#config#0;n#!!top" />
+                <element signature="n#qos#0;n#network#0;n#entry#0;n#devices#0;n#config#0;n#!!top" />
+                <element signature="n#virtual-router#0;n#network#0;n#entry#0;n#devices#0;n#config#0;n#!!top" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>&lt;login</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/docs/general_device_config.rst" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-368" />
+    <option name="y" value="-974" />
+    <option name="width" value="1758" />
+    <option name="height" value="947" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="iron-skillet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="iron-skillet" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="iron-skillet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="iron-skillet" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="iron-skillet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="iron-skillet" type="462c0819:PsiDirectoryNode" />
+              <item name="v8" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="iron-skillet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="iron-skillet" type="462c0819:PsiDirectoryNode" />
+              <item name="v8" type="462c0819:PsiDirectoryNode" />
+              <item name="panos" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="iron-skillet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="iron-skillet" type="462c0819:PsiDirectoryNode" />
+              <item name="v8" type="462c0819:PsiDirectoryNode" />
+              <item name="panos" type="462c0819:PsiDirectoryNode" />
+              <item name="full" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="iron-skillet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.web.browsers" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="docutils task in general_device_config.rst" type="docs" factoryName="Docutils task" temporary="true">
+      <module name="iron-skillet" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/docs" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="docutils_input_file" value="$PROJECT_DIR$/docs/general_device_config.rst" />
+      <option name="docutils_output_file" value="$PROJECT_DIR$/docs/general_device_config.html" />
+      <option name="docutils_params" value="" />
+      <option name="docutils_task" value="rst2html" />
+      <option name="docutils_open_in_browser" value="true" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python docs.docutils task in general_device_config.rst" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5c0c3eb4-38e1-4781-84b8-1db56fc81714" name="Default" comment="" />
+      <created>1531510539222</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1531510539222</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-368" y="-974" width="1758" height="947" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32896462" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Python Console" />
+      <window_info anchor="right" id="Coverage" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14277588" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="SciView" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/docs/general_device_config.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/Makefile">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/panos/full/panos_day_one_1.0.1.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7515">
+          <caret line="746" column="40" lean-forward="true" selection-start-line="746" selection-start-column="40" selection-end-line="746" selection-end-column="40" />
+          <folding>
+            <element signature="n#mgt-config#0;n#config#0;n#!!top" />
+            <element signature="n#profiles#0;n#network#0;n#entry#0;n#devices#0;n#config#0;n#!!top" />
+            <element signature="n#ike#0;n#network#0;n#entry#0;n#devices#0;n#config#0;n#!!top" />
+            <element signature="n#qos#0;n#network#0;n#entry#0;n#devices#0;n#config#0;n#!!top" />
+            <element signature="n#virtual-router#0;n#network#0;n#entry#0;n#devices#0;n#config#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/general_device_config.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="16" column="55" lean-forward="true" selection-start-line="16" selection-start-column="55" selection-end-line="16" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
