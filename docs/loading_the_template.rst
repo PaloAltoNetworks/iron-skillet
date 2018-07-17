@@ -201,6 +201,7 @@ shared                  profile object, rules, and other device-group 'top of tr
 log collector           settings for Panorama when used as a log collector
 ======================  ==========================================================================
 
+______________________________________________________________________
 
 Loading configuration snippets with pan-python
 ----------------------------------------------
@@ -240,10 +241,10 @@ The standard entry model is
 where the elements are:
 ::
 
-``{{ ip address }}`` is the device ip address
-``{{ api-key }}`` is the user/device specific api-key
-``{{ filename }}`` is the xml snippet to be loaded
-**{{ xpath }}** is the xpath specific to the config element
+    {{ ip address }} is the device ip address
+    {{ api-key }} is the user/device specific api-key
+    {{ filename }} is the xml snippet to be loaded
+    {{ xpath }} is the xpath specific to the config element
 
 
 For example, to load the tag.xml file to ip address 192.168.55.10 and api-key: 12345 would be
@@ -263,3 +264,70 @@ Simple scripts can be used to iterate through multiple load requests.
 .. Note::
    Based on the local pan-python install and use of .panrc you may not require the -h and -K elements and only have to reference the xpath and filename.
 
+
+_________________________________________________
+
+The Panorama/PAN-OS API and XML
+-------------------------------
+
+API Overview
+~~~~~~~~~~~~
+
+For extended reading about the API, you can access the documentation for 8.1 here:
+
+`PAN-OS API Reference
+<https://www.paloaltonetworks.com/documentation/81/pan-os/xml-api>`_
+
+
+The configuration file and api calls are XML specific. XML is based on XML nodes with the xpath specifying the node in the tree to be referenced. Thus in order to use the API, two configuration items are needed:
+
+1. The xpath pointing to the node to be configured
+2. The xml snippet to be used as the element in the configuration
+
+Along with these two items, the IP address of the device and a user-based API are required to modify the configuration.
+
+
+Reference values contained in the repo
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+``xpaths list``: a python dictionary that can be used within scripts. The key is the reference name for the xpath and the value is the xpath name. The key and value will be referenced in the table below to show load order.
+
+``config snippets folder``: set of xml files named according to config element; referenced as the value in the snippet load order dictionary
+
+``snippet load order``: A python Ordered Dictionary used to show the config load order. The key is the xpath name from the xpaths list and the value is the config snippet file name. Load order is critical since some configuration elements like security rules rely on predefined objects such as EDLs, logging profiles, and security profiles.
+
+With the xpath, snippet, and load order various tools such as pan-python, curl, and postman can be used to add configuration using the API. Other tools such as Ansible and Terraform use the same concept but have their own template format to create playbooks and responders.
+
+
+
+Panorama items
+
+
+    `xpaths
+    <https://github.com/PaloAltoNetworks/iron-skillet/blob/master/docs/panorama_xpaths_list.py>`_
+
+    `snippets
+    <https://github.com/PaloAltoNetworks/iron-skillet/tree/master/Panorama_version-08.0/xml-config-snippets>`_
+
+    `load order
+    <https://github.com/PaloAltoNetworks/iron-skillet/blob/master/docs/panorama_snippet_load_order.py>`_
+
+
+
+PAN-OS items
+
+
+    `xpaths
+    <https://github.com/PaloAltoNetworks/iron-skillet/blob/master/docs/panorama_xpaths_list.py>`_
+
+    `snippets
+    <https://github.com/PaloAltoNetworks/iron-skillet/tree/master/PANOS_version-08.0/xml-config-snippets>`_
+
+    `load order
+    <https://github.com/PaloAltoNetworks/iron-skillet/blob/master/docs/panorama_snippet_load_order.py>`_
+
+
+
+
+With the xpath, snippet, and load order various tools such as pan-python, curl, and postman can be used to add configuration using the API. Other tools such as Ansible and Terraform use the same concept but have their own template format to create playbooks and responders.
