@@ -34,7 +34,7 @@ Import the configuration file using the GUI
 3. Click on the ``Operations`` tab
 
 .. Note::
-   You can perform a ``Save named configuration snapshot`` as backup prior to loading the new configuration
+    You can perform a ``Save named configuration snapshot`` as backup prior to loading the new configuration
 
 
 4. Then ``Import named configuration snapshot`` choosing the day one config xml file
@@ -51,8 +51,8 @@ Load and commit the configuration
 
 
 .. Note::
-   As referenced above, you may see {{ text }} related errors during the commit.
-   If this happens, you will need to edit the pre-imported xml file and then repeat the steps above to import, load, and commit the configuration.
+    As referenced above, you may see {{ text }} related errors during the commit.
+    If this happens, you will need to edit the pre-imported xml file and then repeat the steps above to import, load, and commit the configuration.
 
 
 
@@ -97,7 +97,8 @@ Import the Day One configuration: GUI
 3. Click on the ``Operations`` tab
 
 .. Note::
-   You can perform a ``Save named configuration snapshot`` as backup prior to loading the new configuration
+    You can perform a ``Save named configuration snapshot`` as backup prior to loading the new configuration
+
 
 
 4. Then ``Import named configuration snapshot`` choosing the day one config xml file
@@ -170,7 +171,6 @@ Cut-and-paste from the table below into the PAN-OS command line while in configu
 
 You can paste multiple items. The system will pause during each load config partial, return a status message, then move to the next load. When complete, ensure the final load is entered and a status message received.
 
-
 ::
 
 load config partial from panorama_day_one_1.0.0.xml from-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system to-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system mode merge
@@ -182,6 +182,7 @@ load config partial from panorama_day_one_1.0.0.xml from-xpath /config/shared to
 load config partial from panorama_day_one_1.0.0.xml from-xpath /config/devices/entry[@name='localhost.localdomain']/log-collector-group to-xpath /config/devices/entry[@name='localhost.localdomain']/log-collector-group mode merge
 
 
+
 Panorama config elements used in load config partial
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -189,9 +190,9 @@ Each xpath in the load config partial gives an indication of each element loaded
 
 This uses an aggregate template loading module with multiple configuration elements contained under the template, device-group, and shared parts of the xml tree. The hierarchical nature of Panorama simplifies the configuration loading.
 
-================        ==========================================================================
+======================  ==========================================================================
 xpath                   suffix description
-================        ==========================================================================
+======================  ==========================================================================
 panorama system         panorama specific dynamic updates, dns and ntp server settings
 panorama settings       enable reporting on groups and sharing of unused objects
 panorama log settings   syslog/email profiles and system, configuration logging
@@ -199,7 +200,7 @@ template                test template configuration with device settings and zon
 device-group            reports, report groups, and email scheduler
 shared                  profile object, rules, and other device-group 'top of tree' items
 log collector           settings for Panorama when used as a log collector
-================        ==========================================================================
+======================  ==========================================================================
 
 
 Loading configuration snippets with pan-python
@@ -210,15 +211,22 @@ pan-python overview
 
 Pan-python provides a simple command-line model to use the Panorama/PAN-OS API. It leverages the standard xml xpath+element model to push configuration changes to the device. The GitHub repo is found here:
 
-[pan-python repo](https://github.com/kevinsteves/pan-python)
+`pan-python repo
+<https://github.com/kevinsteves/pan-python>`_
+
 
 Training for pan-python including the initial install and getting the device api-key are found here:
 
-[pan-python api lab](http://api-lab.paloaltonetworks.com)
+
+`pan-python api lab
+<http://api-lab.paloaltonetworks.com>`_
+
 
 Before using pan-python, it helps to be familiar with the xpaths used in the template along with the configuration load order. These provide the foundation for the xpath and element references in the examples below.
 
-[xpath and snippet load order](https://github.com/PaloAltoNetworks/iron-skillet/wiki/Panorama-PAN-OS-API-Overview)
+
+`xpath and snippet load order
+<https://github.com/PaloAltoNetworks/iron-skillet/wiki/Panorama-PAN-OS-API-Overview>`_
 
 
 pan-python full syntax for loading a config element
@@ -233,30 +241,29 @@ pan-python full syntax for loading a config element
 ``{{ xpath }}`` is the xpath specific to the config element
 
 
-.. code-block:: bash
-
+.. code-block:: python
     panxapi.py -h ``{{ ip address }}`` -K ``{{ api-key }}`` -S ``{{ filename.xml }}`` "``{{ xpath }}``"
 
+::
 
 For example, to load the tag.xml file to ip address 192.168.55.10 and api-key: 12345 would be:
 
-.. code-block:: bash
+.. code-block:: python
     panxapi.py -h 192.168.55.10 -K 12345 -S tag.xml "/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag"
 
+::
 
 or an external list object (aka EDL):
 
-.. code-block:: bash
+.. code-block:: python
     panxapi.py -h 192.168.55.10 -K 12345 -S external_list.xml "/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/external-list"
+
+::
+
+Simple scripts can be used to iterate through multiple load requests.
 
 
 .. Note::
    Based on the local pan-python install and use of .panrc you may not require the -h and -K elements and only have to reference the xpath and filename.
 
-
-.. Note::
-   Only ``BLOCK`` categories will be shown
-   All URL categories will be set to ``ALERT`` at a minimum for logging
-   purposes. The profile descriptions will include the ``BLOCK`` categories
-   in the description.
 
