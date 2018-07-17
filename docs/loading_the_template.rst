@@ -34,7 +34,7 @@ Import the configuration file using the GUI
 3. Click on the ``Operations`` tab
 
 .. Note::
-You can perform a ``Save named configuration snapshot`` as backup prior to loading the new configuration
+   You can perform a ``Save named configuration snapshot`` as backup prior to loading the new configuration
 
 
 4. Then ``Import named configuration snapshot`` choosing the day one config xml file
@@ -51,8 +51,8 @@ Load and commit the configuration
 
 
 .. Note::
-As referenced above, you may see {{ text }} related errors during the commit.
-If this happens, you will need to edit the pre-imported xml file and then repeat the steps above to import, load, and commit the configuration.
+   As referenced above, you may see {{ text }} related errors during the commit.
+   If this happens, you will need to edit the pre-imported xml file and then repeat the steps above to import, load, and commit the configuration.
 
 
 
@@ -96,7 +96,7 @@ Import the Day One configuration: GUI
 3. Click on the ``Operations`` tab
 
 .. Note::
-You can perform a ``Save named configuration snapshot`` as backup prior to loading the new configuration
+   You can perform a ``Save named configuration snapshot`` as backup prior to loading the new configuration
 
 
 4. Then ``Import named configuration snapshot`` choosing the day one config xml file
@@ -145,7 +145,7 @@ Each xpath in the load config partial gives an indication of each element loaded
 ================   ==========================================================================
 xpath              suffix description
 ================   ==========================================================================
-log                settings syslog/email profiles and system, configuration logging
+log settings       settings syslog/email profiles and system, configuration logging
 tag                referenced tags used in security rules
 system             dynamic updates, dns and ntp server settings
 setting            Wildfire max file sizes, disable log suppression
