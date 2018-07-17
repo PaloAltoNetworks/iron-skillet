@@ -142,20 +142,22 @@ Configuration Elements Load Order Explained
 
 Each xpath in the load config partial gives an indication of each element loaded. Below is a simple explanation of the configuration elements with key items in the xml load.
 
-================  =============================================
-xpath             suffix description
-================  =============================================
-log               |settings syslog/email profiles and system, configuration logging
-tag               referenced tags used in security rules
-system            dynamic updates, dns and ntp server settings
-setting           Wildfire max file sizes, disable log suppression
-address           named references for sinkholes values used in security rules
-external list     EDLs referenced in security rules, eg. IPv4/v6 bogons
-profiles          Threat, URL Filtering, Wildfire, and decryption profile configurations
-profile-group     Group settings for the security profiles, eg. Inbound, Outbound, Alert-All
-rulebase          template security and decryption rules
-zone protection   recommended zone protection profile
-reports           traffic and threat reports
-report groups     grouping of reports for viewing and scheduling
-email scheduler   email schedule for report groups
-================  =========================================
+================   ==========================================================================
+xpath              suffix description
+================   ==========================================================================
+log                settings syslog/email profiles and system, configuration logging
+tag                referenced tags used in security rules
+system             dynamic updates, dns and ntp server settings
+setting            Wildfire max file sizes, disable log suppression
+address            named references for sinkholes values used in security rules
+external list      EDLs referenced in security rules, eg. IPv4/v6 bogons
+profiles           Threat, URL Filtering, Wildfire, and decryption profile configurations
+profile-group      Group settings for the security profiles, eg. Inbound, Outbound, Alert-All
+rulebase           template security and decryption rules
+zone protection    recommended zone protection profile
+reports            traffic and threat reports
+report groups      grouping of reports for viewing and scheduling
+email scheduler    email schedule for report groups
+================   ==========================================================================
+
+
