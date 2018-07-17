@@ -33,11 +33,11 @@ Import the configuration file using the GUI
 
 3. Click on the ``Operations`` tab
 
+4. Then ``Import named configuration snapshot`` choosing the day one config xml file
+
+
 .. Note::
     You can perform a ``Save named configuration snapshot`` as backup prior to loading the new configuration
-
-
-4. Then ``Import named configuration snapshot`` choosing the day one config xml file
 
 
 Load and commit the configuration
@@ -51,7 +51,7 @@ Load and commit the configuration
 
 
 .. Note::
-    As referenced above, you may see {{ text }} related errors during the commit.
+    As referenced above, you may see ``{{ text }}`` related errors during the commit.
     If this happens, you will need to edit the pre-imported xml file and then repeat the steps above to import, load, and commit the configuration.
 
 
@@ -96,12 +96,11 @@ Import the Day One configuration: GUI
 
 3. Click on the ``Operations`` tab
 
+4. Then ``Import named configuration snapshot`` choosing the day one config xml file
+
+
 .. Note::
     You can perform a ``Save named configuration snapshot`` as backup prior to loading the new configuration
-
-
-
-4. Then ``Import named configuration snapshot`` choosing the day one config xml file
 
 
 Load the configuration elements: CLI
@@ -173,13 +172,13 @@ You can paste multiple items. The system will pause during each load config part
 
 ::
 
-load config partial from panorama_day_one_1.0.0.xml from-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system to-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system mode merge
-load config partial from panorama_day_one_1.0.0.xml from-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting to-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting mode merge
-load config partial from panorama_day_one_1.0.0.xml from-xpath /config/panorama/log-settings to-xpath /config/panorama/log-settings mode merge
-load config partial from panorama_day_one_1.0.0.xml from-xpath /config/devices/entry[@name='localhost.localdomain']/template to-xpath /config/devices/entry[@name='localhost.localdomain']/template mode merge
-load config partial from panorama_day_one_1.0.0.xml from-xpath /config/devices/entry[@name='localhost.localdomain']/device-group to-xpath /config/devices/entry[@name='localhost.localdomain']/device-group mode merge
-load config partial from panorama_day_one_1.0.0.xml from-xpath /config/shared to-xpath /config/shared mode merge
-load config partial from panorama_day_one_1.0.0.xml from-xpath /config/devices/entry[@name='localhost.localdomain']/log-collector-group to-xpath /config/devices/entry[@name='localhost.localdomain']/log-collector-group mode merge
+    load config partial from panorama_day_one_1.0.0.xml from-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system to-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system mode merge
+    load config partial from panorama_day_one_1.0.0.xml from-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting to-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting mode merge
+    load config partial from panorama_day_one_1.0.0.xml from-xpath /config/panorama/log-settings to-xpath /config/panorama/log-settings mode merge
+    load config partial from panorama_day_one_1.0.0.xml from-xpath /config/devices/entry[@name='localhost.localdomain']/template to-xpath /config/devices/entry[@name='localhost.localdomain']/template mode merge
+    load config partial from panorama_day_one_1.0.0.xml from-xpath /config/devices/entry[@name='localhost.localdomain']/device-group to-xpath /config/devices/entry[@name='localhost.localdomain']/device-group mode merge
+    load config partial from panorama_day_one_1.0.0.xml from-xpath /config/shared to-xpath /config/shared mode merge
+    load config partial from panorama_day_one_1.0.0.xml from-xpath /config/devices/entry[@name='localhost.localdomain']/log-collector-group to-xpath /config/devices/entry[@name='localhost.localdomain']/log-collector-group mode merge
 
 
 
@@ -232,38 +231,35 @@ Before using pan-python, it helps to be familiar with the xpaths used in the tem
 pan-python full syntax for loading a config element
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``{{ ip address }}`` is the device ip address
+The standard entry model is
+::
 
-``{{ api-key }}`` is the user/device specific api-key
-
-``{{ filename }}`` is the xml snippet to be loaded
-
-``{{ xpath }}`` is the xpath specific to the config element
-
-
-.. code-block:: python
     panxapi.py -h ``{{ ip address }}`` -K ``{{ api-key }}`` -S ``{{ filename.xml }}`` "``{{ xpath }}``"
 
+
+where the elements are:
 ::
 
-For example, to load the tag.xml file to ip address 192.168.55.10 and api-key: 12345 would be:
+``{{ ip address }}`` is the device ip address
+``{{ api-key }}`` is the user/device specific api-key
+``{{ filename }}`` is the xml snippet to be loaded
+**{{ xpath }}** is the xpath specific to the config element
 
-.. code-block:: python
+
+For example, to load the tag.xml file to ip address 192.168.55.10 and api-key: 12345 would be
+::
     panxapi.py -h 192.168.55.10 -K 12345 -S tag.xml "/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag"
 
+
+or an external list object (aka EDL)
 ::
-
-or an external list object (aka EDL):
-
-.. code-block:: python
     panxapi.py -h 192.168.55.10 -K 12345 -S external_list.xml "/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/external-list"
 
-::
+
 
 Simple scripts can be used to iterate through multiple load requests.
 
 
 .. Note::
    Based on the local pan-python install and use of .panrc you may not require the -h and -K elements and only have to reference the xpath and filename.
-
 
