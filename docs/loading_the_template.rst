@@ -121,6 +121,7 @@ Cut-and-paste from the table below into the PAN-OS command line while in configu
 
 You can paste multiple items. The system will pause during each load config partial, return a status message, then move to the next load. When complete, ensure the final load is entered and a status message received.
 
+::
 
     load config partial from panos_day_one_1.0.0.xml from-xpath /config/shared/log-settings to-xpath /config/shared/log-settings mode merge
     load config partial from panos_day_one_1.0.0.xml from-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag to-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag mode merge
@@ -152,8 +153,7 @@ Each xpath in the load config partial gives an indication of each element loaded
 :profile-group: Group settings for the security profiles, eg. Inbound, Outbound, Alert-All
 :rulebase: template security and decryption rules
 :zone protection: recommended zone protection profile
-:reports:  traffic and threat reports
-:report groups:  grouping of reports for viewing and scheduling
-:email scheduler:  email schedule for report groups
+:reports: traffic and threat reports
+:report groups: grouping of reports for viewing and scheduling
+:email scheduler: email schedule for report groups
 
-Specific details about each configuration element in the template is found in the docs folder.
