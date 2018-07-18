@@ -124,9 +124,9 @@ You can paste multiple items. The system will pause during each load config part
 
 ::
 
-    load config partial from panos_day_one_1.0.0.xml from-xpath /config/shared/log-settings to-xpath /config/shared/log-settings mode merge
-    load config partial from panos_day_one_1.0.0.xml from-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag to-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag mode merge
-    load config partial from panos_day_one_1.0.0.xml from-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system to-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system mode merge
+    load config partial from |configfile| from-xpath /config/shared/log-settings to-xpath /config/shared/log-settings mode merge
+    load config partial from |configfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag to-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag mode merge
+    load config partial from |configfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system to-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system mode merge
     load config partial from panos_day_one_1.0.0.xml from-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting to-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting mode merge
     load config partial from panos_day_one_1.0.0.xml from-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/address to-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/address mode merge
     load config partial from panos_day_one_1.0.0.xml from-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/external-list to-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/external-list mode merge

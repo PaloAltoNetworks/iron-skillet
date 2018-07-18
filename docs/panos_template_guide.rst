@@ -127,14 +127,10 @@ Address Object
 Address object used to reference named addresses.
 
 
-
         + Sinkhole-IPv4: IP address used in security rule to block sinkhole
           traffic
         + Sinkhole-IPv6: IP address used in security rule to block sinkhole
           traffic
-
-
-
 
 
 External Dynamic Lists
@@ -146,7 +142,6 @@ External Dynamic Lists
 
 Used for the firewall to pull in external elements such as IP, URL, or
 domain used in security rules
-
 
 
 
@@ -258,9 +253,6 @@ Profiles:
           modifying the default template profiles
 
 
-
-
-
 Anti-Spyware
 ~~~~~~~~~~~~
 
@@ -294,14 +286,12 @@ Profiles:
             + Single packet capture for Critical, High, Medium severity
 
 
-
         + Internal-AS : For internal network segmentation rules
 
             + Block severity = Critical, High
             + Default severity = Medium, Low, Informational
             + DNS Sinkhole for IPv4 and IPv6
             + Single packet capture for Critical, High, Medium severity
-
 
 
         + Alert-Only-AS : No blocking, only alerts for logging purposes
@@ -312,9 +302,6 @@ Profiles:
 
         + Exception-AS : For exception requirements in security rules to avoid
           modifying the default template profiles
-
-
-
 
 
 URL Filtering
@@ -466,7 +453,7 @@ Security Profile Groups
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 
-:panosrepo:`profiles_group`
+:panosrepo:`profile_group`
 
 Security profile groups based on use case
 
@@ -616,6 +603,7 @@ Profile
 Recommended_Zone_Protection profile for standard, non-volumetric best
 practices. This profile should be attached to all interfaces within
 the network.
+
 
 .. Note::
    **Recon Protection**
