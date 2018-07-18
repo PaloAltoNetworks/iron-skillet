@@ -70,7 +70,8 @@ profiles.
    The destination in the logging profile is templated to an unroutable syslog server address.
    This can vary based on actual deployment scenarios.
 
-
+Log forwarding profile
+~~~~~~~~~~~~~~~~~~~~~~
 
 :panosrepo:`log_settings_profiles`
 
@@ -84,6 +85,8 @@ forward log related events.
     + Email malicious and phishing Wildfire verdicts to the address in the
       email profile (see shared_log_settings.xml)
 
+Device log settings
+~~~~~~~~~~~~~~~~~~~
 
 :panosrepo:`shared_log_settings`
 
@@ -363,8 +366,6 @@ Profiles:
               -Forwarded-For)
 
 
-
-
 Anti-Virus
 ~~~~~~~~~~
 
@@ -372,7 +373,6 @@ Anti-Virus
 :panosrepo:`profiles_virus`
 
 Security profile for actions specific to AntiVirus (AV).
-
 
 
 Profiles:
@@ -384,7 +384,6 @@ Profiles:
         + Alert-Only-AV: No blocking, only alerts for logging purposes
         + Exception-AV: For exception requirements in security rules to avoid
           modifying the default template profiles
-
 
 
 .. Note::
@@ -406,7 +405,6 @@ Vulnerability Protection
 Profiles:
 
 
-
         + Outbound-VP : For outbound (trust to untrust) security rules
 
             + Block severity = Critical, High, Medium
@@ -422,13 +420,11 @@ Profiles:
             + Single packet capture for Critical, High, Medium severity
 
 
-
         + Internal-VP : For internal network segmentation rules
 
             + Block severity = Critical, High
             + Alert severity = Medium, Low, Informational
             + Single packet capture for Critical, High, Medium severity
-
 
 
         + Alert-Only-VP : No blocking, only alerts for logging purposes
@@ -437,12 +433,8 @@ Profiles:
             + No packet capture
 
 
-
         + Exception-VP: For exception requirements in security rules to avoid
           modifying the default template profiles
-
-
-
 
 
 Wildfire Analysis
@@ -460,10 +452,7 @@ Security profile for actions specific to Wildfire upload and analysis
    direction to the public cloud for analysis.
 
 
-
 Profiles:
-
-
 
         + Outbound-WF: For outbound (trust to untrust) security rules
         + Inbound-WF: For inbound (untrust to trust) security rules
@@ -471,9 +460,6 @@ Profiles:
         + Alert-Only-WF: No blocking, only alerts for logging purposes
         + Exception-WF: For exception requirements in security rules to avoid
           modifying the default template profiles
-
-
-
 
 
 Security Profile Groups
