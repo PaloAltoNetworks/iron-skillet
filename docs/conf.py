@@ -38,7 +38,7 @@ release = u'1.0'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = [
+extensions = ['sphinx.ext.extlinks'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -157,10 +157,7 @@ texinfo_documents = [
 # -- Variable substitutions used in the document
 
 # github file path that changes across repo and branches
-repopath = 'github.com/scotchoaf/iron-skillet/blob/develop/templates'
 
-rst_prolog = """
-.. |repopath| replace:: {0}
-""".format(repopath)
+extlinks = {'panosrepo': ('https://github.com/scotchoaf/iron-skillet/blob/version_08.0/templates/panos/snippets-variables/%s.xml', 'template  ')
+            }
 
-extlinks = {'panosrepo': ('https://github.com/scotchoaf/iron-skillet/blob/version_08.0/templates/panos/snippets-variables/%s.xml', 'iron-skillet'), ...}

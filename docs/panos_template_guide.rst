@@ -23,8 +23,6 @@ Security-related Device Settings
 <https://github.com/scotchoaf/iron-skillet/blob/develop/templates/panos/snippets/device_setting.xml>`_
 
 
-this is the repo path: |repopath|
-
 :panosrepo:`device_setting`
 
 General device settings that effect security posture. Found in Device > Setup in the GUI.
