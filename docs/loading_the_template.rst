@@ -120,27 +120,24 @@ PAN-OS load config partial commands
 
 Cut-and-paste from the table below into the PAN-OS command line while in configuration mode.
 
-This is the current config file name: |configfile|
 
 You can paste multiple items. The system will pause during each load config partial, return a status message, then move to the next load. When complete, ensure the final load is entered and a status message received.
 
-::
+.. parsed-literal::
 
-|configfile|
-
-    load config partial from |configfile| from-xpath /config/shared/log-settings to-xpath /config/shared/log-settings mode merge
-    load config partial from |configfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag to-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag mode merge
-    load config partial from |configfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system to-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system mode merge
-    load config partial from panos_day_one_1.0.0.xml from-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting to-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting mode merge
-    load config partial from panos_day_one_1.0.0.xml from-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/address to-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/address mode merge
-    load config partial from panos_day_one_1.0.0.xml from-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/external-list to-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/external-list mode merge
-    load config partial from panos_day_one_1.0.0.xml from-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles to-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles mode merge
-    load config partial from panos_day_one_1.0.0.xml from-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profile-group to-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profile-group mode merge
-    load config partial from panos_day_one_1.0.0.xml from-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase to-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase mode merge
-    load config partial from panos_day_one_1.0.0.xml from-xpath /config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile to-xpath /config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile mode merge
-    load config partial from panos_day_one_1.0.0.xml from-xpath /config/shared/reports to-xpath /config/shared/reports mode merge
-    load config partial from panos_day_one_1.0.0.xml from-xpath /config/shared/report-group to-xpath /config/shared/report-group mode merge
-    load config partial from panos_day_one_1.0.0.xml from-xpath /config/shared/email-scheduler to-xpath /config/shared/email-scheduler mode merge
+    load config partial from |panosconfigfile| from-xpath /config/shared/log-settings to-xpath /config/shared/log-settings mode merge
+    load config partial from |panosconfigfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag to-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag mode merge
+    load config partial from |panosconfigfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system to-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system mode merge
+    load config partial from |panosconfigfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting to-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting mode merge
+    load config partial from |panosconfigfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/address to-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/address mode merge
+    load config partial from |panosconfigfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/external-list to-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/external-list mode merge
+    load config partial from |panosconfigfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles to-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles mode merge
+    load config partial from |panosconfigfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profile-group to-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profile-group mode merge
+    load config partial from |panosconfigfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase to-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase mode merge
+    load config partial from |panosconfigfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile to-xpath /config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile mode merge
+    load config partial from |panosconfigfile| from-xpath /config/shared/reports to-xpath /config/shared/reports mode merge
+    load config partial from |panosconfigfile| from-xpath /config/shared/report-group to-xpath /config/shared/report-group mode merge
+    load config partial from |panosconfigfile| from-xpath /config/shared/email-scheduler to-xpath /config/shared/email-scheduler mode merge
 
 
 PAN-OS config elements used in load config partial
