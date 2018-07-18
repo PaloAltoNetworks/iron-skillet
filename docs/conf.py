@@ -153,3 +153,12 @@ texinfo_documents = [
      author, 'iron-skillet', 'One line description of project.',
      'Miscellaneous'),
 ]
+
+# -- Variable substitutions used in the document
+
+# github file path that changes across repo and branches
+repopath = 'github.com/scotchoaf/iron-skillet/blob/develop/templates'
+
+rst_prolog = """
+.. |repopath| replace:: {0}
+""".format(repopath)

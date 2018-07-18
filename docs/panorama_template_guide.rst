@@ -2,26 +2,12 @@
 
 
 
-Panorama templates: version 8.0
-===============================
+Panorama templates
+==================
 
 
 The configuration snippet descriptions and the associated GitHub
 repository link for each xml snippet.
-
-
-
-Instructions for Loading Templates
-This document provides details about what's in each template element
-but does not provide application support or instruction for loading
-and using the templates. The `Iron-Skillet GitHub repository wiki`_
-for this project does contain a short list of methods for loading
-templates in Panorama or a PAN-OS device.
-For Non-Panorama Device Only
-
-This document and associated config links, xpaths references, and load
-order are specific to non-Panorama device configuration. A companion
-document is used to cover the Panorama PANOS configuration
 
 
 General Device Configuration
