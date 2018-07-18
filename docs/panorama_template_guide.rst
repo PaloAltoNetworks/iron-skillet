@@ -1,7 +1,4 @@
 
-
-
-
 Panorama templates
 ==================
 

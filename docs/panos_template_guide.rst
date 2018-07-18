@@ -25,8 +25,7 @@ Security-related Device Settings
 
 this is the repo path: |repopath|
 
-`device_setting.xml
-<https://|repopath|/panos/snippets/device_setting.xml>`_
+:panosrepo:`device_setting`
 
 General device settings that effect security posture. Found in Device > Setup in the GUI.
 

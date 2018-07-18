@@ -162,3 +162,5 @@ repopath = 'github.com/scotchoaf/iron-skillet/blob/develop/templates'
 rst_prolog = """
 .. |repopath| replace:: {0}
 """.format(repopath)
+
+extlinks = {'panosrepo': ('https://github.com/scotchoaf/iron-skillet/blob/version_08.0/templates/panos/snippets-variables/%s.xml', 'iron-skillet'), ...}
