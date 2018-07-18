@@ -12,6 +12,8 @@ repository link for each xml snippet.
 General Device Configuration
 ----------------------------
 
+----------------------------------------------------------------------
+
 This section provides templated configurations for general device
 settings.
 
@@ -53,6 +55,8 @@ System configuration settings for dynamic updates and network services
 
 Logging
 -------
+
+----------------------------------------------------------------------
 
 Logging best practice configurations for logging output and forwarding
 profiles.
@@ -113,6 +117,8 @@ forwarding.
 
 Referenced Objects
 ------------------
+
+----------------------------------------------------------------------
 
 Address, External Dynamic List (EDL), and tag objects that are
 referenced in security rules by name.
@@ -178,6 +184,8 @@ Tags used in security rules and related objects.
 
 Security Profiles and Groups
 ----------------------------
+
+----------------------------------------------------------------------
 
 The key elements for security posture are security profiles and the
 security rules. The templates ensure best practice profiles and
@@ -469,6 +477,8 @@ Security profile groups based on use case
 Security Rules
 --------------
 
+----------------------------------------------------------------------
+
 
 Recommended Block Rules
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -525,6 +535,8 @@ Configuration for the default interzone and intrazone default rules
 
 Decryption
 ----------
+
+----------------------------------------------------------------------
 
 
 Profiles
@@ -593,6 +605,8 @@ Recommended SSL decryption pre-rules for no-decryption.
 Zone Protection
 ---------------
 
+----------------------------------------------------------------------
+
 
 Profile
 ~~~~~~~
@@ -619,6 +633,8 @@ Packet Based Attack Protection
 
 Reports
 -------
+
+----------------------------------------------------------------------
 
 
 Reports
