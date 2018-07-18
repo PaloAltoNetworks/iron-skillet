@@ -120,9 +120,13 @@ PAN-OS load config partial commands
 
 Cut-and-paste from the table below into the PAN-OS command line while in configuration mode.
 
+This is the current config file name: |configfile|
+
 You can paste multiple items. The system will pause during each load config partial, return a status message, then move to the next load. When complete, ensure the final load is entered and a status message received.
 
 ::
+
+|configfile|
 
     load config partial from |configfile| from-xpath /config/shared/log-settings to-xpath /config/shared/log-settings mode merge
     load config partial from |configfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag to-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag mode merge
