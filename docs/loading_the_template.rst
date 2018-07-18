@@ -173,13 +173,13 @@ You can paste multiple items. The system will pause during each load config part
 
 ::
 
-    load config partial from panorama_day_one_1.0.0.xml from-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system to-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system mode merge
-    load config partial from panorama_day_one_1.0.0.xml from-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting to-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting mode merge
-    load config partial from panorama_day_one_1.0.0.xml from-xpath /config/panorama/log-settings to-xpath /config/panorama/log-settings mode merge
-    load config partial from panorama_day_one_1.0.0.xml from-xpath /config/devices/entry[@name='localhost.localdomain']/template to-xpath /config/devices/entry[@name='localhost.localdomain']/template mode merge
-    load config partial from panorama_day_one_1.0.0.xml from-xpath /config/devices/entry[@name='localhost.localdomain']/device-group to-xpath /config/devices/entry[@name='localhost.localdomain']/device-group mode merge
-    load config partial from panorama_day_one_1.0.0.xml from-xpath /config/shared to-xpath /config/shared mode merge
-    load config partial from panorama_day_one_1.0.0.xml from-xpath /config/devices/entry[@name='localhost.localdomain']/log-collector-group to-xpath /config/devices/entry[@name='localhost.localdomain']/log-collector-group mode merge
+    load config partial from |panoramaconfigfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system to-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system mode merge
+    load config partial from |panoramaconfigfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting to-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting mode merge
+    load config partial from |panoramaconfigfile| from-xpath /config/panorama/log-settings to-xpath /config/panorama/log-settings mode merge
+    load config partial from |panoramaconfigfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/template to-xpath /config/devices/entry[@name='localhost.localdomain']/template mode merge
+    load config partial from |panoramaconfigfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/device-group to-xpath /config/devices/entry[@name='localhost.localdomain']/device-group mode merge
+    load config partial from |panoramaconfigfile| from-xpath /config/shared to-xpath /config/shared mode merge
+    load config partial from |panoramaconfigfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/log-collector-group to-xpath /config/devices/entry[@name='localhost.localdomain']/log-collector-group mode merge
 
 
 

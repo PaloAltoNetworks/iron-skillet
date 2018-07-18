@@ -162,9 +162,9 @@ extlinks = {'panosrepo': ('https://github.com/scotchoaf/iron-skillet/blob/versio
             'panoramarepo': ('https://github.com/scotchoaf/iron-skillet/blob/version_08.0/templates/panos/snippets-variables/%s.xml', 'view xml template:   ')
             }
 
-# github file path that changes across repo and branches
-configfile = 'panos_day_one_1.0.0.xml'
+# load config file name that changes across repo and branches
 
 rst_prolog = """
-.. |configfile| replace:: {0}
-""".format(configfile)
+.. |panosconfigfile| replace:: panos_day_one_1.0.1.xml
+.. |panoramaconfigfile| replace:: panorama_day_one_1.0.1.xml
+"""
