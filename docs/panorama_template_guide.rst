@@ -175,6 +175,8 @@ forwarding.
 Panorama log settings
 ~~~~~~~~~~~~~~~~~~~~~
 
+:panoramarepo:`panorama_log_settings`
+
 Panorama event logging including sample profiles for email and syslog forwarding.
 
     + Reference syslog profile that can be edited for a specific IP address and UDP/TCP port
@@ -185,6 +187,7 @@ Panorama event logging including sample profiles for email and syslog forwarding
 Panorama log collector group
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+:panoramarepo:`log_collector_group`
 
 After you configure Log Collectors and firewalls, you must assign them to a Collector Group so that the firewalls can send logs to the Log Collectors.
 
