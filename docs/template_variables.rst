@@ -28,3 +28,11 @@ CONFIG_EXPORT_IP        192.0.2.3               config bundle export target from
 =====================   ====================    =========================================================
 
 
+Placeholder: variable substitution utility
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The iron skillet repo contains a simple python tool to input user variables and output a clean configuration file.
+Instructios for this utility are here: ???
+
+
+

@@ -10,9 +10,9 @@ Welcome to Iron Skillet template documentation!
    :maxdepth: 2
    :caption: Contents:
 
-    overview
-    panos_template_guide
-    panorama_template_guide
-    loading_the_template
-    template_variables
-    snippets_common_or_device
+   overview
+   panos_template_guide
+   panorama_template_guide
+   loading_the_template
+   template_variables
+   snippets_common_or_device
