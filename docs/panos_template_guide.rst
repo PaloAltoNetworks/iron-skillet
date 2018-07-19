@@ -1,13 +1,9 @@
 
-
-
-
 PAN-OS templates
 ================
 
 The configuration snippet descriptions and the associated GitHub
 repository link for each xml snippet.
-
 
 General Device Configuration
 ----------------------------
@@ -17,15 +13,12 @@ General Device Configuration
 This section provides templated configurations for general device
 settings.
 
-
 Security-related Device Settings
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 :panosrepo:`device_setting`
 
 General device settings that effect security posture. Found in Device > Setup in the GUI.
-
 
     + Wildfire: set optimal file size limits for Wildfire uploads and show verdict responses for grayware, malware and phishing
     + X-Forwarded-For: To ensure that attackers can’t read and exploit the XFF values in web request packets that exit the firewall.
@@ -39,7 +32,6 @@ General device settings that effect security posture. Found in Device > Setup in
 System Configuration
 ~~~~~~~~~~~~~~~~~~~~
 
-
 :panosrepo:`device_system`
 
 System configuration settings for dynamic updates and network services
@@ -50,9 +42,6 @@ System configuration settings for dynamic updates and network services
     + Set default DNS and NTP values
     + Set timezone to UTC
 
-
-
-
 Logging
 -------
 
@@ -62,17 +51,15 @@ Logging best practice configurations for logging output and forwarding
 profiles.
 
 .. Warning::
-   **Configure logging profiles before security rules**
-
-   The template creates a log forwarding profile call default.
-   This profile is referenced in the template security rules and should be configured before the security rules.
-
+    **Configure logging profiles before security rules**
+    The template creates a log forwarding profile call default.
+    This profile is referenced in the template security rules and should be configured before the security rules.
 
 .. Note::
-   **Logging can be deployment dependent**
+    **Logging can be deployment dependent**
+    The destination in the logging profile is templated to an unroutable syslog server address.
+    This can vary based on actual deployment scenarios.
 
-   The destination in the logging profile is templated to an unroutable syslog server address.
-   This can vary based on actual deployment scenarios.
 
 Log forwarding profile
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -81,8 +68,6 @@ Log forwarding profile
 
 Log forward profile referenced in security rules to determine where to
 forward log related events.
-
-
 
     + Forward all log activity to syslog (see the reference syslog
       configuration in shared_log_settings.xml)
@@ -97,7 +82,6 @@ Device log settings
 Device event logging including sample profiles for email and syslog
 forwarding.
 
-
     + Reference syslog profile that can be edited for a specific IP
       address and UDP/TCP port
     + Reference email profile that can be edited for specific email domain
@@ -108,11 +92,9 @@ forwarding.
 
 
 .. Note::
-   **When to use email alerts**
-
+    **When to use email alerts**
     The purpose of select email alert forwarding is ensure not to under alert or over alert yet provide critical messages for key events.
     Under alerting reduces visibility to key events while over alerting creates too much noise in the system.
-
 
 
 Referenced Objects
@@ -142,22 +124,17 @@ Address object used to reference named addresses.
 External Dynamic Lists
 ~~~~~~~~~~~~~~~~~~~~~~
 
-
 :panosrepo:`external_list`
 
 
 Used for the firewall to pull in external elements such as IP, URL, or
 domain used in security rules
 
-
-
     + Team Cymru Bogon Lists - IPv4 and IPv6 bogon IPs that should not be
       forwarded
 
-
 .. Warning::
-   **Remove private bogons**
-
+    **Remove private bogons**
     Any private or other Bogon address that must be routed across the
     device must be added as exceptions in the external dynamic list
     object. These should be direction dependent and used in the respective
@@ -168,18 +145,13 @@ domain used in security rules
 Tags
 ~~~~
 
-
 :panosrepo:`tag`
 
 Tags used in security rules and related objects.
 
-
-
         + Inbound - inbound (untrust to trust) elements
         + Outbound - outbound (trust to untrust) elements
         + Internal - internal (trust) segmentation elements
-
-
 
 
 Security Profiles and Groups
@@ -195,18 +167,16 @@ rules to reduce the attack surface.
 
 
 .. Warning::
-   **Profiles and subscriptions**
-
-   All of the template security profiles other than file blocking require
-   Threat Prevention, URL Filtering, and Wildfire subscriptions. Ensure
-   that the device is properly licensed before applying these
-   configurations.
+    **Profiles and subscriptions**
+    All of the template security profiles other than file blocking require
+    Threat Prevention, URL Filtering, and Wildfire subscriptions. Ensure
+    that the device is properly licensed before applying these
+    configurations.
 
 
 
 Custom URL Category
 ~~~~~~~~~~~~~~~~~~~
-
 
 :panosrepo:`profiles_custom_url_category`
 
@@ -227,31 +197,25 @@ default template.
 File Blocking
 ~~~~~~~~~~~~~
 
-
 :panosrepo:`profiles_file_blockiing`
 
 Security profile for actions specific to file blocking (FB).
 
 
 .. Note::
-   **File blocking and file types**
-
-   The Block file type recommendation is based on common malicious file
-   types with minimal impact in a Day 1 deployment. Although PE is
-   considered the highest risk file type it is also used for legitimate
-   purposes so blocking PE files will be deployment specific and not
-   included in the template.
-
-
+    **File blocking and file types**
+    The Block file type recommendation is based on common malicious file
+    types with minimal impact in a Day 1 deployment. Although PE is
+    considered the highest risk file type it is also used for legitimate
+    purposes so blocking PE files will be deployment specific and not
+    included in the template.
 
         + Day 1 Block file types: 7z, bat, chm, class, cpl, dll, hlp, hta,
           jar, ocx, pif, scr, torrent, vbe, wsf
         + The profiles will alert on all other file types for logging purposes
 
 
-
 Profiles:
-
 
         + Outbound-FB: For outbound (trust to untrust) security rules
         + Inbound-FB: For inbound (untrust to trust) security rules
@@ -264,20 +228,18 @@ Profiles:
 Anti-Spyware
 ~~~~~~~~~~~~
 
-
 :panosrepo:`profiles_spyware`
 
 Security profile for actions specific to anti-spyware (AS).
 
 
 .. Note::
-   **Sinkhole addresses**
-   The profiles use IPv4 and IPv6 addresses for DNS sinkholes. IPv4 is
-   currently provided by Palo Alto Networks. IPv6 is a bogon address.
+    **Sinkhole addresses**
+    The profiles use IPv4 and IPv6 addresses for DNS sinkholes. IPv4 is
+    currently provided by Palo Alto Networks. IPv6 is a bogon address.
 
 
 Profiles:
-
 
         + Outbound-AS : For outbound (trust to untrust) security rules
 
@@ -293,14 +255,12 @@ Profiles:
             + DNS Sinkhole for IPv4 and IPv6
             + Single packet capture for Critical, High, Medium severity
 
-
         + Internal-AS : For internal network segmentation rules
 
             + Block severity = Critical, High
             + Default severity = Medium, Low, Informational
             + DNS Sinkhole for IPv4 and IPv6
             + Single packet capture for Critical, High, Medium severity
-
 
         + Alert-Only-AS : No blocking, only alerts for logging purposes
 
@@ -315,20 +275,18 @@ Profiles:
 URL Filtering
 ~~~~~~~~~~~~~
 
-
 :panosrepo:`profiles_url_filtering`
 
 Security profile for actions specific to URL filtering (URL).
 
 .. Note::
-   Only ``BLOCK`` categories will be shown
-   All URL categories will be set to ``ALERT`` at a minimum for logging
-   purposes. The profile descriptions will include the ``BLOCK`` categories
-   in the description.
+    Only ``BLOCK`` categories will be shown
+    All URL categories will be set to ``ALERT`` at a minimum for logging
+    purposes. The profile descriptions will include the ``BLOCK`` categories
+    in the description.
 
 
 Profiles:
-
 
         + Outbound-URL : For outbound (trust to untrust) security rules
 
@@ -340,14 +298,10 @@ Profiles:
             + URL Filtering Settings: HTTP Header Logging (user agent, referer, X
               -Forwarded-For)
 
-
-
         + Alert-Only-URL : No blocking, only alerts for logging purposes
 
             + Alert all categories including custom categories Black List and
               White List
-
-
 
         + Exception-URL : For exception requirements in security rules to
           avoid modifying the default template profiles
@@ -363,7 +317,6 @@ Profiles:
 
 Anti-Virus
 ~~~~~~~~~~
-
 
 :panosrepo:`profiles_virus`
 
@@ -382,23 +335,21 @@ Profiles:
 
 
 .. Note::
-   **Email response codes with SMTP not IMAP or POP3**
-   Reset-both is used for SMTP, IMAP, and POP3. SMTP '541' response
-   messages are returned to notify that the session was blocked. IMAP and
-   POP3 do not have the same response model. In live deployments, instead
-   of DoS concerns with retries, the endpoints typically stop resending
-   after a small number of sends with timeouts.
+    **Email response codes with SMTP not IMAP or POP3**
+    Reset-both is used for SMTP, IMAP, and POP3. SMTP '541' response
+    messages are returned to notify that the session was blocked. IMAP and
+    POP3 do not have the same response model. In live deployments, instead
+    of DoS concerns with retries, the endpoints typically stop resending
+    after a small number of sends with timeouts.
 
 
 
 Vulnerability Protection
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 :panosrepo:`profiles_vulnerability`
 
 Profiles:
-
 
         + Outbound-VP : For outbound (trust to untrust) security rules
 
@@ -406,14 +357,11 @@ Profiles:
             + Alert severity = Low, Informational
             + Single packet capture for Critical, High, Medium severity
 
-
-
         + Inbound-VP : For inbound (untrust to trust) security rules
 
             + Block severity = Critical, High, Medium
             + Alert severity = Low, Informational
             + Single packet capture for Critical, High, Medium severity
-
 
         + Internal-VP : For internal network segmentation rules
 
@@ -421,12 +369,10 @@ Profiles:
             + Alert severity = Medium, Low, Informational
             + Single packet capture for Critical, High, Medium severity
 
-
         + Alert-Only-VP : No blocking, only alerts for logging purposes
 
             + Alert all severities
             + No packet capture
-
 
         + Exception-VP: For exception requirements in security rules to avoid
           modifying the default template profiles
@@ -435,16 +381,15 @@ Profiles:
 Wildfire Analysis
 ~~~~~~~~~~~~~~~~~
 
-
 :panosrepo:`profiles_wildfire_analysis`
 
 Security profile for actions specific to Wildfire upload and analysis
 (WF).
 
 .. Note::
-   ``Public Cloud`` is the default
-   All template profiles are configured to upload all file types in any
-   direction to the public cloud for analysis.
+    ``Public Cloud`` is the default
+    All template profiles are configured to upload all file types in any
+    direction to the public cloud for analysis.
 
 
 Profiles:
@@ -459,7 +404,6 @@ Profiles:
 
 Security Profile Groups
 ~~~~~~~~~~~~~~~~~~~~~~~
-
 
 :panosrepo:`profile_group`
 
@@ -483,12 +427,10 @@ Security Rules
 Recommended Block Rules
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-
 :panosrepo:`rulebase_security`
 
 Recommended block rules for optimal security posture with associated
 default log-forwarding profile
-
 
 
         + Outbound Block Rule: Block destination IP address match based on the
@@ -501,29 +443,26 @@ default log-forwarding profile
           being forwarded; uses Team Cymru Bogon EDL
 
 
-
 .. Warning::
-   **Check Bogons before enabling the Bogon block rule**
-   The bogon rules are disabled in the template and should only be
-   activated once determined that all bogons should be blocked.
-   Exceptions may be private address space that may be allowed to cross
-   device boundaries.
+    **Check Bogons before enabling the Bogon block rule**
+    The bogon rules are disabled in the template and should only be
+    activated once determined that all bogons should be blocked.
+    Exceptions may be private address space that may be allowed to cross
+    device boundaries.
 
 .. Note::
-   **Security rules in the template are block only**
-   The template only uses block rules. Allow rules are zone, direction
-   and use case dependent. Additional templating work will provide
-   recommended use case case security rules.
+    **Security rules in the template are block only**
+    The template only uses block rules. Allow rules are zone, direction
+    and use case dependent. Additional templating work will provide
+    recommended use case case security rules.
 
 
 Default Security Rules
 ~~~~~~~~~~~~~~~~~~~~~~
 
-
 :panosrepo:`rulebase_default_security_rules`
 
 Configuration for the default interzone and intrazone default rules
-
 
 
             + Intrazone: Enable logging at session-end using the default logging
@@ -542,7 +481,6 @@ Decryption
 Profiles
 ~~~~~~~~
 
-
 :panosrepo:`profiles_decryption`
 
 Recommended_Decryption_Profile. Referenced by the default decryption
@@ -556,21 +494,15 @@ rule.
             + Unsupported Mode Checks : Block sessions with unsupported versions,
               Blocks sessions with unsupported cipher suites
 
-
-
         + SSL No Proxy
 
             + Server Cert Verification : Block sessions with expired certs, Block
               sessions with untrusted issuers
 
-
-
         + SSH Proxy
 
             + Unsupported Mode Checks : Block sessions with unsupported versions,
               Block sessions with unsupported algorithms
-
-
 
         + SSL Protocol Settings:
 
@@ -583,23 +515,17 @@ rule.
               TLSv1.2 is the min version
 
 
-
 Decryption Rules
 ~~~~~~~~~~~~~~~~
-
 
 :panosrepo:`rulebase_decryption`
 
 Recommended SSL decryption pre-rules for no-decryption.
 
 
+       + NO decrypt rule for select URL categories; Initially disabled in the Day 1 template until SSL decryption to be enabled
 
-   + NO decrypt rule for select URL categories; Initially disabled in the Day 1 template until SSL decryption to be enabled
-
-
-
-   + NO decrypt rule used to validate SSL communications based on the ``Recommended Decrypt profile``
-
+       + NO decrypt rule used to validate SSL communications based on the ``Recommended Decrypt profile``
 
 
 Zone Protection
@@ -611,7 +537,6 @@ Zone Protection
 Profile
 ~~~~~~~
 
-
 :panosrepo:`zone_protection_profile`
 
 Recommended_Zone_Protection profile for standard, non-volumetric best
@@ -620,11 +545,10 @@ the network.
 
 
 .. Note::
-   **Recon Protection**
-   Default values enabled in alert-only mode; active blocking posture requires network tuning
+    **Recon Protection**
+    Default values enabled in alert-only mode; active blocking posture requires network tuning
 
 Packet Based Attack Protection
-
 
         + IP Drop: Spoofed IP Address, Malformed
         + TCP Drop: Remove TCP timestamp, No TCP Fast Open, Multipath TCP
@@ -640,7 +564,6 @@ Reports
 Reports
 ~~~~~~~
 
-
 :panosrepo:`reports_simple`
 
 
@@ -650,17 +573,16 @@ section below.
 
 
 .. Note::
-   **Zones and Subnets in report queries**
-   The repo contains a separate folder for custom reports that use a
-   placeholder zone called 'internet' for match conditions in reports.
-   This value MUST be changed to match the actual public zone used in a
-   live network. Additional zones and/or subnets to be used or excluded
-   in the reports would be added in the query values.
+    **Zones and Subnets in report queries**
+    The repo contains a separate folder for custom reports that use a
+    placeholder zone called 'internet' for match conditions in reports.
+    This value MUST be changed to match the actual public zone used in a
+    live network. Additional zones and/or subnets to be used or excluded
+    in the reports would be added in the query values.
 
 
 Report Groups
 ~~~~~~~~~~~~~
-
 
 :panosrepo:`report_group_simple`
 
@@ -673,12 +595,10 @@ Template report groups include:
 Simple (included in Day One template)
 
 
-
-   + Possible Compromise: malicious sites and verdicts, sinkhole sessions
+        + Possible Compromise: malicious sites and verdicts, sinkhole sessions
 
 
 Custom
-
 
         + User Group Activity (eg. Employee, Student, Teacher): user-id
           centric reports grouped by user type
@@ -698,7 +618,6 @@ Custom
 
 Email Scheduler
 ~~~~~~~~~~~~~~~
-
 
 :panosrepo:`email_scheduler simple`
 

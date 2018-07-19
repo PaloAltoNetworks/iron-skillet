@@ -167,4 +167,5 @@ extlinks = {'panosrepo': ('https://github.com/scotchoaf/iron-skillet/blob/versio
 rst_prolog = """
 .. |panosconfigfile| replace:: panos_day_one_1.0.1.xml
 .. |panoramaconfigfile| replace:: panorama_day_one_1.0.1.xml
+.. |repourl| replace:: https://github.com/scotchoaf/iron-skillet/tree/develop
 """
