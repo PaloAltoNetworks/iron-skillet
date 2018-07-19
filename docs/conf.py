@@ -158,8 +158,8 @@ texinfo_documents = [
 
 # github file path that changes across repo and branches
 
-extlinks = {'panosrepo': ('https://github.com/scotchoaf/iron-skillet/blob/version_08.0/templates/panos/snippets-variables/%s.xml', 'view xml template:   '),
-            'panoramarepo': ('https://github.com/scotchoaf/iron-skillet/blob/version_08.0/templates/panos/snippets-variables/%s.xml', 'view xml template:   ')
+extlinks = {'panosrepo': ('https://github.com/scotchoaf/iron-skillet/blob/develop/templates/panos/snippets-variables/%s.xml', 'view xml template:   '),
+            'panoramarepo': ('https://github.com/scotchoaf/iron-skillet/blob/develop/templates/panos/snippets-variables/%s.xml', 'view xml template:   ')
             }
 
 # load config file name that changes across repo and branches

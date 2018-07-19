@@ -1,6 +1,6 @@
 
-Template elements: Common or per-device
-=======================================
+Common or per-device elements
+=============================
 
 Many of the configuration elements are common between Panorama and panos.
 The variance is the xpath branch naming where the elements sits in the config tree.
