@@ -135,6 +135,7 @@ forwarding.
     **When to use email alerts**
     The purpose of select email alert forwarding is ensure not to under alert or over alert yet provide critical messages for key events.
     Under alerting reduces visibility to key events while over alerting creates too much noise in the system.
+    The templates are set with a median view to capture key events without too much 'log fatigue' noise
 
 
 Referenced Objects
@@ -329,10 +330,9 @@ URL Filtering
 Security profile for actions specific to URL filtering (URL).
 
 .. Note::
-    Only ``BLOCK`` categories will be shown
-    All URL categories will be set to ``ALERT`` at a minimum for logging
-    purposes. The profile descriptions will include the ``BLOCK`` categories
-    in the description.
+    Only ``BLOCK`` categories will be listed for each profile below.
+    All other URL categories will be set to ``ALERT`` in the templates for logging
+    purposes. The complete list of categories can be found in the url filtering template.
 
 
 Profiles:

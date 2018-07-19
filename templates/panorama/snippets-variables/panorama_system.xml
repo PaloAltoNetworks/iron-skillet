@@ -1,18 +1,18 @@
 <update-server>updates.paloaltonetworks.com</update-server>
 <update-schedule>
-  <threats>
+<threats>
     <recurring>
-      <daily>
-        <at>00:00</at>
+      <every-30-mins>
+        <at>2</at>
         <action>download-and-install</action>
-      </daily>
+      </every-30-mins>
       <threshold>48</threshold>
     </recurring>
   </threats>
   <anti-virus>
     <recurring>
       <hourly>
-        <at>3</at>
+        <at>4</at>
         <action>download-and-install</action>
       </hourly>
     </recurring>
@@ -31,21 +31,16 @@
   <disable-http>yes</disable-http>
 </service>
 <server-verification>yes</server-verification>
-<login-banner>Gold 1.0 - PANOS 8.0</login-banner>
 <ntp-servers>
   <primary-ntp-server>
-    <ntp-server-address>0.pool.ntp.org</ntp-server-address>
-    <authentication-type>
-      <none/>
-    </authentication-type>
+    <ntp-server-address>{{ NTP_1 }}</ntp-server-address>
   </primary-ntp-server>
   <secondary-ntp-server>
-    <ntp-server-address>1.pool.ntp.org</ntp-server-address>
-    <authentication-type>
-      <none/>
-    </authentication-type>
+    <ntp-server-address>{{ NTP_2 }}</ntp-server-address>
   </secondary-ntp-server>
 </ntp-servers>
+<login-banner>You have accessed a protected system.
+Log off immediately if you are not an authorized user.</login-banner>
 <snmp-setting>
   <access-setting>
     <version>
@@ -57,7 +52,7 @@
   <entry name="Recommended_Config_Export">
     <protocol>
       <scp>
-        <hostname>192.0.2.3</hostname>
+        <hostname>{{ CONFIG_EXPORT_IP }}</hostname>
         <username>testuser</username>
         <password>-AQ==i7YRj4/Wk1rQh2o740pxfTJwj/0=+7MGzrRa6xPfMQUkGMpf7w==</password>
       </scp>

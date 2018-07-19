@@ -14,3 +14,4 @@ Welcome to Iron Skillet template documentation!
    panos_template_guide
    panorama_template_guide
    loading_the_template
+   snippets-common-or-device
