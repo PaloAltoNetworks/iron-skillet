@@ -14,11 +14,6 @@ configuration model that is use case agnostic.
 The emphasis is on key security elements such as dynamic updates, security profiles, rules, and logging that
 should be consistent across deployments.
 
-.. Note::
-    These are not complete configuration templates. To insert the device into the network requires interface, zone, routing,
-    and other settings outside the scope of the day one templates. Also not included are use-case specific items such as whitelist security rules,
-    userID settings, and decryption policies that can be deployment and use case specific.
-
 
 Why use day one templates?
 --------------------------
@@ -55,6 +50,11 @@ The templates in each device folder include:
     + ``full config with variables`` to have a full file that supports local variable substitution
 
 More details about methods for loading the templates are in the section 'Loading Templates'
+
+.. Note::
+    Day one templates are not complete configuration templates. To insert the device into the network requires interface, zone, routing,
+    and other settings outside the scope of the day one templates. Also not included are use-case specific items such as whitelist security rules,
+    userID settings, and decryption policies that can be deployment and use case specific.
 
 
 What is next after loading a template?

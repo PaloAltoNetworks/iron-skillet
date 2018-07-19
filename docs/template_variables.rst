@@ -28,11 +28,14 @@ CONFIG_EXPORT_IP        192.0.2.3               config bundle export target from
 =====================   ====================    =========================================================
 
 
-Placeholder: variable substitution utility
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Variable substitution toolkit
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The iron skillet repo contains a simple python tool to input user variables and output a clean configuration file.
-Instructios for this utility are here: ???
+The jinja variable model provides a simple model for scripting and software development to utilize the templates in a local environment.
+
+Include in the template tools folder is a simple python utility to performance simple value substitution.
+
+
 
 
 

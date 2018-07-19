@@ -159,7 +159,7 @@ texinfo_documents = [
 # github file path that changes across repo and branches
 
 extlinks = {'panosrepo': ('https://github.com/scotchoaf/iron-skillet/blob/develop/templates/panos/snippets-variables/%s.xml', 'view xml template:   '),
-            'panoramarepo': ('https://github.com/scotchoaf/iron-skillet/blob/develop/templates/panorama/snippets-variables/%s.xml', 'view xml template:   ')
+            'panoramarepo': ('https://github.com/scotchoaf/iron-skillet/blob/develop/templates/panorama/snippets-variables/%s.xml', 'view xml template:   '),
             }
 
 # load config file name that changes across repo and branches
@@ -168,4 +168,10 @@ rst_prolog = """
 .. |panosconfigfile| replace:: panos_day_one_1.0.1.xml
 .. |panoramaconfigfile| replace:: panorama_day_one_1.0.1.xml
 .. |repourl| replace:: https://github.com/scotchoaf/iron-skillet/tree/develop
+.. |panosxpaths| replace:: https://github.com/scotchoaf/iron-skillet/blob/develop/templates/panos/panos_xpaths_list.py
+.. |panossnippets| replace:: https://github.com/scotchoaf/iron-skillet/tree/develop/templates/panos/snippets-variables
+.. |panosloadorder| replace:: https://github.com/scotchoaf/iron-skillet/blob/develop/templates/panos/panos_snippet_load_order.py
+.. |panoramaxpaths| replace:: https://github.com/scotchoaf/iron-skillet/blob/develop/templates/panorama/panorama_xpaths_list.py
+.. |panoramasnippets| replace:: https://github.com/scotchoaf/iron-skillet/tree/develop/templates/panorama/snippets-variables
+.. |panoramaloadorder| replace:: https://github.com/scotchoaf/iron-skillet/blob/develop/templates/panorama/panorama_snippet_load_order.py
 """
