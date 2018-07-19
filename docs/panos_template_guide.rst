@@ -27,6 +27,19 @@ General device settings that effect security posture. Found in Device > Setup in
     + Session rematch: the firewall will go through all the existing sessions and apply the new security policy to any matching traffic
     + Notify User: user should be notified when web-application is blocked; enables the application response page
     + Log Suppression: disabled to ensure unique log entries even if similar session types
+    + Prevent TCP and UDP buffer overflow and multi-part HTTP download evasions
+        * Disable 'allow HTTP header range'
+        * Disable 'tcp-bypass-exceed-queue'
+        * Disable 'udp-bypass-exceed-queue'
+    + Enable high DP load logging
+    + Prevent App-ID buffer overflow evasion
+        * set bypass-exceed-queue to 'no'
+    + Prevent TCP and MPTCP evasions
+        * set urgent data to 'clear'
+        * set drop zero flag to 'yes'
+        * set bypass-exceed-oo-queue to 'no'
+        * set check-timestamp-option to 'yes'
+        * set strip-mptcp-option to yes
 
 
 System Configuration
@@ -37,10 +50,16 @@ System Configuration
 System configuration settings for dynamic updates and network services
 (eg. DNS, NTP).
 
-    + Update schedule settings: Turn on all telemetry settings; recommended dynamic updates schedule for threats, AV, and Wildfire
+    + Update schedule settings
+        * Turn on all telemetry settings
+        * Check every 30 minutes for new threat signatures
+        * Hourly checks for new AV signatures
+        * Check every minute for new Wildfire signatures
+        * Recommended time delays and thresholds for checks and installs
     + Use SNMPv3
     + Set default DNS and NTP values
     + Set timezone to UTC
+    + Provide a standard login banner warning for unauthorized users
 
 Logging
 -------
@@ -465,11 +484,12 @@ Default Security Rules
 Configuration for the default interzone and intrazone default rules
 
 
-            + Intrazone: Enable logging at session-end using the default logging
-              profile; Use the Internal security profile-group
-            + Interzone: Enable logging at session-end using the default logging
-              profile
-
+            + Intrazone
+                * Enable logging at session-end using the default logging profile
+                * Use the Internal security profile-group
+            + Interzone
+                * Explicit drop of traffic between zones
+                * Enable logging at session-end using the default logging profile
 
 
 Decryption
