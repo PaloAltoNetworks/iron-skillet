@@ -24,8 +24,8 @@ General device settings that effect security posture. Found in Device > Setup in
 
     + X-Forwarded-For: To ensure that attackers can’t read and exploit the XFF values in web request packets that exit the firewall.
 
-      * Enable the firewall to use XFF values in policies and in the source user fields of logs
-      * Remove XFF values from outgoing web requests.
+        * Enable the firewall to use XFF values in policies and in the source user fields of logs
+        * Remove XFF values from outgoing web requests.
 
     + Session rematch: the firewall will go through all the existing sessions and apply the new security policy to any matching traffic
 
@@ -35,22 +35,23 @@ General device settings that effect security posture. Found in Device > Setup in
 
     + Prevent TCP and UDP buffer overflow and multi-part HTTP download evasions
 
-      * Disable 'allow HTTP header range'
-      * Disable 'tcp-bypass-exceed-queue'
-      * Disable 'udp-bypass-exceed-queue'
+        * Disable 'allow HTTP header range'
+        * Disable 'tcp-bypass-exceed-queue'
+        * Disable 'udp-bypass-exceed-queue'
 
     + Enable high DP load logging
 
     + Prevent App-ID buffer overflow evasion
 
-      * set bypass-exceed-queue to 'no'
+        * set bypass-exceed-queue to 'no'
 
     + Prevent TCP and MPTCP evasions
-      * set urgent data to 'clear'
-      * set drop zero flag to 'yes'
-      * set bypass-exceed-oo-queue to 'no'
-      * set check-timestamp-option to 'yes'
-      * set strip-mptcp-option to yes
+
+        * set urgent data to 'clear'
+        * set drop zero flag to 'yes'
+        * set bypass-exceed-oo-queue to 'no'
+        * set check-timestamp-option to 'yes'
+        * set strip-mptcp-option to yes
 
 
 System Configuration
@@ -179,7 +180,6 @@ domain used in security rules
     device must be added as exceptions in the external dynamic list
     object. These should be direction dependent and used in the respective
     outbound or inbound security rule.
-
 
 
 Tags
