@@ -95,8 +95,8 @@ def generate_full_config_template(config_type):
     :return: will print full configs to STDOUT and also overwrite the full/iron-skillet-template.xml
     """
     # get the path to the full baseline config for this config type
-    full_config_file_path = os.path.abspath(os.path.join('..', 'v8', config_type, 'baseline', 'baseline.xml'))
-    output_file_path = os.path.abspath(os.path.join('..', 'v8', config_type, 'full', 'iron-skillet-template.xml'))
+    full_config_file_path = os.path.abspath(os.path.join('..', 'templates', config_type, 'baseline', 'baseline.xml'))
+    output_file_path = os.path.abspath(os.path.join('..', 'templates', config_type, 'full', 'iron-skillet-template.xml'))
 
     # open the file and read it in
     with open(full_config_file_path, 'r') as full_config_obj:
@@ -111,7 +111,7 @@ def generate_full_config_template(config_type):
     full_config = ElementTree.ElementTree(full_config_element)
 
     # get the full path to the config directory we want (panos / panorama)
-    config_path = os.path.abspath(os.path.join('..', 'v8', config_type))
+    config_path = os.path.abspath(os.path.join('..', 'templates', config_type))
 
     # append to the sys path for module lookup
     sys.path.append(config_path)
