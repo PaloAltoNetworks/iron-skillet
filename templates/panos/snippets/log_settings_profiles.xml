@@ -1,0 +1,86 @@
+<entry name="default">
+  <match-list>
+    <entry name="Traffic_Log_Forwarding">
+      <log-type>traffic</log-type>
+      <filter>All Logs</filter>
+      <send-to-panorama>no</send-to-panorama>
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
+    </entry>
+    <entry name="Threat_Log_Forwarding">
+      <log-type>threat</log-type>
+      <filter>All Logs</filter>
+      <send-to-panorama>no</send-to-panorama>
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
+    </entry>
+    <entry name="Email_Malicious_Verdicts">
+      <send-email>
+        <member>Sample_Email_Profile</member>
+      </send-email>
+      <action-desc>Email Malicious Wildfire Verdicts</action-desc>
+      <log-type>wildfire</log-type>
+      <filter>(verdict eq malicious)</filter>
+      <send-to-panorama>no</send-to-panorama>
+    </entry>
+    <entry name="Email_Phishing_Verdicts">
+      <send-email>
+        <member>Sample_Email_Profile</member>
+      </send-email>
+      <action-desc>Email Phishing Wildfire Verdicts</action-desc>
+      <log-type>wildfire</log-type>
+      <filter>(verdict eq phishing)</filter>
+      <send-to-panorama>no</send-to-panorama>
+    </entry>
+    <entry name="Wildfire_Log_Forwarding">
+      <log-type>wildfire</log-type>
+      <filter>All Logs</filter>
+      <send-to-panorama>no</send-to-panorama>
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
+    </entry>
+    <entry name="URL_Log_Forwarding">
+      <log-type>url</log-type>
+      <filter>All Logs</filter>
+      <send-to-panorama>no</send-to-panorama>
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
+    </entry>
+    <entry name="Data_Log_Forwarding">
+      <log-type>data</log-type>
+      <filter>All Logs</filter>
+      <send-to-panorama>no</send-to-panorama>
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
+    </entry>
+    <entry name="GTP_Log_Forwarding">
+      <log-type>gtp</log-type>
+      <filter>All Logs</filter>
+      <send-to-panorama>no</send-to-panorama>
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
+    </entry>
+    <entry name="Tunnel_Log_Forwarding">
+      <log-type>tunnel</log-type>
+      <filter>All Logs</filter>
+      <send-to-panorama>no</send-to-panorama>
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
+    </entry>
+    <entry name="Auth_Log_Forwarding">
+      <log-type>auth</log-type>
+      <filter>All Logs</filter>
+      <send-to-panorama>no</send-to-panorama>
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
+    </entry>
+  </match-list>
+</entry>
