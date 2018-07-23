@@ -1,7 +1,7 @@
 # xpaths as python dictionary with name as a key
 # %(text)s variables showing xpath variables - python substitution
 
-xpaths_Panorama = { 
+xpaths_panorama = {
       "address": "/config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='%(devicegroup)s']/address",
       "decryption_rules_post": "/config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='%(devicegroup)s']/post-rulebase/decryption", 
       "decryption_rules_pre": "/config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='%(devicegroup)s']/pre-rulebase/decryption", 

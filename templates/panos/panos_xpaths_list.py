@@ -1,7 +1,7 @@
 # xpaths as python dictionary with name as a key
 # %(text)s variables showing xpath variables - python substitution
 
-xpaths_Panos = {
+xpaths_panos = {
     "address": "/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/address",
     "decryption_rules": "/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase/decryption",
     "default_security_rules": "/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase/default-security-rules",

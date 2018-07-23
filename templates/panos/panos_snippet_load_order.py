@@ -2,7 +2,7 @@
 # This is api type = firewall in the web portal
 from collections import OrderedDict
 
-Panos_gold_template_dict = OrderedDict([
+panos_gold_template_dict = OrderedDict([
     ('shared_log_settings', ['shared_log_settings']),
     ('tag', ['tag']),
     ('device_system', ['device_system']),

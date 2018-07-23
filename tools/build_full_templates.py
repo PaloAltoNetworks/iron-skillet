@@ -46,20 +46,20 @@ def build_xpath(parent_doc, xpath, new_element_contents):
             # we will work backwards 'up' the tree until we find something that exists and build all the parts we
             # need back 'down' the tree
             tail = split_path[-1]
-            print('tail is {}'.format(tail))
+#            print('tail is {}'.format(tail))
             # put the path back together minus the 'tail' (last node)
             parent_path = "/".join(split_path[:-1])
-            print('parent_path is {}'.format(parent_path))
+#            print('parent_path is {}'.format(parent_path))
             # does this one exist?
             parent_element = parent_doc.find(parent_path)
-            print('parent_element is {}'.format(parent_element))
+ #           print('parent_element is {}'.format(parent_element))
             # go ahead and keep this around even if it exists or not
             # FIXME could be problematic if we ever need to merge items and not just overwrite them
-            print('appending {} to path_to_build'.format(tail))
+ #           print('appending {} to path_to_build'.format(tail))
             path_to_build.append(tail)
             if parent_element is not None:
-                print('found a parent element')
-                print(parent_element)
+#                print('found a parent element')
+#                print(parent_element)
                 # found a node that exists so we can break out of the loop here
                 break
             else:
@@ -71,7 +71,7 @@ def build_xpath(parent_doc, xpath, new_element_contents):
         # to another node that doesn't yet exist, go ahead and build them all the up
         while len(path_to_build) > 1:
             p = path_to_build.pop()
-            print('appending {} to parent_element'.format(p))
+#            print('appending {} to parent_element'.format(p))
             parent_element = ElementTree.SubElement(parent_element, p)
 
         # we should now have a document that has the tree fully built out to the xpath we want
@@ -79,9 +79,9 @@ def build_xpath(parent_doc, xpath, new_element_contents):
         leaf_node = path_to_build[0]
         # FIXME - this string formatting could prolly be done a bit better
         wrapped_snippet = "<{l}>{c}</{l}>".format(l=leaf_node, c=new_element_contents)
-        print(wrapped_snippet)
+#        print(wrapped_snippet)
         snippet_xml = ElementTree.fromstring(wrapped_snippet)
-        print('appending to parent_element')
+#        print('appending to parent_element')
         parent_element.append(snippet_xml)
         # print it out if needed
         # print(ElementTree.tostring(parent_element))
@@ -116,21 +116,33 @@ def generate_full_config_template(config_type):
     # append to the sys path for module lookup
     sys.path.append(config_path)
 
-    # import both python files here
-    load_order = __import__("panos_snippet_load_order")
-    xpaths_list = __import__("panos_xpaths_list")
+    # import both python files here based on config_type
+    load_order = __import__(f"{config_type}_snippet_load_order")
+    xpaths_list = __import__(f"{config_type}_xpaths_list")
+
+    if config_type == 'panos':
+        snippet_dict = load_order.panos_gold_template_dict
+        xpaths_configtype = xpaths_list.xpaths_panos
+    elif config_type == 'panorama':
+        snippet_dict = load_order.panorama_gold_template_dict
+        xpaths_configtype = xpaths_list.xpaths_panorama
+    else:
+        print('Oops. Not a supported config type')
+        sys.exit()
+
 
     # iterator over the load order dict
     # parse the snippets into XML objects
     # attach to the full_config dom
-    for i in load_order.Panos_gold_template_dict:
+    for i in snippet_dict:
         # i is a key in the orderedDict of
         # it is also the name of the XML snippet we want to load
-        snippet_name = "%s.xml" % i
+        snippet_name = "%s.xml" % snippet_dict[i][0]
         snippet_path = os.path.join(config_path, 'snippets-variables', snippet_name)
 
         # skip snippets that aren't actually there for some reason
         if not os.path.exists(snippet_path):
+            print(snippet_path)
             print('this snippet does not actually exist!')
             continue
 
@@ -139,15 +151,15 @@ def generate_full_config_template(config_type):
             snippet_string = snippet_obj.read()
 
         # verify this snippet has an xpath associated and if so, let's attach to the document
-        if i in xpaths_list.xpaths_Panos:
-            xpath = xpaths_list.xpaths_Panos[i]
+        if i in xpaths_configtype:
+            xpath = xpaths_configtype[i]
             # magic happens here
             # update the document in place to attach the snippet string in the correct place according to it's xpath
             build_xpath(full_config, xpath, snippet_string)
 
     print('=' * 80)
     raw_xml = str(ElementTree.tostring(full_config.getroot(), encoding='unicode'))
-    print(raw_xml)
+#    print(raw_xml)
     # open the output file for writing
     with open(output_file_path, 'w') as output_config_obj:
         output_config_obj.write(raw_xml)
