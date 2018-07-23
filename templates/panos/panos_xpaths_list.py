@@ -1,5 +1,4 @@
 # xpaths as python dictionary with name as a key
-# %(text)s variables showing xpath variables - python substitution
 
 xpaths_panos = {
     "address": "/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/address",
@@ -29,7 +28,7 @@ xpaths_panos = {
     "profiles_wildfire_analysis": "/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/wildfire-analysis",
     "reports": "/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/reports",
     "report_group": "/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/report-group",
-    "route_service": "/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system/route/service/entry[@name='%(route_service)s']",
+    "route_service": "/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system/route/service/entry[@name='{{ ROUTE_SERVICE }}']",
     "security_rules": "/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase/security",
     "server_profile": "/config/shared/server-profile",
     "service": "/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/service",

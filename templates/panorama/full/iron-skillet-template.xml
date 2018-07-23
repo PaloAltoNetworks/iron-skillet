@@ -1850,7 +1850,7 @@
           <rulebase />
         </entry>
       </vsys>
-    <template><entry[@name='%(pan_template)s']><config><shared><log-settings><email>
+    <template><entry[@name='{{ TEMPLATE }}']><config><shared><log-settings><email>
   <entry name="Sample_Email_Profile">
     <server>
       <entry name="Sample_Email_Profile">
@@ -1916,7 +1916,7 @@
       <filter>All Logs</filter>
     </entry>
   </match-list>
-</correlation></log-settings></shared></config></entry[@name='%(pan_template)s']><entry[@name='%(pan_template)s']><config><devices><entry[@name='localhost.localdomain']><deviceconfig><system><update-schedule>
+</correlation></log-settings></shared></config></entry[@name='{{ TEMPLATE }}']><entry[@name='{{ TEMPLATE }}']><config><devices><entry[@name='localhost.localdomain']><deviceconfig><system><update-schedule>
   <statistics-service>
     <application-reports>yes</application-reports>
     <threat-prevention-reports>yes</threat-prevention-reports>
@@ -1975,7 +1975,7 @@
 </ntp-servers>
 <login-banner>You have accessed a protected system.
 Log off immediately if you are not an authorized user.</login-banner>
-<timezone>UTC</timezone></system></deviceconfig></entry[@name='localhost.localdomain']></devices></config></entry[@name='%(pan_template)s']><entry[@name='%(pan_template)s']><config><devices><entry[@name='localhost.localdomain']><deviceconfig><setting><ctd>
+<timezone>UTC</timezone></system></deviceconfig></entry[@name='localhost.localdomain']></devices></config></entry[@name='{{ TEMPLATE }}']><entry[@name='{{ TEMPLATE }}']><config><devices><entry[@name='localhost.localdomain']><deviceconfig><setting><ctd>
   <strip-x-fwd-for>yes</strip-x-fwd-for>
   <x-forwarded-for>yes</x-forwarded-for>
   <allow-http-range>no</allow-http-range>
@@ -2034,7 +2034,7 @@ Log off immediately if you are not an authorized user.</login-banner>
   <bypass-exceed-oo-queue>no</bypass-exceed-oo-queue>
   <check-timestamp-option>yes</check-timestamp-option>
   <strip-mptcp-option>yes</strip-mptcp-option>
-</tcp></setting></deviceconfig></entry[@name='localhost.localdomain']></devices></config></entry[@name='%(pan_template)s']><entry[@name='%(pan_template)s']><config><devices><entry[@name='localhost.localdomain']><network><profiles><zone-protection-profile><entry name="Recommended_Zone_Protection">
+</tcp></setting></deviceconfig></entry[@name='localhost.localdomain']></devices></config></entry[@name='{{ TEMPLATE }}']><entry[@name='{{ TEMPLATE }}']><config><devices><entry[@name='localhost.localdomain']><network><profiles><zone-protection-profile><entry name="Recommended_Zone_Protection">
   <flood>
     <tcp-syn>
       <red>
@@ -2105,7 +2105,7 @@ Log off immediately if you are not an authorized user.</login-banner>
   <remove-tcp-timestamp>yes</remove-tcp-timestamp>
   <strip-tcp-fast-open-and-data>no</strip-tcp-fast-open-and-data>
   <strip-mptcp-option>global</strip-mptcp-option>
-</entry></zone-protection-profile></profiles></network></entry[@name='localhost.localdomain']></devices></config></entry[@name='%(pan_template)s']></template><log-collector-group><entry name="Default_Collector_Group">
+</entry></zone-protection-profile></profiles></network></entry[@name='localhost.localdomain']></devices></config></entry[@name='{{ TEMPLATE }}']></template><log-collector-group><entry name="Default_Collector_Group">
   <monitoring-setting>
     <snmp-setting>
       <access-setting>
@@ -2292,7 +2292,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <quota-settings />
     </management>
   </general-setting>
-</entry></log-collector-group><device-group><entry[@name='%(devicegroup)s']><reports><entry name="Host-visit malicious sites plus">
+</entry></log-collector-group><device-group><entry[@name='{{ DEVICE_GROUP }}']><reports><entry name="Host-visit malicious sites plus">
   <period>last-7-calendar-days</period>
   <topn>500</topn>
   <topm>50</topm>
@@ -2452,7 +2452,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       </values>
     </panorama-traffic>
   </type>
-</entry></reports></entry[@name='%(devicegroup)s']><entry[@name='%(devicegroup)s']><report-group><entry name="Possible Compromise">
+</entry></reports></entry[@name='{{ DEVICE_GROUP }}']><entry[@name='{{ DEVICE_GROUP }}']><report-group><entry name="Possible Compromise">
   <custom-widget>
     <entry name="1">
       <custom-report>Clients sinkholed</custom-report>
@@ -2482,13 +2482,13 @@ Log off immediately if you are not an authorized user.</login-banner>
       <value>Possible Compromise</value>
     </entry>
   </variable>
-</entry></report-group></entry[@name='%(devicegroup)s']><entry[@name='%(devicegroup)s']><email-scheduler><entry name="Possbile Compromise">
+</entry></report-group></entry[@name='{{ DEVICE_GROUP }}']><entry[@name='{{ DEVICE_GROUP }}']><email-scheduler><entry name="Possbile Compromise">
   <report-group>Possible Compromise</report-group>
   <recurring>
     <disabled />
   </recurring>
   <email-profile>Sample_Email_Profile</email-profile>
-</entry></email-scheduler></entry[@name='%(devicegroup)s']></device-group></entry>
+</entry></email-scheduler></entry[@name='{{ DEVICE_GROUP }}']></device-group></entry>
   </devices>
 <panorama><log-settings><email>
   <entry name="Sample_Email_Profile">

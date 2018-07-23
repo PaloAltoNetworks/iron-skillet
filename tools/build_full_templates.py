@@ -46,20 +46,20 @@ def build_xpath(parent_doc, xpath, new_element_contents):
             # we will work backwards 'up' the tree until we find something that exists and build all the parts we
             # need back 'down' the tree
             tail = split_path[-1]
-#            print('tail is {}'.format(tail))
+            print('tail is {}'.format(tail))
             # put the path back together minus the 'tail' (last node)
             parent_path = "/".join(split_path[:-1])
-#            print('parent_path is {}'.format(parent_path))
+            print('parent_path is {}'.format(parent_path))
             # does this one exist?
             parent_element = parent_doc.find(parent_path)
- #           print('parent_element is {}'.format(parent_element))
+            print('parent_element is {}'.format(parent_element))
             # go ahead and keep this around even if it exists or not
             # FIXME could be problematic if we ever need to merge items and not just overwrite them
- #           print('appending {} to path_to_build'.format(tail))
+            print('appending {} to path_to_build'.format(tail))
             path_to_build.append(tail)
             if parent_element is not None:
-#                print('found a parent element')
-#                print(parent_element)
+                print('found a parent element')
+                print(parent_element)
                 # found a node that exists so we can break out of the loop here
                 break
             else:
@@ -71,7 +71,7 @@ def build_xpath(parent_doc, xpath, new_element_contents):
         # to another node that doesn't yet exist, go ahead and build them all the up
         while len(path_to_build) > 1:
             p = path_to_build.pop()
-#            print('appending {} to parent_element'.format(p))
+            print('appending {} to parent_element'.format(p))
             parent_element = ElementTree.SubElement(parent_element, p)
 
         # we should now have a document that has the tree fully built out to the xpath we want
@@ -79,9 +79,9 @@ def build_xpath(parent_doc, xpath, new_element_contents):
         leaf_node = path_to_build[0]
         # FIXME - this string formatting could prolly be done a bit better
         wrapped_snippet = "<{l}>{c}</{l}>".format(l=leaf_node, c=new_element_contents)
-#        print(wrapped_snippet)
+        print(wrapped_snippet)
         snippet_xml = ElementTree.fromstring(wrapped_snippet)
-#        print('appending to parent_element')
+        print('appending to parent_element')
         parent_element.append(snippet_xml)
         # print it out if needed
         # print(ElementTree.tostring(parent_element))
@@ -159,7 +159,7 @@ def generate_full_config_template(config_type):
 
     print('=' * 80)
     raw_xml = str(ElementTree.tostring(full_config.getroot(), encoding='unicode'))
-#    print(raw_xml)
+    print(raw_xml)
     # open the output file for writing
     with open(output_file_path, 'w') as output_config_obj:
         output_config_obj.write(raw_xml)
