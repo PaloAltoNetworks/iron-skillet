@@ -18,7 +18,7 @@ vi variables.py   [Edit variables to the local environment]
 python3 ./insert_values.py
 ```
 
-The output loadable templates are in the `panos` and `panorama` directories with name as `device name` + `datetime`.
+The output loadable templates are in the `templates/my_templates` directory with name as `device name` + `datetime`.
 
 Each run results in a new archive directory allowing for new configs with modified variables.
 

@@ -13,7 +13,7 @@ xmlvar = {
         "NTP_1": "0.pool.ntp.org",
         "NTP_2": "1.pool.ntp.org",
         "SINKHOLE_IPV4": "72.5.65.111",
-        "SINKHOLE_IPV6": "2600:5200::1/128",
+        "SINKHOLE_IPV6": "2600:5200::1",
         "EMAIL_PROFILE_GATEWAY": "192.0.2.1",
         "EMAIL_PROFILE_FROM": "test@yourdomain.com",
         "EMAIL_PROFILE_TO": "test@yourdomain.com",

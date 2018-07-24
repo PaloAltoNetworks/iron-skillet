@@ -12,22 +12,34 @@ from jinja2 import Environment, FileSystemLoader
 from variables import xmlvar
 
 
-def template_newfolder(template_path, fw_name):
+def template_newsubdir(fw_name, foldertime):
+
+    # get the full path to the config directory we want (panos / panorama)
+    base_path = os.path.abspath(os.path.join('..', 'templates'))
+    archive_dir = 'my_templates'
+
+    # append to the sys path for module lookup
+#    sys.path.append(template_path)
+
 
     # Use the timestamp to create a unique filename
-    foldertime = datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d_%H%M%S')
+#    foldertime = datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d_%H%M%S')
 
     # check that configs folder exists and if not create a new one
     # then create snippets and full sub-directories
 
-    archive_folder = f'{template_path}/{fw_name}-{foldertime}'
+    archive_folder = f'{base_path}/{archive_dir}/{fw_name}-{foldertime}'
     if os.path.isdir(archive_folder) is False:
         os.mkdir(archive_folder, mode=0o755)
-        os.mkdir(f'{archive_folder}/snippets-variables')
-        os.mkdir(f'{archive_folder}/full')
-        print(f'created new folder {template_path}/{foldertime} and sub-directories')
+        print(f'created new archive folder {fw_name}-{foldertime}')
 
-    return archive_folder
+    if os.path.isdir(f'{archive_folder}/{config_type}') is False:
+        os.mkdir(f'{archive_folder}/{config_type}')
+        os.mkdir(f'{archive_folder}/{config_type}/snippets-variables')
+        os.mkdir(f'{archive_folder}/{config_type}/full')
+        print(f'created new subdirectories for {config_type}')
+
+    return f'{archive_folder}/{config_type}'
 
 
 def template_render(filename, template_path, render_type):
@@ -57,7 +69,7 @@ def template_save(snippet_name, archive_folder, element, render_type):
     return
 
 
-def replace_variables(config_type):
+def replace_variables(config_type, archivetime):
 
     # get the full path to the config directory we want (panos / panorama)
     template_path = os.path.abspath(os.path.join('..', 'templates', config_type))
@@ -76,7 +88,7 @@ def replace_variables(config_type):
         print('Oops. Not a supported config type')
         sys.exit()
 
-    archivefolder = template_newfolder(template_path, xmlvar['FW_NAME'])
+    mytemplate_path = template_newsubdir(xmlvar['FW_NAME'], archivetime)
 
     # iterator over the load order dict
     # parse the snippets into XML objects
@@ -99,16 +111,19 @@ def replace_variables(config_type):
 
         # render snippet variables folder
         element = template_render(snippet_name, template_path, render_type)
-        template_save(snippet_name, archivefolder, element, render_type)
+        template_save(snippet_name, mytemplate_path, element, render_type)
 
     # render full config file
     print('\nworking with full config template')
     render_type = 'full'
     filename = 'iron-skillet-template.xml'
     element = template_render(filename, template_path, render_type)
-    template_save(filename, archivefolder, element, render_type)
+    template_save(filename, mytemplate_path, element, render_type)
 
             
 if __name__ == '__main__':
+    # Use the timestamp to create a unique folder name
+    archivetime = datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d_%H%M%S')
+    print(f'datetime used for folder creation: {archivetime}')
     for config_type in ['panos', 'panorama']:
-        replace_variables(config_type)
+        replace_variables(config_type, archivetime)

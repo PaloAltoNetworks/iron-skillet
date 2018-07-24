@@ -32,7 +32,7 @@ This is a Palo Alto Networks contributed project.
 
 ## Authors
 
-* Scott Schoaf [(@scotchoaf)](https://github.com/scotchoaf)
+* Scott Shoaf [(@scotchoaf)](https://github.com/scotchoaf)
 * Suzi VanPatten - [(@suzivp)](https://github.com/suzivp)
 * Edward Arcuri - [(@sdndude)](https://github.com/sdndude)
 * Nate Bitting - [(@nbitting)](https://github.com/nbitting)
