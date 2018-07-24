@@ -27,7 +27,7 @@ def build_xpath(parent_doc, xpath, new_element_contents):
     """
     # first of all, we need to fix the xpath to be relative (replace config with '.')
     modified_xpath = re.sub('^/config', '.', xpath)
-    print('Checking xpath %s' % modified_xpath)
+    print(f'Checking xpath {modified_xpath}')
     # let's check if the xpath exists as is first of all
     is_present = parent_doc.find(modified_xpath)
     if is_present is not None:
@@ -46,16 +46,16 @@ def build_xpath(parent_doc, xpath, new_element_contents):
             # we will work backwards 'up' the tree until we find something that exists and build all the parts we
             # need back 'down' the tree
             tail = split_path[-1]
-            print('tail is {}'.format(tail))
+            print(f'tail is {tail}')
             # put the path back together minus the 'tail' (last node)
             parent_path = "/".join(split_path[:-1])
-            print('parent_path is {}'.format(parent_path))
+            print(f'parent_path is {parent_path}')
             # does this one exist?
             parent_element = parent_doc.find(parent_path)
-            print('parent_element is {}'.format(parent_element))
+            print(f'parent_element is {parent_element}')
             # go ahead and keep this around even if it exists or not
             # FIXME could be problematic if we ever need to merge items and not just overwrite them
-            print('appending {} to path_to_build'.format(tail))
+            print(f'appending {tail} to path_to_build')
             path_to_build.append(tail)
             if parent_element is not None:
                 print('found a parent element')
@@ -78,7 +78,7 @@ def build_xpath(parent_doc, xpath, new_element_contents):
         # wrap up the new_element_contents in the leaf node and attach it to the last known parent_element
         leaf_node = path_to_build[0]
         # FIXME - this string formatting could prolly be done a bit better
-        wrapped_snippet = "<{l}>{c}</{l}>".format(l=leaf_node, c=new_element_contents)
+        wrapped_snippet = f"<{leaf_node}>{new_element_contents}</{leaf_node}>"
         print(wrapped_snippet)
         snippet_xml = ElementTree.fromstring(wrapped_snippet)
         print('appending to parent_element')
@@ -136,8 +136,8 @@ def generate_full_config_template(config_type):
     # attach to the full_config dom
     for i in snippet_dict:
         # i is a key in the orderedDict of
-        # it is also the name of the XML snippet we want to load
-        snippet_name = "%s.xml" % snippet_dict[i][0]
+        # the value is the snippet file name
+        snippet_name = f'{snippet_dict[i][0]}.xml'
         snippet_path = os.path.join(config_path, 'snippets-variables', snippet_name)
 
         # skip snippets that aren't actually there for some reason
