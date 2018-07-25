@@ -8,6 +8,7 @@ import os
 import sys
 import time
 import datetime
+import shutil
 from jinja2 import Environment, FileSystemLoader
 from variables import xmlvar
 
@@ -17,13 +18,6 @@ def template_newsubdir(fw_name, foldertime):
     # get the full path to the config directory we want (panos / panorama)
     base_path = os.path.abspath(os.path.join('..', 'templates'))
     archive_dir = 'my_templates'
-
-    # append to the sys path for module lookup
-#    sys.path.append(template_path)
-
-
-    # Use the timestamp to create a unique filename
-#    foldertime = datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d_%H%M%S')
 
     # check that configs folder exists and if not create a new one
     # then create snippets and full sub-directories
@@ -39,7 +33,7 @@ def template_newsubdir(fw_name, foldertime):
         os.mkdir(f'{archive_folder}/{config_type}/full')
         print(f'created new subdirectories for {config_type}')
 
-    return f'{archive_folder}/{config_type}'
+    return archive_folder
 
 
 def template_render(filename, template_path, render_type):
@@ -57,14 +51,20 @@ def template_render(filename, template_path, render_type):
     return element
 
 
-def template_save(snippet_name, archive_folder, element, render_type):
+def template_save(snippet_name, archive_folder, config_type, element, render_type):
 
     print(f'..saving template for {snippet_name}')
 
     filename = f'{snippet_name}'
 
-    with open(f'{archive_folder}/{render_type}/{filename}', 'w') as configfile:
+    with open(f'{archive_folder}/{config_type}/{render_type}/{filename}', 'w') as configfile:
         configfile.write(element)
+
+    # copy the variables file used for the render into the my_template folder
+    if os.path.isfile(f'{archive_folder}/variables.py') is False:
+        vfilesrc = 'variables.py'
+        vfiledst = f'{archive_folder}/variables.py'
+        shutil.copy(vfilesrc, vfiledst)
 
     return
 
@@ -100,7 +100,7 @@ def replace_variables(config_type, archivetime):
 
         render_type = 'snippets-variables'
 
-        snippet_name = "%s.xml" % snippet_dict[i][0]
+        snippet_name = f'{snippet_dict[i][0]}.xml'
         snippet_path = os.path.join(template_path, 'snippets-variables', snippet_name)
 
         # skip snippets that aren't actually there for some reason
@@ -111,14 +111,14 @@ def replace_variables(config_type, archivetime):
 
         # render snippet variables folder
         element = template_render(snippet_name, template_path, render_type)
-        template_save(snippet_name, mytemplate_path, element, render_type)
+        template_save(snippet_name, mytemplate_path, config_type, element, render_type)
 
     # render full config file
     print('\nworking with full config template')
     render_type = 'full'
     filename = 'iron-skillet-template.xml'
     element = template_render(filename, template_path, render_type)
-    template_save(filename, mytemplate_path, element, render_type)
+    template_save(filename, mytemplate_path, config_type, element, render_type)
 
             
 if __name__ == '__main__':
