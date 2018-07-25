@@ -11,7 +11,7 @@
     <log-setting>default</log-setting>
   </entry>
   <entry name="interzone-default">
-    <action>deny</action>
+    <action>drop</action>
     <log-start>no</log-start>
     <log-end>yes</log-end>
     <log-setting>default</log-setting>

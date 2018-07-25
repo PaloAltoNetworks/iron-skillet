@@ -13,7 +13,7 @@ from jinja2 import Environment, FileSystemLoader
 from variables import xmlvar
 
 
-def template_newsubdir(fw_name, foldertime):
+def template_newsubdir(mytemplate_name, foldertime):
 
     # get the full path to the config directory we want (panos / panorama)
     base_path = os.path.abspath(os.path.join('..', 'templates'))
@@ -22,14 +22,14 @@ def template_newsubdir(fw_name, foldertime):
     # check that configs folder exists and if not create a new one
     # then create snippets and full sub-directories
 
-    archive_folder = f'{base_path}/{archive_dir}/{fw_name}-{foldertime}'
+    archive_folder = f'{base_path}/{archive_dir}/{mytemplate_name}-{foldertime}'
     if os.path.isdir(archive_folder) is False:
         os.mkdir(archive_folder, mode=0o755)
-        print(f'created new archive folder {fw_name}-{foldertime}')
+        print(f'created new archive folder {mytemplate_name}-{foldertime}')
 
     if os.path.isdir(f'{archive_folder}/{config_type}') is False:
         os.mkdir(f'{archive_folder}/{config_type}')
-        os.mkdir(f'{archive_folder}/{config_type}/snippets-variables')
+        os.mkdir(f'{archive_folder}/{config_type}/snippets')
         os.mkdir(f'{archive_folder}/{config_type}/full')
         print(f'created new subdirectories for {config_type}')
 
@@ -88,7 +88,7 @@ def replace_variables(config_type, archivetime):
         print('Oops. Not a supported config type')
         sys.exit()
 
-    mytemplate_path = template_newsubdir(xmlvar['FW_NAME'], archivetime)
+    mytemplate_path = template_newsubdir(xmlvar['MY_TEMPLATE'], archivetime)
 
     # iterator over the load order dict
     # parse the snippets into XML objects
@@ -98,10 +98,10 @@ def replace_variables(config_type, archivetime):
 
         print(f'\nworking with {i}')
 
-        render_type = 'snippets-variables'
+        render_type = 'snippets'
 
         snippet_name = f'{snippet_dict[i][0]}.xml'
-        snippet_path = os.path.join(template_path, 'snippets-variables', snippet_name)
+        snippet_path = os.path.join(template_path, 'snippets', snippet_name)
 
         # skip snippets that aren't actually there for some reason
         if not os.path.exists(snippet_path):
@@ -116,7 +116,7 @@ def replace_variables(config_type, archivetime):
     # render full config file
     print('\nworking with full config template')
     render_type = 'full'
-    filename = 'iron-skillet-template.xml'
+    filename = 'iron-skillet-test.xml'
     element = template_render(filename, template_path, render_type)
     template_save(filename, mytemplate_path, config_type, element, render_type)
 
