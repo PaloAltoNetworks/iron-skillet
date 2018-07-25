@@ -116,7 +116,7 @@ def replace_variables(config_type, archivetime):
     # render full config file
     print('\nworking with full config template')
     render_type = 'full'
-    filename = 'iron-skillet-test.xml'
+    filename = 'iron_skillet_day1_template.xml'
     element = template_render(filename, template_path, render_type)
     template_save(filename, mytemplate_path, config_type, element, render_type)
 

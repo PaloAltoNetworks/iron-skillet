@@ -1,7 +1,0 @@
-<type>
-  <static/>
-</type>
-<hostname>{{ FW_NAME }}</hostname>
-<ip-address>{{ MGMT_IP }}</ip-address>
-<netmask>{{ MGMTP_MASK }}</netmask>
-<default-gateway>{{ MGMT_DG }}</default-gateway>

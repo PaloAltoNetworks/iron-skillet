@@ -8,7 +8,7 @@ python3 ./build_full_templates.py
 ```
 
 
-The resulting templates are stored in the `full` directory as `iron-skillet-test.xml`
+The resulting templates are stored in the `full` directory as `iron_skillet_day1_template.xml`
 
 
 To create loadable template files with variable substitutions:

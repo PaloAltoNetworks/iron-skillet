@@ -75,11 +75,14 @@
 </entry>
 <entry name="Internal">
 	<comments>Internal to Internal</comments>
+</entry>
+<entry name="iron-skillet-version">
+	<comments>version 1.0.1: this is current version of this iron-skillet template file</comments>
 </entry></tag><address><entry name="Sinkhole-IPv4">
-    <ip-netmask>{{ SINKHOLE_IPV4 }}</ip-netmask>
+    <ip-netmask>72.5.65.111</ip-netmask>
 </entry>
 <entry name="Sinkhole-IPv6">
-    <ip-netmask>{{ SINKHOLE_IPV6 }}</ip-netmask>
+    <ip-netmask>2600:5200::1</ip-netmask>
 </entry></address><external-list><entry name="Team Cymru Bogons IPv4">
   <type>
     <ip>
@@ -267,8 +270,8 @@
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
-      <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+      <ipv4-address>72.5.65.111</ipv4-address>
+      <ipv6-address>2600:5200::1</ipv6-address>
     </sinkhole>
     <packet-capture>single-packet</packet-capture>
   </botnet-domains>
@@ -310,8 +313,8 @@
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
-      <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+      <ipv4-address>72.5.65.111</ipv4-address>
+      <ipv6-address>2600:5200::1</ipv6-address>
     </sinkhole>
     <packet-capture>single-packet</packet-capture>
   </botnet-domains>
@@ -353,8 +356,8 @@
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
-      <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+      <ipv4-address>72.5.65.111</ipv4-address>
+      <ipv6-address>2600:5200::1</ipv6-address>
     </sinkhole>
     <packet-capture>single-packet</packet-capture>
   </botnet-domains>
@@ -396,8 +399,8 @@
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
-      <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+      <ipv4-address>72.5.65.111</ipv4-address>
+      <ipv6-address>2600:5200::1</ipv6-address>
     </sinkhole>
     <packet-capture>disable</packet-capture>
   </botnet-domains>
@@ -425,8 +428,8 @@
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
-      <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+      <ipv4-address>72.5.65.111</ipv4-address>
+      <ipv6-address>2600:5200::1</ipv6-address>
     </sinkhole>
     <packet-capture>single-packet</packet-capture>
   </botnet-domains>
@@ -1850,14 +1853,14 @@
           <rulebase />
         </entry>
       </vsys>
-    <template><entry[@name='{{ TEMPLATE }}']><config><shared><log-settings><email>
+    <template><entry[@name='test']><config><shared><log-settings><email>
   <entry name="Sample_Email_Profile">
     <server>
       <entry name="Sample_Email_Profile">
         <display-name>Panorama</display-name>
-        <gateway>{{ EMAIL_PROFILE_GATEWAY }}</gateway>
-        <from>{{ EMAIL_PROFILE_FROM }}</from>
-        <to>{{ EMAIL_PROFILE_TO }}</to>
+        <gateway>192.0.2.1</gateway>
+        <from>test@yourdomain.com</from>
+        <to>test@yourdomain.com</to>
       </entry>
     </server>
   </entry>
@@ -1869,7 +1872,7 @@
         <transport>UDP</transport>
         <port>514</port>
         <format>BSD</format>
-        <server>{{ SYSLOG_SERVER }}</server>
+        <server>192.0.2.2</server>
         <facility>LOG_USER</facility>
       </entry>
     </server>
@@ -1916,7 +1919,7 @@
       <filter>All Logs</filter>
     </entry>
   </match-list>
-</correlation></log-settings></shared></config></entry[@name='{{ TEMPLATE }}']><entry[@name='{{ TEMPLATE }}']><config><devices><entry[@name='localhost.localdomain']><deviceconfig><system><update-schedule>
+</correlation></log-settings></shared></config></entry[@name='test']><entry[@name='test']><config><devices><entry[@name='localhost.localdomain']><deviceconfig><system><update-schedule>
   <statistics-service>
     <application-reports>yes</application-reports>
     <threat-prevention-reports>yes</threat-prevention-reports>
@@ -1961,21 +1964,26 @@
 </snmp-setting>
 <dns-setting>
   <servers>
-    <primary>{{ DNS_1 }}</primary>
-    <secondary>{{ DNS_2 }}</secondary>
+    <primary>8.8.8.8</primary>
+    <secondary>8.8.4.4</secondary>
   </servers>
 </dns-setting>
 <ntp-servers>
   <primary-ntp-server>
-    <ntp-server-address>{{ NTP_1 }}</ntp-server-address>
+    <ntp-server-address>0.pool.ntp.org</ntp-server-address>
   </primary-ntp-server>
   <secondary-ntp-server>
-    <ntp-server-address>{{ NTP_2 }}</ntp-server-address>
+    <ntp-server-address>1.pool.ntp.org</ntp-server-address>
   </secondary-ntp-server>
 </ntp-servers>
 <login-banner>You have accessed a protected system.
 Log off immediately if you are not an authorized user.</login-banner>
-<timezone>UTC</timezone></system></deviceconfig></entry[@name='localhost.localdomain']></devices></config></entry[@name='{{ TEMPLATE }}']><entry[@name='{{ TEMPLATE }}']><config><devices><entry[@name='localhost.localdomain']><deviceconfig><setting><ctd>
+<timezone>UTC</timezone>
+<hostname>test</hostname>
+<type>
+  <dhcp-client />
+</type>
+</system></deviceconfig></entry[@name='localhost.localdomain']></devices></config></entry[@name='test']><entry[@name='test']><config><devices><entry[@name='localhost.localdomain']><deviceconfig><setting><ctd>
   <strip-x-fwd-for>yes</strip-x-fwd-for>
   <x-forwarded-for>yes</x-forwarded-for>
   <allow-http-range>no</allow-http-range>
@@ -2034,7 +2042,7 @@ Log off immediately if you are not an authorized user.</login-banner>
   <bypass-exceed-oo-queue>no</bypass-exceed-oo-queue>
   <check-timestamp-option>yes</check-timestamp-option>
   <strip-mptcp-option>yes</strip-mptcp-option>
-</tcp></setting></deviceconfig></entry[@name='localhost.localdomain']></devices></config></entry[@name='{{ TEMPLATE }}']><entry[@name='{{ TEMPLATE }}']><config><devices><entry[@name='localhost.localdomain']><network><profiles><zone-protection-profile><entry name="Recommended_Zone_Protection">
+</tcp></setting></deviceconfig></entry[@name='localhost.localdomain']></devices></config></entry[@name='test']><entry[@name='test']><config><devices><entry[@name='localhost.localdomain']><network><profiles><zone-protection-profile><entry name="Recommended_Zone_Protection">
   <flood>
     <tcp-syn>
       <red>
@@ -2105,7 +2113,7 @@ Log off immediately if you are not an authorized user.</login-banner>
   <remove-tcp-timestamp>yes</remove-tcp-timestamp>
   <strip-tcp-fast-open-and-data>no</strip-tcp-fast-open-and-data>
   <strip-mptcp-option>global</strip-mptcp-option>
-</entry></zone-protection-profile></profiles></network></entry[@name='localhost.localdomain']></devices></config></entry[@name='{{ TEMPLATE }}']></template><log-collector-group><entry name="Default_Collector_Group">
+</entry></zone-protection-profile></profiles></network></entry[@name='localhost.localdomain']></devices></config></entry[@name='test']></template><log-collector-group><entry name="Default_Collector_Group">
   <monitoring-setting>
     <snmp-setting>
       <access-setting>
@@ -2292,7 +2300,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <quota-settings />
     </management>
   </general-setting>
-</entry></log-collector-group><device-group><entry[@name='{{ DEVICE_GROUP }}']><reports><entry name="Host-visit malicious sites plus">
+</entry></log-collector-group><device-group><entry[@name='test']><reports><entry name="Host-visit malicious sites plus">
   <period>last-7-calendar-days</period>
   <topn>500</topn>
   <topm>50</topm>
@@ -2452,7 +2460,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       </values>
     </panorama-traffic>
   </type>
-</entry></reports></entry[@name='{{ DEVICE_GROUP }}']><entry[@name='{{ DEVICE_GROUP }}']><report-group><entry name="Possible Compromise">
+</entry></reports></entry[@name='test']><entry[@name='test']><report-group><entry name="Possible Compromise">
   <custom-widget>
     <entry name="1">
       <custom-report>Clients sinkholed</custom-report>
@@ -2482,22 +2490,22 @@ Log off immediately if you are not an authorized user.</login-banner>
       <value>Possible Compromise</value>
     </entry>
   </variable>
-</entry></report-group></entry[@name='{{ DEVICE_GROUP }}']><entry[@name='{{ DEVICE_GROUP }}']><email-scheduler><entry name="Possbile Compromise">
+</entry></report-group></entry[@name='test']><entry[@name='test']><email-scheduler><entry name="Possbile Compromise">
   <report-group>Possible Compromise</report-group>
   <recurring>
     <disabled />
   </recurring>
   <email-profile>Sample_Email_Profile</email-profile>
-</entry></email-scheduler></entry[@name='{{ DEVICE_GROUP }}']></device-group></entry>
+</entry></email-scheduler></entry[@name='test']></device-group></entry>
   </devices>
 <panorama><log-settings><email>
   <entry name="Sample_Email_Profile">
     <server>
       <entry name="Sample_Email_Profile">
         <display-name>Panorama</display-name>
-        <gateway>{{ EMAIL_PROFILE_GATEWAY }}</gateway>
-        <from>{{ EMAIL_PROFILE_FROM }}</from>
-        <to>{{ EMAIL_PROFILE_TO }}</to>
+        <gateway>192.0.2.1</gateway>
+        <from>test@yourdomain.com</from>
+        <to>test@yourdomain.com</to>
       </entry>
     </server>
   </entry>
@@ -2525,7 +2533,7 @@ Log off immediately if you are not an authorized user.</login-banner>
         <transport>UDP</transport>
         <port>514</port>
         <format>BSD</format>
-        <server>{{ SYSLOG_SERVER }}</server>
+        <server>192.0.2.2</server>
         <facility>LOG_USER</facility>
       </entry>
     </server>

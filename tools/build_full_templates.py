@@ -92,11 +92,11 @@ def generate_full_config_template(config_type):
     Generates the full configuration template for a given configuration type (panos or panorama).
     This will use the load order
     :param config_type: currently supported: 'panos' or 'panorama'
-    :return: will print full configs to STDOUT and also overwrite the full/iron-skillet-test.xml
+    :return: will print full configs to STDOUT and also overwrite the full/iron_skillet_day1_template.xml
     """
     # get the path to the full baseline config for this config type
     full_config_file_path = os.path.abspath(os.path.join('..', 'templates', config_type, 'baseline', 'baseline.xml'))
-    output_file_path = os.path.abspath(os.path.join('..', 'templates', config_type, 'full', 'iron-skillet-test.xml'))
+    output_file_path = os.path.abspath(os.path.join('..', 'templates', config_type, 'full', 'iron_skillet_day1_template.xml'))
 
     # open the file and read it in
     with open(full_config_file_path, 'r') as full_config_obj:
@@ -129,7 +129,6 @@ def generate_full_config_template(config_type):
     else:
         print('Oops. Not a supported config type')
         sys.exit()
-
 
     # iterator over the load order dict
     # parse the snippets into XML objects
