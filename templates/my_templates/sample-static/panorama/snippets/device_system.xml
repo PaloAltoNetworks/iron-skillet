@@ -43,31 +43,25 @@
 </snmp-setting>
 <dns-setting>
   <servers>
-    <primary>{{ DNS_1 }}</primary>
-    <secondary>{{ DNS_2 }}</secondary>
+    <primary>8.8.8.8</primary>
+    <secondary>8.8.4.4</secondary>
   </servers>
 </dns-setting>
 <ntp-servers>
   <primary-ntp-server>
-    <ntp-server-address>{{ NTP_1 }}</ntp-server-address>
+    <ntp-server-address>0.pool.ntp.org</ntp-server-address>
   </primary-ntp-server>
   <secondary-ntp-server>
-    <ntp-server-address>{{ NTP_2 }}</ntp-server-address>
+    <ntp-server-address>1.pool.ntp.org</ntp-server-address>
   </secondary-ntp-server>
 </ntp-servers>
 <login-banner>You have accessed a protected system.
 Log off immediately if you are not an authorized user.</login-banner>
 <timezone>UTC</timezone>
-<hostname>{{ FW_NAME }}</hostname>
-{%- if MGMT_TYPE == "static" %}
+<hostname>test</hostname>
 <type>
   <static/>
 </type>
-<ip-address>{{ MGMT_IP }}</ip-address>
-<netmask>{{ MGMT_MASK }}</netmask>
-<default-gateway>{{ MGMT_DG }}</default-gateway>
-{% else %}
-<type>
-  <dhcp-client/>
-</type>
-{% endif %}
+<ip-address>192.168.55.10</ip-address>
+<netmask>255.255.255.0</netmask>
+<default-gateway>192.168.55.2</default-gateway>

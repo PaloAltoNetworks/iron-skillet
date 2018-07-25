@@ -7,3 +7,6 @@
 <entry name="Internal">
 	<comments>Internal to Internal</comments>
 </entry>
+<entry name="iron-skillet-version">
+	<comments>version 1.0.1: this is current version of this iron-skillet template file</comments>
+</entry>
