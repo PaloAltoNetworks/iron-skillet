@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 '''
-simple jinja substitution of values from variables.py
+simple jinja substitution of values from my_variables.py
 output to panorama and panos folders as loadable configs
 '''
 
@@ -10,7 +10,7 @@ import time
 import datetime
 import shutil
 from jinja2 import Environment, FileSystemLoader
-from variables import xmlvar
+from my_variables import xmlvar
 
 
 def template_newsubdir(mytemplate_name, foldertime):
@@ -61,9 +61,9 @@ def template_save(snippet_name, archive_folder, config_type, element, render_typ
         configfile.write(element)
 
     # copy the variables file used for the render into the my_template folder
-    if os.path.isfile(f'{archive_folder}/variables.py') is False:
-        vfilesrc = 'variables.py'
-        vfiledst = f'{archive_folder}/variables.py'
+    if os.path.isfile(f'{archive_folder}/my_variables.py') is False:
+        vfilesrc = 'my_variables.py'
+        vfiledst = f'{archive_folder}/my_variables.py'
         shutil.copy(vfilesrc, vfiledst)
 
     return
