@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-'''
+"""
 simple jinja substitution of values from my_variables.py
 output to panorama and panos folders as loadable configs
-'''
+"""
 
 import datetime
 import os
@@ -21,6 +21,12 @@ defined_filters = ['md5_hash', 'des_hash', 'sha512_hash']
 
 
 def myconfig_newdir(myconfigdir_name, foldertime):
+    """
+    create a new main my_configs folder if required then new subdirectories for configs
+    :param myconfigdir_name: prefix folder name from the my_variables.py file
+    :param foldertime: datetime when script run; to be used as suffix of folder name
+    :return: the myconfigdir full path name
+    """
     # get the full path to the config directory we want (panos / panorama)
     myconfigpath = os.path.abspath(os.path.join('..', 'my_configs'))
     if os.path.isdir(myconfigpath) is False:
@@ -33,7 +39,7 @@ def myconfig_newdir(myconfigdir_name, foldertime):
     myconfigdir = f'{myconfigpath}/{myconfigdir_name}-{foldertime}'
     if os.path.isdir(myconfigdir) is False:
         os.mkdir(myconfigdir, mode=0o755)
-        print(f'created new archive folder {myconfigdir_name}-{foldertime}')
+        print(f'\ncreated new archive folder {myconfigdir_name}-{foldertime}')
 
     if os.path.isdir(f'{myconfigdir}/{config_type}') is False:
         os.mkdir(f'{myconfigdir}/{config_type}')
@@ -45,11 +51,16 @@ def myconfig_newdir(myconfigdir_name, foldertime):
 
 
 def template_render(filename, template_path, render_type):
-    '''
-    Uses jinja substitutions from the xml snippets to load web form variables
-    '''
+    """
+    render the jinja template using the xmlVar value from my_variables.py
+    :param filename: name of the template file
+    :param template_path: path for the template file
+    :param render_type: type if full of config snippets; aligns with folder name
+    :return: return the rendered xml file
+    """
 
     print(f'..creating template for {filename}')
+
 
     env = Environment(loader=FileSystemLoader(f'{template_path}/{render_type}'))
 
@@ -65,6 +76,17 @@ def template_render(filename, template_path, render_type):
 
 
 def template_save(snippet_name, myconfigdir, config_type, element, render_type):
+    """
+    after rendering the template save to the myconfig directory
+    each run saves with a unique prefix name + datetime
+    :param snippet_name: name of the output file
+    :param myconfigdir: path to the my_config directory
+    :param config_type: based on initial run list; eg. panos or panorama
+    :param element: xml element rendered based on input variables; used as folder name
+    :param render_type: type eg. if full or snippets; aligns with folder name
+    :return: no value returned (future could be success code)
+    """
+
     print(f'..saving template for {snippet_name}')
 
     filename = f'{snippet_name}'
@@ -79,6 +101,37 @@ def template_save(snippet_name, myconfigdir, config_type, element, render_type):
         shutil.copy(vfilesrc, vfiledst)
 
     return
+
+  
+# define functions for custom jinja filters
+def md5_hash(txt):
+    """
+    Returns the MD5 Hashed secret for use as a password hash in the PanOS configuration
+    :param txt: text to be hashed
+    :return: password hash of the string with salt and configuration information. Suitable to place in the phash field
+    in the configurations
+    """
+    return md5_crypt.hash(txt)
+
+
+def des_hash(txt):
+    """
+    Returns the DES Hashed secret for use as a password hash in the PanOS configuration
+    :param txt: text to be hashed
+    :return: password hash of the string with salt and configuration information. Suitable to place in the phash field
+    in the configurations
+    """
+    return des_crypt.hash(txt)
+
+
+def sha512_hash(txt):
+    """
+    Returns the SHA512 Hashed secret for use as a password hash in the PanOS configuration
+    :param txt: text to be hashed
+    :return: password hash of the string with salt and configuration information. Suitable to place in the
+    phash field in the configurations
+    """
+    return sha512_crypt.hash(txt)
 
 
 def replace_variables(config_type, archivetime):
@@ -132,47 +185,35 @@ def replace_variables(config_type, archivetime):
     template_save(filename, myconfig_path, config_type, element, render_type)
 
 
-# define functions for custom jinja filters
-def md5_hash(txt):
-    """
-    Returns the MD5 Hashed secret for use as a password hash in the PanOS configuration
-    :param txt: text to be hashed
-    :return: password hash of the string with salt and configuration information. Suitable to place in the phash field
-    in the configurations
-    """
-    return md5_crypt.hash(txt)
-
-
-def des_hash(txt):
-    """
-    Returns the DES Hashed secret for use as a password hash in the PanOS configuration
-    :param txt: text to be hashed
-    :return: password hash of the string with salt and configuration information. Suitable to place in the phash field
-    in the configurations
-    """
-    return des_crypt.hash(txt)
-
-
-def sha512_hash(txt):
-    """
-    Returns the SHA512 Hashed secret for use as a password hash in the PanOS configuration
-    :param txt: text to be hashed
-    :return: password hash of the string with salt and configuration information. Suitable to place in the
-    phash field in the configurations
-    """
-    return sha512_crypt.hash(txt)
+    print(f'\nconfigs have been created and can be found in {myconfig_path}')
+    print('along with the my_variables.py values used to render the configs\n')
 
 
 if __name__ == '__main__':
     # Use the timestamp to create a unique folder name
+
     print('=' * 80)
     print(' ')
     print('Welcome to Iron-Skillet'.center(80))
     print(' ')
     print('=' * 80)
+    
     archive_time = datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d_%H%M%S')
-    print(f'datetime used for folder creation: {archive_time}')
-    xmlvar['ADMINISTRATOR_USERNAME'] = input('Enter the PanOS firewall administrator account username: ')
-    xmlvar['ADMINISTRATOR_PASSWORD'] = getpass.getpass('Enter the PanOS firewall administrator account password: ')
+    print(f'\ndatetime used for folder creation: {archive_time}\n')
+
+    xmlvar['ADMINISTRATOR_USERNAME'] = input('Enter the superuser administrator account username: ')
+
+    print(f"\na phash will be created for superuser {xmlvar['ADMINISTRATOR_USERNAME']} and added to the config file\n")
+    passwordmatch = False
+
+    while passwordmatch is False:
+        password1 = getpass.getpass("Enter the superuser administrator account password: ")
+        password2 = getpass.getpass("Enter password again to verify: ")
+        if password1 == password2:
+            xmlvar['ADMINISTRATOR_PASSWORD'] = password1
+            passwordmatch = True
+        else:
+            print('\nPasswords do not match. Please try again.\n')
+
     for config_type in ['panos', 'panorama']:
         replace_variables(config_type, archive_time)
