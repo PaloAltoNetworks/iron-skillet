@@ -8,8 +8,8 @@
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>72.5.65.111</ipv4-address>
-      <ipv6-address>FD00::1</ipv6-address>
+      <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
+      <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
     </sinkhole>
     <packet-capture>single-packet</packet-capture>
   </botnet-domains>
@@ -51,8 +51,8 @@
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>72.5.65.111</ipv4-address>
-      <ipv6-address>FD00::1</ipv6-address>
+      <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
+      <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
     </sinkhole>
     <packet-capture>single-packet</packet-capture>
   </botnet-domains>
@@ -94,8 +94,8 @@
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>72.5.65.111</ipv4-address>
-      <ipv6-address>FD00::1</ipv6-address>
+      <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
+      <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
     </sinkhole>
     <packet-capture>single-packet</packet-capture>
   </botnet-domains>
@@ -137,8 +137,8 @@
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>72.5.65.111</ipv4-address>
-      <ipv6-address>FD00::1</ipv6-address>
+      <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
+      <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
     </sinkhole>
     <packet-capture>disable</packet-capture>
   </botnet-domains>
@@ -166,8 +166,8 @@
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>72.5.65.111</ipv4-address>
-      <ipv6-address>FD00::1</ipv6-address>
+      <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
+      <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
     </sinkhole>
     <packet-capture>single-packet</packet-capture>
   </botnet-domains>

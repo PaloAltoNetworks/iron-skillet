@@ -1,7 +1,13 @@
 <ctd>
   <strip-x-fwd-for>yes</strip-x-fwd-for>
   <x-forwarded-for>yes</x-forwarded-for>
+  <allow-http-range>no</allow-http-range>
+  <tcp-bypass-exceed-queue>no</tcp-bypass-exceed-queue>
+  <udp-bypass-exceed-queue>no</udp-bypass-exceed-queue>
 </ctd>
+<management>
+  <enable-log-high-dp-load>yes</enable-log-high-dp-load>
+</management>
 <wildfire>
   <file-size-limit>
     <entry name="pe">
@@ -40,7 +46,15 @@
 </config>
 <application>
   <notify-user>yes</notify-user>
+  <bypass-exceed-queue>no</bypass-exceed-queue>
 </application>
 <logging>
   <log-suppression>no</log-suppression>
 </logging>
+<tcp>
+  <urgent-data>clear</urgent-data>
+  <drop-zero-flag>yes</drop-zero-flag>
+  <bypass-exceed-oo-queue>no</bypass-exceed-oo-queue>
+  <check-timestamp-option>yes</check-timestamp-option>
+  <strip-mptcp-option>yes</strip-mptcp-option>
+</tcp>

@@ -2,8 +2,8 @@
 <config version="8.0.0" urldb="paloaltonetworks">
   <mgt-config>
     <users>
-      <entry name="admin">
-        <phash>fnRL/G5lXVMug</phash>
+      <entry name="{{ ADMINISTRATOR_USERNAME }}">
+        <phash>{{ ADMINISTRATOR_PASSWORD | md5_hash }}</phash>
         <permissions>
           <role-based>
             <superuser>yes</superuser>
@@ -13,10 +13,6 @@
     </users>
   </mgt-config>
   <shared>
-    <application/>
-    <application-group/>
-    <service/>
-    <service-group/>
     <botnet>
       <configuration>
         <http>
@@ -240,43 +236,7 @@
           </entry>
         </virtual-router>
       </network>
-      <deviceconfig>
-        <system>
-          <type>
-            <static/>
-          </type>
-          <update-server>updates.paloaltonetworks.com</update-server>
-          <update-schedule>
-            <threats>
-              <recurring>
-                <weekly>
-                  <day-of-week>wednesday</day-of-week>
-                  <at>01:02</at>
-                  <action>download-only</action>
-                </weekly>
-              </recurring>
-            </threats>
-          </update-schedule>
-          <timezone>US/Pacific</timezone>
-          <service>
-            <disable-telnet>yes</disable-telnet>
-            <disable-http>yes</disable-http>
-          </service>
-          <hostname>PA-VM</hostname>
-          <ip-address>192.168.55.10</ip-address>
-          <netmask>255.255.255.0</netmask>
-          <default-gateway>192.168.55.2</default-gateway>
-        </system>
-        <setting>
-          <config>
-            <rematch>yes</rematch>
-          </config>
-          <management>
-            <hostname-type-in-syslog>FQDN</hostname-type-in-syslog>
-          </management>
-          <auto-mac-detect>yes</auto-mac-detect>
-        </setting>
-      </deviceconfig>
+      <deviceconfig/>
       <vsys>
         <entry name="vsys1">
           <application/>

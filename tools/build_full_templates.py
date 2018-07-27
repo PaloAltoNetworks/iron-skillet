@@ -92,11 +92,11 @@ def generate_full_config_template(config_type):
     Generates the full configuration template for a given configuration type (panos or panorama).
     This will use the load order
     :param config_type: currently supported: 'panos' or 'panorama'
-    :return: will print full configs to STDOUT and also overwrite the full/iron-skillet-template.xml
+    :return: will print full configs to STDOUT and also overwrite the full/iron_skillet_day1_template.xml
     """
     # get the path to the full baseline config for this config type
     full_config_file_path = os.path.abspath(os.path.join('..', 'templates', config_type, 'baseline', 'baseline.xml'))
-    output_file_path = os.path.abspath(os.path.join('..', 'templates', config_type, 'full', 'iron-skillet-template.xml'))
+    output_file_path = os.path.abspath(os.path.join('..', 'templates', config_type, 'full', 'iron_skillet_day1_template.xml'))
 
     # open the file and read it in
     with open(full_config_file_path, 'r') as full_config_obj:
@@ -130,7 +130,6 @@ def generate_full_config_template(config_type):
         print('Oops. Not a supported config type')
         sys.exit()
 
-
     # iterator over the load order dict
     # parse the snippets into XML objects
     # attach to the full_config dom
@@ -138,7 +137,7 @@ def generate_full_config_template(config_type):
         # i is a key in the orderedDict of
         # the value is the snippet file name
         snippet_name = f'{snippet_dict[i][0]}.xml'
-        snippet_path = os.path.join(config_path, 'snippets-variables', snippet_name)
+        snippet_path = os.path.join(config_path, 'snippets', snippet_name)
 
         # skip snippets that aren't actually there for some reason
         if not os.path.exists(snippet_path):
@@ -156,6 +155,9 @@ def generate_full_config_template(config_type):
             # magic happens here
             # update the document in place to attach the snippet string in the correct place according to it's xpath
             build_xpath(full_config, xpath, snippet_string)
+
+    # FIXME create 2 full output files: static and dhcp
+    # FIXME same build the tree model now with 4 child elements (type, IP, mask, gateway) if static
 
     print('=' * 80)
     raw_xml = str(ElementTree.tostring(full_config.getroot(), encoding='unicode'))
