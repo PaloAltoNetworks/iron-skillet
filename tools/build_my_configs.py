@@ -122,6 +122,9 @@ def replace_variables(config_type, archivetime):
     element = template_render(filename, template_path, render_type)
     template_save(filename, myconfig_path, config_type, element, render_type)
 
+    print(f'\nconfigs have been created and can be found in {myconfig_path}')
+    print('along with the my_variables.py values used to render the configs\n')
+
             
 if __name__ == '__main__':
     # Use the timestamp to create a unique folder name
