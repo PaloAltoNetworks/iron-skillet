@@ -1,0 +1,7 @@
+<entry name="Possbile Compromise">
+  <report-group>Possible Compromise</report-group>
+  <recurring>
+    <disabled/>
+  </recurring>
+  <email-profile>Sample_Email_Profile</email-profile>
+</entry>

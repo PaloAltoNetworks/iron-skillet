@@ -38,7 +38,7 @@ release = u'1.0'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = [
+extensions = ['sphinx.ext.extlinks'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -153,3 +153,25 @@ texinfo_documents = [
      author, 'iron-skillet', 'One line description of project.',
      'Miscellaneous'),
 ]
+
+# -- Variable substitutions used in the document
+
+# github file path that changes across repo and branches
+
+extlinks = {'panosrepo': ('https://github.com/scotchoaf/iron-skillet/blob/develop/templates/panos/snippets/%s.xml', 'view xml template:   '),
+            'panoramarepo': ('https://github.com/scotchoaf/iron-skillet/blob/develop/templates/panorama/snippets/%s.xml', 'view xml template:   '),
+            }
+
+# load config file name that changes across repo and branches
+
+rst_prolog = """
+.. |panosconfigfile| replace:: panos_day_one_1.0.1.xml
+.. |panoramaconfigfile| replace:: panorama_day_one_1.0.1.xml
+.. |repourl| replace:: https://github.com/scotchoaf/iron-skillet/tree/develop
+.. |panosxpaths| replace:: https://github.com/scotchoaf/iron-skillet/blob/develop/templates/panos/panos_xpaths_list.py
+.. |panossnippets| replace:: https://github.com/scotchoaf/iron-skillet/tree/develop/templates/panos/snippets
+.. |panosloadorder| replace:: https://github.com/scotchoaf/iron-skillet/blob/develop/templates/panos/panos_snippet_load_order.py
+.. |panoramaxpaths| replace:: https://github.com/scotchoaf/iron-skillet/blob/develop/templates/panorama/panorama_xpaths_list.py
+.. |panoramasnippets| replace:: https://github.com/scotchoaf/iron-skillet/tree/develop/templates/panorama/snippets
+.. |panoramaloadorder| replace:: https://github.com/scotchoaf/iron-skillet/blob/develop/templates/panorama/panorama_snippet_load_order.py
+"""
