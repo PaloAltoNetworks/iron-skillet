@@ -4,17 +4,22 @@ simple jinja substitution of values from my_variables.py
 output to panorama and panos folders as loadable configs
 '''
 
+import datetime
 import os
+import shutil
 import sys
 import time
-import datetime
-import shutil
+
 from jinja2 import Environment, FileSystemLoader
 from my_variables import xmlvar
+from passlib.hash import des_crypt
+from passlib.hash import md5_crypt
+from passlib.hash import sha512_crypt
+
+defined_filters = ['md5_hash', 'des_hash', 'sha512_hash']
 
 
 def myconfig_newdir(myconfigdir_name, foldertime):
-
     # get the full path to the config directory we want (panos / panorama)
     myconfigpath = os.path.abspath(os.path.join('..', 'my_configs'))
     if os.path.isdir(myconfigpath) is False:
@@ -39,7 +44,6 @@ def myconfig_newdir(myconfigdir_name, foldertime):
 
 
 def template_render(filename, template_path, render_type):
-
     '''
     Uses jinja substitutions from the xml snippets to load web form variables
     '''
@@ -47,6 +51,12 @@ def template_render(filename, template_path, render_type):
     print(f'..creating template for {filename}')
 
     env = Environment(loader=FileSystemLoader(f'{template_path}/{render_type}'))
+
+    # load our custom jinja filters here, see the function defs below for reference
+    env.filters['md5_hash'] = md5_hash
+    env.filters['des_hash'] = des_hash
+    env.filters['sha512_hash'] = sha512_hash
+
     template = env.get_template(filename)
     element = template.render(xmlvar)
 
@@ -54,7 +64,6 @@ def template_render(filename, template_path, render_type):
 
 
 def template_save(snippet_name, myconfigdir, config_type, element, render_type):
-
     print(f'..saving template for {snippet_name}')
 
     filename = f'{snippet_name}'
@@ -69,10 +78,39 @@ def template_save(snippet_name, myconfigdir, config_type, element, render_type):
         shutil.copy(vfilesrc, vfiledst)
 
     return
+  
+# define functions for custom jinja filters
+def md5_hash(txt):
+    """
+    Returns the MD5 Hashed secret for use as a password hash in the PanOS configuration
+    :param txt: text to be hashed
+    :return: password hash of the string with salt and configuration information. Suitable to place in the phash field
+    in the configurations
+    """
+    return md5_crypt.hash(txt)
+
+
+def des_hash(txt):
+    """
+    Returns the DES Hashed secret for use as a password hash in the PanOS configuration
+    :param txt: text to be hashed
+    :return: password hash of the string with salt and configuration information. Suitable to place in the phash field
+    in the configurations
+    """
+    return des_crypt.hash(txt)
+
+
+def sha512_hash(txt):
+    """
+    Returns the SHA512 Hashed secret for use as a password hash in the PanOS configuration
+    :param txt: text to be hashed
+    :return: password hash of the string with salt and configuration information. Suitable to place in the
+    phash field in the configurations
+    """
+    return sha512_crypt.hash(txt)
 
 
 def replace_variables(config_type, archivetime):
-
     # get the full path to the config directory we want (panos / panorama)
     template_path = os.path.abspath(os.path.join('..', 'templates', config_type))
 
@@ -122,13 +160,14 @@ def replace_variables(config_type, archivetime):
     element = template_render(filename, template_path, render_type)
     template_save(filename, myconfig_path, config_type, element, render_type)
 
+
     print(f'\nconfigs have been created and can be found in {myconfig_path}')
     print('along with the my_variables.py values used to render the configs\n')
 
-            
+
 if __name__ == '__main__':
     # Use the timestamp to create a unique folder name
-    archivetime = datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d_%H%M%S')
-    print(f'datetime used for folder creation: {archivetime}')
+    archive_time = datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d_%H%M%S')
+    print(f'datetime used for folder creation: {archive_time}')
     for config_type in ['panos', 'panorama']:
-        replace_variables(config_type, archivetime)
+        replace_variables(config_type, archive_time)
