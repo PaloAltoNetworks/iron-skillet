@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-'''
+"""
 simple jinja substitution of values from my_variables.py
 output to panorama and panos folders as loadable configs
-'''
+"""
 
 import datetime
 import os
@@ -195,9 +195,11 @@ if __name__ == '__main__':
     archive_time = datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d_%H%M%S')
     print('=' * 80)
     print('Welcome to Iron-SKillet'.center(80))
-    print(f'\ndatetime used for folder creation: {archive_time}')
+    print(f'\ndatetime used for folder creation: {archive_time}\n')
 
-    print(f"\na phash will be created for user {xmlvar['ADMINISTRATOR_USERNAME']} and added to the config file\n")
+    xmlvar['ADMINISTRATOR_USERNAME'] = input('Enter the superuser administrator account username: ')
+
+    print(f"\na phash will be created for superuser {xmlvar['ADMINISTRATOR_USERNAME']} and added to the config file\n")
     passwordmatch = False
 
     while passwordmatch is False:
@@ -207,7 +209,7 @@ if __name__ == '__main__':
             xmlvar['ADMINISTRATOR_PASSWORD'] = password1
             passwordmatch = True
         else:
-            print('\nPassword do not match. Please try again.\n')
+            print('\nPasswords do not match. Please try again.\n')
 
     for config_type in ['panos', 'panorama']:
         replace_variables(config_type, archive_time)
