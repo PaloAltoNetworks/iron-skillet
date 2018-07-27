@@ -9,6 +9,7 @@ import os
 import shutil
 import sys
 import time
+import getpass
 
 from jinja2 import Environment, FileSystemLoader
 from my_variables import xmlvar
@@ -164,7 +165,11 @@ def sha512_hash(txt):
 
 if __name__ == '__main__':
     # Use the timestamp to create a unique folder name
+    print('=' * 80)
+    print('Welcome to Iron-Skillet'.center(80))
     archive_time = datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d_%H%M%S')
     print(f'datetime used for folder creation: {archive_time}')
+    xmlvar['ADMINISTRATOR_USERNAME'] = input('Enter the PanOS firewall administrator account username: ')
+    xmlvar['ADMINISTRATOR_PASSWORD'] = getpass.getpass('Enter the PanOS firewall administrator account password: ')
     for config_type in ['panos', 'panorama']:
         replace_variables(config_type, archive_time)
