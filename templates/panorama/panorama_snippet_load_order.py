@@ -1,13 +1,14 @@
 # This dictionary option loads to shared top of the hierarchy, not each device group
 # Useful for enterprise deployments sharing the same configuration elements
 # Remove doc comment quotes from here to dictionary above to switch load options
+from collections import OrderedDict
 
-Panorama_gold_template_dict = OrderedDict([
+panorama_gold_template_dict = OrderedDict([
       ('panorama_system', ['panorama_system']),
       ('panorama_setting', ['panorama_setting']),
       ('panorama_log_settings', ['panorama_log_settings']),
-      ('template', ['template']),
-      ('device_group', ['device_group']),
+#      ('template', ['template']),
+#      ('device_group', ['device_group']),
       ('shared_tag', ['tag']),
       ('log_settings', ['shared_log_settings']),
       ('device_system', ['device_system']),

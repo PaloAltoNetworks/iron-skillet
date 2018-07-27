@@ -1,6 +1,10 @@
 # Iron Skillet
 The purpose of the Iron Skillet project is to provide a repository of XML configuration snippets that may be used to secure a Palo Alto Networks NGFW in accordance with our best practice recommendations.  These configuration snippets can be easily loaded into a firewall or Panorama minimizing configuration time to reducing errors.
 
+The template details and usage are documented at:
+
+[Iron Skillet Documentation](https://iron-skillet-test.readthedocs.io/en/develop/)
+
 ## Getting Started
 Prior to utilizing these XML configuration snippets is important to familiarize yourself with the best practice recommendations for Internet Gateway, Datacenter, Wildfire, L4-L7 evasions and other use cases.
 
@@ -16,7 +20,9 @@ git clone git@github.com:PaloAltoNetworks/iron-skillet.git
 ```
 
 ## Deployment
-Loading the XML configuration snippets can be done using a variety of methods. See the repo wiki for more information.  [Iron Skillet Wiki](https://github.com/PaloAltoNetworks/iron-skillet/wiki)
+Loading the XML configuration snippets can be done using a variety of methods.
+
+[Iron Skillet Documentation](https://iron-skillet-test.readthedocs.io/en/develop/)
 
 ## Contributing
 Please read [CONTRIBUTING.md](https://github.com/PaloAltoNetworks/iron-skillet/CONTRIBUTING.md) for details on how you can help contribute to this project.
@@ -26,7 +32,7 @@ This is a Palo Alto Networks contributed project.
 
 ## Authors
 
-* Scott Schoaf [(@scotchoaf)](https://github.com/scotchoaf)
+* Scott Shoaf [(@scotchoaf)](https://github.com/scotchoaf)
 * Suzi VanPatten - [(@suzivp)](https://github.com/suzivp)
 * Edward Arcuri - [(@sdndude)](https://github.com/sdndude)
 * Nate Bitting - [(@nbitting)](https://github.com/nbitting)
