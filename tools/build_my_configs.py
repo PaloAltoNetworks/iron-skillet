@@ -78,6 +78,36 @@ def template_save(snippet_name, myconfigdir, config_type, element, render_type):
         shutil.copy(vfilesrc, vfiledst)
 
     return
+  
+# define functions for custom jinja filters
+def md5_hash(txt):
+    """
+    Returns the MD5 Hashed secret for use as a password hash in the PanOS configuration
+    :param txt: text to be hashed
+    :return: password hash of the string with salt and configuration information. Suitable to place in the phash field
+    in the configurations
+    """
+    return md5_crypt.hash(txt)
+
+
+def des_hash(txt):
+    """
+    Returns the DES Hashed secret for use as a password hash in the PanOS configuration
+    :param txt: text to be hashed
+    :return: password hash of the string with salt and configuration information. Suitable to place in the phash field
+    in the configurations
+    """
+    return des_crypt.hash(txt)
+
+
+def sha512_hash(txt):
+    """
+    Returns the SHA512 Hashed secret for use as a password hash in the PanOS configuration
+    :param txt: text to be hashed
+    :return: password hash of the string with salt and configuration information. Suitable to place in the
+    phash field in the configurations
+    """
+    return sha512_crypt.hash(txt)
 
 
 def replace_variables(config_type, archivetime):
@@ -131,35 +161,8 @@ def replace_variables(config_type, archivetime):
     template_save(filename, myconfig_path, config_type, element, render_type)
 
 
-# define functions for custom jinja filters
-def md5_hash(txt):
-    """
-    Returns the MD5 Hashed secret for use as a password hash in the PanOS configuration
-    :param txt: text to be hashed
-    :return: password hash of the string with salt and configuration information. Suitable to place in the phash field
-    in the configurations
-    """
-    return md5_crypt.hash(txt)
-
-
-def des_hash(txt):
-    """
-    Returns the DES Hashed secret for use as a password hash in the PanOS configuration
-    :param txt: text to be hashed
-    :return: password hash of the string with salt and configuration information. Suitable to place in the phash field
-    in the configurations
-    """
-    return des_crypt.hash(txt)
-
-
-def sha512_hash(txt):
-    """
-    Returns the SHA512 Hashed secret for use as a password hash in the PanOS configuration
-    :param txt: text to be hashed
-    :return: password hash of the string with salt and configuration information. Suitable to place in the
-    phash field in the configurations
-    """
-    return sha512_crypt.hash(txt)
+    print(f'\nconfigs have been created and can be found in {myconfig_path}')
+    print('along with the my_variables.py values used to render the configs\n')
 
 
 if __name__ == '__main__':
