@@ -166,7 +166,10 @@ def sha512_hash(txt):
 if __name__ == '__main__':
     # Use the timestamp to create a unique folder name
     print('=' * 80)
+    print(' ')
     print('Welcome to Iron-Skillet'.center(80))
+    print(' ')
+    print('=' * 80)
     archive_time = datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d_%H%M%S')
     print(f'datetime used for folder creation: {archive_time}')
     xmlvar['ADMINISTRATOR_USERNAME'] = input('Enter the PanOS firewall administrator account username: ')
