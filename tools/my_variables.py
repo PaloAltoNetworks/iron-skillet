@@ -1,13 +1,11 @@
-'''
-this dictionary contains a list of variables with default values
-these are found in the xml configs with {{ value }}
-'''
+# this dictionary contains a list of variables with default values
+# these are found in the xml configs with {{ value }}
 
 xmlvar = {
     "ADMINISTRATOR_USERNAME": "iron-skillet",
     "ADMINISTRATOR_PASSWORD": "fortheloveofallthingsholychangeme",
-    # MY_TEMPLATE is the prefix to the my_template output folder
-    "MY_TEMPLATE": "static",
+    # MY_CONFIGDIR is the prefix to the my_template output folder
+    "MYCONFIG_DIR": "bootstrap-dhcp",
     "FW_NAME": "test",
     "DEVICE_GROUP": "test",
     "TEMPLATE": "test",
