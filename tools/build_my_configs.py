@@ -9,6 +9,7 @@ import os
 import shutil
 import sys
 import time
+import getpass
 
 from jinja2 import Environment, FileSystemLoader
 from my_variables import xmlvar
@@ -20,6 +21,12 @@ defined_filters = ['md5_hash', 'des_hash', 'sha512_hash']
 
 
 def myconfig_newdir(myconfigdir_name, foldertime):
+    """
+    create a new main my_configs folder if required then new subdirectories for configs
+    :param myconfigdir_name: prefix folder name from the my_variables.py file
+    :param foldertime: datetime when script run; to be used as suffix of folder name
+    :return: the myconfigdir full path name
+    """
     # get the full path to the config directory we want (panos / panorama)
     myconfigpath = os.path.abspath(os.path.join('..', 'my_configs'))
     if os.path.isdir(myconfigpath) is False:
@@ -32,7 +39,7 @@ def myconfig_newdir(myconfigdir_name, foldertime):
     myconfigdir = f'{myconfigpath}/{myconfigdir_name}-{foldertime}'
     if os.path.isdir(myconfigdir) is False:
         os.mkdir(myconfigdir, mode=0o755)
-        print(f'created new archive folder {myconfigdir_name}-{foldertime}')
+        print(f'\ncreated new archive folder {myconfigdir_name}-{foldertime}')
 
     if os.path.isdir(f'{myconfigdir}/{config_type}') is False:
         os.mkdir(f'{myconfigdir}/{config_type}')
@@ -44,11 +51,16 @@ def myconfig_newdir(myconfigdir_name, foldertime):
 
 
 def template_render(filename, template_path, render_type):
-    '''
-    Uses jinja substitutions from the xml snippets to load web form variables
-    '''
+    """
+    render the jinja template using the xmlVar value from my_variables.py
+    :param filename: name of the template file
+    :param template_path: path for the template file
+    :param render_type: type if full of config snippets; aligns with folder name
+    :return: return the rendered xml file
+    """
 
     print(f'..creating template for {filename}')
+
 
     env = Environment(loader=FileSystemLoader(f'{template_path}/{render_type}'))
 
@@ -64,6 +76,17 @@ def template_render(filename, template_path, render_type):
 
 
 def template_save(snippet_name, myconfigdir, config_type, element, render_type):
+    """
+    after rendering the template save to the myconfig directory
+    each run saves with a unique prefix name + datetime
+    :param snippet_name: name of the output file
+    :param myconfigdir: path to the my_config directory
+    :param config_type: based on initial run list; eg. panos or panorama
+    :param element: xml element rendered based on input variables; used as folder name
+    :param render_type: type eg. if full or snippets; aligns with folder name
+    :return: no value returned (future could be success code)
+    """
+
     print(f'..saving template for {snippet_name}')
 
     filename = f'{snippet_name}'
@@ -78,6 +101,7 @@ def template_save(snippet_name, myconfigdir, config_type, element, render_type):
         shutil.copy(vfilesrc, vfiledst)
 
     return
+
   
 # define functions for custom jinja filters
 def md5_hash(txt):
@@ -167,7 +191,23 @@ def replace_variables(config_type, archivetime):
 
 if __name__ == '__main__':
     # Use the timestamp to create a unique folder name
+
     archive_time = datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d_%H%M%S')
-    print(f'datetime used for folder creation: {archive_time}')
+    print('=' * 80)
+    print('Welcome to Iron-SKillet'.center(80))
+    print(f'\ndatetime used for folder creation: {archive_time}')
+
+    print(f"\na phash will be created for user {xmlvar['ADMINISTRATOR_USERNAME']} and added to the config file\n")
+    passwordmatch = False
+
+    while passwordmatch is False:
+        password1 = getpass.getpass("Enter the superuser administrator account password: ")
+        password2 = getpass.getpass("Enter password again to verify: ")
+        if password1 == password2:
+            xmlvar['ADMINISTRATOR_PASSWORD'] = password1
+            passwordmatch = True
+        else:
+            print('\nPassword do not match. Please try again.\n')
+
     for config_type in ['panos', 'panorama']:
         replace_variables(config_type, archive_time)
