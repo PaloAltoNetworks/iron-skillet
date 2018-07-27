@@ -4,8 +4,8 @@ these are found in the xml configs with {{ value }}
 '''
 
 xmlvar = {
-        # MY_TEMPLATE is the prefix to the my_template output folder
-        "MY_TEMPLATE": "static",
+        # MY_CONFIGDIR is the prefix to the my_template output folder
+        "MYCONFIG_DIR": "sample-dhcp",
         "FW_NAME": "test",
         "DEVICE_GROUP": "test",
         "TEMPLATE": "test",
