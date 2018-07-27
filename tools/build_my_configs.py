@@ -192,9 +192,13 @@ def replace_variables(config_type, archivetime):
 if __name__ == '__main__':
     # Use the timestamp to create a unique folder name
 
-    archive_time = datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d_%H%M%S')
     print('=' * 80)
-    print('Welcome to Iron-SKillet'.center(80))
+    print(' ')
+    print('Welcome to Iron-Skillet'.center(80))
+    print(' ')
+    print('=' * 80)
+    
+    archive_time = datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d_%H%M%S')
     print(f'\ndatetime used for folder creation: {archive_time}\n')
 
     xmlvar['ADMINISTRATOR_USERNAME'] = input('Enter the superuser administrator account username: ')
