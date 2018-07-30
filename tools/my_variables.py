@@ -7,7 +7,7 @@ xmlvar = {
     "ADMINISTRATOR_USERNAME": "iron-skillet",
     "ADMINISTRATOR_PASSWORD": "fortheloveofallthingsholychangeme",
     # MY_CONFIGDIR is the prefix to the my_template output folder
-    "MYCONFIG_DIR": "panorama_ip_static",
+    "MYCONFIG_DIR": "dhcp-bootstrap",
     "FW_NAME": "sample",
     "DEVICE_GROUP": "sample",
     "TEMPLATE": "sample",
