@@ -2,7 +2,7 @@
   <mgt-config>
     <users>
       <entry name="admin">
-        <phash>$1$a/doil2q$/X1Nzm3nCldNProZUnt4c/</phash>
+        <phash>$1$sykBL8Gp$g.1s5MVBZMNVKx3JPkN030</phash>
         <permissions>
           <role-based>
             <superuser>yes</superuser>
@@ -722,7 +722,7 @@
 <login-banner>You have accessed a protected system.
 Log off immediately if you are not an authorized user.</login-banner>
 <timezone>UTC</timezone>
-<hostname>test</hostname>
+<hostname>sample</hostname>
 <type>
   <dhcp-client />
 </type>
@@ -1069,7 +1069,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 	<comments>Internal to Internal</comments>
 </entry>
 <entry name="iron-skillet-version">
-	<comments>version 1.0.1: this is current version of this iron-skillet template file</comments>
+	<comments>version 1.0.1: version of this iron-skillet template file</comments>
 </entry></tag><address><entry name="Sinkhole-IPv4">
 <ip-netmask>72.5.65.111</ip-netmask>
 </entry>

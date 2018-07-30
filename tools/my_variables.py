@@ -8,9 +8,9 @@ xmlvar = {
     "ADMINISTRATOR_PASSWORD": "fortheloveofallthingsholychangeme",
     # MY_CONFIGDIR is the prefix to the my_template output folder
     "MYCONFIG_DIR": "panorama_ip_static",
-    "FW_NAME": "test",
-    "DEVICE_GROUP": "test",
-    "TEMPLATE": "test",
+    "FW_NAME": "sample",
+    "DEVICE_GROUP": "sample",
+    "TEMPLATE": "sample",
     "DNS_1": "8.8.8.8",
     "DNS_2": "8.8.4.4",
     "NTP_1": "0.pool.ntp.org",
@@ -26,7 +26,7 @@ xmlvar = {
     # MGMT_TYPE values: static or dhcp-client
     # If static then IP, mask, and default-gateway added to config
     # If dhcp-client, these values are ignored
-    "MGMT_TYPE": "static",
+    "MGMT_TYPE": "dhcp-client",
     "MGMT_IP": "192.168.55.10",
     "MGMT_MASK": "255.255.255.0",
     "MGMT_DG": "192.168.55.2",
