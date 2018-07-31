@@ -58,7 +58,7 @@
 <login-banner>You have accessed a protected system.
 Log off immediately if you are not an authorized user.</login-banner>
 <timezone>UTC</timezone>
-<hostname>test</hostname>
+<hostname>sample</hostname>
 <type>
   <static/>
 </type>
