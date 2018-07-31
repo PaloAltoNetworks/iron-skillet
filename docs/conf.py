@@ -158,8 +158,8 @@ texinfo_documents = [
 
 # github file path that changes across repo and branches
 
-extlinks = {'panosrepo': ('https://github.com/scotchoaf/iron-skillet/blob/version_08.0/templates/panos/snippets/%s.xml', 'view xml template:   '),
-            'panoramarepo': ('https://github.com/scotchoaf/iron-skillet/blob/version_08.0/templates/panorama/snippets/%s.xml', 'view xml template:   '),
+extlinks = {'panosrepo': ('https://github.com/scotchoaf/iron-skillet/blob/panos_v8.0/templates/panos/snippets/%s.xml', 'view xml template:   '),
+            'panoramarepo': ('https://github.com/scotchoaf/iron-skillet/blob/panos_v8.0/templates/panorama/snippets/%s.xml', 'view xml template:   '),
             }
 
 # load config file name that changes across repo and branches
@@ -167,12 +167,12 @@ extlinks = {'panosrepo': ('https://github.com/scotchoaf/iron-skillet/blob/versio
 rst_prolog = """
 .. |panosconfigfile| replace:: iron_skillet_day1_template.xml
 .. |panoramaconfigfile| replace:: iron_skillet_day1_template.xml
-.. |repourl| replace:: https://github.com/scotchoaf/iron-skillet/tree/version_08.0
-.. |repotools| replace: https://github.com/scotchoaf/iron-skillet/tree/version_08.0/tools
-.. |panosxpaths| replace:: https://github.com/scotchoaf/iron-skillet/blob/version_08.0/templates/panos/panos_xpaths_list.py
-.. |panossnippets| replace:: https://github.com/scotchoaf/iron-skillet/tree/version_08.0/templates/panos/snippets
-.. |panosloadorder| replace:: https://github.com/scotchoaf/iron-skillet/blob/version_08.0/templates/panos/panos_snippet_load_order.py
-.. |panoramaxpaths| replace:: https://github.com/scotchoaf/iron-skillet/blob/version_08.0/templates/panorama/panorama_xpaths_list.py
-.. |panoramasnippets| replace:: https://github.com/scotchoaf/iron-skillet/tree/version_08.0/templates/panorama/snippets
-.. |panoramaloadorder| replace:: https://github.com/scotchoaf/iron-skillet/blob/version_08.0/templates/panorama/panorama_snippet_load_order.py
+.. |repourl| replace:: https://github.com/scotchoaf/iron-skillet/tree/panos_v8.0
+.. |repotools| replace: https://github.com/scotchoaf/iron-skillet/tree/panos_v8.0/tools
+.. |panosxpaths| replace:: https://github.com/scotchoaf/iron-skillet/blob/panos_v8.0/templates/panos/panos_xpaths_list.py
+.. |panossnippets| replace:: https://github.com/scotchoaf/iron-skillet/tree/panos_v8.0/templates/panos/snippets
+.. |panosloadorder| replace:: https://github.com/scotchoaf/iron-skillet/blob/panos_v8.0/templates/panos/panos_snippet_load_order.py
+.. |panoramaxpaths| replace:: https://github.com/scotchoaf/iron-skillet/blob/panos_v8.0/templates/panorama/panorama_xpaths_list.py
+.. |panoramasnippets| replace:: https://github.com/scotchoaf/iron-skillet/tree/panos_v8.0/templates/panorama/snippets
+.. |panoramaloadorder| replace:: https://github.com/scotchoaf/iron-skillet/blob/panos_v8.0/templates/panorama/panorama_snippet_load_order.py
 """

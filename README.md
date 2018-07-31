@@ -3,7 +3,7 @@ The purpose of the Iron Skillet project is to provide a repository of XML config
 
 The template details and usage are documented at:
 
-[Iron Skillet Documentation](https://iron-skillet-test.readthedocs.io/en/version_08.0/)
+[Iron Skillet Documentation](https://iron-skillet-test.readthedocs.io/en/panos_v8.0/)
 
 ## Getting Started
 Prior to utilizing these XML configuration snippets is important to familiarize yourself with the best practice recommendations for Internet Gateway, Datacenter, Wildfire, L4-L7 evasions and other use cases.
@@ -22,7 +22,7 @@ git clone git@github.com:PaloAltoNetworks/iron-skillet.git
 ## Deployment
 Loading the XML configuration snippets can be done using a variety of methods.
 
-[Iron Skillet Documentation](https://iron-skillet-test.readthedocs.io/en/version_08.0/)
+[Iron Skillet Documentation](https://iron-skillet-test.readthedocs.io/en/panos_v8.0/)
 
 ## Contributing
 Please read [CONTRIBUTING.md](https://github.com/PaloAltoNetworks/iron-skillet/CONTRIBUTING.md) for details on how you can help contribute to this project.
