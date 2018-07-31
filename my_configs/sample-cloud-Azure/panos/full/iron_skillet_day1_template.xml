@@ -1,8 +1,8 @@
 <config urldb="paloaltonetworks" version="8.0.0">
   <mgt-config>
     <users>
-      <entry name="{{ ADMINISTRATOR_USERNAME }}">
-        <phash>{{ ADMINISTRATOR_PASSWORD | md5_hash }}</phash>
+      <entry name="admin">
+        <phash>$1$.K2HoSgk$.tHj8X0BkHrfrKmlhyKdg0</phash>
         <permissions>
           <role-based>
             <superuser>yes</superuser>
@@ -68,9 +68,9 @@
     <server>
       <entry name="Sample_Email_Profile">
         <display-name>Panorama</display-name>
-        <gateway>{{ EMAIL_PROFILE_GATEWAY }}</gateway>
-        <from>{{ EMAIL_PROFILE_FROM }}</from>
-        <to>{{ EMAIL_PROFILE_TO }}</to>
+        <gateway>192.0.2.1</gateway>
+        <from>test@yourdomain.com</from>
+        <to>test@yourdomain.com</to>
       </entry>
     </server>
   </entry>
@@ -82,7 +82,7 @@
         <transport>UDP</transport>
         <port>514</port>
         <format>BSD</format>
-        <server>{{ SYSLOG_SERVER }}</server>
+        <server>192.0.2.2</server>
         <facility>LOG_USER</facility>
       </entry>
     </server>
@@ -707,30 +707,22 @@
 </snmp-setting>
 <dns-setting>
   <servers>
-    <primary>{{ DNS_1 }}</primary>
-    <secondary>{{ DNS_2 }}</secondary>
+    <primary>8.8.8.8</primary>
+    <secondary>8.8.4.4</secondary>
   </servers>
 </dns-setting>
 <ntp-servers>
   <primary-ntp-server>
-    <ntp-server-address>{{ NTP_1 }}</ntp-server-address>
+    <ntp-server-address>0.pool.ntp.org</ntp-server-address>
   </primary-ntp-server>
   <secondary-ntp-server>
-    <ntp-server-address>{{ NTP_2 }}</ntp-server-address>
+    <ntp-server-address>1.pool.ntp.org</ntp-server-address>
   </secondary-ntp-server>
 </ntp-servers>
 <login-banner>You have accessed a protected system.
 Log off immediately if you are not an authorized user.</login-banner>
 <timezone>UTC</timezone>
-<hostname>{{ FW_NAME }}</hostname>
-{%- if MGMT_TYPE == "static" %}
-<type>
-  <static />
-</type>
-<ip-address>{{ MGMT_IP }}</ip-address>
-<netmask>{{ MGMT_MASK }}</netmask>
-<default-gateway>{{ MGMT_DG }}</default-gateway>
-{% elif MGMT_TYPE == "dhcp-cloud" %}
+<hostname>sample</hostname>
 <type>
    <dhcp-client>
      <send-hostname>yes</send-hostname>
@@ -739,11 +731,7 @@ Log off immediately if you are not an authorized user.</login-banner>
      <accept-dhcp-domain>no</accept-dhcp-domain>
    </dhcp-client>
 </type>
-{% else %}
-<type>
-  <dhcp-client />
-</type>
-{% endif %}</system><setting><ctd>
+</system><setting><ctd>
   <strip-x-fwd-for>yes</strip-x-fwd-for>
   <x-forwarded-for>yes</x-forwarded-for>
   <allow-http-range>no</allow-http-range>
@@ -1088,10 +1076,10 @@ Log off immediately if you are not an authorized user.</login-banner>
 <entry name="iron-skillet-version">
 	<comments>version 1.0.1: version of this iron-skillet template file</comments>
 </entry></tag><address><entry name="Sinkhole-IPv4">
-<ip-netmask>{{ SINKHOLE_IPV4 }}</ip-netmask>
+<ip-netmask>72.5.65.111</ip-netmask>
 </entry>
 <entry name="Sinkhole-IPv6">
-<ip-netmask>{{ SINKHOLE_IPV6 }}</ip-netmask>
+<ip-netmask>2600:5200::1</ip-netmask>
 </entry></address><external-list><entry name="Team Cymru Bogons IPv4">
   <type>
     <ip>
@@ -1279,8 +1267,8 @@ Log off immediately if you are not an authorized user.</login-banner>
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
-      <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+      <ipv4-address>72.5.65.111</ipv4-address>
+      <ipv6-address>2600:5200::1</ipv6-address>
     </sinkhole>
     <packet-capture>single-packet</packet-capture>
   </botnet-domains>
@@ -1322,8 +1310,8 @@ Log off immediately if you are not an authorized user.</login-banner>
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
-      <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+      <ipv4-address>72.5.65.111</ipv4-address>
+      <ipv6-address>2600:5200::1</ipv6-address>
     </sinkhole>
     <packet-capture>single-packet</packet-capture>
   </botnet-domains>
@@ -1365,8 +1353,8 @@ Log off immediately if you are not an authorized user.</login-banner>
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
-      <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+      <ipv4-address>72.5.65.111</ipv4-address>
+      <ipv6-address>2600:5200::1</ipv6-address>
     </sinkhole>
     <packet-capture>single-packet</packet-capture>
   </botnet-domains>
@@ -1408,8 +1396,8 @@ Log off immediately if you are not an authorized user.</login-banner>
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
-      <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+      <ipv4-address>72.5.65.111</ipv4-address>
+      <ipv6-address>2600:5200::1</ipv6-address>
     </sinkhole>
     <packet-capture>disable</packet-capture>
   </botnet-domains>
@@ -1437,8 +1425,8 @@ Log off immediately if you are not an authorized user.</login-banner>
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
-      <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+      <ipv4-address>72.5.65.111</ipv4-address>
+      <ipv6-address>2600:5200::1</ipv6-address>
     </sinkhole>
     <packet-capture>single-packet</packet-capture>
   </botnet-domains>

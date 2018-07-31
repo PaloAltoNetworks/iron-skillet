@@ -1,0 +1,6 @@
+<entry name="Sinkhole-IPv4">
+    <ip-netmask>72.5.65.111</ip-netmask>
+</entry>
+<entry name="Sinkhole-IPv6">
+    <ip-netmask>2600:5200::1</ip-netmask>
+</entry>
