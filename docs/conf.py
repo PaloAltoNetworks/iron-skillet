@@ -165,9 +165,10 @@ extlinks = {'panosrepo': ('https://github.com/scotchoaf/iron-skillet/blob/develo
 # load config file name that changes across repo and branches
 
 rst_prolog = """
-.. |panosconfigfile| replace:: panos_day_one_1.0.1.xml
-.. |panoramaconfigfile| replace:: panorama_day_one_1.0.1.xml
+.. |panosconfigfile| replace:: iron_skillet_day1_template.xml
+.. |panoramaconfigfile| replace:: iron_skillet_day1_template.xml
 .. |repourl| replace:: https://github.com/scotchoaf/iron-skillet/tree/develop
+.. |repotools| replace: https://github.com/scotchoaf/iron-skillet/tree/develop/tools
 .. |panosxpaths| replace:: https://github.com/scotchoaf/iron-skillet/blob/develop/templates/panos/panos_xpaths_list.py
 .. |panossnippets| replace:: https://github.com/scotchoaf/iron-skillet/tree/develop/templates/panos/snippets
 .. |panosloadorder| replace:: https://github.com/scotchoaf/iron-skillet/blob/develop/templates/panos/panos_snippet_load_order.py

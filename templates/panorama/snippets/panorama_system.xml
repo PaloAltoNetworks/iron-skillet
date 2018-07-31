@@ -1,3 +1,8 @@
+{%- if CONFIG_PANORAMA_IP == "yes" %}
+<ip-address>{{ PANORAMA_IP }}</ip-address>
+<netmask>{{ PANORAMA_MASK }}</netmask>
+<default-gateway>{{ PANORAMA_DG }}</default-gateway>
+{% endif %}
 <update-server>updates.paloaltonetworks.com</update-server>
 <update-schedule>
 <threats>
@@ -31,6 +36,12 @@
   <disable-http>yes</disable-http>
 </service>
 <server-verification>yes</server-verification>
+<dns-setting>
+  <servers>
+    <primary>{{ DNS_1 }}</primary>
+    <secondary>{{ DNS_2 }}</secondary>
+  </servers>
+</dns-setting>
 <ntp-servers>
   <primary-ntp-server>
     <ntp-server-address>{{ NTP_1 }}</ntp-server-address>

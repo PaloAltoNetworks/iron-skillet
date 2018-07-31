@@ -13,6 +13,6 @@ Welcome to Iron Skillet template documentation!
    overview
    panos_template_guide
    panorama_template_guide
+   creating_loadable_configs
    loading_the_template
-   template_variables
    snippets_common_or_device

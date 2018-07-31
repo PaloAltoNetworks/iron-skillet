@@ -8,6 +8,21 @@ The template are xml file format that have to be loaded into the device as a ful
 Multiple options including GUI, CLI, and API can be utilized. The sections below give details for template loading
 using various models specific to the users expertise and current operational environment.
 
+Preparing the configuration files
+---------------------------------
+
+----------------------------------------------------------------------
+
+The template files in the panos and panorama directories are xml format.
+These templates are also using a jinja variable model in the xml as ``{{ variable name }}``.
+In order to have a loadable configuration, the recommended practice is to use the build_my_config.py in the tools folder.
+
+The build_my_config tool documentation section details how to use this tool.
+
+The output of the tool will be a set of xml snippet and full configuration files stored in the my_configs folder.
+
+Sample files for a dhcp-client and static type firewall management interface are provided using default variable values.
+
 
 Load full configuration file
 ----------------------------
@@ -25,13 +40,16 @@ The steps below are for for a full configuration load and replace.
 Edit the full xml configuration file
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Since this will replace the existing configuration, the user is required to modify the xml file with admin accounts, management IP, and other initial configuration values.
-
+Since this will replace the existing configuration, the user is required to modify the xml file with admin accounts,
+management IP, and other initial configuration values.
 The template uses ``{{ text }}`` markers in the config file to denote values that MUST be changed.
 
 .. Warning::
     During a commit, the device will show an error with the variable ``{{ text }}`` values in the error message.
     These values must be modified offline and the file imported for a successful load and commit.
+
+.. Note::
+    The user is recommended to use the build_my_config.py tool to have a loadable configuration file
 
 
 Import the configuration file using the GUI
@@ -92,13 +110,17 @@ where:
 Edit the configuration xml file
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Load config partial will merge the configuration elements.
-However, there are parts of the configuration such as the management configuration interface that will be specific to each device.
-
+Since this will replace the existing configuration, the user is required to modify the xml file with admin accounts,
+management IP, and other initial configuration values.
 The template uses ``{{ text }}`` markers in the config file to denote values that MUST be changed.
-During a commit, the device will show an error with the ``{{ text }}`` values in the error message.
 
-It is recommended that the configuration elements with the ``{{ text }}`` areas be modified to match the desired device settings or are removed from the configuration file before importing.
+.. Warning::
+    During a commit, the device will show an error with the variable ``{{ text }}`` values in the error message.
+    These values must be modified offline and the file imported for a successful load and commit.
+
+.. Note::
+    The user is recommended to use the build_my_config.py tool to have a loadable configuration file
+
 
 Import the Day One configuration: GUI
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -157,6 +179,9 @@ When complete, ensure the final load is entered and a status message received.
     The filename is specific to the iron-skillet templates but can be renamed if the base file is renamed.
     Simply use a text editor to replace the template filename with the update name.
 
+.. Note::
+    For subsequent updates, specific ``load config partial`` commands can be used.
+
 
 PAN-OS config elements used in load config partial
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -204,6 +229,9 @@ You can paste multiple items. The system will pause during each load config part
 .. Note::
     The filename is specific to the iron-skillet templates but can be renamed if the base file is renamed.
     Simply use a text editor to replace the template filename with the update name.
+
+.. Note::
+    For subsequent updates, specific ``load config partial`` commands can be used.
 
 
 Panorama config elements used in load config partial
@@ -290,7 +318,13 @@ Simple scripts can be used to iterate through multiple load requests.
 
 
 .. Note::
-   Based on the local pan-python install and use of .panrc you may not require the -h and -K elements and only have to reference the xpath and filename.
+   Based on the local pan-python install and use of .panrc you may not require the -h and -K elements
+   and only have to reference the xpath and filename.
+
+
+.. Warning::
+    Before loading configurations, use the build_my_config.py tool to create loadable configuration snippets.
+    The templates have ``{{ variable }}`` elements that must be replaced.
 
 
 

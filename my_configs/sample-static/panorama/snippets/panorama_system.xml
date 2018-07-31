@@ -1,3 +1,8 @@
+
+<ip-address>192.168.55.7</ip-address>
+<netmask>255.255.255.0</netmask>
+<default-gateway>192.168.55.2</default-gateway>
+
 <update-server>updates.paloaltonetworks.com</update-server>
 <update-schedule>
 <threats>
@@ -31,6 +36,12 @@
   <disable-http>yes</disable-http>
 </service>
 <server-verification>yes</server-verification>
+<dns-setting>
+  <servers>
+    <primary>8.8.8.8</primary>
+    <secondary>8.8.4.4</secondary>
+  </servers>
+</dns-setting>
 <ntp-servers>
   <primary-ntp-server>
     <ntp-server-address>0.pool.ntp.org</ntp-server-address>
@@ -52,7 +63,7 @@ Log off immediately if you are not an authorized user.</login-banner>
   <entry name="Recommended_Config_Export">
     <protocol>
       <scp>
-        <hostname></hostname>
+        <hostname>192.0.2.3</hostname>
         <username>testuser</username>
         <password>-AQ==i7YRj4/Wk1rQh2o740pxfTJwj/0=+7MGzrRa6xPfMQUkGMpf7w==</password>
       </scp>
