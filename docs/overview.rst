@@ -45,9 +45,10 @@ The library consists of a set of xml configuration templates grouped by:
 The templates in each device folder include:
 
     + ``snippets`` for more granular configuration elements
-    + ``snippets with variables`` for snippet elements with variables for local value substitution
     + ``full config file`` to use for bootstrap or full import + load into a device
-    + ``full config with variables`` to have a full file that supports local variable substitution
+
+These are variable-based templates using a jinja ``{{ variable }}`` notation.
+See the section Creating Loadable Configs to understand variables and tools to populate values.
 
 More details about methods for loading the templates are in the section 'Loading Templates'
 
