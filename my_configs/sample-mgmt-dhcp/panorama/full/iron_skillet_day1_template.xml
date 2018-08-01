@@ -3,7 +3,7 @@
     <devices />
     <users>
       <entry name="admin">
-        <phash>$1$X8afJG6q$dqhPNwEJyuqmoXiPCPegB0</phash>
+        <phash>$1$GYels7n2$jUtUR17HFYa74bcZ6qive/</phash>
         <permissions>
           <role-based>
             <superuser>yes</superuser>
@@ -16,15 +16,9 @@
     <entry name="localhost.localdomain">
       <deviceconfig>
       <system><hostname>panorama-cloud</hostname>
-<type>
-   <dhcp-client>
-     <send-hostname>yes</send-hostname>
-     <send-client-id>no</send-client-id>
-     <accept-dhcp-hostname>no</accept-dhcp-hostname>
-     <accept-dhcp-domain>no</accept-dhcp-domain>
-   </dhcp-client>
-</type>
-
+<ip-address>192.168.55.7</ip-address>
+<netmask>255.255.255.0</netmask>
+<default-gateway>192.168.55.2</default-gateway>
 <update-server>updates.paloaltonetworks.com</update-server>
 <update-schedule>
 <threats>
@@ -94,18 +88,6 @@ Log off immediately if you are not an authorized user.</login-banner>
     <enable>yes</enable>
   </entry>
 </config-bundle-export-schedule></system><setting><management>
-<initcfg>
-  <type>
-     <dhcp-client>
-         <send-hostname>yes</send-hostname>
-         <send-client-id>no</send-client-id>
-         <accept-dhcp-hostname>no</accept-dhcp-hostname>
-         <accept-dhcp-domain>no</accept-dhcp-domain>
-     </dhcp-client>
-  </type>
- <hostname>panorama-cloud</hostname>
- <username>admin</username>
-</initcfg>
 <storage-partition>
   <internal />
 </storage-partition>
@@ -185,12 +167,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 <timezone>UTC</timezone>
 <hostname>sample</hostname>
 <type>
-   <dhcp-client>
-     <send-hostname>yes</send-hostname>
-     <send-client-id>no</send-client-id>
-     <accept-dhcp-hostname>no</accept-dhcp-hostname>
-     <accept-dhcp-domain>no</accept-dhcp-domain>
-   </dhcp-client>
+  <dhcp-client />
 </type>
 </system><setting><ctd>
   <strip-x-fwd-for>yes</strip-x-fwd-for>

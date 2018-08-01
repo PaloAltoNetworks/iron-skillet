@@ -3,7 +3,7 @@
     <devices />
     <users>
       <entry name="admin">
-        <phash>$1$X8afJG6q$dqhPNwEJyuqmoXiPCPegB0</phash>
+        <phash>$1$QDutItGq$jlW0EDadk4annvLMBqyOk/</phash>
         <permissions>
           <role-based>
             <superuser>yes</superuser>
@@ -106,6 +106,7 @@ Log off immediately if you are not an authorized user.</login-banner>
  <hostname>panorama-cloud</hostname>
  <username>admin</username>
 </initcfg>
+
 <storage-partition>
   <internal />
 </storage-partition>
@@ -185,12 +186,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 <timezone>UTC</timezone>
 <hostname>sample</hostname>
 <type>
-   <dhcp-client>
-     <send-hostname>yes</send-hostname>
-     <send-client-id>no</send-client-id>
-     <accept-dhcp-hostname>no</accept-dhcp-hostname>
-     <accept-dhcp-domain>no</accept-dhcp-domain>
-   </dhcp-client>
+  <dhcp-client />
 </type>
 </system><setting><ctd>
   <strip-x-fwd-for>yes</strip-x-fwd-for>

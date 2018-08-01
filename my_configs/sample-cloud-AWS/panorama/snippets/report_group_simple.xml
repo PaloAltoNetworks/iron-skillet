@@ -1,0 +1,31 @@
+<entry name="Possible Compromise">
+  <custom-widget>
+    <entry name="1">
+      <custom-report>Clients sinkholed</custom-report>
+    </entry>
+    <entry name="2">
+      <custom-report>Wildfire malicious verdicts</custom-report>
+    </entry>
+    <entry name="3">
+      <custom-report>Wildfire verdicts SMTP</custom-report>
+    </entry>
+    <entry name="4">
+      <custom-report>Hosts visit malicious sites</custom-report>
+    </entry>
+    <entry name="5">
+      <custom-report>Host-visit malicious sites plus</custom-report>
+    </entry>
+    <entry name="6">
+      <custom-report>Hosts visit questionable sites</custom-report>
+    </entry>
+    <entry name="7">
+      <custom-report>Host-visit quest sites plus</custom-report>
+    </entry>
+  </custom-widget>
+  <title-page>yes</title-page>
+  <variable>
+    <entry name="title">
+      <value>Possible Compromise</value>
+    </entry>
+  </variable>
+</entry>

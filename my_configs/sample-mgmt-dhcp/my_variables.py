@@ -27,7 +27,7 @@ xmlvar = {
     # If static: IP, mask, and default-gateway added to config
     # If dhcp-cloud: includes dhcp-client requires for cloud deployments
     # If dhcp-client: these values are ignored
-    "MGMT_TYPE": "static",
+    "MGMT_TYPE": "dhcp",
     "MGMT_IP": "192.168.55.10",
     "MGMT_MASK": "255.255.255.0",
     "MGMT_DG": "192.168.55.2",

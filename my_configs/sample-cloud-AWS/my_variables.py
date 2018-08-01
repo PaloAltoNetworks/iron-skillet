@@ -7,7 +7,7 @@ xmlvar = {
     "ADMINISTRATOR_USERNAME": "iron-skillet",
     "ADMINISTRATOR_PASSWORD": "fortheloveofallthingsholychangeme",
     # MY_CONFIGDIR is the prefix to the my_template output folder
-    "MYCONFIG_DIR": "sample-mgmt-dhcp",
+    "MYCONFIG_DIR": "sample-cloud-AWS",
     "FW_NAME": "sample",
     "DEVICE_GROUP": "sample",
     "TEMPLATE": "sample",
@@ -27,7 +27,7 @@ xmlvar = {
     # If static: IP, mask, and default-gateway added to config
     # If dhcp-cloud: includes dhcp-client requires for cloud deployments
     # If dhcp-client: these values are ignored
-    "MGMT_TYPE": "static",
+    "MGMT_TYPE": "dhcp",
     "MGMT_IP": "192.168.55.10",
     "MGMT_MASK": "255.255.255.0",
     "MGMT_DG": "192.168.55.2",
@@ -37,7 +37,7 @@ xmlvar = {
     "CONFIG_PANORAMA_IP": "yes",
     # Panorama types are cloud or standard
     # Cloud adds in initcfg bootstrap elements for Panorama
-    "PANORAMA_TYPE": "standard",
+    "PANORAMA_TYPE": "cloud",
     "PANORAMA_NAME": "panorama-cloud",
     "PANORAMA_IP": "192.168.55.7",
     "PANORAMA_MASK": "255.255.255.0",
