@@ -1,8 +1,0 @@
-<management>
-<storage-partition>
-  <internal/>
-</storage-partition>
-<hostname-type-in-syslog>FQDN</hostname-type-in-syslog>
-<enable-reporting-on-groups>yes</enable-reporting-on-groups>
-<share-unused-objects-with-devices>no</share-unused-objects-with-devices>
-</management>

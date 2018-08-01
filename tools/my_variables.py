@@ -35,7 +35,12 @@ xmlvar = {
     # Set CONFIG _PANORAMA_IP to yes to include in config
     # If set to no will not add which may be required for partial config loads
     "CONFIG_PANORAMA_IP": "yes",
+    # Panorama types are cloud or standard
+    # Cloud adds in initcfg bootstrap elements for Panorama
+    "PANORAMA_TYPE": "cloud",
+    "PANORAMA_NAME": "panorama-cloud",
     "PANORAMA_IP": "192.168.55.7",
     "PANORAMA_MASK": "255.255.255.0",
-    "PANORAMA_DG": "192.168.55.2"
+    "PANORAMA_DG": "192.168.55.2",
+
 }
