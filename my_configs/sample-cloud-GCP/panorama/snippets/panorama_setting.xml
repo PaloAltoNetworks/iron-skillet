@@ -1,5 +1,4 @@
 <management>
-{%- if PANORAMA_TYPE == "cloud" %}
 <initcfg>
   <type>
      <dhcp-client>
@@ -9,10 +8,10 @@
          <accept-dhcp-domain>no</accept-dhcp-domain>
      </dhcp-client>
   </type>
- <hostname>{{ PANORAMA_NAME }}</hostname>
- <username>{{ ADMINISTRATOR_USERNAME }}</username>
+ <hostname>panorama-cloud</hostname>
+ <username>admin</username>
 </initcfg>
-{% endif %}
+
 <storage-partition>
   <internal/>
 </storage-partition>

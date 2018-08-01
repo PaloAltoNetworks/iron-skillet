@@ -1,9 +1,4 @@
-<hostname>{{ PANORAMA_NAME }}</hostname>
-{%- if CONFIG_PANORAMA_IP == "yes" and PANORAMA_TYPE == "standard" %}
-<ip-address>{{ PANORAMA_IP }}</ip-address>
-<netmask>{{ PANORAMA_MASK }}</netmask>
-<default-gateway>{{ PANORAMA_DG }}</default-gateway>
-{%- elif PANORAMA_TYPE == "cloud" %}
+<hostname>panorama-cloud</hostname>
 <type>
    <dhcp-client>
      <send-hostname>yes</send-hostname>
@@ -12,7 +7,7 @@
      <accept-dhcp-domain>no</accept-dhcp-domain>
    </dhcp-client>
 </type>
-{% endif %}
+
 <update-server>updates.paloaltonetworks.com</update-server>
 <update-schedule>
 <threats>
@@ -48,16 +43,16 @@
 <server-verification>yes</server-verification>
 <dns-setting>
   <servers>
-    <primary>{{ DNS_1 }}</primary>
-    <secondary>{{ DNS_2 }}</secondary>
+    <primary>8.8.8.8</primary>
+    <secondary>8.8.4.4</secondary>
   </servers>
 </dns-setting>
 <ntp-servers>
   <primary-ntp-server>
-    <ntp-server-address>{{ NTP_1 }}</ntp-server-address>
+    <ntp-server-address>0.pool.ntp.org</ntp-server-address>
   </primary-ntp-server>
   <secondary-ntp-server>
-    <ntp-server-address>{{ NTP_2 }}</ntp-server-address>
+    <ntp-server-address>1.pool.ntp.org</ntp-server-address>
   </secondary-ntp-server>
 </ntp-servers>
 <login-banner>You have accessed a protected system.
@@ -73,7 +68,7 @@ Log off immediately if you are not an authorized user.</login-banner>
   <entry name="Recommended_Config_Export">
     <protocol>
       <scp>
-        <hostname>{{ CONFIG_EXPORT_IP }}</hostname>
+        <hostname>192.0.2.3</hostname>
         <username>testuser</username>
         <password>-AQ==i7YRj4/Wk1rQh2o740pxfTJwj/0=+7MGzrRa6xPfMQUkGMpf7w==</password>
       </scp>
