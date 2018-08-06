@@ -2,8 +2,8 @@
 # these are found in the xml configs with {{ value }}
 
 xmlvar = {
-    # These are sample username and password values to show the variables in the tools script
-    # The user will be prompted for the actual user and password when the script is run
+    # These are default username and password values for the sample outputs
+    # The user will be prompted for the actual password when the script is run
     "ADMINISTRATOR_USERNAME": "iron-skillet",
     "ADMINISTRATOR_PASSWORD": "fortheloveofallthingsholychangeme",
     # MY_CONFIGDIR is the prefix to the my_template output folder

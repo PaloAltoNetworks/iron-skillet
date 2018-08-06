@@ -1,0 +1,11 @@
+<devices/>
+<users>
+  <entry name="scotty">
+    <phash>$1$6j5A5Hkv$s/b4WtU5T64q78pRQvUum.</phash>
+    <permissions>
+      <role-based>
+        <superuser>yes</superuser>
+      </role-based>
+    </permissions>
+  </entry>
+</users>

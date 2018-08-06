@@ -6,6 +6,7 @@ xpaths_panorama = {
       "decryption_rules_pre": "/config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/pre-rulebase/decryption", 
       "default_security_rules": "/config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/post-rulebase/default-security-rules",
       "device_group": "/config/devices/entry[@name='localhost.localdomain']/device-group",
+      "device_mgt_config": "/config/devices/entry[@name='localhost.localdomain']/template/entry[@name='{{ TEMPLATE }}']/config/mgt-config",
       "device_setting": "/config/devices/entry[@name='localhost.localdomain']/template/entry[@name='{{ TEMPLATE }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting",
       "device_system": "/config/devices/entry[@name='localhost.localdomain']/template/entry[@name='{{ TEMPLATE }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system",
       "dhcp_server": " {{ DHCP_INTERFACE }}']/server",

@@ -11,6 +11,7 @@ panorama_gold_template_dict = OrderedDict([
       ('device_group', ['device_group']),
       ('shared_tag', ['tag']),
       ('log_settings', ['shared_log_settings']),
+      ('device_mgt_config', ['device_mgt_config']),
       ('device_system', ['device_system']),
       ('device_setting', ['device_setting']),
       ('shared_address', ['address']),
