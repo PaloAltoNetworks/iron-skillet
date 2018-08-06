@@ -15,10 +15,20 @@
   <devices>
     <entry name="localhost.localdomain">
       <deviceconfig>
-      <system>{%- if CONFIG_PANORAMA_IP == "yes" %}
+      <system><hostname>{{ PANORAMA_NAME }}</hostname>
+{%- if CONFIG_PANORAMA_IP == "yes" and PANORAMA_TYPE == "standard" %}
 <ip-address>{{ PANORAMA_IP }}</ip-address>
 <netmask>{{ PANORAMA_MASK }}</netmask>
 <default-gateway>{{ PANORAMA_DG }}</default-gateway>
+{%- elif PANORAMA_TYPE == "cloud" %}
+<type>
+   <dhcp-client>
+     <send-hostname>yes</send-hostname>
+     <send-client-id>no</send-client-id>
+     <accept-dhcp-hostname>no</accept-dhcp-hostname>
+     <accept-dhcp-domain>no</accept-dhcp-domain>
+   </dhcp-client>
+</type>
 {% endif %}
 <update-server>updates.paloaltonetworks.com</update-server>
 <update-schedule>
@@ -89,6 +99,20 @@ Log off immediately if you are not an authorized user.</login-banner>
     <enable>yes</enable>
   </entry>
 </config-bundle-export-schedule></system><setting><management>
+{%- if PANORAMA_TYPE == "cloud" %}
+<initcfg>
+  <type>
+     <dhcp-client>
+         <send-hostname>yes</send-hostname>
+         <send-client-id>no</send-client-id>
+         <accept-dhcp-hostname>no</accept-dhcp-hostname>
+         <accept-dhcp-domain>no</accept-dhcp-domain>
+     </dhcp-client>
+  </type>
+ <hostname>{{ PANORAMA_NAME }}</hostname>
+ <username>{{ ADMINISTRATOR_USERNAME }}</username>
+</initcfg>
+{% endif %}
 <storage-partition>
   <internal />
 </storage-partition>
@@ -174,6 +198,15 @@ Log off immediately if you are not an authorized user.</login-banner>
 <ip-address>{{ MGMT_IP }}</ip-address>
 <netmask>{{ MGMT_MASK }}</netmask>
 <default-gateway>{{ MGMT_DG }}</default-gateway>
+{% elif MGMT_TYPE == "dhcp-cloud" %}
+<type>
+   <dhcp-client>
+     <send-hostname>yes</send-hostname>
+     <send-client-id>no</send-client-id>
+     <accept-dhcp-hostname>no</accept-dhcp-hostname>
+     <accept-dhcp-domain>no</accept-dhcp-domain>
+   </dhcp-client>
+</type>
 {% else %}
 <type>
   <dhcp-client />
@@ -385,7 +418,7 @@ Log off immediately if you are not an authorized user.</login-banner>
   <frequency>daily</frequency>
   <query>(category eq command-and-control) or (category eq hacking) or (category eq malware) or (category eq phishing)</query>
   <type>
-    <url>
+    <panorama-url>
       <sortby>repeatcnt</sortby>
       <group-by>src</group-by>
       <aggregate-by>
@@ -397,7 +430,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <values>
         <member>repeatcnt</member>
       </values>
-    </url>
+    </panorama-url>
   </type>
 </entry>
 <entry name="Hosts visit malicious sites">
@@ -408,7 +441,7 @@ Log off immediately if you are not an authorized user.</login-banner>
   <frequency>daily</frequency>
   <query>(category eq command-and-control) or (category eq hacking) or (category eq malware) or (category eq phishing)</query>
   <type>
-    <url>
+    <panorama-url>
       <sortby>repeatcnt</sortby>
       <group-by>src</group-by>
       <aggregate-by>
@@ -418,7 +451,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <values>
         <member>repeatcnt</member>
       </values>
-    </url>
+    </panorama-url>
   </type>
 </entry>
 <entry name="Hosts visit questionable sites">
@@ -429,7 +462,7 @@ Log off immediately if you are not an authorized user.</login-banner>
   <frequency>daily</frequency>
   <query>(category eq dynamic-dns) and (category eq parked) and (category eq questionable) and (category eq unknown)</query>
   <type>
-    <url>
+    <panorama-url>
       <sortby>repeatcnt</sortby>
       <group-by>src</group-by>
       <aggregate-by>
@@ -439,7 +472,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <values>
         <member>repeatcnt</member>
       </values>
-    </url>
+    </panorama-url>
   </type>
 </entry>
 <entry name="Host-visit quest sites plus">
@@ -451,7 +484,7 @@ Log off immediately if you are not an authorized user.</login-banner>
   <query>(category eq dynamic-dns) and (category eq parked) and (category eq questionable) and (category eq unknown)</query>
   <description>Detail of hosts visiting questionable URLs</description>
   <type>
-    <url>
+    <panorama-url>
       <sortby>repeatcnt</sortby>
       <group-by>src</group-by>
       <aggregate-by>
@@ -463,7 +496,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <values>
         <member>repeatcnt</member>
       </values>
-    </url>
+    </panorama-url>
   </type>
 </entry>
 <entry name="Wildfire malicious verdicts">
@@ -475,7 +508,7 @@ Log off immediately if you are not an authorized user.</login-banner>
   <query>(app neq smtp) and (category neq benign)</query>
   <description>Files uploaded or downloaded that were later found to be malicious. This is a summary. Act on real-time email.</description>
   <type>
-    <wildfire>
+    <panorama-wildfire>
       <sortby>repeatcnt</sortby>
       <aggregate-by>
         <member>filedigest</member>
@@ -488,7 +521,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <values>
         <member>repeatcnt</member>
       </values>
-    </wildfire>
+    </panorama-wildfire>
   </type>
 </entry>
 <entry name="Wildfire verdicts SMTP">
@@ -500,7 +533,7 @@ Log off immediately if you are not an authorized user.</login-banner>
   <query>(app eq smtp) and (category neq benign)</query>
   <description>Links sent from emails found to be malicious. </description>
   <type>
-    <wildfire>
+    <panorama-wildfire>
       <sortby>repeatcnt</sortby>
       <aggregate-by>
         <member>filedigest</member>
@@ -514,7 +547,7 @@ Log off immediately if you are not an authorized user.</login-banner>
         <member>recipient</member>
         <member>misc</member>
       </aggregate-by>
-    </wildfire>
+    </panorama-wildfire>
   </type>
 </entry>
 <entry name="Clients sinkholed">
