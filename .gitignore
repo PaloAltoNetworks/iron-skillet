@@ -105,3 +105,7 @@ venv.bak/
 
 # Mac crud
 .DS_Store
+
+#rubymine
+.idea/
+
