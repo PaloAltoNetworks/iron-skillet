@@ -317,7 +317,7 @@ default template.
 File Blocking
 ~~~~~~~~~~~~~
 
-:panoramarepo:`profiles_file_blockiing`
+:panoramarepo:`profiles_file_blocking`
 
 Security profile for actions specific to file blocking (FB).
 
@@ -777,7 +777,7 @@ Custom
 Email Scheduler
 ~~~~~~~~~~~~~~~
 
-:panoramarepo:`email_scheduler simple`
+:panoramarepo:`email_scheduler_simple`
 
 Schedule and email recipients for each report group. The template uses
 a sample email profile configured in shared_log_settings.
