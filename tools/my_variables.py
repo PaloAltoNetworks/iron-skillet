@@ -7,7 +7,15 @@ xmlvar = {
     "ADMINISTRATOR_USERNAME": "iron-skillet",
     "ADMINISTRATOR_PASSWORD": "fortheloveofallthingsholychangeme",
     # MY_CONFIGDIR is the prefix to the my_template output folder
-    "MYCONFIG_DIR": "sample-mgmt-dhcp",
+    "MYCONFIG_DIR": "sample-my_config",
+    # MGMT_TYPE values: static, dhcp-cloud, or dhcp-client
+    # if static, update the IP, mask, gateway values below
+    "MGMT_TYPE": "dhcp-client",
+    # Panorama types are cloud or standard
+    # Cloud adds in initcfg bootstrap elements for Panorama
+    "PANORAMA_TYPE": "standard",
+    # the values below are specific to the firewall deployment environment or default can be used
+    # IP addresses are non-routable in the sample config
     "FW_NAME": "sample",
     "DEVICE_GROUP": "sample",
     "TEMPLATE": "sample",
@@ -23,11 +31,7 @@ xmlvar = {
     "SYSLOG_SERVER": "192.0.2.2",
     # IP address or hostname for config bundle export
     "CONFIG_EXPORT_IP": "192.0.2.3",
-    # MGMT_TYPE values: static, dhcp-cloud, or dhcp-client
-    # If static: IP, mask, and default-gateway added to config
-    # If dhcp-cloud: includes dhcp-client requires for cloud deployments
-    # If dhcp-client: these values are ignored
-    "MGMT_TYPE": "static",
+    # configure if management interface type = static
     "MGMT_IP": "192.168.55.10",
     "MGMT_MASK": "255.255.255.0",
     "MGMT_DG": "192.168.55.2",
@@ -35,10 +39,7 @@ xmlvar = {
     # Set CONFIG _PANORAMA_IP to yes to include in config
     # If set to no will not add which may be required for partial config loads
     "CONFIG_PANORAMA_IP": "yes",
-    # Panorama types are cloud or standard
-    # Cloud adds in initcfg bootstrap elements for Panorama
-    "PANORAMA_TYPE": "standard",
-    "PANORAMA_NAME": "panorama-cloud",
+    "PANORAMA_NAME": "panorama",
     "PANORAMA_IP": "192.168.55.7",
     "PANORAMA_MASK": "255.255.255.0",
     "PANORAMA_DG": "192.168.55.2",

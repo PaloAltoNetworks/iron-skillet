@@ -1,4 +1,4 @@
-<hostname>panorama-cloud</hostname>
+<hostname>panorama</hostname>
 <type>
    <dhcp-client>
      <send-hostname>yes</send-hostname>

@@ -43,6 +43,7 @@ Firewall specific
 Panorama specific
 -----------------
 
+    + device group
     + log_collector_group
     + log_settings_profiles
     + panorama*
@@ -50,5 +51,6 @@ Panorama specific
     + pre_rulebase*
     + reports_simple
     + shared_log_settings
+    + templates
 
 

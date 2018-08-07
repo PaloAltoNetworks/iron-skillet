@@ -2,7 +2,7 @@
   <mgt-config>
     <users>
       <entry name="admin">
-        <phash>$1$YK/7Pczl$2dKEqOve6k9GhcScqFMBX1</phash>
+        <phash>$1$wUmOk1nn$CBy7uv9RXBS7/Nf8tVS2J1</phash>
         <permissions>
           <role-based>
             <superuser>yes</superuser>
@@ -724,7 +724,12 @@ Log off immediately if you are not an authorized user.</login-banner>
 <timezone>UTC</timezone>
 <hostname>sample</hostname>
 <type>
-  <dhcp-client />
+   <dhcp-client>
+     <send-hostname>yes</send-hostname>
+     <send-client-id>no</send-client-id>
+     <accept-dhcp-hostname>no</accept-dhcp-hostname>
+     <accept-dhcp-domain>no</accept-dhcp-domain>
+   </dhcp-client>
 </type>
 </system><setting><ctd>
   <strip-x-fwd-for>yes</strip-x-fwd-for>

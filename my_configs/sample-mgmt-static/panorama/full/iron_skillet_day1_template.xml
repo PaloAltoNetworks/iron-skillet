@@ -3,7 +3,7 @@
     <devices />
     <users>
       <entry name="admin">
-        <phash>$1$MiEdyHE4$d6wzCOueCH8YtAAEcuM.h.</phash>
+        <phash>$1$GNlCbinf$5TcA40tqkIUVDWgN47KQD1</phash>
         <permissions>
           <role-based>
             <superuser>yes</superuser>
@@ -15,7 +15,7 @@
   <devices>
     <entry name="localhost.localdomain">
       <deviceconfig>
-      <system><hostname>panorama-cloud</hostname>
+      <system><hostname>panorama</hostname>
 <ip-address>192.168.55.7</ip-address>
 <netmask>255.255.255.0</netmask>
 <default-gateway>192.168.55.2</default-gateway>
@@ -370,7 +370,17 @@ Log off immediately if you are not an authorized user.</login-banner>
       <filter>All Logs</filter>
     </entry>
   </match-list>
-</correlation></log-settings></shared></config>
+</correlation></log-settings></shared><mgt-config><devices />
+<users>
+  <entry name="admin">
+    <phash>$1$whcSY1dM$cyZ8mq55r.anEXQ6R4aMp.</phash>
+    <permissions>
+      <role-based>
+        <superuser>yes</superuser>
+      </role-based>
+    </permissions>
+  </entry>
+</users></mgt-config></config>
 </entry></template><device-group> <entry name="sample"><reports><entry name="Host-visit malicious sites plus">
   <period>last-7-calendar-days</period>
   <topn>500</topn>

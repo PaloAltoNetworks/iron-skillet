@@ -8,7 +8,7 @@
          <accept-dhcp-domain>no</accept-dhcp-domain>
      </dhcp-client>
   </type>
- <hostname>panorama-cloud</hostname>
+ <hostname>panorama</hostname>
  <username>admin</username>
 </initcfg>
 

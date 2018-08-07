@@ -5,6 +5,10 @@ Panorama templates
 The configuration snippet descriptions and the associated GitHub
 repository link for each xml snippet.
 
+.. Note::
+    The template version is found in the template xml file as a tag attribute
+
+
 General Device Configuration
 ----------------------------
 
@@ -36,6 +40,10 @@ System configuration settings for dynamic updates and network services
     + Set timezone to UTC
 
     + Provide a standard login banner warning for unauthorized users
+
+.. Note::
+    The Panorama deployment types include ```standard``` or ```cloud``` for AWS, Azure, or GCP environments.
+    This is an option in the tools ```build_my_config``` utility to use the proper config option in the template.
 
 
 :panoramarepo:`panorama_setting`
@@ -111,6 +119,12 @@ System configuration settings for dynamic updates and network services
     + Set timezone to UTC
 
     + Provide a standard login banner warning for unauthorized users
+
+.. Note::
+    The management config types include static, dhcp-client, or dhcp-cloud as a special case of dhcp-client.
+    This is specific to each deployment and can be selected as part of the tools to build ```my_config```.
+    Since management interface is in the template config, this option must be included for deployment.
+
 
 Logging
 -------
@@ -711,6 +725,12 @@ section below.
     This value MUST be changed to match the actual public zone used in a
     live network. Additional zones and/or subnets to be used or excluded
     in the reports would be added in the query values.
+
+
+.. Note::
+    To generate reports that include PA-7000 Series log data not forwarding to Panorama,
+    use Remote Device Data as the Data Source. This is only viewable from the ```All`` device group
+    option and not a specific device group.
 
 
 Report Groups

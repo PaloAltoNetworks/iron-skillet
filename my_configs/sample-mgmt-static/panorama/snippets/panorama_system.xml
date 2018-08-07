@@ -1,4 +1,4 @@
-<hostname>panorama-cloud</hostname>
+<hostname>panorama</hostname>
 <ip-address>192.168.55.7</ip-address>
 <netmask>255.255.255.0</netmask>
 <default-gateway>192.168.55.2</default-gateway>
