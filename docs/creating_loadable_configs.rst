@@ -21,9 +21,9 @@ The table below lists the template variables along with placeholder or recommend
 ======================   =======================  ==========================================================
 Variable name            Default value            Description
 ======================   =======================  ==========================================================
-ADMINISTRATOR_USERNAME   iron-skillet             superuser id; prompted when using build_my_config tool
-ADMINISTRATOR_PASSWORD   changeme                 superuser password; prompted and hashed in build_my_config
-MYCONFIG_DIR             dhcp-bootstrap           my_config folder prefix when use build_my_config tool
+ADMINISTRATOR_USERNAME   admin                    superuser id; prompted when using build_my_config tool
+ADMINISTRATOR_PASSWORD   admin                    superuser password; prompted and hashed in build_my_config
+MYCONFIG_DIR             sample_my_config         my_config folder prefix when use build_my_config tool
 FW_NAME                  sample                   used for hostname and device-group/template in Panorama
 TEMPLATE                 sample                   Panorama sample template name
 DEVICE_GROUP             sample                   Panorama sample device-group name
@@ -44,6 +44,7 @@ MGMT_IP"                 192.168.55.10            Firewall mgmt IP if type=stati
 MGMT_MASK                255.255.255.0            Firewall netmask if type=static
 MGMT_DG                  192.168.55.2             Firewall default gateway if type=static
 CONFIG_PANORAMA_IP       yes                      For build_my_config, determine if Panorama IP to be added
+PANORAMA_TYPE            standard                 Used in order to set mgmt interface for standard or cloud
 PANORAMA_IP              192.168.55.7             Panorama IP if to be added to my_config
 PANORAMA_MASK            255.255.255.0            Panorama netmask if to be added to my_config
 PANORAMA_DG              192.168.55.2             Panorama default gateway if to be added to my_config
@@ -63,7 +64,10 @@ The directions below detail how to use the utility in a python virtual environme
 Similar instructions can work for Windows with python and pip installed.
 
 .. NOTE::
-    This tool is designed for Python 3.6 or greater.
+    This tool is designed for Python 3.6 or layer.
+
+Install build_my_config.py
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 .. highlight:: bash
@@ -81,6 +85,9 @@ The initial steps are an overview to clone the repo and activate a python virtua
 The virtual environment name is ``env`` and if active will likely be shown to the left of the command prompt.
 If successful, the iron-skillet templates and tools are now ready to use.
 
+Update the variable values
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Change into the tool directory, update the my_variables.py file then run build_my_configs.py.
 The example shows the vi text editor but any text editor may be used.
 
@@ -91,6 +98,20 @@ The example shows the vi text editor but any text editor may be used.
 
 Edit the my_variables.py file for your local deployment and save.
 
+Key variables to edit include:
+
+    + my_config folder prefix: text name specific to the configuration output
+
+    + management interface type: static, dhcp-client, dhcp-cloud based on firewall deployment
+
+    + Panorama deployment type: standard or cloud based on Panorama deployment
+
+
+Run the application
+~~~~~~~~~~~~~~~~~~~
+
+Ensure the variable values are correct and run the application.
+
 ::
 
     (env)$ python3 build_my_config.py
@@ -100,4 +121,12 @@ Edit the my_variables.py file for your local deployment and save.
 This will run the python utility and output full and snippet xml config files.
 Loadable configs are stored in the my_configs directory.
 The config folder prefix is based on the MYCONFIG_DIR variable name.
+
+.. Warning::
+    You will be prompted for a username/password that will be used in the configuruation file.
+    A hash is created for the password so it is unreadable and the default admin/admin is removed.
+    Remember the user/password information before committing to a running firewall or Panorama.
+
+
+
 

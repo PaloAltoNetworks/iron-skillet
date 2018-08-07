@@ -7,7 +7,7 @@ Welcome to Iron Skillet template documentation!
 ====================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Contents:
 
    overview
@@ -16,5 +16,4 @@ Welcome to Iron Skillet template documentation!
    creating_loadable_configs
    loading_the_template
    snippets_common_or_device
-
-
+   release_history

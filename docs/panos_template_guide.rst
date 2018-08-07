@@ -5,6 +5,10 @@ PAN-OS templates
 The configuration snippet descriptions and the associated GitHub
 repository link for each xml snippet.
 
+.. Note::
+    The template version is found in the template xml file as a tag attribute
+
+
 General Device Configuration
 ----------------------------
 
@@ -77,6 +81,11 @@ System configuration settings for dynamic updates and network services
     + Set timezone to UTC
 
     + Provide a standard login banner warning for unauthorized users
+
+.. Note::
+    The management config types include static, dhcp-client, or dhcp-cloud as a special case of dhcp-client.
+    This is specific to each deployment and can be selected as part of the tools to build ```my_config```.
+    Since management interface is in the template config, this option must be included for deployment.
 
 Logging
 -------
@@ -242,7 +251,7 @@ default template.
 File Blocking
 ~~~~~~~~~~~~~
 
-:panosrepo:`profiles_file_blockiing`
+:panosrepo:`profiles_file_blocking`
 
 Security profile for actions specific to file blocking (FB).
 
@@ -693,7 +702,7 @@ Custom
 Email Scheduler
 ~~~~~~~~~~~~~~~
 
-:panosrepo:`email_scheduler simple`
+:panosrepo:`email_scheduler_simple`
 
 Schedule and email recipients for each report group. The template uses
 a sample email profile configured in shared_log_settings.

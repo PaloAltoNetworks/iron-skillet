@@ -8,6 +8,13 @@ The template are xml file format that have to be loaded into the device as a ful
 Multiple options including GUI, CLI, and API can be utilized. The sections below give details for template loading
 using various models specific to the users expertise and current operational environment.
 
+.. Note::
+    Sample configuration files are in the my_config directory. Samples include a static management interface,
+    basic dhcp-client management interface, and additional dhcp-client options for cloud deployments.
+    These configurations are loadable and can be manually editted although user-specific configurations can be
+    created using the ```build_my_config``` utility in the tools folder.
+
+
 Preparing the configuration files
 ---------------------------------
 
