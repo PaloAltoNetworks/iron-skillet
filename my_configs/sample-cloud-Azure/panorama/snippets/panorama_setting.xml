@@ -1,0 +1,21 @@
+<management>
+<initcfg>
+  <type>
+     <dhcp-client>
+         <send-hostname>yes</send-hostname>
+         <send-client-id>no</send-client-id>
+         <accept-dhcp-hostname>no</accept-dhcp-hostname>
+         <accept-dhcp-domain>no</accept-dhcp-domain>
+     </dhcp-client>
+  </type>
+ <hostname>panorama</hostname>
+ <username>admin</username>
+</initcfg>
+
+<storage-partition>
+  <internal/>
+</storage-partition>
+<hostname-type-in-syslog>FQDN</hostname-type-in-syslog>
+<enable-reporting-on-groups>yes</enable-reporting-on-groups>
+<share-unused-objects-with-devices>no</share-unused-objects-with-devices>
+</management>
