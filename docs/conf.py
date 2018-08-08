@@ -168,7 +168,7 @@ rst_prolog = """
 .. |panosconfigfile| replace:: iron_skillet_day1_template.xml
 .. |panoramaconfigfile| replace:: iron_skillet_day1_template.xml
 .. |repourl| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.1
-.. |repotools| replace: https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.1/tools
+.. |repotools| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.1/tools
 .. |panosxpaths| replace:: https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panos/panos_xpaths_list.py
 .. |panossnippets| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.1/templates/panos/snippets
 .. |panosloadorder| replace:: https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panos/panos_snippet_load_order.py
