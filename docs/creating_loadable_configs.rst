@@ -8,9 +8,11 @@ A jinja model for variables is used with the form ``{{ variable }}``
 
 
 .. Warning::
-    The configuration templates for device and Panorama system include jinja if conditionals.
-    These are used by the build_my_config.py tool to determine if IP information should be added
-    If the tool or jinja will not be used remove the {% text %} statements.
+    The configuration templates for device and Panorama system include jinja 'if' conditionals.
+    These are used by the build_my_config.py tool to determine what IP information should be added regarding
+    the management interface.
+
+    If the tool or jinja formats will not be used, remove the {% text %} statements.
     The user will also have to manually replace the variables in order for the config to load and commit
 
 Variables list and descriptions
