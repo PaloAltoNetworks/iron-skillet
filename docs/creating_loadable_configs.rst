@@ -43,7 +43,7 @@ EMAIL_PROFILE_TO         test@yourdomain.com      to address for email alerts
 SYSLOG_SERVER            192.0.2.2                syslog IP address; NET-1 unroutable default
 CONFIG_EXPORT_IP         192.0.2.3                config bundle export target from Panorama; NET-1 default
 MGMT_TYPE                dhcp-client              Firewall mgmt IP type (dhcp-client or static)
-MGMT_IP                 192.168.55.10            Firewall mgmt IP if type=static
+MGMT_IP                  192.168.55.10            Firewall mgmt IP if type=static
 MGMT_MASK                255.255.255.0            Firewall netmask if type=static
 MGMT_DG                  192.168.55.2             Firewall default gateway if type=static
 CONFIG_PANORAMA_IP       yes                      For build_my_config, determine if Panorama IP to be added
