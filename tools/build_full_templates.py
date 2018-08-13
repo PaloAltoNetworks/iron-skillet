@@ -1,13 +1,29 @@
-#!/usr/bin/env python3
+# Copyright (c) 2018, Palo Alto Networks
 #
-# Iron-Skillet build_full_templates
+# Permission to use, copy, modify, and/or distribute this software for any
+# purpose with or without fee is hereby granted, provided that the above
+# copyright notice and this permission notice appear in all copies.
 #
-# This tool combines the iron-skillet configuration snippets into a full configuration template. This template
-# can then be customized and applied to a new out-of-the-box PanOS NGFW or Panorama
-#
-# 07-17-18 nembery@paloaltonetworks.com
-#
-#
+# THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+# WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+# MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+# ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+# WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+# ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+# OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+# Author: Nathan Embery <nembery@paloaltonetworks.com>
+
+'''
+Palo Alto Networks Iron-Skillet build_full_templates
+
+This tool combines the iron-skillet configuration snippets into a full configuration template.
+This template can then be customized and applied to a new out-of-the-box PanOS NGFW or Panorama
+
+This software is provided without support, warranty, or guarantee.
+Use at your own risk.
+'''
+
 
 import os
 import re
@@ -77,7 +93,6 @@ def build_xpath(parent_doc, xpath, new_element_contents):
         # we should now have a document that has the tree fully built out to the xpath we want
         # wrap up the new_element_contents in the leaf node and attach it to the last known parent_element
         leaf_node = path_to_build[0]
-        # FIXME - this string formatting could prolly be done a bit better
         wrapped_snippet = f"<{leaf_node}>{new_element_contents}</{leaf_node}>"
         print(wrapped_snippet)
         snippet_xml = ElementTree.fromstring(wrapped_snippet)
@@ -133,10 +148,10 @@ def generate_full_config_template(config_type):
     # iterator over the load order dict
     # parse the snippets into XML objects
     # attach to the full_config dom
-    for i in snippet_dict:
-        # i is a key in the orderedDict of
+    for xml_snippet in snippet_dict:
+        # xml_snippet is a key in the orderedDict of
         # the value is the snippet file name
-        snippet_name = f'{snippet_dict[i][0]}.xml'
+        snippet_name = f'{snippet_dict[xml_snippet][0]}.xml'
         snippet_path = os.path.join(config_path, 'snippets', snippet_name)
 
         # skip snippets that aren't actually there for some reason
@@ -150,14 +165,11 @@ def generate_full_config_template(config_type):
             snippet_string = snippet_obj.read()
 
         # verify this snippet has an xpath associated and if so, let's attach to the document
-        if i in xpaths_configtype:
-            xpath = xpaths_configtype[i]
+        if xml_snippet in xpaths_configtype:
+            xpath = xpaths_configtype[xml_snippet]
             # magic happens here
             # update the document in place to attach the snippet string in the correct place according to it's xpath
             build_xpath(full_config, xpath, snippet_string)
-
-    # FIXME create 2 full output files: static and dhcp
-    # FIXME same build the tree model now with 4 child elements (type, IP, mask, gateway) if static
 
     print('=' * 80)
     raw_xml = str(ElementTree.tostring(full_config.getroot(), encoding='unicode'))
