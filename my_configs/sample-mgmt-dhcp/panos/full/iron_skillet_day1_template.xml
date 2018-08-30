@@ -2,7 +2,7 @@
   <mgt-config>
     <users>
       <entry name="admin">
-        <phash>$1$wHGWV7XA$ZLmS3bojlQUpuk4Xrs8.2.</phash>
+        <phash>$1$4aGumoBN$l9W6fFjlKYbQ6XZuIdgi7/</phash>
         <permissions>
           <role-based>
             <superuser>yes</superuser>
@@ -722,9 +722,14 @@
 <login-banner>You have accessed a protected system.
 Log off immediately if you are not an authorized user.</login-banner>
 <timezone>UTC</timezone>
-<hostname>sample</hostname>
+<hostname>firewall</hostname>
 <type>
-  <dhcp-client />
+   <dhcp-client>
+     <send-hostname>yes</send-hostname>
+     <send-client-id>no</send-client-id>
+     <accept-dhcp-hostname>no</accept-dhcp-hostname>
+     <accept-dhcp-domain>no</accept-dhcp-domain>
+   </dhcp-client>
 </type>
 </system><setting><ctd>
   <strip-x-fwd-for>yes</strip-x-fwd-for>

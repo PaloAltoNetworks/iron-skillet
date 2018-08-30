@@ -3,7 +3,7 @@
     <devices />
     <users>
       <entry name="admin">
-        <phash>$1$6WsWKiS4$VBazZS7I2fy.ZldLjHoyB1</phash>
+        <phash>$1$DK83IULd$IFAOVK/E/Emc/2nIpoE7//</phash>
         <permissions>
           <role-based>
             <superuser>yes</superuser>
@@ -165,9 +165,14 @@ Log off immediately if you are not an authorized user.</login-banner>
 <login-banner>You have accessed a protected system.
 Log off immediately if you are not an authorized user.</login-banner>
 <timezone>UTC</timezone>
-<hostname>sample</hostname>
+<hostname>firewall</hostname>
 <type>
-  <dhcp-client />
+   <dhcp-client>
+     <send-hostname>yes</send-hostname>
+     <send-client-id>no</send-client-id>
+     <accept-dhcp-hostname>no</accept-dhcp-hostname>
+     <accept-dhcp-domain>no</accept-dhcp-domain>
+   </dhcp-client>
 </type>
 </system><setting><ctd>
   <strip-x-fwd-for>yes</strip-x-fwd-for>
@@ -370,7 +375,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 </correlation></log-settings></shared><mgt-config><devices />
 <users>
   <entry name="admin">
-    <phash>$1$p1EHk4K.$HEJKBchXC5PrVQaB8O7fb/</phash>
+    <phash>$1$pC2JTRIj$7Kq.94MTSHfx5QDib1w1J/</phash>
     <permissions>
       <role-based>
         <superuser>yes</superuser>
