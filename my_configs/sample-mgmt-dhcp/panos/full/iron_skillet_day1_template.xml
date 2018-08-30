@@ -1,8 +1,8 @@
-<config urldb="paloaltonetworks" version="8.0.0">
+<config urldb="paloaltonetworks" version="8.1.0">
   <mgt-config>
     <users>
       <entry name="admin">
-        <phash>$1$wHGWV7XA$ZLmS3bojlQUpuk4Xrs8.2.</phash>
+        <phash>$1$ZAwAGA5s$Na93w2u4T0QbQc/9QpXLs0</phash>
         <permissions>
           <role-based>
             <superuser>yes</superuser>
@@ -724,7 +724,12 @@ Log off immediately if you are not an authorized user.</login-banner>
 <timezone>UTC</timezone>
 <hostname>sample</hostname>
 <type>
-  <dhcp-client />
+   <dhcp-client>
+     <send-hostname>yes</send-hostname>
+     <send-client-id>no</send-client-id>
+     <accept-dhcp-hostname>no</accept-dhcp-hostname>
+     <accept-dhcp-domain>no</accept-dhcp-domain>
+   </dhcp-client>
 </type>
 </system><setting><ctd>
   <strip-x-fwd-for>yes</strip-x-fwd-for>
@@ -1069,7 +1074,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 	<comments>Internal to Internal</comments>
 </entry>
 <entry name="iron-skillet-version">
-	<comments>version 1.0.1: version of this iron-skillet template file</comments>
+	<comments>version 1.0.2: version of this iron-skillet template file</comments>
 </entry></tag><address><entry name="Sinkhole-IPv4">
 <ip-netmask>72.5.65.111</ip-netmask>
 </entry>
