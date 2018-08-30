@@ -3,6 +3,15 @@ Release History
 
 Template content updates are high level. Details can be found in the template guides.
 
+1.0.2
+-----
+
+Released August 30, 2018
+
+Template Content
+
+    + modified device_system type=dhcp configuration elements to fix dhcp-client commit error
+
 
 1.0.1
 -----
