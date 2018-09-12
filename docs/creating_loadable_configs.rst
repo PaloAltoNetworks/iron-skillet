@@ -74,11 +74,22 @@ Install build_my_config.py
 
 .. highlight:: bash
 
-The initial steps are an overview to clone the repo and activate a python virtual environment.
+The initial step is to clone the repo to a local machine with release |branch|.
+
+Clone using ssh:
+
+    $ git clone -b |branch| |repourlssh|
+
+
+Clone using https:
+
+    $ git clone -b |branch| |repourl|
+
+
+After the repo is cloned locally, the following steps are used to setup and activate the python virtual environment.
 
 ::
 
-    $ git clone |repourl|
     $ cd iron-skillet
     $ iron-skillet/python -m venv env
     $ source env/bin/activate
