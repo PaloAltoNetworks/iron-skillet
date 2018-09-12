@@ -78,12 +78,12 @@ The initial step is to clone the repo to a local machine with release |branch|.
 
 Clone using ssh:
 
-    $ git clone -b |branch| |repourlssh|
+    $ git clone -b |branch| |clonessh|
 
 
 Clone using https:
 
-    $ git clone -b |branch| |repourl|
+    $ git clone -b |branch| |clonehttps|
 
 
 After the repo is cloned locally, the following steps are used to setup and activate the python virtual environment.
