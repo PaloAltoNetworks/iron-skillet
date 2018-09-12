@@ -77,11 +77,15 @@ Install build_my_config.py
 
 The initial step is to clone the repo to a local machine.
 
-    $ git clone |repourlssh|   [this is for ssh authentication]
+Clone using ssh:
 
-or
+    $ git clone |repourlssh|
 
-    $ git clone |repourl|   [this is for https access]
+
+Clone using https:
+
+    $ git clone |repourl|
+
 
 After the repo is cloned locally, the following steps are used to setup and activate the python virtual environment.
 
