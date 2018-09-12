@@ -165,6 +165,7 @@ extlinks = {'panosrepo': ('https://github.com/PaloAltoNetworks/iron-skillet/blob
 # load config file name that changes across repo and branches
 
 rst_prolog = """
+.. |branch| replace:: panos_v8.0
 .. |panosconfigfile| replace:: iron_skillet_day1_template.xml
 .. |panoramaconfigfile| replace:: iron_skillet_day1_template.xml
 .. |clonessh| replace:: git@github.com:PaloAltoNetworks/iron-skillet.git
