@@ -167,7 +167,7 @@ extlinks = {'panosrepo': ('https://github.com/PaloAltoNetworks/iron-skillet/blob
 rst_prolog = """
 .. |panosconfigfile| replace:: iron_skillet_day1_template.xml
 .. |panoramaconfigfile| replace:: iron_skillet_day1_template.xml
-.. |cloneurl| replace:: git@github.com:PaloAltoNetworks/iron-skillet.git
+.. |repourlssh| replace:: git@github.com:PaloAltoNetworks/iron-skillet.git
 .. |repourl| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.0
 .. |repotools| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.0/tools
 .. |panosxpaths| replace:: https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0/templates/panos/panos_xpaths_list.py

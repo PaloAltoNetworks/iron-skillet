@@ -75,9 +75,15 @@ Install build_my_config.py
 
 .. highlight:: bash
 
-The initial steps are an overview to clone the repo and activate a python virtual environment.
+The initial step is to clone the repo to a local machine.
 
-    $ git clone |cloneurl|
+    $ git clone |repourlssh|   [this is for ssh authentication]
+
+or
+
+    $ git clone |repourl|   [this is for https access]
+
+After the repo is cloned locally, the following steps are used to setup and activate the python virtual environment.
 
 ::
 
