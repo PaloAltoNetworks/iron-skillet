@@ -77,9 +77,10 @@ Install build_my_config.py
 
 The initial steps are an overview to clone the repo and activate a python virtual environment.
 
+    $ git clone |cloneurl|
+
 ::
 
-    $ git clone |repourl|
     $ cd iron-skillet
     $ iron-skillet/python -m venv env
     $ source env/bin/activate
