@@ -1,7 +1,21 @@
-Release History
-===============
+Template Release History
+========================
 
 Template content updates are high level. Details can be found in the template guides.
+
+1.0.3
+-----
+
+Released Oct 3, 2018
+
+Template Content
+
+    + added a default security profile group based on the Outbound group
+
+
+Documentation
+
+    + fixed errors in the tools installation instructions
 
 
 1.0.2
@@ -41,15 +55,6 @@ Template Content
 
     + using a tag attribute for the template version numbering
 
-Tools
-
-    + added the build_full_config utility to create a full template from the config snippets
-
-    + added the build_my_config utility
-
-        * provide simple variable substituions using the my_variable inputs
-        * store output into the my_config folder with unique naming
-
 
 Documentation
 
@@ -60,7 +65,6 @@ Documentation
 Template Archive
 
     + moved to release branch per software release in github
-
 
 
 1.0.0

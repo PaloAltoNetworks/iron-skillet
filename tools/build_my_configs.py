@@ -26,7 +26,6 @@ This software is provided without support, warranty, or guarantee.
 Use at your own risk.
 '''
 
-
 import datetime
 import os
 import shutil
@@ -59,16 +58,16 @@ def myconfig_newdir(myconfigdir_name, foldertime):
 
     # check that configs folder exists and if not create a new one
     # then create snippets and full sub-directories
-    myconfigdir = f'{myconfigpath}/{myconfigdir_name}-{foldertime}'
+    myconfigdir = '{0}/{1}-{2}'.format(myconfigpath, myconfigdir_name, foldertime)
     if os.path.isdir(myconfigdir) is False:
         os.mkdir(myconfigdir, mode=0o755)
-        print(f'\ncreated new archive folder {myconfigdir_name}-{foldertime}')
+        print('\ncreated new archive folder {0}-{1}'.format(myconfigdir_name, foldertime))
 
-    if os.path.isdir(f'{myconfigdir}/{config_type}') is False:
-        os.mkdir(f'{myconfigdir}/{config_type}')
-        os.mkdir(f'{myconfigdir}/{config_type}/snippets')
-        os.mkdir(f'{myconfigdir}/{config_type}/full')
-        print(f'created new subdirectories for {config_type}')
+    if os.path.isdir('{0}/{1}'.format(myconfigdir, config_type)) is False:
+        os.mkdir('{0}/{1}'.format(myconfigdir, config_type))
+        os.mkdir('{0}/{1}/snippets'.format(myconfigdir, config_type))
+        os.mkdir('{0}/{1}/full'.format(myconfigdir, config_type))
+        print('created new subdirectories for {0}'.format(config_type))
 
     return myconfigdir
 
@@ -82,10 +81,9 @@ def template_render(filename, template_path, render_type):
     :return: return the rendered xml file
     '''
 
-    print(f'..creating template for {filename}')
+    print('..creating template for {0}'.format(filename))
 
-
-    env = Environment(loader=FileSystemLoader(f'{template_path}/{render_type}'))
+    env = Environment(loader=FileSystemLoader('{0}/{1}'.format(template_path, render_type)))
 
     # load our custom jinja filters here, see the function defs below for reference
     env.filters['md5_hash'] = md5_hash
@@ -110,22 +108,22 @@ def template_save(snippet_name, myconfigdir, config_type, element, render_type):
     :return: no value returned (future could be success code)
     '''
 
-    print(f'..saving template for {snippet_name}')
+    print('..saving template for {0}'.format(snippet_name))
 
-    filename = f'{snippet_name}'
+    filename = snippet_name
 
-    with open(f'{myconfigdir}/{config_type}/{render_type}/{filename}', 'w') as configfile:
+    with open('{0}/{1}/{2}/{3}'.format(myconfigdir, config_type, render_type, filename), 'w') as configfile:
         configfile.write(element)
 
     # copy the variables file used for the render into the my_template folder
-    if os.path.isfile(f'{myconfigdir}/my_variables.py') is False:
+    if os.path.isfile('{0}/my_variables.py'.format(myconfigdir)) is False:
         vfilesrc = 'my_variables.py'
-        vfiledst = f'{myconfigdir}/my_variables.py'
+        vfiledst = '{0}/my_variables.py'.format(myconfigdir)
         shutil.copy(vfilesrc, vfiledst)
 
     return
 
-  
+
 # define functions for custom jinja filters
 def md5_hash(txt):
     '''
@@ -172,7 +170,7 @@ def replace_variables(config_type, archivetime):
     sys.path.append(template_path)
 
     # import both python files here based on config_type
-    load_order = __import__(f'{config_type}_snippet_load_order')
+    load_order = __import__('{0}_snippet_load_order'.format(config_type))
 
     if config_type == 'panos':
         snippet_dict = load_order.panos_gold_template_dict
@@ -187,10 +185,10 @@ def replace_variables(config_type, archivetime):
     # iterate over the load order dict, parse the snippet into XML objects, then save to the my_config folder
     for xml_xpath in snippet_dict:
 
-        print(f'\nworking with {xml_xpath}')
+        print('\nworking with {0}'.format(xml_xpath))
 
         render_type = 'snippets'
-        snippet_name = f'{snippet_dict[xml_xpath][0]}.xml'
+        snippet_name = '{0}.xml'.format(snippet_dict[xml_xpath][0])
         snippet_path = os.path.join(template_path, 'snippets', snippet_name)
 
         # skip snippets that aren't actually there for some reason
@@ -210,8 +208,7 @@ def replace_variables(config_type, archivetime):
     element = template_render(filename, template_path, render_type)
     template_save(filename, myconfig_path, config_type, element, render_type)
 
-
-    print(f'\nconfigs have been created and can be found in {myconfig_path}')
+    print('\nconfigs have been created and can be found in {0}'.format(myconfig_path))
     print('along with the my_variables.py values used to render the configs\n')
 
     return
@@ -228,12 +225,13 @@ if __name__ == '__main__':
 
     # archive_time used as part of the my_config directory name
     archive_time = datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d_%H%M%S')
-    print(f'\ndatetime used for folder creation: {archive_time}\n')
+    print('\ndatetime used for folder creation: {0}\n'.format(archive_time))
 
     # this prompts for the superuser username to be added into the configuration; no default admin/admin used
     xmlvar['ADMINISTRATOR_USERNAME'] = input('Enter the superuser administrator account username: ')
 
-    print(f"\na phash will be created for superuser {xmlvar['ADMINISTRATOR_USERNAME']} and added to the config file\n")
+    print('\na phash will be created for superuser {0} and added to the config file\n'.format(
+        xmlvar['ADMINISTRATOR_USERNAME']))
     passwordmatch = False
 
     # prompt for the superuser password to create a phash and store in the my_config files; no default admin/admin

@@ -31,7 +31,7 @@ xmlvar = {
     "ADMINISTRATOR_USERNAME": "iron-skillet",
     "ADMINISTRATOR_PASSWORD": "fortheloveofallthingsholychangeme",
     # MY_CONFIGDIR is the prefix to the my_template output folder
-    "MYCONFIG_DIR": "sample-my_config",
+    "MYCONFIG_DIR": "sample-mgmt-dhcp",
     # MGMT_TYPE values: static, dhcp-cloud, or dhcp-client
     # if static, update the IP, mask, gateway values below
     "MGMT_TYPE": "dhcp-client",
