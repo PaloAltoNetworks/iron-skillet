@@ -1,7 +1,7 @@
 <ctd>
   <strip-x-fwd-for>yes</strip-x-fwd-for>
   <x-forwarded-for>yes</x-forwarded-for>
-  <allow-http-range>no</allow-http-range>
+  <skip-block-http-range>no</skip-block-http-range>
   <tcp-bypass-exceed-queue>no</tcp-bypass-exceed-queue>
   <udp-bypass-exceed-queue>no</udp-bypass-exceed-queue>
 </ctd>

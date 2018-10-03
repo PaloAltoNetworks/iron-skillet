@@ -1,5 +1,29 @@
-# this dictionary contains a list of variables with default values
-# these are found in the xml configs with {{ value }}
+# Copyright (c) 2018, Palo Alto Networks
+#
+# Permission to use, copy, modify, and/or distribute this software for any
+# purpose with or without fee is hereby granted, provided that the above
+# copyright notice and this permission notice appear in all copies.
+#
+# THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+# WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+# MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+# ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+# WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+# ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+# OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+# Author: Scott Shoaf <sshoaf@paloaltonetworks.com>
+
+'''
+Palo Alto Networks my_variables.py
+
+Used in tandem with build_my_configs.py to render templates into loadable configurations
+
+Edit the my_variables.py values and then run build_my_configs.py
+
+This software is provided without support, warranty, or guarantee.
+Use at your own risk.
+'''
 
 xmlvar = {
     # These are sample username and password values to show the variables in the tools script
@@ -7,7 +31,7 @@ xmlvar = {
     "ADMINISTRATOR_USERNAME": "iron-skillet",
     "ADMINISTRATOR_PASSWORD": "fortheloveofallthingsholychangeme",
     # MY_CONFIGDIR is the prefix to the my_template output folder
-    "MYCONFIG_DIR": "sample-cloud-AWS",
+    "MYCONFIG_DIR": "sample-cloud",
     # MGMT_TYPE values: static, dhcp-cloud, or dhcp-client
     # if static, update the IP, mask, gateway values below
     "MGMT_TYPE": "dhcp-cloud",
@@ -16,7 +40,7 @@ xmlvar = {
     "PANORAMA_TYPE": "cloud",
     # the values below are specific to the firewall deployment environment or default can be used
     # IP addresses are non-routable in the sample config
-    "FW_NAME": "sample",
+    "FW_NAME": "firewall",
     "DEVICE_GROUP": "sample",
     "TEMPLATE": "sample",
     "DNS_1": "8.8.8.8",
