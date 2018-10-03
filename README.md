@@ -19,6 +19,12 @@ To download these configuration snippets simply clone this repo with the followi
 git clone git@github.com:PaloAltoNetworks/iron-skillet.git
 ```
 
+or
+
+```
+git clone https://github.com/PaloAltoNetworks/iron-skillet.git
+```
+
 ## Deployment
 Loading the XML configuration snippets can be done using a variety of methods.
 

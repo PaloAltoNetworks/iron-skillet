@@ -1,11 +1,24 @@
 # Using the tools
 
-### Creating loadable configurations
+### First Time Use and Python Set Up
 
+The tools require python3.5 or later to be running in a virtual environment.
+
+The steps below are for a standard python virtual environment setup.
+Python3.6 is used in the example. Python3.5 or python3.7 may also be used.
+
+```bash
+cd iron-skillet/tools
+python3.6 -m venv env
+source env/bin/activate
+pip install -r requirements.txt
+```
+
+### Creating loadable configurations
 
 To create loadable template files with variable substitutions:
 
-```
+```bash
 vi my_variables.py   [Edit variables for your local environment]
 python3 ./build_my_configs.py
 ```
@@ -26,3 +39,6 @@ python3 ./build_full_templates.py
 
 
 The resulting templates are stored in the `full` directory as `iron_skillet_day1_template.xml`
+
+
+

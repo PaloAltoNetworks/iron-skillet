@@ -1,5 +1,5 @@
-Release History
-===============
+Template Release History
+========================
 
 Template content updates are high level. Details can be found in the template guides.
 
@@ -39,15 +39,6 @@ Template Content
     + include Panorama options for standard or cloud deployments
 
     + using a tag attribute for the template version numbering
-
-Tools
-
-    + added the build_full_config utility to create a full template from the config snippets
-
-    + added the build_my_config utility
-
-        * provide simple variable substituions using the my_variable inputs
-        * store output into the my_config folder with unique naming
 
 
 Documentation

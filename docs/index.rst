@@ -16,4 +16,5 @@ Welcome to Iron Skillet template documentation
    creating_loadable_configs
    loading_the_template
    snippets_common_or_device
-   release_history
+   template_release_history
+   tools_release_history
