@@ -31,7 +31,7 @@ xmlvar = {
     "ADMINISTRATOR_USERNAME": "iron-skillet",
     "ADMINISTRATOR_PASSWORD": "fortheloveofallthingsholychangeme",
     # MY_CONFIGDIR is the prefix to the my_template output folder
-    "MYCONFIG_DIR": "sample",
+    "MYCONFIG_DIR": "my_local_config",
     # MGMT_TYPE values: static, dhcp-cloud, or dhcp-client
     # if static, update the IP, mask, gateway values below
     "MGMT_TYPE": "dhcp-client",
@@ -43,7 +43,7 @@ xmlvar = {
     "FW_NAME": "firewall",
     "DEVICE_GROUP": "sample",
     "TEMPLATE": "sample",
-    "DNS_1": "8.8.8.8",
+    "DNS_1": "8.8.8.8",:
     "DNS_2": "8.8.4.4",
     "NTP_1": "0.pool.ntp.org",
     "NTP_2": "1.pool.ntp.org",
