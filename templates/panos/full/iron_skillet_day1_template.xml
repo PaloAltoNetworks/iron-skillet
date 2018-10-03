@@ -1091,7 +1091,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 	<comments>Internal to Internal</comments>
 </entry>
 <entry name="iron-skillet-version">
-	<comments>version 1.0.2: version of this iron-skillet template file</comments>
+	<comments>version 1.0.3: version of this iron-skillet template file</comments>
 </entry></tag><address><entry name="Sinkhole-IPv4">
 <ip-netmask>{{ SINKHOLE_IPV4 }}</ip-netmask>
 </entry>
@@ -2317,6 +2317,26 @@ Log off immediately if you are not an authorized user.</login-banner>
   </file-blocking>
   <wildfire-analysis>
     <member>Alert-Only-WF</member>
+  </wildfire-analysis>
+</entry>
+<entry name="default">
+  <virus>
+    <member>Outbound-AV</member>
+  </virus>
+  <spyware>
+    <member>Outbound-AS</member>
+  </spyware>
+  <vulnerability>
+    <member>Outbound-VP</member>
+  </vulnerability>
+  <url-filtering>
+    <member>Outbound-URL</member>
+  </url-filtering>
+  <file-blocking>
+    <member>Outbound-FB</member>
+  </file-blocking>
+  <wildfire-analysis>
+    <member>Outbound-WF</member>
   </wildfire-analysis>
 </entry></profile-group></entry>
       </vsys>

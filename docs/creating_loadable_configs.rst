@@ -88,10 +88,15 @@ Clone using https:
 
 After the repo is cloned locally, the following steps are used to setup and activate the python virtual environment.
 
+
+.. NOTE::
+    The example below shows python version 3.6 in the second step.
+    If using python 3.5 or 3.7, replace with the respective version
+
 ::
 
-    $ cd iron-skillet
-    $ iron-skillet/python -m venv env
+    $ cd iron-skillet/tools
+    $ python3.6 -m venv env
     $ source env/bin/activate
     (env)$ pip install -r requirements.txt
 
@@ -101,12 +106,12 @@ If successful, the iron-skillet templates and tools are now ready to use.
 Update the variable values
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Change into the tool directory, update the my_variables.py file then run build_my_configs.py.
+Inside the tools directory, update the my_variables.py file then run build_my_configs.py.
 The example shows the vi text editor but any text editor may be used.
 
 ::
 
-    (env)$ cd tools
+    (env)$ cd iron-skillet/tools  [if not in the tools directory]
     (env)$ vi my_variables.py
 
 Edit the my_variables.py file for your local deployment and save.
@@ -127,7 +132,7 @@ Ensure the variable values are correct and run the application.
 
 ::
 
-    (env)$ python3 build_my_config.py
+    (env)$ python3 build_my_configs.py
     >>> Enter the superuser administrator account username:
     >>> Enter the superuser administrator account password:
 
@@ -139,7 +144,6 @@ The config folder prefix is based on the MYCONFIG_DIR variable name.
     You will be prompted for a username/password that will be used in the configuruation file.
     A hash is created for the password so it is unreadable and the default admin/admin is removed.
     Remember the user/password information before committing to a running firewall or Panorama.
-
 
 
 

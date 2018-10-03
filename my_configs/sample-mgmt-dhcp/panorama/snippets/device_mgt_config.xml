@@ -1,7 +1,7 @@
 <devices/>
 <users>
   <entry name="admin">
-    <phash>$1$Un4zOeyW$QKT4iE3FXqLzWY53lV0ue0</phash>
+    <phash>$1$WHxazVNZ$s23b3fpGqBqqOpEtgZdL8/</phash>
     <permissions>
       <role-based>
         <superuser>yes</superuser>
