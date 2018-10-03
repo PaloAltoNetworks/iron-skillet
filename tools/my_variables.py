@@ -31,10 +31,10 @@ xmlvar = {
     "ADMINISTRATOR_USERNAME": "iron-skillet",
     "ADMINISTRATOR_PASSWORD": "fortheloveofallthingsholychangeme",
     # MY_CONFIGDIR is the prefix to the my_template output folder
-    "MYCONFIG_DIR": "test",
+    "MYCONFIG_DIR": "sample",
     # MGMT_TYPE values: static, dhcp-cloud, or dhcp-client
     # if static, update the IP, mask, gateway values below
-    "MGMT_TYPE": "static",
+    "MGMT_TYPE": "dhcp-client",
     # Panorama types are cloud or standard
     # Cloud adds in initcfg bootstrap elements for Panorama
     "PANORAMA_TYPE": "standard",

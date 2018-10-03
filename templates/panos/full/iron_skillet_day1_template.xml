@@ -1091,7 +1091,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 	<comments>Internal to Internal</comments>
 </entry>
 <entry name="iron-skillet-version">
-	<comments>version 1.0.2: version of this iron-skillet template file</comments>
+	<comments>version 1.0.3: version of this iron-skillet template file</comments>
 </entry></tag><address><entry name="Sinkhole-IPv4">
 <ip-netmask>{{ SINKHOLE_IPV4 }}</ip-netmask>
 </entry>

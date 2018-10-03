@@ -3,6 +3,23 @@ Template Release History
 
 Template content updates are high level. Details can be found in the template guides.
 
+1.0.3
+-----
+
+Released Oct 3, 2018
+
+Template Content
+
+    + fixed http-range syntax error in device-system snippet
+
+    + added a default security profile group based on the Outbound group
+
+
+Documentation
+
+    + fixed errors in the tools installation instructions
+
+
 1.0.2
 -----
 
@@ -50,7 +67,6 @@ Documentation
 Template Archive
 
     + moved to release branch per software release in github
-
 
 
 1.0.0

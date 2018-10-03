@@ -3,7 +3,7 @@
     <devices />
     <users>
       <entry name="admin">
-        <phash>$1$jn1A80qa$hIwF9OL.i079ESFy/Qzbw0</phash>
+        <phash>$1$ycHsZr7C$RsyZLNsBY0iY6Hir650/2.</phash>
         <permissions>
           <role-based>
             <superuser>yes</superuser>
@@ -184,7 +184,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 <login-banner>You have accessed a protected system.
 Log off immediately if you are not an authorized user.</login-banner>
 <timezone>UTC</timezone>
-<hostname>sample</hostname>
+<hostname>firewall</hostname>
 <type>
    <dhcp-client>
      <send-hostname>yes</send-hostname>
@@ -196,7 +196,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 </system><setting><ctd>
   <strip-x-fwd-for>yes</strip-x-fwd-for>
   <x-forwarded-for>yes</x-forwarded-for>
-  <allow-http-range>no</allow-http-range>
+  <skip-block-http-range>no</skip-block-http-range>
   <tcp-bypass-exceed-queue>no</tcp-bypass-exceed-queue>
   <udp-bypass-exceed-queue>no</udp-bypass-exceed-queue>
 </ctd>
@@ -394,7 +394,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 </correlation></log-settings></shared><mgt-config><devices />
 <users>
   <entry name="admin">
-    <phash>$1$tuBh6ZFo$I.z.jgVx8upzDENlctY5d.</phash>
+    <phash>$1$qnkMw4KP$YnBKZKEH0a6Rq8v5.6LOo/</phash>
     <permissions>
       <role-based>
         <superuser>yes</superuser>
@@ -959,7 +959,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 	<comments>Internal to Internal</comments>
 </entry>
 <entry name="iron-skillet-version">
-	<comments>version 1.0.2: version of this iron-skillet template file</comments>
+	<comments>version 1.0.3: version of this iron-skillet template file</comments>
 </entry></tag><address><entry name="Sinkhole-IPv4">
     <ip-netmask>72.5.65.111</ip-netmask>
 </entry>
@@ -2185,6 +2185,26 @@ Log off immediately if you are not an authorized user.</login-banner>
   </file-blocking>
   <wildfire-analysis>
     <member>Alert-Only-WF</member>
+  </wildfire-analysis>
+</entry>
+<entry name="default">
+  <virus>
+    <member>Outbound-AV</member>
+  </virus>
+  <spyware>
+    <member>Outbound-AS</member>
+  </spyware>
+  <vulnerability>
+    <member>Outbound-VP</member>
+  </vulnerability>
+  <url-filtering>
+    <member>Outbound-URL</member>
+  </url-filtering>
+  <file-blocking>
+    <member>Outbound-FB</member>
+  </file-blocking>
+  <wildfire-analysis>
+    <member>Outbound-WF</member>
   </wildfire-analysis>
 </entry></profile-group><log-settings><profiles><entry name="default">
   <match-list>
