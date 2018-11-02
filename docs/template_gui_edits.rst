@@ -1,6 +1,6 @@
 
-Using the GUI to Edit the Sample Full Config
-============================================
+Template Edits with GUI or Console
+==================================
 
 
 The templates are xml file format that have to be loaded into the device as a full config or with modular partial loading.
@@ -130,7 +130,7 @@ user and add a new superuser or at a minimum change the admin user password.
 3. Choose to ``Add`` a new user entering the username and password in the pop-up window
 
 .. image:: images/device_administrators.png
-   :width: 600
+   :width: 400
 
 
 Syslog IP Address
