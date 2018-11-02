@@ -218,7 +218,7 @@ system edits and managed firewall device-group and template configurations.
 
 
 Panorama tab edits
-~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
 
 ----------------------------------------------------------------------
 
@@ -231,8 +231,8 @@ The following edits are found under the ``Panorama`` tab
 From here the following edits can be made:
 
 
-Hostname
-~~~~~~~~
+Panorama > Hostname
+~~~~~~~~~~~~~~~~~~~
 
 1. Go to Panorama --> Setup --> Management
 
@@ -242,8 +242,8 @@ Hostname
    :width: 600
 
 
-DNS and NTP servers
-~~~~~~~~~~~~~~~~~~~
+Panorama > DNS and NTP servers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 1. Go to Panorama --> Setup --> Services
 
@@ -255,8 +255,8 @@ DNS and NTP servers
    :width: 600
 
 
-Panorama Management Interface
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Panorama > Management Interface
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This configuration is specific to the Panorama management interface when statically defined.
 
@@ -270,8 +270,8 @@ This configuration is specific to the Panorama management interface when statica
    :width: 600
 
 
-Superuser Administrator
-~~~~~~~~~~~~~~~~~~~~~~~
+Panorama > Superuser Administrator
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The sample configuration uses the default admin/admin username and password setting. It is recommended to remove this
 user and add a new superuser or at a minimum change the admin user password.
@@ -286,8 +286,8 @@ user and add a new superuser or at a minimum change the admin user password.
    :width: 400
 
 
-Syslog IP Address
-~~~~~~~~~~~~~~~~~
+Panorama > Syslog IP Address
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Syslog is used to send traffic, threat and other log updates to an external system.
 
@@ -299,8 +299,8 @@ Syslog is used to send traffic, threat and other log updates to an external syst
    :width: 600
 
 
-Email Server Profile
-~~~~~~~~~~~~~~~~~~~~
+Panorama > Email Server Profile
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The email profile is used to send key alerts to select recipients.
 
@@ -312,8 +312,8 @@ The email profile is used to send key alerts to select recipients.
    :width: 600
 
 
-Config Bundle Export Server
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Panorama > Config Bundle Export Server
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 1. Go to Panorama --> Scheduled Config Export
 
@@ -490,6 +490,7 @@ These values should match the sinkhole IP addresses configured under ``Addresses
 .. image:: images/spyware_sinkholes.png
    :width: 400
 
+------------------------------------------------------------------------------------
 
 Firewall Console Edits
 ----------------------
@@ -567,6 +568,7 @@ The same commands are used across all of the template security profiles ending i
    set profiles spyware ``{{ profile name }}`` botnet-domains sinkhole ipv4-address ``{{ IPv4 address }}``
    set profiles spyware ``{{ profile name }}`` botnet-domains sinkhole ipv6-address ``{{ IPv6 address }}``
 
+----------------------------------------------------------------------------------------------
 
 Panorama Console Edits
 ----------------------
