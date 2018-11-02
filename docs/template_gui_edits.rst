@@ -492,8 +492,8 @@ These values should match the sinkhole IP addresses configured under ``Addresses
 
 ------------------------------------------------------------------------------------
 
-Firewall Console Edits
-----------------------
+Console variable edits: Firewall
+--------------------------------
 
 This section is specific to a non-Panorama managed NGFW.
 
@@ -570,8 +570,8 @@ The same commands are used across all of the template security profiles ending i
 
 ----------------------------------------------------------------------------------------------
 
-Panorama Console Edits
-----------------------
+Console variable edits: Panorama
+--------------------------------
 
 This section is specific to configuration of a Panorama management system.
 
