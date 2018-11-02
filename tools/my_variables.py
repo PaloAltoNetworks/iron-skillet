@@ -31,13 +31,13 @@ xmlvar = {
     "ADMINISTRATOR_USERNAME": "iron-skillet",
     "ADMINISTRATOR_PASSWORD": "fortheloveofallthingsholychangeme",
     # MY_CONFIGDIR is the prefix to the my_template output folder
-    "MYCONFIG_DIR": "sample",
+    "MYCONFIG_DIR": "cloud-demo",
     # MGMT_TYPE values: static, dhcp-cloud, or dhcp-client
     # if static, update the IP, mask, gateway values below
-    "MGMT_TYPE": "static",
+    "MGMT_TYPE": "dhcp-cloud",
     # Panorama types are cloud or standard
     # Cloud adds in initcfg bootstrap elements for Panorama
-    "PANORAMA_TYPE": "standard",
+    "PANORAMA_TYPE": "cloud",
     # the values below are specific to the firewall deployment environment or default can be used
     # IP addresses are non-routable in the sample config
     "FW_NAME": "sample",
