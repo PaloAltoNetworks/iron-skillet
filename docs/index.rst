@@ -15,6 +15,8 @@ Welcome to Iron Skillet template documentation
    panorama_template_guide
    creating_loadable_configs
    loading_the_template
+   template_gui_edits
    snippets_common_or_device
    template_release_history
    tools_release_history
+   documentation_release_history
