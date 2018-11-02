@@ -489,3 +489,79 @@ These values should match the sinkhole IP addresses configured under ``Addresses
 
 .. image:: images/spyware_sinkholes.png
    :width: 400
+
+
+Firewall Console Edits
+----------------------
+
+Instead of using the GUI to make template edits for each variable value, below are steps using SET commands to make
+the same candidate configuration changes.
+
+The ``{{ text }}`` values denotes where a variable is used in the template.
+
+
+Hostname
+~~~~~~~~
+
+::
+
+   set deviceconfig system hostname ``{{ hostname }}``
+
+
+DNS and NTP Servers
+~~~~~~~~~~~~~~~~~~~
+
+::
+   set deviceconfig system dns-setting servers primary ``{{ DNS 1 }}`` secondary ``{{ DNS 2 }}``
+   set deviceconfig system ntp-servers primary-ntp-server ntp-server-address ``{{ NTP 1 }}``
+   set deviceconfig system ntp-servers secondary-ntp-server ntp-server-address ``{{ NTP 2 }}``
+
+
+Static management interface
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+   set deviceconfig system ip-address ``{{ ip address }}`` netmask ``{{ mask }}`` default-gateway ``{{ gateway }}``
+
+
+Superuser admin account
+~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+   set mgt-config users ``{{ username }}`` permissions role-based superuser yes
+   set mgt-config users ``{{ username }}`` password
+
+When the password command is entered, the user will be prompted for a password.
+
+
+Syslog and Email Server Profiles
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+   set shared log-settings syslog Sample_Syslog_Profile server Sample_Syslog server ``{{ ip address }}``
+   set shared log-settings email Sample_Email_Profile server Sample_Email_Profile from ``{{ from }}``
+   set shared log-settings email Sample_Email_Profile server Sample_Email_Profile to ``{{ to }}``
+   set shared log-settings email Sample_Email_Profile server Sample_Email_Profile gateway ``{{ address }}``
+
+Address Objects
+~~~~~~~~~~~~~~~
+
+::
+
+   set address Sinkhole-IPv4 ip-netmask ``{{ IPv4 address }}``
+   set address Sinkhole-IPv6 ip-netmask ``{{ IPv6 address }}``
+
+Anti-Spyware Security Profiles
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The same commands are used across all of the template security profiles ending in ``-AS``.
+
+::
+
+   set profiles spyware ``{{ profile name }}`` botnet-domains sinkhole ipv4-address ``{{ IPv4 address }}``
+   set profiles spyware ``{{ profile name }}`` botnet-domains sinkhole ipv6-address ``{{ IPv6 address }}``
+
+
+
+
