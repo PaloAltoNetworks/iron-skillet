@@ -500,7 +500,7 @@ This section is specific to a non-Panorama managed NGFW.
 Instead of using the GUI to make template edits for each variable value, below are steps using SET commands to make
 the same candidate configuration changes.
 
-The ``{{ text }}`` values denotes where a variable is used in the template.
+The {{ text }} values denotes where a variable is used in the template.
 
 
 Hostname
@@ -508,7 +508,7 @@ Hostname
 
 ::
 
-   set deviceconfig system hostname ``{{ hostname }}``
+   set deviceconfig system hostname {{ hostname }}
 
 
 DNS and NTP Servers
@@ -516,9 +516,9 @@ DNS and NTP Servers
 
 ::
 
-   set deviceconfig system dns-setting servers primary ``{{ DNS 1 }}`` secondary ``{{ DNS 2 }}``
-   set deviceconfig system ntp-servers primary-ntp-server ntp-server-address ``{{ NTP 1 }}``
-   set deviceconfig system ntp-servers secondary-ntp-server ntp-server-address ``{{ NTP 2 }}``
+   set deviceconfig system dns-setting servers primary {{ DNS 1 }} secondary {{ DNS 2 }}
+   set deviceconfig system ntp-servers primary-ntp-server ntp-server-address {{ NTP 1 }}
+   set deviceconfig system ntp-servers secondary-ntp-server ntp-server-address {{ NTP 2 }}
 
 
 Static management interface
@@ -526,7 +526,7 @@ Static management interface
 
 ::
 
-   set deviceconfig system ip-address ``{{ ip address }}`` netmask ``{{ mask }}`` default-gateway ``{{ gateway }}``
+   set deviceconfig system ip-address {{ ip address }} netmask {{ mask }} default-gateway {{ gateway }}
 
 
 Superuser admin account
@@ -534,8 +534,8 @@ Superuser admin account
 
 ::
 
-   set mgt-config users ``{{ username }}`` permissions role-based superuser yes
-   set mgt-config users ``{{ username }}`` password
+   set mgt-config users {{ username }} permissions role-based superuser yes
+   set mgt-config users {{ username }} password
 
 When the password command is entered, the user will be prompted for a password.
 
@@ -545,18 +545,18 @@ Syslog and Email Server Profiles
 
 ::
 
-   set shared log-settings syslog Sample_Syslog_Profile server Sample_Syslog server ``{{ ip address }}``
-   set shared log-settings email Sample_Email_Profile server Sample_Email_Profile from ``{{ from }}``
-   set shared log-settings email Sample_Email_Profile server Sample_Email_Profile to ``{{ to }}``
-   set shared log-settings email Sample_Email_Profile server Sample_Email_Profile gateway ``{{ address }}``
+   set shared log-settings syslog Sample_Syslog_Profile server Sample_Syslog server {{ ip address }}
+   set shared log-settings email Sample_Email_Profile server Sample_Email_Profile from {{ from }}
+   set shared log-settings email Sample_Email_Profile server Sample_Email_Profile to {{ to }}
+   set shared log-settings email Sample_Email_Profile server Sample_Email_Profile gateway {{ address }}
 
 Address Objects
 ~~~~~~~~~~~~~~~
 
 ::
 
-   set address Sinkhole-IPv4 ip-netmask ``{{ IPv4 address }}``
-   set address Sinkhole-IPv6 ip-netmask ``{{ IPv6 address }}``
+   set address Sinkhole-IPv4 ip-netmask {{ IPv4 address }}
+   set address Sinkhole-IPv6 ip-netmask {{ IPv6 address }}
 
 Anti-Spyware Security Profiles
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -565,8 +565,8 @@ The same commands are used across all of the template security profiles ending i
 
 ::
 
-   set profiles spyware ``{{ profile name }}`` botnet-domains sinkhole ipv4-address ``{{ IPv4 address }}``
-   set profiles spyware ``{{ profile name }}`` botnet-domains sinkhole ipv6-address ``{{ IPv6 address }}``
+   set profiles spyware {{ profile name }} botnet-domains sinkhole ipv4-address {{ IPv4 address }}
+   set profiles spyware {{ profile name }} botnet-domains sinkhole ipv6-address {{ IPv6 address }}
 
 ----------------------------------------------------------------------------------------------
 
@@ -578,7 +578,7 @@ This section is specific to configuration of a Panorama management system.
 Instead of using the GUI to make template edits for each variable value, below are steps using SET commands to make
 the same candidate configuration changes.
 
-The ``{{ text }}`` values denotes where a variable is used in the template.
+The {{ text }} values denotes where a variable is used in the template.
 
 .. Note::
    The initial configurations are specific to the Panorama platform itself. The managed firewall configurations
@@ -590,7 +590,7 @@ Panorama > Hostname
 
 ::
 
-   set deviceconfig system hostname ``{{ hostname }}``
+   set deviceconfig system hostname {{ hostname }}
 
 
 Panorama > DNS and NTP Servers
@@ -598,9 +598,9 @@ Panorama > DNS and NTP Servers
 
 ::
 
-   set deviceconfig system dns-setting servers primary ``{{ DNS 1 }}`` secondary ``{{ DNS 2 }}``
-   set deviceconfig system ntp-servers primary-ntp-server ntp-server-address ``{{ NTP 1 }}``
-   set deviceconfig system ntp-servers secondary-ntp-server ntp-server-address ``{{ NTP 2 }}``
+   set deviceconfig system dns-setting servers primary {{ DNS 1 }} secondary {{ DNS 2 }}
+   set deviceconfig system ntp-servers primary-ntp-server ntp-server-address {{ NTP 1 }}
+   set deviceconfig system ntp-servers secondary-ntp-server ntp-server-address {{ NTP 2 }}
 
 
 Panorama > Static management interface
@@ -608,7 +608,7 @@ Panorama > Static management interface
 
 ::
 
-   set deviceconfig system ip-address ``{{ ip address }}`` netmask ``{{ mask }}`` default-gateway ``{{ gateway }}``
+   set deviceconfig system ip-address {{ ip address }} netmask {{ mask }} default-gateway {{ gateway }}
 
 
 Panorama > Superuser admin account
@@ -616,8 +616,8 @@ Panorama > Superuser admin account
 
 ::
 
-   set mgt-config users ``{{ username }}`` permissions role-based superuser yes
-   set mgt-config users ``{{ username }}`` password
+   set mgt-config users {{ username }} permissions role-based superuser yes
+   set mgt-config users {{ username }} password
 
 When the password command is entered, the user will be prompted for a password.
 
@@ -627,17 +627,17 @@ Panorama > Syslog and Email Server Profiles
 
 ::
 
-   set panorama log-settings syslog Sample_Syslog_Profile server Sample_Syslog server ``{{ ip address }}``
-   set panorama log-settings email Sample_Email_Profile server Sample_Email_Profile from ``{{ from }}``
-   set panorama log-settings email Sample_Email_Profile server Sample_Email_Profile to ``{{ to }}``
-   set panorama log-settings email Sample_Email_Profile server Sample_Email_Profile gateway ``{{ address }}``
+   set panorama log-settings syslog Sample_Syslog_Profile server Sample_Syslog server {{ ip address }}
+   set panorama log-settings email Sample_Email_Profile server Sample_Email_Profile from {{ from }}
+   set panorama log-settings email Sample_Email_Profile server Sample_Email_Profile to {{ to }}
+   set panorama log-settings email Sample_Email_Profile server Sample_Email_Profile gateway {{ address }}
 
 Panorama > Config Bundle Export Schedule
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
 
-   set deviceconfig system config-bundle-export-schedule Recommended_Config_Export protocol scp hostname ``{{ ip address }}``
+   set deviceconfig system config-bundle-export-schedule Recommended_Config_Export protocol scp hostname {{ ip address }}
 
 ------------------------------------------------------------------------------------------------------------------
 
@@ -651,7 +651,7 @@ Template > Hostname
 
 ::
 
-   set template sample config deviceconfig system hostname ``{{ hostname }}``
+   set template sample config deviceconfig system hostname {{ hostname }}
 
 
 Template > DNS and NTP Servers
@@ -659,9 +659,9 @@ Template > DNS and NTP Servers
 
 ::
 
-   set template sample config deviceconfig system dns-setting servers primary ``{{ DNS 1 }}`` secondary ``{{ DNS 2 }}``
-   set template sample config deviceconfig system ntp-servers primary-ntp-server ntp-server-address ``{{ NTP 1 }}``
-   set template sample config deviceconfig system ntp-servers secondary-ntp-server ntp-server-address ``{{ NTP 2 }}``
+   set template sample config deviceconfig system dns-setting servers primary {{ DNS 1 }} secondary {{ DNS 2 }}
+   set template sample config deviceconfig system ntp-servers primary-ntp-server ntp-server-address {{ NTP 1 }}
+   set template sample config deviceconfig system ntp-servers secondary-ntp-server ntp-server-address {{ NTP 2 }}
 
 
 Template > Static management interface
@@ -671,9 +671,9 @@ This is to be configured for a firewall with a static management interface.
 
 ::
 
-   set template sample config deviceconfig system ip-address ``{{ ip address }}``
-   set template sample config deviceconfig system netmask ``{{ mask }}``
-   set template sample config deviceconfig system default-gateway ``{{ gateway }}``
+   set template sample config deviceconfig system ip-address {{ ip address }}
+   set template sample config deviceconfig system netmask {{ mask }}
+   set template sample config deviceconfig system default-gateway {{ gateway }}
 
 
 Template > Superuser admin account
@@ -681,8 +681,8 @@ Template > Superuser admin account
 
 ::
 
-   set template sample config mgt-config users ``{{ username }}`` permissions role-based superuser yes
-   set template sample config mgt-config users ``{{ username }}`` password
+   set template sample config mgt-config users {{ username }} permissions role-based superuser yes
+   set template sample config mgt-config users {{ username }} password
 
 When the password command is entered, the user will be prompted for a password.
 
@@ -692,10 +692,10 @@ Template > Syslog and Email Server Profiles
 
 ::
 
-   set template sample config shared log-settings syslog Sample_Syslog_Profile server Sample_Syslog server ``{{ ip address }}``
-   set template sample config shared log-settings email Sample_Email_Profile server Sample_Email_Profile from ``{{ from }}``
-   set template sample config shared log-settings email Sample_Email_Profile server Sample_Email_Profile to ``{{ to }}``
-   set template sample config shared log-settings email Sample_Email_Profile server Sample_Email_Profile gateway ``{{ address }}``
+   set template sample config shared log-settings syslog Sample_Syslog_Profile server Sample_Syslog server {{ ip address }}
+   set template sample config shared log-settings email Sample_Email_Profile server Sample_Email_Profile from {{ from }}
+   set template sample config shared log-settings email Sample_Email_Profile server Sample_Email_Profile to {{ to }}
+   set template sample config shared log-settings email Sample_Email_Profile server Sample_Email_Profile gateway {{ address }}
 
 
 Device-Group > Address Objects
@@ -703,8 +703,8 @@ Device-Group > Address Objects
 
 ::
 
-   set device-group sample address Sinkhole-IPv4 ip-netmask ``{{ IPv4 address }}``
-   set device-group sample address Sinkhole-IPv6 ip-netmask ``{{ IPv6 address }}``
+   set device-group sample address Sinkhole-IPv4 ip-netmask {{ IPv4 address }}
+   set device-group sample address Sinkhole-IPv6 ip-netmask {{ IPv6 address }}
 
 
 Device-Group Anti-Spyware Security Profiles
@@ -714,5 +714,5 @@ The same commands are used across all of the template security profiles ending i
 
 ::
 
-   set device-group sample profiles spyware ``{{ profile name }}`` botnet-domains sinkhole ipv4-address ``{{ IPv4 address }}``
-   set device-group sample profiles spyware ``{{ profile name }}`` botnet-domains sinkhole ipv6-address ``{{ IPv6 address }}``
+   set device-group sample profiles spyware {{ profile name }} botnet-domains sinkhole ipv4-address {{ IPv4 address }}
+   set device-group sample profiles spyware {{ profile name }} botnet-domains sinkhole ipv6-address {{ IPv6 address }}
