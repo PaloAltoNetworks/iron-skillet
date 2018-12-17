@@ -1,5 +1,5 @@
 name: skillet_panorama_dgstack
-label: Iron-Skillet for Panorama: Device-Group and Stack only
+label: Iron-Skillet for Panorama with Device-Group and Stack only
 description: Iron Skillet device-group and template stack config for Panorama
 dependency: snippets_panorama
 type: service
@@ -68,72 +68,75 @@ variables:
 
 
 snippets:
+  - name: devicegroup
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group
+    file: ../snippets_panorama/device_group.xml
+  - name: template
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template
+    file: ../snippets_panorama/template.xml
+  - name: stack
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack
+    file: ../snippets_panorama/template_stack.xml
   - name: device_system
-    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ FW_NAME }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
     file: ../snippets_panorama/device_system.xml
   - name: device_setting
-    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ FW_NAME }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     file: ../snippets_panorama/device_setting.xml
-  - name: shared_log_settings
-    xpath: /config/shared/log-settings
+  - name: log_settings
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ FW_NAME }}']/config/shared/log-settings
     file: ../snippets_panorama/shared_log_settings.xml
   - name: address
-    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/address
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/address
     file: ../snippets_panorama/address.xml
   - name: external_list
-    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/external-list
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/external-list
     file: ../snippets_panorama/external_list.xml
-  - name: tag
-    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag
-    file: ../snippets_panorama/tag.xml
-  - name: log_settings_profiles
-    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/log-settings/profiles
-    file: ../snippets_panorama/log_settings_profiles.xml
   - name: profiles_custom_url_category
-    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/custom-url-category
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/profiles/custom-url-category
     file: ../snippets_panorama/profiles_custom_url_category.xml
   - name: profiles_decryption
-    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/decryption
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/profiles/decryption
     file: ../snippets_panorama/profiles_decryption.xml
   - name: profiles_virus
-    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/virus
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/profiles/virus
     file: ../snippets_panorama/profiles_virus.xml
   - name: profiles_spyware
-    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/spyware
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/profiles/spyware
     file: ../snippets_panorama/profiles_spyware.xml
   - name: profiles_vulnerability
-    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/vulnerability
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/profiles/vulnerability
     file: ../snippets_panorama/profiles_vulnerability.xml
   - name: profiles_file_blocking
-    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/file-blocking
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/profiles/file-blocking
     file: ../snippets_panorama/profiles_file_blocking.xml
   - name: profiles_url_filtering
-    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/url-filtering
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/profiles/url-filtering
     file: ../snippets_panorama/profiles_url_filtering.xml
   - name: profiles_wildfire_analysis
-    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/wildfire-analysis
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/profiles/wildfire-analysis
     file: ../snippets_panorama/profiles_wildfire_analysis.xml
   - name: profile_group
-    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profile-group
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/profile-group
     file: ../snippets_panorama/profile_group.xml
-  - name: default_security_rules
-    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase/default-security-rules
-    file: ../snippets_panorama/rulebase_default_security_rules.xml
-  - name: security_rules
-    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase/security
-    file: ../snippets_panorama/rulebase_security.xml
-  - name: decryption_rules
-    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase/decryption
-    file: ../snippets_panorama/rulebase_decryption.xml
+  - name: post_rulebase_default_security_rules
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/post-rulebase/default-security-rules
+    file: ../snippets_panorama/post_rulebase_default_security_rules.xml
+  - name: pre_rulebase_security
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/pre-rulebase/security
+    file: ../snippets_panorama/pre_rulebase_security.xml
+  - name: post_rulebase_decryption
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/post-rulebase/decryption
+    file: ../snippets_panorama/post_rulebase_decryption.xml
+  - name: pre_rulebase_decryption
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/pre-rulebase/decryption
+    file: ../snippets_panorama/pre_rulebase_decryption.xml
   - name: zone_protection_profile
-    xpath: /config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ FW_NAME }}']/config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile
     file: ../snippets_panorama/zone_protection_profile.xml
   - name: reports
-    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/reports
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/reports
     file: ../snippets_panorama/reports_simple.xml
   - name: report_group_simple
-    xpath: config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/report-group
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/report-group
     file: ../snippets_panorama/report_group_simple.xml
-  - name: email_scheduler_simple
-    xpath: config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/email-scheduler
-    file: ../snippets_panorama/email_scheduler_simple.xml
