@@ -1,6 +1,6 @@
-name: skillet_panos
-label: Iron-Skillet for NGFW
-description: Iron-Skillet baseline configuration for a firewall
+name: skillet_panorama
+label: Iron-Skillet for Full Panorama Configuration
+description: Iron-Skillet complete configuration for Panorama including a sample device-group and template
 type: service
 extends:
 

@@ -32,6 +32,7 @@ import shutil
 import sys
 import time
 import getpass
+import oyaml
 
 from jinja2 import Environment, FileSystemLoader
 from my_variables import xmlvar
@@ -54,7 +55,7 @@ def myconfig_newdir(myconfigdir_name, foldertime):
     myconfigpath = os.path.abspath(os.path.join('..', 'loadable_configs'))
     if os.path.isdir(myconfigpath) is False:
         os.mkdir(myconfigpath, mode=0o755)
-        print('created new myconfig directory')
+        print('created new loadable config directory')
 
     # check that configs folder exists and if not create a new one
     # then create snippets and full sub-directories
@@ -65,8 +66,6 @@ def myconfig_newdir(myconfigdir_name, foldertime):
 
     if os.path.isdir('{0}/{1}'.format(myconfigdir, config_type)) is False:
         os.mkdir('{0}/{1}'.format(myconfigdir, config_type))
-        os.mkdir('{0}/{1}/snippets_{1}'.format(myconfigdir, config_type))
-        os.mkdir('{0}/{1}/full'.format(myconfigdir, config_type))
         print('created new subdirectories for {0}'.format(config_type))
 
     return myconfigdir
@@ -96,7 +95,7 @@ def template_render(filename, template_path, render_type):
     return element
 
 
-def template_save(snippet_name, myconfigdir, config_type, element, render_type):
+def template_save(snippet_name, myconfigdir, config_type, element):
     '''
     after rendering the template save to the myconfig directory
     each run saves with a unique prefix name + datetime
@@ -112,7 +111,7 @@ def template_save(snippet_name, myconfigdir, config_type, element, render_type):
 
     filename = snippet_name
 
-    with open('{0}/{1}/{2}/{3}'.format(myconfigdir, config_type, render_type, filename), 'w') as configfile:
+    with open('{0}/{1}/{2}'.format(myconfigdir, config_type, filename), 'w') as configfile:
         configfile.write(element)
 
     # copy the variables file used for the render into the my_template folder
@@ -169,48 +168,17 @@ def replace_variables(config_type, archivetime):
     # append to the sys path for module lookup
     sys.path.append(template_path)
 
-    # import both python files here based on config_type
-    load_order = __import__('{0}_snippet_load_order'.format(config_type))
-
-    if config_type == 'panos':
-        snippet_dict = load_order.panos_gold_template_dict
-    elif config_type == 'panorama':
-        snippet_dict = load_order.panorama_gold_template_dict
-    else:
-        print('Oops. Not a supported config type')
-        sys.exit()
-
     myconfig_path = myconfig_newdir(xmlvar['MYCONFIG_DIR'], archivetime)
-
-    # iterate over the load order dict, parse the snippet into XML objects, then save to the my_config folder
-    for xml_xpath in snippet_dict:
-
-        print('\nworking with {0}'.format(xml_xpath))
-
-        render_type = 'snippets_{0}'.format(config_type)
-        snippet_name = '{0}.xml'.format(snippet_dict[xml_xpath][0])
-        snippet_path = os.path.join(template_path, 'snippets_{0}'.format(config_type), snippet_name)
-
-        # skip snippets that aren't actually there for some reason
-        if not os.path.exists(snippet_path):
-            print(snippet_path)
-            print('this snippet does not actually exist!')
-            continue
-
-        # render snippet variables folder using jinja2
-        print(template_path)
-        element = template_render(snippet_name, template_path, render_type)
-        template_save(snippet_name, myconfig_path, config_type, element, render_type)
 
     # render full config file
     print('\nworking with full config template')
     render_type = 'full'
     filename = 'iron_skillet_day1_template.xml'
     element = template_render(filename, template_path, render_type)
-    template_save(filename, myconfig_path, config_type, element, render_type)
+    template_save(filename, myconfig_path, config_type, element)
 
     print('\nconfigs have been created and can be found in {0}'.format(myconfig_path))
-    print('along with the my_variables.py values used to render the configs\n')
+    print('along with the metadata values used to render the configs\n')
 
     return
 

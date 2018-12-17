@@ -1,5 +1,5 @@
 name: skillet_panos
-label: Iron-Skillet for NGFW
+label: Iron-Skillet for NGFWg
 description: Iron-Skillet baseline configuration for a firewall
 type: service
 extends:
