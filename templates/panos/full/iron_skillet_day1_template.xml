@@ -138,288 +138,7 @@
       </send-syslog>
     </entry>
   </match-list>
-</hipmatch><profiles><entry name="default">
-  <match-list>
-    <entry name="Traffic_Log_Forwarding">
-      <log-type>traffic</log-type>
-      <filter>All Logs</filter>
-      <send-to-panorama>no</send-to-panorama>
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-    </entry>
-    <entry name="Threat_Log_Forwarding">
-      <log-type>threat</log-type>
-      <filter>All Logs</filter>
-      <send-to-panorama>no</send-to-panorama>
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-    </entry>
-    <entry name="Email_Malicious_Verdicts">
-      <send-email>
-        <member>Sample_Email_Profile</member>
-      </send-email>
-      <action-desc>Email Malicious Wildfire Verdicts</action-desc>
-      <log-type>wildfire</log-type>
-      <filter>(verdict eq malicious)</filter>
-      <send-to-panorama>no</send-to-panorama>
-    </entry>
-    <entry name="Email_Phishing_Verdicts">
-      <send-email>
-        <member>Sample_Email_Profile</member>
-      </send-email>
-      <action-desc>Email Phishing Wildfire Verdicts</action-desc>
-      <log-type>wildfire</log-type>
-      <filter>(verdict eq phishing)</filter>
-      <send-to-panorama>no</send-to-panorama>
-    </entry>
-    <entry name="Wildfire_Log_Forwarding">
-      <log-type>wildfire</log-type>
-      <filter>All Logs</filter>
-      <send-to-panorama>no</send-to-panorama>
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-    </entry>
-    <entry name="URL_Log_Forwarding">
-      <log-type>url</log-type>
-      <filter>All Logs</filter>
-      <send-to-panorama>no</send-to-panorama>
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-    </entry>
-    <entry name="Data_Log_Forwarding">
-      <log-type>data</log-type>
-      <filter>All Logs</filter>
-      <send-to-panorama>no</send-to-panorama>
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-    </entry>
-    <entry name="GTP_Log_Forwarding">
-      <log-type>gtp</log-type>
-      <filter>All Logs</filter>
-      <send-to-panorama>no</send-to-panorama>
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-    </entry>
-    <entry name="Tunnel_Log_Forwarding">
-      <log-type>tunnel</log-type>
-      <filter>All Logs</filter>
-      <send-to-panorama>no</send-to-panorama>
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-    </entry>
-    <entry name="Auth_Log_Forwarding">
-      <log-type>auth</log-type>
-      <filter>All Logs</filter>
-      <send-to-panorama>no</send-to-panorama>
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-    </entry>
-  </match-list>
-</entry></profiles></log-settings><reports><entry name="Host-visit malicious sites plus">
-  <period>last-7-calendar-days</period>
-  <topn>500</topn>
-  <topm>50</topm>
-  <caption>Host-visit malicious sites plus</caption>
-  <frequency>daily</frequency>
-  <query>(category eq command-and-control) or (category eq hacking) or (category eq malware) or (category eq phishing)</query>
-  <type>
-    <url>
-      <sortby>repeatcnt</sortby>
-      <group-by>src</group-by>
-      <aggregate-by>
-        <member>from</member>
-        <member>srcuser</member>
-        <member>category</member>
-        <member>action</member>
-      </aggregate-by>
-      <values>
-        <member>repeatcnt</member>
-      </values>
-    </url>
-  </type>
-</entry>
-<entry name="Hosts visit malicious sites">
-  <period>last-7-calendar-days</period>
-  <topn>500</topn>
-  <topm>50</topm>
-  <caption>Hosts visit malicious sites</caption>
-  <frequency>daily</frequency>
-  <query>(category eq command-and-control) or (category eq hacking) or (category eq malware) or (category eq phishing)</query>
-  <type>
-    <url>
-      <sortby>repeatcnt</sortby>
-      <group-by>src</group-by>
-      <aggregate-by>
-        <member>from</member>
-        <member>srcuser</member>
-      </aggregate-by>
-      <values>
-        <member>repeatcnt</member>
-      </values>
-    </url>
-  </type>
-</entry>
-<entry name="Hosts visit questionable sites">
-  <period>last-7-calendar-days</period>
-  <topn>500</topn>
-  <topm>50</topm>
-  <caption>Hosts visit questionable sites</caption>
-  <frequency>daily</frequency>
-  <query>(category eq dynamic-dns) and (category eq parked) and (category eq questionable) and (category eq unknown)</query>
-  <type>
-    <url>
-      <sortby>repeatcnt</sortby>
-      <group-by>src</group-by>
-      <aggregate-by>
-        <member>from</member>
-        <member>srcuser</member>
-      </aggregate-by>
-      <values>
-        <member>repeatcnt</member>
-      </values>
-    </url>
-  </type>
-</entry>
-<entry name="Host-visit quest sites plus">
-  <period>last-7-calendar-days</period>
-  <topn>500</topn>
-  <topm>50</topm>
-  <caption>Host-visit quest sites plus</caption>
-  <frequency>daily</frequency>
-  <query>(category eq dynamic-dns) and (category eq parked) and (category eq questionable) and (category eq unknown)</query>
-  <description>Detail of hosts visiting questionable URLs</description>
-  <type>
-    <url>
-      <sortby>repeatcnt</sortby>
-      <group-by>src</group-by>
-      <aggregate-by>
-        <member>from</member>
-        <member>srcuser</member>
-        <member>category</member>
-        <member>action</member>
-      </aggregate-by>
-      <values>
-        <member>repeatcnt</member>
-      </values>
-    </url>
-  </type>
-</entry>
-<entry name="Wildfire malicious verdicts">
-  <period>last-30-calendar-days</period>
-  <topn>500</topn>
-  <topm>10</topm>
-  <caption>Wildfire malicious verdicts</caption>
-  <frequency>daily</frequency>
-  <query>(app neq smtp) and (category neq benign)</query>
-  <description>Files uploaded or downloaded that were later found to be malicious. This is a summary. Act on real-time email.</description>
-  <type>
-    <wildfire>
-      <sortby>repeatcnt</sortby>
-      <aggregate-by>
-        <member>filedigest</member>
-        <member>container-of-app</member>
-        <member>app</member>
-        <member>category</member>
-        <member>filetype</member>
-        <member>rule</member>
-      </aggregate-by>
-      <values>
-        <member>repeatcnt</member>
-      </values>
-    </wildfire>
-  </type>
-</entry>
-<entry name="Wildfire verdicts SMTP">
-  <period>last-30-calendar-days</period>
-  <topn>500</topn>
-  <topm>10</topm>
-  <caption>Wildfire verdicts SMTP</caption>
-  <frequency>daily</frequency>
-  <query>(app eq smtp) and (category neq benign)</query>
-  <description>Links sent from emails found to be malicious. </description>
-  <type>
-    <wildfire>
-      <sortby>repeatcnt</sortby>
-      <aggregate-by>
-        <member>filedigest</member>
-        <member>container-of-app</member>
-        <member>app</member>
-        <member>category</member>
-        <member>filetype</member>
-        <member>rule</member>
-        <member>subject</member>
-        <member>sender</member>
-        <member>recipient</member>
-        <member>misc</member>
-      </aggregate-by>
-    </wildfire>
-  </type>
-</entry>
-<entry name="Clients sinkholed">
-  <period>last-30-calendar-days</period>
-  <topn>500</topn>
-  <topm>50</topm>
-  <caption>Clients sinkholed</caption>
-  <query>(rule eq 'DNS Sinkhole Block')</query>
-  <frequency>daily</frequency>
-  <type>
-    <traffic>
-      <sortby>repeatcnt</sortby>
-      <group-by>from</group-by>
-      <aggregate-by>
-        <member>src</member>
-        <member>srcuser</member>
-      </aggregate-by>
-      <values>
-        <member>repeatcnt</member>
-      </values>
-    </traffic>
-  </type>
-</entry></reports><report-group><entry name="Possible Compromise">
-  <custom-widget>
-    <entry name="1">
-      <custom-report>Clients sinkholed</custom-report>
-    </entry>
-    <entry name="2">
-      <custom-report>Wildfire malicious verdicts</custom-report>
-    </entry>
-    <entry name="3">
-      <custom-report>Wildfire verdicts SMTP</custom-report>
-    </entry>
-    <entry name="4">
-      <custom-report>Hosts visit malicious sites</custom-report>
-    </entry>
-    <entry name="5">
-      <custom-report>Host-visit malicious sites plus</custom-report>
-    </entry>
-    <entry name="6">
-      <custom-report>Hosts visit questionable sites</custom-report>
-    </entry>
-    <entry name="7">
-      <custom-report>Host-visit quest sites plus</custom-report>
-    </entry>
-  </custom-widget>
-  <title-page>yes</title-page>
-  <variable>
-    <entry name="title">
-      <value>Possible Compromise</value>
-    </entry>
-  </variable>
-</entry></report-group><email-scheduler><entry name="Possbile Compromise">
-  <report-group>Possible Compromise</report-group>
-  <recurring>
-    <disabled />
-  </recurring>
-  <email-profile>Sample_Email_Profile</email-profile>
-</entry></email-scheduler></shared>
+</hipmatch></log-settings></shared>
   <devices>
     <entry name="localhost.localdomain">
       <network>
@@ -1081,18 +800,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <description>This rule does not do Decryption.  This rule is validating SSL Protocol Communications.</description>
   </entry>
 </rules></decryption></rulebase>
-        <tag><entry name="Outbound">
-	<comments>Outbound to the Internet</comments>
-</entry>
-<entry name="Inbound">
-	<comments>Inbound from the Internet</comments>
-</entry>
-<entry name="Internal">
-	<comments>Internal to Internal</comments>
-</entry>
-<entry name="iron-skillet-version">
-	<comments>version 1.0.4: version of this iron-skillet template file</comments>
-</entry></tag><address><entry name="Sinkhole-IPv4">
+        <address><entry name="Sinkhole-IPv4">
 <ip-netmask>{{ SINKHOLE_IPV4 }}</ip-netmask>
 </entry>
 <entry name="Sinkhole-IPv6">
@@ -1118,7 +826,103 @@ Log off immediately if you are not an authorized user.</login-banner>
     <description>IPv6 addresses that should not be routed across the Internet. Either reserved IP address space or unassigned and may be used for malicious purposes. More information: http://www.team-cymru.com/bogon-reference.html</description>
   </ip>
 </type>
-</entry></external-list><profiles><custom-url-category><entry name="Black-List" />
+</entry></external-list><tag><entry name="Outbound">
+	<comments>Outbound to the Internet</comments>
+</entry>
+<entry name="Inbound">
+	<comments>Inbound from the Internet</comments>
+</entry>
+<entry name="Internal">
+	<comments>Internal to Internal</comments>
+</entry>
+<entry name="iron-skillet-version">
+	<comments>version 1.0.4: version of this iron-skillet template file</comments>
+</entry></tag><log-settings><profiles><entry name="default">
+  <match-list>
+    <entry name="Traffic_Log_Forwarding">
+      <log-type>traffic</log-type>
+      <filter>All Logs</filter>
+      <send-to-panorama>no</send-to-panorama>
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
+    </entry>
+    <entry name="Threat_Log_Forwarding">
+      <log-type>threat</log-type>
+      <filter>All Logs</filter>
+      <send-to-panorama>no</send-to-panorama>
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
+    </entry>
+    <entry name="Email_Malicious_Verdicts">
+      <send-email>
+        <member>Sample_Email_Profile</member>
+      </send-email>
+      <action-desc>Email Malicious Wildfire Verdicts</action-desc>
+      <log-type>wildfire</log-type>
+      <filter>(verdict eq malicious)</filter>
+      <send-to-panorama>no</send-to-panorama>
+    </entry>
+    <entry name="Email_Phishing_Verdicts">
+      <send-email>
+        <member>Sample_Email_Profile</member>
+      </send-email>
+      <action-desc>Email Phishing Wildfire Verdicts</action-desc>
+      <log-type>wildfire</log-type>
+      <filter>(verdict eq phishing)</filter>
+      <send-to-panorama>no</send-to-panorama>
+    </entry>
+    <entry name="Wildfire_Log_Forwarding">
+      <log-type>wildfire</log-type>
+      <filter>All Logs</filter>
+      <send-to-panorama>no</send-to-panorama>
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
+    </entry>
+    <entry name="URL_Log_Forwarding">
+      <log-type>url</log-type>
+      <filter>All Logs</filter>
+      <send-to-panorama>no</send-to-panorama>
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
+    </entry>
+    <entry name="Data_Log_Forwarding">
+      <log-type>data</log-type>
+      <filter>All Logs</filter>
+      <send-to-panorama>no</send-to-panorama>
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
+    </entry>
+    <entry name="GTP_Log_Forwarding">
+      <log-type>gtp</log-type>
+      <filter>All Logs</filter>
+      <send-to-panorama>no</send-to-panorama>
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
+    </entry>
+    <entry name="Tunnel_Log_Forwarding">
+      <log-type>tunnel</log-type>
+      <filter>All Logs</filter>
+      <send-to-panorama>no</send-to-panorama>
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
+    </entry>
+    <entry name="Auth_Log_Forwarding">
+      <log-type>auth</log-type>
+      <filter>All Logs</filter>
+      <send-to-panorama>no</send-to-panorama>
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
+    </entry>
+  </match-list>
+</entry></profiles></log-settings><profiles><custom-url-category><entry name="Black-List" />
 <entry name="White-List" />
 <entry name="Custom-No-Decrypt" /></custom-url-category><decryption><entry name="Recommended_Decryption_Profile">
   <ssl-forward-proxy>
@@ -1148,133 +952,148 @@ Log off immediately if you are not an authorized user.</login-banner>
     <enc-algo-rc4>no</enc-algo-rc4>
     <auth-algo-sha1>no</auth-algo-sha1>
   </ssl-protocol-settings>
-</entry></decryption><file-blocking><entry name="Outbound-FB">
-  <rules>
-    <entry name="Alert-All">
-      <application>
-        <member>any</member>
-      </application>
-      <file-type>
-        <member>any</member>
-      </file-type>
-      <direction>both</direction>
+</entry></decryption><virus>
+<entry name="Alert-Only-AV">
+  <decoder>
+    <entry name="ftp">
       <action>alert</action>
+      <wildfire-action>alert</wildfire-action>
     </entry>
-    <entry name="Block">
-      <application>
-        <member>any</member>
-      </application>
-      <file-type>
-        <member>7z</member>
-        <member>bat</member>
-        <member>chm</member>
-        <member>class</member>
-        <member>cpl</member>
-        <member>dll</member>
-        <member>hlp</member>
-        <member>hta</member>
-        <member>jar</member>
-        <member>ocx</member>
-        <member>pif</member>
-        <member>scr</member>
-        <member>torrent</member>
-        <member>vbe</member>
-        <member>wsf</member>
-      </file-type>
-      <direction>both</direction>
-      <action>block</action>
+    <entry name="http">
+      <action>alert</action>
+      <wildfire-action>alert</wildfire-action>
     </entry>
-  </rules>
+    <entry name="imap">
+      <action>alert</action>
+      <wildfire-action>alert</wildfire-action>
+    </entry>
+    <entry name="pop3">
+      <action>alert</action>
+      <wildfire-action>alert</wildfire-action>
+    </entry>
+    <entry name="smb">
+      <action>alert</action>
+      <wildfire-action>alert</wildfire-action>
+    </entry>
+    <entry name="smtp">
+      <action>alert</action>
+      <wildfire-action>alert</wildfire-action>
+    </entry>
+  </decoder>
 </entry>
-<entry name="Inbound-FB">
-  <rules>
-    <entry name="Alert-All">
-      <application>
-        <member>any</member>
-      </application>
-      <file-type>
-        <member>any</member>
-      </file-type>
-      <direction>both</direction>
-      <action>alert</action>
+<entry name="Outbound-AV">
+  <decoder>
+    <entry name="ftp">
+      <action>reset-both</action>
+      <wildfire-action>reset-both</wildfire-action>
     </entry>
-    <entry name="Block">
-      <application>
-        <member>any</member>
-      </application>
-      <file-type>
-        <member>7z</member>
-        <member>bat</member>
-        <member>chm</member>
-        <member>class</member>
-        <member>cpl</member>
-        <member>dll</member>
-        <member>hlp</member>
-        <member>hta</member>
-        <member>jar</member>
-        <member>ocx</member>
-        <member>pif</member>
-        <member>scr</member>
-        <member>torrent</member>
-        <member>vbe</member>
-        <member>wsf</member>
-      </file-type>
-      <direction>both</direction>
-      <action>block</action>
+    <entry name="http">
+      <action>reset-both</action>
+      <wildfire-action>reset-both</wildfire-action>
     </entry>
-  </rules>
+    <entry name="imap">
+      <action>reset-both</action>
+      <wildfire-action>reset-both</wildfire-action>
+    </entry>
+    <entry name="pop3">
+      <action>reset-both</action>
+      <wildfire-action>reset-both</wildfire-action>
+    </entry>
+    <entry name="smb">
+      <action>reset-both</action>
+      <wildfire-action>reset-both</wildfire-action>
+    </entry>
+    <entry name="smtp">
+      <action>reset-both</action>
+      <wildfire-action>reset-both</wildfire-action>
+    </entry>
+  </decoder>
 </entry>
-<entry name="Internal-FB">
-  <rules>
-    <entry name="Alert-All">
-      <application>
-        <member>any</member>
-      </application>
-      <file-type>
-        <member>any</member>
-      </file-type>
-      <direction>both</direction>
-      <action>alert</action>
+<entry name="Inbound-AV">
+  <decoder>
+    <entry name="ftp">
+      <action>reset-both</action>
+      <wildfire-action>reset-both</wildfire-action>
     </entry>
-    <entry name="Block">
-      <application>
-        <member>any</member>
-      </application>
-      <file-type>
-        <member>7z</member>
-        <member>bat</member>
-        <member>chm</member>
-        <member>class</member>
-        <member>cpl</member>
-        <member>hlp</member>
-        <member>hta</member>
-        <member>jar</member>
-        <member>ocx</member>
-        <member>pif</member>
-        <member>scr</member>
-        <member>torrent</member>
-        <member>vbe</member>
-        <member>wsf</member>
-      </file-type>
-      <direction>both</direction>
-      <action>block</action>
+    <entry name="http">
+      <action>reset-both</action>
+      <wildfire-action>reset-both</wildfire-action>
     </entry>
-  </rules>
+    <entry name="imap">
+      <action>reset-both</action>
+      <wildfire-action>reset-both</wildfire-action>
+    </entry>
+    <entry name="pop3">
+      <action>reset-both</action>
+      <wildfire-action>reset-both</wildfire-action>
+    </entry>
+    <entry name="smb">
+      <action>reset-both</action>
+      <wildfire-action>reset-both</wildfire-action>
+    </entry>
+    <entry name="smtp">
+      <action>reset-both</action>
+      <wildfire-action>reset-both</wildfire-action>
+    </entry>
+  </decoder>
 </entry>
-<entry name="Alert-Only-FB">
-  <rules>
-    <entry name="Alert-Only">
-      <application>
-        <member>any</member>
-      </application>
-      <file-type>
-        <member>any</member>
-      </file-type>
-      <direction>both</direction>
-      <action>alert</action>
+<entry name="Internal-AV">
+  <decoder>
+    <entry name="ftp">
+      <action>reset-both</action>
+      <wildfire-action>reset-both</wildfire-action>
     </entry>
-  </rules>
-</entry></file-blocking><spyware><entry name="Outbound-AS">
+    <entry name="http">
+      <action>reset-both</action>
+      <wildfire-action>reset-both</wildfire-action>
+    </entry>
+    <entry name="imap">
+      <action>reset-both</action>
+      <wildfire-action>reset-both</wildfire-action>
+    </entry>
+    <entry name="pop3">
+      <action>reset-both</action>
+      <wildfire-action>reset-both</wildfire-action>
+    </entry>
+    <entry name="smb">
+      <action>reset-both</action>
+      <wildfire-action>reset-both</wildfire-action>
+    </entry>
+    <entry name="smtp">
+      <action>reset-both</action>
+      <wildfire-action>reset-both</wildfire-action>
+    </entry>
+  </decoder>
+</entry>
+<entry name="Exception-AV">
+  <decoder>
+    <entry name="ftp">
+      <action>reset-both</action>
+      <wildfire-action>default</wildfire-action>
+    </entry>
+    <entry name="http">
+      <action>reset-both</action>
+      <wildfire-action>default</wildfire-action>
+    </entry>
+    <entry name="imap">
+      <action>reset-both</action>
+      <wildfire-action>reset-both</wildfire-action>
+    </entry>
+    <entry name="pop3">
+      <action>reset-both</action>
+      <wildfire-action>reset-both</wildfire-action>
+    </entry>
+    <entry name="smb">
+      <action>reset-both</action>
+      <wildfire-action>default</wildfire-action>
+    </entry>
+    <entry name="smtp">
+      <action>reset-both</action>
+      <wildfire-action>reset-both</wildfire-action>
+    </entry>
+  </decoder>
+  <description>Use this profile for rules needing modifications to the standard</description>
+</entry></virus><spyware><entry name="Outbound-AS">
   <botnet-domains>
     <lists>
       <entry name="default-paloalto-dns">
@@ -1447,7 +1266,284 @@ Log off immediately if you are not an authorized user.</login-banner>
     </sinkhole>
     <packet-capture>single-packet</packet-capture>
   </botnet-domains>
-</entry></spyware><url-filtering><entry name="Outbound-URL">
+</entry></spyware><vulnerability><entry name="Outbound-VP">
+  <rules>
+    <entry name="Block-Critical-High-Medium">
+      <action>
+        <reset-both />
+      </action>
+      <vendor-id>
+        <member>any</member>
+      </vendor-id>
+      <severity>
+        <member>critical</member>
+        <member>high</member>
+        <member>medium</member>
+      </severity>
+      <cve>
+        <member>any</member>
+      </cve>
+      <threat-name>any</threat-name>
+      <host>any</host>
+      <category>any</category>
+      <packet-capture>single-packet</packet-capture>
+    </entry>
+    <entry name="Default-Low-Info">
+      <action>
+        <default />
+      </action>
+      <vendor-id>
+        <member>any</member>
+      </vendor-id>
+      <severity>
+        <member>low</member>
+        <member>informational</member>
+      </severity>
+      <cve>
+        <member>any</member>
+      </cve>
+      <threat-name>any</threat-name>
+      <host>any</host>
+      <category>any</category>
+      <packet-capture>disable</packet-capture>
+    </entry>
+  </rules>
+</entry>
+<entry name="Inbound-VP">
+  <rules>
+    <entry name="Block-Critical-High-Medium">
+      <action>
+        <reset-both />
+      </action>
+      <vendor-id>
+        <member>any</member>
+      </vendor-id>
+      <severity>
+        <member>critical</member>
+        <member>high</member>
+        <member>medium</member>
+      </severity>
+      <cve>
+        <member>any</member>
+      </cve>
+      <threat-name>any</threat-name>
+      <host>any</host>
+      <category>any</category>
+      <packet-capture>single-packet</packet-capture>
+    </entry>
+    <entry name="Default-Low-Info">
+      <action>
+        <default />
+      </action>
+      <vendor-id>
+        <member>any</member>
+      </vendor-id>
+      <severity>
+        <member>low</member>
+        <member>informational</member>
+      </severity>
+      <cve>
+        <member>any</member>
+      </cve>
+      <threat-name>any</threat-name>
+      <host>any</host>
+      <category>any</category>
+      <packet-capture>disable</packet-capture>
+    </entry>
+  </rules>
+</entry>
+<entry name="Internal-VP">
+  <rules>
+    <entry name="Block-Critical-High">
+      <action>
+        <reset-both />
+      </action>
+      <vendor-id>
+        <member>any</member>
+      </vendor-id>
+      <severity>
+        <member>critical</member>
+        <member>high</member>
+      </severity>
+      <cve>
+        <member>any</member>
+      </cve>
+      <threat-name>any</threat-name>
+      <host>any</host>
+      <category>any</category>
+      <packet-capture>single-packet</packet-capture>
+    </entry>
+    <entry name="Default-Medium-Low-Info">
+      <action>
+        <default />
+      </action>
+      <vendor-id>
+        <member>any</member>
+      </vendor-id>
+      <severity>
+        <member>low</member>
+        <member>informational</member>
+        <member>medium</member>
+      </severity>
+      <cve>
+        <member>any</member>
+      </cve>
+      <threat-name>any</threat-name>
+      <host>any</host>
+      <category>any</category>
+      <packet-capture>disable</packet-capture>
+    </entry>
+  </rules>
+</entry>
+<entry name="Alert-Only-VP">
+  <rules>
+    <entry name="Alert-All">
+      <action>
+        <alert />
+      </action>
+      <vendor-id>
+        <member>any</member>
+      </vendor-id>
+      <severity>
+        <member>any</member>
+      </severity>
+      <cve>
+        <member>any</member>
+      </cve>
+      <threat-name>any</threat-name>
+      <host>any</host>
+      <category>any</category>
+      <packet-capture>disable</packet-capture>
+    </entry>
+  </rules>
+</entry>
+<entry name="Exception-VP" /></vulnerability><file-blocking><entry name="Outbound-FB">
+  <rules>
+    <entry name="Alert-All">
+      <application>
+        <member>any</member>
+      </application>
+      <file-type>
+        <member>any</member>
+      </file-type>
+      <direction>both</direction>
+      <action>alert</action>
+    </entry>
+    <entry name="Block">
+      <application>
+        <member>any</member>
+      </application>
+      <file-type>
+        <member>7z</member>
+        <member>bat</member>
+        <member>chm</member>
+        <member>class</member>
+        <member>cpl</member>
+        <member>dll</member>
+        <member>hlp</member>
+        <member>hta</member>
+        <member>jar</member>
+        <member>ocx</member>
+        <member>pif</member>
+        <member>scr</member>
+        <member>torrent</member>
+        <member>vbe</member>
+        <member>wsf</member>
+      </file-type>
+      <direction>both</direction>
+      <action>block</action>
+    </entry>
+  </rules>
+</entry>
+<entry name="Inbound-FB">
+  <rules>
+    <entry name="Alert-All">
+      <application>
+        <member>any</member>
+      </application>
+      <file-type>
+        <member>any</member>
+      </file-type>
+      <direction>both</direction>
+      <action>alert</action>
+    </entry>
+    <entry name="Block">
+      <application>
+        <member>any</member>
+      </application>
+      <file-type>
+        <member>7z</member>
+        <member>bat</member>
+        <member>chm</member>
+        <member>class</member>
+        <member>cpl</member>
+        <member>dll</member>
+        <member>hlp</member>
+        <member>hta</member>
+        <member>jar</member>
+        <member>ocx</member>
+        <member>pif</member>
+        <member>scr</member>
+        <member>torrent</member>
+        <member>vbe</member>
+        <member>wsf</member>
+      </file-type>
+      <direction>both</direction>
+      <action>block</action>
+    </entry>
+  </rules>
+</entry>
+<entry name="Internal-FB">
+  <rules>
+    <entry name="Alert-All">
+      <application>
+        <member>any</member>
+      </application>
+      <file-type>
+        <member>any</member>
+      </file-type>
+      <direction>both</direction>
+      <action>alert</action>
+    </entry>
+    <entry name="Block">
+      <application>
+        <member>any</member>
+      </application>
+      <file-type>
+        <member>7z</member>
+        <member>bat</member>
+        <member>chm</member>
+        <member>class</member>
+        <member>cpl</member>
+        <member>hlp</member>
+        <member>hta</member>
+        <member>jar</member>
+        <member>ocx</member>
+        <member>pif</member>
+        <member>scr</member>
+        <member>torrent</member>
+        <member>vbe</member>
+        <member>wsf</member>
+      </file-type>
+      <direction>both</direction>
+      <action>block</action>
+    </entry>
+  </rules>
+</entry>
+<entry name="Alert-Only-FB">
+  <rules>
+    <entry name="Alert-Only">
+      <application>
+        <member>any</member>
+      </application>
+      <file-type>
+        <member>any</member>
+      </file-type>
+      <direction>both</direction>
+      <action>alert</action>
+    </entry>
+  </rules>
+</entry></file-blocking><url-filtering><entry name="Outbound-URL">
   <credential-enforcement>
     <mode>
       <ip-user />
@@ -1898,299 +1994,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>phishing</member>
     <member>Black-List</member>
   </block>
-</entry></url-filtering><virus>
-<entry name="Alert-Only-AV">
-  <decoder>
-    <entry name="ftp">
-      <action>alert</action>
-      <wildfire-action>alert</wildfire-action>
-    </entry>
-    <entry name="http">
-      <action>alert</action>
-      <wildfire-action>alert</wildfire-action>
-    </entry>
-    <entry name="imap">
-      <action>alert</action>
-      <wildfire-action>alert</wildfire-action>
-    </entry>
-    <entry name="pop3">
-      <action>alert</action>
-      <wildfire-action>alert</wildfire-action>
-    </entry>
-    <entry name="smb">
-      <action>alert</action>
-      <wildfire-action>alert</wildfire-action>
-    </entry>
-    <entry name="smtp">
-      <action>alert</action>
-      <wildfire-action>alert</wildfire-action>
-    </entry>
-  </decoder>
-</entry>
-<entry name="Outbound-AV">
-  <decoder>
-    <entry name="ftp">
-      <action>reset-both</action>
-      <wildfire-action>reset-both</wildfire-action>
-    </entry>
-    <entry name="http">
-      <action>reset-both</action>
-      <wildfire-action>reset-both</wildfire-action>
-    </entry>
-    <entry name="imap">
-      <action>reset-both</action>
-      <wildfire-action>reset-both</wildfire-action>
-    </entry>
-    <entry name="pop3">
-      <action>reset-both</action>
-      <wildfire-action>reset-both</wildfire-action>
-    </entry>
-    <entry name="smb">
-      <action>reset-both</action>
-      <wildfire-action>reset-both</wildfire-action>
-    </entry>
-    <entry name="smtp">
-      <action>reset-both</action>
-      <wildfire-action>reset-both</wildfire-action>
-    </entry>
-  </decoder>
-</entry>
-<entry name="Inbound-AV">
-  <decoder>
-    <entry name="ftp">
-      <action>reset-both</action>
-      <wildfire-action>reset-both</wildfire-action>
-    </entry>
-    <entry name="http">
-      <action>reset-both</action>
-      <wildfire-action>reset-both</wildfire-action>
-    </entry>
-    <entry name="imap">
-      <action>reset-both</action>
-      <wildfire-action>reset-both</wildfire-action>
-    </entry>
-    <entry name="pop3">
-      <action>reset-both</action>
-      <wildfire-action>reset-both</wildfire-action>
-    </entry>
-    <entry name="smb">
-      <action>reset-both</action>
-      <wildfire-action>reset-both</wildfire-action>
-    </entry>
-    <entry name="smtp">
-      <action>reset-both</action>
-      <wildfire-action>reset-both</wildfire-action>
-    </entry>
-  </decoder>
-</entry>
-<entry name="Internal-AV">
-  <decoder>
-    <entry name="ftp">
-      <action>reset-both</action>
-      <wildfire-action>reset-both</wildfire-action>
-    </entry>
-    <entry name="http">
-      <action>reset-both</action>
-      <wildfire-action>reset-both</wildfire-action>
-    </entry>
-    <entry name="imap">
-      <action>reset-both</action>
-      <wildfire-action>reset-both</wildfire-action>
-    </entry>
-    <entry name="pop3">
-      <action>reset-both</action>
-      <wildfire-action>reset-both</wildfire-action>
-    </entry>
-    <entry name="smb">
-      <action>reset-both</action>
-      <wildfire-action>reset-both</wildfire-action>
-    </entry>
-    <entry name="smtp">
-      <action>reset-both</action>
-      <wildfire-action>reset-both</wildfire-action>
-    </entry>
-  </decoder>
-</entry>
-<entry name="Exception-AV">
-  <decoder>
-    <entry name="ftp">
-      <action>reset-both</action>
-      <wildfire-action>default</wildfire-action>
-    </entry>
-    <entry name="http">
-      <action>reset-both</action>
-      <wildfire-action>default</wildfire-action>
-    </entry>
-    <entry name="imap">
-      <action>reset-both</action>
-      <wildfire-action>reset-both</wildfire-action>
-    </entry>
-    <entry name="pop3">
-      <action>reset-both</action>
-      <wildfire-action>reset-both</wildfire-action>
-    </entry>
-    <entry name="smb">
-      <action>reset-both</action>
-      <wildfire-action>default</wildfire-action>
-    </entry>
-    <entry name="smtp">
-      <action>reset-both</action>
-      <wildfire-action>reset-both</wildfire-action>
-    </entry>
-  </decoder>
-  <description>Use this profile for rules needing modifications to the standard</description>
-</entry></virus><vulnerability><entry name="Outbound-VP">
-  <rules>
-    <entry name="Block-Critical-High-Medium">
-      <action>
-        <reset-both />
-      </action>
-      <vendor-id>
-        <member>any</member>
-      </vendor-id>
-      <severity>
-        <member>critical</member>
-        <member>high</member>
-        <member>medium</member>
-      </severity>
-      <cve>
-        <member>any</member>
-      </cve>
-      <threat-name>any</threat-name>
-      <host>any</host>
-      <category>any</category>
-      <packet-capture>single-packet</packet-capture>
-    </entry>
-    <entry name="Default-Low-Info">
-      <action>
-        <default />
-      </action>
-      <vendor-id>
-        <member>any</member>
-      </vendor-id>
-      <severity>
-        <member>low</member>
-        <member>informational</member>
-      </severity>
-      <cve>
-        <member>any</member>
-      </cve>
-      <threat-name>any</threat-name>
-      <host>any</host>
-      <category>any</category>
-      <packet-capture>disable</packet-capture>
-    </entry>
-  </rules>
-</entry>
-<entry name="Inbound-VP">
-  <rules>
-    <entry name="Block-Critical-High-Medium">
-      <action>
-        <reset-both />
-      </action>
-      <vendor-id>
-        <member>any</member>
-      </vendor-id>
-      <severity>
-        <member>critical</member>
-        <member>high</member>
-        <member>medium</member>
-      </severity>
-      <cve>
-        <member>any</member>
-      </cve>
-      <threat-name>any</threat-name>
-      <host>any</host>
-      <category>any</category>
-      <packet-capture>single-packet</packet-capture>
-    </entry>
-    <entry name="Default-Low-Info">
-      <action>
-        <default />
-      </action>
-      <vendor-id>
-        <member>any</member>
-      </vendor-id>
-      <severity>
-        <member>low</member>
-        <member>informational</member>
-      </severity>
-      <cve>
-        <member>any</member>
-      </cve>
-      <threat-name>any</threat-name>
-      <host>any</host>
-      <category>any</category>
-      <packet-capture>disable</packet-capture>
-    </entry>
-  </rules>
-</entry>
-<entry name="Internal-VP">
-  <rules>
-    <entry name="Block-Critical-High">
-      <action>
-        <reset-both />
-      </action>
-      <vendor-id>
-        <member>any</member>
-      </vendor-id>
-      <severity>
-        <member>critical</member>
-        <member>high</member>
-      </severity>
-      <cve>
-        <member>any</member>
-      </cve>
-      <threat-name>any</threat-name>
-      <host>any</host>
-      <category>any</category>
-      <packet-capture>single-packet</packet-capture>
-    </entry>
-    <entry name="Default-Medium-Low-Info">
-      <action>
-        <default />
-      </action>
-      <vendor-id>
-        <member>any</member>
-      </vendor-id>
-      <severity>
-        <member>low</member>
-        <member>informational</member>
-        <member>medium</member>
-      </severity>
-      <cve>
-        <member>any</member>
-      </cve>
-      <threat-name>any</threat-name>
-      <host>any</host>
-      <category>any</category>
-      <packet-capture>disable</packet-capture>
-    </entry>
-  </rules>
-</entry>
-<entry name="Alert-Only-VP">
-  <rules>
-    <entry name="Alert-All">
-      <action>
-        <alert />
-      </action>
-      <vendor-id>
-        <member>any</member>
-      </vendor-id>
-      <severity>
-        <member>any</member>
-      </severity>
-      <cve>
-        <member>any</member>
-      </cve>
-      <threat-name>any</threat-name>
-      <host>any</host>
-      <category>any</category>
-      <packet-capture>disable</packet-capture>
-    </entry>
-  </rules>
-</entry>
-<entry name="Exception-VP" /></vulnerability><wildfire-analysis><entry name="Outbound-WF">
+</entry></url-filtering><wildfire-analysis><entry name="Outbound-WF">
   <rules>
     <entry name="Forward-All">
       <application>
@@ -2338,7 +2142,203 @@ Log off immediately if you are not an authorized user.</login-banner>
   <wildfire-analysis>
     <member>Outbound-WF</member>
   </wildfire-analysis>
-</entry></profile-group></entry>
+</entry></profile-group><reports><entry name="Host-visit malicious sites plus">
+  <period>last-7-calendar-days</period>
+  <topn>500</topn>
+  <topm>50</topm>
+  <caption>Host-visit malicious sites plus</caption>
+  <frequency>daily</frequency>
+  <query>(category eq command-and-control) or (category eq hacking) or (category eq malware) or (category eq phishing)</query>
+  <type>
+    <url>
+      <sortby>repeatcnt</sortby>
+      <group-by>src</group-by>
+      <aggregate-by>
+        <member>from</member>
+        <member>srcuser</member>
+        <member>category</member>
+        <member>action</member>
+      </aggregate-by>
+      <values>
+        <member>repeatcnt</member>
+      </values>
+    </url>
+  </type>
+</entry>
+<entry name="Hosts visit malicious sites">
+  <period>last-7-calendar-days</period>
+  <topn>500</topn>
+  <topm>50</topm>
+  <caption>Hosts visit malicious sites</caption>
+  <frequency>daily</frequency>
+  <query>(category eq command-and-control) or (category eq hacking) or (category eq malware) or (category eq phishing)</query>
+  <type>
+    <url>
+      <sortby>repeatcnt</sortby>
+      <group-by>src</group-by>
+      <aggregate-by>
+        <member>from</member>
+        <member>srcuser</member>
+      </aggregate-by>
+      <values>
+        <member>repeatcnt</member>
+      </values>
+    </url>
+  </type>
+</entry>
+<entry name="Hosts visit questionable sites">
+  <period>last-7-calendar-days</period>
+  <topn>500</topn>
+  <topm>50</topm>
+  <caption>Hosts visit questionable sites</caption>
+  <frequency>daily</frequency>
+  <query>(category eq dynamic-dns) and (category eq parked) and (category eq questionable) and (category eq unknown)</query>
+  <type>
+    <url>
+      <sortby>repeatcnt</sortby>
+      <group-by>src</group-by>
+      <aggregate-by>
+        <member>from</member>
+        <member>srcuser</member>
+      </aggregate-by>
+      <values>
+        <member>repeatcnt</member>
+      </values>
+    </url>
+  </type>
+</entry>
+<entry name="Host-visit quest sites plus">
+  <period>last-7-calendar-days</period>
+  <topn>500</topn>
+  <topm>50</topm>
+  <caption>Host-visit quest sites plus</caption>
+  <frequency>daily</frequency>
+  <query>(category eq dynamic-dns) and (category eq parked) and (category eq questionable) and (category eq unknown)</query>
+  <description>Detail of hosts visiting questionable URLs</description>
+  <type>
+    <url>
+      <sortby>repeatcnt</sortby>
+      <group-by>src</group-by>
+      <aggregate-by>
+        <member>from</member>
+        <member>srcuser</member>
+        <member>category</member>
+        <member>action</member>
+      </aggregate-by>
+      <values>
+        <member>repeatcnt</member>
+      </values>
+    </url>
+  </type>
+</entry>
+<entry name="Wildfire malicious verdicts">
+  <period>last-30-calendar-days</period>
+  <topn>500</topn>
+  <topm>10</topm>
+  <caption>Wildfire malicious verdicts</caption>
+  <frequency>daily</frequency>
+  <query>(app neq smtp) and (category neq benign)</query>
+  <description>Files uploaded or downloaded that were later found to be malicious. This is a summary. Act on real-time email.</description>
+  <type>
+    <wildfire>
+      <sortby>repeatcnt</sortby>
+      <aggregate-by>
+        <member>filedigest</member>
+        <member>container-of-app</member>
+        <member>app</member>
+        <member>category</member>
+        <member>filetype</member>
+        <member>rule</member>
+      </aggregate-by>
+      <values>
+        <member>repeatcnt</member>
+      </values>
+    </wildfire>
+  </type>
+</entry>
+<entry name="Wildfire verdicts SMTP">
+  <period>last-30-calendar-days</period>
+  <topn>500</topn>
+  <topm>10</topm>
+  <caption>Wildfire verdicts SMTP</caption>
+  <frequency>daily</frequency>
+  <query>(app eq smtp) and (category neq benign)</query>
+  <description>Links sent from emails found to be malicious. </description>
+  <type>
+    <wildfire>
+      <sortby>repeatcnt</sortby>
+      <aggregate-by>
+        <member>filedigest</member>
+        <member>container-of-app</member>
+        <member>app</member>
+        <member>category</member>
+        <member>filetype</member>
+        <member>rule</member>
+        <member>subject</member>
+        <member>sender</member>
+        <member>recipient</member>
+        <member>misc</member>
+      </aggregate-by>
+    </wildfire>
+  </type>
+</entry>
+<entry name="Clients sinkholed">
+  <period>last-30-calendar-days</period>
+  <topn>500</topn>
+  <topm>50</topm>
+  <caption>Clients sinkholed</caption>
+  <query>(rule eq 'DNS Sinkhole Block')</query>
+  <frequency>daily</frequency>
+  <type>
+    <traffic>
+      <sortby>repeatcnt</sortby>
+      <group-by>from</group-by>
+      <aggregate-by>
+        <member>src</member>
+        <member>srcuser</member>
+      </aggregate-by>
+      <values>
+        <member>repeatcnt</member>
+      </values>
+    </traffic>
+  </type>
+</entry></reports><report-group><entry name="Possible Compromise">
+  <custom-widget>
+    <entry name="1">
+      <custom-report>Clients sinkholed</custom-report>
+    </entry>
+    <entry name="2">
+      <custom-report>Wildfire malicious verdicts</custom-report>
+    </entry>
+    <entry name="3">
+      <custom-report>Wildfire verdicts SMTP</custom-report>
+    </entry>
+    <entry name="4">
+      <custom-report>Hosts visit malicious sites</custom-report>
+    </entry>
+    <entry name="5">
+      <custom-report>Host-visit malicious sites plus</custom-report>
+    </entry>
+    <entry name="6">
+      <custom-report>Hosts visit questionable sites</custom-report>
+    </entry>
+    <entry name="7">
+      <custom-report>Host-visit quest sites plus</custom-report>
+    </entry>
+  </custom-widget>
+  <title-page>yes</title-page>
+  <variable>
+    <entry name="title">
+      <value>Possible Compromise</value>
+    </entry>
+  </variable>
+</entry></report-group><email-scheduler><entry name="Possbile Compromise">
+  <report-group>Possible Compromise</report-group>
+  <recurring>
+    <disabled />
+  </recurring>
+  <email-profile>Sample_Email_Profile</email-profile>
+</entry></email-scheduler></entry>
       </vsys>
     </entry>
   </devices>

@@ -1,0 +1,8 @@
+<entry name="{{ FW_NAME }}">
+  <templates>
+    <member>mssp</member>
+  </templates>
+  <settings>
+    <default-vsys>vsys1</default-vsys>
+  </settings>
+</entry>

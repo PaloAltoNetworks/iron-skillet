@@ -131,8 +131,8 @@ snippets:
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/reports
     file: reports_simple.xml
   - name: report_group_simple
-    xpath: config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/report-group
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/report-group
     file: report_group_simple.xml
   - name: email_scheduler_simple
-    xpath: config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/email-scheduler
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/email-scheduler
     file: email_scheduler_simple.xml

@@ -32,7 +32,6 @@ import shutil
 import sys
 import time
 import getpass
-import oyaml
 
 from jinja2 import Environment, FileSystemLoader
 from my_variables import xmlvar
