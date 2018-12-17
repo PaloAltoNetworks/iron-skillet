@@ -152,7 +152,7 @@ def generate_full_config_template(config_type):
         # xml_snippet is a key in the orderedDict of
         # the value is the snippet file name
         snippet_name = f'{snippet_dict[xml_snippet][0]}.xml'
-        snippet_path = os.path.join(config_path, 'snippets', snippet_name)
+        snippet_path = os.path.join(config_path, 'snippets_{0}'.format(config_type), snippet_name)
 
         # skip snippets that aren't actually there for some reason
         if not os.path.exists(snippet_path):

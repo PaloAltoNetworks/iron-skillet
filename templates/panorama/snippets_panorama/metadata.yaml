@@ -4,6 +4,9 @@ description: Iron-Skillet baseline configuration for a firewall
 type: service
 extends:
 
+labels:
+  service_type: iron_skillet
+
 variables:
   - name: FW_NAME
     description: Firewall hostname

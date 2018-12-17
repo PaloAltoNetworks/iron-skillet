@@ -15,7 +15,7 @@
 # Author: Scott Shoaf <sshoaf@paloaltonetworks.com>
 
 '''
-Palo Alto Networks build_my_configs.py
+Palo Alto Networks build_loadable_configs.py
 
 Provides rendering of configuration templates with user defined values
 Output is a set of loadable full configurations and snippets for Panos and Panorama
@@ -44,14 +44,14 @@ defined_filters = ['md5_hash', 'des_hash', 'sha512_hash']
 
 def myconfig_newdir(myconfigdir_name, foldertime):
     '''
-    create a new main my_configs folder if required then new subdirectories for configs
+    create a new main loadable_configs folder if required then new subdirectories for configs
     :param myconfigdir_name: prefix folder name from the my_variables.py file
     :param foldertime: datetime when script run; to be used as suffix of folder name
     :return: the myconfigdir full path name
     '''
 
     # get the full path to the config directory we want (panos / panorama)
-    myconfigpath = os.path.abspath(os.path.join('..', 'my_configs'))
+    myconfigpath = os.path.abspath(os.path.join('..', 'loadable_configs'))
     if os.path.isdir(myconfigpath) is False:
         os.mkdir(myconfigpath, mode=0o755)
         print('created new myconfig directory')
@@ -65,7 +65,7 @@ def myconfig_newdir(myconfigdir_name, foldertime):
 
     if os.path.isdir('{0}/{1}'.format(myconfigdir, config_type)) is False:
         os.mkdir('{0}/{1}'.format(myconfigdir, config_type))
-        os.mkdir('{0}/{1}/snippets'.format(myconfigdir, config_type))
+        os.mkdir('{0}/{1}/snippets_{1}'.format(myconfigdir, config_type))
         os.mkdir('{0}/{1}/full'.format(myconfigdir, config_type))
         print('created new subdirectories for {0}'.format(config_type))
 
@@ -187,9 +187,9 @@ def replace_variables(config_type, archivetime):
 
         print('\nworking with {0}'.format(xml_xpath))
 
-        render_type = 'snippets'
+        render_type = 'snippets_{0}'.format(config_type)
         snippet_name = '{0}.xml'.format(snippet_dict[xml_xpath][0])
-        snippet_path = os.path.join(template_path, 'snippets', snippet_name)
+        snippet_path = os.path.join(template_path, 'snippets_{0}'.format(config_type), snippet_name)
 
         # skip snippets that aren't actually there for some reason
         if not os.path.exists(snippet_path):
@@ -198,6 +198,7 @@ def replace_variables(config_type, archivetime):
             continue
 
         # render snippet variables folder using jinja2
+        print(template_path)
         element = template_render(snippet_name, template_path, render_type)
         template_save(snippet_name, myconfig_path, config_type, element, render_type)
 

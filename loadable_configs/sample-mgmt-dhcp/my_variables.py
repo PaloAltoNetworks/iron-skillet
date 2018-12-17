@@ -17,9 +17,9 @@
 '''
 Palo Alto Networks my_variables.py
 
-Used in tandem with build_my_configs.py to render templates into loadable configurations
+Used in tandem with build_loadable_configs.py to render templates into loadable configurations
 
-Edit the my_variables.py values and then run build_my_configs.py
+Edit the my_variables.py values and then run build_loadable_configs.py
 
 This software is provided without support, warranty, or guarantee.
 Use at your own risk.
@@ -31,13 +31,13 @@ xmlvar = {
     "ADMINISTRATOR_USERNAME": "iron-skillet",
     "ADMINISTRATOR_PASSWORD": "fortheloveofallthingsholychangeme",
     # MY_CONFIGDIR is the prefix to the my_template output folder
-    "MYCONFIG_DIR": "sample-cloud",
+    "MYCONFIG_DIR": "sample-mgmt-dhcp",
     # MGMT_TYPE values: static, dhcp-cloud, or dhcp-client
     # if static, update the IP, mask, gateway values below
-    "MGMT_TYPE": "dhcp-cloud",
+    "MGMT_TYPE": "dhcp-client",
     # Panorama types are cloud or standard
     # Cloud adds in initcfg bootstrap elements for Panorama
-    "PANORAMA_TYPE": "cloud",
+    "PANORAMA_TYPE": "standard",
     # the values below are specific to the firewall deployment environment or default can be used
     # IP addresses are non-routable in the sample config
     "FW_NAME": "sample",

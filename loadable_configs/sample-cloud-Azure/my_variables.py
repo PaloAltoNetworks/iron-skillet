@@ -17,9 +17,9 @@
 '''
 Palo Alto Networks my_variables.py
 
-Used in tandem with build_my_configs.py to render templates into loadable configurations
+Used in tandem with build_loadable_configs.py to render templates into loadable configurations
 
-Edit the my_variables.py values and then run build_my_configs.py
+Edit the my_variables.py values and then run build_loadable_configs.py
 
 This software is provided without support, warranty, or guarantee.
 Use at your own risk.

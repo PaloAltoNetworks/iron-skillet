@@ -23,7 +23,7 @@ vi my_variables.py   [Edit variables for your local environment]
 python3 ./build_my_configs.py
 ```
 
-The output loadable templates, full and snippet configs, are in the `my_configs` directory with name as `config prefix` + `datetime`.
+The output loadable templates, full and snippet configs, are in the `loadable_configs` directory with name as `config prefix` + `datetime`.
 
 Each run results in a new archive directory allowing for new configs with modified variables.
 
