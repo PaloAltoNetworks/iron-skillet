@@ -2,6 +2,14 @@ Tools Release History
 =====================
 
 
+0.3
+---
+
+Released Jan 4, 2018
+
+    + added SET command spreadsheet for non-python users
+
+
 0.2
 ---
 

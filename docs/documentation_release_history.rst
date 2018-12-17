@@ -1,7 +1,14 @@
 Documentation Release History
-========================
+=============================
 
 Documentation revisions outside of template-tooling updates. These are documented by date, not verison.
+
+
+Updated Jan 4, 2019
+
+    + simplified repo README for non-python users
+    + added documentation for the SET command spreadsheet
+
 
 Updated Nov 2, 2018
 

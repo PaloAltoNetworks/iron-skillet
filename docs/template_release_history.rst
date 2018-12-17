@@ -3,6 +3,16 @@ Template Release History
 
 Template content updates are high level. Details can be found in the template guides.
 
+1.0.4
+-----
+
+Released January 4, 2019
+
+Template Content
+
+    + updated virus profiles from 'default' to 'reset-both' so explicit blocking
+
+
 1.0.3
 -----
 
