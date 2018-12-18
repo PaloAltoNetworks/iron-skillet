@@ -1,4 +1,5 @@
 <rules>
+    {%- if INCLUDE_PAN_EDL == "True" %}
   <entry name="Outbound Block Rule">
     <description>Block outbound sessions with destination address matching one of the Palo Alto Networks external dynamic lists for high risk and known malicious IP addresses.</description>
     <to>
@@ -71,6 +72,7 @@
       <member>Inbound</member>
     </tag>
   </entry>
+    {% endif %}
   <entry name="DNS Sinkhole Block">
   <description>Block outbound sessions that match a malicious domain and have been redirected to a configured sinkhole IP address.</description>
     <to>

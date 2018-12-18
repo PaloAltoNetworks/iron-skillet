@@ -12,6 +12,27 @@ variables:
     description: Firewall hostname
     default: panos-01
     type_hint: text
+  - name: MGMT_TYPE
+    description: firewall management IP type
+    default: dhcp-client
+    type_hint: dropdown
+    dd_list:
+      - key: dhcp-client
+        value: dhcp-client
+      - key: static
+        value: static
+  - name: MGMT_IP
+    description: NGFW management IP (if type=static)
+    default: 192.0.2.6
+    type_hint: ip_address
+  - name: MGMT_MASK
+    description: NGFW management netmask (if type=static)
+    type_hint: ip_address
+    default: 255.255.255.0
+  - name: MGMT_DG
+    description: NGFW management default gateway (if type=static)
+    default: 192.0.2.7
+    type_hint: ip_address
   - name: NTP_1
     description: Network Time Protocol Server
     default: 0.pool.ntp.org
@@ -64,7 +85,15 @@ variables:
     description: syslog server ip address
     default: 192.0.2.2
     type_hint: ip_address
-
+  - name: INCLUDE_PAN_EDL
+    description: include the predefined Palo Alto Networks external lists
+    default: True
+    type_hint: dropdown
+    dd_list:
+      - key: True
+        value: True
+      - key: False
+        value: False
 
 snippets:
   - name: device_system

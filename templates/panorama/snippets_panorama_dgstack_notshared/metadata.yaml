@@ -1,5 +1,5 @@
-name: skillet_panorama_dgstack
-label: Iron-Skillet for Panorama with Device-Group and Stack only
+name: skillet_panorama_dgstack_notshared
+label: Iron-Skillet for Panorama with Device-Group and Stack only (No Shared Values) (8.1)
 description: Iron Skillet device-group and template stack config for Panorama
 dependency: snippets_panorama
 type: service
@@ -13,6 +13,27 @@ variables:
     description: Firewall hostname
     default: panos-01
     type_hint: text
+  - name: MGMT_TYPE
+    description: firewall management IP type
+    default: dhcp-client
+    type_hint: dropdown
+    dd_list:
+      - key: dhcp-client
+        value: dhcp-client
+      - key: static
+        value: static
+  - name: MGMT_IP
+    description: NGFW management IP (if type=static)
+    default: 192.0.2.6
+    type_hint: ip_address
+  - name: MGMT_MASK
+    description: NGFW management netmask (if type=static)
+    type_hint: ip_address
+    default: 255.255.255.0
+  - name: MGMT_DG
+    description: NGFW management default gateway (if type=static)
+    default: 192.0.2.7
+    type_hint: ip_address
   - name: NTP_1
     description: Network Time Protocol Server
     default: 0.pool.ntp.org
@@ -65,6 +86,15 @@ variables:
     description: syslog server ip address
     default: 192.0.2.2
     type_hint: ip_address
+  - name: INCLUDE_PAN_EDL
+    description: include the predefined Palo Alto Networks external lists
+    default: True
+    type_hint: dropdown
+    dd_list:
+      - key: True
+        value: True
+      - key: False
+        value: False
 
 
 snippets:
@@ -86,12 +116,21 @@ snippets:
   - name: log_settings
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ FW_NAME }}']/config/shared/log-settings
     file: ../snippets_panorama/shared_log_settings.xml
+  - name: zone_protection_profile
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ FW_NAME }}']/config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile
+    file: ../snippets_panorama/zone_protection_profile.xml
+  - name: tag
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/tag
+    file: ../snippets_panorama/tag.xml
   - name: address
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/address
     file: ../snippets_panorama/address.xml
   - name: external_list
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/external-list
     file: ../snippets_panorama/external_list.xml
+  - name: local_log_profiles
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/log-settings/profiles
+    file: ../snippets_panorama/log_settings_profiles.xml
   - name: profiles_custom_url_category
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/profiles/custom-url-category
     file: ../snippets_panorama/profiles_custom_url_category.xml
@@ -131,12 +170,12 @@ snippets:
   - name: pre_rulebase_decryption
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/pre-rulebase/decryption
     file: ../snippets_panorama/pre_rulebase_decryption.xml
-  - name: zone_protection_profile
-    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ FW_NAME }}']/config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile
-    file: ../snippets_panorama/zone_protection_profile.xml
   - name: reports
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/reports
     file: ../snippets_panorama/reports_simple.xml
   - name: report_group_simple
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/report-group
     file: ../snippets_panorama/report_group_simple.xml
+  - name: email_scheduler_simple
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/email-scheduler
+    file: ../snippets_panorama/email_scheduler_simple.xml

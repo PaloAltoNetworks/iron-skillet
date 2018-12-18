@@ -1,6 +1,6 @@
 <entry name="{{ FW_NAME }}">
   <templates>
-    <member>mssp</member>
+    <member>iron-skillet</member>
   </templates>
   <settings>
     <default-vsys>vsys1</default-vsys>

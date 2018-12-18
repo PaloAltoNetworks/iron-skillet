@@ -1,0 +1,75 @@
+name: snippets_panorama_dgstack_shared
+label: Iron-Skillet for Panorama with Device-Group and Stack only (Shared Values) (8.1)
+description: Iron-Skillet Panorama with device-group and stack specific values only
+type: service
+extends:
+
+labels:
+  service_type: iron_skillet
+
+variables:
+  - name: FW_NAME
+    description: Device Name used for device-group and template stack name
+    default: sample
+    type_hint: text
+  - name: MGMT_TYPE
+    description: firewall management IP type
+    default: dhcp-client
+    type_hint: dropdown
+    dd_list:
+      - key: dhcp-client
+        value: dhcp-client
+      - key: static
+        value: static
+  - name: MGMT_IP
+    description: NGFW management IP (if type=static)
+    default: 192.0.2.6
+    type_hint: ip_address
+  - name: MGMT_MASK
+    description: NGFW management netmask (if type=static)
+    type_hint: ip_address
+    default: 255.255.255.0
+  - name: MGMT_DG
+    description: NGFW management default gateway (if type=static)
+    default: 192.0.2.7
+    type_hint: ip_address
+  - name: ADMINISTRATOR_USERNAME
+    description: admin username
+    default: admin
+    type_hint: text
+  - name: ADMINISTRATOR_PASSWORD
+    description: admin password
+    default: admin
+    type_hint: text
+  - name: INCLUDE_PAN_EDL
+    description: include the predefined Palo Alto Networks external lists
+    default: True
+    type_hint: dropdown
+    dd_list:
+      - key: True
+        value: True
+      - key: False
+        value: False
+ 
+snippets:
+  - name: devicegroup
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group
+    file: ../snippets_panorama/device_group.xml
+  - name: template
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template
+    file: ../snippets_panorama/template.xml
+  - name: stack
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack
+    file: ../snippets_panorama/template_stack.xml
+  - name: device_system
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ FW_NAME }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    file: ../snippets_panorama/device_system.xml
+  - name: reports
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/reports
+    file: ../snippets_panorama/reports_simple.xml
+  - name: report_group_simple
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/report-group
+    file: ../snippets_panorama/report_group_simple.xml
+  - name: email_scheduler
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/email-scheduler
+    file: ../snippets_panorama/email_scheduler_simple.xml
