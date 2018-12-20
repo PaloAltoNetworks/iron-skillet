@@ -4,9 +4,9 @@
 # this is based on a 'shared model' with all template elements in the 'iron-skillet' template
 
 # snippet folder name
-name: snippets_panorama_dgstack_notshared
+name: snippets_panorama_dgstack_shared
 # label used for menu selection
-label: v8.1 Iron-Skillet for Panorama with Device-Group and Stack only (No Shared Values)
+label: v8.1 Iron-Skillet for Panorama with Device-Group and Stack only (Shared Values)
 description: Iron Skillet device-group and template stack config for Panorama
 dependency: snippets_panorama
 # type of device configuration
@@ -19,17 +19,6 @@ labels:
 
 # variables used in the configuration templates
 # type_hint defines the form field type in pan-cnc
-
-
-
-label: Iron-Skillet for Panorama with Device-Group and Stack only (Shared Values) (8.1) -test
-description: Iron-Skillet Panorama with device-group and stack specific values only
-type: service
-extends:
-
-labels:
-  service_type: iron_skillet
-
 variables:
   - name: FW_NAME
     description: Device Name used for device-group and template stack name
