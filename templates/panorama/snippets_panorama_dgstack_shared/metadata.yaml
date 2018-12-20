@@ -1,5 +1,28 @@
-name: snippets_panorama_dgstack_shared
-label: Iron-Skillet for Panorama with Device-Group and Stack only (Shared Values) (8.1)
+# snippets_panorama_dgstack_shared is used to add device-groups and template stacks only
+# this is a partial configuration for device-group and template stack only
+# this is based on a 'shared model' with all device-group elements in Shared
+# this is based on a 'shared model' with all template elements in the 'iron-skillet' template
+
+# snippet folder name
+name: snippets_panoramaname: snippets_panorama_dgstack_notshared
+# label used for menu selection
+label: v8.1 Iron-Skillet for Panorama with Device-Group and Stack only (No Shared Values)
+description: Iron Skillet device-group and template stack config for Panorama
+dependency: snippets_panorama
+# type of device configuration
+type: panorama
+extends:
+
+# grouping of like snippets for dynamic menu creation in pan-cnc
+labels:
+  service_type: iron_skillet
+
+# variables used in the configuration templates
+# type_hint defines the form field type in pan-cnc
+
+
+
+label: Iron-Skillet for Panorama with Device-Group and Stack only (Shared Values) (8.1) -test
 description: Iron-Skillet Panorama with device-group and stack specific values only
 type: service
 extends:
@@ -22,15 +45,15 @@ variables:
       - key: static
         value: static
   - name: MGMT_IP
-    description: NGFW management IP (if type=static)
+    description: NGFW management IP
     default: 192.0.2.6
     type_hint: ip_address
   - name: MGMT_MASK
-    description: NGFW management netmask (if type=static)
+    description: NGFW management netmask
     type_hint: ip_address
     default: 255.255.255.0
   - name: MGMT_DG
-    description: NGFW management default gateway (if type=static)
+    description: NGFW management default gateway
     default: 192.0.2.7
     type_hint: ip_address
   - name: ADMINISTRATOR_USERNAME
@@ -50,20 +73,19 @@ variables:
         value: True
       - key: False
         value: False
- 
+
+# snippets used for api configuration including xpath and element as file name
+# files will load in the order listed
 snippets:
-  - name: devicegroup
-    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group
-    file: ../snippets_panorama/device_group.xml
-  - name: template
-    xpath: /config/devices/entry[@name='localhost.localdomain']/template
-    file: ../snippets_panorama/template.xml
   - name: stack
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack
     file: ../snippets_panorama/template_stack.xml
-  - name: device_system
+  - name: device_system_local
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ FW_NAME }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
-    file: ../snippets_panorama/device_system.xml
+    file: ../snippets_panorama/device_system_local.xml
+  - name: devicegroup
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group
+    file: ../snippets_panorama/device_group.xml
   - name: reports
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/reports
     file: ../snippets_panorama/reports_simple.xml

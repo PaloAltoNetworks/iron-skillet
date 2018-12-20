@@ -1,12 +1,23 @@
+# snippets_panorama is the base configuration directory for all child configurations
+# this is a complete Panorama and reference device-group and template stack configuration
+# this is based on a 'shared model' with all device-group elements in Shared
+# this is based on a 'shared model' with all template elements in the 'iron-skillet' template
+
+# snippet folder name
 name: snippets_panorama
-label: Iron-Skillet for Panorama (Shared Values) (8.1)
+# label used for menu selection
+label: 8.1 Iron-Skillet for Panorama (Shared Values)
 description: Iron-Skillet baseline configuration for Panorama with device-group and stack specific values
-type: service
+# type of device configuration
+type: panorama
 extends:
 
+# grouping of like snippets for dynamic menu creation in pan-cnc
 labels:
   service_type: iron_skillet
 
+# variables used in the configuration templates
+# type_hint defines the form field type in pan-cnc
 variables:
   - name: PANORAMA_TYPE
     description: Panorama management IP type
@@ -22,15 +33,15 @@ variables:
     default: panorama01
     type_hint: text
   - name: PANORAMA_IP
-    description: Panorama IP (if type=static)
+    description: Panorama IP
     default: 192.168.55.7
     type_hint: ip_address
   - name: PANORAMA_MASK
-    description: Panorama netmask (if type=static)
+    description: Panorama netmask
     default: 255.255.255.0
     type_hint: ip_address
   - name: PANORAMA_DG
-    description: Panorama default gateway (if type=static)
+    description: Panorama default gateway
     default: 192.168.55.2
     type_hint: ip_address
   - name: CONFIG_EXPORT_IP
@@ -51,15 +62,15 @@ variables:
       - key: static
         value: static
   - name: MGMT_IP
-    description: NGFW management IP (if type=static)
+    description: NGFW management IP
     default: 192.0.2.6
     type_hint: ip_address
   - name: MGMT_MASK
-    description: NGFW management netmask (if type=static)
+    description: NGFW management netmask
     type_hint: ip_address
     default: 255.255.255.0
   - name: MGMT_DG
-    description: NGFW management default gateway (if type=static)
+    description: NGFW management default gateway
     default: 192.0.2.7
     type_hint: ip_address
   - name: NTP_1
@@ -77,7 +88,7 @@ variables:
   - name: ADMINISTRATOR_PASSWORD
     description: admin password
     default: admin
-    type_hint: text
+    type_hint: password
   - name: DNS_1
     description: primary dns server
     default: 8.8.8.8
@@ -119,11 +130,31 @@ variables:
     default: True
     type_hint: dropdown
     dd_list:
-      - key: True
+      - key: yes
         value: True
-      - key: False
+      - key: no
+        value: False
+  - name: HIDE_BASIC
+    description: hide basics like dns, ntp, and sinkhole addresses
+    default: True
+    type_hint: dropdown
+    dd_list:
+      - key: yes
+        value: True
+      - key: no
+        value: False
+  - name: HIDE_EMAIL_SYSLOG
+    description: hide email and syslog settings
+    default: True
+    type_hint: dropdown
+    dd_list:
+      - key: yes
+        value: True
+      - key: no
         value: False
 
+# snippets used for api configuration including xpath and element as file name
+# files will load in the order listed
 snippets:
   - name: panorama_system
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
@@ -140,18 +171,12 @@ snippets:
   - name: shared_tag
     xpath: /config/shared/tag
     file: tag.xml
-  - name: devicegroup
-    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group
-    file: device_group.xml
   - name: template
     xpath: /config/devices/entry[@name='localhost.localdomain']/template
     file: template.xml
-  - name: stack
-    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack
-    file: template_stack.xml
-  - name: device_system
-    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ FW_NAME }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
-    file: device_system.xml
+  - name: device_system_shared
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    file: device_system_shared.xml
   - name: device_setting
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     file: device_setting.xml
@@ -209,6 +234,15 @@ snippets:
   - name: pre_rulebase_decryption
     xpath: /config/shared/pre-rulebase/decryption
     file: pre_rulebase_decryption.xml
+  - name: stack
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack
+    file: template_stack.xml
+  - name: device_system_local
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ FW_NAME }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    file: device_system_local.xml
+  - name: devicegroup
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group
+    file: device_group.xml
   - name: reports
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/reports
     file: reports_simple.xml

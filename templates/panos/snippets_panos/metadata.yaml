@@ -1,12 +1,21 @@
-name: skillet_panos
-label: Iron-Skillet for NGFW
+# snippets_panos is used to load a full NGFW configuration
+
+# snippet folder name
+name: snippets_panos
+# label used for menu selection
+label: v8.1 Iron-Skillet for NGFW
 description: Iron-Skillet baseline configuration for a firewall
-type: service
+dependency: snippets_panorama
+# type of device configuration
+type: panorama
 extends:
 
+# grouping of like snippets for dynamic menu creation in pan-cnc
 labels:
   service_type: iron_skillet
 
+# variables used in the configuration templates
+# type_hint defines the form field type in pan-cnc
 variables:
   - name: FW_NAME
     description: Firewall hostname
@@ -95,6 +104,8 @@ variables:
       - key: False
         value: False
 
+# snippets used for api configuration including xpath and element as file name
+# files will load in the order listed
 snippets:
   - name: device_system
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system

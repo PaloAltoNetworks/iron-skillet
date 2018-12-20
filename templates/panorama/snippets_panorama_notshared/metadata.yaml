@@ -1,12 +1,23 @@
+# snippets_panorama_notshared is used to load a full Panorama configuration
+# this is a complete Panorama and reference device-group and template stack configuration
+# all values are contained in the device-groups and template stacks; nothing shared
+
+# snippet folder name
 name: snippets_panorama_notshared
-label: Iron-Skillet for Panorama (No Shared Values) (8.1)
+# label used for menu selection
+label: v8.1 Iron-Skillet for Panorama (No Shared Values)
 description: Iron-Skillet baseline configuration for Panorama using shared values for device-group and templates
-type: service
+dependency: snippets_panorama
+# type of device configuration
+type: panorama
 extends:
 
+# grouping of like snippets for dynamic menu creation in pan-cnc
 labels:
   service_type: iron_skillet
 
+# variables used in the configuration templates
+# type_hint defines the form field type in pan-cnc
 variables:
   - name: PANORAMA_TYPE
     description: Panorama management IP type
@@ -124,6 +135,8 @@ variables:
       - key: False
         value: False
 
+# snippets used for api configuration including xpath and element as file name
+# files will load in the order listed
 snippets:
   - name: panorama_system
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
@@ -146,9 +159,12 @@ snippets:
   - name: stack
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack
     file: ../snippets_panorama/template_stack.xml
-  - name: device_system
+  - name: device_system_ip_hostname
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ FW_NAME }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
-    file: ../snippets_panorama/device_system.xml
+    file: ../snippets_panorama/device_system_local.xml
+  - name: device_system_services
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ FW_NAME }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    file: ../snippets_panorama/device_system_shared.xml
   - name: device_setting
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ FW_NAME }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     file: ../snippets_panorama/device_setting.xml

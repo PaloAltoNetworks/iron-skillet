@@ -1,13 +1,23 @@
-name: skillet_panorama_dgstack_notshared
-label: Iron-Skillet for Panorama with Device-Group and Stack only (No Shared Values) (8.1)
+# snippets_panorama_dgstack_notshared is used to load a full Panorama configuration
+# this is a complete Panorama and reference device-group and template stack configuration
+# all values are contained in the device-groups and template stacks; nothing shared
+
+# snippet folder name
+name: snippets_panoramaname: snippets_panorama_dgstack_notshared
+# label used for menu selection
+label: v8.1 Iron-Skillet for Panorama with Device-Group and Stack only (No Shared Values)
 description: Iron Skillet device-group and template stack config for Panorama
 dependency: snippets_panorama
-type: service
+# type of device configuration
+type: panorama
 extends:
 
+# grouping of like snippets for dynamic menu creation in pan-cnc
 labels:
   service_type: iron_skillet
 
+# variables used in the configuration templates
+# type_hint defines the form field type in pan-cnc
 variables:
   - name: FW_NAME
     description: Firewall hostname
@@ -96,20 +106,18 @@ variables:
       - key: False
         value: False
 
-
+# snippets used for api configuration including xpath and element as file name
+# files will load in the order listed
 snippets:
-  - name: devicegroup
-    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group
-    file: ../snippets_panorama/device_group.xml
-  - name: template
-    xpath: /config/devices/entry[@name='localhost.localdomain']/template
-    file: ../snippets_panorama/template.xml
   - name: stack
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack
     file: ../snippets_panorama/template_stack.xml
-  - name: device_system
+  - name: device_system_ip_hostname
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ FW_NAME }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
-    file: ../snippets_panorama/device_system.xml
+    file: ../snippets_panorama/device_system_local.xml
+  - name: device_system_services
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ FW_NAME }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    file: ../snippets_panorama/device_system_shared.xml
   - name: device_setting
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ FW_NAME }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     file: ../snippets_panorama/device_setting.xml
@@ -119,6 +127,9 @@ snippets:
   - name: zone_protection_profile
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ FW_NAME }}']/config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile
     file: ../snippets_panorama/zone_protection_profile.xml
+  - name: devicegroup
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group
+    file: ../snippets_panorama/device_group.xml
   - name: tag
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/tag
     file: ../snippets_panorama/tag.xml
