@@ -115,6 +115,7 @@ snippets:
   - name: stack
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack
     file: ../snippets_panorama/template_stack.xml
+# adding in the email profile so scheduler loads
   - name: panorama_log_settings
     xpath: /config/panorama/log-settings
     file: panorama_log_settings.xml
@@ -127,9 +128,6 @@ snippets:
   - name: device_setting
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ FW_NAME }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     file: ../snippets_panorama/device_setting.xml
-  - name: device_log_settings
-    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='test']/config/shared/log-settings
-    file: ../snippets_panorama/shared_log_settings.xml
   - name: zone_protection_profile
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ FW_NAME }}']/config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile
     file: ../snippets_panorama/zone_protection_profile.xml
