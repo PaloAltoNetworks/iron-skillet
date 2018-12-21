@@ -1,0 +1,5 @@
+<entry name="{{ FW_NAME }}">
+  <settings>
+    <default-vsys>vsys1</default-vsys>
+  </settings>
+</entry>

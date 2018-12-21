@@ -109,9 +109,10 @@ variables:
 # snippets used for api configuration including xpath and element as file name
 # files will load in the order listed
 snippets:
+# single stack with no associated templates as with the shared model
   - name: stack
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack
-    file: ../snippets_panorama/template_stack.xml
+    file: template_stack.xml
   - name: device_system_ip_hostname
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ FW_NAME }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
     file: ../snippets_panorama/device_system_local.xml

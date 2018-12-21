@@ -153,12 +153,10 @@ snippets:
   - name: devicegroup
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group
     file: ../snippets_panorama/device_group.xml
-  - name: template
-    xpath: /config/devices/entry[@name='localhost.localdomain']/template
-    file: ../snippets_panorama/template.xml
+# single stack with no associated templates as with the shared model
   - name: stack
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack
-    file: ../snippets_panorama/template_stack.xml
+    file: template_stack.xml
   - name: device_system_ip_hostname
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ FW_NAME }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
     file: ../snippets_panorama/device_system_local.xml
