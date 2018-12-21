@@ -33,15 +33,15 @@ variables:
     default: panorama01
     type_hint: text
   - name: PANORAMA_IP
-    description: Panorama IP (if type=static)
+    description: Panorama IP
     default: 192.168.55.7
     type_hint: ip_address
   - name: PANORAMA_MASK
-    description: Panorama netmask (if type=static)
+    description: Panorama netmask
     default: 255.255.255.0
     type_hint: ip_address
   - name: PANORAMA_DG
-    description: Panorama default gateway (if type=static)
+    description: Panorama default gateway
     default: 192.168.55.2
     type_hint: ip_address
   - name: CONFIG_EXPORT_IP
@@ -50,7 +50,7 @@ variables:
     type_hint: ip_address
   - name: FW_NAME
     description: Device Name used for device-group and template stack name
-    default: panos-01
+    default: sample
     type_hint: text
   - name: MGMT_TYPE
     description: firewall management IP type
@@ -62,15 +62,15 @@ variables:
       - key: static
         value: static
   - name: MGMT_IP
-    description: NGFW management IP (if type=static)
+    description: NGFW management IP
     default: 192.0.2.6
     type_hint: ip_address
   - name: MGMT_MASK
-    description: NGFW management netmask (if type=static)
+    description: NGFW management netmask
     type_hint: ip_address
     default: 255.255.255.0
   - name: MGMT_DG
-    description: NGFW management default gateway (if type=static)
+    description: NGFW management default gateway
     default: 192.0.2.7
     type_hint: ip_address
   - name: NTP_1
@@ -88,7 +88,7 @@ variables:
   - name: ADMINISTRATOR_PASSWORD
     description: admin password
     default: admin
-    type_hint: text
+    type_hint: password
   - name: DNS_1
     description: primary dns server
     default: 8.8.8.8
@@ -130,9 +130,27 @@ variables:
     default: True
     type_hint: dropdown
     dd_list:
-      - key: True
+      - key: yes
         value: True
-      - key: False
+      - key: no
+        value: False
+  - name: HIDE_BASIC
+    description: hide basics like dns, ntp, and sinkhole addresses
+    default: True
+    type_hint: dropdown
+    dd_list:
+      - key: yes
+        value: True
+      - key: no
+        value: False
+  - name: HIDE_EMAIL_SYSLOG
+    description: hide email and syslog settings
+    default: True
+    type_hint: dropdown
+    dd_list:
+      - key: yes
+        value: True
+      - key: no
         value: False
 
 # snippets used for api configuration including xpath and element as file name
