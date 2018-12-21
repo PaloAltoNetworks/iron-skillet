@@ -126,3 +126,5 @@ variables:
     type_hint: ip_address
 
 snippets:
+  - name: ironskillet_panorama_set.conf
+    file: ironskillet_panorama_set.conf

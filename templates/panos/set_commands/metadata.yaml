@@ -95,3 +95,5 @@ variables:
     type_hint: ip_address
 
 snippets:
+  - name: ironskillet_panos_set.conf
+    file: ironskillet_panos_set.conf
