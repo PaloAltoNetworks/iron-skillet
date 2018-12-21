@@ -3,8 +3,8 @@
 # snippet name
 name: iron_skillet_panorama_set
 # label used for menu selection
-label: v8.1 Iron-Skillet set commands for Panorama
-description: Set command configuration for Panorama
+label: v8.1 Iron-Skillet set commands for PAN-OS
+description: Set command configuration for PAN-OS
 # type of device configuration
 type: template
 extends:
