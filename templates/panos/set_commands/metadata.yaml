@@ -1,7 +1,7 @@
 # set commands used to load a full NGFW configuration
 
 # snippet name
-name: iron_skillet_panorama_set
+name: iron_skillet_panos_set
 # label used for menu selection
 label: v8.1 Iron-Skillet set commands for PAN-OS
 description: Set command configuration for PAN-OS
@@ -30,15 +30,15 @@ variables:
       - key: static
         value: static
   - name: MGMT_IP
-    description: NGFW management IP (if type=static)
+    description: NGFW management IP
     default: 192.0.2.6
     type_hint: ip_address
   - name: MGMT_MASK
-    description: NGFW management netmask (if type=static)
+    description: NGFW management netmask
     type_hint: ip_address
     default: 255.255.255.0
   - name: MGMT_DG
-    description: NGFW management default gateway (if type=static)
+    description: NGFW management default gateway
     default: 192.0.2.7
     type_hint: ip_address
   - name: NTP_1
