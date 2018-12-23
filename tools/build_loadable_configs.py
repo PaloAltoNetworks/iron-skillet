@@ -32,6 +32,7 @@ import shutil
 import sys
 import time
 import getpass
+import oyaml
 
 from jinja2 import Environment, FileSystemLoader
 from my_variables import xmlvar
@@ -169,6 +170,16 @@ def replace_variables(config_type, archivetime):
 
     myconfig_path = myconfig_newdir(xmlvar['MYCONFIG_DIR'], archivetime)
 
+    # read the metafile to get variables and values
+    try:
+        with open(config_variables, 'r') as set_metadata:
+            set_variables = oyaml.load(set_metadata.read())
+
+    except IOError as ioe:
+        print(f'Could not open metadata file {config_variables}')
+        print(ioe)
+        sys.exit()
+
     # render full config file
     print('\nworking with full config template')
     render_type = 'full'
@@ -191,6 +202,7 @@ if __name__ == '__main__':
     print(' ')
     print('=' * 80)
 
+    xmlvar = {}
     # archive_time used as part of the my_config directory name
     archive_time = datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d_%H%M%S')
     print('\ndatetime used for folder creation: {0}\n'.format(archive_time))
