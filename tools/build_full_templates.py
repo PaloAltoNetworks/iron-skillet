@@ -117,7 +117,9 @@ def generate_full_config_template(config_type):
     """
     # get the path to the full baseline config for this config type
     full_config_file_path = os.path.abspath(os.path.join('..', 'templates', config_type, 'baseline', 'baseline.xml'))
-    output_file_path = os.path.abspath(os.path.join('..', 'templates', config_type, 'full', 'iron_skillet_day1_template.xml'))
+    output_file_path = os.path.abspath(os.path.join('..',
+                                                    'templates', config_type, 'full',
+                                                    'iron_skillet_{0}_day1_template.xml'.format(config_type)))
     metadata_file = os.path.abspath(os.path.join('..', 'templates', config_type, 'snippets_{0}'.format(config_type), 'metadata.yaml'))
 
     # open the file and read it in

@@ -20,7 +20,7 @@ Palo Alto Networks build_loadable_configs.py
 Provides rendering of configuration templates with user defined values
 Output is a set of loadable full configurations and snippets for Panos and Panorama
 
-Edit the my_variables.py values and then run the script
+Edit the config_variables.yaml values and then run the script
 
 This software is provided without support, warranty, or guarantee.
 Use at your own risk.
@@ -35,7 +35,6 @@ import getpass
 import oyaml
 
 from jinja2 import Environment, FileSystemLoader
-from my_variables import xmlvar
 from passlib.hash import des_crypt
 from passlib.hash import md5_crypt
 from passlib.hash import sha512_crypt
@@ -71,13 +70,34 @@ def myconfig_newdir(myconfigdir_name, foldertime):
     return myconfigdir
 
 
-def template_render(filename, template_path, render_type):
+def create_context(config_var_file):
+    # read the metafile to get variables and values
+    try:
+        with open(config_var_file, 'r') as var_metadata:
+            variables = oyaml.load(var_metadata.read())
+
+    except IOError as ioe:
+        print(f'Could not open metadata file {config_var_file}')
+        print(ioe)
+        sys.exit()
+
+    # grab the metadata values and convert to key-based dictionary
+    jinja_context = dict()
+
+    for snippet_var in variables['variables']:
+        jinja_context[snippet_var['name']] = snippet_var['value']
+
+    return jinja_context
+
+
+def template_render(filename, template_path, render_type, context):
     '''
-    render the jinja template using the xmlVar value from my_variables.py
+    render the jinja template using the context value from config_variables.yaml
     :param filename: name of the template file
     :param template_path: path for the template file
-    :param render_type: type if full of config snippets; aligns with folder name
-    :return: return the rendered xml file
+    :param render_type: type if full or set commands; aligns with folder name
+    :param context: dict of variables to render
+    :return: return the rendered xml file and set conf file
     '''
 
     print('..creating template for {0}'.format(filename))
@@ -90,9 +110,9 @@ def template_render(filename, template_path, render_type):
     env.filters['sha512_hash'] = sha512_hash
 
     template = env.get_template(filename)
-    element = template.render(xmlvar)
+    rendered_template = template.render(context)
 
-    return element
+    return rendered_template
 
 
 def template_save(snippet_name, myconfigdir, config_type, element):
@@ -115,9 +135,10 @@ def template_save(snippet_name, myconfigdir, config_type, element):
         configfile.write(element)
 
     # copy the variables file used for the render into the my_template folder
-    if os.path.isfile('{0}/my_variables.py'.format(myconfigdir)) is False:
-        vfilesrc = 'my_variables.py'
-        vfiledst = '{0}/my_variables.py'.format(myconfigdir)
+    var_file = 'config_variables.yaml'
+    if os.path.isfile('{0}/{1}'.format(myconfigdir, var_file)) is False:
+        vfilesrc = var_file
+        vfiledst = '{0}/{1}'.format(myconfigdir, var_file)
         shutil.copy(vfilesrc, vfiledst)
 
     return
@@ -154,7 +175,7 @@ def sha512_hash(txt):
     return sha512_crypt.hash(txt)
 
 
-def replace_variables(config_type, archivetime):
+def replace_variables(config_type, render_type, input_var):
     '''
     get the input variables and render the output configs with jinja2
     inputs are read from the template directory and output to my_config
@@ -162,29 +183,33 @@ def replace_variables(config_type, archivetime):
     :param archivetime: datetimestamp used for the output my_config folder naming
     '''
 
-    # get the full path to the config directory we want (panos / panorama)
-    template_path = os.path.abspath(os.path.join('..', 'templates', config_type))
+    config_variables = 'config_variables.yaml'
+
+    # create dict of values for the jinja template render
+    context = create_context(config_variables)
+
+    # update context dict with variables from user input
+    for snippet_var in input_var:
+        context[snippet_var] = input_var[snippet_var]
+
+    # get the full path to the output directory we want (panos / panorama)
+    template_path = os.path.abspath(os.path.join('..',
+                                                 'templates', config_type))
 
     # append to the sys path for module lookup
     sys.path.append(template_path)
 
-    myconfig_path = myconfig_newdir(xmlvar['MYCONFIG_DIR'], archivetime)
+    # output subdir located in loadable_configs dir
+    myconfig_path = myconfig_newdir(input_var['output_dir'], input_var['archive_time'])
 
-    # read the metafile to get variables and values
-    try:
-        with open(config_variables, 'r') as set_metadata:
-            set_variables = oyaml.load(set_metadata.read())
+    # render full and set conf files
+    print('\nworking with {0} config template'.format(render_type))
+    if render_type == 'full':
+        filename = 'iron_skillet_{0}_day1_template.xml'.format(config_type)
+    if render_type == 'set_commands':
+        filename = 'iron_skillet_{0}_day1_template.conf'.format(config_type)
 
-    except IOError as ioe:
-        print(f'Could not open metadata file {config_variables}')
-        print(ioe)
-        sys.exit()
-
-    # render full config file
-    print('\nworking with full config template')
-    render_type = 'full'
-    filename = 'iron_skillet_day1_template.xml'
-    element = template_render(filename, template_path, render_type)
+    element = template_render(filename, template_path, render_type, context)
     template_save(filename, myconfig_path, config_type, element)
 
     print('\nconfigs have been created and can be found in {0}'.format(myconfig_path))
@@ -202,16 +227,19 @@ if __name__ == '__main__':
     print(' ')
     print('=' * 80)
 
-    xmlvar = {}
+    input_var = {}
     # archive_time used as part of the my_config directory name
-    archive_time = datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d_%H%M%S')
-    print('\ndatetime used for folder creation: {0}\n'.format(archive_time))
+    input_var['archive_time'] = datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d_%H%M%S')
+    print('\ndatetime used for folder creation: {0}\n'.format(input_var['archive_time']))
+
+    # this prompts for the prefix name of the output directory
+    input_var['output_dir'] = input('Enter the name of the output directory: ')
 
     # this prompts for the superuser username to be added into the configuration; no default admin/admin used
-    xmlvar['ADMINISTRATOR_USERNAME'] = input('Enter the superuser administrator account username: ')
+    input_var['ADMINISTRATOR_USERNAME'] = input('Enter the superuser administrator account username: ')
 
     print('\na phash will be created for superuser {0} and added to the config file\n'.format(
-        xmlvar['ADMINISTRATOR_USERNAME']))
+        input_var['ADMINISTRATOR_USERNAME']))
     passwordmatch = False
 
     # prompt for the superuser password to create a phash and store in the my_config files; no default admin/admin
@@ -219,11 +247,12 @@ if __name__ == '__main__':
         password1 = getpass.getpass("Enter the superuser administrator account password: ")
         password2 = getpass.getpass("Enter password again to verify: ")
         if password1 == password2:
-            xmlvar['ADMINISTRATOR_PASSWORD'] = password1
+            input_var['ADMINISTRATOR_PASSWORD'] = password1
             passwordmatch = True
         else:
             print('\nPasswords do not match. Please try again.\n')
 
     # loop through all config types that have their respective template folders
     for config_type in ['panos', 'panorama']:
-        replace_variables(config_type, archive_time)
+        for render_type in ['full', 'set_commands']:
+            replace_variables(config_type, render_type, input_var)

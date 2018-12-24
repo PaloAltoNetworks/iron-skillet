@@ -49,11 +49,12 @@ def create_spreadsheet(config_type):
     # append to the sys path for module lookup
     sys.path.append(set_path)
 
-    set_file = '{0}/ironskillet_{1}_set.conf'.format(set_path, config_type)
+    set_file = '{0}/iron_skillet_{1}_day1_template.conf'.format(set_path, config_type)
     config_variables = 'config_variables.yaml'.format(set_path)
 
+    print('creating workbook based on {0}'.format(set_file))
     # Create a workbook and add worksheets.
-    workbook = xlsxwriter.Workbook('{0}/set_commands_{1}.xlsx'.format(set_path, config_type))
+    workbook = xlsxwriter.Workbook('{0}/iron_skillet_{1}_day1_template.xlsx'.format(set_path, config_type))
 
     # add columns and format width
     worksheet_values = workbook.add_worksheet('values')
@@ -145,7 +146,15 @@ def create_spreadsheet(config_type):
         row += 1
 
     workbook.close()
+    print('...done')
 
 if __name__ == '__main__':
+
+    print('=' * 80)
+    print(' ')
+    print('Welcome to Iron-Skillet spreadsheet creator'.center(80))
+    print(' ')
+    print('=' * 80)
+
     for config_type in ['panos', 'panorama']:
         create_spreadsheet(config_type)

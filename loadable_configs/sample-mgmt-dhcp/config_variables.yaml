@@ -5,7 +5,7 @@ variables:
     value: panorama01
   - name: PANORAMA_TYPE
     description: Panorama management IP type - static or cloud (for dhcp)
-    value: cloud
+    value: static
   - name: PANORAMA_IP
     description: Panorama IP
     value: 192.168.55.7

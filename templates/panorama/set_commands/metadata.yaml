@@ -47,8 +47,16 @@ variables:
     description: IP address for scheduled config exports
     default: 192.0.2.3
     type_hint: ip_address
+  - name: STACK
+    description: Template stack name for Panorama
+    default: sample_stack
+    type_hint: text
+  - name: DEVICE_GROUP
+    description: Device-group name for Panorama
+    default: sample_devicegroup
+    type_hint: text
   - name: FW_NAME
-    description: Device Name used for device-group and template stack name
+    description: Device Name for NGFW
     default: sample
     type_hint: text
   - name: MGMT_TYPE
@@ -126,5 +134,5 @@ variables:
     type_hint: ip_address
 
 snippets:
-  - name: ironskillet_panorama_set.conf
-    file: ironskillet_panorama_set.conf
+  - name: iron_skillet_panorama_day1_template.conf
+    file: iron_skillet_panorama_day1_template.conf

@@ -5,7 +5,7 @@ variables:
     value: panorama01
   - name: PANORAMA_TYPE
     description: Panorama management IP type - static or cloud (for dhcp)
-    value: cloud
+    value: static
   - name: PANORAMA_IP
     description: Panorama IP
     value: 192.168.55.7
@@ -28,8 +28,8 @@ variables:
     description: Device Name for NGFW
     value: sample
   - name: MGMT_TYPE
-    description: firewall management IP type (static or dhcp-cloud)
-    value: dhcp-cloud
+    description: firewall management IP type
+    value: static
   - name: MGMT_IP
     description: NGFW management IP
     value: 192.0.2.6

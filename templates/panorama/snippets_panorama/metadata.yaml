@@ -48,8 +48,16 @@ variables:
     description: IP address for scheduled config exports
     default: 192.0.2.3
     type_hint: ip_address
+  - name: STACK
+    description: Template stack name for Panorama
+    default: sample_stack
+    type_hint: text
+  - name: DEVICE_GROUP
+    description: Device-group name for Panorama
+    default: sample_devicegroup
+    type_hint: text
   - name: FW_NAME
-    description: Device Name used for device-group and template stack name
+    description: Device Name for NGFW
     default: sample
     type_hint: text
   - name: MGMT_TYPE
@@ -238,17 +246,17 @@ snippets:
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack
     file: template_stack.xml
   - name: device_system_local
-    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ FW_NAME }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ STACK }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
     file: device_system_local.xml
   - name: devicegroup
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group
     file: device_group.xml
   - name: reports
-    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/reports
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/reports
     file: reports_simple.xml
   - name: report_group_simple
-    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/report-group
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/report-group
     file: report_group_simple.xml
   - name: email_scheduler
-    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ FW_NAME }}']/email-scheduler
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/email-scheduler
     file: email_scheduler_simple.xml
