@@ -75,6 +75,12 @@ use '?' as a command-line helper. If scripting mode is enabled and you wish
 to disable, simply return to CLI operation mode with `exit` and enter
 'set cli scripting-mode off'.
 
+#### Editing loaded configurations
+The detailed documentation provides a list of variables that can be edited
+and instructions for GUI and CLI edits to the these values.
+
+(link to readthedocs section)
+
 
 #### Using the SET command spreadsheet to edit values
 Found in `templates/panorama/set_commands` and `templates/panos/set_commands`
@@ -96,7 +102,8 @@ Internet Gateway, Datacenter, Wildfire, L4-L7 evasions and other use cases.
 
 [Best Practice Recommendations](https://www.paloaltonetworks.com/documentation/best-practices)
 
-While useful as suggestions and recommendations, the user is still required to manually use the GUI or CLI to configuration each recommendation.
+While useful as suggestions and recommendations, the user is still required
+to manually use the GUI or CLI to configure each recommendation.
 
 
 ## Contributing
