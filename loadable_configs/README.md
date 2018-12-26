@@ -80,3 +80,11 @@ The detailed documentation provides a list of variables that can be edited
 and instructions for GUI and CLI edits to the these values.
 
 (link to readthedocs section)
+
+## Python utilities and loadable configs
+Users that take advantage of the python utilities in `tools` will have their
+configurations output into these directories using a tag name and timestamp.
+
+Along with panos/panorama and xml/set command files will be the `config_variables.yaml'
+file containing the variables used when the script was run. This file can be
+copied into the tools folder as needed to recreate a configuration output.
