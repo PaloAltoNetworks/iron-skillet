@@ -12,7 +12,7 @@ The python tools can be broken into two categories:
 
 The first section will focus on the user tools.
 
-### First Time Use and Python Set Up
+## End user tools
 
 The tools require python3.5 or later to be running in a virtual environment
 with required packages installed.
@@ -27,30 +27,39 @@ source env/bin/activate
 pip install -r requirements.txt
 ```
 
-### Creating loadable configurations
-
-To create loadable template files with variable substitutions:
+#### create_loadable_configs.py
+Creates both full xml and set commands outputs with user-specified variable
+values contained in `config_variables.yaml`.
 
 ```bash
 vi config_variables.yaml   [Edit variables for your local environment]
 python3 ./create_loadable_configs.py
 ```
 
-The output loadable templates, full and snippet configs, are in the `loadable_configs` directory with name as `config prefix` + `datetime`.
+The output loadable templates, full and snippet configs, are in the
+`loadable_configs` directory with name as `config prefix` + `datetime`.
 
-Each run results in a new archive directory allowing for new configs with modified variables.
-
+Each run results in a new archive directory allowing for new configs with
+modified variables.
 
 ## Template Admin
+The admin utilities are also python based and assume a working python
+environment. Directions for the virtual environment are listed above.
 
-To build a full configuration from the supplied configuration baseline and snippets:
+#### create_set_spreadsheet.py
+Reads the set command .conf files in `/templates/panos/set_commands`
+and `/templates/panorama/set_commands` along with `config_variables.yaml`
+to generate a formula-based Excel spreadsheet of loadable set commands.
 
-```bash
-cd tools
-python3 ./build_full_templates.py
-```
+Output is in the respective set_commands directory.
 
+#### build_full_templates.py
+Starts with the baseline.xml file for panorama and panos then adds in
+the xml snippets using the xml filenames and xpaths in the respective
+metadata.yaml files from the snippets folders to create a complete
+xml configuration file including jinja variables.
 
-The resulting templates are stored in the `full` directory as `iron_skillet_day1_template.xml`
+The resulting templates are stored in the `full` directory as
+`iron_skillet_day1_template.xml`
 
 
