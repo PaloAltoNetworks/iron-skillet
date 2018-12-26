@@ -36,7 +36,7 @@ Loading the full XML file as a candidate configuration:
 * Log into the GUI
 * Go to `Device` > `Setup` > `Operations`
 * Choose `Import named configuration snapshot`
-* Select the file from your local device to import
+* Select the file from a local directory to import
 * Choose `Load named configuration snapshot`
 * Review the loaded configuration and `commit` to apply changes
 
@@ -61,8 +61,8 @@ to disable, simply return to CLI operation mode with `exit` and enter
 'set cli scripting-mode off'.
 
 
-#### SET command spreadsheet
-Found in templates/panorama/set_commands and templates/panos/set_commands
+#### Using the SET command spreadsheet to edit values
+Found in `templates/panorama/set_commands` and `templates/panos/set_commands`
 are formula-based Excel files.
 
 The values in the `values` worksheet can be edited to create a
