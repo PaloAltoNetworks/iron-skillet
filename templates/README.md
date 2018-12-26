@@ -7,6 +7,9 @@ of scripting tools or other applications for rendering.
 Also contained are the set commands spreadsheets that use Excel formulas,
 allowing users to add in custom values specific to their deployment.
 
+A complete list of template variables, along with descriptions, can be found at
+(link???)
+
 ##  Excel set command spreadsheets
 The directories `templates/panorama/set_commands` and `templates/panos/set_commands`
 each contain an Excel file with two worksheets:
@@ -27,7 +30,7 @@ the configuration. Searching for `{{` makes it easy to find the variables
 in the file.
 
 The `create_loadable_configs.py` utility in `tools` is designed to read in
-the /tools/config_variables.yaml file for the substitution.
+the `config_variables.yaml` file for the substitution.
 
 For users that elect to do simple substitutions without python utilities,
 they can use text-based 'find-and-replace' for each variable value. Searches
@@ -44,7 +47,7 @@ house sets of xml config files. These are subsets of a main configuration
 specific to functional areas of the configuration such as security profiles,
 device system configuration, logging, etc.
 
-Designed primarily for API usage, the snippets are paired with a metadata.yaml
+Designed primarily for API usage, the snippets are paired with a `metadata.yaml`
 file that includes all variable names/defaults and an ordered list of file names
 and their respective xpaths.
 
