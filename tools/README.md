@@ -5,12 +5,11 @@ The python tools can be broken into two categories:
 * end user tools
     + create_loadable_configs.py: variable substitutions for xml/set to create
     loadable output files archied in `loadable_configs`
+
 * template administrator tools
     + build_full_templates.py: merge xml snippets into a full template file
     + create_set_spreadsheet.py: read the panorama and panos set commands .conf
     file and output a formula-based Excel file
-
-The first section will focus on the user tools.
 
 ## End user tools
 
@@ -36,7 +35,7 @@ vi config_variables.yaml   [Edit variables for your local environment]
 python3 ./create_loadable_configs.py
 ```
 
-The output loadable templates, full and snippet configs, are in the
+The output loadable templates, full and snippet configs, are saved in the
 `loadable_configs` directory with name as `config prefix` + `datetime`.
 
 Each run results in a new archive directory allowing for new configs with
@@ -44,7 +43,7 @@ modified variables.
 
 ## Template Admin
 The admin utilities are also python based and assume a working python
-environment. Directions for the virtual environment are listed above.
+environment. Directions for activating the virtual environment are above.
 
 #### create_set_spreadsheet.py
 Reads the set command .conf files in `/templates/panos/set_commands`
