@@ -21,14 +21,14 @@ manage and create loadable configurations. Additional documentation can be
 found in `tools`.
 
 #### Loading configurations using iron-skillet defaults
-The `loadable_configs` dir contains a variety of ready-to-go
+The `loadable_configs` directory contains a variety of ready-to-go
 NGFW and Panorama configurations based on iron-skillet template defaults.
 These can be loaded 'as-is' and later updated using the GUI or CLI.
 
 The two options to load are:
 
-* day1_template.xml: complete xml configuration to import and load
-* day1_template.conf: complete list of CLI-based set commands
+* ...day1_template.xml: complete xml configuration to import and load
+* ...day1_template.conf: complete list of CLI-based set commands
 
 ###### Full XML configuration file
 Loading the full XML file as a candidate configuration:
