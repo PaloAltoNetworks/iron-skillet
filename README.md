@@ -20,6 +20,21 @@ As an alternative, the `tools` directory contains python scripts to help
 manage and create loadable configurations. Additional documentation can be
 found in `tools`.
 
+#### Getting templates from the repo
+Users can either grab content file-by-file from the github repo or download all
+content to a local drive.
+
+**TIP:** when copying or getting text files from the repo, users should select
+the `Raw` format. This is found as a GUI option when viewing the file.
+
+Downloading the files is done using a `git clone` command or a direct
+download of the repo as a zip file.
+
+```
+git clone https://github.com/PaloAltoNetworks/iron-skillet.git
+```
+
+
 #### Loading configurations using iron-skillet defaults
 The `loadable_configs` directory contains a variety of ready-to-go
 NGFW and Panorama configurations based on iron-skillet template defaults.
@@ -65,26 +80,13 @@ to disable, simply return to CLI operation mode with `exit` and enter
 Found in `templates/panorama/set_commands` and `templates/panos/set_commands`
 are formula-based Excel files.
 
-The values in the `values` worksheet can be edited to create a
-localized configuration without the iron-skillet defaults. Then the user
-use the device CLI and traditional 'copy-and-paste' to load in the
-`set` commands as a candidate configuration.
+The cells in the `values` worksheet can be edited to create a
+localized configuration without the iron-skillet defaults. This updates the
+values in the `set commands` worksheet. Using the set command steps above,
+the configuration can then be loaded using the CLI.
 
-
-
-
-## Download
-To download these configuration snippets simply clone this repo with the following command:
-
-```
-git clone git@github.com:PaloAltoNetworks/iron-skillet.git
-```
-
-## Deployment
-Loading the XML configuration snippets can be done using a variety of methods.
-
-
-[Iron Skillet Documentation](https://iron-skillet.readthedocs.io/en/panos_v8.0/)
+**WARNING:** only update the `values` worksheet. Using caution if editing
+the worksheets to ensure cell references and formulas are not incorrect.
 
 ## Recommended Reading for Additional Best-Practice Configuration Steps
 
