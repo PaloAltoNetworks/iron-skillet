@@ -3,3 +3,4 @@ MarkupSafe==1.0
 oyaml==0.7
 passlib==1.7.1
 PyYAML==3.13
+XlsxWriter==1.1.2

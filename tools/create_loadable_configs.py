@@ -15,7 +15,7 @@
 # Author: Scott Shoaf <sshoaf@paloaltonetworks.com>
 
 '''
-Palo Alto Networks build_loadable_configs.py
+Palo Alto Networks create_loadable_configs.py
 
 Provides rendering of configuration templates with user defined values
 Output is a set of loadable full configurations and snippets for Panos and Panorama
