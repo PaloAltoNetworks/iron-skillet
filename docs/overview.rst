@@ -18,8 +18,8 @@ should be consistent across deployments.
 Why use day one templates?
 --------------------------
 
-Palo Alto Networks has expertise in both security prevention and its own product portfolio. Best practice documentation is designed to
-provide knowledge sharing of this expertise to customers and partners. This sharing helps improve security posture
+Palo Alto Networks has expertise in both security prevention and its own product portfolio. Best practice documentation
+is designed to provide knowledge sharing of this expertise to customers and partners. This sharing helps improve security posture
 across various scenarios.
 
 The templates play a complementary role by taking common best practices recommendations and compiling them into pre-built
@@ -30,8 +30,8 @@ day one configurations that can be readily loaded into Panorama or a next-genera
     + Improve security posture
 
 
-How can the templates be utilized?
-----------------------------------
+Using the templates
+-------------------
 
 The templates are available on GitHub at |repourl|.
 
@@ -54,7 +54,8 @@ Quick start using default values
 
 The repo contains a set of ``loadable configurations`` that use iron-skillet placeholder values.
 
-:ref:`using_default_configs`
+
+More information found at: :ref:`using_default_configs`.
 
 
 
