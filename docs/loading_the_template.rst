@@ -1,3 +1,4 @@
+.. _loading_templates:
 
 Loading templates
 =================

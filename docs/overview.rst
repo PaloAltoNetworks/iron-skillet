@@ -49,25 +49,42 @@ The templates in each device-type folder include:
     + ``set commands`` for traditional CLI configuration
 
 
-Quick start using default values
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Quick start using loadable configurations
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The repo contains a set of ``loadable configurations`` that use iron-skillet placeholder values.
+The repo contains a set of ready-to-go loadable configurations that use iron-skillet placeholder values.
+Formats include both xml and set commands.
 
+The xml file can be imported and loaded easily to Panorama or a firewall. The set command model requires 'copy-and-paste'
+from the CLI.
 
-More information found at: :ref:`using_default_configs`.
+More information for loading and editing these configurations can be found at: :ref:`using_default_configs`.
 
 
 
 Excel set command spreadsheet
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Also included for easy loading is an Excel formula-based spreadsheet with set commands. A variable value worksheet can be
+edited to update the spreadsheet using localized values for various configuratino attributes.
+
+More information for using the spreadsheet can be found at: :ref:`using_the_spreadsheet`.
 
 
+
+Jinja-based xml snippet and set command templates
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Scripting or automation-centric users may prefer to use the base template files.
 These are variable-based templates using a jinja ``{{ variable }}`` notation.
-See the section Creating Loadable Configs to understand variables and tools to populate values.
 
-More details about methods for loading the templates are in the section 'Loading Templates'
+The xml snippets with metadata are designed to use API-based configuration loading into Panorama or the firewall and
+can be coupled with workflow tools for repeatable deployments.
+
+Sample utilities are provided in the ``tools`` directory to create loadable configurations using these base templates.
+
+See the sections :ref:`creating_loadable_configs` and :ref:`loading_templates` for more information.
+
 
 .. Note::
     Day one templates are not complete configuration templates. To insert the device into the network requires interface, zone, routing,

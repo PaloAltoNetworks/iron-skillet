@@ -1,3 +1,5 @@
+.. _creating_loadable_configs:
+
 Creating Loadable Configurations
 ================================
 

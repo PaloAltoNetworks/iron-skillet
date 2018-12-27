@@ -1,7 +1,7 @@
 .. _using_default_configs:
 
-Using the Default Templates
-===========================
+Using the Default Loadable Configurations
+=========================================
 
 
 The templates are xml file format that have to be loaded into the device as a full config or with modular partial loading.
