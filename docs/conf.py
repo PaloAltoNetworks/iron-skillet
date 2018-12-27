@@ -158,25 +158,25 @@ texinfo_documents = [
 
 # github file path that changes across repo and branches
 
-extlinks = {'panosrepo': ('https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panos/snippets_panos/%s.xml', 'view xml template:   '),
-            'panoramarepo': ('https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panorama/snippets_panorama/%s.xml', 'view xml template:   '),
+extlinks = {'panosrepo': ('https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panos/snippets_panos/%s.xml', 'view xml template:   '),
+            'panoramarepo': ('https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panorama/snippets_panorama/%s.xml', 'view xml template:   '),
             }
 
 # load config file name that changes across repo and branches
 
 rst_prolog = """
-.. |branch| replace:: panos_v8.1
+.. |branch| replace:: 81dev
 .. |panosconfigfile| replace:: iron_skillet_panos_day1_template.xml
 .. |panoramaconfigfile| replace:: iron_skillet_panorama_day1_template.xml
 .. |clonessh| replace:: git@github.com:PaloAltoNetworks/iron-skillet.git
 .. |clonehttps| replace:: https://github.com/PaloAltoNetworks/iron-skillet.git
-.. |repourl| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.1
-.. |repotools| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.1/tools
-.. |panosxpaths| replace:: https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panos/snippets_panos/metadata.yaml
-.. |panossnippets| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.1/templates/panos/snippets_panos
-.. |panosloadorder| replace:: https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panos/snippets_panos/metadata.yaml
-.. |panoramaxpaths| replace:: https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panorama/snippets_panorama/metadata.yaml
-.. |panoramasnippets| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.1/templates/panorama/snippets_panorama
-.. |panoramaloadorder| replace:: https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panorama/snippets_panorama/metadata.yaml
+.. |repourl| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/81dev
+.. |repotools| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/81dev/tools
+.. |panosxpaths| replace:: https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panos/snippets_panos/metadata.yaml
+.. |panossnippets| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/81dev/templates/panos/snippets_panos
+.. |panosloadorder| replace:: https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panos/snippets_panos/metadata.yaml
+.. |panoramaxpaths| replace:: https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panorama/snippets_panorama/metadata.yaml
+.. |panoramasnippets| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/81dev/templates/panorama/snippets_panorama
+.. |panoramaloadorder| replace:: https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panorama/snippets_panorama/metadata.yaml
 """
 
