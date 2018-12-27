@@ -1,7 +1,8 @@
 
-Template Edits with GUI or Console
-==================================
+Using the Default Templates
+===========================
 
+.. _using_default_configs:
 
 The templates are xml file format that have to be loaded into the device as a full config or with modular partial loading.
 

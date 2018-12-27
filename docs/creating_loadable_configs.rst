@@ -9,7 +9,7 @@ A jinja model for variables is used with the form ``{{ variable }}``
 
 .. Warning::
     The configuration templates for device and Panorama system include jinja 'if' conditionals.
-    These are used by the build_my_config.py tool to determine what IP information should be added regarding
+    These are used by the create_loadable_configs.py tool to determine what IP information should be added regarding
     the management interface.
 
     If the tool or jinja formats will not be used, remove the {% text %} statements.
@@ -55,7 +55,7 @@ PANORAMA_DG              192.168.55.2             Panorama default gateway if to
 
 
 
-Build My Configuration python utility
+Create My Configuration python utility
 -------------------------------------
 
 The tools folder in the iron-skillet repo contains a simple python utility for variable substitution.

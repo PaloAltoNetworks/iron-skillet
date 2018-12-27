@@ -37,15 +37,31 @@ The templates are available on GitHub at |repourl|.
 
 Select the branch specific to the software release for your deployment.
 
-The library consists of a set of xml configuration templates grouped by:
+The library consists of a set of xml and set configuration templates grouped by:
 
     + ``panos`` for stand-alone next-gen firewall deployments
     + ``panorama`` for Panorama system and managed device configurations
 
-The templates in each device folder include:
+The templates in each device-type folder include:
 
     + ``snippets`` for more granular configuration elements
     + ``full config file`` to use for bootstrap or full import + load into a device
+    + ``set commands`` for traditional CLI configuration
+
+
+Quick start using default values
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The repo contains a set of ``loadable configurations`` that use iron-skillet placeholder values.
+
+:ref:`using_default_configs`
+
+
+
+Excel set command spreadsheet
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
 
 These are variable-based templates using a jinja ``{{ variable }}`` notation.
 See the section Creating Loadable Configs to understand variables and tools to populate values.
