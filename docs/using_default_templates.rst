@@ -29,11 +29,13 @@ instructions below for :ref:`gui_edits` or :ref:`cli_edits` to the default confi
       The set command conf file includes options for standard/static or dhcp management interfaces. Only load the commands specific
       to the interface type to be used.
 
+
    + get the conf file specific to the deployment type
 
    + log into the CLI and enter `configure` for configuration mode
 
    + copy set commands from the .conf file and paste into the terminal
+
 
 .. Note::
       It is recommended that the user only grab 30-40 set commands per paste to avoid any buffer issues resulting in
@@ -47,14 +49,6 @@ The templates are xml file format that have to be loaded into the device as a fu
 
 Instead of using scripting tools, the instructions below allow a user to ``Import`` and ``Load`` a candidate configuration
 that can be manually edited by :ref:`gui_edits`or :ref:`cli_edits`.
-
-
-Load a candidate configuration file
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-----------------------------------------------------------------------
-
-The starter steps below step through import and load of a full configuration file.
 
 
 Import the configuration file using the GUI
@@ -255,7 +249,7 @@ These values should match the sinkhole IP addresses configured under ``Addresses
 
 
 GUI variable edits: Panorama
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The steps below are for edits to the Panorama configuration. Variable edits in the GUI will include both the Panorama
 system edits and managed firewall device-group and template configurations.
