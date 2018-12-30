@@ -95,16 +95,16 @@ iron-skillet defaults.
 The complete list of variables used by iron-skillet can be found at :ref:`creating_loadable_configs`.
 
 
+----------------------------------------------------------------------
+
+
 GUI variable edits: Firewall
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The steps below are for a stand-alone NGFW platform without Panorama.
 
 
-Device tab edits
-~~~~~~~~~~~~~~~~
-
-----------------------------------------------------------------------
+**Device tab edits**
 
 The following edits are found under the ``Device`` tab
 
@@ -115,8 +115,8 @@ The following edits are found under the ``Device`` tab
 From here the following edits can be made:
 
 
-Hostname
-~~~~~~~~
+**Hostname**
+
 
 1. Go to Device --> Setup --> Management
 
@@ -126,8 +126,7 @@ Hostname
    :width: 600
 
 
-DNS and NTP servers
-~~~~~~~~~~~~~~~~~~~
+**DNS and NTP servers**
 
 1. Go to Device --> Setup --> Services
 
@@ -139,8 +138,8 @@ DNS and NTP servers
    :width: 600
 
 
-Static Management Interface
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Static Management Interface**
+
 
 For a static management interface configuration, edit the IP address, subnet mask, default gateway.
 
@@ -154,8 +153,8 @@ For a static management interface configuration, edit the IP address, subnet mas
    :width: 600
 
 
-Superuser Administrator
-~~~~~~~~~~~~~~~~~~~~~~~
+**Superuser Administrator**
+
 
 The sample configuration uses the default admin/admin username and password setting. It is recommended to remove this
 user and add a new superuser or at a minimum change the admin user password.
@@ -170,8 +169,8 @@ user and add a new superuser or at a minimum change the admin user password.
    :width: 400
 
 
-Syslog IP Address
-~~~~~~~~~~~~~~~~~
+**Syslog IP Address**
+
 
 Syslog is used to send traffic, threat and other log updates to an external system.
 
@@ -183,8 +182,8 @@ Syslog is used to send traffic, threat and other log updates to an external syst
    :width: 600
 
 
-Email Server Profile
-~~~~~~~~~~~~~~~~~~~~
+**Email Server Profile**
+
 
 The email profile is used to send key alerts to select recipients.
 
@@ -196,10 +195,8 @@ The email profile is used to send key alerts to select recipients.
    :width: 600
 
 
-Object tab edits
-~~~~~~~~~~~~~~~~
+**Object tab edits**
 
-----------------------------------------------------------------------
 
 The following edits are found under the ``Objects`` tab
 
@@ -210,8 +207,8 @@ The following edits are found under the ``Objects`` tab
 From here the following edits can be made:
 
 
-Addresses
-~~~~~~~~~
+**Addresses**
+
 
 The template uses two address objects for sinkhole values, one each for IPv4 and IPv6. These are referenced in
 security rules.
