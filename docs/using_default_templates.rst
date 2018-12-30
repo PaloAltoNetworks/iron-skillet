@@ -221,8 +221,8 @@ security rules.
    :width: 600
 
 
-Anti-Spyware Security Profiles
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Anti-Spyware Security Profiles**
+
 
 The templates define multiple named Anti-Spyware profiles all appended with ``-AS``. Each of these profiles must be
 updated with new sinkhole address if non-default values are required.
@@ -244,7 +244,6 @@ These values should match the sinkhole IP addresses configured under ``Addresses
 ----------------------------------------------------------------------
 
 
-
 GUI variable edits: Panorama
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -252,10 +251,8 @@ The steps below are for edits to the Panorama configuration. Variable edits in t
 system edits and managed firewall device-group and template configurations.
 
 
-Panorama tab edits
-~~~~~~~~~~~~~~~~~~
+**Panorama tab edits**
 
-----------------------------------------------------------------------
 
 The following edits are found under the ``Panorama`` tab
 
@@ -266,8 +263,8 @@ The following edits are found under the ``Panorama`` tab
 From here the following edits can be made:
 
 
-Panorama > Hostname
-~~~~~~~~~~~~~~~~~~~
+**Panorama > Hostname**
+
 
 1. Go to Panorama --> Setup --> Management
 
@@ -277,8 +274,8 @@ Panorama > Hostname
    :width: 600
 
 
-Panorama > DNS and NTP servers
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Panorama > DNS and NTP servers**
+
 
 1. Go to Panorama --> Setup --> Services
 
@@ -290,8 +287,8 @@ Panorama > DNS and NTP servers
    :width: 600
 
 
-Panorama > Management Interface
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Panorama > Management Interface**
+
 
 This configuration is specific to the Panorama management interface when statically defined.
 
@@ -305,8 +302,8 @@ This configuration is specific to the Panorama management interface when statica
    :width: 600
 
 
-Panorama > Superuser Administrator
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Panorama > Superuser Administrator**
+
 
 The sample configuration uses the default admin/admin username and password setting. It is recommended to remove this
 user and add a new superuser or at a minimum change the admin user password.
@@ -321,8 +318,8 @@ user and add a new superuser or at a minimum change the admin user password.
    :width: 400
 
 
-Panorama > Syslog IP Address
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Panorama > Syslog IP Address**
+
 
 Syslog is used to send traffic, threat and other log updates to an external system.
 
@@ -334,8 +331,8 @@ Syslog is used to send traffic, threat and other log updates to an external syst
    :width: 600
 
 
-Panorama > Email Server Profile
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Panorama > Email Server Profile**
+
 
 The email profile is used to send key alerts to select recipients.
 
@@ -347,8 +344,8 @@ The email profile is used to send key alerts to select recipients.
    :width: 600
 
 
-Panorama > Config Bundle Export Server
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Panorama > Config Bundle Export Server**
+
 
 1. Go to Panorama --> Scheduled Config Export
 
@@ -360,8 +357,8 @@ Panorama > Config Bundle Export Server
    :width: 600
 
 
-Panorama Template
-~~~~~~~~~~~~~~~~~
+**Panorama Template**
+
 
 1. Go to Panorama --> Template
 
@@ -371,8 +368,8 @@ Panorama Template
    :width: 600
 
 
-Panorama Device-Group
-~~~~~~~~~~~~~~~~~~~~~
+**Panorama Device-Group**
+
 
 1. Go to Panorama --> Device-Groups
 
@@ -382,10 +379,8 @@ Panorama Device-Group
    :width: 400
 
 
-Templates > Device tab edits
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Templates > Device tab edits**
 
-----------------------------------------------------------------------
 
 The following edits are found under the ``Device`` tab
 
@@ -396,8 +391,8 @@ The following edits are found under the ``Device`` tab
 From here the following edits can be made:
 
 
-Hostname
-~~~~~~~~
+**Hostname**
+
 
 1. Go to Device --> Setup --> Management
 
@@ -407,8 +402,8 @@ Hostname
    :width: 600
 
 
-DNS and NTP servers
-~~~~~~~~~~~~~~~~~~~
+**DNS and NTP servers**
+
 
 1. Go to Device --> Setup --> Services
 
@@ -420,8 +415,8 @@ DNS and NTP servers
    :width: 600
 
 
-Static Management Interface
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Static Management Interface**
+
 
 For a static management interface configuration, edit the IP address, subnet mask, default gateway.
 
@@ -435,8 +430,8 @@ For a static management interface configuration, edit the IP address, subnet mas
    :width: 600
 
 
-Superuser Administrator
-~~~~~~~~~~~~~~~~~~~~~~~
+**Superuser Administrator**
+
 
 The sample configuration uses the default admin/admin username and password setting. It is recommended to remove this
 user and add a new superuser or at a minimum change the admin user password.
@@ -451,8 +446,8 @@ user and add a new superuser or at a minimum change the admin user password.
    :width: 400
 
 
-Syslog IP Address
-~~~~~~~~~~~~~~~~~
+**Syslog IP Address**
+
 
 Syslog is used to send traffic, threat and other log updates to an external system.
 
@@ -464,8 +459,8 @@ Syslog is used to send traffic, threat and other log updates to an external syst
    :width: 600
 
 
-Email Server Profile
-~~~~~~~~~~~~~~~~~~~~
+**Email Server Profile**
+
 
 The email profile is used to send key alerts to select recipients.
 
@@ -477,8 +472,7 @@ The email profile is used to send key alerts to select recipients.
    :width: 600
 
 
-Device-Group > Objects tab edits
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Device-Group > Objects tab edits**
 
 ----------------------------------------------------------------------
 
@@ -491,8 +485,8 @@ The following edits are found under the ``Objects`` tab
 From here the following edits can be made:
 
 
-Addresses
-~~~~~~~~~
+**Addresses**
+
 
 The template uses two address objects for sinkhole values, one each for IPv4 and IPv6. These are referenced in
 security rules.
@@ -505,8 +499,8 @@ security rules.
    :width: 600
 
 
-Anti-Spyware Security Profiles
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Anti-Spyware Security Profiles**
+
 
 The templates define multiple named Anti-Spyware profiles all appended with ``-AS``. Each of these profiles must be
 updated with new sinkhole address if non-default values are required.
@@ -524,6 +518,7 @@ These values should match the sinkhole IP addresses configured under ``Addresses
 
 .. image:: images/spyware_sinkholes.png
    :width: 400
+
 
 ------------------------------------------------------------------------------------
 
@@ -549,16 +544,16 @@ the same candidate configuration changes.
 The {{ text }} values denotes where a variable is used in the template.
 
 
-Hostname
-~~~~~~~~
+**Hostname**
+
 
 ::
 
    set deviceconfig system hostname {{ hostname }}
 
 
-DNS and NTP Servers
-~~~~~~~~~~~~~~~~~~~
+**DNS and NTP Servers**
+
 
 ::
 
@@ -567,16 +562,16 @@ DNS and NTP Servers
    set deviceconfig system ntp-servers secondary-ntp-server ntp-server-address {{ NTP 2 }}
 
 
-Static management interface
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Static management interface**
+
 
 ::
 
    set deviceconfig system ip-address {{ ip address }} netmask {{ mask }} default-gateway {{ gateway }}
 
 
-Superuser admin account
-~~~~~~~~~~~~~~~~~~~~~~~
+**Superuser admin account**
+
 
 ::
 
@@ -586,8 +581,8 @@ Superuser admin account
 When the password command is entered, the user will be prompted for a password.
 
 
-Syslog and Email Server Profiles
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Syslog and Email Server Profiles**
+
 
 ::
 
@@ -596,16 +591,17 @@ Syslog and Email Server Profiles
    set shared log-settings email Sample_Email_Profile server Sample_Email_Profile to {{ to }}
    set shared log-settings email Sample_Email_Profile server Sample_Email_Profile gateway {{ address }}
 
-Address Objects
-~~~~~~~~~~~~~~~
+**Address Objects**
+
 
 ::
 
    set address Sinkhole-IPv4 ip-netmask {{ IPv4 address }}
    set address Sinkhole-IPv6 ip-netmask {{ IPv6 address }}
 
-Anti-Spyware Security Profiles
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Anti-Spyware Security Profiles**
+
 
 The same commands are used across all of the template security profiles ending in ``-AS``.
 
@@ -631,16 +627,16 @@ The {{ text }} values denotes where a variable is used in the template.
    are added under the template and device-group configurations.
 
 
-Panorama > Hostname
-~~~~~~~~~~~~~~~~~~~
+**Panorama > Hostname**
+
 
 ::
 
    set deviceconfig system hostname {{ hostname }}
 
 
-Panorama > DNS and NTP Servers
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Panorama > DNS and NTP Servers**
+
 
 ::
 
@@ -649,16 +645,16 @@ Panorama > DNS and NTP Servers
    set deviceconfig system ntp-servers secondary-ntp-server ntp-server-address {{ NTP 2 }}
 
 
-Panorama > Static management interface
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Panorama > Static management interface**
+
 
 ::
 
    set deviceconfig system ip-address {{ ip address }} netmask {{ mask }} default-gateway {{ gateway }}
 
 
-Panorama > Superuser admin account
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Panorama > Superuser admin account**
+
 
 ::
 
@@ -668,8 +664,8 @@ Panorama > Superuser admin account
 When the password command is entered, the user will be prompted for a password.
 
 
-Panorama > Syslog and Email Server Profiles
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Panorama > Syslog and Email Server Profiles**
+
 
 ::
 
@@ -678,8 +674,8 @@ Panorama > Syslog and Email Server Profiles
    set panorama log-settings email Sample_Email_Profile server Sample_Email_Profile to {{ to }}
    set panorama log-settings email Sample_Email_Profile server Sample_Email_Profile gateway {{ address }}
 
-Panorama > Config Bundle Export Schedule
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Panorama > Config Bundle Export Schedule**
+
 
 ::
 
@@ -688,77 +684,78 @@ Panorama > Config Bundle Export Schedule
 ------------------------------------------------------------------------------------------------------------------
 
 .. Note::
-   The configurations below are specific to the template and device-groups for managed firewall configuration.
-   The template and device-group names are default to ``sample`` for Iron-Skillet
+   The configuration for Panorama has some element in the iron-skillet shared template and others specific to the device
+   captured as a template-stack called sample_stack. The same is true for device-group items that are either shared
+   or contained in a device-specific group, namely reports.
 
 
-Template > Hostname
-~~~~~~~~~~~~~~~~~~~
+**Template > Hostname**
+
 
 ::
 
-   set template sample config deviceconfig system hostname {{ hostname }}
+   set template-stack sample_stack config deviceconfig system hostname {{ hostname }}
 
 
-Template > DNS and NTP Servers
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Template > DNS and NTP Servers**
+
 
 ::
 
-   set template sample config deviceconfig system dns-setting servers primary {{ DNS 1 }} secondary {{ DNS 2 }}
-   set template sample config deviceconfig system ntp-servers primary-ntp-server ntp-server-address {{ NTP 1 }}
-   set template sample config deviceconfig system ntp-servers secondary-ntp-server ntp-server-address {{ NTP 2 }}
+   set template iron-skillet config deviceconfig system dns-setting servers primary {{ DNS 1 }} secondary {{ DNS 2 }}
+   set template iron-skillet config deviceconfig system ntp-servers primary-ntp-server ntp-server-address {{ NTP 1 }}
+   set template iron-skillet config deviceconfig system ntp-servers secondary-ntp-server ntp-server-address {{ NTP 2 }}
 
 
-Template > Static management interface
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Template > Static management interface**
+
 
 This is to be configured for a firewall with a static management interface.
 
 ::
 
-   set template sample config deviceconfig system ip-address {{ ip address }}
-   set template sample config deviceconfig system netmask {{ mask }}
-   set template sample config deviceconfig system default-gateway {{ gateway }}
+   set template-stack sample_stack config deviceconfig system ip-address {{ ip address }}
+   set template-stack sample_stack config deviceconfig system netmask {{ mask }}
+   set template-stack sample_stack config deviceconfig system default-gateway {{ gateway }}
 
 
-Template > Superuser admin account
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Template > Superuser admin account**
+
 
 ::
 
-   set template sample config mgt-config users {{ username }} permissions role-based superuser yes
-   set template sample config mgt-config users {{ username }} password
+   set template iron-skillet config mgt-config users {{ username }} permissions role-based superuser yes
+   set template iron-skillet config mgt-config users {{ username }} password
 
 When the password command is entered, the user will be prompted for a password.
 
 
-Template > Syslog and Email Server Profiles
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Template > Syslog and Email Server Profiles**
+
 
 ::
 
-   set template sample config shared log-settings syslog Sample_Syslog_Profile server Sample_Syslog server {{ ip address }}
-   set template sample config shared log-settings email Sample_Email_Profile server Sample_Email_Profile from {{ from }}
-   set template sample config shared log-settings email Sample_Email_Profile server Sample_Email_Profile to {{ to }}
-   set template sample config shared log-settings email Sample_Email_Profile server Sample_Email_Profile gateway {{ address }}
+   set template iron-skillet config shared log-settings syslog Sample_Syslog_Profile server Sample_Syslog server {{ ip address }}
+   set template iron-skillet config shared log-settings email Sample_Email_Profile server Sample_Email_Profile from {{ from }}
+   set template iron-skillet config shared log-settings email Sample_Email_Profile server Sample_Email_Profile to {{ to }}
+   set template iron-skillet config shared log-settings email Sample_Email_Profile server Sample_Email_Profile gateway {{ address }}
 
 
-Device-Group > Address Objects
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Device-Group > Address Objects**
+
 
 ::
 
-   set device-group sample address Sinkhole-IPv4 ip-netmask {{ IPv4 address }}
-   set device-group sample address Sinkhole-IPv6 ip-netmask {{ IPv6 address }}
+   set shared address Sinkhole-IPv4 ip-netmask {{ IPv4 address }}
+   set shared address Sinkhole-IPv6 ip-netmask {{ IPv6 address }}
 
 
-Device-Group Anti-Spyware Security Profiles
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Device-Group Anti-Spyware Security Profiles**
 
-The same commands are used across all of the template security profiles ending in ``-AS``.
+
+The same commands are used across all of the templated security profiles ending in ``-AS``.
 
 ::
 
-   set device-group sample profiles spyware {{ profile name }} botnet-domains sinkhole ipv4-address {{ IPv4 address }}
-   set device-group sample profiles spyware {{ profile name }} botnet-domains sinkhole ipv6-address {{ IPv6 address }}
+   set shared profiles spyware {{ profile name }} botnet-domains sinkhole ipv4-address {{ IPv4 address }}
+   set shared sample profiles spyware {{ profile name }} botnet-domains sinkhole ipv6-address {{ IPv6 address }}
