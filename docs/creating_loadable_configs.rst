@@ -17,6 +17,8 @@ A jinja model for variables is used with the form ``{{ variable }}``
     If the tool or jinja formats will not be used, remove the {% text %} statements.
     The user will also have to manually replace the variables in order for the config to load and commit
 
+.. _variable_list:
+
 Variables list and descriptions
 -------------------------------
 

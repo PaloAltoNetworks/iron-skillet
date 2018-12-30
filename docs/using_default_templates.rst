@@ -3,22 +3,54 @@
 Using the Default Loadable Configurations
 =========================================
 
+The default loadable configurations have been created using the iron-skillet default and sample values. These configurations
+can be loaded into Panorama or firewall for day one purposed.
+
+.. Note::
+      The values for syslog IP address, the email profile, and the config export IP address are sample information and should
+      be updated specific to the user's environment.
+
+Each directory corresponds to variations in the configuration specific to the Panorama and firewall management IP addresses:
+
+   + sample-cloud options: management interfaces for Panorama and PAN-OS use DHCP
+   + sample-mgmt-dhcp: PAN-OS default to DHCP while Panorama uses a static IP interface
+   + sample-mgmt-static: both PAN-OS and Panorama use static IP Interfaces for management
+
+Included for each type are a set command .conf file and xml full configuration file. Both include the same configurations.
+
+SET commands
+------------
+
+This model uses traditional CLI 'copy-and-paste' to load in the configuration line by line. Users can elect to edit default
+values for their specific deployment as each line is added or load the configuration as-is and then edit using the
+instructions below for :ref:`gui_edits` or :ref:`cli_edits` to the default configuration.
+
+.. Note::
+      The set command conf file includes options for standard/static or dhcp management interfaces. Only load the commands specific
+      to the interface type to be used.
+
+   + get the conf file specific to the deployment type
+
+   + log into the CLI and enter `configure` for configuration mode
+
+   + copy set commands from the .conf file and paste into the terminal
+
+.. Note::
+      It is recommended that the user only grab 30-40 set commands per paste to avoid any buffer issues resulting in
+      errors.
+
+
+XML configuration file
+----------------------
 
 The templates are xml file format that have to be loaded into the device as a full config or with modular partial loading.
 
-Base templates use a jinja variable format allowing for simple scripts to modify per-deployment values. A list of the
-variables can be found in the section, Creating Loadable Configurations.
-
 Instead of using scripting tools, the instructions below allow a user to ``Import`` and ``Load`` a candidate configuration
-that can be manually edited with the GUI or a small number of ``set`` console commands.
-
-.. Note::
-    Sample configuration files are in the my_config directory. Samples include a static management interface,
-    basic dhcp-client management interface, and additional dhcp-client options for cloud deployments.
+that can be manually edited by :ref:`gui_edits`or :ref:`cli_edits`.
 
 
 Load a candidate configuration file
------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ----------------------------------------------------------------------
 
@@ -53,14 +85,24 @@ Load the configuration
 
 
 .. Note::
-    If you see {{ text }} related import or load errors ensure you have the template file imported from the my_config
-    directory and not the template directory.
+    If you see {{ text }} related import or load errors ensure you have the template file imported from the loadable_configs
+    directory and not the templates directory.
 
 ----------------------------------------------------------------------
 
-GUI variable edits: Firewall
-----------------------------
+.. _gui_edits:
 
+GUI variable edits
+------------------
+
+After loading the configurations using set or xml commands, users can edit specific values instead of using the
+iron-skillet defaults.
+
+The complete list of variables used by iron-skillet can be found at :ref:`creating_loadable_configs`.
+
+
+GUI variable edits: Firewall
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The steps below are for a stand-alone NGFW platform without Panorama.
 
@@ -210,9 +252,10 @@ These values should match the sinkhole IP addresses configured under ``Addresses
 
 ----------------------------------------------------------------------
 
-GUI variable edits: Panorama
-----------------------------
 
+
+GUI variable edits: Panorama
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The steps below are for edits to the Panorama configuration. Variable edits in the GUI will include both the Panorama
 system edits and managed firewall device-group and template configurations.
@@ -493,8 +536,10 @@ These values should match the sinkhole IP addresses configured under ``Addresses
 
 ------------------------------------------------------------------------------------
 
-Console variable edits: Firewall
---------------------------------
+.. _cli_edits:
+
+CLI variable edits: Firewall
+----------------------------
 
 This section is specific to a non-Panorama managed NGFW.
 
@@ -571,8 +616,8 @@ The same commands are used across all of the template security profiles ending i
 
 ----------------------------------------------------------------------------------------------
 
-Console variable edits: Panorama
---------------------------------
+CLI variable edits: Panorama
+----------------------------
 
 This section is specific to configuration of a Panorama management system.
 
