@@ -62,3 +62,10 @@ The resulting templates are stored in the `full` directory as
 `iron_skillet_day1_template.xml`
 
 
+## Variables used by iron-skillet
+For information about the variables used in iron-skillet can be found at:
+
+[iron-skillet variables](https://iron-skillet.readthedocs.io/en/81dev/creating_loadable_configs.html#variables-list-and-descriptions)
+
+
+
