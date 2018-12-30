@@ -29,7 +29,6 @@ Variable name            Default value            Description
 ======================   =======================  ==========================================================
 ADMINISTRATOR_USERNAME   admin                    superuser id; prompted when using build_my_config tool
 ADMINISTRATOR_PASSWORD   admin                    superuser password; prompted and hashed in build_my_config
-MYCONFIG_DIR             sample_my_config         my_config folder prefix when use build_my_config tool
 FW_NAME                  sample                   used for hostname and device-group/template in Panorama
 TEMPLATE                 sample                   Panorama sample template name
 DEVICE_GROUP             sample                   Panorama sample device-group name
@@ -59,8 +58,8 @@ PANORAMA_DG              192.168.55.2             Panorama default gateway if to
 
 
 
-Create My Configuration python utility
--------------------------------------
+Create Loadable Configuration python utility
+--------------------------------------------
 
 The tools folder in the iron-skillet repo contains a simple python utility for variable substitution.
 
@@ -72,7 +71,8 @@ Similar instructions can work for Windows with python and pip installed.
 .. NOTE::
     This tool is designed for Python 3.6 or layer.
 
-Install build_my_config.py
+
+Install the repo and tools
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
@@ -110,19 +110,17 @@ If successful, the iron-skillet templates and tools are now ready to use.
 Update the variable values
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Inside the tools directory, update the my_variables.py file then run build_my_configs.py.
+Inside the tools directory, update the config_variables.yaml file then run create_loadable_configs.py.
 The example shows the vi text editor but any text editor may be used.
 
 ::
 
     (env)$ cd iron-skillet/tools  [if not in the tools directory]
-    (env)$ vi my_variables.py
+    (env)$ vi config_variables.yaml
 
-Edit the my_variables.py file for your local deployment and save.
+Edit the config_variables.yaml file for your local deployment and save.
 
 Key variables to edit include:
-
-    + my_config folder prefix: text name specific to the configuration output
 
     + management interface type: static, dhcp-client, dhcp-cloud based on firewall deployment
 
@@ -136,13 +134,14 @@ Ensure the variable values are correct and run the application.
 
 ::
 
-    (env)$ python3 build_my_configs.py
+    (env)$ python3 create_loadable_configs.py
+    >>> Enter the name of the output directory:
     >>> Enter the superuser administrator account username:
     >>> Enter the superuser administrator account password:
 
-This will run the python utility and output full and snippet xml config files.
-Loadable configs are stored in the my_configs directory.
-The config folder prefix is based on the MYCONFIG_DIR variable name.
+This will run the python utility and output set commands and full xml config files.
+Loadable configs are stored in the loadable_configs directory.
+The config folder prefix is based on the output directory name used when running the script.
 
 .. Warning::
     You will be prompted for a username/password that will be used in the configuruation file.

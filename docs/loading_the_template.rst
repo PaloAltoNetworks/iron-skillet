@@ -1,8 +1,7 @@
 .. _loading_templates:
 
-Loading templates
-=================
-
+Loading the XML templates
+=========================
 
 The template are xml file format that have to be loaded into the device as a full config or with modular partial loading.
 
@@ -10,9 +9,9 @@ Multiple options including GUI, CLI, and API can be utilized. The sections below
 using various models specific to the users expertise and current operational environment.
 
 .. Note::
-    Sample configuration files are in the my_config directory. Samples include a static management interface,
+    Sample configuration files are in the loadable_configs directory. Samples include a static management interface,
     basic dhcp-client management interface, and additional dhcp-client options for cloud deployments.
-    These configurations are loadable and can be manually editted although user-specific configurations can be
+    These configurations are loadable and can be manually edited although user-specific configurations can be
     created using the ```build_my_config``` utility in the tools folder.
 
 
@@ -22,12 +21,12 @@ Preparing the configuration files
 ----------------------------------------------------------------------
 
 The template files in the panos and panorama directories are xml format.
-These templates are also using a jinja variable model in the xml as ``{{ variable name }}``.
-In order to have a loadable configuration, the recommended practice is to use the build_my_config.py in the tools folder.
+These templates are using a jinja variable model in the xml as ``{{ variable name }}``.
+In order to have a loadable configuration, the recommended practice is to use create_loadable_configs.py in the tools folder.
 
-The build_my_config tool documentation section details how to use this tool.
+The :ref:`creating_loadable_configs` documentation section details how to use this tool.
 
-The output of the tool will be a set of xml snippet and full configuration files stored in the my_configs folder.
+The output of the tool will be a set of xml snippet and full configuration files stored in the `loadable_configs` folder.
 
 Sample files for a dhcp-client and static type firewall management interface are provided using default variable values.
 
@@ -364,68 +363,6 @@ Thus in order to use the API, two configuration items are needed:
 
 Along with these two items, the IP address of the device and a user-based API are required to modify the configuration.
 
+.. Note::
+        Each `snippets` directory in templates contains a metadata.yaml file that includes xpath and related file names
 
-Reference values contained in the repo
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-``xpaths list``: a python dictionary that can be used within scripts. The key is the reference name for the xpath and the value is the xpath name.
-The key and value will be referenced in the table below to show load order.
-
-``config snippets folder``: set of xml files named according to config element; referenced as the value in the snippet load order dictionary
-
-``snippet load order``: A python Ordered Dictionary used to show the config load order.
-The key is the xpath name from the xpaths list and the value is the config snippet file name.
-Load order is critical since some configuration elements like security rules rely on predefined objects such as EDLs, logging profiles, and security profiles.
-
-With the xpath, snippet, and load order various tools such as pan-python, curl, and postman can be used to add configuration using the API.
-Other tools such as Ansible and Terraform use the same concept but have their own template format to create playbooks and responders.
-
-
-
-Panorama template load items
-
-
-+---------------------+
-| xpaths list         |
-+=====================+
-| |panoramaxpaths|    |
-+---------------------+
-
-+---------------------+
-| snippets folder     |
-+=====================+
-| |panoramasnippets|  |
-+---------------------+
-
-+---------------------+
-| snippets load order |
-+=====================+
-| |panoramaloadorder| |
-+---------------------+
-
-
-
-PAN-OS template load items
-
-+---------------------+
-| xpaths list         |
-+=====================+
-| |panosxpaths|       |
-+---------------------+
-
-+---------------------+
-| snippets folder     |
-+=====================+
-| |panossnippets|     |
-+---------------------+
-
-+---------------------+
-| snippets load order |
-+=====================+
-| |panosloadorder|    |
-+---------------------+
-
-
-With the xpath, snippet, and load order various tools such as pan-python, curl, and postman can be used to add configuration using the API.
-Other tools such as Ansible and Terraform use the same concept but have their own template format to create playbooks and responders.
