@@ -532,6 +532,15 @@ These values should match the sinkhole IP addresses configured under ``Addresses
 
 .. _cli_edits:
 
+CLI variable edits
+------------------
+
+After loading the configurations using set or xml commands, users can edit specific values instead of using the
+iron-skillet defaults.
+
+The complete list of variables used by iron-skillet can be found at :ref:`creating_loadable_configs`.
+
+
 CLI variable edits: Firewall
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
