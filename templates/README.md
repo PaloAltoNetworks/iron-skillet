@@ -7,8 +7,9 @@ of scripting tools or other applications for rendering.
 Also contained are the set commands spreadsheets that use Excel formulas,
 allowing users to add in custom values specific to their deployment.
 
-A complete list of template variables, along with descriptions, can be found at
-(link???)
+A complete list of template variables, along with descriptions, can be found
+[here](https://iron-skillet.readthedocs.io/en/81dev/creating_loadable_configs.html#variables-list-and-descriptions)
+
 
 ##  Excel set command spreadsheets
 The directories `templates/panorama/set_commands` and `templates/panos/set_commands`
@@ -57,5 +58,8 @@ substitute variable values and output full xml configurations into the
 
 
 ## Details of template best practices
-The specific details of what is contained in each template element can be found at
-(documentation link)
+The details of what's in a template are located in the documentation:
+
+[Panorama template information](https://iron-skillet.readthedocs.io/en/81dev/panorama_template_guide.html)
+
+[PAN-OS template information](https://iron-skillet.readthedocs.io/en/81dev/panos_template_guide.html)
