@@ -17,6 +17,7 @@ Each directory corresponds to variations in the configuration specific to the Pa
    + sample-mgmt-static: both PAN-OS and Panorama use static IP Interfaces for management
 
 Included for each type are a set command .conf file and xml full configuration file. Both include the same configurations.
+Also in each directory is the config_varilables.yaml file to see what values were used to create the full configuration.
 
 SET commands
 ------------
@@ -52,7 +53,7 @@ that can be manually edited by :ref:`gui_edits`or :ref:`cli_edits`.
 
 
 Import the configuration file using the GUI
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. Click on the ``Device`` tab
 
@@ -68,7 +69,7 @@ Import the configuration file using the GUI
 
 
 Load the configuration
-~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^
 
 1. Still under the ``Operations`` tab, use ``Load named configuration snapshot`` choosing the day one config xml file
 
@@ -245,7 +246,7 @@ These values should match the sinkhole IP addresses configured under ``Addresses
 
 
 GUI variable edits: Panorama
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The steps below are for edits to the Panorama configuration. Variable edits in the GUI will include both the Panorama
 system edits and managed firewall device-group and template configurations.
