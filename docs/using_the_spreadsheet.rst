@@ -6,8 +6,6 @@ Formula-based Excel Spreadsheet
 For users who want to customize their configuration before loading without the use of python utilities, this is a preferred
 model for configuration.
 
-The spreadsheets are found in the repo at |panoramaset| and |panosset|.
-
 
 The spreadsheets can be found at :setcommands:`panos` and :setcommands:`panorama`
 
