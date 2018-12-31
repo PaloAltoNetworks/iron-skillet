@@ -61,7 +61,7 @@ XML configuration file
 The full configuration file can be imported and loaded using the management GUI.
 
 Instead of using scripting tools, the instructions below allow a user to ``Import`` and ``Load`` a candidate configuration
-that can be manually edited by :ref:`gui_edits`or :ref:`cli_edits`.
+that can be manually edited by :ref:`gui_edits` or :ref:`cli_edits`.
 
 
 .. Warning::
