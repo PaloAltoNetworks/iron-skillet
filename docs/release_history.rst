@@ -24,6 +24,7 @@ Template Content
     + updated virus profiles from 'default' to 'reset-both' so explicit blocking
     + added set commands template as text file and Excel spreadsheet
     + loadable default configurations include full xml and set commands
+    + update to the template stack snippet including <config> tree elements
 
 
 1.0.3
