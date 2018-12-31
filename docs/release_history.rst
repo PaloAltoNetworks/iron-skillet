@@ -146,6 +146,8 @@ Jan 4, 2019
     + simplified repo main README for non-python users
     + added documentation for the SET command spreadsheet
     + added next-level directory README files for added context
+    + general edits for using tools based on tools changes
+    + added description for Panorama template variations in Panorama template docs
 
 
 Nov 2, 2018
