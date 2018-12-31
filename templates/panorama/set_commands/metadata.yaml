@@ -1,6 +1,4 @@
-# snippets_panorama_dgstack_notshared is used to load a full Panorama configuration
-# this is a complete Panorama and reference device-group and template stack configuration
-# all values are contained in the device-groups and template stacks; nothing shared
+# this is a full Panorama configuration using shared device-group and template values
 
 # snippet name
 name: iron_skillet_panorama_set
