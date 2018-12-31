@@ -56,6 +56,23 @@ These snippets are also used by `tools/create_loadable_configs.py` to
 substitute variable values and output full xml configurations into the
 `loadable_configs` directory.
 
+## Types of Panorama templates
+Panorama has a multi-device management platform has various options for loading
+configurations, namely shared and device-specific configurations. This results
+in multiple template snippet types:
+
+* `snippets_panorama`: A full Panorama configuration using shared device-group
+and template configurations
+
+* `snippets_panorama_dgstack_shared`: used to add additional device-groups
+and stacks based on the shared model
+
+* `snippets_panorama_not_shared`: a full Panorama configuration with the device-group
+and stack containing all configuration elements. Nothing is shared.
+
+* `snippets_panorama_dgstack_notshared`: used to add additional device-groups
+and stack, each with full configuration elements. Nothing is shared.
+
 
 ## Details of template best practices
 The details of what's in a template are located in the documentation:
