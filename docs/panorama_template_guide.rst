@@ -5,8 +5,34 @@ Panorama templates
 The configuration snippet descriptions and the associated GitHub
 repository link for each xml snippet.
 
+Panorama can be configured using shared elements and device-specific elements. For xml configurations the use of shared
+or device-specific configurations is based on the xpath location of the snippets. Set commmands also denote shared or
+device-specific configurations. The provided xml snippets have variations in the metadata.yaml files specifying shared
+or device-specific placement in the configuration while the set commands and default loadable configuration are shared only.
+
+**Grouping of XML snippets**
+
+The xml template directories are group according to the user environment:
+
+    + `snippets_panorama`: A full Panorama configuration using shared device-group and template configurations
+
+
+    + `snippets_panorama_dgstack_shared`: used to add additional device-groups and stacks based on the shared model
+
+
+    + `snippets_panorama_not_shared`: a full Panorama configuration with the device-group and stack containing all configuration elements. Nothing is shared.
+
+
+    + `snippets_panorama_dgstack_notshared`: used to add additional device-groups and stack, each with full configuration elements. Nothing is shared.
+
+
+
 .. Note::
     The template version is found in the template xml file as a tag attribute
+
+
+.. Note::
+    The set commands utilize the same configuration settings
 
 
 General Device Configuration

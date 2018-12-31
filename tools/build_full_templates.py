@@ -28,6 +28,8 @@ Use at your own risk.
 import os
 import re
 import sys
+import oyaml
+
 from xml.etree import ElementTree
 
 
@@ -41,6 +43,10 @@ def build_xpath(parent_doc, xpath, new_element_contents):
     :param new_element_contents: contents of the element
     :return: None. parent_doc is modified in place
     """
+
+    # viewing the current xpath of interest
+    print('working with this xpath:')
+    print(xpath)
     # first of all, we need to fix the xpath to be relative (replace config with '.')
     modified_xpath = re.sub('^/config', '.', xpath)
     print(f'Checking xpath {modified_xpath}')
@@ -58,7 +64,7 @@ def build_xpath(parent_doc, xpath, new_element_contents):
         path_to_build = []
         # begin infinite loop
         while True:
-            # garb the last part of the xpath and start there
+            # grab the last part of the xpath and start there
             # we will work backwards 'up' the tree until we find something that exists and build all the parts we
             # need back 'down' the tree
             tail = split_path[-1]
@@ -87,16 +93,16 @@ def build_xpath(parent_doc, xpath, new_element_contents):
         # to another node that doesn't yet exist, go ahead and build them all the up
         while len(path_to_build) > 1:
             p = path_to_build.pop()
-            print('appending {} to parent_element'.format(p))
+            #print('appending {} to parent_element'.format(p))
             parent_element = ElementTree.SubElement(parent_element, p)
 
         # we should now have a document that has the tree fully built out to the xpath we want
         # wrap up the new_element_contents in the leaf node and attach it to the last known parent_element
         leaf_node = path_to_build[0]
         wrapped_snippet = f"<{leaf_node}>{new_element_contents}</{leaf_node}>"
-        print(wrapped_snippet)
+        #print(wrapped_snippet)
         snippet_xml = ElementTree.fromstring(wrapped_snippet)
-        print('appending to parent_element')
+        #print('appending to parent_element')
         parent_element.append(snippet_xml)
         # print it out if needed
         # print(ElementTree.tostring(parent_element))
@@ -107,11 +113,14 @@ def generate_full_config_template(config_type):
     Generates the full configuration template for a given configuration type (panos or panorama).
     This will use the load order
     :param config_type: currently supported: 'panos' or 'panorama'
-    :return: will print full configs to STDOUT and also overwrite the full/iron_skillet_day1_template.xml
+    :return: will print full configs to STDOUT and also overwrite the full/iron_skillet_<type>_full.xml
     """
     # get the path to the full baseline config for this config type
     full_config_file_path = os.path.abspath(os.path.join('..', 'templates', config_type, 'baseline', 'baseline.xml'))
-    output_file_path = os.path.abspath(os.path.join('..', 'templates', config_type, 'full', 'iron_skillet_day1_template.xml'))
+    output_file_path = os.path.abspath(os.path.join('..',
+                                                    'templates', config_type, 'full',
+                                                    'iron_skillet_{0}_full.xml'.format(config_type)))
+    metadata_file = os.path.abspath(os.path.join('..', 'templates', config_type, 'snippets_{0}'.format(config_type), 'metadata.yaml'))
 
     # open the file and read it in
     with open(full_config_file_path, 'r') as full_config_obj:
@@ -132,48 +141,51 @@ def generate_full_config_template(config_type):
     sys.path.append(config_path)
 
     # import both python files here based on config_type
-    load_order = __import__(f"{config_type}_snippet_load_order")
-    xpaths_list = __import__(f"{config_type}_xpaths_list")
+    '''
+    FIXME fix this to use the yaml file
+    '''
 
-    if config_type == 'panos':
-        snippet_dict = load_order.panos_gold_template_dict
-        xpaths_configtype = xpaths_list.xpaths_panos
-    elif config_type == 'panorama':
-        snippet_dict = load_order.panorama_gold_template_dict
-        xpaths_configtype = xpaths_list.xpaths_panorama
-    else:
-        print('Oops. Not a supported config type')
+    # read the metafile to get xpaths and load order
+    try:
+        with open(metadata_file, 'r') as snippet_metadata:
+            service_config = oyaml.load(snippet_metadata.read())
+
+    except IOError as ioe:
+        print(f'Could not open metadata file {metadata_file}')
+        print(ioe)
         sys.exit()
 
-    # iterator over the load order dict
+    # iterator through the metadata snippets load order
     # parse the snippets into XML objects
     # attach to the full_config dom
-    for xml_snippet in snippet_dict:
-        # xml_snippet is a key in the orderedDict of
-        # the value is the snippet file name
-        snippet_name = f'{snippet_dict[xml_snippet][0]}.xml'
-        snippet_path = os.path.join(config_path, 'snippets', snippet_name)
+    for xml_snippet in service_config['snippets']:
+        # xml_snippet is a set of attributes in the metadata.yaml file
+        # that includes the xpaths and files listed in the proper load order
+        snippet_name = xml_snippet['file']
+        xpath = xml_snippet['xpath']
+        snippet_path = os.path.join(config_path, 'snippets_{0}'.format(config_type), snippet_name)
 
         # skip snippets that aren't actually there for some reason
         if not os.path.exists(snippet_path):
             print(snippet_path)
             print('this snippet does not actually exist!')
-            continue
+            sys.exit()
 
         # read them in
         with open(snippet_path, 'r') as snippet_obj:
             snippet_string = snippet_obj.read()
 
+
         # verify this snippet has an xpath associated and if so, let's attach to the document
-        if xml_snippet in xpaths_configtype:
-            xpath = xpaths_configtype[xml_snippet]
-            # magic happens here
-            # update the document in place to attach the snippet string in the correct place according to it's xpath
-            build_xpath(full_config, xpath, snippet_string)
+        #if xml_snippet in xpaths_configtype:
+
+        # magic happens here
+        # update the document in place to attach the snippet string in the correct place according to it's xpath
+        build_xpath(full_config, xpath, snippet_string)
 
     print('=' * 80)
     raw_xml = str(ElementTree.tostring(full_config.getroot(), encoding='unicode'))
-    print(raw_xml)
+    #print(raw_xml)
     # open the output file for writing
     with open(output_file_path, 'w') as output_config_obj:
         output_config_obj.write(raw_xml)
