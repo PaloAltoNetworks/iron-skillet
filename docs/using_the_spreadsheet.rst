@@ -9,7 +9,7 @@ model for configuration.
 The spreadsheets are found in the repo at |panoramaset| and |panosset|.
 
 
-The spreadsheets can be found at :set_commands:`panos` and :set_commands:`panorama`
+The spreadsheets can be found at :setcommands:`panos` and :setcommands:`panorama`
 
 
 The ``values`` worksheet can be updated with user-specific values. Formulas embedded in the ``set commands`` worksheet
