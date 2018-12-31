@@ -160,6 +160,7 @@ texinfo_documents = [
 
 extlinks = {'panosrepo': ('https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panos/snippets_panos/%s.xml', 'view xml template:   '),
             'panoramarepo': ('https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panorama/snippets_panorama/%s.xml', 'view xml template:   '),
+            'setcommands': ('https://github.com/PaloAltoNetworks/iron-skillet/tree/81dev/templates/%s/set_commands', 'set commands '),
             }
 
 # load config file name that changes across repo and branches
