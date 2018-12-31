@@ -57,17 +57,4 @@
 </ntp-servers>
 <login-banner>You have accessed a protected system.
 Log off immediately if you are not an authorized user.</login-banner>
-<<<<<<< HEAD:my_configs/sample-mgmt-dhcp/panorama/snippets/device_system.xml
 <timezone>UTC</timezone>
-<hostname>firewall</hostname>
-<type>
-   <dhcp-client>
-     <send-hostname>yes</send-hostname>
-     <send-client-id>no</send-client-id>
-     <accept-dhcp-hostname>no</accept-dhcp-hostname>
-     <accept-dhcp-domain>no</accept-dhcp-domain>
-   </dhcp-client>
-</type>
-=======
-<timezone>UTC</timezone>
->>>>>>> 81dev:templates/panorama/snippets_panorama/device_system_shared.xml

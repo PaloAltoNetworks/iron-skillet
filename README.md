@@ -9,7 +9,7 @@ zones, NAT, etc.
 
 The iron-skillet template details and usage are documented at:
 
-[Iron Skillet Documentation](https://iron-skillet.readthedocs.io/en/panos_v8.1/)
+[Iron Skillet Documentation](https://iron-skillet.readthedocs.io/en/panos_v8.0/)
 
 ## Quick Start
 The templates are provided with a variety of usage options based
@@ -34,17 +34,6 @@ download of the repo as a zip file.
 git clone https://github.com/PaloAltoNetworks/iron-skillet.git
 ```
 
-<<<<<<< HEAD
-or
-
-```
-git clone https://github.com/PaloAltoNetworks/iron-skillet.git
-```
-
-## Deployment
-Loading the XML configuration snippets can be done using a variety of methods.
-=======
->>>>>>> 81dev
 
 #### Loading configurations using iron-skillet defaults
 The `loadable_configs` directory contains a variety of ready-to-go
@@ -90,7 +79,7 @@ to disable, simply return to CLI operation mode with `exit` and enter
 The detailed documentation provides a list of variables that can be edited
 and instructions for GUI and CLI edits to the these values.
 
-[iron-skillet variables](https://iron-skillet.readthedocs.io/en/81dev/creating_loadable_configs.html#variables-list-and-descriptions)
+[iron-skillet variables](https://iron-skillet.readthedocs.io/en/80dev/creating_loadable_configs.html#variables-list-and-descriptions)
 
 
 #### Using the SET command spreadsheet to edit values
@@ -137,4 +126,3 @@ See also the list of [contributors](https://github.com/PaloAltoNetworks/iron-ski
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
