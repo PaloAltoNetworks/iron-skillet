@@ -134,5 +134,5 @@ variables:
     type_hint: ip_address
 
 snippets:
-  - name: iron_skillet_panorama_day1_template.conf
-    file: iron_skillet_panorama_day1_template.conf
+  - name: iron_skillet_panorama_full.conf
+    file: iron_skillet_panorama_full.conf

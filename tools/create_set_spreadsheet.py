@@ -38,7 +38,7 @@ def create_spreadsheet(config_type):
     Generates the full configuration template for a given configuration type (panos or panorama).
     This will use the load order
     :param config_type: currently supported: 'panos' or 'panorama'
-    :return: will print full configs to STDOUT and also overwrite the full/iron_skillet_day1_template.xml
+    :return: will print full configs to STDOUT and also overwrite the full/iron_skillet_full.xml
     """
     # get the path to the full baseline config for this config type
 
@@ -49,12 +49,12 @@ def create_spreadsheet(config_type):
     # append to the sys path for module lookup
     sys.path.append(set_path)
 
-    set_file = '{0}/iron_skillet_{1}_day1_template.conf'.format(set_path, config_type)
+    set_file = '{0}/iron_skillet_{1}_full.conf'.format(set_path, config_type)
     config_variables = 'config_variables.yaml'.format(set_path)
 
     print('creating workbook based on {0}'.format(set_file))
     # Create a workbook and add worksheets.
-    workbook = xlsxwriter.Workbook('{0}/iron_skillet_{1}_day1_template.xlsx'.format(set_path, config_type))
+    workbook = xlsxwriter.Workbook('{0}/iron_skillet_{1}_full.xlsx'.format(set_path, config_type))
 
     # add columns and format width
     worksheet_values = workbook.add_worksheet('values')

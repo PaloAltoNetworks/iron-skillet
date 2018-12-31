@@ -3,7 +3,7 @@
     <devices />
     <users>
       <entry name="admin">
-        <phash>$1$5gZ/a.A2$pV.2SXirHAYC1W.HTwKXD0</phash>
+        <phash>$1$u.X/z5jN$bl8faXHV8uzCoPLLYPnur/</phash>
         <permissions>
           <role-based>
             <superuser>yes</superuser>
@@ -562,11 +562,13 @@ Log off immediately if you are not an authorized user.</login-banner>
           </vsys>
         <deviceconfig><system><hostname>sample</hostname>
 <type>
-  <static />
+   <dhcp-client>
+     <send-hostname>yes</send-hostname>
+     <send-client-id>no</send-client-id>
+     <accept-dhcp-hostname>no</accept-dhcp-hostname>
+     <accept-dhcp-domain>no</accept-dhcp-domain>
+   </dhcp-client>
 </type>
-<ip-address>192.0.2.6</ip-address>
-<netmask>255.255.128.0</netmask>
-<default-gateway>192.0.2.7</default-gateway>
 </system></deviceconfig></entry>
       </devices>
   </config>

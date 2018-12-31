@@ -59,7 +59,7 @@ metadata.yaml files from the snippets folders to create a complete
 xml configuration file including jinja variables.
 
 The resulting templates are stored in the `full` directory as
-`iron_skillet_day1_template.xml`
+`iron_skillet_full.xml`
 
 
 ## Variables used by iron-skillet

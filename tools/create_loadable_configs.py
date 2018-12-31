@@ -205,9 +205,9 @@ def replace_variables(config_type, render_type, input_var):
     # render full and set conf files
     print('\nworking with {0} config template'.format(render_type))
     if render_type == 'full':
-        filename = 'iron_skillet_{0}_day1_template.xml'.format(config_type)
+        filename = 'iron_skillet_{0}_full.xml'.format(config_type)
     if render_type == 'set_commands':
-        filename = 'iron_skillet_{0}_day1_template.conf'.format(config_type)
+        filename = 'iron_skillet_{0}_full.conf'.format(config_type)
 
     element = template_render(filename, template_path, render_type, context)
     template_save(filename, myconfig_path, config_type, element)

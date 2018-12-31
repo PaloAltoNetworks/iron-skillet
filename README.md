@@ -42,8 +42,8 @@ These can be loaded 'as-is' and later updated using the GUI or CLI.
 
 The two options to load are:
 
-* ...day1_template.xml: complete xml configuration to import and load
-* ...day1_template.conf: complete list of CLI-based set commands
+* ...full.xml: complete xml configuration to import and load
+* ...full.conf: complete list of CLI-based set commands
 
 ###### Full XML configuration file
 Loading the full XML file as a candidate configuration:

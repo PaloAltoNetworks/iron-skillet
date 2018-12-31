@@ -3,7 +3,7 @@
     <devices />
     <users>
       <entry name="admin">
-        <phash>$1$6KDgdTmZ$qzR6NE/lf665h057k5pFI0</phash>
+        <phash>$1$hWXr6arU$2UiafWdySsIZfJyj//Fuk.</phash>
         <permissions>
           <role-based>
             <superuser>yes</superuser>
@@ -576,7 +576,13 @@ Log off immediately if you are not an authorized user.</login-banner>
   <settings>
     <default-vsys>vsys1</default-vsys>
   </settings>
-<config><devices><entry[@name='localhost.localdomain']><deviceconfig><system><hostname>sample</hostname>
+    <config>
+      <devices>
+        <entry name="localhost.localdomain">
+          <vsys>
+            <entry name="vsys1" />
+          </vsys>
+        <deviceconfig><system><hostname>sample</hostname>
 <type>
    <dhcp-client>
      <send-hostname>yes</send-hostname>
@@ -585,7 +591,10 @@ Log off immediately if you are not an authorized user.</login-banner>
      <accept-dhcp-domain>no</accept-dhcp-domain>
    </dhcp-client>
 </type>
-</system></deviceconfig></entry[@name='localhost.localdomain']></devices></config></entry></template-stack><device-group> <entry name="sample_devicegroup"><reports><entry name="Host-visit malicious sites plus">
+</system></deviceconfig></entry>
+      </devices>
+  </config>
+</entry></template-stack><device-group> <entry name="sample_devicegroup"><reports><entry name="Host-visit malicious sites plus">
   <period>last-7-calendar-days</period>
   <topn>500</topn>
   <topm>50</topm>
