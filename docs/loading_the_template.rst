@@ -12,7 +12,7 @@ using various models specific to the users expertise and current operational env
     Sample configuration files are in the loadable_configs directory. Samples include a static management interface,
     basic dhcp-client management interface, and additional dhcp-client options for cloud deployments.
     These configurations are loadable and can be manually edited although user-specific configurations can be
-    created using the ```build_my_config``` utility in the tools folder.
+    created using the ```create_loadable_configs``` utility in the tools folder.
 
 
 Preparing the configuration files
@@ -27,8 +27,6 @@ In order to have a loadable configuration, the recommended practice is to use cr
 The :ref:`creating_loadable_configs` documentation section details how to use this tool.
 
 The output of the tool will be a set of xml snippet and full configuration files stored in the `loadable_configs` folder.
-
-Sample files for a dhcp-client and static type firewall management interface are provided using default variable values.
 
 
 Load full configuration file
@@ -56,7 +54,7 @@ The template uses ``{{ text }}`` markers in the config file to denote values tha
     These values must be modified offline and the file imported for a successful load and commit.
 
 .. Note::
-    The user is recommended to use the build_my_config.py tool to have a loadable configuration file
+    The user is recommended to use the create_loadable_configs.py tool to have a loadable configuration file
 
 
 Import the configuration file using the GUI
@@ -126,7 +124,7 @@ The template uses ``{{ text }}`` markers in the config file to denote values tha
     These values must be modified offline and the file imported for a successful load and commit.
 
 .. Note::
-    The user is recommended to use the build_my_config.py tool to have a loadable configuration file
+    The user is recommended to use the create_loadable_configs.py tool to have a loadable configuration file
 
 
 Import the Day One configuration: GUI
@@ -330,7 +328,7 @@ Simple scripts can be used to iterate through multiple load requests.
 
 
 .. Warning::
-    Before loading configurations, use the build_my_config.py tool to create loadable configuration snippets.
+    Before loading configurations, use the create_loadable_configs.py tool to create loadable configuration snippets.
     The templates have ``{{ variable }}`` elements that must be replaced.
 
 

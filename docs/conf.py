@@ -178,5 +178,7 @@ rst_prolog = """
 .. |panoramaxpaths| replace:: https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panorama/snippets_panorama/metadata.yaml
 .. |panoramasnippets| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/81dev/templates/panorama/snippets_panorama
 .. |panoramaloadorder| replace:: https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panorama/snippets_panorama/metadata.yaml
+.. |panoramaset| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/81dev/templates/panorama/set_commands
+.. |panosset| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/81dev/templates/panos/set_commands
 """
 

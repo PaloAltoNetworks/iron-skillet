@@ -1,10 +1,14 @@
 .. _using_default_configs:
 
-Using the Default Loadable Configurations
-=========================================
+Default Loadable Configurations
+===============================
 
 The default loadable configurations have been created using the iron-skillet default and sample values. These configurations
-can be loaded into Panorama or firewall for day one purposed.
+can be loaded into Panorama or a firewall for day one purposes.
+
+.. Warning::
+      Before committing the default configuration, be sure to edit the superuser name and password to avoid unauthorized access
+
 
 .. Note::
       The values for syslog IP address, the email profile, and the config export IP address are sample information and should
@@ -17,7 +21,13 @@ Each directory corresponds to variations in the configuration specific to the Pa
    + sample-mgmt-static: both PAN-OS and Panorama use static IP Interfaces for management
 
 Included for each type are a set command .conf file and xml full configuration file. Both include the same configurations.
-Also in each directory is the config_varilables.yaml file to see what values were used to create the full configuration.
+Also in each directory is the config_variables.yaml file to see what values were used to create the full configuration.
+
+.. Note::
+
+      Panorama can be configured using shared elements and device-specific elements. The default loadable configuration are
+      specific to the shared model only.
+
 
 SET commands
 ------------
@@ -30,6 +40,8 @@ instructions below for :ref:`gui_edits` or :ref:`cli_edits` to the default confi
       The set command conf file includes options for standard/static or dhcp management interfaces. Only load the commands specific
       to the interface type to be used.
 
+
+**Adding the configuration with set commands**
 
    + get the conf file specific to the deployment type
 
@@ -46,10 +58,15 @@ instructions below for :ref:`gui_edits` or :ref:`cli_edits` to the default confi
 XML configuration file
 ----------------------
 
-The templates are xml file format that have to be loaded into the device as a full config or with modular partial loading.
+The full configuration file can be imported and loaded using the management GUI.
 
 Instead of using scripting tools, the instructions below allow a user to ``Import`` and ``Load`` a candidate configuration
 that can be manually edited by :ref:`gui_edits`or :ref:`cli_edits`.
+
+
+.. Warning::
+      Loading a full configuration file will replace the existing candidate configuration. Save a copy of the existing configuration
+      prior to loading the iron-skillet xml configuration file. Edit any local values before committing as a running configuration.
 
 
 Import the configuration file using the GUI
@@ -251,6 +268,16 @@ GUI variable edits: Panorama
 The steps below are for edits to the Panorama configuration. Variable edits in the GUI will include both the Panorama
 system edits and managed firewall device-group and template configurations.
 
+The are four areas to be edited:
+
+   + Panorama platform settings
+
+   + iron-skillet template for shared device and network items
+
+   + sample template stack for device-specific items
+
+   + Shared device-group for shared objects and policies
+
 
 **Panorama tab edits**
 
@@ -358,23 +385,23 @@ The email profile is used to send key alerts to select recipients.
    :width: 600
 
 
-**Panorama Template**
+**Panorama > Template Stack**
 
 
 1. Go to Panorama --> Template
 
-2. Click on the ``sample`` link and edit the name
+2. Click on the ``sample_stack`` link and edit the name
 
 .. image:: images/panorama_templates.png
    :width: 600
 
 
-**Panorama Device-Group**
+**Panorama > Device-Group**
 
 
 1. Go to Panorama --> Device-Groups
 
-2. Click on the ``sample`` link and edit the name
+2. Click on the ``sample_devicegroup`` link and edit the name
 
 .. image:: images/panorama_devicegroup.png
    :width: 400
@@ -389,18 +416,15 @@ The following edits are found under the ``Device`` tab
    :width: 600
 
 
-From here the following edits can be made:
+
+.. Note::
+      The edits are grouped by the `iron-skillet` template edits and `sample_stack` template stack edits
 
 
-**Hostname**
+** iron-skillet template edits**
 
-
-1. Go to Device --> Setup --> Management
-
-2. Click the ``gear`` icon to edit the hostname
-
-.. image:: images/setup_management.png
-   :width: 600
+.. Note::
+      Make sure the template selected in the GUI is `iron-skillet` before completing the steps below
 
 
 **DNS and NTP servers**
@@ -413,21 +437,6 @@ From here the following edits can be made:
 3. Choose the Services (DNS) and NTP tabs accordingly
 
 .. image:: images/setup_services.png
-   :width: 600
-
-
-**Static Management Interface**
-
-
-For a static management interface configuration, edit the IP address, subnet mask, default gateway.
-
-1. Go to Device --> Setup --> Interfaces
-
-2. Click on the ``Management`` link
-
-3. Edit the management interface attributes
-
-.. image:: images/setup_interfaces.png
    :width: 600
 
 
@@ -471,6 +480,44 @@ The email profile is used to send key alerts to select recipients.
 
 .. image:: images/device_email.png
    :width: 600
+
+
+** iron-skillet template edits**
+
+.. Note::
+      Make sure the template selected in the GUI is `sample_stack` (or the updated name) before completing the steps below
+
+
+**Hostname**
+
+
+1. Go to Device --> Setup --> Management
+
+2. Click the ``gear`` icon to edit the hostname
+
+.. image:: images/setup_management.png
+   :width: 600
+
+
+**Static Management Interface**
+
+
+For a static management interface configuration, edit the IP address, subnet mask, default gateway.
+
+1. Go to Device --> Setup --> Interfaces
+
+2. Click on the ``Management`` link
+
+3. Edit the management interface attributes
+
+.. image:: images/setup_interfaces.png
+   :width: 600
+
+
+** Shared device-group edits**
+
+.. Note::
+      Make sure the device-group selected in the GUI is `Shared` before completing the steps below
 
 
 **Device-Group > Objects tab edits**

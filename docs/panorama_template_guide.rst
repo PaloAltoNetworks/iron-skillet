@@ -5,8 +5,14 @@ Panorama templates
 The configuration snippet descriptions and the associated GitHub
 repository link for each xml snippet.
 
+Panorama can be configured using shared elements and device-specific elements. For xml configurations the use of shared
+or device-specific configurations is based on the xpath location of the snippets. Set commmands also denote shared or
+device-specific configurations. The provided xml snippets have variations in the metadata.yaml files specifying shared
+or device-specific placement in the configuration while the set commands and default loadable configuration are shared only.
+
 .. Note::
     The template version is found in the template xml file as a tag attribute
+
 
 .. Note::
     The set commands utilize the same configuration settings
