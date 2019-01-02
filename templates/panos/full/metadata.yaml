@@ -1,63 +1,26 @@
-# snippets_panorama_dgstack_notshared is used to load a full Panorama configuration
-# this is a complete Panorama and reference device-group and template stack configuration
-# all values are contained in the device-groups and template stacks; nothing shared
+# full_panos is used to load a full NGFW configuration
 
-# snippet name
-name: set_command_panorama
+# snippet folder name
+name: full_panos
 # label used for menu selection
-label: v8.0 Iron-Skillet set commands for Panorama
-description: Set command configuration for Panorama
+label: v8.0 Iron-Skillet Full Configuration for NGFW
+description: Iron-Skillet day one configuration for a firewall
+dependency:
 # type of device configuration
-type: template
+type: panos
 extends:
 
 # grouping of like snippets for dynamic menu creation in pan-cnc
 labels:
-  service_type: iron_skillet_set
+  service_type: iron_skillet_full
+  template_category: panos_full
 
 # variables used in the configuration templates
 # type_hint defines the form field type in pan-cnc
 variables:
-  - name: PANORAMA_TYPE
-    description: Panorama management IP type
-    default: static
-    type_hint: dropdown
-    dd_list:
-      - key: static
-        value: static
-      - key: cloud dhcp
-        value: cloud
-  - name: PANORAMA_NAME
-    description: Panorama hostname
-    default: panorama01
-    type_hint: text
-  - name: PANORAMA_IP
-    description: Panorama IP
-    default: 192.168.55.7
-    type_hint: ip_address
-  - name: PANORAMA_MASK
-    description: Panorama netmask
-    default: 255.255.255.0
-    type_hint: ip_address
-  - name: PANORAMA_DG
-    description: Panorama default gateway
-    default: 192.168.55.2
-    type_hint: ip_address
-  - name: CONFIG_EXPORT_IP
-    description: IP address for scheduled config exports
-    default: 192.0.2.3
-    type_hint: ip_address
-  - name: STACK
-    description: Template stack name for Panorama
-    default: sample_stack
-    type_hint: text
-  - name: DEVICE_GROUP
-    description: Device-group name for Panorama
-    default: sample_devicegroup
-    type_hint: text
   - name: FW_NAME
-    description: Device Name for NGFW
-    default: sample
+    description: Firewall hostname
+    default: panos-01
     type_hint: text
   - name: MGMT_TYPE
     description: firewall management IP type
@@ -69,15 +32,15 @@ variables:
       - key: static
         value: static
   - name: MGMT_IP
-    description: NGFW management IP
+    description: NGFW management IP (if type=static)
     default: 192.0.2.6
     type_hint: ip_address
   - name: MGMT_MASK
-    description: NGFW management netmask
+    description: NGFW management netmask (if type=static)
     type_hint: ip_address
     default: 255.255.255.0
   - name: MGMT_DG
-    description: NGFW management default gateway
+    description: NGFW management default gateway (if type=static)
     default: 192.0.2.7
     type_hint: ip_address
   - name: NTP_1
@@ -95,7 +58,7 @@ variables:
   - name: ADMINISTRATOR_PASSWORD
     description: admin password
     default: admin
-    type_hint: password
+    type_hint: text
   - name: DNS_1
     description: primary dns server
     default: 8.8.8.8
@@ -133,6 +96,3 @@ variables:
     default: 192.0.2.2
     type_hint: ip_address
 
-snippets:
-  - name: iron_skillet_panorama_full.conf
-    file: iron_skillet_panorama_full.conf

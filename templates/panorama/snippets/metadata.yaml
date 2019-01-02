@@ -1,4 +1,4 @@
-# snippets_panorama is the base configuration directory for all child configurations
+# snippets is the base configuration directory for all child configurations
 # this is a complete Panorama and reference device-group and template stack configuration
 # this is based on a 'shared model' with all device-group elements in Shared
 # this is based on a 'shared model' with all template elements in the 'iron-skillet' template
@@ -6,7 +6,7 @@
 # snippet folder name
 name: snippets_panorama
 # label used for menu selection
-label: v8.1 Iron-Skillet for Panorama (Shared Values)
+label: v8.0 Iron-Skillet for Panorama (Shared Values)
 description: Iron-Skillet baseline configuration for Panorama with device-group and stack specific values
 # type of device configuration
 type: panorama

@@ -40,7 +40,7 @@ can be used.
 
 The set_command directory also contains a metadata.yaml file detailing the
 list of variables contained in the .conf file. This is used by external tools
-(link???) for application-based value substitution.
+for application-based value substitution.
 
 ## XML snippet files and metadata
 The `snippets` directories found in `templates/panos` and `templates/panorama`
@@ -61,16 +61,16 @@ Panorama has a multi-device management platform has various options for loading
 configurations, namely shared and device-specific configurations. This results
 in multiple template snippet types:
 
-* `snippets_panorama`: A full Panorama configuration using shared device-group
+* `snippets`: A full Panorama configuration using shared device-group
 and template configurations
 
-* `snippets_panorama_dgstack_shared`: used to add additional device-groups
+* `snippets_dgstack_shared`: used to add additional device-groups
 and stacks based on the shared model
 
-* `snippets_panorama_not_shared`: a full Panorama configuration with the device-group
+* `snippets_notshared`: a full Panorama configuration with the device-group
 and stack containing all configuration elements. Nothing is shared.
 
-* `snippets_panorama_dgstack_notshared`: used to add additional device-groups
+* `snippets_dgstack_notshared`: used to add additional device-groups
 and stack, each with full configuration elements. Nothing is shared.
 
 
