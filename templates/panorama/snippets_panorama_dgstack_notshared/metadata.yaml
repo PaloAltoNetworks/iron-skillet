@@ -104,15 +104,6 @@ variables:
     description: syslog server ip address
     default: 192.0.2.2
     type_hint: ip_address
-  - name: INCLUDE_PAN_EDL
-    description: include the predefined Palo Alto Networks external lists
-    default: True
-    type_hint: dropdown
-    dd_list:
-      - key: True
-        value: True
-      - key: False
-        value: False
 
 # snippets used for api configuration including xpath and element as file name
 # files will load in the order listed

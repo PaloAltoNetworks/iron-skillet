@@ -53,10 +53,7 @@ PANORAMA_TYPE            standard                 Used in order to set mgmt inte
 PANORAMA_IP              192.168.55.7             Panorama IP if to be added to my_config
 PANORAMA_MASK            255.255.255.0            Panorama netmask if to be added to my_config
 PANORAMA_DG              192.168.55.2             Panorama default gateway if to be added to my_config
-INCLUDE_PAN_EDL          True                     Add policy rules based on the panw named External Lists
 ======================   =======================  ==========================================================
-
-
 
 
 Create Loadable Configuration python utility
