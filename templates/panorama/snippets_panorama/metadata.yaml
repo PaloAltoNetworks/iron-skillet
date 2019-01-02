@@ -133,33 +133,6 @@ variables:
     description: syslog server ip address
     default: 192.0.2.2
     type_hint: ip_address
-  - name: INCLUDE_PAN_EDL
-    description: include the predefined Palo Alto Networks external lists
-    default: True
-    type_hint: dropdown
-    dd_list:
-      - key: yes
-        value: True
-      - key: no
-        value: False
-  - name: HIDE_BASIC
-    description: hide basics like dns, ntp, and sinkhole addresses
-    default: True
-    type_hint: dropdown
-    dd_list:
-      - key: yes
-        value: True
-      - key: no
-        value: False
-  - name: HIDE_EMAIL_SYSLOG
-    description: hide email and syslog settings
-    default: True
-    type_hint: dropdown
-    dd_list:
-      - key: yes
-        value: True
-      - key: no
-        value: False
 
 # snippets used for api configuration including xpath and element as file name
 # files will load in the order listed

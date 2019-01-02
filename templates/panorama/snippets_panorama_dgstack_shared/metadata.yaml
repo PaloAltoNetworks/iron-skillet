@@ -61,15 +61,6 @@ variables:
     description: admin password
     default: admin
     type_hint: text
-  - name: INCLUDE_PAN_EDL
-    description: include the predefined Palo Alto Networks external lists
-    default: True
-    type_hint: dropdown
-    dd_list:
-      - key: True
-        value: True
-      - key: False
-        value: False
 
 # snippets used for api configuration including xpath and element as file name
 # files will load in the order listed
