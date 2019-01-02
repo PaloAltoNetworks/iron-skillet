@@ -8,12 +8,12 @@ description: Iron-Skillet day one configuration for a firewall
 dependency:
 # type of device configuration
 type: panos
-category: full
 extends:
 
 # grouping of like snippets for dynamic menu creation in pan-cnc
 labels:
   service_type: iron_skillet_full
+  template_category: full
 
 # variables used in the configuration templates
 # type_hint defines the form field type in pan-cnc

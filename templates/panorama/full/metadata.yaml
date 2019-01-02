@@ -10,12 +10,12 @@ label: v8.1 Iron-Skillet for Panorama (Shared Values)
 description: Iron-Skillet baseline configuration for Panorama with device-group and stack specific values
 # type of device configuration
 type: panorama
-category: full
 extends:
 
 # grouping of like snippets for dynamic menu creation in pan-cnc
 labels:
   service_type: iron_skillet_full
+  template_category: full
 
 # variables used in the configuration templates
 # type_hint defines the form field type in pan-cnc
