@@ -96,3 +96,6 @@ variables:
     default: 192.0.2.2
     type_hint: ip_address
 
+snippets:
+  - name: panos-full
+    file: iron_skillet_panos_full.xml
