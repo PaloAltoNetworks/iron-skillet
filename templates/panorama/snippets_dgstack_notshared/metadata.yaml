@@ -1,4 +1,4 @@
-# snippets_panorama_dgstack_notshared is used to load a full Panorama configuration
+# snippets_dgstack_notshared is used to load a full Panorama configuration
 # this is a complete Panorama and reference device-group and template stack configuration
 # all values are contained in the device-groups and template stacks; nothing shared
 
@@ -7,7 +7,7 @@ name: snippets_dgstack_notshared
 # label used for menu selection
 label: v8.1 Iron-Skillet for Panorama with Device-Group and Stack only (No Shared Values)
 description: Iron Skillet device-group and template stack config for Panorama
-dependency: snippets_panorama
+dependency: snippets
 # type of device configuration
 type: panorama
 extends:
@@ -110,86 +110,86 @@ variables:
 snippets:
   - name: template
     xpath: /config/devices/entry[@name='localhost.localdomain']/template
-    file: ../snippets_panorama/template.xml
+    file: ../snippets/template.xml
   - name: stack
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack
-    file: ../snippets_panorama/template_stack.xml
+    file: ../snippets/template_stack.xml
 # adding in the email profile so scheduler loads
   - name: panorama_log_settings
     xpath: /config/panorama/log-settings
     file: panorama_log_settings.xml
   - name: device_system_ip_hostname
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ STACK }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
-    file: ../snippets_panorama/device_system_local.xml
+    file: ../snippets/device_system_local.xml
   - name: device_system_services
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ STACK }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
-    file: ../snippets_panorama/device_system_shared.xml
+    file: ../snippets/device_system_shared.xml
   - name: device_setting
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ STACK }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
-    file: ../snippets_panorama/device_setting.xml
+    file: ../snippets/device_setting.xml
   - name: zone_protection_profile
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ STACK }}']/config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile
-    file: ../snippets_panorama/zone_protection_profile.xml
+    file: ../snippets/zone_protection_profile.xml
   - name: devicegroup
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group
-    file: ../snippets_panorama/device_group.xml
+    file: ../snippets/device_group.xml
   - name: tag
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/tag
-    file: ../snippets_panorama/tag.xml
+    file: ../snippets/tag.xml
   - name: address
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/address
-    file: ../snippets_panorama/address.xml
+    file: ../snippets/address.xml
   - name: external_list
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/external-list
-    file: ../snippets_panorama/external_list.xml
+    file: ../snippets/external_list.xml
   - name: local_log_profiles
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/log-settings/profiles
-    file: ../snippets_panorama/log_settings_profiles.xml
+    file: ../snippets/log_settings_profiles.xml
   - name: profiles_custom_url_category
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/profiles/custom-url-category
-    file: ../snippets_panorama/profiles_custom_url_category.xml
+    file: ../snippets/profiles_custom_url_category.xml
   - name: profiles_decryption
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/profiles/decryption
-    file: ../snippets_panorama/profiles_decryption.xml
+    file: ../snippets/profiles_decryption.xml
   - name: profiles_virus
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/profiles/virus
-    file: ../snippets_panorama/profiles_virus.xml
+    file: ../snippets/profiles_virus.xml
   - name: profiles_spyware
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/profiles/spyware
-    file: ../snippets_panorama/profiles_spyware.xml
+    file: ../snippets/profiles_spyware.xml
   - name: profiles_vulnerability
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/profiles/vulnerability
-    file: ../snippets_panorama/profiles_vulnerability.xml
+    file: ../snippets/profiles_vulnerability.xml
   - name: profiles_file_blocking
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/profiles/file-blocking
-    file: ../snippets_panorama/profiles_file_blocking.xml
+    file: ../snippets/profiles_file_blocking.xml
   - name: profiles_url_filtering
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/profiles/url-filtering
-    file: ../snippets_panorama/profiles_url_filtering.xml
+    file: ../snippets/profiles_url_filtering.xml
   - name: profiles_wildfire_analysis
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/profiles/wildfire-analysis
-    file: ../snippets_panorama/profiles_wildfire_analysis.xml
+    file: ../snippets/profiles_wildfire_analysis.xml
   - name: profile_group
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/profile-group
-    file: ../snippets_panorama/profile_group.xml
+    file: ../snippets/profile_group.xml
   - name: post_rulebase_default_security_rules
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/post-rulebase/default-security-rules
-    file: ../snippets_panorama/post_rulebase_default_security_rules.xml
+    file: ../snippets/post_rulebase_default_security_rules.xml
   - name: pre_rulebase_security
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/pre-rulebase/security
-    file: ../snippets_panorama/pre_rulebase_security.xml
+    file: ../snippets/pre_rulebase_security.xml
   - name: post_rulebase_decryption
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/post-rulebase/decryption
-    file: ../snippets_panorama/post_rulebase_decryption.xml
+    file: ../snippets/post_rulebase_decryption.xml
   - name: pre_rulebase_decryption
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/pre-rulebase/decryption
-    file: ../snippets_panorama/pre_rulebase_decryption.xml
+    file: ../snippets/pre_rulebase_decryption.xml
   - name: reports
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/reports
-    file: ../snippets_panorama/reports_simple.xml
+    file: ../snippets/reports_simple.xml
   - name: report_group_simple
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/report-group
-    file: ../snippets_panorama/report_group_simple.xml
+    file: ../snippets/report_group_simple.xml
   - name: email_scheduler_simple
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/email-scheduler
-    file: ../snippets_panorama/email_scheduler_simple.xml
+    file: ../snippets/email_scheduler_simple.xml
