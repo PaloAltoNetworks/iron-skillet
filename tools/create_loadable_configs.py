@@ -102,10 +102,7 @@ def template_render(filename, template_path, render_type, context):
 
     print('..creating template for {0}'.format(filename))
 
-    if render_type  == 'full':
-        env = Environment(loader=FileSystemLoader('{0}/{1}_{2}'.format(template_path, render_type, config_type)))
-    else:
-        env = Environment(loader=FileSystemLoader('{0}/{1}'.format(template_path, render_type)))
+    env = Environment(loader=FileSystemLoader('{0}/{1}'.format(template_path, render_type)))
 
     # load our custom jinja filters here, see the function defs below for reference
     env.filters['md5_hash'] = md5_hash

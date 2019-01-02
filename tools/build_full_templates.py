@@ -118,9 +118,9 @@ def generate_full_config_template(config_type):
     # get the path to the full baseline config for this config type
     full_config_file_path = os.path.abspath(os.path.join('..', 'templates', config_type, 'baseline', 'baseline.xml'))
     output_file_path = os.path.abspath(os.path.join('..',
-                                                    'templates', config_type, 'full_{0}'.format(config_type),
+                                                    'templates', config_type, 'full'.format(config_type),
                                                     'iron_skillet_{0}_full.xml'.format(config_type)))
-    metadata_file = os.path.abspath(os.path.join('..', 'templates', config_type, 'snippets_{0}'.format(config_type), 'metadata.yaml'))
+    metadata_file = os.path.abspath(os.path.join('..', 'templates', config_type, 'snippets'.format(config_type), 'metadata.yaml'))
 
     # open the file and read it in
     with open(full_config_file_path, 'r') as full_config_obj:
@@ -163,7 +163,7 @@ def generate_full_config_template(config_type):
         # that includes the xpaths and files listed in the proper load order
         snippet_name = xml_snippet['file']
         xpath = xml_snippet['xpath']
-        snippet_path = os.path.join(config_path, 'snippets_{0}'.format(config_type), snippet_name)
+        snippet_path = os.path.join(config_path, 'snippets'.format(config_type), snippet_name)
 
         # skip snippets that aren't actually there for some reason
         if not os.path.exists(snippet_path):
