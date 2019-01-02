@@ -123,11 +123,11 @@ variables:
     type_hint: ip_address
   - name: EMAIL_PROFILE_FROM
     description: from address in email alerts
-    default: test@yourdomain.com
+    default: sentfrom@yourdomain.com
     type_hint: text
   - name: EMAIL_PROFILE_TO
     description: to address in email alerts
-    default: test@yourdomain.com
+    default: sendto@yourdomain.com
     type_hint: text
   - name: SYSLOG_SERVER
     description: syslog server ip address
