@@ -18,7 +18,7 @@
 Palo Alto Networks create_loadable_configs.py
 
 Provides rendering of configuration templates with user defined values
-Output is a set of loadable full configurations and snippets for Panos and Panorama
+Output is a set of loadable full configurations and set commands for Panos and Panorama
 
 Edit the config_variables.yaml values and then run the script
 
@@ -102,7 +102,10 @@ def template_render(filename, template_path, render_type, context):
 
     print('..creating template for {0}'.format(filename))
 
-    env = Environment(loader=FileSystemLoader('{0}/{1}'.format(template_path, render_type)))
+    if render_type  == 'full':
+        env = Environment(loader=FileSystemLoader('{0}/{1}_{2}'.format(template_path, render_type, config_type)))
+    else:
+        env = Environment(loader=FileSystemLoader('{0}/{1}'.format(template_path, render_type)))
 
     # load our custom jinja filters here, see the function defs below for reference
     env.filters['md5_hash'] = md5_hash
