@@ -1,12 +1,12 @@
-# snippets_panorama_notshared is used to load a full Panorama configuration
+# snippets_panorama_dgstack_notshared is used to load a full Panorama configuration
 # this is a complete Panorama and reference device-group and template stack configuration
 # all values are contained in the device-groups and template stacks; nothing shared
 
 # snippet folder name
-name: snippets_panorama_notshared
+name: snippets_dgstack_notshared
 # label used for menu selection
-label: v8.1 Iron-Skillet for Panorama (No Shared Values)
-description: Iron-Skillet baseline configuration for Panorama using shared values for device-group and templates
+label: v8.1 Iron-Skillet for Panorama with Device-Group and Stack only (No Shared Values)
+description: Iron Skillet device-group and template stack config for Panorama
 dependency: snippets_panorama
 # type of device configuration
 type: panorama
@@ -19,35 +19,6 @@ labels:
 # variables used in the configuration templates
 # type_hint defines the form field type in pan-cnc
 variables:
-  - name: PANORAMA_TYPE
-    description: Panorama management IP type
-    default: static
-    type_hint: dropdown
-    dd_list:
-      - key: static
-        value: static
-      - key: cloud dhcp
-        value: cloud
-  - name: PANORAMA_NAME
-    description: Panorama hostname
-    default: panorama01
-    type_hint: text
-  - name: PANORAMA_IP
-    description: Panorama IP
-    default: 192.168.55.7
-    type_hint: ip_address
-  - name: PANORAMA_MASK
-    description: Panorama netmask
-    default: 255.255.255.0
-    type_hint: ip_address
-  - name: PANORAMA_DG
-    description: Panorama default gateway
-    default: 192.168.55.2
-    type_hint: ip_address
-  - name: CONFIG_EXPORT_IP
-    description: IP address for scheduled config exports
-    default: 192.0.2.3
-    type_hint: ip_address
   - name: STACK
     description: Template stack name for Panorama
     default: sample_stack
@@ -96,7 +67,7 @@ variables:
   - name: ADMINISTRATOR_PASSWORD
     description: admin password
     default: admin
-    type_hint: password
+    type_hint: text
   - name: DNS_1
     description: primary dns server
     default: 8.8.8.8
@@ -134,31 +105,19 @@ variables:
     default: 192.0.2.2
     type_hint: ip_address
 
-
 # snippets used for api configuration including xpath and element as file name
 # files will load in the order listed
 snippets:
-  - name: panorama_system
-    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
-    file: ../snippets_panorama/panorama_system.xml
-  - name: panorama_setting
-    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
-    file: ../snippets_panorama/panorama_setting.xml
-  - name: panorama_log_settings
-    xpath: /config/panorama/log-settings
-    file: ../snippets_panorama/panorama_log_settings.xml
-  - name: log_collector_group
-    xpath: /config/devices/entry[@name='localhost.localdomain']/log-collector-group
-    file: ../snippets_panorama/log_collector_group.xml
-  - name: devicegroup
-    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group
-    file: ../snippets_panorama/device_group.xml
   - name: template
     xpath: /config/devices/entry[@name='localhost.localdomain']/template
     file: ../snippets_panorama/template.xml
   - name: stack
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack
     file: ../snippets_panorama/template_stack.xml
+# adding in the email profile so scheduler loads
+  - name: panorama_log_settings
+    xpath: /config/panorama/log-settings
+    file: panorama_log_settings.xml
   - name: device_system_ip_hostname
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ STACK }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
     file: ../snippets_panorama/device_system_local.xml
@@ -171,6 +130,9 @@ snippets:
   - name: zone_protection_profile
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ STACK }}']/config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile
     file: ../snippets_panorama/zone_protection_profile.xml
+  - name: devicegroup
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group
+    file: ../snippets_panorama/device_group.xml
   - name: tag
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/tag
     file: ../snippets_panorama/tag.xml
@@ -221,7 +183,7 @@ snippets:
     file: ../snippets_panorama/post_rulebase_decryption.xml
   - name: pre_rulebase_decryption
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/pre-rulebase/decryption
-    file: ../snippets_panorama/pre_rulebase_decryption.xml  
+    file: ../snippets_panorama/pre_rulebase_decryption.xml
   - name: reports
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/reports
     file: ../snippets_panorama/reports_simple.xml
