@@ -52,6 +52,7 @@ CONFIG_PANORAMA_IP       yes                      For build_my_config, determine
 PANORAMA_TYPE            standard                 Used in order to set mgmt interface for standard or cloud
 PANORAMA_IP              192.168.55.7             Panorama IP if to be added to my_config
 PANORAMA_MASK            255.255.255.0            Panorama netmask if to be added to my_config
+PANORAMA_DG              192.168.55.2             Panorama default gateway if to be added to my_config
 ======================   =======================  ==========================================================
 
 
@@ -144,5 +145,6 @@ The config folder prefix is based on the output directory name used when running
     You will be prompted for a username/password that will be used in the configuruation file.
     A hash is created for the password so it is unreadable and the default admin/admin is removed.
     Remember the user/password information before committing to a running firewall or Panorama.
+
 
 
