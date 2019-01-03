@@ -25,6 +25,7 @@ Template Content
     + added set commands template as text file and Excel spreadsheet
     + loadable default configurations include full xml and set commands
     + update to the template stack snippet including <config> tree elements
+    + removed GTP logging elements since not supported on all hardware platforms
 
 
 1.0.3
