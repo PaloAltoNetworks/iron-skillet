@@ -2,7 +2,7 @@
   <mgt-config>
     <users>
       <entry name="admin">
-        <phash>$1$ybViBC.G$snMybvWmIwMK/npppqFlw1</phash>
+        <phash>$1$q2s5Inq3$VHA57x.tk6JRDx6H9q5tK/</phash>
         <permissions>
           <role-based>
             <superuser>yes</superuser>
@@ -802,14 +802,6 @@ Log off immediately if you are not an authorized user.</login-banner>
     </entry>
     <entry name="Data_Log_Forwarding">
       <log-type>data</log-type>
-      <filter>All Logs</filter>
-      <send-to-panorama>no</send-to-panorama>
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-    </entry>
-    <entry name="GTP_Log_Forwarding">
-      <log-type>gtp</log-type>
       <filter>All Logs</filter>
       <send-to-panorama>no</send-to-panorama>
       <send-syslog>

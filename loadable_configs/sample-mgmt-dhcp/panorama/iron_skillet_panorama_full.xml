@@ -3,7 +3,7 @@
     <devices />
     <users>
       <entry name="admin">
-        <phash>$1$2jHAALJ7$JjM/qDpYD4MYe.Uy82Hlx.</phash>
+        <phash>$1$yEPnuXfF$ud1I/p0etN7UpVs3Bukpj1</phash>
         <permissions>
           <role-based>
             <superuser>yes</superuser>
@@ -229,16 +229,6 @@ Log off immediately if you are not an authorized user.</login-banner>
         </entry>
       </match-list>
     </correlation>
-    <gtp>
-      <match-list>
-        <entry name="Syslog_GTP_Logs">
-          <send-syslog>
-            <member>Sample_Syslog_Profile</member>
-          </send-syslog>
-          <filter>All Logs</filter>
-        </entry>
-      </match-list>
-    </gtp>
     <auth>
       <match-list>
         <entry name="Syslog_Auth_Logs">
@@ -993,11 +983,6 @@ Log off immediately if you are not an authorized user.</login-banner>
     </entry>
     <entry name="Data_Log_Forwarding">
       <log-type>data</log-type>
-      <filter>All Logs</filter>
-      <send-to-panorama>yes</send-to-panorama>
-    </entry>
-    <entry name="GTP_Log_Forwarding">
-      <log-type>gtp</log-type>
       <filter>All Logs</filter>
       <send-to-panorama>yes</send-to-panorama>
     </entry>
