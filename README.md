@@ -14,10 +14,10 @@ Currently supported versions are:
 
 **8.1**
 
-[Templates](https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.0)
+[Templates](https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.1)
 
 
-[Documentation](https://iron-skillet.readthedocs.io/en/panos_v8.0/)
+[Documentation](https://iron-skillet.readthedocs.io/en/panos_v8.1/)
 
 
 
