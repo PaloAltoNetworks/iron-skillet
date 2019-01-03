@@ -22,7 +22,7 @@ Currently supported versions are:
 
 
 ## Contributing
-Please read [CONTRIBUTING.md](https://github.com/PaloAltoNetworks/iron-skillet/CONTRIBUTING.md) for details on how you can help contribute to this project.
+Please read [CONTRIBUTING.md](https://github.com/PaloAltoNetworks/iron-skillet/blob/master/CONTRIBUTING.md) for details on how you can help contribute to this project.
 
 
 ## Support

@@ -1,73 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5c0c3eb4-38e1-4781-84b8-1db56fc81714" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/panorama_08.x_template_v1.0_20180510.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/panorama_snippet_load_order.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/panorama_xpaths_list.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/panos_08.x_template_v1.0_20180510.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/panos_snippet_load_order.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/panos_xpaths_list.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panorama_version_08.0/xml-config-full/panorama_day_one_1.0.0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panorama_version_08.0/xml-config-snippets/address.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panorama_version_08.0/xml-config-snippets/device_setting.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panorama_version_08.0/xml-config-snippets/device_system.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panorama_version_08.0/xml-config-snippets/email_scheduler_simple.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panorama_version_08.0/xml-config-snippets/external_list.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panorama_version_08.0/xml-config-snippets/log_collector_group.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panorama_version_08.0/xml-config-snippets/log_settings_profiles.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panorama_version_08.0/xml-config-snippets/panorama_log_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panorama_version_08.0/xml-config-snippets/panorama_setting.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panorama_version_08.0/xml-config-snippets/panorama_system.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panorama_version_08.0/xml-config-snippets/post_rulebase_decryption.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panorama_version_08.0/xml-config-snippets/post_rulebase_default_security_rules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panorama_version_08.0/xml-config-snippets/pre_rulebase_decryption.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panorama_version_08.0/xml-config-snippets/pre_rulebase_security.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panorama_version_08.0/xml-config-snippets/profile_group.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panorama_version_08.0/xml-config-snippets/profiles_custom_url_category.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panorama_version_08.0/xml-config-snippets/profiles_decryption.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panorama_version_08.0/xml-config-snippets/profiles_file_blocking.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panorama_version_08.0/xml-config-snippets/profiles_spyware.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panorama_version_08.0/xml-config-snippets/profiles_url_filtering.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panorama_version_08.0/xml-config-snippets/profiles_virus.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panorama_version_08.0/xml-config-snippets/profiles_vulnerability.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panorama_version_08.0/xml-config-snippets/profiles_wildfire_analysis.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panorama_version_08.0/xml-config-snippets/report_group_simple.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panorama_version_08.0/xml-config-snippets/reports_simple.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panorama_version_08.0/xml-config-snippets/shared_log_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panorama_version_08.0/xml-config-snippets/tag.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panorama_version_08.0/xml-config-snippets/zone_protection_profile.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panos_version_08.0/xml-config-full/aws_day_one_1.0.0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panos_version_08.0/xml-config-full/panos_day_one_1.0.0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panos_version_08.0/xml-config-snippets/address.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panos_version_08.0/xml-config-snippets/device_setting.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panos_version_08.0/xml-config-snippets/device_system.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panos_version_08.0/xml-config-snippets/email_scheduler_simple.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panos_version_08.0/xml-config-snippets/external_list.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panos_version_08.0/xml-config-snippets/log_settings_profiles.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panos_version_08.0/xml-config-snippets/profile_group.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panos_version_08.0/xml-config-snippets/profiles_custom_url_category.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panos_version_08.0/xml-config-snippets/profiles_decryption.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panos_version_08.0/xml-config-snippets/profiles_file_blocking.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panos_version_08.0/xml-config-snippets/profiles_spyware.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panos_version_08.0/xml-config-snippets/profiles_url_filtering.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panos_version_08.0/xml-config-snippets/profiles_virus.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panos_version_08.0/xml-config-snippets/profiles_vulnerability.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panos_version_08.0/xml-config-snippets/profiles_wildfire_analysis.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panos_version_08.0/xml-config-snippets/report_group_simple.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panos_version_08.0/xml-config-snippets/reports_simple.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panos_version_08.0/xml-config-snippets/rulebase_decryption.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panos_version_08.0/xml-config-snippets/rulebase_default_security_rules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panos_version_08.0/xml-config-snippets/rulebase_security.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panos_version_08.0/xml-config-snippets/shared_log_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panos_version_08.0/xml-config-snippets/tag.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/panos_version_08.0/xml-config-snippets/zone_protection_profile.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_custom/email_scheduler_custom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_custom/panorama_reports_custom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_custom/panos_reports_custom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_custom/report_group_custom.xml" beforeDir="false" />
-    </list>
+    <list default="true" id="5c0c3eb4-38e1-4781-84b8-1db56fc81714" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -89,8 +23,36 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="330">
-                <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+              <first_editor relative-caret-position="630">
+                <caret line="42" selection-start-line="42" selection-end-line="42" />
+              </first_editor>
+              <second_editor>
+                <markdownNavigatorState />
+              </second_editor>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CONTRIBUTING.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CONTRIBUTING.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="555">
+                <caret line="37" selection-start-line="37" selection-end-line="37" />
+              </first_editor>
+              <second_editor>
+                <markdownNavigatorState />
+              </second_editor>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SUPPORT.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SUPPORT.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="165">
+                <caret line="11" selection-start-line="11" selection-end-line="11" />
               </first_editor>
               <second_editor>
                 <markdownNavigatorState />
@@ -180,8 +142,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/templates/panos/set_commands/ironskillet_panos_set.txt" />
-        <option value="$PROJECT_DIR$/templates/panorama/set_commands/ironskillet_panorama_set.conf" />
         <option value="$PROJECT_DIR$/templates/panos/set_commands/ironskillet_panos_set.conf" />
         <option value="$PROJECT_DIR$/templates/panorama/set_commands/iron_skillet_panorama_set.conf" />
         <option value="$PROJECT_DIR$/templates/panorama/snippets_panorama/device_group.xml" />
@@ -230,6 +190,8 @@
         <option value="$PROJECT_DIR$/templates/panorama/snippets_dgstack_notshared/metadata.yaml" />
         <option value="$PROJECT_DIR$/templates/panorama/snippets_notshared/metadata.yaml" />
         <option value="$PROJECT_DIR$/templates/panos/snippets/metadata.yaml" />
+        <option value="$PROJECT_DIR$/SUPPORT.md" />
+        <option value="$PROJECT_DIR$/CONTRIBUTING.md" />
         <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
@@ -328,7 +290,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-268" y="-1033" width="1920" height="1057" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.5007485" side_tool="true" weight="0.3794872" />
@@ -336,8 +297,8 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Python Console" order="11" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32896462" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49925148" visible="true" weight="0.228125" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19755058" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49925148" visible="true" weight="0.228125" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19755058" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="5" />
@@ -397,12 +358,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/panos/snippets/email_scheduler_simple.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/panos/snippets/external_list.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/panos/snippets/log_settings_profiles.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-671" />
@@ -682,11 +637,35 @@
     <entry file="file://$PROJECT_DIR$/LICENSE">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/SUPPORT.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="165">
+            <caret line="11" selection-start-line="11" selection-end-line="11" />
+          </first_editor>
+          <second_editor>
+            <markdownNavigatorState />
+          </second_editor>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CONTRIBUTING.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="555">
+            <caret line="37" selection-start-line="37" selection-end-line="37" />
+          </first_editor>
+          <second_editor>
+            <markdownNavigatorState />
+          </second_editor>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="330">
-            <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+          <first_editor relative-caret-position="630">
+            <caret line="42" selection-start-line="42" selection-end-line="42" />
           </first_editor>
           <second_editor>
             <markdownNavigatorState />
