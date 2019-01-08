@@ -8,6 +8,9 @@ repository link for each xml snippet.
 .. Note::
     The template version is found in the template xml file as a tag attribute
 
+.. Note::
+    The set commands utilize the same configuration settings
+
 
 General Device Configuration
 ----------------------------
