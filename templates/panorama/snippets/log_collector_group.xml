@@ -135,16 +135,6 @@
         </entry>
       </match-list>
     </correlation>
-    <gtp>
-      <match-list>
-        <entry name="Syslog_GTP_Logs">
-          <send-syslog>
-            <member>Sample_Syslog_Profile</member>
-          </send-syslog>
-          <filter>All Logs</filter>
-        </entry>
-      </match-list>
-    </gtp>
     <auth>
       <match-list>
         <entry name="Syslog_Auth_Logs">

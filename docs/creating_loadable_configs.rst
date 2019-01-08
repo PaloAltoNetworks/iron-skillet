@@ -1,3 +1,5 @@
+.. _creating_loadable_configs:
+
 Creating Loadable Configurations
 ================================
 
@@ -9,12 +11,13 @@ A jinja model for variables is used with the form ``{{ variable }}``
 
 .. Warning::
     The configuration templates for device and Panorama system include jinja 'if' conditionals.
-    These are used by the build_my_config.py tool to determine what IP information should be added regarding
+    These are used by the create_loadable_configs.py tool to determine what IP information should be added regarding
     the management interface.
 
     If the tool or jinja formats will not be used, remove the {% text %} statements.
     The user will also have to manually replace the variables in order for the config to load and commit
 
+.. _variable_list:
 
 Variables list and descriptions
 -------------------------------
@@ -25,11 +28,10 @@ The table below lists the template variables along with placeholder or recommend
 Variable name            Default value            Description
 ======================   =======================  ==========================================================
 ADMINISTRATOR_USERNAME   admin                    superuser id; prompted when using build_my_config tool
-ADMINISTRATOR_PASSWORD   admin                    superuser password; prompted and hashed in build_my_config
-MYCONFIG_DIR             sample_my_config         my_config folder prefix when use build_my_config tool
+ADMINISTRATOR_PASSWORD   admin [change first]     superuser password; prompted and hashed in build_my_config
 FW_NAME                  sample                   used for hostname and device-group/template in Panorama
-TEMPLATE                 sample                   Panorama sample template name
-DEVICE_GROUP             sample                   Panorama sample device-group name
+STACK                    sample_stack             Panorama sample template name
+DEVICE_GROUP             sample_devicegroup       Panorama sample device-group name
 DNS_1                    8.8.8.8 (Google)         primary DNS server
 DNS_2                    8.8.4.4 (Google)         secondary DNS server
 NTP_1                    0.pool.ntp.org           primary NTP server
@@ -38,8 +40,8 @@ SINKHOLE_IPV4            72.5.65.111              IPv4 sinkhole address (Palo Al
 SINKHOLE_IPV6            2600:5200::1             IPv6 sinkhole address (IPv6 bogon)
 INTERNET_ZONE            internet                 baseline exception for reports
 EMAIL_PROFILE_GATEWAY    192.0.2.1                email profile gateway address; NET-1 default
-EMAIL_PROFILE_FROM       test@yourdomain.com      from address for email alerts
-EMAIL_PROFILE_TO         test@yourdomain.com      to address for email alerts
+EMAIL_PROFILE_FROM       sentfrom@yourdomain.com  from address for email alerts
+EMAIL_PROFILE_TO         sendto@yourdomain.com    to address for email alerts
 SYSLOG_SERVER            192.0.2.2                syslog IP address; NET-1 unroutable default
 CONFIG_EXPORT_IP         192.0.2.3                config bundle export target from Panorama; NET-1 default
 MGMT_TYPE                dhcp-client              Firewall mgmt IP type (dhcp-client or static)
@@ -54,10 +56,8 @@ PANORAMA_DG              192.168.55.2             Panorama default gateway if to
 ======================   =======================  ==========================================================
 
 
-
-
-Build My Configuration python utility
--------------------------------------
+Create Loadable Configuration python utility
+--------------------------------------------
 
 The tools folder in the iron-skillet repo contains a simple python utility for variable substitution.
 
@@ -69,7 +69,8 @@ Similar instructions can work for Windows with python and pip installed.
 .. NOTE::
     This tool is designed for Python 3.6 or layer.
 
-Install build_my_config.py
+
+Install the repo and tools
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
@@ -81,12 +82,6 @@ Clone using ssh:
 
     $ git clone -b |branch| |clonessh|
 
-
-.. NOTE::
-    If using ssh, ensure that you have a github ssh key created for the local machine
-
-
-.. highlight:: bash
 
 Clone using https:
 
@@ -113,19 +108,17 @@ If successful, the iron-skillet templates and tools are now ready to use.
 Update the variable values
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Inside the tools directory, update the my_variables.py file then run build_my_configs.py.
+Inside the tools directory, update the config_variables.yaml file then run create_loadable_configs.py.
 The example shows the vi text editor but any text editor may be used.
 
 ::
 
     (env)$ cd iron-skillet/tools  [if not in the tools directory]
-    (env)$ vi my_variables.py
+    (env)$ vi config_variables.yaml
 
-Edit the my_variables.py file for your local deployment and save.
+Edit the config_variables.yaml file for your local deployment and save.
 
 Key variables to edit include:
-
-    + my_config folder prefix: text name specific to the configuration output
 
     + management interface type: static, dhcp-client, dhcp-cloud based on firewall deployment
 
@@ -139,19 +132,19 @@ Ensure the variable values are correct and run the application.
 
 ::
 
-    (env)$ python3 build_my_configs.py
+    (env)$ python3 create_loadable_configs.py
+    >>> Enter the name of the output directory:
     >>> Enter the superuser administrator account username:
     >>> Enter the superuser administrator account password:
 
-This will run the python utility and output full and snippet xml config files.
-Loadable configs are stored in the my_configs directory.
-The config folder prefix is based on the MYCONFIG_DIR variable name.
+This will run the python utility and output set commands and full xml config files.
+Loadable configs are stored in the loadable_configs directory.
+The config folder prefix is based on the output directory name used when running the script.
 
 .. Warning::
     You will be prompted for a username/password that will be used in the configuruation file.
     A hash is created for the password so it is unreadable and the default admin/admin is removed.
     Remember the user/password information before committing to a running firewall or Panorama.
-
 
 
 
