@@ -17,7 +17,7 @@ Template content updates are high level. Details can be found in the template gu
 1.0.4
 ^^^^^
 
-Released January 4, 2019
+Released January 8, 2019
 
 Template Content
 
@@ -107,7 +107,7 @@ Tools Release Updates
 ---------------------
 
 
-Jan 4, 2018
+Jan 8, 2019
 ^^^^^^^^^^^
 
     + moved config variables from a python dictionary to a yaml format
@@ -142,7 +142,7 @@ Documentation Revisions
 Documentation revisions outside of template-tooling updates. These are documented by date, not verison.
 
 
-Jan 4, 2019
+Jan 8, 2019
 ^^^^^^^^^^^
 
     + simplified repo main README for non-python users
