@@ -129,7 +129,7 @@ snippets:
     file: ../snippets/device_setting.xml
   - name: shared_log_settings
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ STACK }}']/config/shared/log-settings
-    file: shared_log_settings.xml
+    file: ../snippets/shared_log_settings.xml
   - name: zone_protection_profile
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ STACK }}']/config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile
     file: ../snippets/zone_protection_profile.xml
