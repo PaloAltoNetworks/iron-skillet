@@ -362,5 +362,5 @@ Thus in order to use the API, two configuration items are needed:
 Along with these two items, the IP address of the device and a user-based API are required to modify the configuration.
 
 .. Note::
-        Each `snippets` directory in templates contains a metadata.yaml file that includes xpath and related file names
+        Each `snippets` directory in templates contains a .meta-cnc.yaml file that includes xpath and related file names
 

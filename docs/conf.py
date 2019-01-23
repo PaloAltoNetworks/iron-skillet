@@ -173,12 +173,12 @@ rst_prolog = """
 .. |clonehttps| replace:: https://github.com/PaloAltoNetworks/iron-skillet.git
 .. |repourl| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/81dev
 .. |repotools| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/81dev/tools
-.. |panosxpaths| replace:: https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panos/snippets/metadata.yaml
+.. |panosxpaths| replace:: https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panos/snippets/.meta-cnc.yaml
 .. |panossnippets| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/81dev/templates/panos/snippets
-.. |panosloadorder| replace:: https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panos/snippets/metadata.yaml
-.. |panoramaxpaths| replace:: https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panorama/snippets/metadata.yaml
+.. |panosloadorder| replace:: https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panos/snippets/.meta-cnc.yaml
+.. |panoramaxpaths| replace:: https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panorama/snippets/.meta-cnc.yaml
 .. |panoramasnippets| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/81dev/templates/panorama/snippets
-.. |panoramaloadorder| replace:: https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panorama/snippets/metadata.yaml
+.. |panoramaloadorder| replace:: https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panorama/snippets/.meta-cnc.yaml
 .. |panoramaset| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/81dev/templates/panorama/set_commands
 .. |panosset| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/81dev/templates/panos/set_commands
 """
