@@ -77,7 +77,7 @@ snippets:
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack
     file: ../snippets/template_stack.xml
   - name: device_system_local
-    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ STACK }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='{{ TEMPLATE }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
     file: ../snippets/device_system_local.xml
   - name: devicegroup
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group

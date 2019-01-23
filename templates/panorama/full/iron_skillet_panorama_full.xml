@@ -1,4 +1,4 @@
-<config urldb="paloaltonetworks" version="8.1.0">
+<config urldb="paloaltonetworks" version="8.0.0">
    <mgt-config>
     <devices />
     <users>
@@ -565,20 +565,18 @@ Log off immediately if you are not an authorized user.</login-banner>
     </entry>
   </match-list>
 </correlation></log-settings></shared></config>
-</entry></template><template-stack><entry name="{{ STACK }}">
-  <templates>
-    <member>iron-skillet</member>
-  </templates>
+</entry>
+<entry name="{{ TEMPLATE }}">
   <settings>
     <default-vsys>vsys1</default-vsys>
   </settings>
-    <config>
-      <devices>
-        <entry name="localhost.localdomain">
-          <vsys>
-            <entry name="vsys1" />
-          </vsys>
-        <deviceconfig><system><hostname>{{ FW_NAME }}</hostname>
+  <config>
+    <devices>
+      <entry name="localhost.localdomain">
+        <vsys>
+          <entry name="vsys1" />
+        </vsys>
+      <deviceconfig><system><hostname>{{ FW_NAME }}</hostname>
 {%- if MGMT_TYPE == "static" %}
 <type>
   <static />
@@ -586,7 +584,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 <ip-address>{{ MGMT_IP }}</ip-address>
 <netmask>{{ MGMT_MASK }}</netmask>
 <default-gateway>{{ MGMT_DG }}</default-gateway>
-{% elif MGMT_TYPE == "dhcp-cloud" %}
+{% elif MGMT_TYPE == "dhcp-client" %}
 <type>
    <dhcp-client>
      <send-hostname>yes</send-hostname>
@@ -605,8 +603,13 @@ Log off immediately if you are not an authorized user.</login-banner>
    </dhcp-client>
 </type>
 {% endif %}</system></deviceconfig></entry>
-      </devices>
+    </devices>
   </config>
+</entry></template><template-stack><entry name="{{ STACK }}">
+  <templates>
+    <member>iron-skillet</member>
+    <member>{{ TEMPLATE }}</member>
+  </templates>
 </entry></template-stack><device-group> <entry name="{{ DEVICE_GROUP }}"><reports><entry name="Host-visit malicious sites plus">
   <period>last-7-calendar-days</period>
   <topn>500</topn>

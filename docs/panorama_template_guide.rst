@@ -125,7 +125,7 @@ General device settings that effect security posture. Found in Device > Setup in
 System Configuration
 ~~~~~~~~~~~~~~~~~~~~
 
-:panoramarepo:`device_system`
+:panoramarepo:`device_system_shared`
 
 System configuration settings for dynamic updates and network services
 (eg. DNS, NTP).
@@ -148,7 +148,7 @@ System configuration settings for dynamic updates and network services
 
 .. Note::
     The management config types include static, dhcp-client, or dhcp-cloud as a special case of dhcp-client.
-    This is specific to each deployment and can be selected as part of the tools to build ```my_config```.
+    This is specific to each deployment and can be selected as part of the tools to build ```loadable_configs```.
     Since management interface is in the template config, this option must be included for deployment.
 
 
