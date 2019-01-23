@@ -48,7 +48,7 @@ variables:
     description: IP address for scheduled config exports
     default: 192.0.2.3
     type_hint: ip_address
-  - name: STACK
+  - name: TEMPLATE
     description: Template stack name for Panorama
     default: sample_stack
     type_hint: text   
@@ -156,23 +156,20 @@ snippets:
   - name: template
     xpath: /config/devices/entry[@name='localhost.localdomain']/template
     file: ../snippets/template.xml
-  - name: stack
-    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack
-    file: ../snippets/template_stack.xml
   - name: device_system_ip_hostname
-    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ STACK }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='{{ TEMPLATE }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
     file: ../snippets/device_system_local.xml
   - name: device_system_services
-    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ STACK }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='{{ TEMPLATE }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
     file: ../snippets/device_system_shared.xml
   - name: device_setting
-    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ STACK }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='{{ TEMPLATE }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     file: ../snippets/device_setting.xml
   - name: shared_log_settings
-    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ STACK }}']/config/shared/log-settings
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='{{ TEMPLATE }}']/config/shared/log-settings
     file: ../snippets/shared_log_settings.xml
   - name: zone_protection_profile
-    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ STACK }}']/config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='{{ TEMPLATE }}']/config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile
     file: ../snippets/zone_protection_profile.xml
   - name: tag
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/tag

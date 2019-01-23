@@ -20,6 +20,10 @@ labels:
 # variables used in the configuration templates
 # type_hint defines the form field type in pan-cnc
 variables:
+  - name: TEMPLATE
+    description: Template name for the managed device
+    default: sample_template
+    type_hint: text
   - name: STACK
     description: Template stack name for Panorama
     default: sample_stack
@@ -66,6 +70,9 @@ variables:
 # snippets used for api configuration including xpath and element as file name
 # files will load in the order listed
 snippets:
+  - name: template
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template
+    file: ../snippets/template.xml
   - name: stack
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack
     file: ../snippets/template_stack.xml
