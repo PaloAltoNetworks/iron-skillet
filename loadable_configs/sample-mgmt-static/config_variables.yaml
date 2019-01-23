@@ -28,7 +28,7 @@ variables:
     description: Device Name for NGFW
     value: sample
   - name: MGMT_TYPE
-    description: firewall management IP type (static or dhcp-cloud)
+    description: firewall management IP type (static or dhcp-client)
     value: static
   - name: MGMT_IP
     description: NGFW management IP

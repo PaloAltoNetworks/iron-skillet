@@ -586,7 +586,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 <ip-address>{{ MGMT_IP }}</ip-address>
 <netmask>{{ MGMT_MASK }}</netmask>
 <default-gateway>{{ MGMT_DG }}</default-gateway>
-{% elif MGMT_TYPE == "dhcp-cloud" %}
+{% elif MGMT_TYPE == "dhcp-client" %}
 <type>
    <dhcp-client>
      <send-hostname>yes</send-hostname>
