@@ -120,7 +120,7 @@ Edit the config_variables.yaml file for your local deployment and save.
 
 Key variables to edit include:
 
-    + management interface type: static, dhcp-client, dhcp-cloud based on firewall deployment
+    + management interface type: static or dhcp-client based on firewall deployment
 
     + Panorama deployment type: standard or cloud based on Panorama deployment
 
