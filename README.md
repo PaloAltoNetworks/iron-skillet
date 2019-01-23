@@ -9,7 +9,7 @@ zones, NAT, etc.
 
 The iron-skillet template details and usage are documented at:
 
-[Iron Skillet Documentation](https://iron-skillet.readthedocs.io/en/panos_v8.0/)
+[Iron Skillet Documentation](https://iron-skillet.readthedocs.io/en/panos_v8.0)
 
 ## Quick Start
 The templates are provided with a variety of usage options based
