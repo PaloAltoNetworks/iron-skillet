@@ -30,7 +30,8 @@ Variable name            Default value            Description
 ADMINISTRATOR_USERNAME   admin                    superuser id; prompted when using build_my_config tool
 ADMINISTRATOR_PASSWORD   admin [change first]     superuser password; prompted and hashed in build_my_config
 FW_NAME                  sample                   used for hostname and device-group/template in Panorama
-STACK                    sample_stack             Panorama sample template name
+TEMPLATE                 sample_template          template for device specific configurations
+STACK                    sample_stack             Panorama sample template stack
 DEVICE_GROUP             sample_devicegroup       Panorama sample device-group name
 DNS_1                    8.8.8.8 (Google)         primary DNS server
 DNS_2                    8.8.4.4 (Google)         secondary DNS server

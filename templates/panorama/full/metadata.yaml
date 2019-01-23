@@ -49,6 +49,10 @@ variables:
     description: IP address for scheduled config exports
     default: 192.0.2.3
     type_hint: ip_address
+  - name: TEMPLATE
+    description: Template name for Panorama
+    default: sample_template
+    type_hint: text
   - name: STACK
     description: Template stack name for Panorama
     default: sample_stack

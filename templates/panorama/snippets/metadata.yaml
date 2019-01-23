@@ -48,6 +48,10 @@ variables:
     description: IP address for scheduled config exports
     default: 192.0.2.3
     type_hint: ip_address
+  - name: TEMPLATE
+    description: Template name for the managed device
+    default: sample_template
+    type_hint: text
   - name: STACK
     description: Template stack name for Panorama
     default: sample_stack
@@ -219,7 +223,7 @@ snippets:
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack
     file: template_stack.xml
   - name: device_system_local
-    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ STACK }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='{{ TEMPLATE }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
     file: device_system_local.xml
   - name: devicegroup
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group

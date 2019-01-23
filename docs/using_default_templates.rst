@@ -742,7 +742,7 @@ When the password command is entered, the user will be prompted for a password.
 
 ::
 
-   set template-stack sample_stack config deviceconfig system hostname {{ hostname }}
+   set template sample_template config deviceconfig system hostname {{ hostname }}
 
 
 **Template > DNS and NTP Servers**
@@ -762,9 +762,9 @@ This is to be configured for a firewall with a static management interface.
 
 ::
 
-   set template-stack sample_stack config deviceconfig system ip-address {{ ip address }}
-   set template-stack sample_stack config deviceconfig system netmask {{ mask }}
-   set template-stack sample_stack config deviceconfig system default-gateway {{ gateway }}
+   set template sample_template config deviceconfig system ip-address {{ ip address }}
+   set template sample_template config deviceconfig system netmask {{ mask }}
+   set template sample_template config deviceconfig system default-gateway {{ gateway }}
 
 
 **Template > Superuser admin account**

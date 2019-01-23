@@ -19,14 +19,14 @@ labels:
 # variables used in the configuration templates
 # type_hint defines the form field type in pan-cnc
 variables:
-  - name: STACK
+  - name: TEMPLATE
     description: Template stack name for Panorama
     default: sample_stack
-    type_hint: text   
+    type_hint: text
   - name: DEVICE_GROUP
     description: Device-group name for Panorama
     default: sample_devicegroup
-    type_hint: text     
+    type_hint: text
   - name: FW_NAME
     description: Device Name for NGFW
     default: sample
@@ -110,28 +110,25 @@ variables:
 snippets:
   - name: template
     xpath: /config/devices/entry[@name='localhost.localdomain']/template
-    file: ../snippets/template.xml
-  - name: stack
-    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack
-    file: ../snippets/template_stack.xml
+    file: template.xml
 # adding in the email profile so scheduler loads
   - name: panorama_log_settings
     xpath: /config/panorama/log-settings
     file: panorama_log_settings.xml
   - name: device_system_ip_hostname
-    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ STACK }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='{{ TEMPLATE }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
     file: ../snippets/device_system_local.xml
   - name: device_system_services
-    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ STACK }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='{{ TEMPLATE }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
     file: ../snippets/device_system_shared.xml
   - name: device_setting
-    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ STACK }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='{{ TEMPLATE }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     file: ../snippets/device_setting.xml
   - name: shared_log_settings
-    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ STACK }}']/config/shared/log-settings
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='{{ TEMPLATE }}']/config/shared/log-settings
     file: ../snippets/shared_log_settings.xml
   - name: zone_protection_profile
-    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ STACK }}']/config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='{{ TEMPLATE }}']/config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile
     file: ../snippets/zone_protection_profile.xml
   - name: devicegroup
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group

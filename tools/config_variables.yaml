@@ -8,7 +8,7 @@ variables:
     value: cloud
   - name: PANORAMA_IP
     description: Panorama IP
-    value: 192.168.55.7
+    value: 192.168.55.8
   - name: PANORAMA_MASK
     description: Panorama netmask
     value: 255.255.255.0
@@ -18,6 +18,9 @@ variables:
   - name: CONFIG_EXPORT_IP
     description: IP address for scheduled config exports
     value: 192.0.2.3
+  - name: TEMPLATE
+    description: Template name for Panorama
+    value: sample_template
   - name: STACK
     description: Template stack name for Panorama
     value: sample_stack
@@ -28,8 +31,8 @@ variables:
     description: Device Name for NGFW
     value: sample
   - name: MGMT_TYPE
-    description: firewall management IP type (static or dhcp-cloud)
-    value: dhcp-cloud
+    description: firewall management IP type (static or dhcp-client)
+    value: dhcp-client
   - name: MGMT_IP
     description: NGFW management IP
     value: 192.0.2.6

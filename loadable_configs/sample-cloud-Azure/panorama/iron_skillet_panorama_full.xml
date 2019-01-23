@@ -1,9 +1,9 @@
-<config urldb="paloaltonetworks" version="8.1.0">
+<config urldb="paloaltonetworks" version="8.0.0">
    <mgt-config>
     <devices />
     <users>
       <entry name="admin">
-        <phash>$1$yUvQQrzo$F/kNFjgYfWkw/pWEjIoB//</phash>
+        <phash>$1$CJcl6oxA$3HHRiwog6l.gSp0jlZygL.</phash>
         <permissions>
           <role-based>
             <superuser>yes</superuser>
@@ -559,20 +559,18 @@ Log off immediately if you are not an authorized user.</login-banner>
     </entry>
   </match-list>
 </correlation></log-settings></shared></config>
-</entry></template><template-stack><entry name="sample_stack">
-  <templates>
-    <member>iron-skillet</member>
-  </templates>
+</entry>
+<entry name="sample_template">
   <settings>
     <default-vsys>vsys1</default-vsys>
   </settings>
-    <config>
-      <devices>
-        <entry name="localhost.localdomain">
-          <vsys>
-            <entry name="vsys1" />
-          </vsys>
-        <deviceconfig><system><hostname>sample</hostname>
+  <config>
+    <devices>
+      <entry name="localhost.localdomain">
+        <vsys>
+          <entry name="vsys1" />
+        </vsys>
+      <deviceconfig><system><hostname>sample</hostname>
 <type>
    <dhcp-client>
      <send-hostname>yes</send-hostname>
@@ -582,8 +580,13 @@ Log off immediately if you are not an authorized user.</login-banner>
    </dhcp-client>
 </type>
 </system></deviceconfig></entry>
-      </devices>
+    </devices>
   </config>
+</entry></template><template-stack><entry name="sample_stack">
+  <templates>
+    <member>iron-skillet</member>
+    <member>sample_template</member>
+  </templates>
 </entry></template-stack><device-group> <entry name="sample_devicegroup"><reports><entry name="Host-visit malicious sites plus">
   <period>last-7-calendar-days</period>
   <topn>500</topn>
