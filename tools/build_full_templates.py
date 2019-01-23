@@ -120,7 +120,7 @@ def generate_full_config_template(config_type):
     output_file_path = os.path.abspath(os.path.join('..',
                                                     'templates', config_type, 'full'.format(config_type),
                                                     'iron_skillet_{0}_full.xml'.format(config_type)))
-    metadata_file = os.path.abspath(os.path.join('..', 'templates', config_type, 'snippets'.format(config_type), 'metadata.yaml'))
+    metadata_file = os.path.abspath(os.path.join('..', 'templates', config_type, 'snippets'.format(config_type), '.meta-cnc.yaml'))
 
     # open the file and read it in
     with open(full_config_file_path, 'r') as full_config_obj:
@@ -159,7 +159,7 @@ def generate_full_config_template(config_type):
     # parse the snippets into XML objects
     # attach to the full_config dom
     for xml_snippet in service_config['snippets']:
-        # xml_snippet is a set of attributes in the metadata.yaml file
+        # xml_snippet is a set of attributes in the .meta-cnc.yaml file
         # that includes the xpaths and files listed in the proper load order
         snippet_name = xml_snippet['file']
         xpath = xml_snippet['xpath']

@@ -55,7 +55,7 @@ Output is in the respective set_commands directory.
 #### build_full_templates.py
 Starts with the baseline.xml file for panorama and panos then adds in
 the xml snippets using the xml filenames and xpaths in the respective
-metadata.yaml files from the snippets folders to create a complete
+.meta-cnc.yaml files from the snippets folders to create a complete
 xml configuration file including jinja variables.
 
 The resulting templates are stored in the `full` directory as

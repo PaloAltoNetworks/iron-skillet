@@ -7,7 +7,7 @@ repository link for each xml snippet.
 
 Panorama can be configured using shared elements and device-specific elements. For xml configurations the use of shared
 or device-specific configurations is based on the xpath location of the snippets. Set commmands also denote shared or
-device-specific configurations. The provided xml snippets have variations in the metadata.yaml files specifying shared
+device-specific configurations. The provided xml snippets have variations in the .meta-cnc.yaml files specifying shared
 or device-specific placement in the configuration while the set commands and default loadable configuration are shared only.
 
 **Grouping of XML snippets**

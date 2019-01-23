@@ -38,7 +38,7 @@ they can use text-based 'find-and-replace' for each variable value. Searches
 for variables can be specific by variable name or a generic search for `{{`
 can be used.
 
-The set_command directory also contains a metadata.yaml file detailing the
+The set_command directory also contains a .meta-cnc.yaml file detailing the
 list of variables contained in the .conf file. This is used by external tools
 (link???) for application-based value substitution.
 
@@ -48,7 +48,7 @@ house sets of xml config files. These are subsets of a main configuration
 specific to functional areas of the configuration such as security profiles,
 device system configuration, logging, etc.
 
-Designed primarily for API usage, the snippets are paired with a `metadata.yaml`
+Designed primarily for API usage, the snippets are paired with a `.meta-cnc.yaml`
 file that includes all variable names/defaults and an ordered list of file names
 and their respective xpaths.
 
