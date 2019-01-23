@@ -125,7 +125,7 @@ General device settings that effect security posture. Found in Device > Setup in
 System Configuration
 ~~~~~~~~~~~~~~~~~~~~
 
-:panoramarepo:`device_system`
+:panoramarepo:`device_system_shared`
 
 System configuration settings for dynamic updates and network services
 (eg. DNS, NTP).
