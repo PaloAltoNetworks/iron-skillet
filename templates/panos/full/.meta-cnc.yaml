@@ -77,7 +77,7 @@ variables:
     type_hint: ip_address
   - name: INTERNET_ZONE
     description: untrust zone to filter out in reports
-    default: internet
+    default: untrust
     type_hint: text
   - name: EMAIL_PROFILE_GATEWAY
     description: email gateway address for critical alerts
