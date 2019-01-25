@@ -95,3 +95,6 @@ variables:
     default: 192.0.2.2
     type_hint: ip_address
 
+snippets:
+  - name: iron_skillet_panos_full.conf
+    file: iron_skillet_panos_full.conf
