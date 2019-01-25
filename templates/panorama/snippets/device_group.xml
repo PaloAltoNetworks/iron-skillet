@@ -1,1 +1,3 @@
- <entry name="{{ DEVICE_GROUP }}"></entry>
+ <entry name="{{ DEVICE_GROUP }}">
+   <devices></devices>
+ </entry>
