@@ -1,7 +1,7 @@
 # snippets is used to load a full NGFW configuration
 
 # snippet folder name
-name: snippets_panos
+name: skillet_panos_v81
 # label used for menu selection
 label: v8.1 Iron-Skillet for NGFW
 description: Iron-Skillet baseline configuration for a firewall

@@ -3,7 +3,7 @@
 # all values are contained in the device-groups and template stacks; nothing shared
 
 # snippet name
-name: set_command_panorama
+name: skillet_setcommand_panorama_v81
 # label used for menu selection
 label: v8.1 Iron-Skillet set commands for Panorama
 description: Set command configuration for Panorama
