@@ -1,7 +1,7 @@
 # set_commands is used to load a full NGFW configuration
 
 # snippet folder name
-name: set_command_panos
+name: skillet_setcommand_panos_v80
 # label used for menu selection
 label: v8.0 Iron-Skillet for NGFW
 description: Iron-Skillet baseline configuration for a firewall
@@ -31,15 +31,15 @@ variables:
       - key: static
         value: static
   - name: MGMT_IP
-    description: NGFW management IP (if type=static)
+    description: NGFW management IP
     default: 192.0.2.6
     type_hint: ip_address
   - name: MGMT_MASK
-    description: NGFW management netmask (if type=static)
+    description: NGFW management netmask
     type_hint: ip_address
     default: 255.255.255.0
   - name: MGMT_DG
-    description: NGFW management default gateway (if type=static)
+    description: NGFW management default gateway
     default: 192.0.2.7
     type_hint: ip_address
   - name: NTP_1
