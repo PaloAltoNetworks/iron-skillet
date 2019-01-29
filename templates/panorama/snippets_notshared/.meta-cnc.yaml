@@ -3,7 +3,7 @@
 # all values are contained in the device-groups and template stacks; nothing shared
 
 # snippet folder name
-name: snippets_notshared
+name: skillet_panorama_notshared_v80
 # label used for menu selection
 label: v8.0 Iron-Skillet for Panorama (No Shared Values)
 description: Iron-Skillet baseline configuration for Panorama using shared values for device-group and templates
