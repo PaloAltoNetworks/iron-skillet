@@ -148,7 +148,7 @@ def generate_full_config_template(config_type):
     # read the metafile to get xpaths and load order
     try:
         with open(metadata_file, 'r') as snippet_metadata:
-            service_config = oyaml.load(snippet_metadata.read())
+            service_config = oyaml.safe_load(snippet_metadata.read())
 
     except IOError as ioe:
         print(f'Could not open metadata file {metadata_file}')
