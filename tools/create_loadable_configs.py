@@ -74,7 +74,7 @@ def create_context(config_var_file):
     # read the metafile to get variables and values
     try:
         with open(config_var_file, 'r') as var_metadata:
-            variables = oyaml.load(var_metadata.read())
+            variables = oyaml.safe_load(var_metadata.read())
 
     except IOError as ioe:
         print(f'Could not open metadata file {config_var_file}')
