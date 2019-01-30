@@ -1,4 +1,3 @@
-<devices/>
 <users>
   <entry name="{{ ADMINISTRATOR_USERNAME }}">
     <phash>{{ ADMINISTRATOR_PASSWORD | md5_hash }}</phash>
