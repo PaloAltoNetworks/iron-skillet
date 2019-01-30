@@ -7,7 +7,7 @@ label: v8.0 Iron-Skillet for NGFW
 description: Iron-Skillet baseline configuration for a firewall
 dependency: snippets_panorama
 # type of device configuration
-type: panorama
+type: panos
 extends:
 
 # grouping of like snippets for dynamic menu creation in pan-cnc
