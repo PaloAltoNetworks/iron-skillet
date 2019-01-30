@@ -105,6 +105,9 @@ snippets:
   - name: device_setting
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     file: device_setting.xml
+  - name: device_mgt_config
+    xpath: /config/mgt-config
+    file: device_mgt_config.xml
   - name: shared_log_settings
     xpath: /config/shared/log-settings
     file: shared_log_settings.xml
