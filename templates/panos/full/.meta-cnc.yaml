@@ -7,7 +7,7 @@ label: v8.1 Iron-Skillet Full Configuration for NGFW
 description: Iron-Skillet day one configuration for a firewall
 dependency:
 # type of device configuration
-type: panos
+type: template
 extends:
 
 # grouping of like snippets for dynamic menu creation in pan-cnc
