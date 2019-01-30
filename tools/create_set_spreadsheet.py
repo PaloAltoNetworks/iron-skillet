@@ -68,7 +68,7 @@ def create_spreadsheet(config_type):
     # read the metafile to get variables and values
     try:
         with open(config_variables, 'r') as set_metadata:
-            set_variables = oyaml.load(set_metadata.read())
+            set_variables = oyaml.safe_load(set_metadata.read())
 
     except IOError as ioe:
         print(f'Could not open metadata file {config_variables}')
