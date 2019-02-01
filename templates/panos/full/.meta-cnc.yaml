@@ -3,7 +3,7 @@
 # snippet folder name
 name: skillet_full_panos_v80
 # label used for menu selection
-label: v8.0 Iron-Skillet Full Configuration for NGFW
+label: v8.0 Iron-Skillet Full XML Configuration for NGFW
 description: Iron-Skillet day one configuration for a firewall
 dependency:
 # type of device configuration
