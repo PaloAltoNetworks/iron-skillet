@@ -1,4 +1,4 @@
-<config urldb="paloaltonetworks" version="8.1.0">
+<config urldb="paloaltonetworks" version="8.0.0">
   <mgt-config>
     <users>
       <entry name="admin">
