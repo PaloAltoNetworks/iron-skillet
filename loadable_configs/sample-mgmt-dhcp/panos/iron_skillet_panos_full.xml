@@ -1,4 +1,4 @@
-<config urldb="paloaltonetworks" version="8.1.0">
+<config urldb="paloaltonetworks" version="8.0.0">
   <mgt-config>
     <users>
       <entry name="admin">
@@ -2235,7 +2235,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <value>Possible Compromise</value>
     </entry>
   </variable>
-</entry></report-group><email-scheduler><entry name="Possbile Compromise">
+</entry></report-group><email-scheduler><entry name="Possible Compromise">
   <report-group>Possible Compromise</report-group>
   <recurring>
     <disabled />

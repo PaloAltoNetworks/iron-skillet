@@ -3,7 +3,7 @@
 # snippet folder name
 name: skillet_setcommand_panos_v80
 # label used for menu selection
-label: v8.0 Iron-Skillet for NGFW
+label: v8.0 Iron-Skillet set commands for NGFW
 description: Iron-Skillet baseline configuration for a firewall
 dependency:
 # type of device configuration
