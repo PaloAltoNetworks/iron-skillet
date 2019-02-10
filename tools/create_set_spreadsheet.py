@@ -141,6 +141,8 @@ def create_spreadsheet(config_type):
             worksheet_set.write(row, 0, form_line_all)
 
         else:
+            # replace quotes and also remove hidden quotes for standard non-formula cells
+            line = line.replace('"', '""').strip()
             worksheet_set.write(row, 0, line)
 
         row += 1
