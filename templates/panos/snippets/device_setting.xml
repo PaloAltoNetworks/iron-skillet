@@ -7,6 +7,11 @@
 </ctd>
 <management>
   <enable-log-high-dp-load>yes</enable-log-high-dp-load>
+  <api>
+    <key>
+      <lifetime>525600</lifetime>
+    </key>
+  </api>
 </management>
 <wildfire>
   <file-size-limit>
@@ -36,6 +41,9 @@
     </entry>
     <entry name="linux">
       <size-limit>2</size-limit>
+    </entry>
+    <entry name="script">
+      <size-limit>2000</size-limit>
     </entry>
   </file-size-limit>
   <report-benign-file>yes</report-benign-file>

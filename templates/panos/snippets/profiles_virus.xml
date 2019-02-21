@@ -9,6 +9,10 @@
       <action>alert</action>
       <wildfire-action>alert</wildfire-action>
     </entry>
+    <entry name="http2">
+      <action>alert</action>
+      <wildfire-action>alert</wildfire-action>
+    </entry>
     <entry name="imap">
       <action>alert</action>
       <wildfire-action>alert</wildfire-action>
@@ -34,6 +38,10 @@
       <wildfire-action>reset-both</wildfire-action>
     </entry>
     <entry name="http">
+      <action>reset-both</action>
+      <wildfire-action>reset-both</wildfire-action>
+    </entry>
+    <entry name="http2">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
     </entry>
@@ -65,6 +73,10 @@
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
     </entry>
+    <entry name="http2">
+      <action>reset-both</action>
+      <wildfire-action>reset-both</wildfire-action>
+    </entry>
     <entry name="imap">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
@@ -93,6 +105,10 @@
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
     </entry>
+    <entry name="http2">
+      <action>reset-both</action>
+      <wildfire-action>reset-both</wildfire-action>
+    </entry>
     <entry name="imap">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
@@ -118,6 +134,10 @@
       <wildfire-action>default</wildfire-action>
     </entry>
     <entry name="http">
+      <action>reset-both</action>
+      <wildfire-action>default</wildfire-action>
+    </entry>
+    <entry name="http2">
       <action>reset-both</action>
       <wildfire-action>default</wildfire-action>
     </entry>

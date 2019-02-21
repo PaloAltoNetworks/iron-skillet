@@ -1,4 +1,4 @@
-<config urldb="paloaltonetworks" version="8.1.0">
+<config urldb="paloaltonetworks" version="9.0.0">
   <mgt-config>
     <users>
       <entry name="{{ ADMINISTRATOR_USERNAME }}">
@@ -476,6 +476,11 @@ Log off immediately if you are not an authorized user.</login-banner>
 </ctd>
 <management>
   <enable-log-high-dp-load>yes</enable-log-high-dp-load>
+  <api>
+    <key>
+      <lifetime>525600</lifetime>
+    </key>
+  </api>
 </management>
 <wildfire>
   <file-size-limit>
@@ -505,6 +510,9 @@ Log off immediately if you are not an authorized user.</login-banner>
     </entry>
     <entry name="linux">
       <size-limit>2</size-limit>
+    </entry>
+    <entry name="script">
+      <size-limit>2000</size-limit>
     </entry>
   </file-size-limit>
   <report-benign-file>yes</report-benign-file>
@@ -916,9 +924,15 @@ Log off immediately if you are not an authorized user.</login-banner>
       </send-syslog>
     </entry>
   </match-list>
-</entry></profiles></log-settings><profiles><custom-url-category><entry name="Black-List" />
-<entry name="White-List" />
-<entry name="Custom-No-Decrypt" /></custom-url-category><decryption><entry name="Recommended_Decryption_Profile">
+</entry></profiles></log-settings><profiles><custom-url-category><entry name="Black-List">
+  <type>URL List</type>
+</entry>
+<entry name="White-List">
+  <type>URL List</type>
+</entry>
+<entry name="Custom-No-Decrypt">
+  <type>URL List</type>
+</entry></custom-url-category><decryption><entry name="Recommended_Decryption_Profile">
   <ssl-forward-proxy>
     <block-expired-certificate>yes</block-expired-certificate>
     <block-untrusted-issuer>yes</block-untrusted-issuer>
@@ -1090,7 +1104,8 @@ Log off immediately if you are not an authorized user.</login-banner>
 </entry></virus><spyware><entry name="Outbound-AS">
   <botnet-domains>
     <lists>
-      <entry name="default-paloalto-dns">
+      <entry name="default-paloalto-cloud">
+        <packet-capture>disable</packet-capture>
         <action>
           <sinkhole />
         </action>
@@ -1100,7 +1115,6 @@ Log off immediately if you are not an authorized user.</login-banner>
       <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
       <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
     </sinkhole>
-    <packet-capture>single-packet</packet-capture>
   </botnet-domains>
   <rules>
     <entry name="Block-Critical-High-Medium">
@@ -1133,7 +1147,8 @@ Log off immediately if you are not an authorized user.</login-banner>
 <entry name="Inbound-AS">
   <botnet-domains>
     <lists>
-      <entry name="default-paloalto-dns">
+      <entry name="default-paloalto-cloud">
+        <packet-capture>disable</packet-capture>
         <action>
           <sinkhole />
         </action>
@@ -1143,7 +1158,6 @@ Log off immediately if you are not an authorized user.</login-banner>
       <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
       <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
     </sinkhole>
-    <packet-capture>single-packet</packet-capture>
   </botnet-domains>
   <rules>
     <entry name="Block-Critical-High-Medium">
@@ -1174,9 +1188,10 @@ Log off immediately if you are not an authorized user.</login-banner>
   </rules>
 </entry>
 <entry name="Internal-AS">
-  <botnet-domains>
+ <botnet-domains>
     <lists>
-      <entry name="default-paloalto-dns">
+      <entry name="default-paloalto-cloud">
+        <packet-capture>disable</packet-capture>
         <action>
           <sinkhole />
         </action>
@@ -1186,7 +1201,6 @@ Log off immediately if you are not an authorized user.</login-banner>
       <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
       <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
     </sinkhole>
-    <packet-capture>single-packet</packet-capture>
   </botnet-domains>
   <rules>
     <entry name="Block-Critical-High">
@@ -1217,11 +1231,12 @@ Log off immediately if you are not an authorized user.</login-banner>
   </rules>
 </entry>
 <entry name="Alert-Only-AS">
-  <botnet-domains>
+ <botnet-domains>
     <lists>
-      <entry name="default-paloalto-dns">
+      <entry name="default-paloalto-cloud">
+        <packet-capture>disable</packet-capture>
         <action>
-          <alert />
+          <sinkhole />
         </action>
       </entry>
     </lists>
@@ -1229,7 +1244,6 @@ Log off immediately if you are not an authorized user.</login-banner>
       <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
       <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
     </sinkhole>
-    <packet-capture>disable</packet-capture>
   </botnet-domains>
   <rules>
     <entry name="Alert-All">
@@ -1246,9 +1260,10 @@ Log off immediately if you are not an authorized user.</login-banner>
   </rules>
 </entry>
 <entry name="Exception-AS">
-  <botnet-domains>
+ <botnet-domains>
     <lists>
-      <entry name="default-paloalto-dns">
+      <entry name="default-paloalto-cloud">
+        <packet-capture>disable</packet-capture>
         <action>
           <sinkhole />
         </action>
@@ -1258,7 +1273,6 @@ Log off immediately if you are not an authorized user.</login-banner>
       <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
       <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
     </sinkhole>
-    <packet-capture>single-packet</packet-capture>
   </botnet-domains>
 </entry></spyware><vulnerability><entry name="Outbound-VP">
   <rules>
@@ -1565,6 +1579,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>government</member>
       <member>hacking</member>
       <member>health-and-medicine</member>
+      <member>high-risk</member>
       <member>home-and-garden</member>
       <member>hunting-and-fishing</member>
       <member>insufficient-content</member>
@@ -1572,10 +1587,13 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>internet-portals</member>
       <member>job-search</member>
       <member>legal</member>
+      <member>low-risk</member>
       <member>malware</member>
+      <member>medium-risk</member>
       <member>military</member>
       <member>motor-vehicles</member>
       <member>music</member>
+      <member>newly-registered-domain</member>
       <member>news</member>
       <member>not-resolved</member>
       <member>nudity</member>
@@ -1617,7 +1635,6 @@ Log off immediately if you are not an authorized user.</login-banner>
   <log-http-hdr-user-agent>yes</log-http-hdr-user-agent>
   <log-http-hdr-referer>yes</log-http-hdr-referer>
   <log-http-hdr-xff>yes</log-http-hdr-xff>
-  <action>block</action>
   <alert>
     <member>abortion</member>
     <member>abused-drugs</member>
@@ -1638,6 +1655,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>games</member>
     <member>government</member>
     <member>health-and-medicine</member>
+    <member>high-risk</member>
     <member>home-and-garden</member>
     <member>hunting-and-fishing</member>
     <member>insufficient-content</member>
@@ -1645,9 +1663,12 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>internet-portals</member>
     <member>job-search</member>
     <member>legal</member>
+    <member>low-risk</member>
+    <member>medium-risk</member>
     <member>military</member>
     <member>motor-vehicles</member>
     <member>music</member>
+    <member>newly-registered-domain</member>
     <member>news</member>
     <member>not-resolved</member>
     <member>nudity</member>
@@ -1719,6 +1740,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>government</member>
       <member>hacking</member>
       <member>health-and-medicine</member>
+      <member>high-risk</member>
       <member>home-and-garden</member>
       <member>hunting-and-fishing</member>
       <member>insufficient-content</member>
@@ -1726,10 +1748,13 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>internet-portals</member>
       <member>job-search</member>
       <member>legal</member>
+      <member>low-risk</member>
       <member>malware</member>
+      <member>medium-risk</member>
       <member>military</member>
       <member>motor-vehicles</member>
       <member>music</member>
+      <member>newly-registered-domain</member>
       <member>news</member>
       <member>not-resolved</member>
       <member>nudity</member>
@@ -1766,7 +1791,6 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>web-hosting</member>
     </alert>
   </credential-enforcement>
-  <action>block</action>
   <alert>
     <member>abortion</member>
     <member>abused-drugs</member>
@@ -1789,6 +1813,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>government</member>
     <member>hacking</member>
     <member>health-and-medicine</member>
+    <member>high-risk</member>
     <member>home-and-garden</member>
     <member>hunting-and-fishing</member>
     <member>insufficient-content</member>
@@ -1796,10 +1821,13 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>internet-portals</member>
     <member>job-search</member>
     <member>legal</member>
+    <member>low-risk</member>
     <member>malware</member>
+    <member>medium-risk</member>
     <member>military</member>
     <member>motor-vehicles</member>
     <member>music</member>
+    <member>newly-registered-domain</member>
     <member>news</member>
     <member>not-resolved</member>
     <member>nudity</member>
@@ -1864,6 +1892,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>government</member>
       <member>hacking</member>
       <member>health-and-medicine</member>
+      <member>high-risk</member>
       <member>home-and-garden</member>
       <member>hunting-and-fishing</member>
       <member>insufficient-content</member>
@@ -1871,10 +1900,13 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>internet-portals</member>
       <member>job-search</member>
       <member>legal</member>
+      <member>low-risk</member>
       <member>malware</member>
+      <member>medium-risk</member>
       <member>military</member>
       <member>motor-vehicles</member>
       <member>music</member>
+      <member>newly-registered-domain</member>
       <member>news</member>
       <member>not-resolved</member>
       <member>nudity</member>
@@ -1915,7 +1947,6 @@ Log off immediately if you are not an authorized user.</login-banner>
   <log-http-hdr-user-agent>yes</log-http-hdr-user-agent>
   <log-http-hdr-referer>yes</log-http-hdr-referer>
   <log-http-hdr-xff>yes</log-http-hdr-xff>
-  <action>block</action>
   <alert>
     <member>abortion</member>
     <member>abused-drugs</member>
@@ -1936,6 +1967,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>games</member>
     <member>government</member>
     <member>health-and-medicine</member>
+    <member>high-risk</member>
     <member>home-and-garden</member>
     <member>hunting-and-fishing</member>
     <member>insufficient-content</member>
@@ -1943,9 +1975,12 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>internet-portals</member>
     <member>job-search</member>
     <member>legal</member>
+    <member>low-risk</member>
+    <member>medium-risk</member>
     <member>military</member>
     <member>motor-vehicles</member>
     <member>music</member>
+    <member>newly-registered-domain</member>
     <member>news</member>
     <member>not-resolved</member>
     <member>nudity</member>

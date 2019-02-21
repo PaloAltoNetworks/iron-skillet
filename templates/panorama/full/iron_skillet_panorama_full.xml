@@ -498,7 +498,16 @@ Log off immediately if you are not an authorized user.</login-banner>
   <strip-mptcp-option>global</strip-mptcp-option>
 </entry></zone-protection-profile></profiles></network></entry>
     </devices>
-  <shared><log-settings><email>
+  <mgt-config><users>
+  <entry name="{{ ADMINISTRATOR_USERNAME }}">
+    <phash>{{ ADMINISTRATOR_PASSWORD | md5_hash }}</phash>
+    <permissions>
+      <role-based>
+        <superuser>yes</superuser>
+      </role-based>
+    </permissions>
+  </entry>
+</users></mgt-config><shared><log-settings><email>
   <entry name="Sample_Email_Profile">
     <server>
       <entry name="Sample_Email_Profile">
