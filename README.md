@@ -9,7 +9,7 @@ zones, NAT, etc.
 
 The iron-skillet template details and usage are documented at:
 
-[Iron Skillet Documentation](https://iron-skillet.readthedocs.io/en/81dev/)
+[Iron Skillet Documentation](https://iron-skillet.readthedocs.io/en/90dev/)
 
 ## Quick Start
 The templates are provided with a variety of usage options based
@@ -79,7 +79,7 @@ to disable, simply return to CLI operation mode with `exit` and enter
 The detailed documentation provides a list of variables that can be edited
 and instructions for GUI and CLI edits to the these values.
 
-[iron-skillet variables](https://iron-skillet.readthedocs.io/en/81dev/creating_loadable_configs.html#variables-list-and-descriptions)
+[iron-skillet variables](https://iron-skillet.readthedocs.io/en/90dev/creating_loadable_configs.html#variables-list-and-descriptions)
 
 
 #### Using the SET command spreadsheet to edit values

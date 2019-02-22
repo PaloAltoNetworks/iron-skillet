@@ -79,7 +79,7 @@ to disable, simply return to CLI operation mode with `exit` and enter
 The detailed documentation provides a list of variables that can be edited
 and instructions for GUI and CLI edits to the these values.
 
-[Iron-Skillet Variables list](https://iron-skillet.readthedocs.io/en/81dev/creating_loadable_configs.html#variables-list-and-descriptions)
+[Iron-Skillet Variables list](https://iron-skillet.readthedocs.io/en/90dev/creating_loadable_configs.html#variables-list-and-descriptions)
 
 ## Python utilities and loadable configs
 Users that take advantage of the python utilities in `tools` will have their
