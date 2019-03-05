@@ -18,4 +18,5 @@ Welcome to Iron Skillet template documentation!
    creating_loadable_configs
    loading_the_template
    snippets_common_or_device
+   90_stuff.rst
    release_history

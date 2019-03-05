@@ -1,7 +1,7 @@
-Iron Skillet Overview
+IronSkillet Overview
 =====================
 
-Welcome to the Iron Skillet day one configuration templates library.
+Welcome to the IronSkillet day one configuration templates library.
 
 The next-generation firewall configuration templates are based on existing `best practice recommendations`_
 from Palo Alto Networks.

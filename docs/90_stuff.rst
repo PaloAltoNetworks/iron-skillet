@@ -42,3 +42,7 @@ Then as best practices are created, add those into the templates post-release
 
         * set http2 decoder same as http for each profile
 
+    + Exporting log data
+
+        * set max lines for csv output to supported maximum
+
