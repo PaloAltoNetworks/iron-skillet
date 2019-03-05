@@ -1,15 +1,17 @@
-# Iron Skillet
-The purpose of the Iron Skillet project is to provide Day 1 best-practice
+# IronSkillet
+
+
+The purpose of the IronSkillet project is to provide day-one best practice
 configuration templates that can be loaded into a Palo Alto Networks
-next-generation firewall or Panorama management platform.
+Next-Generation Firewall or Panorama management platform.
 
 Once loaded, the configuration can be augmented with use case specific
 security policies and other deployment requirements including interfaces,
-zones, NAT, etc.
+zones, and NAT.
 
-The iron-skillet template details and usage are documented at:
+The IronSkillet template details and usage are documented at:
 
-[Iron Skillet Documentation](https://iron-skillet.readthedocs.io/en/90dev/)
+[IronSkillet Documentation](https://iron-skillet.readthedocs.io/en/panos_v9.0/)
 
 ## Quick Start
 The templates are provided with a variety of usage options based
@@ -77,9 +79,9 @@ to disable, simply return to CLI operation mode with `exit` and enter
 
 #### Editing loaded configurations
 The detailed documentation provides a list of variables that can be edited
-and instructions for GUI and CLI edits to the these values.
+and instructions for GUI and CLI edits to these values.
 
-[iron-skillet variables](https://iron-skillet.readthedocs.io/en/90dev/creating_loadable_configs.html#variables-list-and-descriptions)
+[IronSkillet variables](https://iron-skillet.readthedocs.io/en/panos_v9.0/creating_loadable_configs.html#variables-list-and-descriptions)
 
 
 #### Using the SET command spreadsheet to edit values
@@ -94,7 +96,7 @@ the configuration can then be loaded using the CLI.
 **WARNING:** only update the `values` worksheet. Using caution if editing
 the worksheets to ensure cell references and formulas are not incorrect.
 
-## Recommended Reading for Additional Best-Practice Configuration Steps
+## Recommended Reading for Additional Best Practice Configuration Steps
 
 Prior to utilizing these configuration templates, it is important to
 familiarize yourself with the best practice recommendations for
