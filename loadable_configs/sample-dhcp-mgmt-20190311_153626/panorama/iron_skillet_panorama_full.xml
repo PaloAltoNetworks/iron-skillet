@@ -3,7 +3,7 @@
     <devices />
     <users>
       <entry name="admin">
-        <phash>$1$FOMk42nO$z3xA4AxExzRnOZNHUELjI/</phash>
+        <phash>$1$iD6zQccw$AeVF/KEwlms350wo.VJdF1</phash>
         <permissions>
           <role-based>
             <superuser>yes</superuser>
@@ -487,7 +487,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     </devices>
   <mgt-config><users>
   <entry name="admin">
-    <phash>$1$aSZ9725v$N2zntv.Zge41S2TXhCsTM/</phash>
+    <phash>$1$t0FDxqtc$uFbzNWQCbXAy0NKXOPgEG/</phash>
     <permissions>
       <role-based>
         <superuser>yes</superuser>
@@ -958,7 +958,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 	<comments>Internal to Internal</comments>
 </entry>
 <entry name="iron-skillet-version">
-	<comments>version 1.0.4: version of this iron-skillet template file</comments>
+	<comments>version 0.0.1 for 9.0: version of this IronSkillet template file</comments>
 </entry></tag><address><entry name="Sinkhole-IPv4">
     <ip-netmask>72.5.65.111</ip-netmask>
 </entry>

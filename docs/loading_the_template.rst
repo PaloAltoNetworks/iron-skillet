@@ -166,19 +166,19 @@ When complete, ensure the final load is entered and a status message received.
 
 .. parsed-literal::
 
-    load config partial from |panosconfigfile| from-xpath /config/shared/log-settings to-xpath /config/shared/log-settings mode merge
-    load config partial from |panosconfigfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag to-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag mode merge
-    load config partial from |panosconfigfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system to-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system mode merge
-    load config partial from |panosconfigfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting to-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting mode merge
-    load config partial from |panosconfigfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/address to-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/address mode merge
-    load config partial from |panosconfigfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/external-list to-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/external-list mode merge
-    load config partial from |panosconfigfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles to-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles mode merge
-    load config partial from |panosconfigfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profile-group to-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profile-group mode merge
-    load config partial from |panosconfigfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase to-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase mode merge
-    load config partial from |panosconfigfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile to-xpath /config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile mode merge
-    load config partial from |panosconfigfile| from-xpath /config/shared/reports to-xpath /config/shared/reports mode merge
-    load config partial from |panosconfigfile| from-xpath /config/shared/report-group to-xpath /config/shared/report-group mode merge
-    load config partial from |panosconfigfile| from-xpath /config/shared/email-scheduler to-xpath /config/shared/email-scheduler mode merge
+    load config partial from-xpath /config/shared/log-settings to-xpath /config/shared/log-settings mode merge from |panosconfigfile|
+    load config partial from-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag to-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag mode merge from |panosconfigfile|
+    load config partial from-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system to-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system mode merge from |panosconfigfile|
+    load config partial from-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting to-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting mode merge from |panosconfigfile|
+    load config partial from-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/address to-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/address mode merge from |panosconfigfile|
+    load config partial from-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/external-list to-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/external-list mode merge from |panosconfigfile|
+    load config partial from-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles to-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles mode merge from |panosconfigfile|
+    load config partial from-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profile-group to-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profile-group mode merge from |panosconfigfile|
+    load config partial from-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase to-xpath /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase mode merge from |panosconfigfile|
+    load config partial from-xpath /config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile to-xpath /config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile mode merge from |panosconfigfile|
+    load config partial from-xpath /config/shared/reports to-xpath /config/shared/reports mode merge from |panosconfigfile|
+    load config partial from-xpath /config/shared/report-group to-xpath /config/shared/report-group mode merge from |panosconfigfile|
+    load config partial from-xpath /config/shared/email-scheduler to-xpath /config/shared/email-scheduler mode merge from |panosconfigfile|
 
 .. Note::
     The filename is specific to the iron-skillet templates but can be renamed if the base file is renamed.
@@ -222,13 +222,13 @@ You can paste multiple items. The system will pause during each load config part
 
 .. parsed-literal::
 
-    load config partial from |panoramaconfigfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system to-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system mode merge
-    load config partial from |panoramaconfigfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting to-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting mode merge
-    load config partial from |panoramaconfigfile| from-xpath /config/panorama/log-settings to-xpath /config/panorama/log-settings mode merge
-    load config partial from |panoramaconfigfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/template to-xpath /config/devices/entry[@name='localhost.localdomain']/template mode merge
-    load config partial from |panoramaconfigfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/device-group to-xpath /config/devices/entry[@name='localhost.localdomain']/device-group mode merge
-    load config partial from |panoramaconfigfile| from-xpath /config/shared to-xpath /config/shared mode merge
-    load config partial from |panoramaconfigfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/log-collector-group to-xpath /config/devices/entry[@name='localhost.localdomain']/log-collector-group mode merge
+    load config partial from-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system to-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system mode merge from |panoramaconfigfile|
+    load config partial from-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting to-xpath /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting mode merge from |panoramaconfigfile|
+    load config partial from-xpath /config/panorama/log-settings to-xpath /config/panorama/log-settings mode merge from |panoramaconfigfile|
+    load config partial from-xpath /config/devices/entry[@name='localhost.localdomain']/template to-xpath /config/devices/entry[@name='localhost.localdomain']/template mode merge from |panoramaconfigfile|
+    load config partial from-xpath /config/devices/entry[@name='localhost.localdomain']/device-group to-xpath /config/devices/entry[@name='localhost.localdomain']/device-group mode merge from |panoramaconfigfile|
+    load config partial from-xpath /config/shared to-xpath /config/shared mode merge from |panoramaconfigfile|
+    load config partial from-xpath /config/devices/entry[@name='localhost.localdomain']/log-collector-group to-xpath /config/devices/entry[@name='localhost.localdomain']/log-collector-group mode merge from |panoramaconfigfile|
 
 
 .. Note::

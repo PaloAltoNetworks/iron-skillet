@@ -79,6 +79,12 @@ Panorama management settings
     + Set 'enable reporting on groups' to 'yes'
     + Disable sharing unused objects with devices
 
+    + Set an API key lifetime instead of a permanent/static value
+
+        * default set to 525,600 minutes (1 year)
+
+    + Set the maximum rows for export of CSV reports to the support maximum
+
 
 
 Security-related Device Settings
@@ -120,6 +126,12 @@ General device settings that effect security posture. Found in Device > Setup in
         * set bypass-exceed-oo-queue to 'no'
         * set check-timestamp-option to 'yes'
         * set strip-mptcp-option to yes
+
+    + Set an API key lifetime instead of a permanent/static value
+
+        * default set to 525,600 minutes (1 year)
+
+    + Set the maximum rows for export of CSV reports to the support maximum
 
 
 System Configuration
@@ -389,6 +401,10 @@ Security profile for actions specific to anti-spyware (AS).
     The profiles use IPv4 and IPv6 addresses for DNS sinkholes. IPv4 is
     currently provided by Palo Alto Networks. IPv6 is a bogon address.
 
+Support for DNS Cloud subscription service
+
+    + In addition to the current malicious domain push to the device, also include domain lookups using the cloud service
+
 
 Profiles:
 
@@ -464,6 +480,11 @@ Profiles:
             * URL Filtering Settings: HTTP Header Logging (user agent, referer, X
               -Forwarded-For)
 
+.. Note::
+    This version includes new URL categories for risk and newly created domains. In future best practices, these categories
+    may be used to provide additional security protections when combined with existing URL categories. For now, these
+    categories are only set to `alert`.
+
 
 Anti-Virus
 ~~~~~~~~~~
@@ -496,6 +517,9 @@ Profiles:
     of DoS concerns with retries, the endpoints typically stop resending
     after a small number of sends with timeouts.
 
+.. Note::
+    This version includes support for http/2. If you are upgrading from a previous version
+    ensure that this decoder matches the actions for standard http.
 
 
 Vulnerability Protection
