@@ -476,6 +476,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 </ctd>
 <management>
   <enable-log-high-dp-load>yes</enable-log-high-dp-load>
+  <max-rows-in-csv-export>1048576</max-rows-in-csv-export>
   <api>
     <key>
       <lifetime>525600</lifetime>
@@ -971,6 +972,10 @@ Log off immediately if you are not an authorized user.</login-banner>
       <action>alert</action>
       <wildfire-action>alert</wildfire-action>
     </entry>
+    <entry name="http2">
+      <action>alert</action>
+      <wildfire-action>alert</wildfire-action>
+    </entry>
     <entry name="imap">
       <action>alert</action>
       <wildfire-action>alert</wildfire-action>
@@ -996,6 +1001,10 @@ Log off immediately if you are not an authorized user.</login-banner>
       <wildfire-action>reset-both</wildfire-action>
     </entry>
     <entry name="http">
+      <action>reset-both</action>
+      <wildfire-action>reset-both</wildfire-action>
+    </entry>
+    <entry name="http2">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
     </entry>
@@ -1027,6 +1036,10 @@ Log off immediately if you are not an authorized user.</login-banner>
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
     </entry>
+    <entry name="http2">
+      <action>reset-both</action>
+      <wildfire-action>reset-both</wildfire-action>
+    </entry>
     <entry name="imap">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
@@ -1055,6 +1068,10 @@ Log off immediately if you are not an authorized user.</login-banner>
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
     </entry>
+    <entry name="http2">
+      <action>reset-both</action>
+      <wildfire-action>reset-both</wildfire-action>
+    </entry>
     <entry name="imap">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
@@ -1080,6 +1097,10 @@ Log off immediately if you are not an authorized user.</login-banner>
       <wildfire-action>default</wildfire-action>
     </entry>
     <entry name="http">
+      <action>reset-both</action>
+      <wildfire-action>default</wildfire-action>
+    </entry>
+    <entry name="http2">
       <action>reset-both</action>
       <wildfire-action>default</wildfire-action>
     </entry>
