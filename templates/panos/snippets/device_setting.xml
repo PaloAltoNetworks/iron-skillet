@@ -10,7 +10,7 @@
   <max-rows-in-csv-export>1048576</max-rows-in-csv-export>
   <api>
     <key>
-      <lifetime>525600</lifetime>
+      <lifetime>{{ API_KEY_LIFETIME }}</lifetime>
     </key>
   </api>
 </management>

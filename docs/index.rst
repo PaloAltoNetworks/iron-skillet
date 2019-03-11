@@ -19,5 +19,5 @@ Welcome to Iron Skillet template documentation!
    loading_the_template
    v50_reduction.rst
    snippets_common_or_device
-   90_stuff.rst
+   90_new_stuff.rst
    release_history

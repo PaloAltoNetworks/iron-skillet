@@ -2,7 +2,13 @@
   <botnet-domains>
     <lists>
       <entry name="default-paloalto-cloud">
-        <packet-capture>disable</packet-capture>
+        <packet-capture>single-packet</packet-capture>
+        <action>
+          <sinkhole/>
+        </action>
+      </entry>
+      <entry name="default-paloalto-dns">
+        <packet-capture>single-packet</packet-capture>
         <action>
           <sinkhole/>
         </action>
@@ -45,7 +51,13 @@
   <botnet-domains>
     <lists>
       <entry name="default-paloalto-cloud">
-        <packet-capture>disable</packet-capture>
+        <packet-capture>single-packet</packet-capture>
+        <action>
+          <sinkhole/>
+        </action>
+      </entry>
+      <entry name="default-paloalto-dns">
+        <packet-capture>single-packet</packet-capture>
         <action>
           <sinkhole/>
         </action>
@@ -88,7 +100,13 @@
  <botnet-domains>
     <lists>
       <entry name="default-paloalto-cloud">
-        <packet-capture>disable</packet-capture>
+        <packet-capture>single-packet</packet-capture>
+        <action>
+          <sinkhole/>
+        </action>
+      </entry>
+      <entry name="default-paloalto-dns">
+        <packet-capture>single-packet</packet-capture>
         <action>
           <sinkhole/>
         </action>
@@ -133,7 +151,13 @@
       <entry name="default-paloalto-cloud">
         <packet-capture>disable</packet-capture>
         <action>
-          <sinkhole/>
+          <alert/>
+        </action>
+      </entry>
+      <entry name="default-paloalto-dns">
+        <packet-capture>disable</packet-capture>
+        <action>
+          <alert/>
         </action>
       </entry>
     </lists>
@@ -160,6 +184,12 @@
  <botnet-domains>
     <lists>
       <entry name="default-paloalto-cloud">
+        <packet-capture>disable</packet-capture>
+        <action>
+          <sinkhole/>
+        </action>
+      </entry>
+      <entry name="default-paloalto-dns">
         <packet-capture>disable</packet-capture>
         <action>
           <sinkhole/>

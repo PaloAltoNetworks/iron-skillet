@@ -134,6 +134,10 @@ variables:
     description: syslog server ip address
     default: 192.0.2.2
     type_hint: ip_address
+  - name: API_KEY_LIFETIME
+    description: lifetime for the api key in minutes
+    default: 525600
+    type_hint: text
 
 snippets:
   - name: panorama-full

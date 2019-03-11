@@ -16,11 +16,14 @@ Then as best practices are created, add those into the templates post-release
 
     + move packet cap xml element in spyware profile
 
-    + update to use the pan cloud dns feature in spyware profile
+    + remove url 'block' stand-alone entry
 
 
 9.0 new features
 ----------------
+
+Security profiles
+~~~~~~~~~~~~~~~~~
 
     + new url categories (risk, new domain)
 
@@ -28,19 +31,26 @@ Then as best practices are created, add those into the templates post-release
 
         * over time move to custom dual category blocks (eg. parked + high)
 
+    + new pan cloud dns option in spyware profile
 
-    + API key lifetime
-
-        * check with PM on recommended first value, set high and tune down
-        * in minutes --> 525,600 is 1 year
-
-    + WF file sizes
-
-        * new file type script, set to max 2000 file size
+        * action = sinkhole with single packet capture
 
     + AV profile and http2
 
         * set http2 decoder same as http for each profile
+
+
+Device settings
+~~~~~~~~~~~~~~~
+
+    + API key lifetime
+
+        * Iniially set to a high value with configuration variable
+        * Default in minutes --> 525,600 is 1 year
+
+    + WF file sizes
+
+        * new file type script, set to max 2000 file size
 
     + Exporting log data
 

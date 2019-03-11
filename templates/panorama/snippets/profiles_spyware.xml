@@ -1,7 +1,14 @@
 <entry name="Outbound-AS">
   <botnet-domains>
     <lists>
+      <entry name="default-paloalto-cloud">
+        <packet-capture>single-packet</packet-capture>
+        <action>
+          <sinkhole/>
+        </action>
+      </entry>
       <entry name="default-paloalto-dns">
+        <packet-capture>single-packet</packet-capture>
         <action>
           <sinkhole/>
         </action>
@@ -11,7 +18,6 @@
       <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
       <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
     </sinkhole>
-    <packet-capture>single-packet</packet-capture>
   </botnet-domains>
   <rules>
     <entry name="Block-Critical-High-Medium">
@@ -44,7 +50,14 @@
 <entry name="Inbound-AS">
   <botnet-domains>
     <lists>
+      <entry name="default-paloalto-cloud">
+        <packet-capture>single-packet</packet-capture>
+        <action>
+          <sinkhole/>
+        </action>
+      </entry>
       <entry name="default-paloalto-dns">
+        <packet-capture>single-packet</packet-capture>
         <action>
           <sinkhole/>
         </action>
@@ -54,7 +67,6 @@
       <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
       <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
     </sinkhole>
-    <packet-capture>single-packet</packet-capture>
   </botnet-domains>
   <rules>
     <entry name="Block-Critical-High-Medium">
@@ -85,9 +97,16 @@
   </rules>
 </entry>
 <entry name="Internal-AS">
-  <botnet-domains>
+ <botnet-domains>
     <lists>
+      <entry name="default-paloalto-cloud">
+        <packet-capture>single-packet</packet-capture>
+        <action>
+          <sinkhole/>
+        </action>
+      </entry>
       <entry name="default-paloalto-dns">
+        <packet-capture>single-packet</packet-capture>
         <action>
           <sinkhole/>
         </action>
@@ -97,7 +116,6 @@
       <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
       <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
     </sinkhole>
-    <packet-capture>single-packet</packet-capture>
   </botnet-domains>
   <rules>
     <entry name="Block-Critical-High">
@@ -128,9 +146,16 @@
   </rules>
 </entry>
 <entry name="Alert-Only-AS">
-  <botnet-domains>
+ <botnet-domains>
     <lists>
+      <entry name="default-paloalto-cloud">
+        <packet-capture>disable</packet-capture>
+        <action>
+          <alert/>
+        </action>
+      </entry>
       <entry name="default-paloalto-dns">
+        <packet-capture>disable</packet-capture>
         <action>
           <alert/>
         </action>
@@ -140,7 +165,6 @@
       <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
       <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
     </sinkhole>
-    <packet-capture>disable</packet-capture>
   </botnet-domains>
   <rules>
     <entry name="Alert-All">
@@ -157,9 +181,16 @@
   </rules>
 </entry>
 <entry name="Exception-AS">
-  <botnet-domains>
+ <botnet-domains>
     <lists>
+      <entry name="default-paloalto-cloud">
+        <packet-capture>disable</packet-capture>
+        <action>
+          <sinkhole/>
+        </action>
+      </entry>
       <entry name="default-paloalto-dns">
+        <packet-capture>disable</packet-capture>
         <action>
           <sinkhole/>
         </action>
@@ -169,6 +200,5 @@
       <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
       <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
     </sinkhole>
-    <packet-capture>single-packet</packet-capture>
   </botnet-domains>
 </entry>

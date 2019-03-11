@@ -7,6 +7,12 @@
 </ctd>
 <management>
   <enable-log-high-dp-load>yes</enable-log-high-dp-load>
+  <max-rows-in-csv-export>1048576</max-rows-in-csv-export>
+  <api>
+    <key>
+      <lifetime>{{ API_KEY_LIFETIME }}</lifetime>
+    </key>
+  </api>
 </management>
 <wildfire>
   <file-size-limit>
@@ -36,6 +42,9 @@
     </entry>
     <entry name="linux">
       <size-limit>2</size-limit>
+    </entry>
+    <entry name="script">
+      <size-limit>2000</size-limit>
     </entry>
   </file-size-limit>
   <report-benign-file>yes</report-benign-file>

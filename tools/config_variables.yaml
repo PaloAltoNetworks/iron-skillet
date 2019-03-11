@@ -81,6 +81,10 @@ variables:
   - name: SYSLOG_SERVER
     description: syslog server ip address
     value: 192.0.2.2
+  - name: API_KEY_LIFETIME
+    description: lifetime for the api key in minutes
+    value: 525600
+
 # option built into the templates to ignore the panw published external dynamic lists security rules
 # should ONLY be excluded based on licensing limitations outside of best practices
   - name: INCLUDE_PAN_EDL

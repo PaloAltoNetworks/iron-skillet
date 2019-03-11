@@ -26,6 +26,7 @@
       <member>government</member>
       <member>hacking</member>
       <member>health-and-medicine</member>
+      <member>high-risk</member>
       <member>home-and-garden</member>
       <member>hunting-and-fishing</member>
       <member>insufficient-content</member>
@@ -33,10 +34,13 @@
       <member>internet-portals</member>
       <member>job-search</member>
       <member>legal</member>
+      <member>low-risk</member>
       <member>malware</member>
+      <member>medium-risk</member>
       <member>military</member>
       <member>motor-vehicles</member>
       <member>music</member>
+      <member>newly-registered-domain</member>
       <member>news</member>
       <member>not-resolved</member>
       <member>nudity</member>
@@ -78,7 +82,6 @@
   <log-http-hdr-user-agent>yes</log-http-hdr-user-agent>
   <log-http-hdr-referer>yes</log-http-hdr-referer>
   <log-http-hdr-xff>yes</log-http-hdr-xff>
-  <action>block</action>
   <alert>
     <member>abortion</member>
     <member>abused-drugs</member>
@@ -99,6 +102,7 @@
     <member>games</member>
     <member>government</member>
     <member>health-and-medicine</member>
+    <member>high-risk</member>
     <member>home-and-garden</member>
     <member>hunting-and-fishing</member>
     <member>insufficient-content</member>
@@ -106,9 +110,12 @@
     <member>internet-portals</member>
     <member>job-search</member>
     <member>legal</member>
+    <member>low-risk</member>
+    <member>medium-risk</member>
     <member>military</member>
     <member>motor-vehicles</member>
     <member>music</member>
+    <member>newly-registered-domain</member>
     <member>news</member>
     <member>not-resolved</member>
     <member>nudity</member>
@@ -180,6 +187,7 @@
       <member>government</member>
       <member>hacking</member>
       <member>health-and-medicine</member>
+      <member>high-risk</member>
       <member>home-and-garden</member>
       <member>hunting-and-fishing</member>
       <member>insufficient-content</member>
@@ -187,10 +195,13 @@
       <member>internet-portals</member>
       <member>job-search</member>
       <member>legal</member>
+      <member>low-risk</member>
       <member>malware</member>
+      <member>medium-risk</member>
       <member>military</member>
       <member>motor-vehicles</member>
       <member>music</member>
+      <member>newly-registered-domain</member>
       <member>news</member>
       <member>not-resolved</member>
       <member>nudity</member>
@@ -227,7 +238,6 @@
       <member>web-hosting</member>
     </alert>
   </credential-enforcement>
-  <action>block</action>
   <alert>
     <member>abortion</member>
     <member>abused-drugs</member>
@@ -250,6 +260,7 @@
     <member>government</member>
     <member>hacking</member>
     <member>health-and-medicine</member>
+    <member>high-risk</member>
     <member>home-and-garden</member>
     <member>hunting-and-fishing</member>
     <member>insufficient-content</member>
@@ -257,10 +268,13 @@
     <member>internet-portals</member>
     <member>job-search</member>
     <member>legal</member>
+    <member>low-risk</member>
     <member>malware</member>
+    <member>medium-risk</member>
     <member>military</member>
     <member>motor-vehicles</member>
     <member>music</member>
+    <member>newly-registered-domain</member>
     <member>news</member>
     <member>not-resolved</member>
     <member>nudity</member>
@@ -325,6 +339,7 @@
       <member>government</member>
       <member>hacking</member>
       <member>health-and-medicine</member>
+      <member>high-risk</member>
       <member>home-and-garden</member>
       <member>hunting-and-fishing</member>
       <member>insufficient-content</member>
@@ -332,10 +347,13 @@
       <member>internet-portals</member>
       <member>job-search</member>
       <member>legal</member>
+      <member>low-risk</member>
       <member>malware</member>
+      <member>medium-risk</member>
       <member>military</member>
       <member>motor-vehicles</member>
       <member>music</member>
+      <member>newly-registered-domain</member>
       <member>news</member>
       <member>not-resolved</member>
       <member>nudity</member>
@@ -376,7 +394,6 @@
   <log-http-hdr-user-agent>yes</log-http-hdr-user-agent>
   <log-http-hdr-referer>yes</log-http-hdr-referer>
   <log-http-hdr-xff>yes</log-http-hdr-xff>
-  <action>block</action>
   <alert>
     <member>abortion</member>
     <member>abused-drugs</member>
@@ -397,6 +414,7 @@
     <member>games</member>
     <member>government</member>
     <member>health-and-medicine</member>
+    <member>high-risk</member>
     <member>home-and-garden</member>
     <member>hunting-and-fishing</member>
     <member>insufficient-content</member>
@@ -404,9 +422,12 @@
     <member>internet-portals</member>
     <member>job-search</member>
     <member>legal</member>
+    <member>low-risk</member>
+    <member>medium-risk</member>
     <member>military</member>
     <member>motor-vehicles</member>
     <member>music</member>
+    <member>newly-registered-domain</member>
     <member>news</member>
     <member>not-resolved</member>
     <member>nudity</member>
