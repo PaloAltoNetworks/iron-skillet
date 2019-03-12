@@ -3,9 +3,9 @@
 # all values are contained in the device-groups and template stacks; nothing shared
 
 # snippet name
-name: skillet_setcommand_panorama_v81
+name: skillet_setcommand_panorama_v90
 # label used for menu selection
-label: v8.1 Iron-Skillet set commands for Panorama
+label: v9.0 Iron-Skillet set commands for Panorama
 description: Set command configuration for Panorama
 # type of device configuration
 type: template

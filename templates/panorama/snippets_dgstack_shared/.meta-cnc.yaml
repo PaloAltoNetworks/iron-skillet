@@ -4,9 +4,9 @@
 # this is based on a 'shared model' with all template elements in the 'iron-skillet' template
 
 # snippet folder name
-name: skillet_panorama_dgstack_shared_v81
+name: skillet_panorama_dgstack_shared_v90
 # label used for menu selection
-label: v8.1 Iron-Skillet for Panorama with Device-Group and Stack only (Shared Values)
+label: v9.0 Iron-Skillet for Panorama with Device-Group and Stack only (Shared Values)
 description: Iron Skillet device-group and template stack config for Panorama
 dependency: snippets
 # type of device configuration
