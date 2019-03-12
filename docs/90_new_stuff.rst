@@ -11,12 +11,16 @@ At initial release, focus on ability to run based on prior release features
 Then as best practices are created, add those into the templates post-release
 
 
-8.1 fixes
----------
+Modifications from 8.1 template
+-------------------------------
 
     + move packet cap xml element in spyware profile
 
     + remove url 'block' stand-alone entry
+
+    + customer url categories
+
+        * add 'type' value to allow config to commit
 
 
 9.0 new features
