@@ -3,7 +3,7 @@
     <devices />
     <users>
       <entry name="admin">
-        <phash>$1$u.X/z5jN$bl8faXHV8uzCoPLLYPnur/</phash>
+        <phash>$1$lDJ6Cy2i$4uyRkf.tR9Zvw0OB28BvZ.</phash>
         <permissions>
           <role-based>
             <superuser>yes</superuser>
@@ -91,6 +91,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 <hostname-type-in-syslog>FQDN</hostname-type-in-syslog>
 <enable-reporting-on-groups>yes</enable-reporting-on-groups>
 <share-unused-objects-with-devices>no</share-unused-objects-with-devices>
+<max-rows-in-csv-export>1048576</max-rows-in-csv-export>
 </management></setting></deviceconfig>
     <log-collector-group><entry name="Default_Collector_Group">
   <monitoring-setting>
@@ -347,6 +348,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 </ctd>
 <management>
   <enable-log-high-dp-load>yes</enable-log-high-dp-load>
+  <max-rows-in-csv-export>1048576</max-rows-in-csv-export>
 </management>
 <wildfire>
   <file-size-limit>
@@ -470,7 +472,16 @@ Log off immediately if you are not an authorized user.</login-banner>
   <strip-mptcp-option>global</strip-mptcp-option>
 </entry></zone-protection-profile></profiles></network></entry>
     </devices>
-  <shared><log-settings><email>
+  <mgt-config><users>
+  <entry name="admin">
+    <phash>$1$rsXWkGpI$aV3jy4w/QCzasWJH1RC9X0</phash>
+    <permissions>
+      <role-based>
+        <superuser>yes</superuser>
+      </role-based>
+    </permissions>
+  </entry>
+</users></mgt-config><shared><log-settings><email>
   <entry name="Sample_Email_Profile">
     <server>
       <entry name="Sample_Email_Profile">
@@ -562,7 +573,9 @@ Log off immediately if you are not an authorized user.</login-banner>
 </system></deviceconfig></entry>
       </devices>
   </config>
-</entry></template-stack><device-group> <entry name="sample_devicegroup"><reports><entry name="Host-visit malicious sites plus">
+</entry></template-stack><device-group> <entry name="sample_devicegroup">
+   <devices />
+ <reports><entry name="Host-visit malicious sites plus">
   <period>last-7-calendar-days</period>
   <topn>500</topn>
   <topm>50</topm>
@@ -932,7 +945,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 	<comments>Internal to Internal</comments>
 </entry>
 <entry name="iron-skillet-version">
-	<comments>version 1.0.4: version of this iron-skillet template file</comments>
+	<comments>version 1.0.5: version of this iron-skillet template file</comments>
 </entry></tag><address><entry name="Sinkhole-IPv4">
     <ip-netmask>72.5.65.111</ip-netmask>
 </entry>

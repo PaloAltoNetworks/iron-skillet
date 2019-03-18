@@ -2,7 +2,7 @@
   <mgt-config>
     <users>
       <entry name="admin">
-        <phash>$1$Lbh3qjon$8e6acST7Ea2sV4WVHgJkn1</phash>
+        <phash>$1$9ympHhoN$riHdhUT8q2u0atote1MHk.</phash>
         <permissions>
           <role-based>
             <superuser>yes</superuser>
@@ -459,6 +459,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 </ctd>
 <management>
   <enable-log-high-dp-load>yes</enable-log-high-dp-load>
+  <max-rows-in-csv-export>1048576</max-rows-in-csv-export>
 </management>
 <wildfire>
   <file-size-limit>
