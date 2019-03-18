@@ -12,7 +12,16 @@ Includes:
 Template Release History
 ------------------------
 
-Template content updates are high level. Details can be found in the template guides.
+Template
+
+1.0.5
+^^^^^
+
+Released March 18, 2019
+
+Template Content
+
+    + added max lines for log csv output
 
 1.0.4
 ^^^^^
@@ -106,6 +115,11 @@ Released: May 10, 2018
 Tools Release Updates
 ---------------------
 
+March 18, 2019
+^^^^^^^^^^^^^^
+
+    + added instructions to remove security profiles for reduced capacity VM-50
+    + updated with inclusion of max csv lines for log output
 
 Jan 8, 2019
 ^^^^^^^^^^^

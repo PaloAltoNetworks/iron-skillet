@@ -2,7 +2,7 @@
   <mgt-config>
     <users>
       <entry name="admin">
-        <phash>$1$Xu1y9CkX$eTfOadnv5tEE.M0oXfs91.</phash>
+        <phash>$1$kQ0/2OIG$FS7CUC63whAwC6cLJDhuC.</phash>
         <permissions>
           <role-based>
             <superuser>yes</superuser>
@@ -459,6 +459,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 </ctd>
 <management>
   <enable-log-high-dp-load>yes</enable-log-high-dp-load>
+  <max-rows-in-csv-export>1048576</max-rows-in-csv-export>
 </management>
 <wildfire>
   <file-size-limit>
@@ -747,7 +748,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 	<comments>Internal to Internal</comments>
 </entry>
 <entry name="iron-skillet-version">
-	<comments>version 1.0.4: version of this iron-skillet template file</comments>
+	<comments>version 1.0.5: version of this iron-skillet template file</comments>
 </entry></tag><log-settings><profiles><entry name="default">
   <match-list>
     <entry name="Traffic_Log_Forwarding">
