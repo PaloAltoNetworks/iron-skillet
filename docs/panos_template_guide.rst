@@ -64,7 +64,7 @@ General device settings that effect security posture. Found in Device > Setup in
 
         * default set to 525,600 minutes (1 year)
 
-    + Set the maximum rows for export of CSV reports to the support maximum
+    + set export of csv log file to maximum of 1,048,576
 
 
 System Configuration
