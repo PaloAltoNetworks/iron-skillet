@@ -78,7 +78,7 @@ Panorama management settings
 
     + Set 'enable reporting on groups' to 'yes'
     + Disable sharing unused objects with devices
-
+    + set export of csv log file to maximum of 1,048,576
 
 
 Security-related Device Settings
@@ -120,6 +120,8 @@ General device settings that effect security posture. Found in Device > Setup in
         * set bypass-exceed-oo-queue to 'no'
         * set check-timestamp-option to 'yes'
         * set strip-mptcp-option to yes
+
+    + set export of csv log file to maximum of 1,048,576
 
 
 System Configuration
