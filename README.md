@@ -2,7 +2,7 @@
 
 Templates and documentation are based on sofware release version.
 
-Currently supported versions are:
+Current versions include:
 
 **8.0**
 
@@ -18,6 +18,14 @@ Currently supported versions are:
 
 
 [Documentation](https://iron-skillet.readthedocs.io/en/panos_v8.1/)
+
+
+**9.0**
+
+[Templates](https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v9.0)
+
+
+[Documentation](https://iron-skillet.readthedocs.io/en/panos_v9.0/)
 
 
 
