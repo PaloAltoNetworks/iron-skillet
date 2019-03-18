@@ -3,9 +3,11 @@ variables:
   - name: PANORAMA_NAME
     description: Panorama hostname
     value: panorama01
+# Panorama mgmt inteface type and if static update the IP info
+# DHCP is used for cloud deployments only
   - name: PANORAMA_TYPE
     description: Panorama management IP type - static or cloud (for dhcp)
-    value: static
+    value: cloud
   - name: PANORAMA_IP
     description: Panorama IP
     value: 192.168.55.6
@@ -30,6 +32,8 @@ variables:
   - name: FW_NAME
     description: Device Name for NGFW
     value: sample
+# Management interface type of dhcp or static
+# If static be sure to set the IP attributes
   - name: MGMT_TYPE
     description: firewall management IP type (static or dhcp-client)
     value: dhcp-client
