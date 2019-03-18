@@ -3,7 +3,7 @@
     <devices />
     <users>
       <entry name="admin">
-        <phash>$1$d5Yt/yTW$tNO5zhw3QsiCb2DPZ3biu/</phash>
+        <phash>$1$gSllJ7DH$EeHKsI86FUv0eNfwuiokb.</phash>
         <permissions>
           <role-based>
             <superuser>yes</superuser>
@@ -91,6 +91,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 <hostname-type-in-syslog>FQDN</hostname-type-in-syslog>
 <enable-reporting-on-groups>yes</enable-reporting-on-groups>
 <share-unused-objects-with-devices>no</share-unused-objects-with-devices>
+<max-rows-in-csv-export>1048576</max-rows-in-csv-export>
 </management></setting></deviceconfig>
     <log-collector-group><entry name="Default_Collector_Group">
   <monitoring-setting>
@@ -341,12 +342,13 @@ Log off immediately if you are not an authorized user.</login-banner>
 <timezone>UTC</timezone></system><setting><ctd>
   <strip-x-fwd-for>yes</strip-x-fwd-for>
   <x-forwarded-for>yes</x-forwarded-for>
-  <skip-block-http-range>no</skip-block-http-range>
   <tcp-bypass-exceed-queue>no</tcp-bypass-exceed-queue>
   <udp-bypass-exceed-queue>no</udp-bypass-exceed-queue>
+  <skip-block-http-range>no</skip-block-http-range>
 </ctd>
 <management>
   <enable-log-high-dp-load>yes</enable-log-high-dp-load>
+  <max-rows-in-csv-export>1048576</max-rows-in-csv-export>
 </management>
 <wildfire>
   <file-size-limit>
@@ -470,7 +472,16 @@ Log off immediately if you are not an authorized user.</login-banner>
   <strip-mptcp-option>global</strip-mptcp-option>
 </entry></zone-protection-profile></profiles></network></entry>
     </devices>
-  <shared><log-settings><email>
+  <mgt-config><users>
+  <entry name="admin">
+    <phash>$1$m7OAIeeM$olh0FH2E99gX95LraMgei1</phash>
+    <permissions>
+      <role-based>
+        <superuser>yes</superuser>
+      </role-based>
+    </permissions>
+  </entry>
+</users></mgt-config><shared><log-settings><email>
   <entry name="Sample_Email_Profile">
     <server>
       <entry name="Sample_Email_Profile">
