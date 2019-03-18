@@ -1,4 +1,4 @@
-Iron Skillet Overview
+IronSkillet Overview
 =====================
 
 Welcome to the Iron Skillet day one configuration templates library.
@@ -52,7 +52,7 @@ The templates in each device-type folder include:
 Quick start using loadable configurations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The repo contains a set of ready-to-go loadable configurations that use iron-skillet placeholder values.
+The repo contains a set of ready-to-go loadable configurations that use IronSkillet placeholder values.
 Formats include both xml and set commands.
 
 The xml file can be imported and loaded easily to Panorama or a firewall. The set command model requires 'copy-and-paste'

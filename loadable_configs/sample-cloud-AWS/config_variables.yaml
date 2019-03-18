@@ -3,12 +3,14 @@ variables:
   - name: PANORAMA_NAME
     description: Panorama hostname
     value: panorama01
+# Panorama mgmt inteface type and if static update the IP info
+# DHCP is used for cloud deployments only
   - name: PANORAMA_TYPE
     description: Panorama management IP type - static or cloud (for dhcp)
     value: cloud
   - name: PANORAMA_IP
     description: Panorama IP
-    value: 192.168.55.7
+    value: 192.168.55.8
   - name: PANORAMA_MASK
     description: Panorama netmask
     value: 255.255.255.0
@@ -18,6 +20,9 @@ variables:
   - name: CONFIG_EXPORT_IP
     description: IP address for scheduled config exports
     value: 192.0.2.3
+  - name: TEMPLATE
+    description: Template name for Panorama
+    value: sample_template
   - name: STACK
     description: Template stack name for Panorama
     value: sample_stack
@@ -27,6 +32,8 @@ variables:
   - name: FW_NAME
     description: Device Name for NGFW
     value: sample
+# Management interface type of dhcp or static
+# If static be sure to set the IP attributes
   - name: MGMT_TYPE
     description: firewall management IP type (static or dhcp-client)
     value: dhcp-client
@@ -78,6 +85,8 @@ variables:
   - name: SYSLOG_SERVER
     description: syslog server ip address
     value: 192.0.2.2
+# option built into the templates to ignore the panw published external dynamic lists security rules
+# should ONLY be excluded based on licensing limitations outside of best practices
   - name: INCLUDE_PAN_EDL
     description: include the predefined Palo Alto Networks external lists
     value: True
