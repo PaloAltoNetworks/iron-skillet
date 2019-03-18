@@ -60,6 +60,8 @@ General device settings that effect security posture. Found in Device > Setup in
         * set check-timestamp-option to 'yes'
         * set strip-mptcp-option to yes
 
+    + set export of csv log file to maximum of 1,048,576
+
 
 System Configuration
 ~~~~~~~~~~~~~~~~~~~~
