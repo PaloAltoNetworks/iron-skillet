@@ -15,6 +15,7 @@ extends:
 # grouping of like snippets for dynamic menu creation in pan-cnc
 labels:
   service_type: iron_skillet
+  collection: IronSKillet
 
 # variables used in the configuration templates
 # type_hint defines the form field type in pan-cnc
