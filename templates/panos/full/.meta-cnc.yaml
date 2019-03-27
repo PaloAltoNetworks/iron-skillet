@@ -14,6 +14,8 @@ extends:
 labels:
   service_type: iron_skillet_full
   template_category: panos_full
+  collection:
+    - IronSkillet
 
 # variables used in the configuration templates
 # type_hint defines the form field type in pan-cnc
