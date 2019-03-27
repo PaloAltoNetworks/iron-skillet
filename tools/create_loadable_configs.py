@@ -37,6 +37,7 @@ import oyaml
 from jinja2 import Environment, FileSystemLoader
 from passlib.hash import des_crypt
 from passlib.hash import md5_crypt
+from passlib.hash import sha256_crypt
 from passlib.hash import sha512_crypt
 
 defined_filters = ['md5_hash', 'des_hash', 'sha512_hash']
@@ -163,6 +164,16 @@ def des_hash(txt):
     in the configurations
     '''
     return des_crypt.hash(txt)
+
+
+def sha256_hash(txt):
+    '''
+    Returns the SHA256 Hashed secret for use as a password hash in the PanOS configuration
+    :param txt: text to be hashed
+    :return: password hash of the string with salt and configuration information. Suitable to place in the
+    phash field in the configurations
+    '''
+    return sha256_crypt.hash(txt)
 
 
 def sha512_hash(txt):
