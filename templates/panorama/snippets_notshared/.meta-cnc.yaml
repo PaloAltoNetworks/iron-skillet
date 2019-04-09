@@ -3,7 +3,7 @@
 # all values are contained in the device-groups and template stacks; nothing shared
 
 # snippet folder name
-name: skillet_panorama_dgstack_notshared_v81
+name: skillet_panorama_notshared_v81
 # label used for menu selection
 label: v8.1 Iron-Skillet for Panorama (No Shared Values)
 description: Iron-Skillet baseline configuration for Panorama using shared values for device-group and templates
