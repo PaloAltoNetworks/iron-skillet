@@ -68,6 +68,9 @@ variables:
 # snippets used for api configuration including xpath and element as file name
 # files will load in the order listed
 snippets:
+  - name: template
+    xpath: ..//config/devices/entry[@name='localhost.localdomain']/template
+    file: template.xml
   - name: stack
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack
     file: ../snippets/template_stack.xml
