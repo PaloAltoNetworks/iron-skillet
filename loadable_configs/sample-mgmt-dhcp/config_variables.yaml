@@ -7,7 +7,7 @@ variables:
 # DHCP is used for cloud deployments only
   - name: PANORAMA_TYPE
     description: Panorama management IP type - static or cloud (for dhcp)
-    value: cloud
+    value: static
   - name: PANORAMA_IP
     description: Panorama IP
     value: 192.168.55.6
