@@ -3,7 +3,7 @@
     <devices />
     <users>
       <entry name="admin">
-        <phash>$1$iD6zQccw$AeVF/KEwlms350wo.VJdF1</phash>
+        <phash>$1$sEDoSuCC$rqv8aa9afI8TwaTIjNxf41</phash>
         <permissions>
           <role-based>
             <superuser>yes</superuser>
@@ -487,7 +487,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     </devices>
   <mgt-config><users>
   <entry name="admin">
-    <phash>$1$t0FDxqtc$uFbzNWQCbXAy0NKXOPgEG/</phash>
+    <phash>$1$EcKweAmD$JvAh.oNm6ZUkUngJbZi5T/</phash>
     <permissions>
       <role-based>
         <superuser>yes</superuser>
@@ -1023,9 +1023,15 @@ Log off immediately if you are not an authorized user.</login-banner>
       <send-to-panorama>yes</send-to-panorama>
     </entry>
   </match-list>
-</entry></profiles></log-settings><profiles><custom-url-category><entry name="Black-List" />
-<entry name="White-List" />
-<entry name="Custom-No-Decrypt" /></custom-url-category><decryption><entry name="Recommended_Decryption_Profile">
+</entry></profiles></log-settings><profiles><custom-url-category><entry name="Black-List">
+  <type>URL List</type>
+</entry>
+<entry name="White-List">
+  <type>URL List</type>
+</entry>
+<entry name="Custom-No-Decrypt">
+  <type>URL List</type>
+</entry></custom-url-category><decryption><entry name="Recommended_Decryption_Profile">
   <ssl-forward-proxy>
     <block-expired-certificate>yes</block-expired-certificate>
     <block-untrusted-issuer>yes</block-untrusted-issuer>

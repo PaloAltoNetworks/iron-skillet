@@ -2,7 +2,7 @@
   <mgt-config>
     <users>
       <entry name="admin">
-        <phash>$1$lAjuNTBk$R725NanGD.0Q8TWr/0sj//</phash>
+        <phash>$1$X8AkdIDX$lTnU2F5ckE4YVQ5m2Qecc0</phash>
         <permissions>
           <role-based>
             <superuser>yes</superuser>
@@ -443,13 +443,11 @@ Log off immediately if you are not an authorized user.</login-banner>
 <timezone>UTC</timezone>
 <hostname>sample</hostname>
 <type>
-   <dhcp-client>
-     <send-hostname>yes</send-hostname>
-     <send-client-id>no</send-client-id>
-     <accept-dhcp-hostname>no</accept-dhcp-hostname>
-     <accept-dhcp-domain>no</accept-dhcp-domain>
-   </dhcp-client>
+  <static />
 </type>
+<ip-address>192.0.2.6</ip-address>
+<netmask>255.255.128.0</netmask>
+<default-gateway>192.0.2.7</default-gateway>
 </system><setting><ctd>
   <strip-x-fwd-for>yes</strip-x-fwd-for>
   <x-forwarded-for>yes</x-forwarded-for>

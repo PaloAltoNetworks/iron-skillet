@@ -16,7 +16,11 @@ extends:
 labels:
   service_type: iron_skillet
   collection:
+<<<<<<< HEAD
     - IronSkillet
+=======
+   - IronSkillet
+>>>>>>> panos_v9.0
 
 # variables used in the configuration templates
 # type_hint defines the form field type in pan-cnc
@@ -49,7 +53,7 @@ variables:
   - name: CONFIG_EXPORT_IP
     description: IP address for scheduled config exports
     default: 192.0.2.3
-    type_hint: ip_address
+    type_hint: text
   - name: STACK
     description: Template stack name for Panorama
     default: sample_stack
@@ -86,11 +90,11 @@ variables:
   - name: NTP_1
     description: Network Time Protocol Server
     default: 0.pool.ntp.org
-    type_hint: ip_address
+    type_hint: text
   - name: NTP_2
     description: Network Time Protocol Server 2
     default: 1.pool.ntp.org
-    type_hint: ip_address
+    type_hint: text
   - name: ADMINISTRATOR_USERNAME
     description: admin username
     default: admin
@@ -102,11 +106,11 @@ variables:
   - name: DNS_1
     description: primary dns server
     default: 8.8.8.8
-    type_hint: text
+    type_hint: ip_address
   - name: DNS_2
     description: secondary dns server
     default: 8.8.4.4
-    type_hint: text
+    type_hint: ip_address
   - name: SINKHOLE_IPV4
     description: sinkhole address IPv4
     default: 72.5.65.111
@@ -122,7 +126,7 @@ variables:
   - name: EMAIL_PROFILE_GATEWAY
     description: email gateway address for critical alerts
     default: 192.0.2.1
-    type_hint: ip_address
+    type_hint: text
   - name: EMAIL_PROFILE_FROM
     description: from address in email alerts
     default: sentfrom@yourdomain.com
@@ -134,11 +138,23 @@ variables:
   - name: SYSLOG_SERVER
     description: syslog server ip address
     default: 192.0.2.2
-    type_hint: ip_address
+    type_hint: text
   - name: API_KEY_LIFETIME
     description: lifetime for the api key in minutes
     default: 525600
     type_hint: text
+# option built into the templates to ignore the panw published external dynamic lists security rules
+# should ONLY be excluded based on licensing limitations outside of best practices
+# when true (default) will include the EDL rule
+  - name: INCLUDE_PAN_EDL
+    description: include the predefined Palo Alto Networks external lists
+    default: true
+    type_hint: dropdown
+    dd_list:
+      - key: true
+        value: true
+      - key: false
+        value: false
 
 
 # snippets used for api configuration including xpath and element as file name
@@ -176,7 +192,7 @@ snippets:
     file: ../snippets/device_setting.xml
   - name: device_mgt_config
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ STACK }}']/config/mgt-config
-    file: ../device_mgt_config.xml
+    file: ../snippets/device_mgt_config.xml
   - name: shared_log_settings
     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ STACK }}']/config/shared/log-settings
     file: ../snippets/shared_log_settings.xml

@@ -88,9 +88,9 @@ variables:
   - name: API_KEY_LIFETIME
     description: lifetime for the api key in minutes
     value: 525600
+
 # option built into the templates to ignore the panw published external dynamic lists security rules
 # should ONLY be excluded based on licensing limitations outside of best practices
-# when true (default) will include the EDL rule
   - name: INCLUDE_PAN_EDL
     description: include the predefined Palo Alto Networks external lists
-    value: false
+    value: True
