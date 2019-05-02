@@ -54,6 +54,7 @@ PANORAMA_IP              192.168.55.7             Panorama IP if to be added to 
 PANORAMA_MASK            255.255.255.0            Panorama netmask if to be added to my_config
 PANORAMA_DG              192.168.55.2             Panorama default gateway if to be added to my_config
 API_KEY_LIFETIME         525600                   Panorama and device API key lifetime in minutes
+INCLUDE_PAN_EDL          True                     Include the panw edl object security rules
 ======================   =======================  ==========================================================
 
 

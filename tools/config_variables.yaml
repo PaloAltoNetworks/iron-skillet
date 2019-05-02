@@ -7,7 +7,7 @@ variables:
 # DHCP is used for cloud deployments only
   - name: PANORAMA_TYPE
     description: Panorama management IP type - static or cloud (for dhcp)
-    value: cloud
+    value: static
   - name: PANORAMA_IP
     description: Panorama IP
     value: 192.168.55.6
@@ -90,7 +90,7 @@ variables:
     value: 525600
 # option built into the templates to ignore the panw published external dynamic lists security rules
 # should ONLY be excluded based on licensing limitations outside of best practices
-# when true (default) will include the EDL rule
+# when True (default) will include the EDL rule
   - name: INCLUDE_PAN_EDL
-    description: include the predefined Palo Alto Networks external lists
-    value: false
+    description: include the predefined Palo Alto Networks external lists security rules
+    value: True

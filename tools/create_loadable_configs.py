@@ -198,6 +198,9 @@ def replace_variables(config_type, render_type, input_var):
 
     # create dict of values for the jinja template render
     context = create_context(config_variables)
+    # special case for True-False to use jinja conditional
+    # yaml import auto-converts to boolean and need a string to match
+    context['INCLUDE_PAN_EDL'] = str(context['INCLUDE_PAN_EDL'])
 
     # update context dict with variables from user input
     for snippet_var in input_var:
