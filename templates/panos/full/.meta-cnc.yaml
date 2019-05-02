@@ -106,13 +106,13 @@ variables:
 # when yes (default) will include the EDL rule
   - name: INCLUDE_PAN_EDL
     description: include the predefined Palo Alto Networks external lists
-    default: yes
+    default: blue
     type_hint: dropdown
     dd_list:
-      - key: yes
-        value: yes
-      - key: no
-        value: no
+      - key: blue
+        value: blue
+      - key: red
+        value: red
 
 snippets:
   - name: panos-full
