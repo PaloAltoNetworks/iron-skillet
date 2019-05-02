@@ -563,7 +563,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <log-setting>default</log-setting>
   </entry>
 </rules></default-security-rules><security><rules>
-    {%- if INCLUDE_PAN_EDL == true %}
+    {%- if INCLUDE_PAN_EDL == 'yes' %}
   <entry name="Outbound Block Rule">
     <description>Block outbound sessions with destination address matching one of the Palo Alto Networks external dynamic lists for high risk and known malicious IP addresses.</description>
     <to>
