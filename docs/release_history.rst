@@ -30,3 +30,9 @@ Documentation
     + updates specific to 9.0 content
 
 
+Tools Release History
+------------------------
+
+May 3rd, 2019
+
+    + update yaml and variables in tools to fix panw edl security rules not loading
