@@ -16,7 +16,7 @@ extends:
 labels:
   service_type: iron_skillet
   collection:
-   - IronSkillet
+    - IronSkillet
 
 # variables used in the configuration templates
 # type_hint defines the form field type in pan-cnc
@@ -141,17 +141,16 @@ variables:
     type_hint: text
 # option built into the templates to ignore the panw published external dynamic lists security rules
 # should ONLY be excluded based on licensing limitations outside of best practices
-# when true (default) will include the EDL rule
+# when 'yes' (default) will include the EDL rule
   - name: INCLUDE_PAN_EDL
-    description: include the predefined Palo Alto Networks external lists
-    default: true
+    description: include the predefined Palo Alto Networks external lists security rules
+    default: 'yes'
     type_hint: dropdown
     dd_list:
-      - key: true
-        value: true
-      - key: false
-        value: false
-
+      - key: 'yes'
+        value: 'yes'
+      - key: 'no'
+        value: 'no'
 
 # snippets used for api configuration including xpath and element as file name
 # files will load in the order listed
