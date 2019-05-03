@@ -89,4 +89,4 @@ variables:
 # should ONLY be excluded based on licensing limitations outside of best practices
   - name: INCLUDE_PAN_EDL
     description: include the predefined Palo Alto Networks external lists
-    value: True
+    value: 'yes'
