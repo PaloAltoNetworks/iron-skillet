@@ -180,11 +180,11 @@ snippets:
     xpath: /config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile
     file: zone_protection_profile.xml
   - name: reports
-    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/reports
+    xpath: /config/shared/reports
     file: reports_simple.xml
   - name: report_group_simple
-    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/report-group
+    xpath: /config/shared/report-group
     file: report_group_simple.xml
   - name: email_scheduler_simple
-    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/email-scheduler
+    xpath: /config/shared/email-scheduler
     file: email_scheduler_simple.xml
