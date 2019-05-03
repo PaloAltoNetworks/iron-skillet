@@ -148,7 +148,10 @@ August 7, 2018
         * provide simple variable substituions using the my_variable inputs
         * store output into the my_config folder with unique naming
 
+May 3rd, 2019
+^^^^^^^^^^^^^
 
+    + fix issues allowing load of panw edl based security rules
 
 Documentation Revisions
 -----------------------

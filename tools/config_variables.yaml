@@ -7,7 +7,7 @@ variables:
 # DHCP is used for cloud deployments only
   - name: PANORAMA_TYPE
     description: Panorama management IP type - static or cloud (for dhcp)
-    value: static
+    value: cloud
   - name: PANORAMA_IP
     description: Panorama IP
     value: 192.168.55.8
@@ -36,7 +36,7 @@ variables:
 # If static be sure to set the IP attributes
   - name: MGMT_TYPE
     description: firewall management IP type (static or dhcp-client)
-    value: static
+    value: dhcp-client
   - name: MGMT_IP
     description: NGFW management IP
     value: 192.0.2.6
@@ -89,4 +89,4 @@ variables:
 # should ONLY be excluded based on licensing limitations outside of best practices
   - name: INCLUDE_PAN_EDL
     description: include the predefined Palo Alto Networks external lists
-    value: True
+    value: 'yes'
