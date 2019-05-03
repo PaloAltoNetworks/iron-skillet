@@ -2327,7 +2327,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <description>This rule does not do Decryption.  This rule is validating SSL Protocol Communications.</description>
   </entry>
 </rules></decryption></post-rulebase><pre-rulebase><security><rules>
-  {%- if INCLUDE_PAN_EDL != "False" %}
+  {%- if INCLUDE_PAN_EDL == 'yes' %}
   <entry name="Outbound Block Rule">
     <description>Block outbound sessions with destination address matching one of the Palo Alto Networks external dynamic lists for high risk and known malicious IP addresses.</description>
     <target>

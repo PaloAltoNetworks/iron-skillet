@@ -62,8 +62,7 @@ variables:
   - name: ADMINISTRATOR_PASSWORD
     description: admin password
     default: admin
-    type_hint: text
-
+    type_hint: password
 
 # snippets used for api configuration including xpath and element as file name
 # files will load in the order listed
