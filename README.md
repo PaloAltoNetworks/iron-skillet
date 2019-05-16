@@ -22,6 +22,21 @@ As an alternative, the `tools` directory contains python scripts to help
 manage and create loadable configurations. Additional documentation can be
 found in `tools`.
 
+Another alternative is a manual configuration through the GUI of the Panorama
+or firewall as described below.
+
+#### GUI-Based Manual Implementation
+If you want to bypass any type of automation and configure the IronSkillet
+recommended settings through the GUI, a list of the settings and the locations
+in the GUI of both the Panorama and firewall required changes can be found here:
+
+[IronSkillet GUI Manual Instructions](https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.0/GUI_config)
+
+**TIP:** This is also a good way to manually audit your current Panorama or firewall
+configuration.  Keep in mind that a recommended IronSkillet setting should not be used
+to override a more secure setting you have already reached. IronSkillet is day-one goal,
+not an end-state goal.
+
 #### Getting templates from the repo
 Users can either grab content file-by-file from the github repo or download all
 content to a local drive.
