@@ -1,3 +1,5 @@
+.. _vm50_profile_reduction:
+
 VM-50 Security Profile Limits
 =============================
 
