@@ -124,7 +124,6 @@ General device settings that effect security posture. Found in Device > Setup in
 
     + set export of csv log file to maximum of 1,048,576
 
-
 System Configuration
 ~~~~~~~~~~~~~~~~~~~~
 
