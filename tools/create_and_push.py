@@ -5,8 +5,14 @@ import requests
 from xml.etree import ElementTree
 from jinja2 import Template
 from jinja2.exceptions import TemplateAssertionError
-from passlib.hash import md5_crypt
 import getpass
+
+"""
+Create-and-push
+Generates PANOS configuration from the XML snippets and adds to the PANOS device.
+
+This way you can pick and choose the aspects of iron-skillet you want without removing your entire configuration.
+"""
 
 def create_context(config_var_file):
     # read the metafile to get variables and values
@@ -135,19 +141,11 @@ def generate_snippet(config_type, snippet_names=None):
                 r = t2.render(context)
                 result.append({"name": xml_snippet["name"], "element": r, "xpath": xpath})
             except TemplateAssertionError:
+                # This is due to a missing filder (md5_hash) because of the altern method of templating
+                # can be fixed
                 print("{} not currently supported.".format(xml_snippet["name"]))
 
     return result
-
-# define functions for custom jinja filters
-def md5_hash(txt):
-    '''
-    Returns the MD5 Hashed secret for use as a password hash in the PanOS configuration
-    :param txt: text to be hashed
-    :return: password hash of the string with salt and configuration information. Suitable to place in the phash field
-    in the configurations
-    '''
-    return md5_crypt.hash(txt)
 
 if len(sys.argv) == 1:
     print("printing available iron-skillet snippets")
@@ -161,7 +159,9 @@ else:
     pw = getpass.getpass("password: ")
     fw = Panos(addr, user, pw)
     t = get_type(fw)
-    print(t)
+    # This is unneeded i think but will test
+    if t != "Panorama":
+        t = "panos"
     result = generate_snippet(t.lower(), sys.argv[1:])
     for r in result:
         print("Doing {} at {}...".format(r["name"],r["xpath"]))
