@@ -4,6 +4,8 @@ import oyaml
 import requests
 from xml.etree import ElementTree
 from jinja2 import Template
+from jinja2.exceptions import TemplateAssertionError
+from passlib.hash import md5_crypt
 
 def create_context(config_var_file):
     # read the metafile to get variables and values
@@ -109,16 +111,32 @@ def generate_snippet(config_type, snippet_names=None):
         with open(snippet_path, 'r') as snippet_obj:
             snippet_string = snippet_obj.read()
 
-        config_variables = 'config_variables.yaml'
+        if type(snippet_string) is str:
+            config_variables = 'config_variables.yaml'
 
-        # create dict of values for the jinja template render
-        context = create_context(config_variables)
-        t = Template(xml_snippet["xpath"])
-        xpath = t.render(context)
-        result.append({"name": xml_snippet["name"], "element": snippet_string, "xpath": xpath})
+            # create dict of values for the jinja template render
+            context = create_context(config_variables)
+            t = Template(xml_snippet["xpath"])
+            xpath = t.render(context)
+
+            try:
+                t2 = Template(snippet_string)
+                r = t2.render(context)
+                result.append({"name": xml_snippet["name"], "element": r, "xpath": xpath})
+            except TemplateAssertionError:
+                print("{} not currently supported.".format(xml_snippet["name"]))
 
     return result
 
+# define functions for custom jinja filters
+def md5_hash(txt):
+    '''
+    Returns the MD5 Hashed secret for use as a password hash in the PanOS configuration
+    :param txt: text to be hashed
+    :return: password hash of the string with salt and configuration information. Suitable to place in the phash field
+    in the configurations
+    '''
+    return md5_crypt.hash(txt)
 
 if len(sys.argv) == 1:
     print("printing available iron-skillet snippets")
