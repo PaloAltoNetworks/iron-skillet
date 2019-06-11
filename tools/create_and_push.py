@@ -6,6 +6,7 @@ from xml.etree import ElementTree
 from jinja2 import Template
 from jinja2.exceptions import TemplateAssertionError
 from passlib.hash import md5_crypt
+import getpass
 
 def create_context(config_var_file):
     # read the metafile to get variables and values
@@ -52,7 +53,7 @@ class Panos:
         url = self.url
         params["key"] = self.key
         r = requests.get(url, params=params, verify=False)
-        print(r.text)
+        return r
 
 def set_at_path(panos, xpath, elementvalue):
     params = {
@@ -61,7 +62,17 @@ def set_at_path(panos, xpath, elementvalue):
         "xpath": xpath,
         "element": elementvalue,
     }
-    panos.send(params)
+    r = panos.send(params)
+
+def get_type(panos):
+    params = {
+        "type": "op",
+        "cmd": "<show><system><info></info></system></show>"
+    }
+    r = panos.send(params)
+    root = ElementTree.fromstring(r.content)
+    elem = root.findall("./result/system/model")
+    return elem[0].text
 
 def generate_snippet(config_type, snippet_names=None):
     """
@@ -145,8 +156,13 @@ if len(sys.argv) == 1:
         print("{} : {}".format(result["name"],result["xpath"]))
     exit()
 else:
-    fw = Panos("localhost:9443", "admin", "admin")
-    result = generate_snippet("panorama", sys.argv[1:])
+    addr = input("address:port (localhost:9443) of PANOS Device to configure: ")
+    user = input("username: ")
+    pw = getpass.getpass("password: ")
+    fw = Panos(addr, user, pw)
+    t = get_type(fw)
+    print(t)
+    result = generate_snippet(t.lower(), sys.argv[1:])
     for r in result:
         print("Doing {} at {}...".format(r["name"],r["xpath"]))
         set_at_path(fw, r["xpath"], r["element"])
