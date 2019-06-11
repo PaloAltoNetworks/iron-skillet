@@ -22,13 +22,13 @@ variables:
     value: 192.0.2.3
   - name: TEMPLATE
     description: Template name for Panorama
-    value: sample_template
+    value: iron-skillet
   - name: STACK
     description: Template stack name for Panorama
-    value: sample_stack
+    value: iron-skillet-stack
   - name: DEVICE_GROUP
     description: Device-group name for Panorama
-    value: sample_devicegroup
+    value: iron-skillet
   - name: FW_NAME
     description: Device Name for NGFW
     value: sample

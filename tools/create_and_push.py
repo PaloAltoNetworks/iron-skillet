@@ -3,6 +3,27 @@ import sys
 import oyaml
 import requests
 from xml.etree import ElementTree
+from jinja2 import Template
+
+def create_context(config_var_file):
+    # read the metafile to get variables and values
+    try:
+        with open(config_var_file, 'r') as var_metadata:
+            variables = oyaml.safe_load(var_metadata.read())
+
+    except IOError as ioe:
+        print(f'Could not open metadata file {config_var_file}')
+        print(ioe)
+        sys.exit()
+
+    # grab the metadata values and convert to key-based dictionary
+    jinja_context = dict()
+
+    for snippet_var in variables['variables']:
+        jinja_context[snippet_var['name']] = snippet_var['value']
+
+    return jinja_context
+
 
 class Panos:
     def __init__(self, addr, user, pw):
@@ -88,7 +109,13 @@ def generate_snippet(config_type, snippet_names=None):
         with open(snippet_path, 'r') as snippet_obj:
             snippet_string = snippet_obj.read()
 
-        result.append({"name": xml_snippet["name"], "element": snippet_string, "xpath": xml_snippet["xpath"]})
+        config_variables = 'config_variables.yaml'
+
+        # create dict of values for the jinja template render
+        context = create_context(config_variables)
+        t = Template(xml_snippet["xpath"])
+        xpath = t.render(context)
+        result.append({"name": xml_snippet["name"], "element": snippet_string, "xpath": xpath})
 
     return result
 
