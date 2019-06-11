@@ -236,6 +236,7 @@
       <member>web-advertisements</member>
       <member>web-based-email</member>
       <member>web-hosting</member>
+      <member>White-List</member>
     </alert>
   </credential-enforcement>
   <alert>
@@ -309,6 +310,7 @@
     <member>web-advertisements</member>
     <member>web-based-email</member>
     <member>web-hosting</member>
+    <member>White-List</member>
   </alert>
 </entry>
 <entry name="Exception-URL">
