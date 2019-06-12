@@ -57,6 +57,12 @@ python create_and_push.py shared_address shared_tag
 
 Snippets use provided variables from config_variables.yaml.
 
+create_and_push will prompt for username/password/hostname, however, they can all be set using the following
+environment vars:
+- IS_USERNAME
+- IS_PASSWORD
+- IS_ADDRESS
+
 ## Template Admin
 The admin utilities are also python based and assume a working python
 environment. Directions for activating the virtual environment are above.
