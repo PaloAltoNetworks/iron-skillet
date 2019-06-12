@@ -5,6 +5,7 @@ import requests
 from xml.etree import ElementTree
 from jinja2 import Template
 from jinja2.exceptions import TemplateAssertionError
+from create_loadable_configs import create_context
 import getpass
 
 """
@@ -14,27 +15,9 @@ Generates PANOS configuration from the XML snippets and adds to the PANOS device
 This way you can pick and choose the aspects of iron-skillet you want without removing your entire configuration.
 """
 
-def create_context(config_var_file):
-    # read the metafile to get variables and values
-    try:
-        with open(config_var_file, 'r') as var_metadata:
-            variables = oyaml.safe_load(var_metadata.read())
-
-    except IOError as ioe:
-        print(f'Could not open metadata file {config_var_file}')
-        print(ioe)
-        sys.exit()
-
-    # grab the metadata values and convert to key-based dictionary
-    jinja_context = dict()
-
-    for snippet_var in variables['variables']:
-        jinja_context[snippet_var['name']] = snippet_var['value']
-
-    return jinja_context
-
-
 class Panos:
+    """
+    """
     def __init__(self, addr, user, pw):
         self.url = "https://{}/api".format(addr)
         self.user = user
@@ -147,22 +130,26 @@ def generate_snippet(config_type, snippet_names=None):
 
     return result
 
-if len(sys.argv) == 1:
-    print("printing available iron-skillet snippets")
-    r = generate_snippet("panorama")
-    for result in r:
-        print("{} : {}".format(result["name"],result["xpath"]))
-    exit()
-else:
-    addr = input("address:port (localhost:9443) of PANOS Device to configure: ")
-    user = input("username: ")
-    pw = getpass.getpass("password: ")
-    fw = Panos(addr, user, pw)
-    t = get_type(fw)
-    # This is unneeded i think but will test
-    if t != "Panorama":
-        t = "panos"
-    result = generate_snippet(t.lower(), sys.argv[1:])
-    for r in result:
-        print("Doing {} at {}...".format(r["name"],r["xpath"]))
-        set_at_path(fw, r["xpath"], r["element"])
+def main():
+    if len(sys.argv) == 1:
+        print("printing available iron-skillet snippets")
+        r = generate_snippet("panorama")
+        for result in r:
+            print("{} : {}".format(result["name"], result["xpath"]))
+        exit()
+    else:
+        addr = input("address:port (localhost:9443) of PANOS Device to configure: ")
+        user = input("username: ")
+        pw = getpass.getpass("password: ")
+        fw = Panos(addr, user, pw)
+        t = get_type(fw)
+        # This is unneeded i think.
+        if t != "Panorama":
+            t = "panos"
+        result = generate_snippet(t.lower(), sys.argv[1:])
+        for r in result:
+            print("Doing {} at {}...".format(r["name"], r["xpath"]))
+            set_at_path(fw, r["xpath"], r["element"])
+
+if __name__ == '__main__':
+    main()
