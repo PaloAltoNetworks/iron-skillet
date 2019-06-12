@@ -41,6 +41,22 @@ The output loadable templates, full and snippet configs, are saved in the
 Each run results in a new archive directory allowing for new configs with
 modified variables.
 
+#### create_and_push.py
+Provides a method for cherry-picking aspects of the iron-skillet configuration
+by rendering only the specified snippets.
+
+Automatically pushes the snippets to the provided firewall or Panorama. 
+```bash
+# Display the available snippets
+python create_and_push.py 
+# Push 
+python create_and_push.py shared_tag
+# Push multiple
+python create_and_push.py shared_address shared_tag
+```
+
+Snippets use provided variables from config_variables.yaml.
+
 ## Template Admin
 The admin utilities are also python based and assume a working python
 environment. Directions for activating the virtual environment are above.

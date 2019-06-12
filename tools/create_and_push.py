@@ -6,6 +6,8 @@ from xml.etree import ElementTree
 from jinja2 import Template
 from jinja2.exceptions import TemplateAssertionError
 from create_loadable_configs import create_context
+from colorama import init as colorama_init
+from colorama import Fore, Back, Style
 import getpass
 
 """
@@ -13,12 +15,26 @@ Create-and-push
 Generates PANOS configuration from the XML snippets and adds to the PANOS device.
 
 This way you can pick and choose the aspects of iron-skillet you want without removing your entire configuration.
+
+Usage:
+    python create_and_push.py
+    With no arguments, lists all available snippets and their destination xpaths
+    
+    python create_and_push.py snippetname1 snippetname2 
+    Push the listed snippetnames
 """
 
 class Panos:
     """
+    PANOS Device. Could be a firewall or PANORAMA.
     """
     def __init__(self, addr, user, pw):
+        """
+        Initialize a new panos object
+        :param addr: NAME:PORT combination (ex. l72.16.0.1:443)
+        :param user: username
+        :param pw: password
+        """
         self.url = "https://{}/api".format(addr)
         self.user = user
         self.pw = pw
@@ -26,6 +42,10 @@ class Panos:
         self.connect()
 
     def connect(self):
+        """
+        Connect to a PANOS device and retrieve an API key.
+        :return: API Key
+        """
         url = self.url
         params = {
             "type": "keygen",
@@ -39,12 +59,39 @@ class Panos:
         return self.key
 
     def send(self, params):
+        """
+        Send a request to this PANOS device
+        :param params: dict: GET parameters for query ({ "type": "op" })
+        :return: GET Response type
+        """
         url = self.url
         params["key"] = self.key
         r = requests.get(url, params=params, verify=False)
         return r
 
+    def get_type(self):
+        """
+        Get the type of PANOS device using show system info
+        :param panos: PANOS device object
+        :return:
+        """
+        params = {
+            "type": "op",
+            "cmd": "<show><system><info></info></system></show>"
+        }
+        r = self.send(params)
+        root = ElementTree.fromstring(r.content)
+        elem = root.findall("./result/system/model")
+        return elem[0].text
+
 def set_at_path(panos, xpath, elementvalue):
+    """
+    Runs a "set" action against a given xpath.
+    :param panos: .panos object
+    :param xpath: xpath to set at
+    :param elementvalue: Element value to set
+    :return: GET Response page
+    """
     params = {
         "type": "config",
         "action": "set",
@@ -52,8 +99,15 @@ def set_at_path(panos, xpath, elementvalue):
         "element": elementvalue,
     }
     r = panos.send(params)
+    return r
+
 
 def get_type(panos):
+    """
+    Get the type of PANOS device using show system info
+    :param panos: PANOS device object
+    :return:
+    """
     params = {
         "type": "op",
         "cmd": "<show><system><info></info></system></show>"
@@ -63,13 +117,15 @@ def get_type(panos):
     elem = root.findall("./result/system/model")
     return elem[0].text
 
+
 def generate_snippet(config_type, snippet_names=None):
     """
-    Generates the full configuration template for a given configuration type (panos or panorama).
-    This will use the load order
+    Generate just a snippet for the given snippet_names, or all if asked.
+
     :param config_type: currently supported: 'panos' or 'panorama'
-    :return: will print full configs to STDOUT and also overwrite the full/iron_skillet_<type>_full.xml
+    :return: dict: {"name": snippet name, "element": string element value, "xpath": path to element (from metadata file)}
     """
+
     metadata_file = os.path.abspath(os.path.join('..', 'templates', config_type, 'snippets'.format(config_type), '.meta-cnc.yaml'))
 
     try:
@@ -125,12 +181,41 @@ def generate_snippet(config_type, snippet_names=None):
                 result.append({"name": xml_snippet["name"], "element": r, "xpath": xpath})
             except TemplateAssertionError:
                 # This is due to a missing filder (md5_hash) because of the altern method of templating
-                # can be fixed
+                # This should be fixed
                 print("{} not currently supported.".format(xml_snippet["name"]))
 
     return result
 
+def env_or_prompt(prompt, prompt_long=None, secret=False):
+    k = "IS_{}".format(prompt).upper()
+    e = os.getenv(k)
+    if e:
+        return e
+
+    if secret:
+        e = getpass.getpass(prompt + ": ")
+        return e
+
+    if prompt_long:
+        e = input(prompt_long)
+        return e
+
+    e = input(prompt + ": ")
+    return e
+
+def check_resp(r):
+    root = ElementTree.fromstring(r.content)
+    status = root.attrib["status"]
+    if status == "success":
+        print("{}Success!".format(Fore.GREEN))
+    else:
+        print("{}Failed.".format(Fore.RED))
+
+    print(Style.RESET_ALL)
+
 def main():
+    requests.packages.urllib3.disable_warnings()
+    colorama_init()
     if len(sys.argv) == 1:
         print("printing available iron-skillet snippets")
         r = generate_snippet("panorama")
@@ -138,18 +223,20 @@ def main():
             print("{} : {}".format(result["name"], result["xpath"]))
         exit()
     else:
-        addr = input("address:port (localhost:9443) of PANOS Device to configure: ")
-        user = input("username: ")
-        pw = getpass.getpass("password: ")
+        addr = env_or_prompt("address", prompt_long="address:port (localhost:9443) of PANOS Device to configure: ")
+        user = env_or_prompt("username")
+        pw = env_or_prompt("password", secret=True)
         fw = Panos(addr, user, pw)
-        t = get_type(fw)
+        t = fw.get_type()
         # This is unneeded i think.
         if t != "Panorama":
             t = "panos"
         result = generate_snippet(t.lower(), sys.argv[1:])
         for r in result:
             print("Doing {} at {}...".format(r["name"], r["xpath"]))
-            set_at_path(fw, r["xpath"], r["element"])
+            r = set_at_path(fw, r["xpath"], r["element"])
+            check_resp(r)
+
 
 if __name__ == '__main__':
     main()
