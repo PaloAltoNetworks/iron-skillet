@@ -127,9 +127,9 @@ snippets:
   - name: mgt_config_users
     xpath: /config/mgt-config/users
     file: mgt_config_users.xml
-  - name: password_complexity
-    xpath: /config/mgt-config/password-complexity
-    file: password_complexity.xml
+#  - name: password_complexity
+#    xpath: /config/mgt-config/password-complexity
+#    file: password_complexity.xml
   - name: shared_log_settings
     xpath: /config/shared/log-settings
     file: shared_log_settings.xml
