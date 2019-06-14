@@ -41,7 +41,7 @@ class Panos:
         self.user = user
         self.pw = pw
         self.key = ''
-        self.debug = True
+        self.debug = False
         self.connect()
 
 
@@ -162,12 +162,23 @@ def generate_snippet(config_type, snippet_names=None):
     config_path = os.path.abspath(os.path.join('..', 'templates', config_type))
 
     xml_snippets = []
+
+
     if snippet_names:
+        sn_full = []
+        # if the arg is a group, we convert to the underlying snippets
+        for sn in snippet_names:
+            if sn in service_config["quick_groups"]:
+                sn_full = sn_full + service_config["quick_groups"][sn]
+            else:
+                sn_full.append(sn)
+
         for xml_snippet in service_config['snippets']:
-            if xml_snippet['name'] in snippet_names:
+            if xml_snippet['name'] in sn_full:
                 xml_snippets.append(xml_snippet)
     else:
         xml_snippets = service_config['snippets']
+
 
     result = []
     # iterator through the metadata snippets load order
@@ -235,7 +246,7 @@ def check_resp(r, print_result=True):
         return True
     else:
         if print_result:
-            print("{}Failed.".format(Fore.RED))
+            print("{}{} : Failed.".format(Fore.RED, r.text))
             print(Style.RESET_ALL)
         return False
 

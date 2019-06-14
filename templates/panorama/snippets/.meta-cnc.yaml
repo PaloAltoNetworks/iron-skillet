@@ -254,3 +254,15 @@ snippets:
   - name: email_scheduler
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/email-scheduler
     file: email_scheduler_simple.xml
+
+quick_groups:
+  security_profiles:
+    - shared_profiles_custom_url_category
+    - profiles_decryption
+    - profiles_virus
+    - profiles_spyware
+    - profiles_vulnerability
+    - profiles_file_blocking
+    - profiles_url_filtering
+    - profiles_wildfire_analysis
+    - profile_group
