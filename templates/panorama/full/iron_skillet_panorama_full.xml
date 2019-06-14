@@ -16,7 +16,7 @@
     <entry name="localhost.localdomain">
       <deviceconfig>
       <system><hostname>{{ PANORAMA_NAME }}</hostname>
-{%- if CONFIG_PANORAMA_IP == "yes" and PANORAMA_TYPE == "static" %}
+{%- if PANORAMA_TYPE == "static" %}
 <ip-address>{{ PANORAMA_IP }}</ip-address>
 <netmask>{{ PANORAMA_MASK }}</netmask>
 <default-gateway>{{ PANORAMA_DG }}</default-gateway>

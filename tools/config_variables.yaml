@@ -57,7 +57,7 @@ variables:
     value: admin
   - name: ADMINISTRATOR_PASSWORD
     description: admin password
-    value: paloalto
+    value: admin
   - name: DNS_1
     description: primary dns server
     value: 8.8.8.8

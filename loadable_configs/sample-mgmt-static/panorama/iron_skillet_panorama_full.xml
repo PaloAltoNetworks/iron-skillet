@@ -3,7 +3,7 @@
     <devices />
     <users>
       <entry name="admin">
-        <phash>$1$PHhNxlBs$RXEo8K7QJaI1eXElB3lE91</phash>
+        <phash>$1$Wj5C/Vil$5doxw70XCM5k0Up7HEJ4G/</phash>
         <permissions>
           <role-based>
             <superuser>yes</superuser>
@@ -16,6 +16,9 @@
     <entry name="localhost.localdomain">
       <deviceconfig>
       <system><hostname>panorama01</hostname>
+<ip-address>192.168.55.6</ip-address>
+<netmask>255.255.255.0</netmask>
+<default-gateway>192.168.55.2</default-gateway>
 <update-server>updates.paloaltonetworks.com</update-server>
 <update-schedule>
 <threats>
@@ -487,7 +490,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     </devices>
   <mgt-config><users>
   <entry name="admin">
-    <phash>$1$IqB9eOEf$dz4NgRj38dRi29OEfoi/H1</phash>
+    <phash>$1$1eKRW8.0$6c6w81rLHQ1tgJsMTsOD..</phash>
     <permissions>
       <role-based>
         <superuser>yes</superuser>
