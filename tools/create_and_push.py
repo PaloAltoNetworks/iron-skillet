@@ -4,9 +4,11 @@ import oyaml
 import requests
 from xml.etree import ElementTree
 from jinja2 import Template
+from urllib3.exceptions import ProtocolError
 from jinja2.exceptions import TemplateAssertionError
 from create_loadable_configs import create_context
 from colorama import init as colorama_init
+import re
 from colorama import Fore, Back, Style
 import getpass
 
@@ -39,7 +41,9 @@ class Panos:
         self.user = user
         self.pw = pw
         self.key = ''
+        self.debug = True
         self.connect()
+
 
     def connect(self):
         """
@@ -52,7 +56,11 @@ class Panos:
             "user": self.user,
             "password": self.pw,
         }
-        r = requests.get(url, params=params, verify=False)
+        r = self.send(params)
+        if not check_resp(r, print_result=False):
+            print("Error on login received from PANOS: {}".format(r.text))
+            exit(1)
+
         root = ElementTree.fromstring(r.content)
         elem = root.findall("./result/key")
         self.key = elem[0].text
@@ -66,7 +74,12 @@ class Panos:
         """
         url = self.url
         params["key"] = self.key
-        r = requests.get(url, params=params, verify=False)
+        self.debug_log("{} : {}".format(url, params))
+        try:
+            r = requests.get(url, params=params, verify=False)
+        except ProtocolError:
+            print("Failed to send a rqequest.")
+            exit(1)
         return r
 
     def get_type(self):
@@ -84,6 +97,15 @@ class Panos:
         elem = root.findall("./result/system/model")
         return elem[0].text
 
+    def debug_log(self, l):
+        if self.debug:
+            print(l)
+
+def sanitize_element(element):
+    element = re.sub("\n\s+", "", element)
+    element = re.sub("\n", "", element)
+    return element
+
 def set_at_path(panos, xpath, elementvalue):
     """
     Runs a "set" action against a given xpath.
@@ -96,7 +118,7 @@ def set_at_path(panos, xpath, elementvalue):
         "type": "config",
         "action": "set",
         "xpath": xpath,
-        "element": elementvalue,
+        "element": sanitize_element(elementvalue),
     }
     r = panos.send(params)
     return r
@@ -203,15 +225,22 @@ def env_or_prompt(prompt, prompt_long=None, secret=False):
     e = input(prompt + ": ")
     return e
 
-def check_resp(r):
+def check_resp(r, print_result=True):
     root = ElementTree.fromstring(r.content)
     status = root.attrib["status"]
     if status == "success":
-        print("{}Success!".format(Fore.GREEN))
+        if print_result:
+            print("{}Success!".format(Fore.GREEN))
+            print(Style.RESET_ALL)
+        return True
     else:
-        print("{}Failed.".format(Fore.RED))
+        if print_result:
+            print("{}Failed.".format(Fore.RED))
+            print(Style.RESET_ALL)
+        return False
 
-    print(Style.RESET_ALL)
+
+
 
 def main():
     requests.packages.urllib3.disable_warnings()
