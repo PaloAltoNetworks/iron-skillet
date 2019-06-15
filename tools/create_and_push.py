@@ -26,6 +26,7 @@ Usage:
     Push the listed snippetnames
 """
 
+MAX_CHAR_LIMIT = 12000
 class Panos:
     """
     PANOS Device. Could be a firewall or PANORAMA.
@@ -104,6 +105,7 @@ class Panos:
 def sanitize_element(element):
     element = re.sub("\n\s+", "", element)
     element = re.sub("\n", "", element)
+    element = re.sub("b\\'", "", element)
     return element
 
 def set_at_path(panos, xpath, elementvalue):
@@ -202,22 +204,54 @@ def generate_snippet(config_type, snippet_names=None):
 
         if type(snippet_string) is str:
             config_variables = 'config_variables.yaml'
-
             # create dict of values for the jinja template render
             context = create_context(config_variables)
             t = Template(xml_snippet["xpath"])
             xpath = t.render(context)
 
             try:
-                t2 = Template(snippet_string)
-                r = t2.render(context)
-                result.append({"name": xml_snippet["name"], "element": r, "xpath": xpath})
+                # If this is an oversized snippet split it up
+                strings = split_snippet(snippet_string)
+                for s in strings:
+                    t2 = Template(s)
+                    r = t2.render(context)
+                    result.append({"name": xml_snippet["name"], "element": r, "xpath": xpath})
             except TemplateAssertionError:
                 # This is due to a missing filder (md5_hash) because of the altern method of templating
                 # This should be fixed
                 print("{} not currently supported.".format(xml_snippet["name"]))
 
     return result
+
+
+def split_snippet(snippet_string):
+    """
+    Cuts an oversized snippet into smaller snippets on the basis that most snippets are
+    a list of <entry> objects
+    :param snippet_string:
+    :return:
+    """
+    length = len(snippet_string)
+
+    if length > 12000:
+        # Wrap the xml in root elements so we can parse it
+        snippet_string = "<root>" + snippet_string + "</root>"
+        root = ElementTree.fromstring(snippet_string)
+        elems = root.findall("./entry")
+    else:
+        return [snippet_string]
+
+    xmlstrings = []
+    if not elems:
+        print("Error: Oversized snippet that cannot be split, exiting.")
+        exit(1)
+
+    for e in elems:
+        xmlstr = ElementTree.tostring(e)
+        xmlstr = xmlstr.decode("utf-8")
+        xmlstrings.append(xmlstr)
+
+    return xmlstrings
 
 def env_or_prompt(prompt, prompt_long=None, secret=False):
     k = "IS_{}".format(prompt).upper()
