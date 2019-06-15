@@ -51,7 +51,6 @@ class Panos:
         Connect to a PANOS device and retrieve an API key.
         :return: API Key
         """
-        url = self.url
         params = {
             "type": "keygen",
             "user": self.user,
@@ -103,9 +102,13 @@ class Panos:
             print(l)
 
 def sanitize_element(element):
+    """
+    Eliminate some undeeded characters out of the XML snippet if they appear.
+    :param element: element str
+    :return: sanitized element str
+    """
     element = re.sub("\n\s+", "", element)
     element = re.sub("\n", "", element)
-    element = re.sub("b\\'", "", element)
     return element
 
 def set_at_path(panos, xpath, elementvalue):
@@ -146,7 +149,10 @@ def generate_snippet(config_type, snippet_names=None):
     """
     Generate just a snippet for the given snippet_names, or all if asked.
 
+    Uses .meta-cnc.yaml to determine the snippets and xpath values based om the names passed to this function.
+
     :param config_type: currently supported: 'panos' or 'panorama'
+    :param snippet_names: list: List of snippet or snippet group names.
     :return: dict: {"name": snippet name, "element": string element value, "xpath": path to element (from metadata file)}
     """
 
