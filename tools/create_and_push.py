@@ -275,13 +275,11 @@ def check_resp(r, print_result=True):
     status = root.attrib["status"]
     if status == "success":
         if print_result:
-            print("{}Success!".format(Fore.GREEN))
-            print(Style.RESET_ALL)
+            print("{}Success!{}".format(Fore.GREEN, Style.RESET_ALL))
         return True
     else:
         if print_result:
-            print("{}{} : Failed.".format(Fore.RED, r.text))
-            print(Style.RESET_ALL)
+            print("{}{} : Failed.{}".format(Fore.RED, r.text, Style.RESET_ALL))
         return False
 
 
@@ -307,7 +305,7 @@ def main():
             t = "panos"
         result = generate_snippet(t.lower(), sys.argv[1:])
         for r in result:
-            print("Doing {} at {}...".format(r["name"], r["xpath"]))
+            print("Doing {} at {}...".format(r["name"], r["xpath"]), end="")
             r = set_at_path(fw, r["xpath"], r["element"])
             check_resp(r)
 
