@@ -155,9 +155,18 @@ def generate_snippet(config_type, snippet_names=None):
     :param snippet_names: list: List of snippet or snippet group names.
     :return: dict: {"name": snippet name, "element": string element value, "xpath": path to element (from metadata file)}
     """
+    template_dir_paths = [
+        os.path.join('..', 'templates'),
+        os.path.join('templates')
+    ]
+    for tp in template_dir_paths:
+        if os.path.exists(tp):
+            template_dir_path = tp
 
-    metadata_file = os.path.abspath(os.path.join('..', 'templates', config_type, 'snippets'.format(config_type), '.meta-cnc.yaml'))
+    if not template_dir_path:
+        raise FileNotFoundError("Template directory not found in any known location.")
 
+    metadata_file = os.path.abspath(os.path.join(template_dir_path, config_type, 'snippets'.format(config_type), '.meta-cnc.yaml'))
     try:
         with open(metadata_file, 'r') as snippet_metadata:
             service_config = oyaml.safe_load(snippet_metadata.read())
@@ -167,7 +176,7 @@ def generate_snippet(config_type, snippet_names=None):
         print(ioe)
         sys.exit()
 
-    config_path = os.path.abspath(os.path.join('..', 'templates', config_type))
+    config_path = os.path.abspath(os.path.join(template_dir_path, config_type))
 
     xml_snippets = []
 
@@ -299,7 +308,7 @@ def main():
         r = generate_snippet("panorama")
         for result in r:
             print("{} : {}".format(result["name"], result["xpath"]))
-        exit()
+        sys.exit(0)
     else:
         addr = env_or_prompt("address", prompt_long="address:port (localhost:9443) of PANOS Device to configure: ")
         user = env_or_prompt("username")
