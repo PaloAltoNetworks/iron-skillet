@@ -124,9 +124,9 @@ snippets:
   - name: device_setting
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     file: device_setting.xml
-#  - name: mgt_config_users
-#    xpath: /config/mgt-config/users
-#    file: mgt_config_users.xml
+  - name: mgt_config_users
+    xpath: /config/mgt-config/users
+    file: mgt_config_users.xml
   - name: password_complexity
     xpath: /config/mgt-config/password-complexity
     file: password_complexity.xml

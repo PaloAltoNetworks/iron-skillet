@@ -1,5 +1,12 @@
 <config urldb="paloaltonetworks" version="9.0.0">
-  <mgt-config><password-complexity><enabled>yes</enabled>
+  <mgt-config><users> <entry name="admin">
+    <phash>$1$MnXNxARw$WAJxJRZN4rxgGEEIdMUpg1</phash>
+    <permissions>
+      <role-based>
+        <superuser>yes</superuser>
+      </role-based>
+    </permissions>
+  </entry></users><password-complexity><enabled>yes</enabled>
 <minimum-length>12</minimum-length>
 <minimum-uppercase-letters>1</minimum-uppercase-letters>
 <minimum-lowercase-letters>1</minimum-lowercase-letters>
