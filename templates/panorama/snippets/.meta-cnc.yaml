@@ -161,6 +161,12 @@ snippets:
   - name: panorama_setting
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     file: panorama_setting.xml
+  - name: panorama_mgt_config_users
+    xpath: /config/mgt-config/users
+    file: panorama_mgt_config_users.xml
+  - name: panorama_mgt_config_pwd
+    xpath: /config/mgt-config/password-complexity
+    file: panorama_mgt_config_pwd.xml
   - name: panorama_log_settings
     xpath: /config/panorama/log-settings
     file: panorama_log_settings.xml
@@ -182,6 +188,9 @@ snippets:
   - name: device_mgt_config
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/mgt-config
     file: device_mgt_config.xml
+  - name: device_password_complexity
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/mgt-config/password-complexity
+    file: device_mgt_config.xml
   - name: shared_log_settings
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/shared/log-settings
     file: shared_log_settings.xml
@@ -191,9 +200,6 @@ snippets:
   - name: shared_address
     xpath: /config/shared/address
     file: address.xml
-  - name: shared_external_list
-    xpath: /config/shared/external-list
-    file: external_list.xml
   - name: shared_log_profiles
     xpath: /config/shared/log-settings/profiles
     file: log_settings_profiles.xml

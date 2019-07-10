@@ -1,17 +1,26 @@
 <config urldb="paloaltonetworks" version="9.0.0">
-   <mgt-config>
+  <mgt-config>
     <devices />
-    <users>
-      <entry name="admin">
-        <phash>$1$ZBCBc72r$xjY1hnQrEPCMWb6NCu4wG0</phash>
-        <permissions>
-          <role-based>
-            <superuser>yes</superuser>
-          </role-based>
-        </permissions>
-      </entry>
-    </users>
-  </mgt-config>
+  <users> <entry name="admin">
+  <phash>$1$/jUhI3.X$w8.2lWE8hHl9TBTmX0Cmr/</phash>
+  <permissions>
+    <role-based>
+      <superuser>yes</superuser>
+    </role-based>
+  </permissions>
+</entry>
+</users><password-complexity><enabled>yes</enabled>
+<minimum-length>12</minimum-length>
+<minimum-uppercase-letters>1</minimum-uppercase-letters>
+<minimum-lowercase-letters>1</minimum-lowercase-letters>
+<minimum-numeric-letters>1</minimum-numeric-letters>
+<minimum-special-characters>1</minimum-special-characters>
+<block-username-inclusion>yes</block-username-inclusion>
+<password-history-count>24</password-history-count>
+<new-password-differs-by-characters>3</new-password-differs-by-characters>
+<password-change>
+  <expiration-period>90</expiration-period>
+</password-change></password-complexity></mgt-config>
   <devices>
     <entry name="localhost.localdomain">
       <deviceconfig>
@@ -119,6 +128,12 @@ Log off immediately if you are not an authorized user.</login-banner>
       <lifetime>525600</lifetime>
     </key>
   </api>
+  <admin-lockout>
+    <failed-attempts>5</failed-attempts>
+    <lockout-time>30</lockout-time>
+  </admin-lockout>
+  <idle-timeout>10</idle-timeout>
+  <auto-acquire-commit-lock>yes</auto-acquire-commit-lock>
 </management></setting></deviceconfig>
     <log-collector-group><entry name="Default_Collector_Group">
   <monitoring-setting>
@@ -342,6 +357,22 @@ Log off immediately if you are not an authorized user.</login-banner>
       </every-min>
     </recurring>
   </wildfire>
+  <global-protect-datafile>
+    <recurring>
+      <hourly>
+        <at>40</at>
+        <action>download-and-install</action>
+      </hourly>
+    </recurring>
+  </global-protect-datafile>
+  <global-protect-clientless-vpn>
+    <recurring>
+      <hourly>
+        <at>50</at>
+        <action>download-and-install</action>
+      </hourly>
+    </recurring>
+  </global-protect-clientless-vpn>
 </update-schedule>
 <snmp-setting>
   <access-setting>
@@ -381,6 +412,12 @@ Log off immediately if you are not an authorized user.</login-banner>
       <lifetime>525600</lifetime>
     </key>
   </api>
+<admin-lockout>
+    <failed-attempts>5</failed-attempts>
+    <lockout-time>30</lockout-time>
+  </admin-lockout>
+  <idle-timeout>10</idle-timeout>
+  <auto-acquire-commit-lock>yes</auto-acquire-commit-lock>
 </management>
 <wildfire>
   <file-size-limit>
@@ -509,14 +546,28 @@ Log off immediately if you are not an authorized user.</login-banner>
     </devices>
   <mgt-config><users>
   <entry name="admin">
-    <phash>$1$nSPhSEc1$nPWH8A8IWEbQjn/KYreCI0</phash>
+    <phash>$1$2wfXO26Z$7UPyevLcKALB8zkuiSw310</phash>
     <permissions>
       <role-based>
         <superuser>yes</superuser>
       </role-based>
     </permissions>
   </entry>
-</users></mgt-config><shared><log-settings><email>
+</users>
+<password-complexity>
+  <enabled>yes</enabled>
+  <minimum-length>12</minimum-length>
+  <minimum-uppercase-letters>1</minimum-uppercase-letters>
+  <minimum-lowercase-letters>1</minimum-lowercase-letters>
+  <minimum-numeric-letters>1</minimum-numeric-letters>
+  <minimum-special-characters>1</minimum-special-characters>
+  <block-username-inclusion>yes</block-username-inclusion>
+  <password-history-count>24</password-history-count>
+  <new-password-differs-by-characters>3</new-password-differs-by-characters>
+  <password-change>
+    <expiration-period>90</expiration-period>
+  </password-change>
+</password-complexity></mgt-config><shared><log-settings><email>
   <entry name="Sample_Email_Profile">
     <server>
       <entry name="Sample_Email_Profile">
@@ -986,28 +1037,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 </entry>
 <entry name="Sinkhole-IPv6">
     <ip-netmask>2600:5200::1</ip-netmask>
-</entry></address><external-list><entry name="Team Cymru Bogons IPv4">
-  <type>
-    <ip>
-      <recurring>
-        <hourly />
-      </recurring>
-      <url>http://www.team-cymru.org/Services/Bogons/fullbogons-ipv4.txt</url>
-      <description>IPv4 addresses that should not be routed across the Internet. Either reserved IP address space or unassigned and may be used for malicious purposes. More information: http://www.team-cymru.com/bogon-reference.html</description>
-    </ip>
-  </type>
-</entry>
-<entry name="Team Cymru Bogons IPv6">
-  <type>
-    <ip>
-      <recurring>
-        <hourly />
-      </recurring>
-      <url>http://www.team-cymru.org/Services/Bogons/fullbogons-ipv6.txt</url>
-      <description>IPv6 addresses that should not be routed across the Internet. Either reserved IP address space or unassigned and may be used for malicious purposes. More information: http://www.team-cymru.com/bogon-reference.html</description>
-    </ip>
-  </type>
-</entry></external-list><log-settings><profiles><entry name="default">
+</entry></address><log-settings><profiles><entry name="default">
   <match-list>
     <entry name="Traffic_Log_Forwarding">
       <log-type>traffic</log-type>
@@ -1960,6 +1990,8 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>web-advertisements</member>
       <member>web-based-email</member>
       <member>web-hosting</member>
+      <member>White-List</member>
+      <member>Black-List</member>
     </alert>
   </credential-enforcement>
   <alert>
@@ -2033,6 +2065,8 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>web-advertisements</member>
     <member>web-based-email</member>
     <member>web-hosting</member>
+    <member>White-List</member>
+    <member>Black-List</member>
   </alert>
 </entry>
 <entry name="Exception-URL">
@@ -2411,6 +2445,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <destination>
       <member>panw-highrisk-ip-list</member>
       <member>panw-known-ip-list</member>
+      <member>panw-bulletproof-ip-list</member>
     </destination>
     <source-user>
       <member>any</member>
@@ -2447,6 +2482,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <source>
       <member>panw-highrisk-ip-list</member>
       <member>panw-known-ip-list</member>
+      <member>panw-bulletproof-ip-list</member>
     </source>
     <destination>
       <member>any</member>
@@ -2511,86 +2547,6 @@ Log off immediately if you are not an authorized user.</login-banner>
     <tag>
       <member>Outbound</member>
     </tag>
-  </entry>
-    <entry name="Outbound Bogon Block Rule">
-    <description>Block outbound sessions with a destination address matching a known bogon address that should not be transitting the firewall. Add known exceptions to the rule before activating.</description>
-    <target>
-      <negate>no</negate>
-    </target>
-    <to>
-      <member>any</member>
-    </to>
-    <from>
-      <member>any</member>
-    </from>
-    <source>
-      <member>any</member>
-    </source>
-    <destination>
-      <member>Team Cymru Bogons IPv4</member>
-      <member>Team Cymru Bogons IPv6</member>
-    </destination>
-    <source-user>
-      <member>any</member>
-    </source-user>
-    <category>
-      <member>any</member>
-    </category>
-    <application>
-      <member>any</member>
-    </application>
-    <service>
-      <member>any</member>
-    </service>
-    <hip-profiles>
-      <member>any</member>
-    </hip-profiles>
-    <action>deny</action>
-    <log-setting>default</log-setting>
-    <tag>
-      <member>Outbound</member>
-    </tag>
-    <disabled>yes</disabled>
-  </entry>
-  <entry name="Inbound Bogon Block Rule">
-    <description>Block inbound sessions with a source address matching a known bogon address that should not be transitting the firewall. Add known exceptions to the rule before activating.</description>
-    <target>
-      <negate>no</negate>
-    </target>
-    <to>
-      <member>any</member>
-    </to>
-    <from>
-      <member>any</member>
-    </from>
-    <source>
-      <member>Team Cymru Bogons IPv4</member>
-      <member>Team Cymru Bogons IPv6</member>
-    </source>
-    <destination>
-      <member>any</member>
-    </destination>
-    <source-user>
-      <member>any</member>
-    </source-user>
-    <category>
-      <member>any</member>
-    </category>
-    <application>
-      <member>any</member>
-    </application>
-    <service>
-      <member>any</member>
-    </service>
-    <hip-profiles>
-      <member>any</member>
-    </hip-profiles>
-    <action>deny</action>
-    <log-setting>default</log-setting>
-    <tag>
-      <member>Inbound</member>
-    </tag>
-    <disabled>yes</disabled>
   </entry>
 </rules></security><decryption><rules>
   <entry name="NO-Decrypt URL Categories">
