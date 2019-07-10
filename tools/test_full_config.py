@@ -28,6 +28,7 @@ Use at your own risk.
 import argparse
 import sys
 import time
+import requests
 import pan.xapi
 
 def get_job_id(s):
@@ -101,10 +102,34 @@ def commit(device):
     if '<job>' in results:
         check_job_status(device, results)
 
-#def import_conf(device, filename, file_dir):
+def import_conf(ip_addr, api_key, filename, file_dir):
+    '''
+    import local config file to device
+    :param ip_addr: ip address of configured device
+    :param api_key: api key for the device
+    :param filename: filename to import
+    :param file_dir: name of directory for the file
+    :return:
+    '''
 
-    #import_file = '{0}/{1}'.format(file_dir, filename)
+    import_file = '{0}/{1}'.format(file_dir, filename)
+    print('importing {0} to device'.format(import_file))
 
+    url = "https://{0}/api".format(ip_addr)
+    params = {
+        "type": "import",
+        "category": "configuration",
+        "key": api_key
+    }
+
+    with open(import_file, 'rb') as f:
+        files = {'file': f}
+        r = requests.post(url,
+                          params=params,
+                          verify=False,
+                          files=files)
+
+        print(r.text)
 
 def load_conf(device, filename):
     '''
@@ -153,7 +178,7 @@ if __name__ == '__main__':
     api_key = device.keygen()
 
     # import config
-    #import_conf(device, filename, file_dir)
+    import_conf(ip_addr, api_key, filename, file_dir)
 
     # load config
     load_conf(device, filename)
