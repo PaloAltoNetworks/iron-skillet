@@ -1,9 +1,0 @@
-Jinja2>=2.10.1
-MarkupSafe==1.0
-oyaml==0.7
-passlib==1.7.1
-PyYAML==3.13
-XlsxWriter==1.1.2
-requests==2.22.0
-pexpect==4.7.0
-pan-python==0.14.0

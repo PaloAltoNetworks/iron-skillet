@@ -1,0 +1,27 @@
+# snippets is used to load a full NGFW configuration
+
+# snippet folder name
+name: bruteForceExceptions_panos_set_v90
+# label used for menu selection
+label: v9.0 Brute Force Exceptions for IronSkillet Vulnerability Profile - set commands
+description: vulnerability profile with loadable config set commands
+dependency:
+# type of device configuration
+type: template
+extends:
+
+# grouping of like snippets for dynamic menu creation in pan-cnc
+labels:
+  collection:
+   - IronSkillet
+   - Configure
+   - Best Practice
+
+# variables used in the configuration templates
+# type_hint defines the form field type in pan-cnc
+variables:
+  -
+
+snippets:
+  - name: iron_skillet_panos_full.conf
+    file: iron_skillet_panos_full.conf
