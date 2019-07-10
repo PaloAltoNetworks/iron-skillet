@@ -61,6 +61,29 @@ xml configuration file including jinja variables.
 The resulting templates are stored in the `full` directory as
 `iron_skillet_full.xml`
 
+#### build_all.py
+
+used by the IronSkillet admin to generate the full xml configs, loadable
+configs, and spreadsheets.
+
+In tandem with the config_variables.yaml file also uses the batch_variables.yaml
+file to generate all of the loadable config options.
+
+#### test_set_commands.py
+
+this is an expect-style script that logs into the device and loads the
+set command configuration. In the code is a 'start_row' value to
+determine where in the file to start loading. Useful to ignore mgmt intf
+changes and test loads deeper in the configuration.
+
+Also will commit the configuration to ensure no commit errors.
+
+#### test_full_config.py
+
+this script imports, loads, and commits the dhcp-based full configuration.
+Provides a quick way to determine if any configuration/commit errors
+as part of skillet updates.
+
 
 ## Variables used by iron-skillet
 For information about the variables used in iron-skillet can be found at:
