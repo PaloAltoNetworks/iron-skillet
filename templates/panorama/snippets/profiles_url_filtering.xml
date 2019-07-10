@@ -393,6 +393,7 @@
       <member>web-based-email</member>
       <member>web-hosting</member>
       <member>Black-List</member>
+      <member>White-List</member>
     </block>
   </credential-enforcement>
   <log-http-hdr-user-agent>yes</log-http-hdr-user-agent>

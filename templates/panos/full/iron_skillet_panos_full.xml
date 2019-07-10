@@ -1758,6 +1758,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>web-based-email</member>
       <member>web-hosting</member>
       <member>White-List</member>
+      <member>Black-List</member>
     </alert>
   </credential-enforcement>
   <alert>
@@ -1832,6 +1833,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>web-based-email</member>
     <member>web-hosting</member>
     <member>White-List</member>
+    <member>Black-List</member>
   </alert>
 </entry>
 <entry name="Exception-URL">
@@ -1912,6 +1914,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>web-based-email</member>
       <member>web-hosting</member>
       <member>Black-List</member>
+      <member>White-List</member>
     </block>
   </credential-enforcement>
   <log-http-hdr-user-agent>yes</log-http-hdr-user-agent>

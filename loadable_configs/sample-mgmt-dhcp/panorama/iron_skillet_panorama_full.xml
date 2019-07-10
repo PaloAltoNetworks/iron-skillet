@@ -2,7 +2,7 @@
   <mgt-config>
     <devices />
   <users> <entry name="admin">
-  <phash>$1$Iorg0Ogj$CzrHOkEHgxiwCsWQFn3iF0</phash>
+  <phash>$1$fXwSHRZ0$q9nQPSG0naBuMAu6EdhU4.</phash>
   <permissions>
     <role-based>
       <superuser>yes</superuser>
@@ -527,7 +527,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     </devices>
   <mgt-config><users>
   <entry name="admin">
-    <phash>$1$GmGy8oJJ$V75cNdSRDx0V78yJqXZ111</phash>
+    <phash>$1$loSS3/I4$sVr5uw4qJn3UgbMsC7nhC/</phash>
     <permissions>
       <role-based>
         <superuser>yes</superuser>
@@ -1012,7 +1012,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 	<comments>Internal to Internal</comments>
 </entry>
 <entry name="iron-skillet-version">
-	<comments>version 0.0.1 for 9.0: version of this IronSkillet template file</comments>
+	<comments>version 0.0.2 for 9.0: version of this IronSkillet template file</comments>
 </entry></tag><address><entry name="Sinkhole-IPv4">
     <ip-netmask>72.5.65.111</ip-netmask>
 </entry>
@@ -2128,6 +2128,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>web-based-email</member>
       <member>web-hosting</member>
       <member>Black-List</member>
+      <member>White-List</member>
     </block>
   </credential-enforcement>
   <log-http-hdr-user-agent>yes</log-http-hdr-user-agent>

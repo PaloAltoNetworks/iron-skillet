@@ -1,6 +1,6 @@
 <config urldb="paloaltonetworks" version="9.0.0">
   <mgt-config><users> <entry name="admin">
-    <phash>$1$sNeO//pc$/T0AXZ9mtl4WmEB0wIADk1</phash>
+    <phash>$1$jaMH4Q4K$3Vx2apJUIEfnjcnLOvPgR1</phash>
     <permissions>
       <role-based>
         <superuser>yes</superuser>
@@ -1740,6 +1740,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>web-based-email</member>
       <member>web-hosting</member>
       <member>White-List</member>
+      <member>Black-List</member>
     </alert>
   </credential-enforcement>
   <alert>
@@ -1814,6 +1815,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>web-based-email</member>
     <member>web-hosting</member>
     <member>White-List</member>
+    <member>Black-List</member>
   </alert>
 </entry>
 <entry name="Exception-URL">
@@ -1894,6 +1896,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>web-based-email</member>
       <member>web-hosting</member>
       <member>Black-List</member>
+      <member>White-List</member>
     </block>
   </credential-enforcement>
   <log-http-hdr-user-agent>yes</log-http-hdr-user-agent>
