@@ -10,6 +10,9 @@ The python tools can be broken into two categories:
     + build_full_templates.py: merge xml snippets into a full template file
     + create_set_spreadsheet.py: read the panorama and panos set commands .conf
     file and output a formula-based Excel file
+    + build_all.py: generate all configs from snippet and set files
+    + test_set_commands: load set commands from loadable_configs dir
+    + test_full_config: import/load/commit the full xml loadable config
 
 ## End user tools
 
