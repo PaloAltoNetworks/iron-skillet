@@ -1,6 +1,6 @@
 <config urldb="paloaltonetworks" version="9.0.0">
   <mgt-config><users> <entry name="admin">
-    <phash>$1$e.jdZMVk$3QvvRqRFYXl7d6PqrCwKe/</phash>
+    <phash>$1$dWYTj36X$ylz9wRVOGyRPar71tr4DY/</phash>
     <permissions>
       <role-based>
         <superuser>yes</superuser>
@@ -293,7 +293,11 @@
 </entry></email-scheduler></shared>
   <devices>
     <entry name="localhost.localdomain">
-      <network><profiles><zone-protection-profile><entry name="Recommended_Zone_Protection">
+      <network>
+        <interface>
+          <ethernet />
+        </interface>
+      <profiles><zone-protection-profile><entry name="Recommended_Zone_Protection">
   <flood>
     <tcp-syn>
       <red>

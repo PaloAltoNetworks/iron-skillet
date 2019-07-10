@@ -4,7 +4,11 @@
   <shared/>
   <devices>
     <entry name="localhost.localdomain">
-      <network/>
+      <network>
+        <interface>
+          <ethernet/>
+        </interface>
+      </network>
       <deviceconfig/>
       <vsys>
         <entry name="vsys1">

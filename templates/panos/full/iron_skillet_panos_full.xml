@@ -293,7 +293,11 @@
 </entry></email-scheduler></shared>
   <devices>
     <entry name="localhost.localdomain">
-      <network><profiles><zone-protection-profile><entry name="Recommended_Zone_Protection">
+      <network>
+        <interface>
+          <ethernet />
+        </interface>
+      <profiles><zone-protection-profile><entry name="Recommended_Zone_Protection">
   <flood>
     <tcp-syn>
       <red>
