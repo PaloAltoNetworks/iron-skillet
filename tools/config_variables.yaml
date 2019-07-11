@@ -20,12 +20,6 @@ variables:
   - name: CONFIG_EXPORT_IP
     description: IP address for scheduled config exports
     value: 192.0.2.3
-  - name: CONFIG_EXPORT_USER
-    description: username for config export
-    value: testuser
-  - name: CONFIG_EXPORT_PASSWORD
-    description: password for config export
-    value: testuser
   - name: TEMPLATE
     description: Template name for Panorama
     value: sample_template
