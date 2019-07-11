@@ -11,6 +11,7 @@ Welcome to IronSkillet template documentation!
    :caption: Contents:
 
    overview
+   requirements_caveats
    panos_template_guide
    panorama_template_guide
    using_default_templates
