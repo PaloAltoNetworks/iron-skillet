@@ -100,8 +100,8 @@ Log off immediately if you are not an authorized user.</login-banner>
     <protocol>
       <scp>
         <hostname>{{ CONFIG_EXPORT_IP }}</hostname>
-        <username>testuser</username>
-        <password>-AQ==i7YRj4/Wk1rQh2o740pxfTJwj/0=+7MGzrRa6xPfMQUkGMpf7w==</password>
+        <username>{{ CONFIG_EXPORT_USER }}</username>
+        <password>{{ CONFIG_EXPORT_PASSWORD | md5_hash }}</password>
       </scp>
     </protocol>
     <start-time>02:00</start-time>

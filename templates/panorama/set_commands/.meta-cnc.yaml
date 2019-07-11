@@ -49,6 +49,14 @@ variables:
     description: IP address for scheduled config exports
     default: 192.0.2.3
     type_hint: text
+  - name: CONFIG_EXPORT_USER
+    description: username for config export
+    default: testuser
+    type_hint: text
+  - name: CONFIG_EXPORT_PASSWORD
+    description: password for config export
+    default: testuser
+    type_hint: password
   - name: STACK
     description: Template stack name for Panorama
     default: sample_stack

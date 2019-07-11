@@ -194,4 +194,4 @@ if __name__ == '__main__':
     device = pan.xapi.PanXapi(api_username=username, api_password=password, hostname=ip_addr)
     # get panorama api key and commit
     api_key = device.keygen()
-    commit(device)
+    #commit(device)

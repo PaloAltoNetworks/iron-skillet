@@ -2,7 +2,7 @@
   <mgt-config>
     <devices />
   <users> <entry name="admin">
-  <phash>$1$fXwSHRZ0$q9nQPSG0naBuMAu6EdhU4.</phash>
+  <phash>$1$FUobWi.f$A.7L7a7nfyc8gMu75i6zk1</phash>
   <permissions>
     <role-based>
       <superuser>yes</superuser>
@@ -90,7 +90,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <scp>
         <hostname>192.0.2.3</hostname>
         <username>testuser</username>
-        <password>-AQ==i7YRj4/Wk1rQh2o740pxfTJwj/0=+7MGzrRa6xPfMQUkGMpf7w==</password>
+        <password>$1$AHYKNiA9$LAyjVosbcldBksl.Xsitu/</password>
       </scp>
     </protocol>
     <start-time>02:00</start-time>
@@ -527,7 +527,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     </devices>
   <mgt-config><users>
   <entry name="admin">
-    <phash>$1$loSS3/I4$sVr5uw4qJn3UgbMsC7nhC/</phash>
+    <phash>$1$BxuzmeMJ$iroiuScTFfj/39ImtMkNa.</phash>
     <permissions>
       <role-based>
         <superuser>yes</superuser>
