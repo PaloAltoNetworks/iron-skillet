@@ -1,5 +1,5 @@
 diff --git a/templates/panorama/snippets_dgstack_shared/.meta-cnc.yaml b/templates/panorama/snippets_dgstack_shared/.meta-cnc.yaml
-index b6aeddf..91cf76d 100644
+index b6aeddf..0ac267e 100644
 --- a/templates/panorama/snippets_dgstack_shared/.meta-cnc.yaml
 +++ b/templates/panorama/snippets_dgstack_shared/.meta-cnc.yaml
 @@ -4,9 +4,9 @@
@@ -14,33 +14,3 @@ index b6aeddf..91cf76d 100644
  description: Iron Skillet device-group and template stack config for Panorama
  dependency: snippets
  # type of device configuration
-@@ -17,9 +17,7 @@ extends:
- labels:
-   service_type: iron_skillet
-   collection:
--   - IronSkillet
--   - Configure
--   - Best Practice
-+    - IronSkillet
- 
- # variables used in the configuration templates
- # type_hint defines the form field type in pan-cnc
-@@ -65,6 +63,18 @@ variables:
-     description: admin password
-     default: admin
-     type_hint: password
-+# option built into the templates to ignore the panw published external dynamic lists security rules
-+# should ONLY be excluded based on licensing limitations outside of best practices
-+# when 'yes' (default) will include the EDL rule
-+  - name: INCLUDE_PAN_EDL
-+    description: include the predefined Palo Alto Networks external lists security rules
-+    default: 'yes'
-+    type_hint: dropdown
-+    dd_list:
-+      - key: 'yes'
-+        value: 'yes'
-+      - key: 'no'
-+        value: 'no'
- 
- # snippets used for api configuration including xpath and element as file name
- # files will load in the order listed
