@@ -44,6 +44,9 @@
     <entry name="linux">
       <size-limit>2</size-limit>
     </entry>
+    <entry name="script">
+      <size-limit>2000</size-limit>
+    </entry>
   </file-size-limit>
   <report-benign-file>yes</report-benign-file>
   <report-grayware-file>yes</report-grayware-file>

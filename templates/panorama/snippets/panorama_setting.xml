@@ -20,4 +20,10 @@
 <enable-reporting-on-groups>yes</enable-reporting-on-groups>
 <share-unused-objects-with-devices>no</share-unused-objects-with-devices>
 <max-rows-in-csv-export>1048576</max-rows-in-csv-export>
+<admin-lockout>
+  <failed-attempts>5</failed-attempts>
+  <lockout-time>30</lockout-time>
+</admin-lockout>
+<idle-timeout>10</idle-timeout>
+<auto-acquire-commit-lock>yes</auto-acquire-commit-lock>
 </management>
