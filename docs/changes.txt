@@ -37,7 +37,7 @@ index 14b3f74..ff28cf1 100644
  # should ONLY be excluded based on licensing limitations outside of best practices
  # when 'yes' (default) will include the EDL rule
 diff --git a/templates/panorama/full/iron_skillet_panorama_full.xml b/templates/panorama/full/iron_skillet_panorama_full.xml
-index f7ded26..2e473fa 100644
+index f7ded26..445c8c5 100644
 --- a/templates/panorama/full/iron_skillet_panorama_full.xml
 +++ b/templates/panorama/full/iron_skillet_panorama_full.xml
 @@ -1,4 +1,4 @@
@@ -58,20 +58,18 @@ index f7ded26..2e473fa 100644
    <admin-lockout>
      <failed-attempts>5</failed-attempts>
      <lockout-time>30</lockout-time>
-@@ -408,7 +413,12 @@ Log off immediately if you are not an authorized user.</login-banner>
+@@ -408,6 +413,11 @@ Log off immediately if you are not an authorized user.</login-banner>
  <management>
    <enable-log-high-dp-load>yes</enable-log-high-dp-load>
    <max-rows-in-csv-export>1048576</max-rows-in-csv-export>
--  <admin-lockout>
 +  <api>
 +    <key>
 +      <lifetime>{{ API_KEY_LIFETIME }}</lifetime>
 +    </key>
 +  </api>
-+<admin-lockout>
+   <admin-lockout>
      <failed-attempts>5</failed-attempts>
      <lockout-time>30</lockout-time>
-   </admin-lockout>
 @@ -1044,7 +1054,7 @@ Log off immediately if you are not an authorized user.</login-banner>
  	<comments>Internal to Internal</comments>
  </entry>
@@ -144,33 +142,17 @@ index f7ded26..2e473fa 100644
      <entry name="imap">
        <action>reset-both</action>
        <wildfire-action>reset-both</wildfire-action>
-@@ -1235,11 +1267,15 @@ Log off immediately if you are not an authorized user.</login-banner>
-   <decoder>
-     <entry name="ftp">
+@@ -1241,6 +1273,10 @@ Log off immediately if you are not an authorized user.</login-banner>
        <action>reset-both</action>
--      <wildfire-action>reset-both</wildfire-action>
-+      <wildfire-action>default</wildfire-action>
+       <wildfire-action>reset-both</wildfire-action>
      </entry>
-     <entry name="http">
-       <action>reset-both</action>
--      <wildfire-action>reset-both</wildfire-action>
-+      <wildfire-action>default</wildfire-action>
-+    </entry>
 +    <entry name="http2">
 +      <action>reset-both</action>
-+      <wildfire-action>default</wildfire-action>
-     </entry>
++      <wildfire-action>reset-both</wildfire-action>
++    </entry>
      <entry name="imap">
        <action>reset-both</action>
-@@ -1251,7 +1287,7 @@ Log off immediately if you are not an authorized user.</login-banner>
-     </entry>
-     <entry name="smb">
-       <action>reset-both</action>
--      <wildfire-action>reset-both</wildfire-action>
-+      <wildfire-action>default</wildfire-action>
-     </entry>
-     <entry name="smtp">
-       <action>reset-both</action>
+       <wildfire-action>reset-both</wildfire-action>
 @@ -1262,7 +1298,14 @@ Log off immediately if you are not an authorized user.</login-banner>
  </entry></virus><spyware><entry name="Outbound-AS">
    <botnet-domains>
@@ -368,13 +350,8 @@ index f7ded26..2e473fa 100644
        <member>news</member>
        <member>not-resolved</member>
        <member>nudity</member>
-@@ -1936,11 +2013,10 @@ Log off immediately if you are not an authorized user.</login-banner>
-       <member>web-advertisements</member>
-       <member>web-based-email</member>
-       <member>web-hosting</member>
--      <member>Black-List</member>
+@@ -1940,7 +2017,6 @@ Log off immediately if you are not an authorized user.</login-banner>
        <member>White-List</member>
-+      <member>Black-List</member>
      </alert>
    </credential-enforcement>
 -  <action>block</action>
@@ -403,16 +380,6 @@ index f7ded26..2e473fa 100644
      <member>news</member>
      <member>not-resolved</member>
      <member>nudity</member>
-@@ -2008,8 +2088,8 @@ Log off immediately if you are not an authorized user.</login-banner>
-     <member>web-advertisements</member>
-     <member>web-based-email</member>
-     <member>web-hosting</member>
--    <member>Black-List</member>
-     <member>White-List</member>
-+    <member>Black-List</member>
-   </alert>
- </entry>
- <entry name="Exception-URL">
 @@ -2040,6 +2120,7 @@ Log off immediately if you are not an authorized user.</login-banner>
        <member>government</member>
        <member>hacking</member>
@@ -827,7 +794,7 @@ index 0c993c8..c4da77e 100644
  set template iron-skillet config deviceconfig setting wildfire report-grayware-file yes
  set template iron-skillet config deviceconfig setting config rematch yes
 diff --git a/templates/panorama/set_commands/iron_skillet_panorama_full.xlsx b/templates/panorama/set_commands/iron_skillet_panorama_full.xlsx
-index 0625db1..caa98ba 100644
+index 0625db1..d9b670f 100644
 Binary files a/templates/panorama/set_commands/iron_skillet_panorama_full.xlsx and b/templates/panorama/set_commands/iron_skillet_panorama_full.xlsx differ
 diff --git a/templates/panorama/snippets/.meta-cnc.yaml b/templates/panorama/snippets/.meta-cnc.yaml
 index c089597..a2a256b 100644
@@ -1328,7 +1295,7 @@ index b6aeddf..0ac267e 100644
  dependency: snippets
  # type of device configuration
 diff --git a/templates/panorama/snippets_notshared/.meta-cnc.yaml b/templates/panorama/snippets_notshared/.meta-cnc.yaml
-index 587d87b..b6a45f8 100644
+index 520b56d..b6a45f8 100644
 --- a/templates/panorama/snippets_notshared/.meta-cnc.yaml
 +++ b/templates/panorama/snippets_notshared/.meta-cnc.yaml
 @@ -3,9 +3,9 @@
@@ -1354,22 +1321,3 @@ index 587d87b..b6a45f8 100644
  # option built into the templates to ignore the panw published external dynamic lists security rules
  # should ONLY be excluded based on licensing limitations outside of best practices
  # when 'yes' (default) will include the EDL rule
-@@ -159,15 +163,15 @@ snippets:
-   - name: panorama_setting
-     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
-     file: ../snippets/panorama_setting.xml
-+  - name: panorama_log_settings
-+    xpath: /config/panorama/log-settings
-+    file: ../snippets/panorama_log_settings.xml
-   - name: panorama_mgt_config_users
-     xpath: /config/mgt-config/users
-     file: ../panorama_mgt_config_users.xml
-   - name: panorama_mgt_config_pwd
-     xpath: /config/mgt-config/password-complexity
-     file: ../panorama_mgt_config_pwd.xml
--  - name: panorama_log_settings
--    xpath: /config/panorama/log-settings
--    file: ../snippets/panorama_log_settings.xml
-   - name: log_collector_group
-     xpath: /config/devices/entry[@name='localhost.localdomain']/log-collector-group
-     file: ../snippets/log_collector_group.xml
