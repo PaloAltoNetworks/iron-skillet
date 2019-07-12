@@ -159,6 +159,12 @@ snippets:
   - name: panorama_setting
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     file: ../snippets/panorama_setting.xml
+  - name: panorama_mgt_config_users
+    xpath: /config/mgt-config/users
+    file: panorama_mgt_config_users.xml
+  - name: panorama_mgt_config_pwd
+    xpath: /config/mgt-config/password-complexity
+    file: panorama_mgt_config_pwd.xml
   - name: panorama_log_settings
     xpath: /config/panorama/log-settings
     file: ../snippets/panorama_log_settings.xml
