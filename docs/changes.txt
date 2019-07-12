@@ -1,5 +1,5 @@
 diff --git a/templates/panorama/snippets/.meta-cnc.yaml b/templates/panorama/snippets/.meta-cnc.yaml
-index 1fbc504..28b840d 100644
+index c089597..a2a256b 100644
 --- a/templates/panorama/snippets/.meta-cnc.yaml
 +++ b/templates/panorama/snippets/.meta-cnc.yaml
 @@ -4,9 +4,9 @@
@@ -14,7 +14,7 @@ index 1fbc504..28b840d 100644
  description: Iron-Skillet baseline configuration for Panorama with device-group and stack specific values
  # type of device configuration
  type: panorama
-@@ -135,6 +135,10 @@ variables:
+@@ -137,6 +137,10 @@ variables:
      description: syslog server ip address
      default: 192.0.2.2
      type_hint: text
@@ -25,73 +25,17 @@ index 1fbc504..28b840d 100644
  # option built into the templates to ignore the panw published external dynamic lists security rules
  # should ONLY be excluded based on licensing limitations outside of best practices
  # when 'yes' (default) will include the EDL rule
-@@ -157,6 +161,12 @@ snippets:
-   - name: panorama_setting
-     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
-     file: panorama_setting.xml
-+  - name: panorama_mgt_config_users
-+    xpath: /config/mgt-config/users
-+    file: panorama_mgt_config_users.xml
-+  - name: panorama_mgt_config_pwd
-+    xpath: /config/mgt-config/password-complexity
-+    file: panorama_mgt_config_pwd.xml
-   - name: panorama_log_settings
-     xpath: /config/panorama/log-settings
-     file: panorama_log_settings.xml
-@@ -178,6 +188,9 @@ snippets:
-   - name: device_mgt_config
-     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/mgt-config
-     file: device_mgt_config.xml
-+  - name: device_password_complexity
-+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/mgt-config/password-complexity
-+    file: device_mgt_config.xml
-   - name: shared_log_settings
-     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/shared/log-settings
-     file: shared_log_settings.xml
-@@ -187,9 +200,6 @@ snippets:
-   - name: shared_address
-     xpath: /config/shared/address
-     file: address.xml
--  - name: shared_external_list
--    xpath: /config/shared/external-list
--    file: external_list.xml
-   - name: shared_log_profiles
-     xpath: /config/shared/log-settings/profiles
-     file: log_settings_profiles.xml
-diff --git a/templates/panorama/snippets/device_mgt_config.xml b/templates/panorama/snippets/device_mgt_config.xml
-index e2a188f..3d7ffac 100644
---- a/templates/panorama/snippets/device_mgt_config.xml
-+++ b/templates/panorama/snippets/device_mgt_config.xml
-@@ -7,4 +7,18 @@
-       </role-based>
-     </permissions>
-   </entry>
--</users>
-\ No newline at end of file
-+</users>
-+<password-complexity>
-+  <enabled>yes</enabled>
-+  <minimum-length>12</minimum-length>
-+  <minimum-uppercase-letters>1</minimum-uppercase-letters>
-+  <minimum-lowercase-letters>1</minimum-lowercase-letters>
-+  <minimum-numeric-letters>1</minimum-numeric-letters>
-+  <minimum-special-characters>1</minimum-special-characters>
-+  <block-username-inclusion>yes</block-username-inclusion>
-+  <password-history-count>24</password-history-count>
-+  <new-password-differs-by-characters>3</new-password-differs-by-characters>
-+  <password-change>
-+    <expiration-period>90</expiration-period>
-+  </password-change>
-+</password-complexity>
-\ No newline at end of file
 diff --git a/templates/panorama/snippets/device_setting.xml b/templates/panorama/snippets/device_setting.xml
-index 9196075..5ce5c4f 100644
+index 6458951..5ce5c4f 100644
 --- a/templates/panorama/snippets/device_setting.xml
 +++ b/templates/panorama/snippets/device_setting.xml
-@@ -8,6 +8,17 @@
+@@ -8,9 +8,14 @@
  <management>
    <enable-log-high-dp-load>yes</enable-log-high-dp-load>
    <max-rows-in-csv-export>1048576</max-rows-in-csv-export>
+-  <admin-lockout>
+-      <failed-attempts>5</failed-attempts>
+-      <lockout-time>30</lockout-time>
 +  <api>
 +    <key>
 +      <lifetime>{{ API_KEY_LIFETIME }}</lifetime>
@@ -100,13 +44,10 @@ index 9196075..5ce5c4f 100644
 +<admin-lockout>
 +    <failed-attempts>5</failed-attempts>
 +    <lockout-time>30</lockout-time>
-+  </admin-lockout>
-+  <idle-timeout>10</idle-timeout>
-+  <auto-acquire-commit-lock>yes</auto-acquire-commit-lock>
- </management>
- <wildfire>
-   <file-size-limit>
-@@ -38,6 +49,9 @@
+   </admin-lockout>
+   <idle-timeout>10</idle-timeout>
+   <auto-acquire-commit-lock>yes</auto-acquire-commit-lock>
+@@ -44,6 +49,9 @@
      <entry name="linux">
        <size-limit>2</size-limit>
      </entry>
@@ -116,100 +57,11 @@ index 9196075..5ce5c4f 100644
    </file-size-limit>
    <report-benign-file>yes</report-benign-file>
    <report-grayware-file>yes</report-grayware-file>
-diff --git a/templates/panorama/snippets/device_system_shared.xml b/templates/panorama/snippets/device_system_shared.xml
-index eaf9e0b..e584ffd 100644
---- a/templates/panorama/snippets/device_system_shared.xml
-+++ b/templates/panorama/snippets/device_system_shared.xml
-@@ -33,6 +33,22 @@
-       </every-min>
-     </recurring>
-   </wildfire>
-+  <global-protect-datafile>
-+    <recurring>
-+      <hourly>
-+        <at>40</at>
-+        <action>download-and-install</action>
-+      </hourly>
-+    </recurring>
-+  </global-protect-datafile>
-+  <global-protect-clientless-vpn>
-+    <recurring>
-+      <hourly>
-+        <at>50</at>
-+        <action>download-and-install</action>
-+      </hourly>
-+    </recurring>
-+  </global-protect-clientless-vpn>
- </update-schedule>
- <snmp-setting>
-   <access-setting>
-diff --git a/templates/panorama/snippets/external_list.xml b/templates/panorama/snippets/external_list.xml
-deleted file mode 100644
-index 2ed7cf5..0000000
---- a/templates/panorama/snippets/external_list.xml
-+++ /dev/null
-@@ -1,22 +0,0 @@
--<entry name="Team Cymru Bogons IPv4">
--  <type>
--    <ip>
--      <recurring>
--        <hourly/>
--      </recurring>
--      <url>http://www.team-cymru.org/Services/Bogons/fullbogons-ipv4.txt</url>
--      <description>IPv4 addresses that should not be routed across the Internet. Either reserved IP address space or unassigned and may be used for malicious purposes. More information: http://www.team-cymru.com/bogon-reference.html</description>
--    </ip>
--  </type>
--</entry>
--<entry name="Team Cymru Bogons IPv6">
--  <type>
--    <ip>
--      <recurring>
--        <hourly/>
--      </recurring>
--      <url>http://www.team-cymru.org/Services/Bogons/fullbogons-ipv6.txt</url>
--      <description>IPv6 addresses that should not be routed across the Internet. Either reserved IP address space or unassigned and may be used for malicious purposes. More information: http://www.team-cymru.com/bogon-reference.html</description>
--    </ip>
--  </type>
--</entry>
-\ No newline at end of file
-diff --git a/templates/panorama/snippets/panorama_mgt_config_pwd.xml b/templates/panorama/snippets/panorama_mgt_config_pwd.xml
-new file mode 100644
-index 0000000..07d45b1
---- /dev/null
-+++ b/templates/panorama/snippets/panorama_mgt_config_pwd.xml
-@@ -0,0 +1,12 @@
-+<enabled>yes</enabled>
-+<minimum-length>12</minimum-length>
-+<minimum-uppercase-letters>1</minimum-uppercase-letters>
-+<minimum-lowercase-letters>1</minimum-lowercase-letters>
-+<minimum-numeric-letters>1</minimum-numeric-letters>
-+<minimum-special-characters>1</minimum-special-characters>
-+<block-username-inclusion>yes</block-username-inclusion>
-+<password-history-count>24</password-history-count>
-+<new-password-differs-by-characters>3</new-password-differs-by-characters>
-+<password-change>
-+  <expiration-period>90</expiration-period>
-+</password-change>
-\ No newline at end of file
-diff --git a/templates/panorama/snippets/panorama_mgt_config_users.xml b/templates/panorama/snippets/panorama_mgt_config_users.xml
-new file mode 100644
-index 0000000..30b3729
---- /dev/null
-+++ b/templates/panorama/snippets/panorama_mgt_config_users.xml
-@@ -0,0 +1,8 @@
-+ <entry name="{{ ADMINISTRATOR_USERNAME }}">
-+  <phash>{{ ADMINISTRATOR_PASSWORD | md5_hash }}</phash>
-+  <permissions>
-+    <role-based>
-+      <superuser>yes</superuser>
-+    </role-based>
-+  </permissions>
-+</entry>
 diff --git a/templates/panorama/snippets/panorama_setting.xml b/templates/panorama/snippets/panorama_setting.xml
-index 2ecb2e5..a474462 100644
+index 31d9a49..a474462 100644
 --- a/templates/panorama/snippets/panorama_setting.xml
 +++ b/templates/panorama/snippets/panorama_setting.xml
-@@ -1,23 +1,34 @@
+@@ -1,29 +1,34 @@
  <management>
 -{%- if PANORAMA_TYPE == "cloud" %}
 -<initcfg>
@@ -232,6 +84,12 @@ index 2ecb2e5..a474462 100644
 -<enable-reporting-on-groups>yes</enable-reporting-on-groups>
 -<share-unused-objects-with-devices>no</share-unused-objects-with-devices>
 -<max-rows-in-csv-export>1048576</max-rows-in-csv-export>
+-<admin-lockout>
+-  <failed-attempts>5</failed-attempts>
+-  <lockout-time>30</lockout-time>
+-</admin-lockout>
+-<idle-timeout>10</idle-timeout>
+-<auto-acquire-commit-lock>yes</auto-acquire-commit-lock>
 +  {%- if PANORAMA_TYPE == "cloud" %}
 +  <initcfg>
 +    <type>
@@ -289,7 +147,7 @@ index 9f977f9..168b0b8 100644
      </protocol>
      <start-time>02:00</start-time>
 diff --git a/templates/panorama/snippets/pre_rulebase_security.xml b/templates/panorama/snippets/pre_rulebase_security.xml
-index e63fe97..4ee5cdb 100644
+index c4423dc..4ee5cdb 100644
 --- a/templates/panorama/snippets/pre_rulebase_security.xml
 +++ b/templates/panorama/snippets/pre_rulebase_security.xml
 @@ -17,6 +17,7 @@
@@ -308,92 +166,6 @@ index e63fe97..4ee5cdb 100644
      </source>
      <destination>
        <member>any</member>
-@@ -118,84 +120,4 @@
-       <member>Outbound</member>
-     </tag>
-   </entry>
--    <entry name="Outbound Bogon Block Rule">
--    <description>Block outbound sessions with a destination address matching a known bogon address that should not be transitting the firewall. Add known exceptions to the rule before activating.</description>
--    <target>
--      <negate>no</negate>
--    </target>
--    <to>
--      <member>any</member>
--    </to>
--    <from>
--      <member>any</member>
--    </from>
--    <source>
--      <member>any</member>
--    </source>
--    <destination>
--      <member>Team Cymru Bogons IPv4</member>
--      <member>Team Cymru Bogons IPv6</member>
--    </destination>
--    <source-user>
--      <member>any</member>
--    </source-user>
--    <category>
--      <member>any</member>
--    </category>
--    <application>
--      <member>any</member>
--    </application>
--    <service>
--      <member>any</member>
--    </service>
--    <hip-profiles>
--      <member>any</member>
--    </hip-profiles>
--    <action>deny</action>
--    <log-setting>default</log-setting>
--    <tag>
--      <member>Outbound</member>
--    </tag>
--    <disabled>yes</disabled>
--  </entry>
--  <entry name="Inbound Bogon Block Rule">
--    <description>Block inbound sessions with a source address matching a known bogon address that should not be transitting the firewall. Add known exceptions to the rule before activating.</description>
--    <target>
--      <negate>no</negate>
--    </target>
--    <to>
--      <member>any</member>
--    </to>
--    <from>
--      <member>any</member>
--    </from>
--    <source>
--      <member>Team Cymru Bogons IPv4</member>
--      <member>Team Cymru Bogons IPv6</member>
--    </source>
--    <destination>
--      <member>any</member>
--    </destination>
--    <source-user>
--      <member>any</member>
--    </source-user>
--    <category>
--      <member>any</member>
--    </category>
--    <application>
--      <member>any</member>
--    </application>
--    <service>
--      <member>any</member>
--    </service>
--    <hip-profiles>
--      <member>any</member>
--    </hip-profiles>
--    <action>deny</action>
--    <log-setting>default</log-setting>
--    <tag>
--      <member>Inbound</member>
--    </tag>
--    <disabled>yes</disabled>
--  </entry>
- </rules>
-\ No newline at end of file
 diff --git a/templates/panorama/snippets/profiles_custom_url_category.xml b/templates/panorama/snippets/profiles_custom_url_category.xml
 index 4f547f1..d7171c6 100644
 --- a/templates/panorama/snippets/profiles_custom_url_category.xml
@@ -542,7 +314,7 @@ index 9ab7da5..2f12364 100644
  </entry>
 \ No newline at end of file
 diff --git a/templates/panorama/snippets/profiles_url_filtering.xml b/templates/panorama/snippets/profiles_url_filtering.xml
-index b82e606..34030a3 100644
+index 016e428..34030a3 100644
 --- a/templates/panorama/snippets/profiles_url_filtering.xml
 +++ b/templates/panorama/snippets/profiles_url_filtering.xml
 @@ -26,6 +26,7 @@
@@ -618,11 +390,12 @@ index b82e606..34030a3 100644
        <member>news</member>
        <member>not-resolved</member>
        <member>nudity</member>
-@@ -225,9 +236,10 @@
+@@ -225,11 +236,10 @@
        <member>web-advertisements</member>
        <member>web-based-email</member>
        <member>web-hosting</member>
-+      <member>White-List</member>
+-      <member>Black-List</member>
+       <member>White-List</member>
 +      <member>Black-List</member>
      </alert>
    </credential-enforcement>
@@ -630,7 +403,7 @@ index b82e606..34030a3 100644
    <alert>
      <member>abortion</member>
      <member>abused-drugs</member>
-@@ -250,6 +262,7 @@
+@@ -252,6 +262,7 @@
      <member>government</member>
      <member>hacking</member>
      <member>health-and-medicine</member>
@@ -638,7 +411,7 @@ index b82e606..34030a3 100644
      <member>home-and-garden</member>
      <member>hunting-and-fishing</member>
      <member>insufficient-content</member>
-@@ -257,10 +270,13 @@
+@@ -259,10 +270,13 @@
      <member>internet-portals</member>
      <member>job-search</member>
      <member>legal</member>
@@ -652,16 +425,17 @@ index b82e606..34030a3 100644
      <member>news</member>
      <member>not-resolved</member>
      <member>nudity</member>
-@@ -295,6 +311,8 @@
+@@ -297,8 +311,8 @@
      <member>web-advertisements</member>
      <member>web-based-email</member>
      <member>web-hosting</member>
-+    <member>White-List</member>
+-    <member>Black-List</member>
+     <member>White-List</member>
 +    <member>Black-List</member>
    </alert>
  </entry>
  <entry name="Exception-URL">
-@@ -325,6 +343,7 @@
+@@ -329,6 +343,7 @@
        <member>government</member>
        <member>hacking</member>
        <member>health-and-medicine</member>
@@ -669,7 +443,7 @@ index b82e606..34030a3 100644
        <member>home-and-garden</member>
        <member>hunting-and-fishing</member>
        <member>insufficient-content</member>
-@@ -332,10 +351,13 @@
+@@ -336,10 +351,13 @@
        <member>internet-portals</member>
        <member>job-search</member>
        <member>legal</member>
@@ -683,13 +457,7 @@ index b82e606..34030a3 100644
        <member>news</member>
        <member>not-resolved</member>
        <member>nudity</member>
-@@ -371,12 +393,12 @@
-       <member>web-based-email</member>
-       <member>web-hosting</member>
-       <member>Black-List</member>
-+      <member>White-List</member>
-     </block>
-   </credential-enforcement>
+@@ -381,7 +399,6 @@
    <log-http-hdr-user-agent>yes</log-http-hdr-user-agent>
    <log-http-hdr-referer>yes</log-http-hdr-referer>
    <log-http-hdr-xff>yes</log-http-hdr-xff>
@@ -697,7 +465,7 @@ index b82e606..34030a3 100644
    <alert>
      <member>abortion</member>
      <member>abused-drugs</member>
-@@ -397,6 +419,7 @@
+@@ -402,6 +419,7 @@
      <member>games</member>
      <member>government</member>
      <member>health-and-medicine</member>
@@ -705,7 +473,7 @@ index b82e606..34030a3 100644
      <member>home-and-garden</member>
      <member>hunting-and-fishing</member>
      <member>insufficient-content</member>
-@@ -404,9 +427,12 @@
+@@ -409,9 +427,12 @@
      <member>internet-portals</member>
      <member>job-search</member>
      <member>legal</member>
@@ -783,14 +551,14 @@ index 0421403..3654adc 100644
        <action>reset-both</action>
        <wildfire-action>reset-both</wildfire-action>
 diff --git a/templates/panorama/snippets/tag.xml b/templates/panorama/snippets/tag.xml
-index 24da61b..6c4ef9b 100644
+index e467177..6c4ef9b 100644
 --- a/templates/panorama/snippets/tag.xml
 +++ b/templates/panorama/snippets/tag.xml
 @@ -8,5 +8,5 @@
  	<comments>Internal to Internal</comments>
  </entry>
  <entry name="iron-skillet-version">
--	<comments>version 1.0.5: version of this iron-skillet template file</comments>
+-	<comments>version 1.0.6: version of this iron-skillet template file</comments>
 +	<comments>version 0.0.2 for 9.0: version of this IronSkillet template file</comments>
  </entry>
 \ No newline at end of file
