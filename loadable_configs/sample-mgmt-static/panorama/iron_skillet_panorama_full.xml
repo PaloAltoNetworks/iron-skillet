@@ -2,7 +2,7 @@
   <mgt-config>
     <devices />
   <users> <entry name="admin">
-  <phash>$1$klEP0c4s$yRT1dIzQnFM4sJ39HfDfV0</phash>
+  <phash>$1$nS4o5fRu$WRdIBEsA0249cBJAELYq31</phash>
   <permissions>
     <role-based>
       <superuser>yes</superuser>
@@ -393,7 +393,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <lifetime>525600</lifetime>
     </key>
   </api>
-<admin-lockout>
+  <admin-lockout>
     <failed-attempts>5</failed-attempts>
     <lockout-time>30</lockout-time>
   </admin-lockout>
@@ -527,7 +527,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     </devices>
   <mgt-config><users>
   <entry name="admin">
-    <phash>$1$BM7J32N8$H8FA8FwlOU6drkwHlAcMD.</phash>
+    <phash>$1$A0SQGQNe$jTLWGXatqtKTgYyfWCK7w.</phash>
     <permissions>
       <role-based>
         <superuser>yes</superuser>
@@ -1223,15 +1223,15 @@ Log off immediately if you are not an authorized user.</login-banner>
   <decoder>
     <entry name="ftp">
       <action>reset-both</action>
-      <wildfire-action>default</wildfire-action>
+      <wildfire-action>reset-both</wildfire-action>
     </entry>
     <entry name="http">
       <action>reset-both</action>
-      <wildfire-action>default</wildfire-action>
+      <wildfire-action>reset-both</wildfire-action>
     </entry>
     <entry name="http2">
       <action>reset-both</action>
-      <wildfire-action>default</wildfire-action>
+      <wildfire-action>reset-both</wildfire-action>
     </entry>
     <entry name="imap">
       <action>reset-both</action>
@@ -1243,7 +1243,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     </entry>
     <entry name="smb">
       <action>reset-both</action>
-      <wildfire-action>default</wildfire-action>
+      <wildfire-action>reset-both</wildfire-action>
     </entry>
     <entry name="smtp">
       <action>reset-both</action>
@@ -1969,8 +1969,8 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>web-advertisements</member>
       <member>web-based-email</member>
       <member>web-hosting</member>
-      <member>White-List</member>
       <member>Black-List</member>
+      <member>White-List</member>
     </alert>
   </credential-enforcement>
   <alert>
@@ -2044,8 +2044,8 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>web-advertisements</member>
     <member>web-based-email</member>
     <member>web-hosting</member>
-    <member>White-List</member>
     <member>Black-List</member>
+    <member>White-List</member>
   </alert>
 </entry>
 <entry name="Exception-URL">

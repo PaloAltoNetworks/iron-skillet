@@ -1,12 +1,12 @@
 <config urldb="paloaltonetworks" version="9.0.0">
-  <mgt-config><users> <entry name="{{ ADMINISTRATOR_USERNAME }}">
-    <phash>{{ ADMINISTRATOR_PASSWORD | md5_hash }}</phash>
-    <permissions>
-      <role-based>
-        <superuser>yes</superuser>
-      </role-based>
-    </permissions>
-  </entry></users><password-complexity><enabled>yes</enabled>
+  <mgt-config><users><entry name="{{ ADMINISTRATOR_USERNAME }}">
+  <phash>{{ ADMINISTRATOR_PASSWORD | md5_hash }}</phash>
+  <permissions>
+    <role-based>
+      <superuser>yes</superuser>
+    </role-based>
+  </permissions>
+</entry></users><password-complexity><enabled>yes</enabled>
 <minimum-length>12</minimum-length>
 <minimum-uppercase-letters>1</minimum-uppercase-letters>
 <minimum-lowercase-letters>1</minimum-lowercase-letters>
@@ -486,7 +486,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <lifetime>{{ API_KEY_LIFETIME }}</lifetime>
     </key>
   </api>
-<admin-lockout>
+  <admin-lockout>
     <failed-attempts>5</failed-attempts>
     <lockout-time>30</lockout-time>
   </admin-lockout>
@@ -1757,8 +1757,8 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>web-advertisements</member>
       <member>web-based-email</member>
       <member>web-hosting</member>
-      <member>White-List</member>
       <member>Black-List</member>
+      <member>White-List</member>
     </alert>
   </credential-enforcement>
   <alert>
@@ -1832,8 +1832,8 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>web-advertisements</member>
     <member>web-based-email</member>
     <member>web-hosting</member>
-    <member>White-List</member>
     <member>Black-List</member>
+    <member>White-List</member>
   </alert>
 </entry>
 <entry name="Exception-URL">
