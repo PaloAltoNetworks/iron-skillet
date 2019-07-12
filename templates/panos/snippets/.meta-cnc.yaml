@@ -14,9 +14,9 @@ extends:
 labels:
   service_type: iron_skillet
   collection:
-   - IronSkillet
-   - Configure
-   - Best Practice
+    - IronSkillet
+    - Configure
+    - Best Practice
 
 # variables used in the configuration templates
 # type_hint defines the form field type in pan-cnc
