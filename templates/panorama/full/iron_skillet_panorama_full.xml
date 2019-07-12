@@ -870,6 +870,20 @@ Log off immediately if you are not an authorized user.</login-banner>
   <email-profile>Sample_Email_Profile</email-profile>
 </entry></email-scheduler></entry></device-group></entry>
   </devices>
+  <readonly>
+    <max-internal-id>15</max-internal-id>
+    <devices>
+      <entry name="localhost.localdomain">
+        <template />
+        <template-stack />
+        <device-group>
+          <entry name="{{ DEVICE_GROUP }}">
+            <id>11</id>
+          </entry>
+        </device-group>
+      </entry>
+    </devices>
+  </readonly>
 <panorama><log-settings><email>
   <entry name="Sample_Email_Profile">
     <server>

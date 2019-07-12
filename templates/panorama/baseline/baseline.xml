@@ -9,4 +9,18 @@
       </deviceconfig>
     </entry>
   </devices>
+  <readonly>
+    <max-internal-id>15</max-internal-id>
+    <devices>
+      <entry name="localhost.localdomain">
+        <template/>
+        <template-stack/>
+        <device-group>
+          <entry name="{{ DEVICE_GROUP }}">
+            <id>11</id>
+          </entry>
+        </device-group>
+      </entry>
+    </devices>
+  </readonly>
 </config>

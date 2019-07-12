@@ -2,7 +2,7 @@
   <mgt-config>
     <devices />
   <users> <entry name="admin">
-  <phash>$1$pUM9KHH2$bgfAUEewMHmcPwFiAZu2H/</phash>
+  <phash>$1$2zEu6cRN$L8MOU8zFDrM4Orb3ljIei1</phash>
   <permissions>
     <role-based>
       <superuser>yes</superuser>
@@ -517,7 +517,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     </devices>
   <mgt-config><users>
   <entry name="admin">
-    <phash>$1$0BaQH/UK$cGnOrMyOtBk0VUP3tb8J6/</phash>
+    <phash>$1$BuY2kOYZ$PCpJlWpEx8nu99iGNo3je/</phash>
     <permissions>
       <role-based>
         <superuser>yes</superuser>
@@ -826,6 +826,20 @@ Log off immediately if you are not an authorized user.</login-banner>
   <email-profile>Sample_Email_Profile</email-profile>
 </entry></email-scheduler></entry></device-group></entry>
   </devices>
+  <readonly>
+    <max-internal-id>15</max-internal-id>
+    <devices>
+      <entry name="localhost.localdomain">
+        <template />
+        <template-stack />
+        <device-group>
+          <entry name="sample_devicegroup">
+            <id>11</id>
+          </entry>
+        </device-group>
+      </entry>
+    </devices>
+  </readonly>
 <panorama><log-settings><email>
   <entry name="Sample_Email_Profile">
     <server>
