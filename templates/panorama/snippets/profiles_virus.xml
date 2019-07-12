@@ -131,15 +131,15 @@
   <decoder>
     <entry name="ftp">
       <action>reset-both</action>
-      <wildfire-action>default</wildfire-action>
+      <wildfire-action>reset-both</wildfire-action>
     </entry>
     <entry name="http">
       <action>reset-both</action>
-      <wildfire-action>default</wildfire-action>
+      <wildfire-action>reset-both</wildfire-action>
     </entry>
     <entry name="http2">
       <action>reset-both</action>
-      <wildfire-action>default</wildfire-action>
+      <wildfire-action>reset-both</wildfire-action>
     </entry>
     <entry name="imap">
       <action>reset-both</action>
@@ -151,7 +151,7 @@
     </entry>
     <entry name="smb">
       <action>reset-both</action>
-      <wildfire-action>default</wildfire-action>
+      <wildfire-action>reset-both</wildfire-action>
     </entry>
     <entry name="smtp">
       <action>reset-both</action>
