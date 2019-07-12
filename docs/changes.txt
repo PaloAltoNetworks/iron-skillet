@@ -26,7 +26,7 @@ index c089597..a2a256b 100644
  # should ONLY be excluded based on licensing limitations outside of best practices
  # when 'yes' (default) will include the EDL rule
 diff --git a/templates/panorama/snippets/device_setting.xml b/templates/panorama/snippets/device_setting.xml
-index c8d8d65..b530199 100644
+index eddadb8..b530199 100644
 --- a/templates/panorama/snippets/device_setting.xml
 +++ b/templates/panorama/snippets/device_setting.xml
 @@ -8,6 +8,11 @@
@@ -41,105 +41,22 @@ index c8d8d65..b530199 100644
    <admin-lockout>
      <failed-attempts>5</failed-attempts>
      <lockout-time>30</lockout-time>
-@@ -44,6 +49,9 @@
-     <entry name="linux">
-       <size-limit>2</size-limit>
-     </entry>
-+    <entry name="script">
-+      <size-limit>2000</size-limit>
-+    </entry>
-   </file-size-limit>
-   <report-benign-file>yes</report-benign-file>
-   <report-grayware-file>yes</report-grayware-file>
 diff --git a/templates/panorama/snippets/panorama_setting.xml b/templates/panorama/snippets/panorama_setting.xml
-index 31d9a49..a474462 100644
+index 9cf447c..a474462 100644
 --- a/templates/panorama/snippets/panorama_setting.xml
 +++ b/templates/panorama/snippets/panorama_setting.xml
-@@ -1,29 +1,34 @@
- <management>
--{%- if PANORAMA_TYPE == "cloud" %}
--<initcfg>
--  <type>
--     <dhcp-client>
--         <send-hostname>yes</send-hostname>
--         <send-client-id>no</send-client-id>
--         <accept-dhcp-hostname>no</accept-dhcp-hostname>
--         <accept-dhcp-domain>no</accept-dhcp-domain>
--     </dhcp-client>
--  </type>
-- <hostname>{{ PANORAMA_NAME }}</hostname>
-- <username>{{ ADMINISTRATOR_USERNAME }}</username>
--</initcfg>
--{% endif %}
--<storage-partition>
--  <internal/>
--</storage-partition>
--<hostname-type-in-syslog>FQDN</hostname-type-in-syslog>
--<enable-reporting-on-groups>yes</enable-reporting-on-groups>
--<share-unused-objects-with-devices>no</share-unused-objects-with-devices>
--<max-rows-in-csv-export>1048576</max-rows-in-csv-export>
--<admin-lockout>
--  <failed-attempts>5</failed-attempts>
--  <lockout-time>30</lockout-time>
--</admin-lockout>
--<idle-timeout>10</idle-timeout>
--<auto-acquire-commit-lock>yes</auto-acquire-commit-lock>
-+  {%- if PANORAMA_TYPE == "cloud" %}
-+  <initcfg>
-+    <type>
-+       <dhcp-client>
-+           <send-hostname>yes</send-hostname>
-+           <send-client-id>no</send-client-id>
-+           <accept-dhcp-hostname>no</accept-dhcp-hostname>
-+           <accept-dhcp-domain>no</accept-dhcp-domain>
-+       </dhcp-client>
-+    </type>
-+   <hostname>{{ PANORAMA_NAME }}</hostname>
-+   <username>{{ ADMINISTRATOR_USERNAME }}</username>
-+  </initcfg>
-+  {% endif %}
-+  <storage-partition>
-+    <internal/>
-+  </storage-partition>
-+  <hostname-type-in-syslog>FQDN</hostname-type-in-syslog>
-+  <enable-reporting-on-groups>yes</enable-reporting-on-groups>
-+  <share-unused-objects-with-devices>no</share-unused-objects-with-devices>
-+  <max-rows-in-csv-export>1048576</max-rows-in-csv-export>
+@@ -20,6 +20,11 @@
+   <enable-reporting-on-groups>yes</enable-reporting-on-groups>
+   <share-unused-objects-with-devices>no</share-unused-objects-with-devices>
+   <max-rows-in-csv-export>1048576</max-rows-in-csv-export>
 +  <api>
 +    <key>
 +      <lifetime>{{ API_KEY_LIFETIME }}</lifetime>
 +    </key>
 +  </api>
-+  <admin-lockout>
-+    <failed-attempts>5</failed-attempts>
-+    <lockout-time>30</lockout-time>
-+  </admin-lockout>
-+  <idle-timeout>10</idle-timeout>
-+  <auto-acquire-commit-lock>yes</auto-acquire-commit-lock>
- </management>
-\ No newline at end of file
-diff --git a/templates/panorama/snippets/panorama_system.xml b/templates/panorama/snippets/panorama_system.xml
-index 9f977f9..168b0b8 100644
---- a/templates/panorama/snippets/panorama_system.xml
-+++ b/templates/panorama/snippets/panorama_system.xml
-@@ -1,5 +1,5 @@
- <hostname>{{ PANORAMA_NAME }}</hostname>
--{%- if CONFIG_PANORAMA_IP == "yes" and PANORAMA_TYPE == "static" %}
-+{%- if PANORAMA_TYPE == "static" %}
- <ip-address>{{ PANORAMA_IP }}</ip-address>
- <netmask>{{ PANORAMA_MASK }}</netmask>
- <default-gateway>{{ PANORAMA_DG }}</default-gateway>
-@@ -74,8 +74,8 @@ Log off immediately if you are not an authorized user.</login-banner>
-     <protocol>
-       <scp>
-         <hostname>{{ CONFIG_EXPORT_IP }}</hostname>
--        <username>testuser</username>
--        <password>-AQ==i7YRj4/Wk1rQh2o740pxfTJwj/0=+7MGzrRa6xPfMQUkGMpf7w==</password>
-+        <username>testuser}</username>
-+        <password>-AQ==zPJb3ngM1sGjXlfX2+Qk6rbdv1I=ucInIpBmFcnkQK7zF4VO1w==</password>
-       </scp>
-     </protocol>
-     <start-time>02:00</start-time>
+   <admin-lockout>
+     <failed-attempts>5</failed-attempts>
+     <lockout-time>30</lockout-time>
 diff --git a/templates/panorama/snippets/pre_rulebase_security.xml b/templates/panorama/snippets/pre_rulebase_security.xml
 index c4423dc..4ee5cdb 100644
 --- a/templates/panorama/snippets/pre_rulebase_security.xml
@@ -308,7 +225,7 @@ index 9ab7da5..2f12364 100644
  </entry>
 \ No newline at end of file
 diff --git a/templates/panorama/snippets/profiles_url_filtering.xml b/templates/panorama/snippets/profiles_url_filtering.xml
-index 016e428..34030a3 100644
+index 016e428..baf0036 100644
 --- a/templates/panorama/snippets/profiles_url_filtering.xml
 +++ b/templates/panorama/snippets/profiles_url_filtering.xml
 @@ -26,6 +26,7 @@
@@ -384,13 +301,8 @@ index 016e428..34030a3 100644
        <member>news</member>
        <member>not-resolved</member>
        <member>nudity</member>
-@@ -225,11 +236,10 @@
-       <member>web-advertisements</member>
-       <member>web-based-email</member>
-       <member>web-hosting</member>
--      <member>Black-List</member>
+@@ -229,7 +240,6 @@
        <member>White-List</member>
-+      <member>Black-List</member>
      </alert>
    </credential-enforcement>
 -  <action>block</action>
@@ -419,16 +331,6 @@ index 016e428..34030a3 100644
      <member>news</member>
      <member>not-resolved</member>
      <member>nudity</member>
-@@ -297,8 +311,8 @@
-     <member>web-advertisements</member>
-     <member>web-based-email</member>
-     <member>web-hosting</member>
--    <member>Black-List</member>
-     <member>White-List</member>
-+    <member>Black-List</member>
-   </alert>
- </entry>
- <entry name="Exception-URL">
 @@ -329,6 +343,7 @@
        <member>government</member>
        <member>hacking</member>
@@ -481,10 +383,10 @@ index 016e428..34030a3 100644
      <member>not-resolved</member>
      <member>nudity</member>
 diff --git a/templates/panorama/snippets/profiles_virus.xml b/templates/panorama/snippets/profiles_virus.xml
-index 0421403..3654adc 100644
+index 15380bd..e9239ad 100644
 --- a/templates/panorama/snippets/profiles_virus.xml
 +++ b/templates/panorama/snippets/profiles_virus.xml
-@@ -9,9 +9,13 @@
+@@ -9,8 +9,12 @@
        <action>alert</action>
        <wildfire-action>alert</wildfire-action>
      </entry>
@@ -494,12 +396,10 @@ index 0421403..3654adc 100644
 +    </entry>
      <entry name="imap">
 -      <action>default</action>
--      <wildfire-action>default</wildfire-action>
 +      <action>alert</action>
-+      <wildfire-action>alert</wildfire-action>
+       <wildfire-action>alert</wildfire-action>
      </entry>
      <entry name="pop3">
-       <action>alert</action>
 @@ -37,6 +41,10 @@
        <action>reset-both</action>
        <wildfire-action>reset-both</wildfire-action>
@@ -535,11 +435,11 @@ index 0421403..3654adc 100644
        <wildfire-action>reset-both</wildfire-action>
 @@ -121,6 +137,10 @@
        <action>reset-both</action>
-       <wildfire-action>default</wildfire-action>
+       <wildfire-action>reset-both</wildfire-action>
      </entry>
 +    <entry name="http2">
 +      <action>reset-both</action>
-+      <wildfire-action>default</wildfire-action>
++      <wildfire-action>reset-both</wildfire-action>
 +    </entry>
      <entry name="imap">
        <action>reset-both</action>

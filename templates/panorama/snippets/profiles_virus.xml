@@ -10,7 +10,7 @@
       <wildfire-action>alert</wildfire-action>
     </entry>
     <entry name="imap">
-      <action>default</action>
+      <action>alert</action>
       <wildfire-action>alert</wildfire-action>
     </entry>
     <entry name="pop3">
