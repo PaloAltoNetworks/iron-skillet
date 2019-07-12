@@ -225,8 +225,8 @@
       <member>web-advertisements</member>
       <member>web-based-email</member>
       <member>web-hosting</member>
-      <member>White-List</member>
       <member>Black-List</member>
+      <member>White-List</member>
     </alert>
   </credential-enforcement>
   <action>block</action>
@@ -297,8 +297,8 @@
     <member>web-advertisements</member>
     <member>web-based-email</member>
     <member>web-hosting</member>
-    <member>White-List</member>
     <member>Black-List</member>
+    <member>White-List</member>
   </alert>
 </entry>
 <entry name="Exception-URL">
@@ -375,6 +375,7 @@
       <member>web-based-email</member>
       <member>web-hosting</member>
       <member>Black-List</member>
+      <member>White-List</member>
     </block>
   </credential-enforcement>
   <log-http-hdr-user-agent>yes</log-http-hdr-user-agent>
