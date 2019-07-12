@@ -672,9 +672,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 {% endif %}</system></deviceconfig></entry>
       </devices>
   </config>
-</entry></template-stack><device-group> <entry name="{{ DEVICE_GROUP }}">
-   <devices />
- <reports><entry name="Host-visit malicious sites plus">
+</entry></template-stack><device-group> <entry name="{{ DEVICE_GROUP }}"><reports><entry name="Host-visit malicious sites plus">
   <period>last-7-calendar-days</period>
   <topn>500</topn>
   <topm>50</topm>
