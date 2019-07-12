@@ -26,28 +26,24 @@ index b7e6bbd..abc8cc9 100644
  # should ONLY be excluded based on licensing limitations outside of best practices
  # when 'yes' (default) will include the EDL rule
 diff --git a/templates/panos/snippets/device_setting.xml b/templates/panos/snippets/device_setting.xml
-index 9196075..5ce5c4f 100644
+index c8d8d65..5ce5c4f 100644
 --- a/templates/panos/snippets/device_setting.xml
 +++ b/templates/panos/snippets/device_setting.xml
-@@ -8,6 +8,17 @@
+@@ -8,7 +8,12 @@
  <management>
    <enable-log-high-dp-load>yes</enable-log-high-dp-load>
    <max-rows-in-csv-export>1048576</max-rows-in-csv-export>
+-  <admin-lockout>
 +  <api>
 +    <key>
 +      <lifetime>{{ API_KEY_LIFETIME }}</lifetime>
 +    </key>
 +  </api>
 +<admin-lockout>
-+    <failed-attempts>5</failed-attempts>
-+    <lockout-time>30</lockout-time>
-+  </admin-lockout>
-+  <idle-timeout>10</idle-timeout>
-+  <auto-acquire-commit-lock>yes</auto-acquire-commit-lock>
- </management>
- <wildfire>
-   <file-size-limit>
-@@ -38,6 +49,9 @@
+     <failed-attempts>5</failed-attempts>
+     <lockout-time>30</lockout-time>
+   </admin-lockout>
+@@ -44,6 +49,9 @@
      <entry name="linux">
        <size-limit>2</size-limit>
      </entry>
