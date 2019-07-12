@@ -13,7 +13,7 @@
       <lifetime>{{ API_KEY_LIFETIME }}</lifetime>
     </key>
   </api>
-<admin-lockout>
+  <admin-lockout>
     <failed-attempts>5</failed-attempts>
     <lockout-time>30</lockout-time>
   </admin-lockout>
