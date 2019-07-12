@@ -1328,7 +1328,7 @@ index b6aeddf..0ac267e 100644
  dependency: snippets
  # type of device configuration
 diff --git a/templates/panorama/snippets_notshared/.meta-cnc.yaml b/templates/panorama/snippets_notshared/.meta-cnc.yaml
-index 844d687..b6a45f8 100644
+index 587d87b..b6a45f8 100644
 --- a/templates/panorama/snippets_notshared/.meta-cnc.yaml
 +++ b/templates/panorama/snippets_notshared/.meta-cnc.yaml
 @@ -3,9 +3,9 @@
@@ -1363,15 +1363,13 @@ index 844d687..b6a45f8 100644
 +    file: ../snippets/panorama_log_settings.xml
    - name: panorama_mgt_config_users
      xpath: /config/mgt-config/users
--    file: panorama_mgt_config_users.xml
-+    file: ../panorama_mgt_config_users.xml
+     file: ../panorama_mgt_config_users.xml
    - name: panorama_mgt_config_pwd
      xpath: /config/mgt-config/password-complexity
--    file: panorama_mgt_config_pwd.xml
+     file: ../panorama_mgt_config_pwd.xml
 -  - name: panorama_log_settings
 -    xpath: /config/panorama/log-settings
 -    file: ../snippets/panorama_log_settings.xml
-+    file: ../panorama_mgt_config_pwd.xml
    - name: log_collector_group
      xpath: /config/devices/entry[@name='localhost.localdomain']/log-collector-group
      file: ../snippets/log_collector_group.xml
