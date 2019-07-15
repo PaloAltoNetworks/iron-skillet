@@ -1,5 +1,5 @@
 diff --git a/templates/panos/set_commands/.meta-cnc.yaml b/templates/panos/set_commands/.meta-cnc.yaml
-index 3330547..f66b500 100644
+index 8506449..f66b500 100644
 --- a/templates/panos/set_commands/.meta-cnc.yaml
 +++ b/templates/panos/set_commands/.meta-cnc.yaml
 @@ -1,9 +1,9 @@
@@ -14,7 +14,16 @@ index 3330547..f66b500 100644
  description: Iron-Skillet baseline configuration for a firewall
  dependency:
  # type of device configuration
-@@ -78,7 +78,7 @@ variables:
+@@ -15,8 +15,6 @@ labels:
+   service_type: iron_skillet_set
+   collection:
+     - IronSkillet
+-    - Configure
+-    - Best Practice
+ 
+ # variables used in the configuration templates
+ # type_hint defines the form field type in pan-cnc
+@@ -80,7 +78,7 @@ variables:
      type_hint: ip_address
    - name: INTERNET_ZONE
      description: untrust zone to filter out in reports
@@ -24,7 +33,7 @@ index 3330547..f66b500 100644
    - name: EMAIL_PROFILE_GATEWAY
      description: email gateway address for critical alerts
 diff --git a/templates/panos/set_commands/iron_skillet_panos_full.conf b/templates/panos/set_commands/iron_skillet_panos_full.conf
-index 9ef275e..364cfbb 100644
+index 3f375e5..364cfbb 100644
 --- a/templates/panos/set_commands/iron_skillet_panos_full.conf
 +++ b/templates/panos/set_commands/iron_skillet_panos_full.conf
 @@ -1,5 +1,5 @@
@@ -35,41 +44,7 @@ index 9ef275e..364cfbb 100644
  # this template uses jinja format
  # either 'search and replace' or the scripts in the tools dir can be used to create a loadable configuration
  
-@@ -16,8 +16,22 @@ set deviceconfig system ntp-servers secondary-ntp-server ntp-server-address {{ N
- # remove admin/admin default and add user defined super user
- set mgt-config users {{ ADMINISTRATOR_USERNAME }} password
- set mgt-config users {{ ADMINISTRATOR_USERNAME }} permissions role-based superuser yes
-+
-+# best-practice to remove user=admin
- delete mgt-config users admin
- 
-+# set password complexity - will not impact existing users
-+set mgt-config password-complexity enabled yes
-+set mgt-config password-complexity minimum-length 12
-+set mgt-config password-complexity minimum-uppercase-letters 1
-+set mgt-config password-complexity minimum-lowercase-letters 1
-+set mgt-config password-complexity minimum-numeric-letters 1
-+set mgt-config password-complexity minimum-special-characters 1
-+set mgt-config password-complexity block-username-inclusion yes
-+set mgt-config password-complexity password-history-count 24
-+set mgt-config password-complexity new-password-differs-by-characters 3
-+set mgt-config password-complexity password-change expiration-period 90
-+
- # device system and settings configuration
- set deviceconfig system update-schedule statistics-service application-reports yes
- set deviceconfig system update-schedule statistics-service threat-prevention-reports yes
-@@ -33,6 +47,10 @@ set deviceconfig system update-schedule threats recurring threshold 48
- set deviceconfig system update-schedule anti-virus recurring hourly at 4
- set deviceconfig system update-schedule anti-virus recurring hourly action download-and-install
- set deviceconfig system update-schedule wildfire recurring every-min action download-and-install
-+set deviceconfig system update-schedule global-protect-datafile recurring hourly at 40
-+set deviceconfig system update-schedule global-protect-datafile recurring hourly action download-and-install
-+set deviceconfig system update-schedule global-protect-clientless-vpn recurring hourly at 50
-+set deviceconfig system update-schedule global-protect-clientless-vpn recurring hourly action download-and-install
- set deviceconfig system snmp-setting access-setting version v3
- set deviceconfig system login-banner "You have accessed a protected system. Log off immediately if you are not an authorized user."
- set deviceconfig system timezone UTC
-@@ -42,11 +60,15 @@ set deviceconfig system type dhcp-client accept-dhcp-hostname no
+@@ -60,11 +60,15 @@ set deviceconfig system type dhcp-client accept-dhcp-hostname no
  set deviceconfig system type dhcp-client accept-dhcp-domain no
  set deviceconfig setting ctd strip-x-fwd-for yes
  set deviceconfig setting ctd x-forwarded-for yes
@@ -86,7 +61,7 @@ index 9ef275e..364cfbb 100644
  set deviceconfig setting wildfire file-size-limit pe size-limit 10
  set deviceconfig setting wildfire file-size-limit apk size-limit 30
  set deviceconfig setting wildfire file-size-limit pdf size-limit 1000
-@@ -56,6 +78,7 @@ set deviceconfig setting wildfire file-size-limit flash size-limit 5
+@@ -74,6 +78,7 @@ set deviceconfig setting wildfire file-size-limit flash size-limit 5
  set deviceconfig setting wildfire file-size-limit MacOSX size-limit 1
  set deviceconfig setting wildfire file-size-limit archive size-limit 10
  set deviceconfig setting wildfire file-size-limit linux size-limit 2
@@ -94,61 +69,22 @@ index 9ef275e..364cfbb 100644
  set deviceconfig setting wildfire report-benign-file yes
  set deviceconfig setting wildfire report-grayware-file yes
  set deviceconfig setting config rematch yes
-@@ -140,15 +163,7 @@ set shared log-settings profiles default match-list Auth_Log_Forwarding send-sys
- set tag Outbound comments "Outbound to the Internet"
- set tag Inbound comments "Inbound from the Internet"
- set tag Internal comments "Internal to Internal"
--set tag iron-skillet-version comments "version 1.0.5: version of this iron-skillet template file"
--
--#External Dynamic List values used in security rules
--set external-list "Team Cymru Bogons IPv4" type ip recurring hourly
--set external-list "Team Cymru Bogons IPv4" type ip url http://www.team-cymru.org/Services/Bogons/fullbogons-ipv4.txt
--set external-list "Team Cymru Bogons IPv4" type ip description "IPv4 addresses that should not be routed across the Internet. Either reserved IP address space or unassigned and may be used for malicious purposes. More information: http://www.team-cymru.com/bogon-reference.html"
--set external-list "Team Cymru Bogons IPv6" type ip recurring hourly
--set external-list "Team Cymru Bogons IPv6" type ip url http://www.team-cymru.org/Services/Bogons/fullbogons-ipv6.txt
--set external-list "Team Cymru Bogons IPv6" type ip description "IPv6 addresses that should not be routed across the Internet. Either reserved IP address space or unassigned and may be used for malicious purposes. More information: http://www.team-cymru.com/bogon-reference.html"
-+set tag iron-skillet-version comments "version 1.0.6: version of this iron-skillet template file"
- 
- #Address objects used for sinkholing and security rules match
- set address Sinkhole-IPv4 ip-netmask {{ SINKHOLE_IPV4 }}
-@@ -489,36 +504,8 @@ set rulebase security rules "DNS Sinkhole Block" hip-profiles any
- set rulebase security rules "DNS Sinkhole Block" action deny
- set rulebase security rules "DNS Sinkhole Block" log-setting default
- set rulebase security rules "DNS Sinkhole Block" tag Outbound
--set rulebase security rules "Outbound Bogon Block Rule" description "Block outbound sessions with a destination address matching a known bogon address that should not be transitting the firewall. Add known exceptions to the rule before activating."
--set rulebase security rules "Outbound Bogon Block Rule" to any
--set rulebase security rules "Outbound Bogon Block Rule" from any
--set rulebase security rules "Outbound Bogon Block Rule" source any
--set rulebase security rules "Outbound Bogon Block Rule" destination [ "Team Cymru Bogons IPv4" "Team Cymru Bogons IPv6" ]
--set rulebase security rules "Outbound Bogon Block Rule" source-user any
--set rulebase security rules "Outbound Bogon Block Rule" category any
--set rulebase security rules "Outbound Bogon Block Rule" application any
--set rulebase security rules "Outbound Bogon Block Rule" service any
--set rulebase security rules "Outbound Bogon Block Rule" hip-profiles any
--set rulebase security rules "Outbound Bogon Block Rule" action deny
--set rulebase security rules "Outbound Bogon Block Rule" log-setting default
--set rulebase security rules "Outbound Bogon Block Rule" tag Outbound
--set rulebase security rules "Outbound Bogon Block Rule" disabled yes
--set rulebase security rules "Inbound Bogon Block Rule" description "Block inbound sessions with a source address matching a known bogon address that should not be transitting the firewall. Add known exceptions to the rule before activating."
--set rulebase security rules "Inbound Bogon Block Rule" to any
--set rulebase security rules "Inbound Bogon Block Rule" from any
--set rulebase security rules "Inbound Bogon Block Rule" source [ "Team Cymru Bogons IPv4" "Team Cymru Bogons IPv6" ]
--set rulebase security rules "Inbound Bogon Block Rule" destination any
--set rulebase security rules "Inbound Bogon Block Rule" source-user any
--set rulebase security rules "Inbound Bogon Block Rule" category any
--set rulebase security rules "Inbound Bogon Block Rule" application any
--set rulebase security rules "Inbound Bogon Block Rule" service any
--set rulebase security rules "Inbound Bogon Block Rule" hip-profiles any
--set rulebase security rules "Inbound Bogon Block Rule" action deny
--set rulebase security rules "Inbound Bogon Block Rule" log-setting default
--set rulebase security rules "Inbound Bogon Block Rule" tag Inbound
--set rulebase security rules "Inbound Bogon Block Rule" disabled yes
- 
--Recommended Decryption Profiles
-+#Recommended Decryption Profiles
- set profiles decryption Recommended_Decryption_Profile ssl-forward-proxy block-expired-certificate yes
- set profiles decryption Recommended_Decryption_Profile ssl-forward-proxy block-untrusted-issuer yes
- set profiles decryption Recommended_Decryption_Profile ssl-forward-proxy block-unknown-cert yes
+@@ -267,12 +272,12 @@ set profiles url-filtering Outbound-URL alert [ abortion abused-drugs adult alco
+ set profiles url-filtering Outbound-URL block [ command-and-control hacking malware phishing Black-List ]
+ set profiles url-filtering Alert-Only-URL credential-enforcement mode ip-user
+ set profiles url-filtering Alert-Only-URL credential-enforcement log-severity medium
+-set profiles url-filtering Alert-Only-URL credential-enforcement alert [ abortion abused-drugs adult alcohol-and-tobacco auctions business-and-economy command-and-control computer-and-internet-info content-delivery-networks copyright-infringement dating dynamic-dns educational-institutions entertainment-and-arts extremism financial-services gambling games government hacking health-and-medicine home-and-garden hunting-and-fishing insufficient-content internet-communications-and-telephony internet-portals job-search legal malware military motor-vehicles music news not-resolved nudity online-storage-and-backup parked peer-to-peer personal-sites-and-blogs philosophy-and-political-advocacy phishing private-ip-addresses proxy-avoidance-and-anonymizers questionable real-estate recreation-and-hobbies reference-and-research religion search-engines sex-education shareware-and-freeware shopping social-networking society sports stock-advice-and-tools streaming-media swimsuits-and-intimate-apparel training-and-tools translation travel unknown weapons web-advertisements web-based-email web-hosting Black-List White-List ]
++set profiles url-filtering Alert-Only-URL credential-enforcement alert [ abortion abused-drugs adult alcohol-and-tobacco auctions business-and-economy command-and-control computer-and-internet-info content-delivery-networks copyright-infringement dating dynamic-dns educational-institutions entertainment-and-arts extremism financial-services gambling games government hacking health-and-medicine home-and-garden hunting-and-fishing insufficient-content internet-communications-and-telephony internet-portals job-search legal malware military motor-vehicles music news not-resolved nudity online-storage-and-backup parked peer-to-peer personal-sites-and-blogs philosophy-and-political-advocacy phishing private-ip-addresses proxy-avoidance-and-anonymizers questionable real-estate recreation-and-hobbies reference-and-research religion search-engines sex-education shareware-and-freeware shopping social-networking society sports stock-advice-and-tools streaming-media swimsuits-and-intimate-apparel training-and-tools translation travel unknown weapons web-advertisements web-based-email web-hosting ]
+ set profiles url-filtering Alert-Only-URL action block
+-set profiles url-filtering Alert-Only-URL alert [ abortion abused-drugs adult alcohol-and-tobacco auctions business-and-economy command-and-control computer-and-internet-info content-delivery-networks copyright-infringement dating dynamic-dns educational-institutions entertainment-and-arts extremism financial-services gambling games government hacking health-and-medicine home-and-garden hunting-and-fishing insufficient-content internet-communications-and-telephony internet-portals job-search legal malware military motor-vehicles music news not-resolved nudity online-storage-and-backup parked peer-to-peer personal-sites-and-blogs philosophy-and-political-advocacy phishing private-ip-addresses proxy-avoidance-and-anonymizers questionable real-estate recreation-and-hobbies reference-and-research religion search-engines sex-education shareware-and-freeware shopping social-networking society sports stock-advice-and-tools streaming-media swimsuits-and-intimate-apparel training-and-tools translation travel unknown weapons web-advertisements web-based-email web-hosting Black-List White-List ]
++set profiles url-filtering Alert-Only-URL alert [ abortion abused-drugs adult alcohol-and-tobacco auctions business-and-economy command-and-control computer-and-internet-info content-delivery-networks copyright-infringement dating dynamic-dns educational-institutions entertainment-and-arts extremism financial-services gambling games government hacking health-and-medicine home-and-garden hunting-and-fishing insufficient-content internet-communications-and-telephony internet-portals job-search legal malware military motor-vehicles music news not-resolved nudity online-storage-and-backup parked peer-to-peer personal-sites-and-blogs philosophy-and-political-advocacy phishing private-ip-addresses proxy-avoidance-and-anonymizers questionable real-estate recreation-and-hobbies reference-and-research religion search-engines sex-education shareware-and-freeware shopping social-networking society sports stock-advice-and-tools streaming-media swimsuits-and-intimate-apparel training-and-tools translation travel unknown weapons web-advertisements web-based-email web-hosting ]
+ set profiles url-filtering Exception-URL credential-enforcement mode ip-user
+ set profiles url-filtering Exception-URL credential-enforcement log-severity high
+-set profiles url-filtering Exception-URL credential-enforcement block [ abortion abused-drugs adult alcohol-and-tobacco auctions business-and-economy command-and-control computer-and-internet-info content-delivery-networks copyright-infringement dating dynamic-dns educational-institutions entertainment-and-arts extremism financial-services gambling games government hacking health-and-medicine home-and-garden hunting-and-fishing insufficient-content internet-communications-and-telephony internet-portals job-search legal malware military motor-vehicles music news not-resolved nudity online-storage-and-backup parked peer-to-peer personal-sites-and-blogs philosophy-and-political-advocacy phishing private-ip-addresses proxy-avoidance-and-anonymizers questionable real-estate recreation-and-hobbies reference-and-research religion search-engines sex-education shareware-and-freeware shopping social-networking society sports stock-advice-and-tools streaming-media swimsuits-and-intimate-apparel training-and-tools translation travel unknown weapons web-advertisements web-based-email web-hosting Black-List White-List ]
++set profiles url-filtering Exception-URL credential-enforcement block [ abortion abused-drugs adult alcohol-and-tobacco auctions business-and-economy command-and-control computer-and-internet-info content-delivery-networks copyright-infringement dating dynamic-dns educational-institutions entertainment-and-arts extremism financial-services gambling games government hacking health-and-medicine home-and-garden hunting-and-fishing insufficient-content internet-communications-and-telephony internet-portals job-search legal malware military motor-vehicles music news not-resolved nudity online-storage-and-backup parked peer-to-peer personal-sites-and-blogs philosophy-and-political-advocacy phishing private-ip-addresses proxy-avoidance-and-anonymizers questionable real-estate recreation-and-hobbies reference-and-research religion search-engines sex-education shareware-and-freeware shopping social-networking society sports stock-advice-and-tools streaming-media swimsuits-and-intimate-apparel training-and-tools translation travel unknown weapons web-advertisements web-based-email web-hosting Black-List ]
+ set profiles url-filtering Exception-URL log-http-hdr-user-agent yes
+ set profiles url-filtering Exception-URL log-http-hdr-referer yes
+ set profiles url-filtering Exception-URL log-http-hdr-xff yes
 diff --git a/templates/panos/set_commands/iron_skillet_panos_full.xlsx b/templates/panos/set_commands/iron_skillet_panos_full.xlsx
-index 509f062..d714e75 100644
+index a22998a..d714e75 100644
 Binary files a/templates/panos/set_commands/iron_skillet_panos_full.xlsx and b/templates/panos/set_commands/iron_skillet_panos_full.xlsx differ
