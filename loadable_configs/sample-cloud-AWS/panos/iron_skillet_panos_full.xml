@@ -1,6 +1,6 @@
 <config urldb="paloaltonetworks" version="9.0.0">
   <mgt-config><users><entry name="admin">
-  <phash>$1$c8wTEhA1$mt7zYnY0iXf08FOYo0NnJ/</phash>
+  <phash>$1$eP9J/EnF$IfCfpZxcNNlUYFttKHHh8/</phash>
   <permissions>
     <role-based>
       <superuser>yes</superuser>
@@ -732,10 +732,10 @@ Log off immediately if you are not an authorized user.</login-banner>
   </entry>
 </rules></decryption></rulebase>
         <address><entry name="Sinkhole-IPv4">
-<ip-netmask>72.5.65.111</ip-netmask>
+  <fqdn>72.5.65.111</fqdn>
 </entry>
 <entry name="Sinkhole-IPv6">
-<ip-netmask>2600:5200::1</ip-netmask>
+  <ip-netmask>2600:5200::1</ip-netmask>
 </entry></address><tag><entry name="Outbound">
 	<comments>Outbound to the Internet</comments>
 </entry>

@@ -750,10 +750,10 @@ Log off immediately if you are not an authorized user.</login-banner>
   </entry>
 </rules></decryption></rulebase>
         <address><entry name="Sinkhole-IPv4">
-<ip-netmask>{{ SINKHOLE_IPV4 }}</ip-netmask>
+  <fqdn>{{ SINKHOLE_IPV4 }}</fqdn>
 </entry>
 <entry name="Sinkhole-IPv6">
-<ip-netmask>{{ SINKHOLE_IPV6 }}</ip-netmask>
+  <ip-netmask>{{ SINKHOLE_IPV6 }}</ip-netmask>
 </entry></address><tag><entry name="Outbound">
 	<comments>Outbound to the Internet</comments>
 </entry>
