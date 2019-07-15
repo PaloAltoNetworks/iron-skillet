@@ -5,7 +5,7 @@ name: skillet_panos_v80
 # label used for menu selection
 label: v8.0 Iron-Skillet for NGFW
 description: Iron-Skillet baseline configuration for a firewall
-dependency: snippets_panorama
+dependency:
 # type of device configuration
 type: panos
 extends:
@@ -15,6 +15,8 @@ labels:
   service_type: iron_skillet
   collection:
     - IronSkillet
+    - Configure
+    - Best Practice
 
 # variables used in the configuration templates
 # type_hint defines the form field type in pan-cnc
@@ -101,7 +103,7 @@ variables:
 # when 'yes' (default) will include the EDL rule
   - name: INCLUDE_PAN_EDL
     description: include the predefined Palo Alto Networks external lists security rules
-    default: 'yes'
+    default: 'no'
     type_hint: dropdown
     dd_list:
       - key: 'yes'
@@ -118,18 +120,18 @@ snippets:
   - name: device_setting
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     file: device_setting.xml
-  - name: device_mgt_config
-    xpath: /config/mgt-config
-    file: device_mgt_config.xml
+  - name: mgt_config_users
+    xpath: /config/mgt-config/users
+    file: mgt_config_users.xml
+  - name: password_complexity
+    xpath: /config/mgt-config/password-complexity
+    file: password_complexity.xml
   - name: shared_log_settings
     xpath: /config/shared/log-settings
     file: shared_log_settings.xml
   - name: address
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/address
     file: address.xml
-  - name: external_list
-    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/external-list
-    file: external_list.xml
   - name: tag
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag
     file: tag.xml

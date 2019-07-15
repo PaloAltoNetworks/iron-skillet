@@ -85,7 +85,10 @@ def create_spreadsheet(config_type):
     worksheet_values.write(0, 1, 'Variable Value', bold)
     worksheet_values.write(0, 2, 'Description', bold)
 
+    # iterate through each variable in the yaml file and
+    # add to variable worksheet including defaults
     for variable in set_variables['variables']:
+        print('working with variable: {0}'.format(variable))
         worksheet_values.write(row, 0, variable['name'])
         worksheet_values.write(row, 1, variable['value'])
         worksheet_values.write(row, 2, variable['description'])
