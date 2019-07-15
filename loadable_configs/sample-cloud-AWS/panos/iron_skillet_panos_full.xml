@@ -1,6 +1,6 @@
 <config urldb="paloaltonetworks" version="9.0.0">
   <mgt-config><users><entry name="admin">
-  <phash>$1$eP9J/EnF$IfCfpZxcNNlUYFttKHHh8/</phash>
+  <phash>$1$YbCSCPMI$n8FfKZEsJvmjiS.ycKASY/</phash>
   <permissions>
     <role-based>
       <superuser>yes</superuser>
@@ -732,7 +732,7 @@ Log off immediately if you are not an authorized user.</login-banner>
   </entry>
 </rules></decryption></rulebase>
         <address><entry name="Sinkhole-IPv4">
-  <fqdn>72.5.65.111</fqdn>
+  <fqdn>sinkhole.paloaltonetworks.com</fqdn>
 </entry>
 <entry name="Sinkhole-IPv6">
   <ip-netmask>2600:5200::1</ip-netmask>
@@ -1038,7 +1038,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>72.5.65.111</ipv4-address>
+      <ipv4-address>sinkhole.paloaltonetworks.com</ipv4-address>
       <ipv6-address>2600:5200::1</ipv6-address>
     </sinkhole>
   </botnet-domains>
@@ -1087,7 +1087,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>72.5.65.111</ipv4-address>
+      <ipv4-address>sinkhole.paloaltonetworks.com</ipv4-address>
       <ipv6-address>2600:5200::1</ipv6-address>
     </sinkhole>
   </botnet-domains>
@@ -1136,7 +1136,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>72.5.65.111</ipv4-address>
+      <ipv4-address>sinkhole.paloaltonetworks.com</ipv4-address>
       <ipv6-address>2600:5200::1</ipv6-address>
     </sinkhole>
   </botnet-domains>
@@ -1185,7 +1185,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>72.5.65.111</ipv4-address>
+      <ipv4-address>sinkhole.paloaltonetworks.com</ipv4-address>
       <ipv6-address>2600:5200::1</ipv6-address>
     </sinkhole>
   </botnet-domains>
@@ -1220,7 +1220,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>72.5.65.111</ipv4-address>
+      <ipv4-address>sinkhole.paloaltonetworks.com</ipv4-address>
       <ipv6-address>2600:5200::1</ipv6-address>
     </sinkhole>
   </botnet-domains>
