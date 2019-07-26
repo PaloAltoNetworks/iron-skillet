@@ -17,9 +17,9 @@ labels:
   service_type: iron_skillet_full
   template_category: panorama_full
   collection:
-   - IronSkillet
-   - Configure
-   - Best Practice
+    - IronSkillet
+    - Configure
+    - Best Practice
 
 # variables used in the configuration templates
 # type_hint defines the form field type in pan-cnc
