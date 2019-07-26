@@ -115,7 +115,7 @@
   <decoder>
     <entry name="ftp">
       <action>reset-both</action>
-      <wildfire-action>rest-both</wildfire-action>
+      <wildfire-action>reset-both</wildfire-action>
     </entry>
     <entry name="http">
       <action>reset-both</action>
