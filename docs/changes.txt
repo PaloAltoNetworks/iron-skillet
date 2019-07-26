@@ -1,29 +1,42 @@
-diff --git a/templates/panos/set_commands/.meta-cnc.yaml b/templates/panos/set_commands/.meta-cnc.yaml
-index 8506449..f66b500 100644
---- a/templates/panos/set_commands/.meta-cnc.yaml
-+++ b/templates/panos/set_commands/.meta-cnc.yaml
-@@ -1,9 +1,9 @@
- # set_commands is used to load a full NGFW configuration
+diff --git a/templates/panorama/snippets/.meta-cnc.yaml b/templates/panorama/snippets/.meta-cnc.yaml
+index f67efc3..c089597 100644
+--- a/templates/panorama/snippets/.meta-cnc.yaml
++++ b/templates/panorama/snippets/.meta-cnc.yaml
+@@ -4,9 +4,9 @@
+ # this is based on a 'shared model' with all template elements in the 'iron-skillet' template
  
  # snippet folder name
--name: skillet_setcommand_panos_v80
-+name: skillet_set_command_panos_v81
+-name: skillet_panorama_v80
++name: skillet_panorama_v81
  # label used for menu selection
--label: v8.0 Iron-Skillet set commands for NGFW
-+label: v8.1 Iron-Skillet set commands for NGFW
- description: Iron-Skillet baseline configuration for a firewall
- dependency:
+-label: v8.0 Iron-Skillet for Panorama (Shared Values)
++label: v8.1 Iron-Skillet for Panorama (Shared Values)
+ description: Iron-Skillet baseline configuration for Panorama with device-group and stack specific values
  # type of device configuration
-@@ -15,8 +15,6 @@ labels:
-   service_type: iron_skillet_set
+ type: panorama
+@@ -16,7 +16,9 @@ extends:
+ labels:
+   service_type: iron_skillet
    collection:
-     - IronSkillet
--    - Configure
--    - Best Practice
+-    - IronSkillet
++   - IronSkillet
++   - Configure
++   - Best Practice
  
  # variables used in the configuration templates
  # type_hint defines the form field type in pan-cnc
-@@ -80,7 +78,7 @@ variables:
+@@ -50,10 +52,6 @@ variables:
+     description: IP address for scheduled config exports
+     default: 192.0.2.3
+     type_hint: text
+-  - name: TEMPLATE
+-    description: Template name for the managed device
+-    default: sample_template
+-    type_hint: text
+   - name: STACK
+     description: Template stack name for Panorama
+     default: sample_stack
+@@ -121,7 +119,7 @@ variables:
      type_hint: ip_address
    - name: INTERNET_ZONE
      description: untrust zone to filter out in reports
@@ -32,35 +45,500 @@ index 8506449..f66b500 100644
      type_hint: text
    - name: EMAIL_PROFILE_GATEWAY
      description: email gateway address for critical alerts
-diff --git a/templates/panos/set_commands/iron_skillet_panos_full.conf b/templates/panos/set_commands/iron_skillet_panos_full.conf
-index b93351d..ce2f957 100644
---- a/templates/panos/set_commands/iron_skillet_panos_full.conf
-+++ b/templates/panos/set_commands/iron_skillet_panos_full.conf
+@@ -144,7 +142,7 @@ variables:
+ # when 'yes' (default) will include the EDL rule
+   - name: INCLUDE_PAN_EDL
+     description: include the predefined Palo Alto Networks external lists security rules
+-    default: 'yes'
++    default: 'no'
+     type_hint: dropdown
+     dd_list:
+       - key: 'yes'
+@@ -161,6 +159,12 @@ snippets:
+   - name: panorama_setting
+     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
+     file: panorama_setting.xml
++  - name: panorama_mgt_config_users
++    xpath: /config/mgt-config/users
++    file: panorama_mgt_config_users.xml
++  - name: panorama_mgt_config_pwd
++    xpath: /config/mgt-config/password-complexity
++    file: panorama_mgt_config_pwd.xml
+   - name: panorama_log_settings
+     xpath: /config/panorama/log-settings
+     file: panorama_log_settings.xml
+@@ -182,6 +186,9 @@ snippets:
+   - name: device_mgt_config
+     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/mgt-config
+     file: device_mgt_config.xml
++  - name: device_password_complexity
++    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/mgt-config/password-complexity
++    file: device_mgt_config.xml
+   - name: shared_log_settings
+     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/shared/log-settings
+     file: shared_log_settings.xml
+@@ -191,9 +198,6 @@ snippets:
+   - name: shared_address
+     xpath: /config/shared/address
+     file: address.xml
+-  - name: shared_external_list
+-    xpath: /config/shared/external-list
+-    file: external_list.xml
+   - name: shared_log_profiles
+     xpath: /config/shared/log-settings/profiles
+     file: log_settings_profiles.xml
+@@ -240,7 +244,7 @@ snippets:
+     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack
+     file: template_stack.xml
+   - name: device_system_local
+-    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='{{ TEMPLATE }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
++    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ STACK }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+     file: device_system_local.xml
+   - name: devicegroup
+     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group
+diff --git a/templates/panorama/snippets/device_mgt_config.xml b/templates/panorama/snippets/device_mgt_config.xml
+index e2a188f..3d7ffac 100644
+--- a/templates/panorama/snippets/device_mgt_config.xml
++++ b/templates/panorama/snippets/device_mgt_config.xml
+@@ -7,4 +7,18 @@
+       </role-based>
+     </permissions>
+   </entry>
+-</users>
+\ No newline at end of file
++</users>
++<password-complexity>
++  <enabled>yes</enabled>
++  <minimum-length>12</minimum-length>
++  <minimum-uppercase-letters>1</minimum-uppercase-letters>
++  <minimum-lowercase-letters>1</minimum-lowercase-letters>
++  <minimum-numeric-letters>1</minimum-numeric-letters>
++  <minimum-special-characters>1</minimum-special-characters>
++  <block-username-inclusion>yes</block-username-inclusion>
++  <password-history-count>24</password-history-count>
++  <new-password-differs-by-characters>3</new-password-differs-by-characters>
++  <password-change>
++    <expiration-period>90</expiration-period>
++  </password-change>
++</password-complexity>
+\ No newline at end of file
+diff --git a/templates/panorama/snippets/device_setting.xml b/templates/panorama/snippets/device_setting.xml
+index e1897dc..eddadb8 100644
+--- a/templates/panorama/snippets/device_setting.xml
++++ b/templates/panorama/snippets/device_setting.xml
+@@ -1,13 +1,19 @@
+ <ctd>
+   <strip-x-fwd-for>yes</strip-x-fwd-for>
+   <x-forwarded-for>yes</x-forwarded-for>
++  <allow-http-range>no</allow-http-range>
+   <tcp-bypass-exceed-queue>no</tcp-bypass-exceed-queue>
+   <udp-bypass-exceed-queue>no</udp-bypass-exceed-queue>
+-  <skip-block-http-range>no</skip-block-http-range>
+ </ctd>
+ <management>
+   <enable-log-high-dp-load>yes</enable-log-high-dp-load>
+   <max-rows-in-csv-export>1048576</max-rows-in-csv-export>
++  <admin-lockout>
++    <failed-attempts>5</failed-attempts>
++    <lockout-time>30</lockout-time>
++  </admin-lockout>
++  <idle-timeout>10</idle-timeout>
++  <auto-acquire-commit-lock>yes</auto-acquire-commit-lock>
+ </management>
+ <wildfire>
+   <file-size-limit>
+@@ -38,6 +44,9 @@
+     <entry name="linux">
+       <size-limit>2</size-limit>
+     </entry>
++    <entry name="script">
++      <size-limit>2000</size-limit>
++    </entry>
+   </file-size-limit>
+   <report-benign-file>yes</report-benign-file>
+   <report-grayware-file>yes</report-grayware-file>
+diff --git a/templates/panorama/snippets/device_system_shared.xml b/templates/panorama/snippets/device_system_shared.xml
+index eaf9e0b..e584ffd 100644
+--- a/templates/panorama/snippets/device_system_shared.xml
++++ b/templates/panorama/snippets/device_system_shared.xml
+@@ -33,6 +33,22 @@
+       </every-min>
+     </recurring>
+   </wildfire>
++  <global-protect-datafile>
++    <recurring>
++      <hourly>
++        <at>40</at>
++        <action>download-and-install</action>
++      </hourly>
++    </recurring>
++  </global-protect-datafile>
++  <global-protect-clientless-vpn>
++    <recurring>
++      <hourly>
++        <at>50</at>
++        <action>download-and-install</action>
++      </hourly>
++    </recurring>
++  </global-protect-clientless-vpn>
+ </update-schedule>
+ <snmp-setting>
+   <access-setting>
+diff --git a/templates/panorama/snippets/external_list.xml b/templates/panorama/snippets/external_list.xml
+deleted file mode 100644
+index 2ed7cf5..0000000
+--- a/templates/panorama/snippets/external_list.xml
++++ /dev/null
+@@ -1,22 +0,0 @@
+-<entry name="Team Cymru Bogons IPv4">
+-  <type>
+-    <ip>
+-      <recurring>
+-        <hourly/>
+-      </recurring>
+-      <url>http://www.team-cymru.org/Services/Bogons/fullbogons-ipv4.txt</url>
+-      <description>IPv4 addresses that should not be routed across the Internet. Either reserved IP address space or unassigned and may be used for malicious purposes. More information: http://www.team-cymru.com/bogon-reference.html</description>
+-    </ip>
+-  </type>
+-</entry>
+-<entry name="Team Cymru Bogons IPv6">
+-  <type>
+-    <ip>
+-      <recurring>
+-        <hourly/>
+-      </recurring>
+-      <url>http://www.team-cymru.org/Services/Bogons/fullbogons-ipv6.txt</url>
+-      <description>IPv6 addresses that should not be routed across the Internet. Either reserved IP address space or unassigned and may be used for malicious purposes. More information: http://www.team-cymru.com/bogon-reference.html</description>
+-    </ip>
+-  </type>
+-</entry>
+\ No newline at end of file
+diff --git a/templates/panorama/snippets/panorama_mgt_config_pwd.xml b/templates/panorama/snippets/panorama_mgt_config_pwd.xml
+new file mode 100644
+index 0000000..07d45b1
+--- /dev/null
++++ b/templates/panorama/snippets/panorama_mgt_config_pwd.xml
+@@ -0,0 +1,12 @@
++<enabled>yes</enabled>
++<minimum-length>12</minimum-length>
++<minimum-uppercase-letters>1</minimum-uppercase-letters>
++<minimum-lowercase-letters>1</minimum-lowercase-letters>
++<minimum-numeric-letters>1</minimum-numeric-letters>
++<minimum-special-characters>1</minimum-special-characters>
++<block-username-inclusion>yes</block-username-inclusion>
++<password-history-count>24</password-history-count>
++<new-password-differs-by-characters>3</new-password-differs-by-characters>
++<password-change>
++  <expiration-period>90</expiration-period>
++</password-change>
+\ No newline at end of file
+diff --git a/templates/panorama/snippets/panorama_mgt_config_users.xml b/templates/panorama/snippets/panorama_mgt_config_users.xml
+new file mode 100644
+index 0000000..30b3729
+--- /dev/null
++++ b/templates/panorama/snippets/panorama_mgt_config_users.xml
+@@ -0,0 +1,8 @@
++ <entry name="{{ ADMINISTRATOR_USERNAME }}">
++  <phash>{{ ADMINISTRATOR_PASSWORD | md5_hash }}</phash>
++  <permissions>
++    <role-based>
++      <superuser>yes</superuser>
++    </role-based>
++  </permissions>
++</entry>
+diff --git a/templates/panorama/snippets/panorama_setting.xml b/templates/panorama/snippets/panorama_setting.xml
+index 2ecb2e5..9cf447c 100644
+--- a/templates/panorama/snippets/panorama_setting.xml
++++ b/templates/panorama/snippets/panorama_setting.xml
+@@ -1,23 +1,29 @@
+ <management>
+-{%- if PANORAMA_TYPE == "cloud" %}
+-<initcfg>
+-  <type>
+-     <dhcp-client>
+-         <send-hostname>yes</send-hostname>
+-         <send-client-id>no</send-client-id>
+-         <accept-dhcp-hostname>no</accept-dhcp-hostname>
+-         <accept-dhcp-domain>no</accept-dhcp-domain>
+-     </dhcp-client>
+-  </type>
+- <hostname>{{ PANORAMA_NAME }}</hostname>
+- <username>{{ ADMINISTRATOR_USERNAME }}</username>
+-</initcfg>
+-{% endif %}
+-<storage-partition>
+-  <internal/>
+-</storage-partition>
+-<hostname-type-in-syslog>FQDN</hostname-type-in-syslog>
+-<enable-reporting-on-groups>yes</enable-reporting-on-groups>
+-<share-unused-objects-with-devices>no</share-unused-objects-with-devices>
+-<max-rows-in-csv-export>1048576</max-rows-in-csv-export>
++  {%- if PANORAMA_TYPE == "cloud" %}
++  <initcfg>
++    <type>
++       <dhcp-client>
++           <send-hostname>yes</send-hostname>
++           <send-client-id>no</send-client-id>
++           <accept-dhcp-hostname>no</accept-dhcp-hostname>
++           <accept-dhcp-domain>no</accept-dhcp-domain>
++       </dhcp-client>
++    </type>
++   <hostname>{{ PANORAMA_NAME }}</hostname>
++   <username>{{ ADMINISTRATOR_USERNAME }}</username>
++  </initcfg>
++  {% endif %}
++  <storage-partition>
++    <internal/>
++  </storage-partition>
++  <hostname-type-in-syslog>FQDN</hostname-type-in-syslog>
++  <enable-reporting-on-groups>yes</enable-reporting-on-groups>
++  <share-unused-objects-with-devices>no</share-unused-objects-with-devices>
++  <max-rows-in-csv-export>1048576</max-rows-in-csv-export>
++  <admin-lockout>
++    <failed-attempts>5</failed-attempts>
++    <lockout-time>30</lockout-time>
++  </admin-lockout>
++  <idle-timeout>10</idle-timeout>
++  <auto-acquire-commit-lock>yes</auto-acquire-commit-lock>
+ </management>
+\ No newline at end of file
+diff --git a/templates/panorama/snippets/panorama_system.xml b/templates/panorama/snippets/panorama_system.xml
+index 9f977f9..168b0b8 100644
+--- a/templates/panorama/snippets/panorama_system.xml
++++ b/templates/panorama/snippets/panorama_system.xml
 @@ -1,5 +1,5 @@
--# set command configuration for panos version 8.0
--# commands are expected to be load in order
-+# set command configuration for panos version 8.1
-+# commands are expected to be loaded in order
- # this template uses jinja format
- # either 'search and replace' or the scripts in the tools dir can be used to create a loadable configuration
- 
-@@ -60,7 +60,7 @@ set deviceconfig system type dhcp-client accept-dhcp-hostname no
- set deviceconfig system type dhcp-client accept-dhcp-domain no
- set deviceconfig setting ctd strip-x-fwd-for yes
- set deviceconfig setting ctd x-forwarded-for yes
--set deviceconfig setting ctd skip-block-http-range yes
-+set deviceconfig setting ctd allow-http-range no
- set deviceconfig setting ctd tcp-bypass-exceed-queue no
- set deviceconfig setting ctd udp-bypass-exceed-queue no
- set deviceconfig setting management enable-log-high-dp-load yes
-@@ -78,6 +78,7 @@ set deviceconfig setting wildfire file-size-limit flash size-limit 5
- set deviceconfig setting wildfire file-size-limit MacOSX size-limit 1
- set deviceconfig setting wildfire file-size-limit archive size-limit 10
- set deviceconfig setting wildfire file-size-limit linux size-limit 2
-+set deviceconfig setting wildfire file-size-limit script size-limit 2000
- set deviceconfig setting wildfire report-benign-file yes
- set deviceconfig setting wildfire report-grayware-file yes
- set deviceconfig setting config rematch yes
-diff --git a/templates/panos/set_commands/iron_skillet_panos_full.xlsx b/templates/panos/set_commands/iron_skillet_panos_full.xlsx
-index a22998a..d7faff1 100644
-Binary files a/templates/panos/set_commands/iron_skillet_panos_full.xlsx and b/templates/panos/set_commands/iron_skillet_panos_full.xlsx differ
+ <hostname>{{ PANORAMA_NAME }}</hostname>
+-{%- if CONFIG_PANORAMA_IP == "yes" and PANORAMA_TYPE == "static" %}
++{%- if PANORAMA_TYPE == "static" %}
+ <ip-address>{{ PANORAMA_IP }}</ip-address>
+ <netmask>{{ PANORAMA_MASK }}</netmask>
+ <default-gateway>{{ PANORAMA_DG }}</default-gateway>
+@@ -74,8 +74,8 @@ Log off immediately if you are not an authorized user.</login-banner>
+     <protocol>
+       <scp>
+         <hostname>{{ CONFIG_EXPORT_IP }}</hostname>
+-        <username>testuser</username>
+-        <password>-AQ==i7YRj4/Wk1rQh2o740pxfTJwj/0=+7MGzrRa6xPfMQUkGMpf7w==</password>
++        <username>testuser}</username>
++        <password>-AQ==zPJb3ngM1sGjXlfX2+Qk6rbdv1I=ucInIpBmFcnkQK7zF4VO1w==</password>
+       </scp>
+     </protocol>
+     <start-time>02:00</start-time>
+diff --git a/templates/panorama/snippets/pre_rulebase_security.xml b/templates/panorama/snippets/pre_rulebase_security.xml
+index e63fe97..c4423dc 100644
+--- a/templates/panorama/snippets/pre_rulebase_security.xml
++++ b/templates/panorama/snippets/pre_rulebase_security.xml
+@@ -118,84 +118,4 @@
+       <member>Outbound</member>
+     </tag>
+   </entry>
+-    <entry name="Outbound Bogon Block Rule">
+-    <description>Block outbound sessions with a destination address matching a known bogon address that should not be transitting the firewall. Add known exceptions to the rule before activating.</description>
+-    <target>
+-      <negate>no</negate>
+-    </target>
+-    <to>
+-      <member>any</member>
+-    </to>
+-    <from>
+-      <member>any</member>
+-    </from>
+-    <source>
+-      <member>any</member>
+-    </source>
+-    <destination>
+-      <member>Team Cymru Bogons IPv4</member>
+-      <member>Team Cymru Bogons IPv6</member>
+-    </destination>
+-    <source-user>
+-      <member>any</member>
+-    </source-user>
+-    <category>
+-      <member>any</member>
+-    </category>
+-    <application>
+-      <member>any</member>
+-    </application>
+-    <service>
+-      <member>any</member>
+-    </service>
+-    <hip-profiles>
+-      <member>any</member>
+-    </hip-profiles>
+-    <action>deny</action>
+-    <log-setting>default</log-setting>
+-    <tag>
+-      <member>Outbound</member>
+-    </tag>
+-    <disabled>yes</disabled>
+-  </entry>
+-  <entry name="Inbound Bogon Block Rule">
+-    <description>Block inbound sessions with a source address matching a known bogon address that should not be transitting the firewall. Add known exceptions to the rule before activating.</description>
+-    <target>
+-      <negate>no</negate>
+-    </target>
+-    <to>
+-      <member>any</member>
+-    </to>
+-    <from>
+-      <member>any</member>
+-    </from>
+-    <source>
+-      <member>Team Cymru Bogons IPv4</member>
+-      <member>Team Cymru Bogons IPv6</member>
+-    </source>
+-    <destination>
+-      <member>any</member>
+-    </destination>
+-    <source-user>
+-      <member>any</member>
+-    </source-user>
+-    <category>
+-      <member>any</member>
+-    </category>
+-    <application>
+-      <member>any</member>
+-    </application>
+-    <service>
+-      <member>any</member>
+-    </service>
+-    <hip-profiles>
+-      <member>any</member>
+-    </hip-profiles>
+-    <action>deny</action>
+-    <log-setting>default</log-setting>
+-    <tag>
+-      <member>Inbound</member>
+-    </tag>
+-    <disabled>yes</disabled>
+-  </entry>
+ </rules>
+\ No newline at end of file
+diff --git a/templates/panorama/snippets/profiles_url_filtering.xml b/templates/panorama/snippets/profiles_url_filtering.xml
+index b82e606..016e428 100644
+--- a/templates/panorama/snippets/profiles_url_filtering.xml
++++ b/templates/panorama/snippets/profiles_url_filtering.xml
+@@ -225,6 +225,8 @@
+       <member>web-advertisements</member>
+       <member>web-based-email</member>
+       <member>web-hosting</member>
++      <member>Black-List</member>
++      <member>White-List</member>
+     </alert>
+   </credential-enforcement>
+   <action>block</action>
+@@ -295,6 +297,8 @@
+     <member>web-advertisements</member>
+     <member>web-based-email</member>
+     <member>web-hosting</member>
++    <member>Black-List</member>
++    <member>White-List</member>
+   </alert>
+ </entry>
+ <entry name="Exception-URL">
+@@ -371,6 +375,7 @@
+       <member>web-based-email</member>
+       <member>web-hosting</member>
+       <member>Black-List</member>
++      <member>White-List</member>
+     </block>
+   </credential-enforcement>
+   <log-http-hdr-user-agent>yes</log-http-hdr-user-agent>
+diff --git a/templates/panorama/snippets/profiles_virus.xml b/templates/panorama/snippets/profiles_virus.xml
+index 0421403..4bb97b9 100644
+--- a/templates/panorama/snippets/profiles_virus.xml
++++ b/templates/panorama/snippets/profiles_virus.xml
+@@ -10,8 +10,8 @@
+       <wildfire-action>alert</wildfire-action>
+     </entry>
+     <entry name="imap">
+-      <action>default</action>
+-      <wildfire-action>default</wildfire-action>
++      <action>alert</action>
++      <wildfire-action>alert</wildfire-action>
+     </entry>
+     <entry name="pop3">
+       <action>alert</action>
+@@ -115,11 +115,11 @@
+   <decoder>
+     <entry name="ftp">
+       <action>reset-both</action>
+-      <wildfire-action>default</wildfire-action>
++      <wildfire-action>reset-both</wildfire-action>
+     </entry>
+     <entry name="http">
+       <action>reset-both</action>
+-      <wildfire-action>default</wildfire-action>
++      <wildfire-action>reset-both</wildfire-action>
+     </entry>
+     <entry name="imap">
+       <action>reset-both</action>
+@@ -131,7 +131,7 @@
+     </entry>
+     <entry name="smb">
+       <action>reset-both</action>
+-      <wildfire-action>default</wildfire-action>
++      <wildfire-action>reset-both</wildfire-action>
+     </entry>
+     <entry name="smtp">
+       <action>reset-both</action>
+diff --git a/templates/panorama/snippets/tag.xml b/templates/panorama/snippets/tag.xml
+index 24da61b..e467177 100644
+--- a/templates/panorama/snippets/tag.xml
++++ b/templates/panorama/snippets/tag.xml
+@@ -8,5 +8,5 @@
+ 	<comments>Internal to Internal</comments>
+ </entry>
+ <entry name="iron-skillet-version">
+-	<comments>version 1.0.5: version of this iron-skillet template file</comments>
++	<comments>version 1.0.6: version of this iron-skillet template file</comments>
+ </entry>
+\ No newline at end of file
+diff --git a/templates/panorama/snippets/template.xml b/templates/panorama/snippets/template.xml
+index 7af9aec..606ccfa 100644
+--- a/templates/panorama/snippets/template.xml
++++ b/templates/panorama/snippets/template.xml
+@@ -11,18 +11,4 @@
+       </entry>
+     </devices>
+   </config>
+-</entry>
+-<entry name="{{ TEMPLATE }}">
+-  <settings>
+-    <default-vsys>vsys1</default-vsys>
+-  </settings>
+-  <config>
+-    <devices>
+-      <entry name="localhost.localdomain">
+-        <vsys>
+-          <entry name="vsys1"/>
+-        </vsys>
+-      </entry>
+-    </devices>
+-  </config>
+ </entry>
+\ No newline at end of file
+diff --git a/templates/panorama/snippets/template_stack.xml b/templates/panorama/snippets/template_stack.xml
+index f9012d4..d88b914 100644
+--- a/templates/panorama/snippets/template_stack.xml
++++ b/templates/panorama/snippets/template_stack.xml
+@@ -1,6 +1,17 @@
+ <entry name="{{ STACK }}">
+   <templates>
+     <member>iron-skillet</member>
+-    <member>{{ TEMPLATE }}</member>
+   </templates>
++  <settings>
++    <default-vsys>vsys1</default-vsys>
++  </settings>
++    <config>
++      <devices>
++        <entry name="localhost.localdomain">
++          <vsys>
++            <entry name="vsys1"/>
++          </vsys>
++        </entry>
++      </devices>
++  </config>
+ </entry>
+\ No newline at end of file
