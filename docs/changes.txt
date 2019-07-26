@@ -1,256 +1,122 @@
-diff --git a/templates/panorama/set_commands/.meta-cnc.yaml b/templates/panorama/set_commands/.meta-cnc.yaml
-index ded0df0..5b12789 100644
---- a/templates/panorama/set_commands/.meta-cnc.yaml
-+++ b/templates/panorama/set_commands/.meta-cnc.yaml
-@@ -3,9 +3,9 @@
- # all values are contained in the device-groups and template stacks; nothing shared
+diff --git a/templates/panorama/snippets/.meta-cnc.yaml b/templates/panorama/snippets/.meta-cnc.yaml
+index e38f2ec..4430f58 100644
+--- a/templates/panorama/snippets/.meta-cnc.yaml
++++ b/templates/panorama/snippets/.meta-cnc.yaml
+@@ -4,9 +4,9 @@
+ # this is based on a 'shared model' with all template elements in the 'iron-skillet' template
  
- # snippet name
--name: skillet_setcommand_panorama_v81
-+name: skillet_setcommand_panorama_v90
+ # snippet folder name
+-name: skillet_panorama_v80
++name: skillet_panorama_v81
  # label used for menu selection
--label: v8.1 Iron-Skillet set commands for Panorama
-+label: v9.0 Iron-Skillet set commands for Panorama
- description: Set command configuration for Panorama
+-label: v8.0 Iron-Skillet for Panorama (Shared Values)
++label: v8.1 Iron-Skillet for Panorama (Shared Values)
+ description: Iron-Skillet baseline configuration for Panorama with device-group and stack specific values
  # type of device configuration
- type: template
-@@ -136,6 +136,10 @@ variables:
-     description: syslog server ip address
-     default: 192.0.2.2
+ type: panorama
+@@ -52,10 +52,6 @@ variables:
+     description: IP address for scheduled config exports
+     default: 192.0.2.3
      type_hint: text
-+  - name: API_KEY_LIFETIME
-+    description: lifetime for the api key in minutes
-+    default: 525600
-+    type_hint: text
- 
- snippets:
-   - name: iron_skillet_panorama_full.conf
-diff --git a/templates/panorama/set_commands/iron_skillet_panorama_full.conf b/templates/panorama/set_commands/iron_skillet_panorama_full.conf
-index 4c1cadf..c4da77e 100644
---- a/templates/panorama/set_commands/iron_skillet_panorama_full.conf
-+++ b/templates/panorama/set_commands/iron_skillet_panorama_full.conf
-@@ -1,4 +1,4 @@
--# set command configuration for Panorama version 8.1
-+# set command configuration for Panorama version 9.0
- # commands are expected to be load in order
- # this template uses jinja format
- # either 'search and replace' or the scripts in the tools dir can be used to create a loadable configuration
-@@ -54,6 +54,7 @@ set deviceconfig setting management storage-partition internal
- set deviceconfig setting management hostname-type-in-syslog FQDN
- set deviceconfig setting management enable-reporting-on-groups yes
- set deviceconfig setting management share-unused-objects-with-devices no
-+set deviceconfig setting management api key lifetime {{ API_KEY_LIFETIME }}
- set deviceconfig setting management max-rows-in-csv-export 1048576
- set deviceconfig setting management admin-lockout failed-attempts 5
- set deviceconfig setting management admin-lockout lockout-time 30
-@@ -108,7 +109,7 @@ set panorama log-settings url match-list URL_Log_Forwarding filter "All Logs"
- set shared tag Outbound comments "Outbound to the Internet"
- set shared tag Inbound comments "Inbound from the Internet"
- set shared tag Internal comments "Internal to Internal"
--set shared tag iron-skillet-version comments "version 1.0.6: version of this iron-skillet template file"
-+set shared tag iron-skillet-version comments "version 0.0.2 for 9.0: version of this IronSkillet template file"
- set shared address Sinkhole-IPv4 ip-netmask {{ SINKHOLE_IPV4 }}
- set shared address Sinkhole-IPv6 ip-netmask {{ SINKHOLE_IPV6 }}
- 
-@@ -159,6 +160,8 @@ set shared profiles virus Alert-Only-AV decoder ftp action alert
- set shared profiles virus Alert-Only-AV decoder ftp wildfire-action alert
- set shared profiles virus Alert-Only-AV decoder http action alert
- set shared profiles virus Alert-Only-AV decoder http wildfire-action alert
-+set shared profiles virus Alert-Only-AV decoder http2 action alert
-+set shared profiles virus Alert-Only-AV decoder http2 wildfire-action alert
- set shared profiles virus Alert-Only-AV decoder imap action alert
- set shared profiles virus Alert-Only-AV decoder imap wildfire-action alert
- set shared profiles virus Alert-Only-AV decoder pop3 action alert
-@@ -171,6 +174,8 @@ set shared profiles virus Outbound-AV decoder ftp action reset-both
- set shared profiles virus Outbound-AV decoder ftp wildfire-action reset-both
- set shared profiles virus Outbound-AV decoder http action reset-both
- set shared profiles virus Outbound-AV decoder http wildfire-action reset-both
-+set shared profiles virus Outbound-AV decoder http2 action reset-both
-+set shared profiles virus Outbound-AV decoder http2 wildfire-action reset-both
- set shared profiles virus Outbound-AV decoder imap action reset-both
- set shared profiles virus Outbound-AV decoder imap wildfire-action reset-both
- set shared profiles virus Outbound-AV decoder pop3 action reset-both
-@@ -183,6 +188,8 @@ set shared profiles virus Inbound-AV decoder ftp action reset-both
- set shared profiles virus Inbound-AV decoder ftp wildfire-action reset-both
- set shared profiles virus Inbound-AV decoder http action reset-both
- set shared profiles virus Inbound-AV decoder http wildfire-action reset-both
-+set shared profiles virus Inbound-AV decoder http2 action reset-both
-+set shared profiles virus Inbound-AV decoder http2 wildfire-action reset-both
- set shared profiles virus Inbound-AV decoder imap action reset-both
- set shared profiles virus Inbound-AV decoder imap wildfire-action reset-both
- set shared profiles virus Inbound-AV decoder pop3 action reset-both
-@@ -195,6 +202,8 @@ set shared profiles virus Internal-AV decoder ftp action reset-both
- set shared profiles virus Internal-AV decoder ftp wildfire-action reset-both
- set shared profiles virus Internal-AV decoder http action reset-both
- set shared profiles virus Internal-AV decoder http wildfire-action reset-both
-+set shared profiles virus Internal-AV decoder http2 action reset-both
-+set shared profiles virus Internal-AV decoder http2 wildfire-action reset-both
- set shared profiles virus Internal-AV decoder imap action reset-both
- set shared profiles virus Internal-AV decoder imap wildfire-action reset-both
- set shared profiles virus Internal-AV decoder pop3 action reset-both
-@@ -204,22 +213,26 @@ set shared profiles virus Internal-AV decoder smb wildfire-action reset-both
- set shared profiles virus Internal-AV decoder smtp action reset-both
- set shared profiles virus Internal-AV decoder smtp wildfire-action reset-both
- set shared profiles virus Exception-AV decoder ftp action reset-both
--set shared profiles virus Exception-AV decoder ftp wildfire-action reset-both
-+set shared profiles virus Exception-AV decoder ftp wildfire-action default
- set shared profiles virus Exception-AV decoder http action reset-both
--set shared profiles virus Exception-AV decoder http wildfire-action reset-both
-+set shared profiles virus Exception-AV decoder http wildfire-action default
-+set shared profiles virus Exception-AV decoder http2 action reset-both
-+set shared profiles virus Exception-AV decoder http2 wildfire-action default
- set shared profiles virus Exception-AV decoder imap action reset-both
- set shared profiles virus Exception-AV decoder imap wildfire-action reset-both
- set shared profiles virus Exception-AV decoder pop3 action reset-both
- set shared profiles virus Exception-AV decoder pop3 wildfire-action reset-both
- set shared profiles virus Exception-AV decoder smb action reset-both
--set shared profiles virus Exception-AV decoder smb wildfire-action reset-both
-+set shared profiles virus Exception-AV decoder smb wildfire-action default
- set shared profiles virus Exception-AV decoder smtp action reset-both
- set shared profiles virus Exception-AV decoder smtp wildfire-action reset-both
- set shared profiles virus Exception-AV description "Use this profile for rules needing modifications to the standard"
- set shared profiles spyware Outbound-AS botnet-domains sinkhole ipv4-address {{ SINKHOLE_IPV4 }}
- set shared profiles spyware Outbound-AS botnet-domains sinkhole ipv6-address {{ SINKHOLE_IPV6 }}
-+set shared profiles spyware Outbound-AS botnet-domains lists default-paloalto-dns packet-capture single-packet
- set shared profiles spyware Outbound-AS botnet-domains lists default-paloalto-dns action sinkhole
--set shared profiles spyware Outbound-AS botnet-domains packet-capture single-packet
-+set shared profiles spyware Outbound-AS botnet-domains lists default-paloalto-cloud packet-capture single-packet
-+set shared profiles spyware Outbound-AS botnet-domains lists default-paloalto-cloud action sinkhole
- set shared profiles spyware Outbound-AS rules Block-Critical-High-Medium action reset-both
- set shared profiles spyware Outbound-AS rules Block-Critical-High-Medium severity [ high critical medium ]
- set shared profiles spyware Outbound-AS rules Block-Critical-High-Medium threat-name any
-@@ -232,8 +245,10 @@ set shared profiles spyware Outbound-AS rules Default-Low-Info category any
- set shared profiles spyware Outbound-AS rules Default-Low-Info packet-capture disable
- set shared profiles spyware Inbound-AS botnet-domains sinkhole ipv4-address {{ SINKHOLE_IPV4 }}
- set shared profiles spyware Inbound-AS botnet-domains sinkhole ipv6-address {{ SINKHOLE_IPV6 }}
-+set shared profiles spyware Inbound-AS botnet-domains lists default-paloalto-dns packet-capture single-packet
- set shared profiles spyware Inbound-AS botnet-domains lists default-paloalto-dns action sinkhole
--set shared profiles spyware Inbound-AS botnet-domains packet-capture single-packet
-+set shared profiles spyware Inbound-AS botnet-domains lists default-paloalto-cloud packet-capture single-packet
-+set shared profiles spyware Inbound-AS botnet-domains lists default-paloalto-cloud action sinkhole
- set shared profiles spyware Inbound-AS rules Block-Critical-High-Medium action reset-both
- set shared profiles spyware Inbound-AS rules Block-Critical-High-Medium severity [ high critical medium ]
- set shared profiles spyware Inbound-AS rules Block-Critical-High-Medium threat-name any
-@@ -246,8 +261,10 @@ set shared profiles spyware Inbound-AS rules Default-Low-Info category any
- set shared profiles spyware Inbound-AS rules Default-Low-Info packet-capture disable
- set shared profiles spyware Internal-AS botnet-domains sinkhole ipv4-address {{ SINKHOLE_IPV4 }}
- set shared profiles spyware Internal-AS botnet-domains sinkhole ipv6-address {{ SINKHOLE_IPV6 }}
-+set shared profiles spyware Internal-AS botnet-domains lists default-paloalto-dns packet-capture single-packet
- set shared profiles spyware Internal-AS botnet-domains lists default-paloalto-dns action sinkhole
--set shared profiles spyware Internal-AS botnet-domains packet-capture single-packet
-+set shared profiles spyware Internal-AS botnet-domains lists default-paloalto-cloud packet-capture single-packet
-+set shared profiles spyware Internal-AS botnet-domains lists default-paloalto-cloud action sinkhole
- set shared profiles spyware Internal-AS rules Block-Critical-High action reset-both
- set shared profiles spyware Internal-AS rules Block-Critical-High severity [ high critical ]
- set shared profiles spyware Internal-AS rules Block-Critical-High threat-name any
-@@ -260,17 +277,21 @@ set shared profiles spyware Internal-AS rules Default-Medium-Low-Info category a
- set shared profiles spyware Internal-AS rules Default-Medium-Low-Info packet-capture disable
- set shared profiles spyware Alert-Only-AS botnet-domains sinkhole ipv4-address {{ SINKHOLE_IPV4 }}
- set shared profiles spyware Alert-Only-AS botnet-domains sinkhole ipv6-address {{ SINKHOLE_IPV6 }}
-+set shared profiles spyware Alert-Only-AS botnet-domains lists default-paloalto-dns packet-capture disable
- set shared profiles spyware Alert-Only-AS botnet-domains lists default-paloalto-dns action alert
--set shared profiles spyware Alert-Only-AS botnet-domains packet-capture disable
-+set shared profiles spyware Alert-Only-AS botnet-domains lists default-paloalto-cloud packet-capture disable
-+set shared profiles spyware Alert-Only-AS botnet-domains lists default-paloalto-cloud action alert
- set shared profiles spyware Alert-Only-AS rules Alert-All action alert
- set shared profiles spyware Alert-Only-AS rules Alert-All severity any
- set shared profiles spyware Alert-Only-AS rules Alert-All threat-name any
- set shared profiles spyware Alert-Only-AS rules Alert-All category any
- set shared profiles spyware Alert-Only-AS rules Alert-All packet-capture disable
--set shared profiles spyware Exception-AS botnet-domains lists default-paloalto-dns action sinkhole
- set shared profiles spyware Exception-AS botnet-domains sinkhole ipv4-address {{ SINKHOLE_IPV4 }}
- set shared profiles spyware Exception-AS botnet-domains sinkhole ipv6-address {{ SINKHOLE_IPV6 }}
--set shared profiles spyware Exception-AS botnet-domains packet-capture single-packet
-+set shared profiles spyware Exception-AS botnet-domains lists default-paloalto-dns packet-capture single-packet
-+set shared profiles spyware Exception-AS botnet-domains lists default-paloalto-dns action sinkhole
-+set shared profiles spyware Exception-AS botnet-domains lists default-paloalto-cloud packet-capture single-packet
-+set shared profiles spyware Exception-AS botnet-domains lists default-paloalto-cloud action sinkhole
- set shared profiles vulnerability Outbound-VP rules Block-Critical-High-Medium action reset-both
- set shared profiles vulnerability Outbound-VP rules Block-Critical-High-Medium vendor-id any
- set shared profiles vulnerability Outbound-VP rules Block-Critical-High-Medium severity [ critical high medium ]
-@@ -361,26 +382,23 @@ set shared profiles custom-url-category White-List
- set shared profiles custom-url-category Custom-No-Decrypt
- set shared profiles url-filtering Outbound-URL credential-enforcement mode ip-user
- set shared profiles url-filtering Outbound-URL credential-enforcement log-severity high
--set shared profiles url-filtering Outbound-URL credential-enforcement block [ abortion abused-drugs adult alcohol-and-tobacco auctions business-and-economy command-and-control computer-and-internet-info content-delivery-networks copyright-infringement dating dynamic-dns educational-institutions entertainment-and-arts extremism financial-services gambling games government hacking health-and-medicine home-and-garden hunting-and-fishing insufficient-content internet-communications-and-telephony internet-portals job-search legal malware military motor-vehicles music news not-resolved nudity online-storage-and-backup parked peer-to-peer personal-sites-and-blogs philosophy-and-political-advocacy phishing private-ip-addresses proxy-avoidance-and-anonymizers questionable real-estate recreation-and-hobbies reference-and-research religion search-engines sex-education shareware-and-freeware shopping social-networking society sports stock-advice-and-tools streaming-media swimsuits-and-intimate-apparel training-and-tools translation travel unknown weapons web-advertisements web-based-email web-hosting Black-List White-List ]
-+set shared profiles url-filtering Outbound-URL credential-enforcement block [ Black-List White-List abortion abused-drugs adult alcohol-and-tobacco auctions business-and-economy command-and-control computer-and-internet-info content-delivery-networks copyright-infringement dating dynamic-dns educational-institutions entertainment-and-arts extremism financial-services gambling games government hacking health-and-medicine high-risk home-and-garden hunting-and-fishing insufficient-content internet-communications-and-telephony internet-portals job-search legal low-risk malware medium-risk military motor-vehicles music newly-registered-domain news not-resolved nudity online-storage-and-backup parked peer-to-peer personal-sites-and-blogs philosophy-and-political-advocacy phishing private-ip-addresses proxy-avoidance-and-anonymizers questionable real-estate recreation-and-hobbies reference-and-research religion search-engines sex-education shareware-and-freeware shopping social-networking society sports stock-advice-and-tools streaming-media swimsuits-and-intimate-apparel training-and-tools translation travel unknown weapons web-advertisements web-based-email web-hosting ]
- set shared profiles url-filtering Outbound-URL log-http-hdr-user-agent yes
- set shared profiles url-filtering Outbound-URL log-http-hdr-referer yes
- set shared profiles url-filtering Outbound-URL log-http-hdr-xff yes
--set shared profiles url-filtering Outbound-URL action block
--set shared profiles url-filtering Outbound-URL alert [ abortion abused-drugs adult alcohol-and-tobacco auctions business-and-economy computer-and-internet-info content-delivery-networks copyright-infringement dating dynamic-dns educational-institutions entertainment-and-arts extremism financial-services gambling games government health-and-medicine home-and-garden hunting-and-fishing insufficient-content internet-communications-and-telephony internet-portals job-search legal military motor-vehicles music news not-resolved nudity online-storage-and-backup parked peer-to-peer personal-sites-and-blogs philosophy-and-political-advocacy private-ip-addresses proxy-avoidance-and-anonymizers questionable real-estate recreation-and-hobbies reference-and-research religion search-engines sex-education shareware-and-freeware shopping social-networking society sports stock-advice-and-tools streaming-media swimsuits-and-intimate-apparel training-and-tools translation travel unknown weapons web-advertisements web-based-email web-hosting White-List ]
-+set shared profiles url-filtering Outbound-URL alert [ White-List abortion abused-drugs adult alcohol-and-tobacco auctions business-and-economy computer-and-internet-info content-delivery-networks copyright-infringement dating dynamic-dns educational-institutions entertainment-and-arts extremism financial-services gambling games government health-and-medicine high-risk home-and-garden hunting-and-fishing insufficient-content internet-communications-and-telephony internet-portals job-search legal low-risk medium-risk military motor-vehicles music newly-registered-domain news not-resolved nudity online-storage-and-backup parked peer-to-peer personal-sites-and-blogs philosophy-and-political-advocacy private-ip-addresses proxy-avoidance-and-anonymizers questionable real-estate recreation-and-hobbies reference-and-research religion search-engines sex-education shareware-and-freeware shopping social-networking society sports stock-advice-and-tools streaming-media swimsuits-and-intimate-apparel training-and-tools translation travel unknown weapons web-advertisements web-based-email web-hosting ]
- set shared profiles url-filtering Outbound-URL block [ command-and-control hacking malware phishing Black-List ]
- set shared profiles url-filtering Alert-Only-URL credential-enforcement mode ip-user
- set shared profiles url-filtering Alert-Only-URL credential-enforcement log-severity medium
--set shared profiles url-filtering Alert-Only-URL credential-enforcement alert [ abortion abused-drugs adult alcohol-and-tobacco auctions business-and-economy command-and-control computer-and-internet-info content-delivery-networks copyright-infringement dating dynamic-dns educational-institutions entertainment-and-arts extremism financial-services gambling games government hacking health-and-medicine home-and-garden hunting-and-fishing insufficient-content internet-communications-and-telephony internet-portals job-search legal malware military motor-vehicles music news not-resolved nudity online-storage-and-backup parked peer-to-peer personal-sites-and-blogs philosophy-and-political-advocacy phishing private-ip-addresses proxy-avoidance-and-anonymizers questionable real-estate recreation-and-hobbies reference-and-research religion search-engines sex-education shareware-and-freeware shopping social-networking society sports stock-advice-and-tools streaming-media swimsuits-and-intimate-apparel training-and-tools translation travel unknown weapons web-advertisements web-based-email web-hosting Black-List White-List ]
--set shared profiles url-filtering Alert-Only-URL action block
--set shared profiles url-filtering Alert-Only-URL alert [ abortion abused-drugs adult alcohol-and-tobacco auctions business-and-economy command-and-control computer-and-internet-info content-delivery-networks copyright-infringement dating dynamic-dns educational-institutions entertainment-and-arts extremism financial-services gambling games government hacking health-and-medicine home-and-garden hunting-and-fishing insufficient-content internet-communications-and-telephony internet-portals job-search legal malware military motor-vehicles music news not-resolved nudity online-storage-and-backup parked peer-to-peer personal-sites-and-blogs philosophy-and-political-advocacy phishing private-ip-addresses proxy-avoidance-and-anonymizers questionable real-estate recreation-and-hobbies reference-and-research religion search-engines sex-education shareware-and-freeware shopping social-networking society sports stock-advice-and-tools streaming-media swimsuits-and-intimate-apparel training-and-tools translation travel unknown weapons web-advertisements web-based-email web-hosting Black-List White-List ]
-+set shared profiles url-filtering Alert-Only-URL credential-enforcement alert [ Black-List White-List abortion abused-drugs adult alcohol-and-tobacco auctions business-and-economy command-and-control computer-and-internet-info content-delivery-networks copyright-infringement dating dynamic-dns educational-institutions entertainment-and-arts extremism financial-services gambling games government hacking health-and-medicine high-risk home-and-garden hunting-and-fishing insufficient-content internet-communications-and-telephony internet-portals job-search legal low-risk malware medium-risk military motor-vehicles music newly-registered-domain news not-resolved nudity online-storage-and-backup parked peer-to-peer personal-sites-and-blogs philosophy-and-political-advocacy phishing private-ip-addresses proxy-avoidance-and-anonymizers questionable real-estate recreation-and-hobbies reference-and-research religion search-engines sex-education shareware-and-freeware shopping social-networking society sports stock-advice-and-tools streaming-media swimsuits-and-intimate-apparel training-and-tools translation travel unknown weapons web-advertisements web-based-email web-hosting ]
-+set shared profiles url-filtering Alert-Only-URL alert [ Black-List White-List abortion abused-drugs adult alcohol-and-tobacco auctions business-and-economy command-and-control computer-and-internet-info content-delivery-networks copyright-infringement dating dynamic-dns educational-institutions entertainment-and-arts extremism financial-services gambling games government hacking health-and-medicine high-risk home-and-garden hunting-and-fishing insufficient-content internet-communications-and-telephony internet-portals job-search legal low-risk malware medium-risk military motor-vehicles music newly-registered-domain news not-resolved nudity online-storage-and-backup parked peer-to-peer personal-sites-and-blogs philosophy-and-political-advocacy phishing private-ip-addresses proxy-avoidance-and-anonymizers questionable real-estate recreation-and-hobbies reference-and-research religion search-engines sex-education shareware-and-freeware shopping social-networking society sports stock-advice-and-tools streaming-media swimsuits-and-intimate-apparel training-and-tools translation travel unknown weapons web-advertisements web-based-email web-hosting ]
- set shared profiles url-filtering Exception-URL credential-enforcement mode ip-user
- set shared profiles url-filtering Exception-URL credential-enforcement log-severity high
--set shared profiles url-filtering Exception-URL credential-enforcement block [ abortion abused-drugs adult alcohol-and-tobacco auctions business-and-economy command-and-control computer-and-internet-info content-delivery-networks copyright-infringement dating dynamic-dns educational-institutions entertainment-and-arts extremism financial-services gambling games government hacking health-and-medicine home-and-garden hunting-and-fishing insufficient-content internet-communications-and-telephony internet-portals job-search legal malware military motor-vehicles music news not-resolved nudity online-storage-and-backup parked peer-to-peer personal-sites-and-blogs philosophy-and-political-advocacy phishing private-ip-addresses proxy-avoidance-and-anonymizers questionable real-estate recreation-and-hobbies reference-and-research religion search-engines sex-education shareware-and-freeware shopping social-networking society sports stock-advice-and-tools streaming-media swimsuits-and-intimate-apparel training-and-tools translation travel unknown weapons web-advertisements web-based-email web-hosting Black-List White-List ]
-+set shared profiles url-filtering Exception-URL credential-enforcement block [ Black-List White-List abortion abused-drugs adult alcohol-and-tobacco auctions business-and-economy command-and-control computer-and-internet-info content-delivery-networks copyright-infringement dating dynamic-dns educational-institutions entertainment-and-arts extremism financial-services gambling games government hacking health-and-medicine high-risk home-and-garden hunting-and-fishing insufficient-content internet-communications-and-telephony internet-portals job-search legal low-risk malware medium-risk military motor-vehicles music newly-registered-domain news not-resolved nudity online-storage-and-backup parked peer-to-peer personal-sites-and-blogs philosophy-and-political-advocacy phishing private-ip-addresses proxy-avoidance-and-anonymizers questionable real-estate recreation-and-hobbies reference-and-research religion search-engines sex-education shareware-and-freeware shopping social-networking society sports stock-advice-and-tools streaming-media swimsuits-and-intimate-apparel training-and-tools translation travel unknown weapons web-advertisements web-based-email web-hosting ]
- set shared profiles url-filtering Exception-URL log-http-hdr-user-agent yes
- set shared profiles url-filtering Exception-URL log-http-hdr-referer yes
- set shared profiles url-filtering Exception-URL log-http-hdr-xff yes
--set shared profiles url-filtering Exception-URL action block
--set shared profiles url-filtering Exception-URL alert [ abortion abused-drugs adult alcohol-and-tobacco auctions business-and-economy computer-and-internet-info content-delivery-networks copyright-infringement dating dynamic-dns educational-institutions entertainment-and-arts extremism financial-services gambling games government health-and-medicine home-and-garden hunting-and-fishing insufficient-content internet-communications-and-telephony internet-portals job-search legal military motor-vehicles music news not-resolved nudity online-storage-and-backup parked peer-to-peer personal-sites-and-blogs philosophy-and-political-advocacy private-ip-addresses proxy-avoidance-and-anonymizers questionable real-estate recreation-and-hobbies reference-and-research religion search-engines sex-education shareware-and-freeware shopping social-networking society sports stock-advice-and-tools streaming-media swimsuits-and-intimate-apparel training-and-tools translation travel unknown weapons web-advertisements web-based-email web-hosting White-List ]
-+set shared profiles url-filtering Exception-URL alert [ White-List abortion abused-drugs adult alcohol-and-tobacco auctions business-and-economy computer-and-internet-info content-delivery-networks copyright-infringement dating dynamic-dns educational-institutions entertainment-and-arts extremism financial-services gambling games government health-and-medicine high-risk home-and-garden hunting-and-fishing insufficient-content internet-communications-and-telephony internet-portals job-search legal low-risk medium-risk military motor-vehicles music newly-registered-domain news not-resolved nudity online-storage-and-backup parked peer-to-peer personal-sites-and-blogs philosophy-and-political-advocacy private-ip-addresses proxy-avoidance-and-anonymizers questionable real-estate recreation-and-hobbies reference-and-research religion search-engines sex-education shareware-and-freeware shopping social-networking society sports stock-advice-and-tools streaming-media swimsuits-and-intimate-apparel training-and-tools translation travel unknown weapons web-advertisements web-based-email web-hosting ]
- set shared profiles url-filtering Exception-URL block [ command-and-control hacking malware phishing Black-List ]
- set shared profiles wildfire-analysis Outbound-WF rules Forward-All application any
- set shared profiles wildfire-analysis Outbound-WF rules Forward-All file-type any
-@@ -456,7 +474,7 @@ set shared pre-rulebase security rules "Outbound Block Rule" target negate no
- set shared pre-rulebase security rules "Outbound Block Rule" to any
- set shared pre-rulebase security rules "Outbound Block Rule" from any
- set shared pre-rulebase security rules "Outbound Block Rule" source any
--set shared pre-rulebase security rules "Outbound Block Rule" destination [ panw-highrisk-ip-list panw-known-ip-list ]
-+set shared pre-rulebase security rules "Outbound Block Rule" destination [ panw-highrisk-ip-list panw-known-ip-list panw-bulletproof-ip-list ]
- set shared pre-rulebase security rules "Outbound Block Rule" source-user any
- set shared pre-rulebase security rules "Outbound Block Rule" category any
- set shared pre-rulebase security rules "Outbound Block Rule" application any
-@@ -469,7 +487,7 @@ set shared pre-rulebase security rules "Inbound Block Rule" description "Block i
- set shared pre-rulebase security rules "Inbound Block Rule" target negate no
- set shared pre-rulebase security rules "Inbound Block Rule" to any
- set shared pre-rulebase security rules "Inbound Block Rule" from any
--set shared pre-rulebase security rules "Inbound Block Rule" source [ panw-highrisk-ip-list panw-known-ip-list ]
-+set shared pre-rulebase security rules "Inbound Block Rule" source [ panw-highrisk-ip-list panw-known-ip-list panw-bulletproof-ip-list ]
- set shared pre-rulebase security rules "Inbound Block Rule" destination any
- set shared pre-rulebase security rules "Inbound Block Rule" source-user any
- set shared pre-rulebase security rules "Inbound Block Rule" category any
-@@ -510,6 +528,18 @@ set shared pre-rulebase decryption rules "NO-Decrypt URL Categories" description
- # shared template configuration referenced in template stacks
- set template iron-skillet settings default-vsys vsys1
- set template iron-skillet config vsys vsys1
-+set template iron-skillet config mgt-config users {{ ADMINISTRATOR_USERNAME }} phash $1$GmGy8oJJ$V75cNdSRDx0V78yJqXZ111
-+set template iron-skillet config mgt-config users {{ ADMINISTRATOR_USERNAME }} permissions role-based superuser yes
-+set template iron-skillet config mgt-config password-complexity enabled yes
-+set template iron-skillet config mgt-config password-complexity minimum-length 12
-+set template iron-skillet config mgt-config password-complexity minimum-uppercase-letters 1
-+set template iron-skillet config mgt-config password-complexity minimum-lowercase-letters 1
-+set template iron-skillet config mgt-config password-complexity minimum-numeric-letters 1
-+set template iron-skillet config mgt-config password-complexity minimum-special-characters 1
-+set template iron-skillet config mgt-config password-complexity block-username-inclusion yes
-+set template iron-skillet config mgt-config password-complexity password-history-count 24
-+set template iron-skillet config mgt-config password-complexity new-password-differs-by-characters 3
-+set template iron-skillet config mgt-config password-complexity password-change expiration-period 90
- set template iron-skillet config deviceconfig system update-schedule statistics-service application-reports yes
- set template iron-skillet config deviceconfig system update-schedule statistics-service threat-prevention-reports yes
- set template iron-skillet config deviceconfig system update-schedule statistics-service threat-prevention-pcap yes
-@@ -541,7 +571,12 @@ set template iron-skillet config deviceconfig setting ctd allow-http-range no
- set template iron-skillet config deviceconfig setting ctd tcp-bypass-exceed-queue no
- set template iron-skillet config deviceconfig setting ctd udp-bypass-exceed-queue no
- set template iron-skillet config deviceconfig setting management enable-log-high-dp-load yes
-+set template iron-skillet config deviceconfig setting management api key lifetime 525600
- set template iron-skillet config deviceconfig setting management max-rows-in-csv-export 1048576
-+set template iron-skillet config deviceconfig setting management admin-lockout failed-attempts 5
-+set template iron-skillet config deviceconfig setting management admin-lockout lockout-time 30
-+set template iron-skillet config deviceconfig setting management idle-timeout 10
-+set template iron-skillet config deviceconfig setting management auto-acquire-commit-lock yes
- set template iron-skillet config deviceconfig setting wildfire file-size-limit pe size-limit 10
- set template iron-skillet config deviceconfig setting wildfire file-size-limit apk size-limit 30
- set template iron-skillet config deviceconfig setting wildfire file-size-limit pdf size-limit 1000
-diff --git a/templates/panorama/set_commands/iron_skillet_panorama_full.xlsx b/templates/panorama/set_commands/iron_skillet_panorama_full.xlsx
-index aed4baa..d9b670f 100644
-Binary files a/templates/panorama/set_commands/iron_skillet_panorama_full.xlsx and b/templates/panorama/set_commands/iron_skillet_panorama_full.xlsx differ
+-  - name: TEMPLATE
+-    description: Template name for the managed device
+-    default: sample_template
+-    type_hint: text
+   - name: STACK
+     description: Template stack name for Panorama
+     default: sample_stack
+@@ -241,7 +237,7 @@ snippets:
+     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack
+     file: template_stack.xml
+   - name: device_system_local
+-    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='{{ TEMPLATE }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
++    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ STACK }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+     file: device_system_local.xml
+   - name: devicegroup
+     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group
+diff --git a/templates/panorama/snippets/device_setting.xml b/templates/panorama/snippets/device_setting.xml
+index c50f1c9..eddadb8 100644
+--- a/templates/panorama/snippets/device_setting.xml
++++ b/templates/panorama/snippets/device_setting.xml
+@@ -1,9 +1,9 @@
+ <ctd>
+   <strip-x-fwd-for>yes</strip-x-fwd-for>
+   <x-forwarded-for>yes</x-forwarded-for>
++  <allow-http-range>no</allow-http-range>
+   <tcp-bypass-exceed-queue>no</tcp-bypass-exceed-queue>
+   <udp-bypass-exceed-queue>no</udp-bypass-exceed-queue>
+-  <skip-block-http-range>no</skip-block-http-range>
+ </ctd>
+ <management>
+   <enable-log-high-dp-load>yes</enable-log-high-dp-load>
+@@ -44,6 +44,9 @@
+     <entry name="linux">
+       <size-limit>2</size-limit>
+     </entry>
++    <entry name="script">
++      <size-limit>2000</size-limit>
++    </entry>
+   </file-size-limit>
+   <report-benign-file>yes</report-benign-file>
+   <report-grayware-file>yes</report-grayware-file>
+diff --git a/templates/panorama/snippets/panorama_system.xml b/templates/panorama/snippets/panorama_system.xml
+index 3f74aff..23f52e2 100644
+--- a/templates/panorama/snippets/panorama_system.xml
++++ b/templates/panorama/snippets/panorama_system.xml
+@@ -75,7 +75,7 @@ Log off immediately if you are not an authorized user.</login-banner>
+       <scp>
+         <hostname>{{ CONFIG_EXPORT_IP }}</hostname>
+         <username>testuser</username>
+-        <password>-AQ==i7YRj4/Wk1rQh2o740pxfTJwj/0=+7MGzrRa6xPfMQUkGMpf7w==</password>
++        <password>-AQ==zPJb3ngM1sGjXlfX2+Qk6rbdv1I=ucInIpBmFcnkQK7zF4VO1w==</password>
+       </scp>
+     </protocol>
+     <start-time>02:00</start-time>
+diff --git a/templates/panorama/snippets/template.xml b/templates/panorama/snippets/template.xml
+index 7af9aec..606ccfa 100644
+--- a/templates/panorama/snippets/template.xml
++++ b/templates/panorama/snippets/template.xml
+@@ -11,18 +11,4 @@
+       </entry>
+     </devices>
+   </config>
+-</entry>
+-<entry name="{{ TEMPLATE }}">
+-  <settings>
+-    <default-vsys>vsys1</default-vsys>
+-  </settings>
+-  <config>
+-    <devices>
+-      <entry name="localhost.localdomain">
+-        <vsys>
+-          <entry name="vsys1"/>
+-        </vsys>
+-      </entry>
+-    </devices>
+-  </config>
+ </entry>
+\ No newline at end of file
+diff --git a/templates/panorama/snippets/template_stack.xml b/templates/panorama/snippets/template_stack.xml
+index f9012d4..d88b914 100644
+--- a/templates/panorama/snippets/template_stack.xml
++++ b/templates/panorama/snippets/template_stack.xml
+@@ -1,6 +1,17 @@
+ <entry name="{{ STACK }}">
+   <templates>
+     <member>iron-skillet</member>
+-    <member>{{ TEMPLATE }}</member>
+   </templates>
++  <settings>
++    <default-vsys>vsys1</default-vsys>
++  </settings>
++    <config>
++      <devices>
++        <entry name="localhost.localdomain">
++          <vsys>
++            <entry name="vsys1"/>
++          </vsys>
++        </entry>
++      </devices>
++  </config>
+ </entry>
+\ No newline at end of file

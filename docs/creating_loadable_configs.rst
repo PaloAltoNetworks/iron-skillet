@@ -38,7 +38,6 @@ NTP_1                    0.pool.ntp.org           primary NTP server
 NTP_2                    1.pool.ntp.org           secondary NTP server
 SINKHOLE_IPV4            72.5.65.111              IPv4 sinkhole address (Palo Alto Networks)
 SINKHOLE_IPV6            2600:5200::1             IPv6 sinkhole address (IPv6 bogon)
-INTERNET_ZONE            internet                 baseline exception for reports
 EMAIL_PROFILE_GATEWAY    192.0.2.1                email profile gateway address; NET-1 default
 EMAIL_PROFILE_FROM       sentfrom@yourdomain.com  from address for email alerts
 EMAIL_PROFILE_TO         sendto@yourdomain.com    to address for email alerts
