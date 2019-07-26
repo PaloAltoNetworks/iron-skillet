@@ -37,7 +37,7 @@ index 5a1ed4d..1cfa43b 100644
  snippets:
    - name: iron_skillet_panorama_full.conf
 diff --git a/templates/panorama/set_commands/iron_skillet_panorama_full.conf b/templates/panorama/set_commands/iron_skillet_panorama_full.conf
-index 25d147c..b17361c 100644
+index 4612f59..b17361c 100644
 --- a/templates/panorama/set_commands/iron_skillet_panorama_full.conf
 +++ b/templates/panorama/set_commands/iron_skillet_panorama_full.conf
 @@ -1,4 +1,4 @@
@@ -46,35 +46,16 @@ index 25d147c..b17361c 100644
  # commands are expected to be load in order
  # this template uses jinja format
  # either 'search and replace' or the scripts in the tools dir can be used to create a loadable configuration
-@@ -47,7 +47,7 @@ set deviceconfig system login-banner "You have accessed a protected system.Log o
- set deviceconfig system snmp-setting access-setting version v3
- set deviceconfig system config-bundle-export-schedule Recommended_Config_Export protocol scp hostname {{ CONFIG_EXPORT_IP }}
- set deviceconfig system config-bundle-export-schedule Recommended_Config_Export protocol scp username testuser
--set deviceconfig system config-bundle-export-schedule Recommended_Config_Export protocol scp password
-+set deviceconfig system config-bundle-export-schedule Recommended_Config_Export protocol scp password -AQ==zPJb3ngM1sGjXlfX2+Qk6rbdv1I=ucInIpBmFcnkQK7zF4VO1w==
- set deviceconfig system config-bundle-export-schedule Recommended_Config_Export start-time 02:00
- set deviceconfig system config-bundle-export-schedule Recommended_Config_Export enable yes
- set deviceconfig setting management storage-partition internal
-@@ -510,6 +510,18 @@ set shared pre-rulebase decryption rules "NO-Decrypt URL Categories" description
+@@ -510,6 +510,8 @@ set shared pre-rulebase decryption rules "NO-Decrypt URL Categories" description
  # shared template configuration referenced in template stacks
  set template iron-skillet settings default-vsys vsys1
  set template iron-skillet config vsys vsys1
 +set template iron-skillet config mgt-config users {{ ADMINISTRATOR_USERNAME }} phash $1$GmGy8oJJ$V75cNdSRDx0V78yJqXZ111
 +set template iron-skillet config mgt-config users {{ ADMINISTRATOR_USERNAME }} permissions role-based superuser yes
-+set template iron-skillet config mgt-config password-complexity enabled yes
-+set template iron-skillet config mgt-config password-complexity minimum-length 12
-+set template iron-skillet config mgt-config password-complexity minimum-uppercase-letters 1
-+set template iron-skillet config mgt-config password-complexity minimum-lowercase-letters 1
-+set template iron-skillet config mgt-config password-complexity minimum-numeric-letters 1
-+set template iron-skillet config mgt-config password-complexity minimum-special-characters 1
-+set template iron-skillet config mgt-config password-complexity block-username-inclusion yes
-+set template iron-skillet config mgt-config password-complexity password-history-count 24
-+set template iron-skillet config mgt-config password-complexity new-password-differs-by-characters 3
-+set template iron-skillet config mgt-config password-complexity password-change expiration-period 90
- set template iron-skillet config deviceconfig system update-schedule statistics-service application-reports yes
- set template iron-skillet config deviceconfig system update-schedule statistics-service threat-prevention-reports yes
- set template iron-skillet config deviceconfig system update-schedule statistics-service threat-prevention-pcap yes
-@@ -537,13 +549,11 @@ set template iron-skillet config deviceconfig system login-banner "You have acce
+ set template iron-skillet config mgt-config password-complexity enabled yes
+ set template iron-skillet config mgt-config password-complexity minimum-length 12
+ set template iron-skillet config mgt-config password-complexity minimum-uppercase-letters 1
+@@ -547,13 +549,11 @@ set template iron-skillet config deviceconfig system login-banner "You have acce
  set template iron-skillet config deviceconfig system timezone UTC
  set template iron-skillet config deviceconfig setting ctd strip-x-fwd-for yes
  set template iron-skillet config deviceconfig setting ctd x-forwarded-for yes
@@ -89,7 +70,7 @@ index 25d147c..b17361c 100644
  set template iron-skillet config deviceconfig setting management admin-lockout failed-attempts 5
  set template iron-skillet config deviceconfig setting management admin-lockout lockout-time 30
  set template iron-skillet config deviceconfig setting management idle-timeout 10
-@@ -557,6 +567,7 @@ set template iron-skillet config deviceconfig setting wildfire file-size-limit f
+@@ -567,6 +567,7 @@ set template iron-skillet config deviceconfig setting wildfire file-size-limit f
  set template iron-skillet config deviceconfig setting wildfire file-size-limit MacOSX size-limit 1
  set template iron-skillet config deviceconfig setting wildfire file-size-limit archive size-limit 10
  set template iron-skillet config deviceconfig setting wildfire file-size-limit linux size-limit 2
@@ -97,7 +78,7 @@ index 25d147c..b17361c 100644
  set template iron-skillet config deviceconfig setting wildfire report-benign-file yes
  set template iron-skillet config deviceconfig setting wildfire report-grayware-file yes
  set template iron-skillet config deviceconfig setting config rematch yes
-@@ -606,24 +617,20 @@ set template iron-skillet config shared log-settings correlation match-list Corr
+@@ -616,24 +617,20 @@ set template iron-skillet config shared log-settings correlation match-list Corr
  # template-stack configuration for device specific configuration
  # NOTE: must determine if fw management IP is static or dhcp then choose which set commands to enter
  set template-stack {{ STACK }} templates iron-skillet
