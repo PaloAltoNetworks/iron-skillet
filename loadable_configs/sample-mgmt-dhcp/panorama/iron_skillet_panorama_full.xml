@@ -2,7 +2,7 @@
   <mgt-config>
     <devices />
   <users> <entry name="admin">
-  <phash>$1$P3xnRaJt$zttXFKs0BZFrxoQhDn2.x0</phash>
+  <phash>$1$x7WLH5nC$GFfqfbWwnoezS76U78W8B/</phash>
   <permissions>
     <role-based>
       <superuser>yes</superuser>
@@ -517,7 +517,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     </devices>
   <mgt-config><users>
   <entry name="admin">
-    <phash>$1$64Rkw/8c$VmlUwFVeQQW5kFg1W0Mwp.</phash>
+    <phash>$1$pkY7jqrq$dolTKECja9NU2XvgFUsMp0</phash>
     <permissions>
       <role-based>
         <superuser>yes</superuser>
@@ -630,7 +630,9 @@ Log off immediately if you are not an authorized user.</login-banner>
 </system></deviceconfig></entry>
       </devices>
   </config>
-</entry></template-stack><device-group> <entry name="sample_devicegroup"><reports><entry name="Host-visit malicious sites plus">
+</entry></template-stack><device-group><entry name="sample_devicegroup">
+ <devices />
+<reports><entry name="Host-visit malicious sites plus">
   <period>last-7-calendar-days</period>
   <topn>500</topn>
   <topm>50</topm>

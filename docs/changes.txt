@@ -25,17 +25,6 @@ index 577512a..4430f58 100644
  # option built into the templates to ignore the panw published external dynamic lists security rules
  # should ONLY be excluded based on licensing limitations outside of best practices
  # when 'yes' (default) will include the EDL rule
-diff --git a/templates/panorama/snippets/device_group.xml b/templates/panorama/snippets/device_group.xml
-index 6f0d1fa..7c1bb20 100644
---- a/templates/panorama/snippets/device_group.xml
-+++ b/templates/panorama/snippets/device_group.xml
-@@ -1,3 +1 @@
--<entry name="{{ DEVICE_GROUP }}">
-- <devices></devices>
--</entry>
-\ No newline at end of file
-+ <entry name="{{ DEVICE_GROUP }}"></entry>
-\ No newline at end of file
 diff --git a/templates/panorama/snippets/device_setting.xml b/templates/panorama/snippets/device_setting.xml
 index b530199..eddadb8 100644
 --- a/templates/panorama/snippets/device_setting.xml
