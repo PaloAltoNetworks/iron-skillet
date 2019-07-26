@@ -1,5 +1,5 @@
 diff --git a/templates/panorama/snippets_notshared/.meta-cnc.yaml b/templates/panorama/snippets_notshared/.meta-cnc.yaml
-index 70972d8..436d9c0 100644
+index cb72b26..436d9c0 100644
 --- a/templates/panorama/snippets_notshared/.meta-cnc.yaml
 +++ b/templates/panorama/snippets_notshared/.meta-cnc.yaml
 @@ -3,9 +3,9 @@
@@ -14,16 +14,7 @@ index 70972d8..436d9c0 100644
  description: Iron-Skillet baseline configuration for Panorama using shared values for device-group and templates
  dependency: snippets
  # type of device configuration
-@@ -17,6 +17,8 @@ labels:
-   service_type: iron_skillet
-   collection:
-     - IronSkillet
-+    - Configure
-+    - Best Practice
- 
- # variables used in the configuration templates
- # type_hint defines the form field type in pan-cnc
-@@ -50,7 +52,7 @@ variables:
+@@ -52,7 +52,7 @@ variables:
      description: IP address for scheduled config exports
      default: 192.0.2.3
      type_hint: text
@@ -32,29 +23,7 @@ index 70972d8..436d9c0 100644
      description: Template stack name for Panorama
      default: sample_stack
      type_hint: text   
-@@ -136,7 +138,7 @@ variables:
- # when 'yes' (default) will include the EDL rule
-   - name: INCLUDE_PAN_EDL
-     description: include the predefined Palo Alto Networks external lists security rules
--    default: 'yes'
-+    default: 'no'
-     type_hint: dropdown
-     dd_list:
-       - key: 'yes'
-@@ -156,6 +158,12 @@ snippets:
-   - name: panorama_log_settings
-     xpath: /config/panorama/log-settings
-     file: ../snippets/panorama_log_settings.xml
-+  - name: panorama_mgt_config_users
-+    xpath: /config/mgt-config/users
-+    file: ../panorama_mgt_config_users.xml
-+  - name: panorama_mgt_config_pwd
-+    xpath: /config/mgt-config/password-complexity
-+    file: ../panorama_mgt_config_pwd.xml
-   - name: log_collector_group
-     xpath: /config/devices/entry[@name='localhost.localdomain']/log-collector-group
-     file: ../snippets/log_collector_group.xml
-@@ -165,6 +173,9 @@ snippets:
+@@ -173,6 +173,9 @@ snippets:
    - name: template
      xpath: /config/devices/entry[@name='localhost.localdomain']/template
      file: ../snippets/template.xml
@@ -64,7 +33,7 @@ index 70972d8..436d9c0 100644
    - name: device_system_ip_hostname
      xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ STACK }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
      file: ../snippets/device_system_local.xml
-@@ -242,4 +253,4 @@ snippets:
+@@ -250,4 +253,4 @@ snippets:
      file: ../snippets/report_group_simple.xml
    - name: email_scheduler_simple
      xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/email-scheduler
