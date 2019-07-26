@@ -199,9 +199,6 @@ snippets:
   - name: shared_address
     xpath: /config/shared/address
     file: address.xml
-  - name: shared_external_list
-    xpath: /config/shared/external-list
-    file: external_list.xml
   - name: shared_log_profiles
     xpath: /config/shared/log-settings/profiles
     file: log_settings_profiles.xml
