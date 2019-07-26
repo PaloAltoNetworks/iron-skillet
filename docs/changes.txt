@@ -1,63 +1,137 @@
-diff --git a/templates/panorama/snippets_notshared/.meta-cnc.yaml b/templates/panorama/snippets_notshared/.meta-cnc.yaml
-index cb72b26..436d9c0 100644
---- a/templates/panorama/snippets_notshared/.meta-cnc.yaml
-+++ b/templates/panorama/snippets_notshared/.meta-cnc.yaml
+diff --git a/templates/panorama/set_commands/.meta-cnc.yaml b/templates/panorama/set_commands/.meta-cnc.yaml
+index 5a1ed4d..1cfa43b 100644
+--- a/templates/panorama/set_commands/.meta-cnc.yaml
++++ b/templates/panorama/set_commands/.meta-cnc.yaml
 @@ -3,9 +3,9 @@
  # all values are contained in the device-groups and template stacks; nothing shared
  
- # snippet folder name
--name: skillet_panorama_notshared_v80
-+name: skillet_panorama_notshared_v81
+ # snippet name
+-name: skillet_setcommand_panorama_v80
++name: skillet_setcommand_panorama_v81
  # label used for menu selection
--label: v8.0 Iron-Skillet for Panorama (No Shared Values)
-+label: v8.1 Iron-Skillet for Panorama (No Shared Values)
- description: Iron-Skillet baseline configuration for Panorama using shared values for device-group and templates
- dependency: snippets
+-label: v8.0 Iron-Skillet set commands for Panorama
++label: v8.1 Iron-Skillet set commands for Panorama
+ description: Set command configuration for Panorama
  # type of device configuration
-@@ -52,7 +52,7 @@ variables:
-     description: IP address for scheduled config exports
-     default: 192.0.2.3
-     type_hint: text
--  - name: TEMPLATE
-+  - name: STACK
-     description: Template stack name for Panorama
-     default: sample_stack
-     type_hint: text   
-@@ -173,6 +173,9 @@ snippets:
-   - name: template
-     xpath: /config/devices/entry[@name='localhost.localdomain']/template
-     file: ../snippets/template.xml
-+  - name: stack
-+    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack
-+    file: ../snippets/template_stack.xml
-   - name: device_system_ip_hostname
-     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ STACK }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
-     file: ../snippets/device_system_local.xml
-@@ -250,4 +253,4 @@ snippets:
-     file: ../snippets/report_group_simple.xml
-   - name: email_scheduler_simple
-     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/email-scheduler
--    file: ../snippets/email_scheduler_simple.xml
-\ No newline at end of file
-+    file: ../snippets/email_scheduler_simple.xml
-diff --git a/templates/panorama/snippets_notshared/template.xml b/templates/panorama/snippets_notshared/template.xml
-deleted file mode 100644
-index 804084c..0000000
---- a/templates/panorama/snippets_notshared/template.xml
-+++ /dev/null
-@@ -1,14 +0,0 @@
--<entry name="{{ TEMPLATE }}">
--  <settings>
--    <default-vsys>vsys1</default-vsys>
--  </settings>
--  <config>
--    <devices>
--      <entry name="localhost.localdomain">
--        <vsys>
--          <entry name="vsys1"/>
--        </vsys>
--      </entry>
--    </devices>
--  </config>
--</entry>
-\ No newline at end of file
+ type: template
+@@ -15,9 +15,9 @@ extends:
+ labels:
+   service_type: iron_skillet_set
+   collection:
+-    - IronSkillet
+-    - Configure
+-    - Best Practice
++   - IronSkillet
++   - Configure
++   - Best Practice
+ 
+ # variables used in the configuration templates
+ # type_hint defines the form field type in pan-cnc
+@@ -131,7 +131,7 @@ variables:
+   - name: SYSLOG_SERVER
+     description: syslog server ip address
+     default: 192.0.2.2
+-    type_hint: test
++    type_hint: text
+ 
+ snippets:
+   - name: iron_skillet_panorama_full.conf
+diff --git a/templates/panorama/set_commands/iron_skillet_panorama_full.conf b/templates/panorama/set_commands/iron_skillet_panorama_full.conf
+index 25d147c..b17361c 100644
+--- a/templates/panorama/set_commands/iron_skillet_panorama_full.conf
++++ b/templates/panorama/set_commands/iron_skillet_panorama_full.conf
+@@ -1,4 +1,4 @@
+-# set command configuration for Panorama version 8.0
++# set command configuration for Panorama version 8.1
+ # commands are expected to be load in order
+ # this template uses jinja format
+ # either 'search and replace' or the scripts in the tools dir can be used to create a loadable configuration
+@@ -47,7 +47,7 @@ set deviceconfig system login-banner "You have accessed a protected system.Log o
+ set deviceconfig system snmp-setting access-setting version v3
+ set deviceconfig system config-bundle-export-schedule Recommended_Config_Export protocol scp hostname {{ CONFIG_EXPORT_IP }}
+ set deviceconfig system config-bundle-export-schedule Recommended_Config_Export protocol scp username testuser
+-set deviceconfig system config-bundle-export-schedule Recommended_Config_Export protocol scp password
++set deviceconfig system config-bundle-export-schedule Recommended_Config_Export protocol scp password -AQ==zPJb3ngM1sGjXlfX2+Qk6rbdv1I=ucInIpBmFcnkQK7zF4VO1w==
+ set deviceconfig system config-bundle-export-schedule Recommended_Config_Export start-time 02:00
+ set deviceconfig system config-bundle-export-schedule Recommended_Config_Export enable yes
+ set deviceconfig setting management storage-partition internal
+@@ -510,6 +510,18 @@ set shared pre-rulebase decryption rules "NO-Decrypt URL Categories" description
+ # shared template configuration referenced in template stacks
+ set template iron-skillet settings default-vsys vsys1
+ set template iron-skillet config vsys vsys1
++set template iron-skillet config mgt-config users {{ ADMINISTRATOR_USERNAME }} phash $1$GmGy8oJJ$V75cNdSRDx0V78yJqXZ111
++set template iron-skillet config mgt-config users {{ ADMINISTRATOR_USERNAME }} permissions role-based superuser yes
++set template iron-skillet config mgt-config password-complexity enabled yes
++set template iron-skillet config mgt-config password-complexity minimum-length 12
++set template iron-skillet config mgt-config password-complexity minimum-uppercase-letters 1
++set template iron-skillet config mgt-config password-complexity minimum-lowercase-letters 1
++set template iron-skillet config mgt-config password-complexity minimum-numeric-letters 1
++set template iron-skillet config mgt-config password-complexity minimum-special-characters 1
++set template iron-skillet config mgt-config password-complexity block-username-inclusion yes
++set template iron-skillet config mgt-config password-complexity password-history-count 24
++set template iron-skillet config mgt-config password-complexity new-password-differs-by-characters 3
++set template iron-skillet config mgt-config password-complexity password-change expiration-period 90
+ set template iron-skillet config deviceconfig system update-schedule statistics-service application-reports yes
+ set template iron-skillet config deviceconfig system update-schedule statistics-service threat-prevention-reports yes
+ set template iron-skillet config deviceconfig system update-schedule statistics-service threat-prevention-pcap yes
+@@ -537,13 +549,11 @@ set template iron-skillet config deviceconfig system login-banner "You have acce
+ set template iron-skillet config deviceconfig system timezone UTC
+ set template iron-skillet config deviceconfig setting ctd strip-x-fwd-for yes
+ set template iron-skillet config deviceconfig setting ctd x-forwarded-for yes
+-set template iron-skillet config deviceconfig setting ctd skip-block-http-range yes
++set template iron-skillet config deviceconfig setting ctd allow-http-range no
+ set template iron-skillet config deviceconfig setting ctd tcp-bypass-exceed-queue no
+ set template iron-skillet config deviceconfig setting ctd udp-bypass-exceed-queue no
+ set template iron-skillet config deviceconfig setting management enable-log-high-dp-load yes
+ set template iron-skillet config deviceconfig setting management max-rows-in-csv-export 1048576
+-set template iron-skillet config deviceconfig setting management enable-log-high-dp-load yes
+-set template iron-skillet config deviceconfig setting management max-rows-in-csv-export 1048576
+ set template iron-skillet config deviceconfig setting management admin-lockout failed-attempts 5
+ set template iron-skillet config deviceconfig setting management admin-lockout lockout-time 30
+ set template iron-skillet config deviceconfig setting management idle-timeout 10
+@@ -557,6 +567,7 @@ set template iron-skillet config deviceconfig setting wildfire file-size-limit f
+ set template iron-skillet config deviceconfig setting wildfire file-size-limit MacOSX size-limit 1
+ set template iron-skillet config deviceconfig setting wildfire file-size-limit archive size-limit 10
+ set template iron-skillet config deviceconfig setting wildfire file-size-limit linux size-limit 2
++set template iron-skillet config deviceconfig setting wildfire file-size-limit script size-limit 2000
+ set template iron-skillet config deviceconfig setting wildfire report-benign-file yes
+ set template iron-skillet config deviceconfig setting wildfire report-grayware-file yes
+ set template iron-skillet config deviceconfig setting config rematch yes
+@@ -606,24 +617,20 @@ set template iron-skillet config shared log-settings correlation match-list Corr
+ # template-stack configuration for device specific configuration
+ # NOTE: must determine if fw management IP is static or dhcp then choose which set commands to enter
+ set template-stack {{ STACK }} templates iron-skillet
+-set template {{ TEMPLATE }} settings default-vsys vsys1
+-set template {{ TEMPLATE }} config vsys vsys1
+-set template-stack {{ STACK }} templates {{ TEMPLATE }}
+-
+-### include is hostname not provided by bootstrap or other methods
+-set template {{ TEMPLATE }} config devices localhost.localdomain deviceconfig system hostname {{ FW_NAME }}
++set template-stack {{ STACK }} settings default-vsys vsys1
++set template-stack {{ STACK }} config devices localhost.localdomain deviceconfig system hostname {{ FW_NAME }}
+ 
+ ### management interface type is DHCP
+-set template {{ TEMPLATE }} config devices localhost.localdomain deviceconfig system type dhcp-client send-hostname yes
+-set template {{ TEMPLATE }} config devices localhost.localdomain deviceconfig system type dhcp-client send-client-id no
+-set template {{ TEMPLATE }} config devices localhost.localdomain deviceconfig system type dhcp-client accept-dhcp-hostname no
+-set template {{ TEMPLATE }} config devices localhost.localdomain deviceconfig system type dhcp-client accept-dhcp-domain no
++set template-stack {{ STACK }} config devices localhost.localdomain deviceconfig system type dhcp-client send-hostname yes
++set template-stack {{ STACK }} config devices localhost.localdomain deviceconfig system type dhcp-client send-client-id no
++set template-stack {{ STACK }} config devices localhost.localdomain deviceconfig system type dhcp-client accept-dhcp-hostname no
++set template-stack {{ STACK }} config devices localhost.localdomain deviceconfig system type dhcp-client accept-dhcp-domain no
+ 
+ ### management interface type is static
+-set template {{ TEMPLATE }} config devices localhost.localdomain deviceconfig system type static
+-set template {{ TEMPLATE }} config devices localhost.localdomain deviceconfig system ip-address {{ MGMT_IP }}
+-set template {{ TEMPLATE }}} config devices localhost.localdomain deviceconfig system netmask {{ MGMT_MASK }}
+-set template {{ TEMPLATE }} config devices localhost.localdomain deviceconfig system default-gateway {{ MGMT_DG }}
++set template-stack {{ STACK }} config devices localhost.localdomain deviceconfig system type static
++set template-stack {{ STACK }} config devices localhost.localdomain deviceconfig system ip-address {{ MGMT_IP }}
++set template-stack {{ STACK }} config devices localhost.localdomain deviceconfig system netmask {{ MGMT_MASK }}
++set template-stack {{ STACK }} config devices localhost.localdomain deviceconfig system default-gateway {{ MGMT_DG }}
+ 
+ set device-group {{ DEVICE_GROUP }} reports "Host-visit malicious sites plus" period last-7-calendar-days
+ set device-group {{ DEVICE_GROUP }} reports "Host-visit malicious sites plus" topn 500
+diff --git a/templates/panorama/set_commands/iron_skillet_panorama_full.xlsx b/templates/panorama/set_commands/iron_skillet_panorama_full.xlsx
+index d426a4b..48ac169 100644
+Binary files a/templates/panorama/set_commands/iron_skillet_panorama_full.xlsx and b/templates/panorama/set_commands/iron_skillet_panorama_full.xlsx differ
