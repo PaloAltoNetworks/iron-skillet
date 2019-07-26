@@ -102,7 +102,7 @@ def commit(device):
     if '<job>' in results:
         check_job_status(device, results)
 
-def test_set(ip_addr, user, mypassword, dev_type):
+def test_set(ip_addr, user, mypassword, dev_type, start_line, finish_line):
     '''
     expect style scripts to login and send set commands
     :param ip_addr: device ip address
@@ -129,16 +129,22 @@ def test_set(ip_addr, user, mypassword, dev_type):
     # read in conf file and do line by line configuration looking for errors
     # start_row bypasses interface and admin configuration items to avoid errors
     read_file = '../loadable_configs/sample-mgmt-dhcp/{0}/iron_skillet_{0}_full.conf'.format(dev_type)
-    start_row = 'set mgt-config password-complexity enabled yes\n'
+    #start_row = 'set mgt-config password-complexity enabled yes\n'
 
     start = False
+    good_load = True
 
     with open(read_file) as fin:
-        for line in fin:
+        for row_count, line in enumerate(fin):
+
             # use of start_row to start with a conf file line and skip others
-            if line == start_row:
+            if row_count + 1 == start_line:
                 start = True
-                print('start set command sequence')
+                print('start config load with:', line)
+
+            # get to the end of the configuration block in the file
+            if row_count == finish_line:
+                start = False
 
             # ignore conf file comments and start config at start_row line
             if not line.startswith('#') and start is True:
@@ -156,7 +162,10 @@ def test_set(ip_addr, user, mypassword, dev_type):
                     print('error found in configuration')
                     print(line)
                     print(fw_response)
+                    good_load = False
                     break
+
+    return good_load
 
 if __name__ == '__main__':
 
@@ -171,6 +180,8 @@ if __name__ == '__main__':
     parser.add_argument("-u", "--username", help="Firewall Username", type=str)
     parser.add_argument("-p", "--password", help="Firewall Password", type=str)
     parser.add_argument("-t", "--type", help="panorama or panos", type=str)
+    parser.add_argument("-s", "--start", help="start line in config file", type=int)
+    parser.add_argument("-f", "--finish", help="finish line in config file", type=int)
     args = parser.parse_args()
 
     if len(sys.argv) < 2:
@@ -182,13 +193,18 @@ if __name__ == '__main__':
     username = args.username
     password = args.password
     dev_type = args.type
+    start_line = args.start
+    finish_line = args.finish
 
     # this is the real work with device login and configuration
-    test_set(ip_addr, username, password, dev_type)
+    good_load = test_set(ip_addr, username, password, dev_type, start_line, finish_line)
 
     print('\n')
     print('=' * 80)
-    print('set commands loaded')
+    if good_load is True:
+        print('set commands loaded')
+    else:
+        print('Oops. Check errors and run again')
 
     # create panorama object using pan-python class
     device = pan.xapi.PanXapi(api_username=username, api_password=password, hostname=ip_addr)
