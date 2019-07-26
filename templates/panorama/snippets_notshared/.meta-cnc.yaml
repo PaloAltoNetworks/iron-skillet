@@ -17,6 +17,8 @@ labels:
   service_type: iron_skillet
   collection:
     - IronSkillet
+    - Configure
+    - Best Practice
 
 # variables used in the configuration templates
 # type_hint defines the form field type in pan-cnc
@@ -136,7 +138,7 @@ variables:
 # when 'yes' (default) will include the EDL rule
   - name: INCLUDE_PAN_EDL
     description: include the predefined Palo Alto Networks external lists security rules
-    default: 'yes'
+    default: 'no'
     type_hint: dropdown
     dd_list:
       - key: 'yes'
@@ -156,6 +158,12 @@ snippets:
   - name: panorama_log_settings
     xpath: /config/panorama/log-settings
     file: ../snippets/panorama_log_settings.xml
+  - name: panorama_mgt_config_users
+    xpath: /config/mgt-config/users
+    file: ../panorama_mgt_config_users.xml
+  - name: panorama_mgt_config_pwd
+    xpath: /config/mgt-config/password-complexity
+    file: ../panorama_mgt_config_pwd.xml
   - name: log_collector_group
     xpath: /config/devices/entry[@name='localhost.localdomain']/log-collector-group
     file: ../snippets/log_collector_group.xml

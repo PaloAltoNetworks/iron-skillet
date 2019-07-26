@@ -1,20 +1,20 @@
-diff --git a/templates/panorama/snippets_dgstack_shared/.meta-cnc.yaml b/templates/panorama/snippets_dgstack_shared/.meta-cnc.yaml
-index bc56ae8..2364060 100644
---- a/templates/panorama/snippets_dgstack_shared/.meta-cnc.yaml
-+++ b/templates/panorama/snippets_dgstack_shared/.meta-cnc.yaml
-@@ -4,9 +4,9 @@
- # this is based on a 'shared model' with all template elements in the 'iron-skillet' template
+diff --git a/templates/panorama/snippets_notshared/.meta-cnc.yaml b/templates/panorama/snippets_notshared/.meta-cnc.yaml
+index 70972d8..436d9c0 100644
+--- a/templates/panorama/snippets_notshared/.meta-cnc.yaml
++++ b/templates/panorama/snippets_notshared/.meta-cnc.yaml
+@@ -3,9 +3,9 @@
+ # all values are contained in the device-groups and template stacks; nothing shared
  
  # snippet folder name
--name: skillet_panorama_dgstack_shared_v80
-+name: skillet_panorama_dgstack_shared_v81
+-name: skillet_panorama_notshared_v80
++name: skillet_panorama_notshared_v81
  # label used for menu selection
--label: v8.0 Iron-Skillet for Panorama with Device-Group and Stack only (Shared Values)
-+label: v8.1 Iron-Skillet for Panorama with Device-Group and Stack only (Shared Values)
- description: Iron Skillet device-group and template stack config for Panorama
+-label: v8.0 Iron-Skillet for Panorama (No Shared Values)
++label: v8.1 Iron-Skillet for Panorama (No Shared Values)
+ description: Iron-Skillet baseline configuration for Panorama using shared values for device-group and templates
  dependency: snippets
  # type of device configuration
-@@ -18,14 +18,12 @@ labels:
+@@ -17,6 +17,8 @@ labels:
    service_type: iron_skillet
    collection:
      - IronSkillet
@@ -23,30 +23,72 @@ index bc56ae8..2364060 100644
  
  # variables used in the configuration templates
  # type_hint defines the form field type in pan-cnc
- variables:
+@@ -50,7 +52,7 @@ variables:
+     description: IP address for scheduled config exports
+     default: 192.0.2.3
+     type_hint: text
 -  - name: TEMPLATE
--    description: Template name for the managed device
--    default: sample_template
--    type_hint: text
-   - name: STACK
++  - name: STACK
      description: Template stack name for Panorama
      default: sample_stack
-@@ -66,8 +64,7 @@ variables:
-   - name: ADMINISTRATOR_PASSWORD
-     description: admin password
-     default: admin
--    type_hint: text
--
-+    type_hint: password
- 
- # snippets used for api configuration including xpath and element as file name
- # files will load in the order listed
-@@ -79,7 +76,7 @@ snippets:
-     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack
-     file: ../snippets/template_stack.xml
-   - name: device_system_local
--    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='{{ TEMPLATE }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
-+    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ STACK }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+     type_hint: text   
+@@ -136,7 +138,7 @@ variables:
+ # when 'yes' (default) will include the EDL rule
+   - name: INCLUDE_PAN_EDL
+     description: include the predefined Palo Alto Networks external lists security rules
+-    default: 'yes'
++    default: 'no'
+     type_hint: dropdown
+     dd_list:
+       - key: 'yes'
+@@ -156,6 +158,12 @@ snippets:
+   - name: panorama_log_settings
+     xpath: /config/panorama/log-settings
+     file: ../snippets/panorama_log_settings.xml
++  - name: panorama_mgt_config_users
++    xpath: /config/mgt-config/users
++    file: ../panorama_mgt_config_users.xml
++  - name: panorama_mgt_config_pwd
++    xpath: /config/mgt-config/password-complexity
++    file: ../panorama_mgt_config_pwd.xml
+   - name: log_collector_group
+     xpath: /config/devices/entry[@name='localhost.localdomain']/log-collector-group
+     file: ../snippets/log_collector_group.xml
+@@ -165,6 +173,9 @@ snippets:
+   - name: template
+     xpath: /config/devices/entry[@name='localhost.localdomain']/template
+     file: ../snippets/template.xml
++  - name: stack
++    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack
++    file: ../snippets/template_stack.xml
+   - name: device_system_ip_hostname
+     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ STACK }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
      file: ../snippets/device_system_local.xml
-   - name: devicegroup
-     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group
+@@ -242,4 +253,4 @@ snippets:
+     file: ../snippets/report_group_simple.xml
+   - name: email_scheduler_simple
+     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/email-scheduler
+-    file: ../snippets/email_scheduler_simple.xml
+\ No newline at end of file
++    file: ../snippets/email_scheduler_simple.xml
+diff --git a/templates/panorama/snippets_notshared/template.xml b/templates/panorama/snippets_notshared/template.xml
+deleted file mode 100644
+index 804084c..0000000
+--- a/templates/panorama/snippets_notshared/template.xml
++++ /dev/null
+@@ -1,14 +0,0 @@
+-<entry name="{{ TEMPLATE }}">
+-  <settings>
+-    <default-vsys>vsys1</default-vsys>
+-  </settings>
+-  <config>
+-    <devices>
+-      <entry name="localhost.localdomain">
+-        <vsys>
+-          <entry name="vsys1"/>
+-        </vsys>
+-      </entry>
+-    </devices>
+-  </config>
+-</entry>
+\ No newline at end of file
