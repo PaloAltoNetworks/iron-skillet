@@ -131,7 +131,7 @@ variables:
   - name: SYSLOG_SERVER
     description: syslog server ip address
     default: 192.0.2.2
-    type_hint: test
+    type_hint: text
 
 snippets:
   - name: iron_skillet_panorama_full.conf
