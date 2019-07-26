@@ -1,5 +1,246 @@
+diff --git a/templates/README.md b/templates/README.md
+index 721865d..10672fe 100644
+--- a/templates/README.md
++++ b/templates/README.md
+@@ -8,7 +8,7 @@ Also contained are the set commands spreadsheets that use Excel formulas,
+ allowing users to add in custom values specific to their deployment.
+ 
+ A complete list of template variables, along with descriptions, can be found
+-[here](https://iron-skillet.readthedocs.io/en/panos_v8.0/creating_loadable_configs.html#variables-list-and-descriptions)
++[here](https://iron-skillet.readthedocs.io/en/panos_v8.1/creating_loadable_configs.html#variables-list-and-descriptions)
+ 
+ 
+ ##  Excel set command spreadsheets
+@@ -38,9 +38,9 @@ they can use text-based 'find-and-replace' for each variable value. Searches
+ for variables can be specific by variable name or a generic search for `{{`
+ can be used.
+ 
+-The set_command directory also contains a metadata.yaml file detailing the
++The set_command directory also contains a .meta-cnc.yaml file detailing the
+ list of variables contained in the .conf file. This is used by external tools
+-for application-based value substitution.
++(link???) for application-based value substitution.
+ 
+ ## XML snippet files and metadata
+ The `snippets` directories found in `templates/panos` and `templates/panorama`
+@@ -48,7 +48,7 @@ house sets of xml config files. These are subsets of a main configuration
+ specific to functional areas of the configuration such as security profiles,
+ device system configuration, logging, etc.
+ 
+-Designed primarily for API usage, the snippets are paired with a `metadata.yaml`
++Designed primarily for API usage, the snippets are paired with a `.meta-cnc.yaml`
+ file that includes all variable names/defaults and an ordered list of file names
+ and their respective xpaths.
+ 
+@@ -67,7 +67,7 @@ and template configurations
+ * `snippets_dgstack_shared`: used to add additional device-groups
+ and stacks based on the shared model
+ 
+-* `snippets_notshared`: a full Panorama configuration with the device-group
++* `snippets_not_shared`: a full Panorama configuration with the device-group
+ and stack containing all configuration elements. Nothing is shared.
+ 
+ * `snippets_dgstack_notshared`: used to add additional device-groups
+@@ -77,6 +77,6 @@ and stack, each with full configuration elements. Nothing is shared.
+ ## Details of template best practices
+ The details of what's in a template are located in the documentation:
+ 
+-[Panorama template information](https://iron-skillet.readthedocs.io/en/panos_v8.0/panorama_template_guide.html)
++[Panorama template information](https://iron-skillet.readthedocs.io/en/panos_v8.1/panorama_template_guide.html)
+ 
+-[PAN-OS template information](https://iron-skillet.readthedocs.io/en/panos_v8.0/panos_template_guide.html)
++[PAN-OS template information](https://iron-skillet.readthedocs.io/en/panos_v8.1/panos_template_guide.html)
+diff --git a/templates/panorama/baseline/baseline.xml b/templates/panorama/baseline/baseline.xml
+index 478f989..a758067 100644
+--- a/templates/panorama/baseline/baseline.xml
++++ b/templates/panorama/baseline/baseline.xml
+@@ -1,6 +1,6 @@
+ <?xml version="1.0"?>
+-<config version="8.0.0" urldb="paloaltonetworks">
+- <mgt-config>
++<config version="8.1.0" urldb="paloaltonetworks">
++  <mgt-config>
+     <devices/>
+   </mgt-config>
+   <devices>
+@@ -9,4 +9,18 @@
+       </deviceconfig>
+     </entry>
+   </devices>
++  <readonly>
++    <max-internal-id>15</max-internal-id>
++    <devices>
++      <entry name="localhost.localdomain">
++        <template/>
++        <template-stack/>
++        <device-group>
++          <entry name="{{ DEVICE_GROUP }}">
++            <id>11</id>
++          </entry>
++        </device-group>
++      </entry>
++    </devices>
++  </readonly>
+ </config>
+\ No newline at end of file
+diff --git a/templates/panorama/full/.meta-cnc.yaml b/templates/panorama/full/.meta-cnc.yaml
+index e093774..04f7767 100644
+--- a/templates/panorama/full/.meta-cnc.yaml
++++ b/templates/panorama/full/.meta-cnc.yaml
+@@ -4,9 +4,9 @@
+ # this is based on a 'shared model' with all template elements in the 'iron-skillet' template
+ 
+ # snippet folder name
+-name: skillet_full_panorama_v80
++name: skillet_full_panorama_v81
+ # label used for menu selection
+-label: v8.0 Iron-Skillet for Panorama (Shared Values)
++label: v8.1 Iron-Skillet for Panorama (Shared Values)
+ description: Iron-Skillet baseline configuration for Panorama with device-group and stack specific values
+ # type of device configuration
+ type: template
+@@ -17,9 +17,9 @@ labels:
+   service_type: iron_skillet_full
+   template_category: panorama_full
+   collection:
+-    - IronSkillet
+-    - Configure
+-    - Best Practice
++   - IronSkillet
++   - Configure
++   - Best Practice
+ 
+ # variables used in the configuration templates
+ # type_hint defines the form field type in pan-cnc
+@@ -53,10 +53,6 @@ variables:
+     description: IP address for scheduled config exports
+     default: 192.0.2.3
+     type_hint: text
+-  - name: TEMPLATE
+-    description: Template name for Panorama
+-    default: sample_template
+-    type_hint: text
+   - name: STACK
+     description: Template stack name for Panorama
+     default: sample_stack
+@@ -153,4 +149,5 @@ variables:
+ 
+ snippets:
+   - name: panorama-full
+-    file: iron_skillet_panorama_full.xml
+\ No newline at end of file
++    file: iron_skillet_panorama_full.xml
++
+diff --git a/templates/panorama/full/iron_skillet_panorama_full.xml b/templates/panorama/full/iron_skillet_panorama_full.xml
+index 0f0afec..ce71b08 100644
+--- a/templates/panorama/full/iron_skillet_panorama_full.xml
++++ b/templates/panorama/full/iron_skillet_panorama_full.xml
+@@ -1,5 +1,5 @@
+-<config urldb="paloaltonetworks" version="8.0.0">
+- <mgt-config>
++<config urldb="paloaltonetworks" version="8.1.0">
++  <mgt-config>
+     <devices />
+   <users> <entry name="{{ ADMINISTRATOR_USERNAME }}">
+   <phash>{{ ADMINISTRATOR_PASSWORD | md5_hash }}</phash>
+@@ -101,7 +101,7 @@ Log off immediately if you are not an authorized user.</login-banner>
+       <scp>
+         <hostname>{{ CONFIG_EXPORT_IP }}</hostname>
+         <username>testuser</username>
+-        <password>-AQ==i7YRj4/Wk1rQh2o740pxfTJwj/0=+7MGzrRa6xPfMQUkGMpf7w==</password>
++        <password>-AQ==zPJb3ngM1sGjXlfX2+Qk6rbdv1I=ucInIpBmFcnkQK7zF4VO1w==</password>
+       </scp>
+     </protocol>
+     <start-time>02:00</start-time>
+@@ -401,9 +401,9 @@ Log off immediately if you are not an authorized user.</login-banner>
+ <timezone>UTC</timezone></system><setting><ctd>
+   <strip-x-fwd-for>yes</strip-x-fwd-for>
+   <x-forwarded-for>yes</x-forwarded-for>
++  <allow-http-range>no</allow-http-range>
+   <tcp-bypass-exceed-queue>no</tcp-bypass-exceed-queue>
+   <udp-bypass-exceed-queue>no</udp-bypass-exceed-queue>
+-  <skip-block-http-range>no</skip-block-http-range>
+ </ctd>
+ <management>
+   <enable-log-high-dp-load>yes</enable-log-high-dp-load>
+@@ -444,6 +444,9 @@ Log off immediately if you are not an authorized user.</login-banner>
+     <entry name="linux">
+       <size-limit>2</size-limit>
+     </entry>
++    <entry name="script">
++      <size-limit>2000</size-limit>
++    </entry>
+   </file-size-limit>
+   <report-benign-file>yes</report-benign-file>
+   <report-grayware-file>yes</report-grayware-file>
+@@ -627,18 +630,20 @@ Log off immediately if you are not an authorized user.</login-banner>
+     </entry>
+   </match-list>
+ </correlation></log-settings></shared></config>
+-</entry>
+-<entry name="{{ TEMPLATE }}">
++</entry></template><template-stack><entry name="{{ STACK }}">
++  <templates>
++    <member>iron-skillet</member>
++  </templates>
+   <settings>
+     <default-vsys>vsys1</default-vsys>
+   </settings>
+-  <config>
+-    <devices>
+-      <entry name="localhost.localdomain">
+-        <vsys>
+-          <entry name="vsys1" />
+-        </vsys>
+-      <deviceconfig><system><hostname>{{ FW_NAME }}</hostname>
++    <config>
++      <devices>
++        <entry name="localhost.localdomain">
++          <vsys>
++            <entry name="vsys1" />
++          </vsys>
++        <deviceconfig><system><hostname>{{ FW_NAME }}</hostname>
+ {%- if MGMT_TYPE == "static" %}
+ <type>
+   <static />
+@@ -665,13 +670,8 @@ Log off immediately if you are not an authorized user.</login-banner>
+    </dhcp-client>
+ </type>
+ {% endif %}</system></deviceconfig></entry>
+-    </devices>
++      </devices>
+   </config>
+-</entry></template><template-stack><entry name="{{ STACK }}">
+-  <templates>
+-    <member>iron-skillet</member>
+-    <member>{{ TEMPLATE }}</member>
+-  </templates>
+ </entry></template-stack><device-group><entry name="{{ DEVICE_GROUP }}">
+  <devices />
+ <reports><entry name="Host-visit malicious sites plus">
+@@ -872,6 +872,20 @@ Log off immediately if you are not an authorized user.</login-banner>
+   <email-profile>Sample_Email_Profile</email-profile>
+ </entry></email-scheduler></entry></device-group></entry>
+   </devices>
++  <readonly>
++    <max-internal-id>15</max-internal-id>
++    <devices>
++      <entry name="localhost.localdomain">
++        <template />
++        <template-stack />
++        <device-group>
++          <entry name="{{ DEVICE_GROUP }}">
++            <id>11</id>
++          </entry>
++        </device-group>
++      </entry>
++    </devices>
++  </readonly>
+ <panorama><log-settings><email>
+   <entry name="Sample_Email_Profile">
+     <server>
 diff --git a/templates/panorama/set_commands/.meta-cnc.yaml b/templates/panorama/set_commands/.meta-cnc.yaml
-index 5a1ed4d..1cfa43b 100644
+index ec779eb..468ab57 100644
 --- a/templates/panorama/set_commands/.meta-cnc.yaml
 +++ b/templates/panorama/set_commands/.meta-cnc.yaml
 @@ -3,9 +3,9 @@
@@ -14,30 +255,8 @@ index 5a1ed4d..1cfa43b 100644
  description: Set command configuration for Panorama
  # type of device configuration
  type: template
-@@ -15,9 +15,9 @@ extends:
- labels:
-   service_type: iron_skillet_set
-   collection:
--    - IronSkillet
--    - Configure
--    - Best Practice
-+   - IronSkillet
-+   - Configure
-+   - Best Practice
- 
- # variables used in the configuration templates
- # type_hint defines the form field type in pan-cnc
-@@ -131,7 +131,7 @@ variables:
-   - name: SYSLOG_SERVER
-     description: syslog server ip address
-     default: 192.0.2.2
--    type_hint: test
-+    type_hint: text
- 
- snippets:
-   - name: iron_skillet_panorama_full.conf
 diff --git a/templates/panorama/set_commands/iron_skillet_panorama_full.conf b/templates/panorama/set_commands/iron_skillet_panorama_full.conf
-index 4612f59..b17361c 100644
+index 981fb8d..b17361c 100644
 --- a/templates/panorama/set_commands/iron_skillet_panorama_full.conf
 +++ b/templates/panorama/set_commands/iron_skillet_panorama_full.conf
 @@ -1,4 +1,4 @@
@@ -46,7 +265,15 @@ index 4612f59..b17361c 100644
  # commands are expected to be load in order
  # this template uses jinja format
  # either 'search and replace' or the scripts in the tools dir can be used to create a loadable configuration
-@@ -510,6 +510,8 @@ set shared pre-rulebase decryption rules "NO-Decrypt URL Categories" description
+@@ -16,7 +16,6 @@ set deviceconfig system ntp-servers secondary-ntp-server ntp-server-address {{ N
+ # remove admin/admin default and add user defined super user
+ set mgt-config users {{ ADMINISTRATOR_USERNAME }} password
+ set mgt-config users {{ ADMINISTRATOR_USERNAME }} permissions role-based superuser yes
+-
+ # recommended to delete the admin user with another superuser username
+ delete mgt-config users admin
+ 
+@@ -511,6 +510,8 @@ set shared pre-rulebase decryption rules "NO-Decrypt URL Categories" description
  # shared template configuration referenced in template stacks
  set template iron-skillet settings default-vsys vsys1
  set template iron-skillet config vsys vsys1
@@ -55,7 +282,7 @@ index 4612f59..b17361c 100644
  set template iron-skillet config mgt-config password-complexity enabled yes
  set template iron-skillet config mgt-config password-complexity minimum-length 12
  set template iron-skillet config mgt-config password-complexity minimum-uppercase-letters 1
-@@ -547,13 +549,11 @@ set template iron-skillet config deviceconfig system login-banner "You have acce
+@@ -548,7 +549,7 @@ set template iron-skillet config deviceconfig system login-banner "You have acce
  set template iron-skillet config deviceconfig system timezone UTC
  set template iron-skillet config deviceconfig setting ctd strip-x-fwd-for yes
  set template iron-skillet config deviceconfig setting ctd x-forwarded-for yes
@@ -64,13 +291,7 @@ index 4612f59..b17361c 100644
  set template iron-skillet config deviceconfig setting ctd tcp-bypass-exceed-queue no
  set template iron-skillet config deviceconfig setting ctd udp-bypass-exceed-queue no
  set template iron-skillet config deviceconfig setting management enable-log-high-dp-load yes
- set template iron-skillet config deviceconfig setting management max-rows-in-csv-export 1048576
--set template iron-skillet config deviceconfig setting management enable-log-high-dp-load yes
--set template iron-skillet config deviceconfig setting management max-rows-in-csv-export 1048576
- set template iron-skillet config deviceconfig setting management admin-lockout failed-attempts 5
- set template iron-skillet config deviceconfig setting management admin-lockout lockout-time 30
- set template iron-skillet config deviceconfig setting management idle-timeout 10
-@@ -567,6 +567,7 @@ set template iron-skillet config deviceconfig setting wildfire file-size-limit f
+@@ -566,6 +567,7 @@ set template iron-skillet config deviceconfig setting wildfire file-size-limit f
  set template iron-skillet config deviceconfig setting wildfire file-size-limit MacOSX size-limit 1
  set template iron-skillet config deviceconfig setting wildfire file-size-limit archive size-limit 10
  set template iron-skillet config deviceconfig setting wildfire file-size-limit linux size-limit 2
@@ -78,7 +299,7 @@ index 4612f59..b17361c 100644
  set template iron-skillet config deviceconfig setting wildfire report-benign-file yes
  set template iron-skillet config deviceconfig setting wildfire report-grayware-file yes
  set template iron-skillet config deviceconfig setting config rematch yes
-@@ -616,24 +617,20 @@ set template iron-skillet config shared log-settings correlation match-list Corr
+@@ -615,24 +617,20 @@ set template iron-skillet config shared log-settings correlation match-list Corr
  # template-stack configuration for device specific configuration
  # NOTE: must determine if fw management IP is static or dhcp then choose which set commands to enter
  set template-stack {{ STACK }} templates iron-skillet
@@ -114,5 +335,457 @@ index 4612f59..b17361c 100644
  set device-group {{ DEVICE_GROUP }} reports "Host-visit malicious sites plus" period last-7-calendar-days
  set device-group {{ DEVICE_GROUP }} reports "Host-visit malicious sites plus" topn 500
 diff --git a/templates/panorama/set_commands/iron_skillet_panorama_full.xlsx b/templates/panorama/set_commands/iron_skillet_panorama_full.xlsx
-index d426a4b..48ac169 100644
+index 8c95f87..48ac169 100644
 Binary files a/templates/panorama/set_commands/iron_skillet_panorama_full.xlsx and b/templates/panorama/set_commands/iron_skillet_panorama_full.xlsx differ
+diff --git a/templates/panorama/snippets/.meta-cnc.yaml b/templates/panorama/snippets/.meta-cnc.yaml
+index e38f2ec..4430f58 100644
+--- a/templates/panorama/snippets/.meta-cnc.yaml
++++ b/templates/panorama/snippets/.meta-cnc.yaml
+@@ -4,9 +4,9 @@
+ # this is based on a 'shared model' with all template elements in the 'iron-skillet' template
+ 
+ # snippet folder name
+-name: skillet_panorama_v80
++name: skillet_panorama_v81
+ # label used for menu selection
+-label: v8.0 Iron-Skillet for Panorama (Shared Values)
++label: v8.1 Iron-Skillet for Panorama (Shared Values)
+ description: Iron-Skillet baseline configuration for Panorama with device-group and stack specific values
+ # type of device configuration
+ type: panorama
+@@ -52,10 +52,6 @@ variables:
+     description: IP address for scheduled config exports
+     default: 192.0.2.3
+     type_hint: text
+-  - name: TEMPLATE
+-    description: Template name for the managed device
+-    default: sample_template
+-    type_hint: text
+   - name: STACK
+     description: Template stack name for Panorama
+     default: sample_stack
+@@ -241,7 +237,7 @@ snippets:
+     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack
+     file: template_stack.xml
+   - name: device_system_local
+-    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='{{ TEMPLATE }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
++    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ STACK }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+     file: device_system_local.xml
+   - name: devicegroup
+     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group
+diff --git a/templates/panorama/snippets/device_setting.xml b/templates/panorama/snippets/device_setting.xml
+index c50f1c9..eddadb8 100644
+--- a/templates/panorama/snippets/device_setting.xml
++++ b/templates/panorama/snippets/device_setting.xml
+@@ -1,9 +1,9 @@
+ <ctd>
+   <strip-x-fwd-for>yes</strip-x-fwd-for>
+   <x-forwarded-for>yes</x-forwarded-for>
++  <allow-http-range>no</allow-http-range>
+   <tcp-bypass-exceed-queue>no</tcp-bypass-exceed-queue>
+   <udp-bypass-exceed-queue>no</udp-bypass-exceed-queue>
+-  <skip-block-http-range>no</skip-block-http-range>
+ </ctd>
+ <management>
+   <enable-log-high-dp-load>yes</enable-log-high-dp-load>
+@@ -44,6 +44,9 @@
+     <entry name="linux">
+       <size-limit>2</size-limit>
+     </entry>
++    <entry name="script">
++      <size-limit>2000</size-limit>
++    </entry>
+   </file-size-limit>
+   <report-benign-file>yes</report-benign-file>
+   <report-grayware-file>yes</report-grayware-file>
+diff --git a/templates/panorama/snippets/panorama_system.xml b/templates/panorama/snippets/panorama_system.xml
+index 3f74aff..23f52e2 100644
+--- a/templates/panorama/snippets/panorama_system.xml
++++ b/templates/panorama/snippets/panorama_system.xml
+@@ -75,7 +75,7 @@ Log off immediately if you are not an authorized user.</login-banner>
+       <scp>
+         <hostname>{{ CONFIG_EXPORT_IP }}</hostname>
+         <username>testuser</username>
+-        <password>-AQ==i7YRj4/Wk1rQh2o740pxfTJwj/0=+7MGzrRa6xPfMQUkGMpf7w==</password>
++        <password>-AQ==zPJb3ngM1sGjXlfX2+Qk6rbdv1I=ucInIpBmFcnkQK7zF4VO1w==</password>
+       </scp>
+     </protocol>
+     <start-time>02:00</start-time>
+diff --git a/templates/panorama/snippets/template.xml b/templates/panorama/snippets/template.xml
+index 7af9aec..606ccfa 100644
+--- a/templates/panorama/snippets/template.xml
++++ b/templates/panorama/snippets/template.xml
+@@ -11,18 +11,4 @@
+       </entry>
+     </devices>
+   </config>
+-</entry>
+-<entry name="{{ TEMPLATE }}">
+-  <settings>
+-    <default-vsys>vsys1</default-vsys>
+-  </settings>
+-  <config>
+-    <devices>
+-      <entry name="localhost.localdomain">
+-        <vsys>
+-          <entry name="vsys1"/>
+-        </vsys>
+-      </entry>
+-    </devices>
+-  </config>
+ </entry>
+\ No newline at end of file
+diff --git a/templates/panorama/snippets/template_stack.xml b/templates/panorama/snippets/template_stack.xml
+index f9012d4..d88b914 100644
+--- a/templates/panorama/snippets/template_stack.xml
++++ b/templates/panorama/snippets/template_stack.xml
+@@ -1,6 +1,17 @@
+ <entry name="{{ STACK }}">
+   <templates>
+     <member>iron-skillet</member>
+-    <member>{{ TEMPLATE }}</member>
+   </templates>
++  <settings>
++    <default-vsys>vsys1</default-vsys>
++  </settings>
++    <config>
++      <devices>
++        <entry name="localhost.localdomain">
++          <vsys>
++            <entry name="vsys1"/>
++          </vsys>
++        </entry>
++      </devices>
++  </config>
+ </entry>
+\ No newline at end of file
+diff --git a/templates/panorama/snippets_dgstack_notshared/.meta-cnc.yaml b/templates/panorama/snippets_dgstack_notshared/.meta-cnc.yaml
+index 6c0bf28..4ffd2fd 100644
+--- a/templates/panorama/snippets_dgstack_notshared/.meta-cnc.yaml
++++ b/templates/panorama/snippets_dgstack_notshared/.meta-cnc.yaml
+@@ -3,9 +3,9 @@
+ # all values are contained in the device-groups and template stacks; nothing shared
+ 
+ # snippet folder name
+-name: skillet_panorama_dgstack_notshared_v80
++name: skillet_panorama_dgstack_notshared_v81
+ # label used for menu selection
+-label: v8.0 Iron-Skillet for Panorama with Device-Group and Stack only (No Shared Values)
++label: v8.1 Iron-Skillet for Panorama with Device-Group and Stack only (No Shared Values)
+ description: Iron Skillet device-group and template stack config for Panorama
+ dependency: snippets
+ # type of device configuration
+@@ -23,14 +23,14 @@ labels:
+ # variables used in the configuration templates
+ # type_hint defines the form field type in pan-cnc
+ variables:
+-  - name: TEMPLATE
++  - name: STACK
+     description: Template stack name for Panorama
+     default: sample_stack
+-    type_hint: text
++    type_hint: text   
+   - name: DEVICE_GROUP
+     description: Device-group name for Panorama
+     default: sample_devicegroup
+-    type_hint: text
++    type_hint: text     
+   - name: FW_NAME
+     description: Device Name for NGFW
+     default: sample
+@@ -122,7 +122,10 @@ variables:
+ snippets:
+   - name: template
+     xpath: /config/devices/entry[@name='localhost.localdomain']/template
+-    file: template.xml
++    file: ../snippets/template.xml
++  - name: stack
++    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack
++    file: ../snippets/template_stack.xml
+ # adding in the email profile so scheduler loads
+   - name: panorama_log_settings
+     xpath: /config/panorama/log-settings
+diff --git a/templates/panorama/snippets_dgstack_notshared/template.xml b/templates/panorama/snippets_dgstack_notshared/template.xml
+deleted file mode 100644
+index 804084c..0000000
+--- a/templates/panorama/snippets_dgstack_notshared/template.xml
++++ /dev/null
+@@ -1,14 +0,0 @@
+-<entry name="{{ TEMPLATE }}">
+-  <settings>
+-    <default-vsys>vsys1</default-vsys>
+-  </settings>
+-  <config>
+-    <devices>
+-      <entry name="localhost.localdomain">
+-        <vsys>
+-          <entry name="vsys1"/>
+-        </vsys>
+-      </entry>
+-    </devices>
+-  </config>
+-</entry>
+\ No newline at end of file
+diff --git a/templates/panorama/snippets_dgstack_shared/.meta-cnc.yaml b/templates/panorama/snippets_dgstack_shared/.meta-cnc.yaml
+index b250ae0..2364060 100644
+--- a/templates/panorama/snippets_dgstack_shared/.meta-cnc.yaml
++++ b/templates/panorama/snippets_dgstack_shared/.meta-cnc.yaml
+@@ -4,9 +4,9 @@
+ # this is based on a 'shared model' with all template elements in the 'iron-skillet' template
+ 
+ # snippet folder name
+-name: skillet_panorama_dgstack_shared_v80
++name: skillet_panorama_dgstack_shared_v81
+ # label used for menu selection
+-label: v8.0 Iron-Skillet for Panorama with Device-Group and Stack only (Shared Values)
++label: v8.1 Iron-Skillet for Panorama with Device-Group and Stack only (Shared Values)
+ description: Iron Skillet device-group and template stack config for Panorama
+ dependency: snippets
+ # type of device configuration
+@@ -24,10 +24,6 @@ labels:
+ # variables used in the configuration templates
+ # type_hint defines the form field type in pan-cnc
+ variables:
+-  - name: TEMPLATE
+-    description: Template name for the managed device
+-    default: sample_template
+-    type_hint: text
+   - name: STACK
+     description: Template stack name for Panorama
+     default: sample_stack
+@@ -70,7 +66,6 @@ variables:
+     default: admin
+     type_hint: password
+ 
+-
+ # snippets used for api configuration including xpath and element as file name
+ # files will load in the order listed
+ snippets:
+@@ -81,7 +76,7 @@ snippets:
+     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack
+     file: ../snippets/template_stack.xml
+   - name: device_system_local
+-    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='{{ TEMPLATE }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
++    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ STACK }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+     file: ../snippets/device_system_local.xml
+   - name: devicegroup
+     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group
+diff --git a/templates/panorama/snippets_notshared/.meta-cnc.yaml b/templates/panorama/snippets_notshared/.meta-cnc.yaml
+index cb72b26..436d9c0 100644
+--- a/templates/panorama/snippets_notshared/.meta-cnc.yaml
++++ b/templates/panorama/snippets_notshared/.meta-cnc.yaml
+@@ -3,9 +3,9 @@
+ # all values are contained in the device-groups and template stacks; nothing shared
+ 
+ # snippet folder name
+-name: skillet_panorama_notshared_v80
++name: skillet_panorama_notshared_v81
+ # label used for menu selection
+-label: v8.0 Iron-Skillet for Panorama (No Shared Values)
++label: v8.1 Iron-Skillet for Panorama (No Shared Values)
+ description: Iron-Skillet baseline configuration for Panorama using shared values for device-group and templates
+ dependency: snippets
+ # type of device configuration
+@@ -52,7 +52,7 @@ variables:
+     description: IP address for scheduled config exports
+     default: 192.0.2.3
+     type_hint: text
+-  - name: TEMPLATE
++  - name: STACK
+     description: Template stack name for Panorama
+     default: sample_stack
+     type_hint: text   
+@@ -173,6 +173,9 @@ snippets:
+   - name: template
+     xpath: /config/devices/entry[@name='localhost.localdomain']/template
+     file: ../snippets/template.xml
++  - name: stack
++    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack
++    file: ../snippets/template_stack.xml
+   - name: device_system_ip_hostname
+     xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{ STACK }}']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+     file: ../snippets/device_system_local.xml
+@@ -250,4 +253,4 @@ snippets:
+     file: ../snippets/report_group_simple.xml
+   - name: email_scheduler_simple
+     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/email-scheduler
+-    file: ../snippets/email_scheduler_simple.xml
+\ No newline at end of file
++    file: ../snippets/email_scheduler_simple.xml
+diff --git a/templates/panorama/snippets_notshared/template.xml b/templates/panorama/snippets_notshared/template.xml
+deleted file mode 100644
+index 804084c..0000000
+--- a/templates/panorama/snippets_notshared/template.xml
++++ /dev/null
+@@ -1,14 +0,0 @@
+-<entry name="{{ TEMPLATE }}">
+-  <settings>
+-    <default-vsys>vsys1</default-vsys>
+-  </settings>
+-  <config>
+-    <devices>
+-      <entry name="localhost.localdomain">
+-        <vsys>
+-          <entry name="vsys1"/>
+-        </vsys>
+-      </entry>
+-    </devices>
+-  </config>
+-</entry>
+\ No newline at end of file
+diff --git a/templates/panos/baseline/baseline.xml b/templates/panos/baseline/baseline.xml
+index fab60fc..214cc57 100644
+--- a/templates/panos/baseline/baseline.xml
++++ b/templates/panos/baseline/baseline.xml
+@@ -1,5 +1,5 @@
+ <?xml version="1.0"?>
+-<config version="8.0.0" urldb="paloaltonetworks">
++<config version="8.1.0" urldb="paloaltonetworks">
+   <mgt-config/>
+   <shared/>
+   <devices>
+diff --git a/templates/panos/full/.meta-cnc.yaml b/templates/panos/full/.meta-cnc.yaml
+index 5a338e2..bfde389 100644
+--- a/templates/panos/full/.meta-cnc.yaml
++++ b/templates/panos/full/.meta-cnc.yaml
+@@ -1,9 +1,9 @@
+ # full_panos is used to load a full NGFW configuration
+ 
+ # snippet folder name
+-name: skillet_full_panos_v80
++name: skillet_full_panos_v81
+ # label used for menu selection
+-label: v8.0 Iron-Skillet Full XML Configuration for NGFW
++label: v8.1 Iron-Skillet Full XML Configuration for NGFW
+ description: Iron-Skillet day one configuration for a firewall
+ dependency:
+ # type of device configuration
+diff --git a/templates/panos/full/iron_skillet_panos_full.xml b/templates/panos/full/iron_skillet_panos_full.xml
+index 63233ca..d65dd8d 100644
+--- a/templates/panos/full/iron_skillet_panos_full.xml
++++ b/templates/panos/full/iron_skillet_panos_full.xml
+@@ -1,4 +1,4 @@
+-<config urldb="paloaltonetworks" version="8.0.0">
++<config urldb="paloaltonetworks" version="8.1.0">
+   <mgt-config><users><entry name="{{ ADMINISTRATOR_USERNAME }}">
+   <phash>{{ ADMINISTRATOR_PASSWORD | md5_hash }}</phash>
+   <permissions>
+@@ -474,7 +474,7 @@ Log off immediately if you are not an authorized user.</login-banner>
+ {% endif %}</system><setting><ctd>
+   <strip-x-fwd-for>yes</strip-x-fwd-for>
+   <x-forwarded-for>yes</x-forwarded-for>
+-  <skip-block-http-range>no</skip-block-http-range>
++  <allow-http-range>no</allow-http-range>
+   <tcp-bypass-exceed-queue>no</tcp-bypass-exceed-queue>
+   <udp-bypass-exceed-queue>no</udp-bypass-exceed-queue>
+ </ctd>
+@@ -517,6 +517,9 @@ Log off immediately if you are not an authorized user.</login-banner>
+     <entry name="linux">
+       <size-limit>2</size-limit>
+     </entry>
++    <entry name="script">
++      <size-limit>2000</size-limit>
++    </entry>
+   </file-size-limit>
+   <report-benign-file>yes</report-benign-file>
+   <report-grayware-file>yes</report-grayware-file>
+diff --git a/templates/panos/set_commands/.meta-cnc.yaml b/templates/panos/set_commands/.meta-cnc.yaml
+index d05bde3..1428d87 100644
+--- a/templates/panos/set_commands/.meta-cnc.yaml
++++ b/templates/panos/set_commands/.meta-cnc.yaml
+@@ -1,9 +1,9 @@
+ # set_commands is used to load a full NGFW configuration
+ 
+ # snippet folder name
+-name: skillet_setcommand_panos_v80
++name: skillet_set_command_panos_v81
+ # label used for menu selection
+-label: v8.0 Iron-Skillet set commands for NGFW
++label: v8.1 Iron-Skillet set commands for NGFW
+ description: Iron-Skillet baseline configuration for a firewall
+ dependency:
+ # type of device configuration
+@@ -15,8 +15,6 @@ labels:
+   service_type: iron_skillet_set
+   collection:
+     - IronSkillet
+-    - Configure
+-    - Best Practice
+ 
+ # variables used in the configuration templates
+ # type_hint defines the form field type in pan-cnc
+diff --git a/templates/panos/set_commands/iron_skillet_panos_full.conf b/templates/panos/set_commands/iron_skillet_panos_full.conf
+index b93351d..ce2f957 100644
+--- a/templates/panos/set_commands/iron_skillet_panos_full.conf
++++ b/templates/panos/set_commands/iron_skillet_panos_full.conf
+@@ -1,5 +1,5 @@
+-# set command configuration for panos version 8.0
+-# commands are expected to be load in order
++# set command configuration for panos version 8.1
++# commands are expected to be loaded in order
+ # this template uses jinja format
+ # either 'search and replace' or the scripts in the tools dir can be used to create a loadable configuration
+ 
+@@ -60,7 +60,7 @@ set deviceconfig system type dhcp-client accept-dhcp-hostname no
+ set deviceconfig system type dhcp-client accept-dhcp-domain no
+ set deviceconfig setting ctd strip-x-fwd-for yes
+ set deviceconfig setting ctd x-forwarded-for yes
+-set deviceconfig setting ctd skip-block-http-range yes
++set deviceconfig setting ctd allow-http-range no
+ set deviceconfig setting ctd tcp-bypass-exceed-queue no
+ set deviceconfig setting ctd udp-bypass-exceed-queue no
+ set deviceconfig setting management enable-log-high-dp-load yes
+@@ -78,6 +78,7 @@ set deviceconfig setting wildfire file-size-limit flash size-limit 5
+ set deviceconfig setting wildfire file-size-limit MacOSX size-limit 1
+ set deviceconfig setting wildfire file-size-limit archive size-limit 10
+ set deviceconfig setting wildfire file-size-limit linux size-limit 2
++set deviceconfig setting wildfire file-size-limit script size-limit 2000
+ set deviceconfig setting wildfire report-benign-file yes
+ set deviceconfig setting wildfire report-grayware-file yes
+ set deviceconfig setting config rematch yes
+diff --git a/templates/panos/set_commands/iron_skillet_panos_full.xlsx b/templates/panos/set_commands/iron_skillet_panos_full.xlsx
+index dbcba83..d7ed908 100644
+Binary files a/templates/panos/set_commands/iron_skillet_panos_full.xlsx and b/templates/panos/set_commands/iron_skillet_panos_full.xlsx differ
+diff --git a/templates/panos/snippets/.meta-cnc.yaml b/templates/panos/snippets/.meta-cnc.yaml
+index b36007e..1c78380 100644
+--- a/templates/panos/snippets/.meta-cnc.yaml
++++ b/templates/panos/snippets/.meta-cnc.yaml
+@@ -1,11 +1,11 @@
+-# snippets_panos is used to load a full NGFW configuration
++# snippets is used to load a full NGFW configuration
+ 
+ # snippet folder name
+-name: skillet_panos_v80
++name: skillet_panos_v81
+ # label used for menu selection
+-label: v8.0 Iron-Skillet for NGFW
++label: v8.1 Iron-Skillet for NGFW
+ description: Iron-Skillet baseline configuration for a firewall
+-dependency:
++dependency: snippets_panorama
+ # type of device configuration
+ type: panos
+ extends:
+diff --git a/templates/panos/snippets/device_setting.xml b/templates/panos/snippets/device_setting.xml
+index 6e52df8..eddadb8 100644
+--- a/templates/panos/snippets/device_setting.xml
++++ b/templates/panos/snippets/device_setting.xml
+@@ -1,7 +1,7 @@
+ <ctd>
+   <strip-x-fwd-for>yes</strip-x-fwd-for>
+   <x-forwarded-for>yes</x-forwarded-for>
+-  <skip-block-http-range>no</skip-block-http-range>
++  <allow-http-range>no</allow-http-range>
+   <tcp-bypass-exceed-queue>no</tcp-bypass-exceed-queue>
+   <udp-bypass-exceed-queue>no</udp-bypass-exceed-queue>
+ </ctd>
+@@ -44,6 +44,9 @@
+     <entry name="linux">
+       <size-limit>2</size-limit>
+     </entry>
++    <entry name="script">
++      <size-limit>2000</size-limit>
++    </entry>
+   </file-size-limit>
+   <report-benign-file>yes</report-benign-file>
+   <report-grayware-file>yes</report-grayware-file>
