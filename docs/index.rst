@@ -1,5 +1,5 @@
-.. test_rst documentation master file, created by
-   sphinx-quickstart on Mon Jul 16 11:03:51 2018.
+.. IronSkillet documentation master file, created by
+   sphinx-quickstart on Mon Jul 29 10:07:37 2019.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 

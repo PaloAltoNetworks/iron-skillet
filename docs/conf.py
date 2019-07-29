@@ -19,14 +19,14 @@
 
 # -- Project information -----------------------------------------------------
 
-project = u'iron-skillet'
-copyright = u'2018, Palo Alto Networks'
-author = u'Palo Alto Networks'
+project = u'IronSkillet'
+copyright = u'2019, Scott Shoaf'
+author = u'Scott Shoaf'
 
 # The short X.Y version
 version = u''
 # The full version, including alpha/beta/rc tags
-release = u'1.0'
+release = u'1.0.6'
 
 
 # -- General configuration ---------------------------------------------------
@@ -38,8 +38,7 @@ release = u'1.0'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.extlinks'
-]
+extensions = ['sphinx.ext.extlinks']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -101,7 +100,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'iron-skilletdoc'
+htmlhelp_basename = 'IronSkilletdoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -128,8 +127,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'iron-skillet.tex', u'iron-skillet Documentation',
-     u'Palo Alto Networks', 'manual'),
+    (master_doc, 'IronSkillet.tex', u'IronSkillet Documentation',
+     u'Scott Shoaf', 'manual'),
 ]
 
 
@@ -138,7 +137,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'iron-skillet', u'iron-skillet Documentation',
+    (master_doc, 'ironskillet', u'IronSkillet Documentation',
      [author], 1)
 ]
 
@@ -149,37 +148,17 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'iron-skillet', u'iron-skillet Documentation',
-     author, 'iron-skillet', 'One line description of project.',
+    (master_doc, 'IronSkillet', u'IronSkillet Documentation',
+     author, 'IronSkillet', 'One line description of project.',
      'Miscellaneous'),
 ]
-
 # -- Variable substitutions used in the document
-
-# github file path that changes across repo and branches
-
-extlinks = {'panosrepo': ('https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/%s.xml', 'view xml template:   '),
-            'panoramarepo': ('https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panorama/snippets/%s.xml', 'view xml template:   '),
-            'setcommands': ('https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v9.0/templates/%s/set_commands', 'set commands '),
-            }
 
 # load config file name that changes across repo and branches
 
 rst_prolog = """
-.. |branch| replace:: panos_v9.0
-.. |panosconfigfile| replace:: iron_skillet_panos_full.xml
-.. |panoramaconfigfile| replace:: iron_skillet_panorama_full.xml
 .. |clonessh| replace:: git@github.com:PaloAltoNetworks/iron-skillet.git
 .. |clonehttps| replace:: https://github.com/PaloAltoNetworks/iron-skillet.git
-.. |repourl| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v9.0
-.. |repotools| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v9.0/tools
-.. |panosxpaths| replace:: https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/metadata.yaml
-.. |panossnippets| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v9.0/templates/panos/snippets
-.. |panosloadorder| replace:: https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/metadata.yaml
-.. |panoramaxpaths| replace:: https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panorama/snippets/metadata.yaml
-.. |panoramasnippets| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v9.0/templates/panorama/snippets
-.. |panoramaloadorder| replace:: https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panorama/snippets/metadata.yaml
-.. |panoramaset| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v9.0/templates/panorama/set_commands
-.. |panosset| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v9.0/templates/panos/set_commands
+.. |panosconfigfile| replace:: iron_skillet_panos_full.xml
+.. |panoramaconfigfile| replace:: iron_skillet_panorama_full.xml
 """
-

@@ -8,7 +8,9 @@ Requirements
 
 Using IronSkillet requires the following to properly load into Panorama and/or the NGFW
 
+
     * Running software version 9.0
+
         + `Upgrade the firewall to 9.0`_
         + `Upgrade Panorama to 9.0`_
 
@@ -18,15 +20,21 @@ Using IronSkillet requires the following to properly load into Panorama and/or t
 
 
     * Active subscription for Threat Prevention
+
         + `Activate the subscription licenses`_
 
 .. _Activate the subscription licenses: http://docs.paloaltonetworks.com/pan-os/9-0/pan-os-admin/subscriptions/activate-subscription-licenses
 
     * Updated application and antivirus content
+
         + `Install content and software updates`_
 
 
 .. _Install content and software updates: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-admin/software-and-content-updates/install-content-and-software-updates.html
+
+
+.. Note::
+    The links are specific to PAN-OS v9.0 and users may switch to 8.0 or 8.1 based on deployed release
 
 
 .. Note::

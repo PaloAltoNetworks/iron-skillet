@@ -62,7 +62,12 @@ Create Loadable Configuration python utility
 
 The tools folder in the iron-skillet repo contains a simple python utility for variable substitution.
 
-This tools folder can be found at |repotools|
+This tools folder can be found at:
+
+`Release branch` [
+`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/tree/80dev/tools>`_ |
+`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/tree/81dev/tools>`_ |
+`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/tree/90dev/tools>`_ ]
 
 The directions below detail how to use the utility in a python virtual environment on Mac or Linux.
 Similar instructions can work for Windows with python and pip installed.
@@ -71,22 +76,26 @@ Similar instructions can work for Windows with python and pip installed.
     This tool is designed for Python 3.6 or layer.
 
 
+.. NOTE::
+    The examples below show PAN-OS 9.0 and other releases can be used by changing the release|branch version.
+
+
 Install the repo and tools
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 .. highlight:: bash
 
-The initial step is to clone the repo to a local machine with release |branch|.
+The initial step is to clone the repo to a local machine with release|branch 90dev.
 
 Clone using ssh:
 
-    $ git clone -b |branch| |clonessh|
+    $ git clone -b 90dev |clonessh|
 
 
 Clone using https:
 
-    $ git clone -b |branch| |clonehttps|
+    $ git clone -b 90dev |clonehttps|
 
 
 After the repo is cloned locally, the following steps are used to setup and activate the python virtual environment.

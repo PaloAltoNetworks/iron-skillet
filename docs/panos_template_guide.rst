@@ -23,7 +23,10 @@ settings.
 Security-related Device Settings
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-:panosrepo:`device_setting`
+`View xml snippet:` [
+`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/80dev/templates/panos/snippets/device_setting.xml>`_ |
+`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panos/snippets/device_setting.xml>`_ |
+`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/90dev/templates/panos/snippets/device_setting.xml>`_ ]
 
 General device settings that effect security posture. Found in Device > Setup in the GUI.
 
@@ -70,7 +73,10 @@ General device settings that effect security posture. Found in Device > Setup in
 System Configuration
 ~~~~~~~~~~~~~~~~~~~~
 
-:panosrepo:`device_system`
+`View xml snippet:` [
+`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/80dev/templates/panos/snippets/device_system.xml>`_ |
+`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panos/snippets/device_system.xml>`_ |
+`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/90dev/templates/panos/snippets/device_system.xml>`_ ]
 
 System configuration settings for dynamic updates and network services
 (eg. DNS, NTP).
@@ -118,7 +124,10 @@ profiles.
 Log forwarding profile
 ~~~~~~~~~~~~~~~~~~~~~~
 
-:panosrepo:`log_settings_profiles`
+`View xml snippet:` [
+`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/80dev/templates/panos/snippets/log_settings_profile.xml>`_ |
+`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panos/snippets/log_settings_profile.xml>`_ |
+`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/90dev/templates/panos/snippets/log_settings_profile.xml>`_ ]
 
 Log forward profile referenced in security rules to determine where to
 forward log related events.
@@ -132,7 +141,10 @@ forward log related events.
 Device log settings
 ~~~~~~~~~~~~~~~~~~~
 
-:panosrepo:`shared_log_settings`
+`View xml snippet:` [
+`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/80dev/templates/panos/snippets/shared_log_settings.xml>`_ |
+`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panos/snippets/shared_log_settings.xml>`_ |
+`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/90dev/templates/panos/snippets/shared_log_settings.xml>`_ ]
 
 Device event logging including sample profiles for email and syslog
 forwarding.
@@ -168,8 +180,10 @@ referenced in security rules by name.
 Address Object
 ~~~~~~~~~~~~~~
 
-
-:panosrepo:`address`
+`View xml snippet:` [
+`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/80dev/templates/panos/snippets/address.xml>`_ |
+`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panos/snippets/address.xml>`_ |
+`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/90dev/templates/panos/snippets/address.xml>`_ ]
 
 Address object used to reference named addresses.
 
@@ -181,30 +195,13 @@ Address object used to reference named addresses.
           traffic
 
 
-External Dynamic Lists
-~~~~~~~~~~~~~~~~~~~~~~
-
-:panosrepo:`external_list`
-
-
-Used for the firewall to pull in external elements such as IP, URL, or
-domain used in security rules
-
-    + Team Cymru Bogon Lists - IPv4 and IPv6 bogon IPs that should not be
-      forwarded
-
-.. Warning::
-    **Remove private bogons**
-    Any private or other Bogon address that must be routed across the
-    device must be added as exceptions in the external dynamic list
-    object. These should be direction dependent and used in the respective
-    outbound or inbound security rule.
-
-
 Tags
 ~~~~
 
-:panosrepo:`tag`
+`View xml snippet:` [
+`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/80dev/templates/panos/snippets/tag.xml>`_ |
+`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panos/snippets/tag.xml>`_ |
+`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/90dev/templates/panos/snippets/tag.xml>`_ ]
 
 Tags used in security rules and related objects.
 
@@ -239,7 +236,10 @@ rules to reduce the attack surface.
 Custom URL Category
 ~~~~~~~~~~~~~~~~~~~
 
-:panosrepo:`profiles_custom_url_category`
+`View xml snippet:` [
+`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/80dev/templates/panos/snippets/profiles_custom_url_category.xml>`_ |
+`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panos/snippets/profiles_custom_url_category.xml>`_ |
+`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/90dev/templates/panos/snippets/profiles_custom_url_category.xml>`_ ]
 
 Placeholder for custom url categories used in security rules and url
 profiles. Using these categories prevents the need to modify the
@@ -260,7 +260,10 @@ default template.
 File Blocking
 ~~~~~~~~~~~~~
 
-:panosrepo:`profiles_file_blocking`
+`View xml snippet:` [
+`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/80dev/templates/panos/snippets/profiles_file_blocking.xml>`_ |
+`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panos/snippets/profiles_file_blocking.xml>`_ |
+`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/90dev/templates/panos/snippets/profiles_file_blocking.xml>`_ ]
 
 Security profile for actions specific to file blocking (FB).
 
@@ -296,7 +299,10 @@ Profiles:
 Anti-Spyware
 ~~~~~~~~~~~~
 
-:panosrepo:`profiles_spyware`
+`View xml snippet:` [
+`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/80dev/templates/panos/snippets/profiles_spyware.xml>`_ |
+`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panos/snippets/profiles_spyware.xml>`_ |
+`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/90dev/templates/panos/snippets/profiles_spyware.xml>`_ ]
 
 Security profile for actions specific to anti-spyware (AS).
 
@@ -347,7 +353,10 @@ Profiles:
 URL Filtering
 ~~~~~~~~~~~~~
 
-:panosrepo:`profiles_url_filtering`
+`View xml snippet:` [
+`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/80dev/templates/panos/snippets/profiles_url_filtering.xml>`_ |
+`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panos/snippets/profiles_url_filtering.xml>`_ |
+`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/90dev/templates/panos/snippets/profiles_url_filtering.xml>`_ ]
 
 Security profile for actions specific to URL filtering (URL).
 
@@ -393,7 +402,10 @@ Profiles:
 Anti-Virus
 ~~~~~~~~~~
 
-:panosrepo:`profiles_virus`
+`View xml snippet:` [
+`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/80dev/templates/panos/snippets/profiles_virus.xml>`_ |
+`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panos/snippets/profiles_virus.xml>`_ |
+`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/90dev/templates/panos/snippets/profiles_virus.xml>`_ ]
 
 Security profile for actions specific to AntiVirus (AV).
 
@@ -429,7 +441,11 @@ Profiles:
 Vulnerability Protection
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-:panosrepo:`profiles_vulnerability`
+`View xml snippet:` [
+`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/80dev/templates/panos/snippets/profiles_vulnerability.xml>`_ |
+`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panos/snippets/profiles_vulnerability.xml>`_ |
+`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/90dev/templates/panos/snippets/profiles_vulnerability.xml>`_ ]
+
 
 Profiles:
 
@@ -463,7 +479,10 @@ Profiles:
 Wildfire Analysis
 ~~~~~~~~~~~~~~~~~
 
-:panosrepo:`profiles_wildfire_analysis`
+`View xml snippet:` [
+`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/80dev/templates/panos/snippets/profiles_wildfire_analysis.xml>`_ |
+`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panos/snippets/profiles_wildfire_analysis.xml>`_ |
+`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/90dev/templates/panos/snippets/profiles_wildfire_analysis.xml>`_ ]
 
 Security profile for actions specific to Wildfire upload and analysis
 (WF).
@@ -491,7 +510,10 @@ Profiles:
 Security Profile Groups
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-:panosrepo:`profile_group`
+`View xml snippet:` [
+`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/80dev/templates/panos/snippets/profile_group.xml>`_ |
+`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panos/snippets/profile_group.xml>`_ |
+`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/90dev/templates/panos/snippets/profile_group.xml>`_ ]
 
 Security profile groups based on use case
 
@@ -516,7 +538,10 @@ Security Rules
 Recommended Block Rules
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-:panosrepo:`rulebase_security`
+`View xml snippet:` [
+`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/80dev/templates/panos/snippets/rulebase_security.xml>`_ |
+`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panos/snippets/rulebase_security.xml>`_ |
+`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/90dev/templates/panos/snippets/rulebase_security.xml>`_ ]
 
 Recommended block rules for optimal security posture with associated
 default log-forwarding profile
@@ -552,7 +577,10 @@ default log-forwarding profile
 Default Security Rules
 ~~~~~~~~~~~~~~~~~~~~~~
 
-:panosrepo:`rulebase_default_security_rules`
+`View xml snippet:` [
+`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/80dev/templates/panos/snippets/rulebase_default_security_rules.xml>`_ |
+`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panos/snippets/rulebase_default_security_rules.xml>`_ |
+`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/90dev/templates/panos/snippets/rulebase_default_security_rules.xml>`_ ]
 
 Configuration for the default interzone and intrazone default rules
 
@@ -577,7 +605,10 @@ Decryption
 Profiles
 ~~~~~~~~
 
-:panosrepo:`profiles_decryption`
+`View xml snippet:` [
+`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/80dev/templates/panos/snippets/profiles_decryption.xml>`_ |
+`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panos/snippets/profiles_decryption.xml>`_ |
+`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/90dev/templates/panos/snippets/profiles_decryption.xml>`_ ]
 
 Recommended_Decryption_Profile. Referenced by the default decryption
 rule.
@@ -614,7 +645,10 @@ rule.
 Decryption Rules
 ~~~~~~~~~~~~~~~~
 
-:panosrepo:`rulebase_decryption`
+`View xml snippet:` [
+`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/80dev/templates/panos/snippets/rulebase_decryption.xml>`_ |
+`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panos/snippets/rulebase_decryption.xml>`_ |
+`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/90dev/templates/panos/snippets/rulebase_decryption.xml>`_ ]
 
 Recommended SSL decryption pre-rules for no-decryption.
 
@@ -633,7 +667,10 @@ Zone Protection
 Profile
 ~~~~~~~
 
-:panosrepo:`zone_protection_profile`
+`View xml snippet:` [
+`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/80dev/templates/panos/snippets/zone_protection_profile.xml>`_ |
+`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panos/snippets/zone_protection_profile.xml>`_ |
+`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/90dev/templates/panos/snippets/zone_protection_profile.xml>`_ ]
 
 Recommended_Zone_Protection profile for standard, non-volumetric best
 practices. This profile should be attached to all interfaces within
@@ -661,8 +698,10 @@ Reports
 Reports
 ~~~~~~~
 
-:panosrepo:`reports_simple`
-
+`View xml snippet:` [
+`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/80dev/templates/panos/snippets/reports_simple.xml>`_ |
+`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panos/snippets/reports_simple.xml>`_ |
+`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/90dev/templates/panos/snippets/reports_simple.xml>`_ ]
 
 Series of reports to look for traffic anomalies, where to apply or
 remove rules, etc. Reports are grouped by topic per the report group
@@ -681,7 +720,10 @@ section below.
 Report Groups
 ~~~~~~~~~~~~~
 
-:panosrepo:`report_group_simple`
+`View xml snippet:` [
+`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/80dev/templates/panos/snippets/report_group_simple.xml>`_ |
+`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panos/snippets/report_group_simple.xml>`_ |
+`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/90dev/templates/panos/snippets/report_group_simple.xml>`_ ]
 
 Report groups allow you to create sets of reports that the system can
 compile and send as a single aggregate PDF report with an optional
@@ -722,7 +764,10 @@ Custom
 Email Scheduler
 ~~~~~~~~~~~~~~~
 
-:panosrepo:`email_scheduler_simple`
+`View xml snippet:` [
+`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/80dev/templates/panos/snippets/email_scheduler_simple.xml>`_ |
+`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panos/snippets/email_scheduler_simple.xml>`_ |
+`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/90dev/templates/panos/snippets/email_scheduler_simple.xml>`_ ]
 
 Schedule and email recipients for each report group. The template uses
 a sample email profile configured in shared_log_settings.

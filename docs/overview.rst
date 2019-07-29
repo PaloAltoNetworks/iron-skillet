@@ -33,9 +33,14 @@ day one configurations that can be readily loaded into Panorama or a next-genera
 Using the templates
 -------------------
 
-The templates are available on GitHub at |repourl|.
+The templates are available on GitHub specific to each PAN-OS software version.
 
-Select the branch specific to the software release for your deployment.
+`View github repo:` [
+`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/80dev>`_ |
+`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev>`_ |
+`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/90dev>`_ ]
+
+Use the branch specific to the software release for your deployment.
 
 The library consists of a set of xml and set configuration templates grouped by:
 
