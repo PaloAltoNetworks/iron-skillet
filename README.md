@@ -1,4 +1,4 @@
-# IronSkillet
+# IronSkillet Day One Configuration Template
 
 
 The purpose of the IronSkillet project is to provide day-one best practice
