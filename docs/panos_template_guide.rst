@@ -20,6 +20,36 @@ General Device Configuration
 This section provides templated configurations for general device
 settings.
 
+
+Management Users
+~~~~~~~~~~~~~~~~
+
+`View xml snippet:` [
+`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/80dev/templates/panos/snippets/mgt_config_users.xml>`_ |
+`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panos/snippets/mgt_config_users.xml>`_ |
+`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/90dev/templates/panos/snippets/mgt_config_users.xml>`_ ]
+
+Management configuration superuser access
+
+    + Administrative user name
+
+    + Password hash stored in the configuration file
+
+Password Complexity
+~~~~~~~~~~~~~~~~~~~
+
+`View xml snippet:` [
+`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/80dev/templates/panos/snippets/password_complexity.xml>`_ |
+`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev/templates/panos/snippets/password_complexity.xml>`_ |
+`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/90dev/templates/panos/snippets/password_complexity.xml>`_ ]
+
+Administrative user password complexity profile
+
+    + Attributes including minimum length, characters, and history
+
+    + Password expiration period
+
+
 Security-related Device Settings
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -69,6 +99,12 @@ General device settings that effect security posture. Found in Device > Setup in
 
     + set export of csv log file to maximum of 1,048,576
 
+    + Administrative lockout and access
+
+        * failed attempts and lockout time
+        * idle timeout
+        * auto acquire commit lock
+
 
 System Configuration
 ~~~~~~~~~~~~~~~~~~~~
@@ -88,6 +124,7 @@ System configuration settings for dynamic updates and network services
         * Hourly checks for new AV signatures
         * Check every minute for new Wildfire signatures
         * Recommended time delays and thresholds for checks and installs
+        * Check for GlobalProtect datafile and clientless vpn updates
 
     + Use SNMPv3
 
@@ -188,11 +225,11 @@ Address Object
 Address object used to reference named addresses.
 
 
-        + Sinkhole-IPv4: IP address used in security rule to block sinkhole
-          traffic
+        + Sinkhole-IPv4:
+            + [8.x] IP address used in security rule to block sinkhole traffic
+            + [9.0] FQDN address used in security rule to block sinkhole traffic
 
-        + Sinkhole-IPv6: IP address used in security rule to block sinkhole
-          traffic
+        + Sinkhole-IPv6: IP address used in security rule to block sinkhole traffic
 
 
 Tags
@@ -310,9 +347,10 @@ Security profile for actions specific to anti-spyware (AS).
 .. Note::
     **Sinkhole addresses**
     The profiles use IPv4 and IPv6 addresses for DNS sinkholes. IPv4 is
-    currently provided by Palo Alto Networks. IPv6 is a bogon address.
+    currently provided by Palo Alto Networks. IPv6 is a bogon address. In 9.0
+    the IPv4 address is replaced by an FQDN
 
-Support for DNS Cloud subscription service
+[9.0] Support for DNS Cloud subscription service
 
     + In addition to the current malicious domain push to the device, also include domain lookups using the cloud service
 
@@ -344,7 +382,6 @@ Profiles:
 
             * Alert all severities and malicious domain events
             * No packet capture
-
 
         + Exception-AS : For exception requirements in security rules to avoid
           modifying the default template profiles
@@ -395,7 +432,7 @@ Profiles:
               -Forwarded-For)
 
 .. Note::
-    This version includes new URL categories for risk and newly created domains. In future best practices, these categories
+    9.0 includes new URL categories for risk and newly created domains. In future best practices, these categories
     may be used to provide additional security protections when combined with existing URL categories. For now, these
     categories are only set to `alert`.
 
@@ -434,7 +471,7 @@ Profiles:
     after a small number of sends with timeouts.
 
 .. Note::
-    This version includes support for http/2. If you are upgrading from a previous version
+    9.0 includes support for http/2. If you are upgrading from a previous version
     ensure that this decoder matches the actions for standard http.
 
 
@@ -475,6 +512,12 @@ Profiles:
         + Exception-VP: For exception requirements in security rules to avoid
           modifying the default template profiles
 
+.. Note::
+    A separate branch is being used as a placeholder for Brute-Force-Exceptions_. This provides a way
+    to include Support recommended exceptions by ThreatID value. These can be loaded using console SET
+    commands or using API-based tools
+
+.. _Brute-Force-Exceptions: https://github.com/PaloAltoNetworks/iron-skillet/tree/bruteForceExceptions
 
 Wildfire Analysis
 ~~~~~~~~~~~~~~~~~
@@ -555,17 +598,6 @@ default log-forwarding profile
 
         + DNS Sinkhole Block: Block sessions redirected to defined sinkhole
           addresses using the address objects (address.xml)
-
-        + Inbound/Outbound Bogon Block Rules: Prevent bogon addresses from
-          being forwarded; uses Team Cymru Bogon EDL
-
-
-.. Warning::
-    **Check Bogons before enabling the Bogon block rule**
-    The bogon rules are disabled in the template and should only be
-    activated once determined that all bogons should be blocked.
-    Exceptions may be private address space that may be allowed to cross
-    device boundaries.
 
 .. Note::
     **Security rules in the template are block only**

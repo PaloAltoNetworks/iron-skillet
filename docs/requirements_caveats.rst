@@ -56,22 +56,21 @@ Please review the following to understand any limitations or recommendations reg
     * Be sure to edit or the default administrative superuser account if not part of initial configuration
 
         + If the default account information is used, the user is notified at login
-
         + To change or add superuser accounts see `Configure a Firewall Administrator`_
-
-.. _Configure a Firewall Administrator: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-admin/firewall-administration/manage-firewall-administrators/configure-administrative-accounts-and-authentication/configure-a-firewall-administrator-account.html#
-
 
     * The current version only supports IPv4 management interface configuration
 
+        + IPv6 to be considered based on customer demand
 
     * IronSkillet loaded into a VM-50 will utilize the full profile capacity
+
         + See the section :ref:`vm50_profile_reduction` for more information
 
-
     * The Panorama full configuration template is based on a fully shared model
+
         + All `device-group configuration`_ at the Shared top of tree
         + Additional Panorama `template stacks`_ should include the IronSkillet template
 
+.. _Configure a Firewall Administrator: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-admin/firewall-administration/manage-firewall-administrators/configure-administrative-accounts-and-authentication/configure-a-firewall-administrator-account.html#
 .. _device-group configuration: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-web-interface-help/panorama-web-interface/panorama-device-groups.html
 .. _template stacks: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-web-interface-help/panorama-web-interface/panorama-templates.html

@@ -18,7 +18,7 @@ Welcome to Iron Skillet template documentation!
    using_the_spreadsheet
    creating_loadable_configs
    loading_the_template
-   vm50_reduction.rst
+   vm50_reduction
    snippets_common_or_device
-   90_new_stuff.rst
+   release_variance
    release_history

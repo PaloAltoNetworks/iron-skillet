@@ -298,6 +298,42 @@ log collector           settings for Panorama when used as a log collector
 ======================  ==========================================================================
 
 
+Loading Configuration Snippets using Panhandler
+----------------------------------------------
+
+----------------------------------------------------------------------
+
+panHandler overview
+~~~~~~~~~~~~~~~~~~~
+
+Panhandler is container-based UI used to aggregate and load configuration templates. PanHandler simplifies
+input of user data and using the NGFW API to push configuration snipipets.
+
+installing and using PanHandler
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+PanHandler is an easily distributed and loadable Docker container. Instructions for using PanHandler can
+be reviewing the `PanHandler Docs <https://panhandler.readthedocs.io>`_
+
+
+
+Loading Configuration Snippets using skilletCLI
+-----------------------------------------------
+
+----------------------------------------------------------------------
+
+SkilletCLI overview
+~~~~~~~~~~~~~~~~~~~
+
+This open-source utility provides a command line interface to Palo Alto "skillets", curated configuration templates designed to be
+imported into firewalls or Panorama.
+
+installing and using SkilletCLI
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Usage information for SkilletCLI is found in the repo `SkilletCLI <https://github.com/adambaumeister/skilletcli>`_
+
+
 
 Loading Configuration Snippets with Pan-Python
 ----------------------------------------------
