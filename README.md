@@ -2,32 +2,20 @@
 
 Templates and documentation are based on sofware release version.
 
-Current versions include:
-
-**8.0**
-
-[Templates](https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.0)
+Current template versions include:
 
 
-[Documentation](https://iron-skillet.readthedocs.io/en/panos_v8.0/)
+[**8.0**](https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.0)
 
 
-**8.1**
-
-[Templates](https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.1)
+[**8.1**](https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.1)
 
 
-[Documentation](https://iron-skillet.readthedocs.io/en/panos_v8.1/)
+[**9.0**](https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v9.0)
 
 
-**9.0**
 
-[Templates](https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v9.0)
-
-
-[Documentation](https://iron-skillet.readthedocs.io/en/panos_v9.0/)
-
-
+[**Documentation**](https://iron-skillet.readthedocs.io)
 
 ## Contributing
 Please read [CONTRIBUTING.md](https://github.com/PaloAltoNetworks/iron-skillet/blob/master/CONTRIBUTING.md) for details on how you can help contribute to this project.
