@@ -36,9 +36,9 @@ Using the templates
 The templates are available on GitHub specific to each PAN-OS software version.
 
 `View github repo:` [
-`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0>`_ |
-`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1>`_ |
-`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0>`_ ]
+`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.0>`_ |
+`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.1>`_ |
+`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v9.0>`_ ]
 
 Use the branch specific to the software release for your deployment.
 
