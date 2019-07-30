@@ -91,7 +91,7 @@ as part of skillet updates.
 ## Variables used by iron-skillet
 For information about the variables used in iron-skillet can be found at:
 
-[iron-skillet variables](https://iron-skillet.readthedocs.io/en/panos_v9.0/creating_loadable_configs.html#variables-list-and-descriptions)
+[iron-skillet variables](https://iron-skillet.readthedocs.io/en/docs_master/creating_loadable_configs.html#variables-list-and-descriptions)
 
 
 
