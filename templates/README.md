@@ -8,7 +8,7 @@ Also contained are the set commands spreadsheets that use Excel formulas,
 allowing users to add in custom values specific to their deployment.
 
 A complete list of template variables, along with descriptions, can be found
-[here](https://iron-skillet.readthedocs.io/en/panos_v9.0/creating_loadable_configs.html#variables-list-and-descriptions)
+[here](https://iron-skillet.readthedocs.io/en/docs_master/creating_loadable_configs.html#variables-list-and-descriptions)
 
 
 ##  Excel set command spreadsheets
@@ -77,6 +77,6 @@ and stack, each with full configuration elements. Nothing is shared.
 ## Details of template best practices
 The details of what's in a template are located in the documentation:
 
-[Panorama template information](https://iron-skillet.readthedocs.io/en/panos_v9.0/panorama_template_guide.html)
+[Panorama template information](https://iron-skillet.readthedocs.io/en/docs_master/panorama_template_guide.html)
 
-[PAN-OS template information](https://iron-skillet.readthedocs.io/en/panos_v9.0/panos_template_guide.html)
+[PAN-OS template information](https://iron-skillet.readthedocs.io/en/docs_master/panos_template_guide.html)

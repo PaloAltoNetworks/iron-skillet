@@ -11,7 +11,7 @@ zones, and NAT.
 
 The IronSkillet template details and usage are documented at:
 
-[IronSkillet Documentation](https://iron-skillet.readthedocs.io/en/panos_v9.0/)
+[IronSkillet Documentation](https://iron-skillet.readthedocs.io)
 
 ## Quick Start
 The templates are provided with a variety of usage options based
@@ -81,7 +81,7 @@ to disable, simply return to CLI operation mode with `exit` and enter
 The detailed documentation provides a list of variables that can be edited
 and instructions for GUI and CLI edits to these values.
 
-[IronSkillet variables](https://iron-skillet.readthedocs.io/en/panos_v9.0/creating_loadable_configs.html#variables-list-and-descriptions)
+[IronSkillet variables](https://iron-skillet.readthedocs.io/en/docs_master/creating_loadable_configs.html#variables-list-and-descriptions)
 
 
 #### Using the SET command spreadsheet to edit values
