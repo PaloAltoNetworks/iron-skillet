@@ -7,7 +7,7 @@ variables:
 # DHCP is used for cloud deployments only
   - name: PANORAMA_TYPE
     description: Panorama management IP type - static or cloud (for dhcp)
-    value: cloud
+    value: static
   - name: PANORAMA_IP
     description: Panorama IP
     value: 192.168.55.8
@@ -36,7 +36,7 @@ variables:
 # If static be sure to set the IP attributes
   - name: MGMT_TYPE
     description: firewall management IP type (static or dhcp-client)
-    value: dhcp-client
+    value: static
   - name: MGMT_IP
     description: NGFW management IP
     value: 192.0.2.6
@@ -70,9 +70,6 @@ variables:
   - name: SINKHOLE_IPV6
     description: sinkhole address IPv6
     value: 2600:5200::1
-  - name: INTERNET_ZONE
-    description: untrust zone to filter out in reports
-    value: internet
   - name: EMAIL_PROFILE_GATEWAY
     description: email gateway address for critical alerts
     value: 192.0.2.1
@@ -87,6 +84,7 @@ variables:
     value: 192.0.2.2
 # option built into the templates to ignore the panw published external dynamic lists security rules
 # should ONLY be excluded based on licensing limitations outside of best practices
+# when 'yes' (default) will include the EDL rule and as special case needs single quotes
   - name: INCLUDE_PAN_EDL
-    description: include the predefined Palo Alto Networks external lists
+    description: include the predefined Palo Alto Networks external lists security rules
     value: 'yes'

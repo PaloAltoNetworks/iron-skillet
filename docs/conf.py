@@ -154,32 +154,3 @@ texinfo_documents = [
      'Miscellaneous'),
 ]
 
-# -- Variable substitutions used in the document
-
-# github file path that changes across repo and branches
-
-extlinks = {'panosrepo': ('https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0/templates/panos/snippets/%s.xml', 'view xml template:   '),
-            'panoramarepo': ('https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0/templates/panorama/snippets/%s.xml', 'view xml template:   '),
-            'setcommands': ('https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.0/templates/%s/set_commands', 'set commands '),
-            }
-
-# load config file name that changes across repo and branches
-
-rst_prolog = """
-.. |branch| replace:: panos_v8.0
-.. |panosconfigfile| replace:: iron_skillet_panos_full.xml
-.. |panoramaconfigfile| replace:: iron_skillet_panorama_full.xml
-.. |clonessh| replace:: git@github.com:PaloAltoNetworks/iron-skillet.git
-.. |clonehttps| replace:: https://github.com/PaloAltoNetworks/iron-skillet.git
-.. |repourl| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.0
-.. |repotools| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.0/tools
-.. |panosxpaths| replace:: https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0/templates/panos/snippets/metadata.yaml
-.. |panossnippets| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.0/templates/panos/snippets
-.. |panosloadorder| replace:: https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0/templates/panos/snippets/metadata.yaml
-.. |panoramaxpaths| replace:: https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0/templates/panorama/snippets/metadata.yaml
-.. |panoramasnippets| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.0/templates/panorama/snippets
-.. |panoramaloadorder| replace:: https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0/templates/panorama/snippets/metadata.yaml
-.. |panoramaset| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.0/templates/panorama/set_commands
-.. |panosset| replace:: https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.0/templates/panos/set_commands
-"""
-
