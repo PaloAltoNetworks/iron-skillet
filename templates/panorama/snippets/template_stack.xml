@@ -1,0 +1,6 @@
+<entry name="{{ STACK }}">
+  <templates>
+    <member>iron-skillet</member>
+    <member>{{ TEMPLATE }}</member>
+  </templates>
+</entry>
