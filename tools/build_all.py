@@ -15,10 +15,10 @@
 # Author: Scott Shoaf <sshoaf@paloaltonetworks.com>
 
 '''
-Palo Alto Networks create_loadable_configs.py
+Palo Alto Networks create_batch.py
 
-Provides rendering of configuration templates with user defined values
-Output is a set of loadable full configurations and set commands for Panos and Panorama
+creates a roll-up of loadable configs in the repo for the various
+options: mgmt dhcp/static and public cloud flavors
 
 Edit the config_variables.yaml values and then run the script
 
@@ -26,24 +26,19 @@ This software is provided without support, warranty, or guarantee.
 Use at your own risk.
 '''
 
-import datetime
 import os
-import shutil
 import sys
-import time
-import getpass
 import oyaml
 
 from jinja2 import Environment, FileSystemLoader
-from passlib.hash import des_crypt
 from passlib.hash import md5_crypt
-from passlib.hash import sha256_crypt
-from passlib.hash import sha512_crypt
+from build_full_templates import build_xpath, generate_full_config_template
+from create_set_spreadsheet import create_spreadsheet
 
-defined_filters = ['md5_hash', 'des_hash', 'sha512_hash']
+defined_filters = ['md5_hash']
 
 
-def myconfig_newdir(myconfigdir_name, foldertime):
+def myconfig_newdir(myconfigdir_name):
     '''
     create a new main loadable_configs folder if required then new subdirectories for configs
     :param myconfigdir_name: prefix folder name from the my_variables.py file
@@ -59,10 +54,10 @@ def myconfig_newdir(myconfigdir_name, foldertime):
 
     # check that configs folder exists and if not create a new one
     # then create snippets and full sub-directories
-    myconfigdir = '{0}/{1}-{2}'.format(myconfigpath, myconfigdir_name, foldertime)
+    myconfigdir = '{0}/{1}'.format(myconfigpath, myconfigdir_name)
     if os.path.isdir(myconfigdir) is False:
         os.mkdir(myconfigdir, mode=0o755)
-        print('\ncreated new archive folder {0}-{1}'.format(myconfigdir_name, foldertime))
+        print('\ncreated new archive folder {0}'.format(myconfigdir_name))
 
     if os.path.isdir('{0}/{1}'.format(myconfigdir, config_type)) is False:
         os.mkdir('{0}/{1}'.format(myconfigdir, config_type))
@@ -91,6 +86,20 @@ def create_context(config_var_file):
     return jinja_context
 
 
+def yaml2dict(config_var_file):
+    # read the metafile to get variables and values
+    try:
+        with open(config_var_file, 'r') as var_metadata:
+            variables = oyaml.safe_load(var_metadata.read())
+
+    except IOError as ioe:
+        print(f'Could not open metadata file {config_var_file}')
+        print(ioe)
+        sys.exit()
+
+    return variables
+
+
 def template_render(filename, template_path, render_type, context):
     '''
     render the jinja template using the context value from config_variables.yaml
@@ -107,8 +116,6 @@ def template_render(filename, template_path, render_type, context):
 
     # load our custom jinja filters here, see the function defs below for reference
     env.filters['md5_hash'] = md5_hash
-    env.filters['des_hash'] = des_hash
-    env.filters['sha512_hash'] = sha512_hash
 
     template = env.get_template(filename)
     rendered_template = template.render(context)
@@ -135,13 +142,6 @@ def template_save(snippet_name, myconfigdir, config_type, element):
     with open('{0}/{1}/{2}'.format(myconfigdir, config_type, filename), 'w') as configfile:
         configfile.write(element)
 
-    # copy the variables file used for the render into the my_template folder
-    var_file = 'config_variables.yaml'
-    if os.path.isfile('{0}/{1}'.format(myconfigdir, var_file)) is False:
-        vfilesrc = var_file
-        vfiledst = '{0}/{1}'.format(myconfigdir, var_file)
-        shutil.copy(vfilesrc, vfiledst)
-
     return
 
 
@@ -154,36 +154,6 @@ def md5_hash(txt):
     in the configurations
     '''
     return md5_crypt.hash(txt)
-
-
-def des_hash(txt):
-    '''
-    Returns the DES Hashed secret for use as a password hash in the PanOS configuration
-    :param txt: text to be hashed
-    :return: password hash of the string with salt and configuration information. Suitable to place in the phash field
-    in the configurations
-    '''
-    return des_crypt.hash(txt)
-
-
-def sha256_hash(txt):
-    '''
-    Returns the SHA256 Hashed secret for use as a password hash in the PanOS configuration
-    :param txt: text to be hashed
-    :return: password hash of the string with salt and configuration information. Suitable to place in the
-    phash field in the configurations
-    '''
-    return sha256_crypt.hash(txt)
-
-
-def sha512_hash(txt):
-    '''
-    Returns the SHA512 Hashed secret for use as a password hash in the PanOS configuration
-    :param txt: text to be hashed
-    :return: password hash of the string with salt and configuration information. Suitable to place in the
-    phash field in the configurations
-    '''
-    return sha512_crypt.hash(txt)
 
 
 def replace_variables(config_type, render_type, input_var):
@@ -211,7 +181,7 @@ def replace_variables(config_type, render_type, input_var):
     sys.path.append(template_path)
 
     # output subdir located in loadable_configs dir
-    myconfig_path = myconfig_newdir(input_var['output_dir'], input_var['archive_time'])
+    myconfig_path = myconfig_newdir(input_var['output_dir'])
 
     # render full and set conf files
     print('\nworking with {0} config template'.format(render_type))
@@ -234,36 +204,33 @@ if __name__ == '__main__':
 
     print('=' * 80)
     print(' ')
-    print('Welcome to Iron-Skillet'.center(80))
+    print('Welcome to Iron-Skillet batch create loadable configs'.center(80))
     print(' ')
     print('=' * 80)
 
-    input_var = {}
-    # archive_time used as part of the my_config directory name
-    input_var['archive_time'] = datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d_%H%M%S')
-    print('\ndatetime used for folder creation: {0}\n'.format(input_var['archive_time']))
-
-    # this prompts for the prefix name of the output directory
-    input_var['output_dir'] = input('Enter the name of the output directory: ')
-
-    # this prompts for the superuser username to be added into the configuration; no default admin/admin used
-    input_var['ADMINISTRATOR_USERNAME'] = input('Enter the superuser administrator account username: ')
-
-    print('\na phash will be created for superuser {0} and added to the config file\n'.format(
-        input_var['ADMINISTRATOR_USERNAME']))
-    passwordmatch = False
-
-    # prompt for the superuser password to create a phash and store in the my_config files; no default admin/admin
-    while passwordmatch is False:
-        password1 = getpass.getpass("Enter the superuser administrator account password: ")
-        password2 = getpass.getpass("Enter password again to verify: ")
-        if password1 == password2:
-            input_var['ADMINISTRATOR_PASSWORD'] = password1
-            passwordmatch = True
-        else:
-            print('\nPasswords do not match. Please try again.\n')
-
-    # loop through all config types that have their respective template folders
+    # build full config from snippets
+    print('Building full configs...')
     for config_type in ['panos', 'panorama']:
-        for render_type in ['full', 'set_commands']:
-            replace_variables(config_type, render_type, input_var)
+        generate_full_config_template(config_type)
+
+    # create sample loadable configs as part of core repo
+    # uses full config template so updated after new full config build
+    input_var = {}
+    # get batch variables define loadable_config types and values
+    loadable_types = yaml2dict('batch_variables.yaml')
+
+    for loadable in loadable_types['variables']:
+
+        # this prompts for the prefix name of the output directory
+        input_var['output_dir'] = loadable['name']
+        input_var['MGMT_TYPE'] = loadable['MGMT_TYPE']
+        input_var['PANORAMA_TYPE'] = loadable['PANORAMA_TYPE']
+
+        # loop through all config types that have their respective template folders
+        for config_type in ['panos', 'panorama']:
+            for render_type in ['full', 'set_commands']:
+                replace_variables(config_type, render_type, input_var)
+
+    # create set command spreadsheet based on set command text file
+    for config_type in ['panos', 'panorama']:
+        create_spreadsheet(config_type)

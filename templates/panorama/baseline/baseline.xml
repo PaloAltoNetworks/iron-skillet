@@ -1,17 +1,7 @@
 <?xml version="1.0"?>
 <config version="8.1.0" urldb="paloaltonetworks">
-   <mgt-config>
+  <mgt-config>
     <devices/>
-    <users>
-      <entry name="{{ ADMINISTRATOR_USERNAME }}">
-        <phash>{{ ADMINISTRATOR_PASSWORD | md5_hash }}</phash>
-        <permissions>
-          <role-based>
-            <superuser>yes</superuser>
-          </role-based>
-        </permissions>
-      </entry>
-    </users>
   </mgt-config>
   <devices>
     <entry name="localhost.localdomain">
@@ -19,4 +9,18 @@
       </deviceconfig>
     </entry>
   </devices>
+  <readonly>
+    <max-internal-id>15</max-internal-id>
+    <devices>
+      <entry name="localhost.localdomain">
+        <template/>
+        <template-stack/>
+        <device-group>
+          <entry name="{{ DEVICE_GROUP }}">
+            <id>11</id>
+          </entry>
+        </device-group>
+      </entry>
+    </devices>
+  </readonly>
 </config>
