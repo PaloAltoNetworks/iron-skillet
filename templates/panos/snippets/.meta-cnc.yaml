@@ -14,7 +14,9 @@ extends:
 labels:
   service_type: iron_skillet
   collection:
-   - IronSkillet
+    - IronSkillet
+    - Configure
+    - Best Practice
 
 # variables used in the configuration templates
 # type_hint defines the form field type in pan-cnc
@@ -69,17 +71,13 @@ variables:
     default: 8.8.4.4
     type_hint: ip_address
   - name: SINKHOLE_IPV4
-    description: sinkhole address IPv4
-    default: 72.5.65.111
-    type_hint: ip_address
+    description: sinkhole FQDN IPv4
+    default: sinkhole.paloaltonetworks.com
+    type_hint: text
   - name: SINKHOLE_IPV6
     description: sinkhole address IPv6
     default: 2600:5200::1
     type_hint: ip_address
-  - name: INTERNET_ZONE
-    description: untrust zone to filter out in reports
-    default: untrust
-    type_hint: text
   - name: EMAIL_PROFILE_GATEWAY
     description: email gateway address for critical alerts
     default: 192.0.2.1
@@ -105,7 +103,7 @@ variables:
 # when 'yes' (default) will include the EDL rule
   - name: INCLUDE_PAN_EDL
     description: include the predefined Palo Alto Networks external lists security rules
-    default: 'yes'
+    default: 'no'
     type_hint: dropdown
     dd_list:
       - key: 'yes'
@@ -122,18 +120,18 @@ snippets:
   - name: device_setting
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     file: device_setting.xml
-  - name: device_mgt_config
-    xpath: /config/mgt-config
-    file: device_mgt_config.xml
+  - name: mgt_config_users
+    xpath: /config/mgt-config/users
+    file: mgt_config_users.xml
+  - name: password_complexity
+    xpath: /config/mgt-config/password-complexity
+    file: password_complexity.xml
   - name: shared_log_settings
     xpath: /config/shared/log-settings
     file: shared_log_settings.xml
   - name: address
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/address
     file: address.xml
-  - name: external_list
-    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/external-list
-    file: external_list.xml
   - name: tag
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag
     file: tag.xml

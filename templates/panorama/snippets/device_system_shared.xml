@@ -33,6 +33,22 @@
       </every-min>
     </recurring>
   </wildfire>
+  <global-protect-datafile>
+    <recurring>
+      <hourly>
+        <at>40</at>
+        <action>download-and-install</action>
+      </hourly>
+    </recurring>
+  </global-protect-datafile>
+  <global-protect-clientless-vpn>
+    <recurring>
+      <hourly>
+        <at>50</at>
+        <action>download-and-install</action>
+      </hourly>
+    </recurring>
+  </global-protect-clientless-vpn>
 </update-schedule>
 <snmp-setting>
   <access-setting>

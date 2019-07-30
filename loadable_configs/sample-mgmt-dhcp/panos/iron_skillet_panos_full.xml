@@ -1,69 +1,25 @@
 <config urldb="paloaltonetworks" version="9.0.0">
-  <mgt-config>
-    <users>
-      <entry name="admin">
-        <phash>$1$zMUDI9YK$1/5yshdIYawxE45EDZQFZ1</phash>
-        <permissions>
-          <role-based>
-            <superuser>yes</superuser>
-          </role-based>
-        </permissions>
-      </entry>
-    </users>
-  </mgt-config>
-  <shared>
-    <botnet>
-      <configuration>
-        <http>
-          <dynamic-dns>
-            <enabled>yes</enabled>
-            <threshold>5</threshold>
-          </dynamic-dns>
-          <malware-sites>
-            <enabled>yes</enabled>
-            <threshold>5</threshold>
-          </malware-sites>
-          <recent-domains>
-            <enabled>yes</enabled>
-            <threshold>5</threshold>
-          </recent-domains>
-          <ip-domains>
-            <enabled>yes</enabled>
-            <threshold>10</threshold>
-          </ip-domains>
-          <executables-from-unknown-sites>
-            <enabled>yes</enabled>
-            <threshold>5</threshold>
-          </executables-from-unknown-sites>
-        </http>
-        <other-applications>
-          <irc>yes</irc>
-        </other-applications>
-        <unknown-applications>
-          <unknown-tcp>
-            <destinations-per-hour>10</destinations-per-hour>
-            <sessions-per-hour>10</sessions-per-hour>
-            <session-length>
-              <maximum-bytes>100</maximum-bytes>
-              <minimum-bytes>50</minimum-bytes>
-            </session-length>
-          </unknown-tcp>
-          <unknown-udp>
-            <destinations-per-hour>10</destinations-per-hour>
-            <sessions-per-hour>10</sessions-per-hour>
-            <session-length>
-              <maximum-bytes>100</maximum-bytes>
-              <minimum-bytes>50</minimum-bytes>
-            </session-length>
-          </unknown-udp>
-        </unknown-applications>
-      </configuration>
-      <report>
-        <topn>100</topn>
-        <scheduled>yes</scheduled>
-      </report>
-    </botnet>
-  <log-settings><email>
+  <mgt-config><users><entry name="admin">
+  <phash>$1$MXwT2SaP$BvZxTYXYJxb0oMfbm5oKL1</phash>
+  <permissions>
+    <role-based>
+      <superuser>yes</superuser>
+    </role-based>
+  </permissions>
+</entry></users><password-complexity><enabled>yes</enabled>
+<minimum-length>12</minimum-length>
+<minimum-uppercase-letters>1</minimum-uppercase-letters>
+<minimum-lowercase-letters>1</minimum-lowercase-letters>
+<minimum-numeric-letters>1</minimum-numeric-letters>
+<minimum-special-characters>1</minimum-special-characters>
+<block-username-inclusion>yes</block-username-inclusion>
+<password-history-count>24</password-history-count>
+<new-password-differs-by-characters>3</new-password-differs-by-characters>
+<password-change>
+  <expiration-period>90</expiration-period>
+</password-change>
+</password-complexity></mgt-config>
+  <shared><log-settings><email>
   <entry name="Sample_Email_Profile">
     <server>
       <entry name="Sample_Email_Profile">
@@ -341,15 +297,7 @@
         <interface>
           <ethernet />
         </interface>
-        <profiles>
-          <monitor-profile>
-            <entry name="default">
-              <interval>3</interval>
-              <threshold>5</threshold>
-              <action>wait-recover</action>
-            </entry>
-          </monitor-profile>
-        <zone-protection-profile><entry name="Recommended_Zone_Protection">
+      <profiles><zone-protection-profile><entry name="Recommended_Zone_Protection">
   <flood>
     <tcp-syn>
       <red>
@@ -420,163 +368,7 @@
   <remove-tcp-timestamp>yes</remove-tcp-timestamp>
   <strip-tcp-fast-open-and-data>no</strip-tcp-fast-open-and-data>
   <strip-mptcp-option>global</strip-mptcp-option>
-</entry></zone-protection-profile></profiles>
-        <ike>
-          <crypto-profiles>
-            <ike-crypto-profiles>
-              <entry name="default">
-                <encryption>
-                  <member>aes-128-cbc</member>
-                  <member>3des</member>
-                </encryption>
-                <hash>
-                  <member>sha1</member>
-                </hash>
-                <dh-group>
-                  <member>group2</member>
-                </dh-group>
-                <lifetime>
-                  <hours>8</hours>
-                </lifetime>
-              </entry>
-              <entry name="Suite-B-GCM-128">
-                <encryption>
-                  <member>aes-128-cbc</member>
-                </encryption>
-                <hash>
-                  <member>sha256</member>
-                </hash>
-                <dh-group>
-                  <member>group19</member>
-                </dh-group>
-                <lifetime>
-                  <hours>8</hours>
-                </lifetime>
-              </entry>
-              <entry name="Suite-B-GCM-256">
-                <encryption>
-                  <member>aes-256-cbc</member>
-                </encryption>
-                <hash>
-                  <member>sha384</member>
-                </hash>
-                <dh-group>
-                  <member>group20</member>
-                </dh-group>
-                <lifetime>
-                  <hours>8</hours>
-                </lifetime>
-              </entry>
-            </ike-crypto-profiles>
-            <ipsec-crypto-profiles>
-              <entry name="default">
-                <esp>
-                  <encryption>
-                    <member>aes-128-cbc</member>
-                    <member>3des</member>
-                  </encryption>
-                  <authentication>
-                    <member>sha1</member>
-                  </authentication>
-                </esp>
-                <dh-group>group2</dh-group>
-                <lifetime>
-                  <hours>1</hours>
-                </lifetime>
-              </entry>
-              <entry name="Suite-B-GCM-128">
-                <esp>
-                  <encryption>
-                    <member>aes-128-gcm</member>
-                  </encryption>
-                  <authentication>
-                    <member>none</member>
-                  </authentication>
-                </esp>
-                <dh-group>group19</dh-group>
-                <lifetime>
-                  <hours>1</hours>
-                </lifetime>
-              </entry>
-              <entry name="Suite-B-GCM-256">
-                <esp>
-                  <encryption>
-                    <member>aes-256-gcm</member>
-                  </encryption>
-                  <authentication>
-                    <member>none</member>
-                  </authentication>
-                </esp>
-                <dh-group>group20</dh-group>
-                <lifetime>
-                  <hours>1</hours>
-                </lifetime>
-              </entry>
-            </ipsec-crypto-profiles>
-            <global-protect-app-crypto-profiles>
-              <entry name="default">
-                <encryption>
-                  <member>aes-128-cbc</member>
-                </encryption>
-                <authentication>
-                  <member>sha1</member>
-                </authentication>
-              </entry>
-            </global-protect-app-crypto-profiles>
-          </crypto-profiles>
-        </ike>
-        <qos>
-          <profile>
-            <entry name="default">
-              <class>
-                <entry name="class1">
-                  <priority>real-time</priority>
-                </entry>
-                <entry name="class2">
-                  <priority>high</priority>
-                </entry>
-                <entry name="class3">
-                  <priority>high</priority>
-                </entry>
-                <entry name="class4">
-                  <priority>medium</priority>
-                </entry>
-                <entry name="class5">
-                  <priority>medium</priority>
-                </entry>
-                <entry name="class6">
-                  <priority>low</priority>
-                </entry>
-                <entry name="class7">
-                  <priority>low</priority>
-                </entry>
-                <entry name="class8">
-                  <priority>low</priority>
-                </entry>
-              </class>
-            </entry>
-          </profile>
-        </qos>
-        <virtual-router>
-          <entry name="default">
-            <protocol>
-              <bgp>
-                <enable>no</enable>
-                <dampening-profile>
-                  <entry name="default">
-                    <cutoff>1.25</cutoff>
-                    <reuse>0.5</reuse>
-                    <max-hold-time>900</max-hold-time>
-                    <decay-half-life-reachable>300</decay-half-life-reachable>
-                    <decay-half-life-unreachable>900</decay-half-life-unreachable>
-                    <enable>yes</enable>
-                  </entry>
-                </dampening-profile>
-              </bgp>
-            </protocol>
-          </entry>
-        </virtual-router>
-      </network>
+</entry></zone-protection-profile></profiles></network>
       <deviceconfig><system><update-schedule>
   <statistics-service>
     <application-reports>yes</application-reports>
@@ -612,6 +404,22 @@
       </every-min>
     </recurring>
   </wildfire>
+  <global-protect-datafile>
+    <recurring>
+      <hourly>
+        <at>40</at>
+        <action>download-and-install</action>
+      </hourly>
+    </recurring>
+  </global-protect-datafile>
+  <global-protect-clientless-vpn>
+    <recurring>
+      <hourly>
+        <at>50</at>
+        <action>download-and-install</action>
+      </hourly>
+    </recurring>
+  </global-protect-clientless-vpn>
 </update-schedule>
 <snmp-setting>
   <access-setting>
@@ -661,6 +469,12 @@ Log off immediately if you are not an authorized user.</login-banner>
       <lifetime>525600</lifetime>
     </key>
   </api>
+  <admin-lockout>
+    <failed-attempts>5</failed-attempts>
+    <lockout-time>30</lockout-time>
+  </admin-lockout>
+  <idle-timeout>10</idle-timeout>
+  <auto-acquire-commit-lock>yes</auto-acquire-commit-lock>
 </management>
 <wildfire>
   <file-size-limit>
@@ -756,6 +570,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <destination>
       <member>panw-highrisk-ip-list</member>
       <member>panw-known-ip-list</member>
+      <member>panw-bulletproof-ip-list</member>
     </destination>
     <source-user>
       <member>any</member>
@@ -789,6 +604,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <source>
       <member>panw-highrisk-ip-list</member>
       <member>panw-known-ip-list</member>
+      <member>panw-bulletproof-ip-list</member>
     </source>
     <destination>
       <member>any</member>
@@ -850,80 +666,6 @@ Log off immediately if you are not an authorized user.</login-banner>
     <tag>
       <member>Outbound</member>
     </tag>
-  </entry>
-    <entry name="Outbound Bogon Block Rule">
-    <description>Block outbound sessions with a destination address matching a known bogon address that should not be transitting the firewall. Add known exceptions to the rule before activating.</description>
-    <to>
-      <member>any</member>
-    </to>
-    <from>
-      <member>any</member>
-    </from>
-    <source>
-      <member>any</member>
-    </source>
-    <destination>
-      <member>Team Cymru Bogons IPv4</member>
-      <member>Team Cymru Bogons IPv6</member>
-    </destination>
-    <source-user>
-      <member>any</member>
-    </source-user>
-    <category>
-      <member>any</member>
-    </category>
-    <application>
-      <member>any</member>
-    </application>
-    <service>
-      <member>any</member>
-    </service>
-    <hip-profiles>
-      <member>any</member>
-    </hip-profiles>
-    <action>deny</action>
-    <log-setting>default</log-setting>
-    <tag>
-      <member>Outbound</member>
-    </tag>
-    <disabled>yes</disabled>
-  </entry>
-  <entry name="Inbound Bogon Block Rule">
-    <description>Block inbound sessions with a source address matching a known bogon address that should not be transitting the firewall. Add known exceptions to the rule before activating.</description>
-    <to>
-      <member>any</member>
-    </to>
-    <from>
-      <member>any</member>
-    </from>
-    <source>
-      <member>Team Cymru Bogons IPv4</member>
-      <member>Team Cymru Bogons IPv6</member>
-    </source>
-    <destination>
-      <member>any</member>
-    </destination>
-    <source-user>
-      <member>any</member>
-    </source-user>
-    <category>
-      <member>any</member>
-    </category>
-    <application>
-      <member>any</member>
-    </application>
-    <service>
-      <member>any</member>
-    </service>
-    <hip-profiles>
-      <member>any</member>
-    </hip-profiles>
-    <action>deny</action>
-    <log-setting>default</log-setting>
-    <tag>
-      <member>Inbound</member>
-    </tag>
-    <disabled>yes</disabled>
   </entry>
 </rules></security><decryption><rules>
   <entry name="NO-Decrypt URL Categories">
@@ -990,32 +732,11 @@ Log off immediately if you are not an authorized user.</login-banner>
   </entry>
 </rules></decryption></rulebase>
         <address><entry name="Sinkhole-IPv4">
-<ip-netmask>72.5.65.111</ip-netmask>
+  <fqdn>sinkhole.paloaltonetworks.com</fqdn>
 </entry>
 <entry name="Sinkhole-IPv6">
-<ip-netmask>2600:5200::1</ip-netmask>
-</entry></address><external-list><entry name="Team Cymru Bogons IPv4">
-  <type>
-    <ip>
-      <recurring>
-        <hourly />
-      </recurring>
-      <url>http://www.team-cymru.org/Services/Bogons/fullbogons-ipv4.txt</url>
-      <description>IPv4 addresses that should not be routed across the Internet. Either reserved IP address space or unassigned and may be used for malicious purposes. More information: http://www.team-cymru.com/bogon-reference.html</description>
-    </ip>
-  </type>
-</entry>
-<entry name="Team Cymru Bogons IPv6">
-<type>
-  <ip>
-    <recurring>
-      <hourly />
-    </recurring>
-    <url>http://www.team-cymru.org/Services/Bogons/fullbogons-ipv6.txt</url>
-    <description>IPv6 addresses that should not be routed across the Internet. Either reserved IP address space or unassigned and may be used for malicious purposes. More information: http://www.team-cymru.com/bogon-reference.html</description>
-  </ip>
-</type>
-</entry></external-list><tag><entry name="Outbound">
+  <ip-netmask>2600:5200::1</ip-netmask>
+</entry></address><tag><entry name="Outbound">
 	<comments>Outbound to the Internet</comments>
 </entry>
 <entry name="Inbound">
@@ -1025,7 +746,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 	<comments>Internal to Internal</comments>
 </entry>
 <entry name="iron-skillet-version">
-	<comments>version 0.0.1 for 9.0: version of this IronSkillet template file</comments>
+	<comments>version 0.0.2 for 9.0: version of this IronSkillet template file</comments>
 </entry></tag><log-settings><profiles><entry name="default">
   <match-list>
     <entry name="Traffic_Log_Forwarding">
@@ -1317,7 +1038,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>72.5.65.111</ipv4-address>
+      <ipv4-address>sinkhole.paloaltonetworks.com</ipv4-address>
       <ipv6-address>2600:5200::1</ipv6-address>
     </sinkhole>
   </botnet-domains>
@@ -1366,7 +1087,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>72.5.65.111</ipv4-address>
+      <ipv4-address>sinkhole.paloaltonetworks.com</ipv4-address>
       <ipv6-address>2600:5200::1</ipv6-address>
     </sinkhole>
   </botnet-domains>
@@ -1415,7 +1136,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>72.5.65.111</ipv4-address>
+      <ipv4-address>sinkhole.paloaltonetworks.com</ipv4-address>
       <ipv6-address>2600:5200::1</ipv6-address>
     </sinkhole>
   </botnet-domains>
@@ -1464,7 +1185,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>72.5.65.111</ipv4-address>
+      <ipv4-address>sinkhole.paloaltonetworks.com</ipv4-address>
       <ipv6-address>2600:5200::1</ipv6-address>
     </sinkhole>
   </botnet-domains>
@@ -1499,7 +1220,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>72.5.65.111</ipv4-address>
+      <ipv4-address>sinkhole.paloaltonetworks.com</ipv4-address>
       <ipv6-address>2600:5200::1</ipv6-address>
     </sinkhole>
   </botnet-domains>
@@ -2018,6 +1739,8 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>web-advertisements</member>
       <member>web-based-email</member>
       <member>web-hosting</member>
+      <member>Black-List</member>
+      <member>White-List</member>
     </alert>
   </credential-enforcement>
   <alert>
@@ -2091,6 +1814,8 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>web-advertisements</member>
     <member>web-based-email</member>
     <member>web-hosting</member>
+    <member>Black-List</member>
+    <member>White-List</member>
   </alert>
 </entry>
 <entry name="Exception-URL">
@@ -2171,6 +1896,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>web-based-email</member>
       <member>web-hosting</member>
       <member>Black-List</member>
+      <member>White-List</member>
     </block>
   </credential-enforcement>
   <log-http-hdr-user-agent>yes</log-http-hdr-user-agent>
