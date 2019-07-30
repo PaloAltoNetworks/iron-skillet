@@ -10,7 +10,7 @@ zones, and NAT.
 
 The IronSkillet template details and usage are documented at:
 
-[IronSkillet Documentation](https://iron-skillet.readthedocs.io/en/panos_v8.0/)
+[IronSkillet Documentation](https://iron-skillet.readthedocs.io/en/docs_master/)
 
 ## Quick Start
 The templates are provided with a variety of usage options based
@@ -29,7 +29,7 @@ If you want to bypass any type of automation and configure the IronSkillet
 recommended settings through the GUI, a list of the settings and the locations
 in the GUI of both the Panorama and firewall required changes can be found here:
 
-[IronSkillet GUI Manual Instructions](https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.0/GUI_config)
+[IronSkillet GUI Manual Instructions](https://github.com/PaloAltoNetworks/iron-skillet/tree/docs_master/GUI_config)
 
 **TIP:** This is also a good way to manually audit your current Panorama or firewall
 configuration.  Keep in mind that a recommended IronSkillet setting should not be used
@@ -95,7 +95,7 @@ to disable, simply return to CLI operation mode with `exit` and enter
 The detailed documentation provides a list of variables that can be edited
 and instructions for GUI and CLI edits to these values.
 
-[IronSkillet variables](https://iron-skillet.readthedocs.io/en/panos_v8.0/creating_loadable_configs.html#variables-list-and-descriptions)
+[IronSkillet variables](https://iron-skillet.readthedocs.io/en/docs_master/creating_loadable_configs.html#variables-list-and-descriptions)
 
 
 #### Using the SET command spreadsheet to edit values
