@@ -1,4 +1,4 @@
-<entry name="{{ TEMPLATE }}">
+<entry name="iron-skillet">
   <settings>
     <default-vsys>vsys1</default-vsys>
   </settings>
