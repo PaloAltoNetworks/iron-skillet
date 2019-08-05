@@ -154,9 +154,6 @@ snippets:
   - name: address
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/address
     file: ../snippets/address.xml
-  - name: external_list
-    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/external-list
-    file: ../snippets/external_list.xml
   - name: local_log_profiles
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/log-settings/profiles
     file: ../snippets/log_settings_profiles.xml
