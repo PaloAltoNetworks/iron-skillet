@@ -1,5 +1,5 @@
 <entry name="Sinkhole-IPv4">
-    <ip-netmask>{{ SINKHOLE_IPV4 }}</ip-netmask>
+    <fqdn>{{ SINKHOLE_IPV4 }}</fqdn>
 </entry>
 <entry name="Sinkhole-IPv6">
     <ip-netmask>{{ SINKHOLE_IPV6 }}</ip-netmask>
