@@ -1054,9 +1054,9 @@ Log off immediately if you are not an authorized user.</login-banner>
 	<comments>Internal to Internal</comments>
 </entry>
 <entry name="iron-skillet-version">
-	<comments>version 0.0.2 for 9.0: version of this IronSkillet template file</comments>
+	<comments>version 0.0.3 for 9.0: version of this IronSkillet template file</comments>
 </entry></tag><address><entry name="Sinkhole-IPv4">
-    <ip-netmask>{{ SINKHOLE_IPV4 }}</ip-netmask>
+    <fqdn>{{ SINKHOLE_IPV4 }}</fqdn>
 </entry>
 <entry name="Sinkhole-IPv6">
     <ip-netmask>{{ SINKHOLE_IPV6 }}</ip-netmask>

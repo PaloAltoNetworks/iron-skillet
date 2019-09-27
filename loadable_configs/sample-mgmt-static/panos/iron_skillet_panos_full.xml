@@ -1,6 +1,6 @@
 <config urldb="paloaltonetworks" version="9.0.0">
   <mgt-config><users><entry name="admin">
-  <phash>$1$Q2/SxL.3$FYiW//YxKKKtWkNr2wEvc.</phash>
+  <phash>$1$8tdSbBYf$16o9z2oO6jEWvK0XFcGhW/</phash>
   <permissions>
     <role-based>
       <superuser>yes</superuser>
@@ -744,7 +744,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 	<comments>Internal to Internal</comments>
 </entry>
 <entry name="iron-skillet-version">
-	<comments>version 0.0.2 for 9.0: version of this IronSkillet template file</comments>
+	<comments>version 0.0.3 for 9.0: version of this IronSkillet template file</comments>
 </entry></tag><log-settings><profiles><entry name="default">
   <match-list>
     <entry name="Traffic_Log_Forwarding">
