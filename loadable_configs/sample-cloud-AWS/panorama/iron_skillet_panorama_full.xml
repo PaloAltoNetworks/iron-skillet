@@ -2,7 +2,7 @@
   <mgt-config>
     <devices />
   <users> <entry name="admin">
-  <phash>$1$zheXdv8M$Zd03/8NI5nrry1N6ZZ2ox.</phash>
+  <phash>$1$RoZoErkA$vj.lkZPrI7F8Uoxoq.knw/</phash>
   <permissions>
     <role-based>
       <superuser>yes</superuser>
@@ -546,7 +546,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     </devices>
   <mgt-config><users>
   <entry name="admin">
-    <phash>$1$ANndjXET$N5i/IqmYTw30qYFeoYs2V.</phash>
+    <phash>$1$uWhiRvAq$RrSaug3Jk.LZ2Z0sSj0zi.</phash>
     <permissions>
       <role-based>
         <superuser>yes</superuser>
@@ -1031,7 +1031,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 	<comments>Internal to Internal</comments>
 </entry>
 <entry name="iron-skillet-version">
-	<comments>version 0.0.2 for 9.0: version of this IronSkillet template file</comments>
+	<comments>version 0.0.3 for 9.0: version of this IronSkillet template file</comments>
 </entry></tag><address><entry name="Sinkhole-IPv4">
     <fqdn>sinkhole.paloaltonetworks.com</fqdn>
 </entry>
