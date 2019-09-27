@@ -110,9 +110,9 @@ variables:
     default: 8.8.4.4
     type_hint: ip_address
   - name: SINKHOLE_IPV4
-    description: sinkhole address IPv4
-    default: 72.5.65.111
-    type_hint: ip_address
+    description: sinkhole FQDN IPv4
+    default: sinkhole.paloaltonetworks.com
+    type_hint: text
   - name: SINKHOLE_IPV6
     description: sinkhole address IPv6
     default: 2600:5200::1
