@@ -19,8 +19,7 @@ labels:
 
 # variables used in the configuration templates
 # type_hint defines the form field type in pan-cnc
-variables:
-  -
+# no variables required for this skillet
 
 # snippets used for api configuration including xpath and element as file name
 # files will load in the order listed
