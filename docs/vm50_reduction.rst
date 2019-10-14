@@ -7,7 +7,7 @@ IronSkillet includes a broad set of security profiles to simplify the usage in s
 the number of security profiles that can be configured to 38 resulting in possible commit errors if this limit is exceeded.
 
 .. Note::
-    If > 49 profiles, the user may see an error message that the number of profiles (39) exceeds capacity (38). This is
+    If > 39 profiles, the user may see an error message that the number of profiles (39) exceeds capacity (38). This is
     an error in the message output and the user will have to remove enough profiles for the 38 count limit.
 
 .. Note::
