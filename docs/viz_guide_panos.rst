@@ -71,7 +71,7 @@ Device > Setup > Management > Authentication Settings
 +++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 .. image:: images/vg_device_setup_auth.png
-   :width: 400
+   :width: 500
    :align: center
 
 Changes to Authentication Settings:
