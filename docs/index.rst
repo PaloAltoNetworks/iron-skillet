@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 Welcome to Iron Skillet template documentation!
-====================================
+===============================================
 
 .. toctree::
    :maxdepth: 1
@@ -14,6 +14,7 @@ Welcome to Iron Skillet template documentation!
    requirements_caveats
    panos_template_guide
    panorama_template_guide
+   viz_guide_panos
    using_default_templates
    using_the_spreadsheet
    creating_loadable_configs
