@@ -139,17 +139,19 @@ Device > Setup > Operations > SNMP Setup
 
 If used, ensure SNMP version is V3
 
+
 Services
 ~~~~~~~~
 
 .. _Device - Setup - Services: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-web-interface-help/device/device-setup-services.html
 
+
 .. admonition:: See also
 
      General configuration information in the Admin Guide: `Device - Setup - Services`_
 
-Device > Setup > Services
-+++++++++++++++++++++++++
+Device > Setup > Services > Services
+++++++++++++++++++++++++++++++++++++
 
 .. image:: images/vg_device_setup_svcs.png
    :width: 600
@@ -191,8 +193,8 @@ Telemetry
 
      General configuration information in the Admin Guide: `Device - Setup - Telemetry`_
 
-Device > Setup > Telemetry
-++++++++++++++++++++++++++
+Device > Setup > Telemetry > Telemetry
+++++++++++++++++++++++++++++++++++++++
 
 .. image:: images/vg_telemetry.png
    :width: 600
@@ -345,7 +347,7 @@ IronSkillet default admin
 
      General configuration information in the Admin Guide: `Device - Administrators`_
 
-Device > Administrators > admin
+Device > Administrators : admin
 +++++++++++++++++++++++++++++++
 
 .. image:: images/vg_device_admins.png
@@ -543,8 +545,8 @@ IronSkillet Dynamic Updates
 Dynamic updates allow the firewall to periodically check for content updates. Without this schedule configured, no new signature, 
 vulnerabilities, malicious domains, or GlobalProtect files will be locally loaded into the firewall.
 
-Device > Dynamic Updates
-++++++++++++++++++++++++
+Device > Dynamic Updates : schedules
+++++++++++++++++++++++++++++++++++++
 
 .. image:: images/vg_device_dynUpdates.png
    :width: 600
@@ -658,8 +660,8 @@ Address
 IronSkillet Address Objects
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Objects > Addresses
-+++++++++++++++++++
+Objects > Addresses : sinkholes
++++++++++++++++++++++++++++++++
 
 .. image:: images/vg_object_addresses.png
    :width: 600
@@ -683,8 +685,8 @@ Tags
 IronSkillet Tag Objects
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Object > Tags
-+++++++++++++
+Object > Tags : directionals and version
+++++++++++++++++++++++++++++++++++++++++
 
 .. image:: images/vg_objects_tags.png
    :width: 600
@@ -1033,8 +1035,8 @@ Profile groups. These can be referenced in a security profile without the need t
 IronSkillet Security Profile Groups
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Object > Security Profiles > WildFire Analysis
-++++++++++++++++++++++++++++++++++++++++++++++
+Object > Security Profile Groups : all groups
++++++++++++++++++++++++++++++++++++++++++++++
 
 .. image:: images/vg_profilegroup.png
    :width: 600
@@ -1142,8 +1144,8 @@ IronSkillet Security Policies
 IronSkillet only provides suggested block rules and no traffic passing allow rules. When admins add new security rules,
 they should reference the security profile groups and logging profile configured under Objects.
 
-Policies > Security
-+++++++++++++++++++
+Policies > Security : edl and sinkhole
+++++++++++++++++++++++++++++++++++++++
 
 .. image:: images/vg_policy_security.png
    :width: 600
@@ -1188,8 +1190,8 @@ validation checks according to the Recommended_Decryption_Profile.
 Neither of the two rules perform any decryption but rather validate the encrypted sessions (SSL/SSH)
 meet particular integrity and encryption standards.
 
-Policies > Decryption
-+++++++++++++++++++++
+Policies > Decryption : no decrypt
+++++++++++++++++++++++++++++++++++
 
 .. image:: images/vg_policy_decrypt.png
    :width: 600
@@ -1217,7 +1219,7 @@ IronSkillet Custom Reports
 IronSkillet includes a small set of custom reports aimed at SecOps practices and discovering malicious behavior.
 These can be used as a reference for additional custom reports.
 
-Monitor > Management Custom Reports
+Monitor > Manage Custom Reports
 +++++++++++++++++++++++++++++++++++
 
 .. image:: images/vg_monitor_customReport.png
