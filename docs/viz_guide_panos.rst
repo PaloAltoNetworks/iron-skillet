@@ -543,8 +543,8 @@ IronSkillet Dynamic Updates
 Dynamic updates allow the firewall to periodically check for content updates. Without this schedule configured, no new signature, 
 vulnerabilities, malicious domains, or GlobalProtect files will be locally loaded into the firewall.
 
-Device > Server Profiles > Email
-++++++++++++++++++++++++++++++++
+Device > Dynamic Updates
+++++++++++++++++++++++++
 
 .. image:: images/vg_device_dynUpdates.png
    :width: 600
