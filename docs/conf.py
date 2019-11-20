@@ -19,7 +19,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = u'ironscotch'
+project = u'IronSkillet'
 copyright = u'2019, Scott Shoaf'
 author = u'Scott Shoaf'
 
