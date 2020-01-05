@@ -15,23 +15,8 @@
 <block-username-inclusion>yes</block-username-inclusion>
 <password-history-count>24</password-history-count>
 <new-password-differs-by-characters>3</new-password-differs-by-characters>
-<password-change>
-  <expiration-period>90</expiration-period>
-</password-change>
 </password-complexity></mgt-config>
-  <shared><log-settings><email>
-  <entry name="Sample_Email_Profile">
-    <server>
-      <entry name="Sample_Email_Profile">
-        <display-name>Panorama</display-name>
-        <gateway>{{ EMAIL_PROFILE_GATEWAY }}</gateway>
-        <from>{{ EMAIL_PROFILE_FROM }}</from>
-        <to>{{ EMAIL_PROFILE_TO }}</to>
-      </entry>
-    </server>
-  </entry>
-</email>
-<syslog>
+  <shared><log-settings><syslog>
   <entry name="Sample_Syslog_Profile">
     <server>
       <entry name="Sample_Syslog">
@@ -46,13 +31,6 @@
 </syslog>
 <system>
   <match-list>
-    <entry name="Email_Critical_System_Logs">
-      <send-email>
-        <member>Sample_Email_Profile</member>
-      </send-email>
-      <filter>(severity eq critical)</filter>
-      <description>Email Critical System Logs</description>
-    </entry>
     <entry name="System_Log_Forwarding">
       <filter>All Logs</filter>
       <send-to-panorama>no</send-to-panorama>
@@ -94,7 +72,17 @@
       </send-syslog>
     </entry>
   </match-list>
-</hipmatch></log-settings><reports><entry name="Host-visit malicious sites plus">
+</hipmatch>
+<iptag>
+  <match-list>
+    <entry name="IP-Tag_Log_Forwarding">
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
+      <filter>All Logs</filter>
+    </entry>
+  </match-list>
+</iptag></log-settings><reports><entry name="Host-visit malicious sites plus">
   <period>last-7-calendar-days</period>
   <topn>500</topn>
   <topm>50</topm>
@@ -428,12 +416,6 @@
     </version>
   </access-setting>
 </snmp-setting>
-<dns-setting>
-  <servers>
-    <primary>{{ DNS_1 }}</primary>
-    <secondary>{{ DNS_2 }}</secondary>
-  </servers>
-</dns-setting>
 <ntp-servers>
   <primary-ntp-server>
     <ntp-server-address>{{ NTP_1 }}</ntp-server-address>
@@ -445,33 +427,10 @@
 <login-banner>You have accessed a protected system.
 Log off immediately if you are not an authorized user.</login-banner>
 <timezone>UTC</timezone>
-<hostname>{{ FW_NAME }}</hostname>
-{%- if MGMT_TYPE == "static" %}
-<type>
-  <static />
-</type>
-<ip-address>{{ MGMT_IP }}</ip-address>
-<netmask>{{ MGMT_MASK }}</netmask>
-<default-gateway>{{ MGMT_DG }}</default-gateway>
-{% elif MGMT_TYPE == "dhcp-client" %}
-<type>
-   <dhcp-client>
-     <send-hostname>yes</send-hostname>
-     <send-client-id>no</send-client-id>
-     <accept-dhcp-hostname>no</accept-dhcp-hostname>
-     <accept-dhcp-domain>no</accept-dhcp-domain>
-   </dhcp-client>
-</type>
-{% else %}
-<type>
-   <dhcp-client>
-     <send-hostname>yes</send-hostname>
-     <send-client-id>no</send-client-id>
-     <accept-dhcp-hostname>no</accept-dhcp-hostname>
-     <accept-dhcp-domain>no</accept-dhcp-domain>
-   </dhcp-client>
-</type>
-{% endif %}</system><setting><ctd>
+<hostname>{{ FW_NAME }}</hostname><dns-settings><servers>
+  <primary>{{ DNS_1 }}</primary>
+  <secondary>{{ DNS_2 }}</secondary>
+</servers></dns-settings></system><setting><ctd>
   <strip-x-fwd-for>yes</strip-x-fwd-for>
   <x-forwarded-for>yes</x-forwarded-for>
   <allow-http-range>no</allow-http-range>
@@ -764,7 +723,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 	<comments>Internal to Internal</comments>
 </entry>
 <entry name="iron-skillet-version">
-	<comments>version 0.0.3 for 9.0: version of this IronSkillet template file</comments>
+	<comments>version 0.0.4 for 9.0: version of this IronSkillet template file</comments>
 </entry></tag><log-settings><profiles><entry name="default">
   <match-list>
     <entry name="Traffic_Log_Forwarding">
@@ -782,24 +741,6 @@ Log off immediately if you are not an authorized user.</login-banner>
       <send-syslog>
         <member>Sample_Syslog_Profile</member>
       </send-syslog>
-    </entry>
-    <entry name="Email_Malicious_Verdicts">
-      <send-email>
-        <member>Sample_Email_Profile</member>
-      </send-email>
-      <action-desc>Email Malicious Wildfire Verdicts</action-desc>
-      <log-type>wildfire</log-type>
-      <filter>(verdict eq malicious)</filter>
-      <send-to-panorama>no</send-to-panorama>
-    </entry>
-    <entry name="Email_Phishing_Verdicts">
-      <send-email>
-        <member>Sample_Email_Profile</member>
-      </send-email>
-      <action-desc>Email Phishing Wildfire Verdicts</action-desc>
-      <log-type>wildfire</log-type>
-      <filter>(verdict eq phishing)</filter>
-      <send-to-panorama>no</send-to-panorama>
     </entry>
     <entry name="Wildfire_Log_Forwarding">
       <log-type>wildfire</log-type>
@@ -1526,6 +1467,8 @@ Log off immediately if you are not an authorized user.</login-banner>
     </mode>
     <log-severity>high</log-severity>
     <block>
+      <member>Black-List</member>
+      <member>White-List</member>
       <member>abortion</member>
       <member>abused-drugs</member>
       <member>adult</member>
@@ -1536,6 +1479,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>computer-and-internet-info</member>
       <member>content-delivery-networks</member>
       <member>copyright-infringement</member>
+      <member>cryptocurrency</member>
       <member>dating</member>
       <member>dynamic-dns</member>
       <member>educational-institutions</member>
@@ -1545,6 +1489,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>gambling</member>
       <member>games</member>
       <member>government</member>
+      <member>grayware</member>
       <member>hacking</member>
       <member>health-and-medicine</member>
       <member>high-risk</member>
@@ -1596,14 +1541,13 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>web-advertisements</member>
       <member>web-based-email</member>
       <member>web-hosting</member>
-      <member>Black-List</member>
-      <member>White-List</member>
     </block>
   </credential-enforcement>
   <log-http-hdr-user-agent>yes</log-http-hdr-user-agent>
   <log-http-hdr-referer>yes</log-http-hdr-referer>
   <log-http-hdr-xff>yes</log-http-hdr-xff>
   <alert>
+    <member>White-List</member>
     <member>abortion</member>
     <member>abused-drugs</member>
     <member>adult</member>
@@ -1613,6 +1557,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>computer-and-internet-info</member>
     <member>content-delivery-networks</member>
     <member>copyright-infringement</member>
+    <member>cryptocurrency</member>
     <member>dating</member>
     <member>dynamic-dns</member>
     <member>educational-institutions</member>
@@ -1670,14 +1615,14 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>web-advertisements</member>
     <member>web-based-email</member>
     <member>web-hosting</member>
-    <member>White-List</member>
   </alert>
   <block>
+    <member>Black-List</member>
     <member>command-and-control</member>
+    <member>grayware</member>
     <member>hacking</member>
     <member>malware</member>
     <member>phishing</member>
-    <member>Black-List</member>
   </block>
 </entry>
 <entry name="Alert-Only-URL">
@@ -1687,6 +1632,8 @@ Log off immediately if you are not an authorized user.</login-banner>
     </mode>
     <log-severity>medium</log-severity>
     <alert>
+      <member>Black-List</member>
+      <member>White-List</member>
       <member>abortion</member>
       <member>abused-drugs</member>
       <member>adult</member>
@@ -1697,6 +1644,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>computer-and-internet-info</member>
       <member>content-delivery-networks</member>
       <member>copyright-infringement</member>
+      <member>cryptocurrency</member>
       <member>dating</member>
       <member>dynamic-dns</member>
       <member>educational-institutions</member>
@@ -1706,6 +1654,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>gambling</member>
       <member>games</member>
       <member>government</member>
+      <member>grayware</member>
       <member>hacking</member>
       <member>health-and-medicine</member>
       <member>high-risk</member>
@@ -1757,11 +1706,11 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>web-advertisements</member>
       <member>web-based-email</member>
       <member>web-hosting</member>
-      <member>Black-List</member>
-      <member>White-List</member>
     </alert>
   </credential-enforcement>
   <alert>
+    <member>Black-List</member>
+    <member>White-List</member>
     <member>abortion</member>
     <member>abused-drugs</member>
     <member>adult</member>
@@ -1772,6 +1721,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>computer-and-internet-info</member>
     <member>content-delivery-networks</member>
     <member>copyright-infringement</member>
+    <member>cryptocurrency</member>
     <member>dating</member>
     <member>dynamic-dns</member>
     <member>educational-institutions</member>
@@ -1781,6 +1731,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>gambling</member>
     <member>games</member>
     <member>government</member>
+    <member>grayware</member>
     <member>hacking</member>
     <member>health-and-medicine</member>
     <member>high-risk</member>
@@ -1832,8 +1783,6 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>web-advertisements</member>
     <member>web-based-email</member>
     <member>web-hosting</member>
-    <member>Black-List</member>
-    <member>White-List</member>
   </alert>
 </entry>
 <entry name="Exception-URL">
@@ -1843,6 +1792,8 @@ Log off immediately if you are not an authorized user.</login-banner>
     </mode>
     <log-severity>high</log-severity>
     <block>
+      <member>Black-List</member>
+      <member>White-List</member>
       <member>abortion</member>
       <member>abused-drugs</member>
       <member>adult</member>
@@ -1853,6 +1804,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>computer-and-internet-info</member>
       <member>content-delivery-networks</member>
       <member>copyright-infringement</member>
+      <member>cryptocurrency</member>
       <member>dating</member>
       <member>dynamic-dns</member>
       <member>educational-institutions</member>
@@ -1862,6 +1814,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>gambling</member>
       <member>games</member>
       <member>government</member>
+      <member>grayware</member>
       <member>hacking</member>
       <member>health-and-medicine</member>
       <member>high-risk</member>
@@ -1913,14 +1866,13 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>web-advertisements</member>
       <member>web-based-email</member>
       <member>web-hosting</member>
-      <member>Black-List</member>
-      <member>White-List</member>
     </block>
   </credential-enforcement>
   <log-http-hdr-user-agent>yes</log-http-hdr-user-agent>
   <log-http-hdr-referer>yes</log-http-hdr-referer>
   <log-http-hdr-xff>yes</log-http-hdr-xff>
   <alert>
+    <member>White-List</member>
     <member>abortion</member>
     <member>abused-drugs</member>
     <member>adult</member>
@@ -1930,6 +1882,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>computer-and-internet-info</member>
     <member>content-delivery-networks</member>
     <member>copyright-infringement</member>
+    <member>cryptocurrency</member>
     <member>dating</member>
     <member>dynamic-dns</member>
     <member>educational-institutions</member>
@@ -1987,14 +1940,14 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>web-advertisements</member>
     <member>web-based-email</member>
     <member>web-hosting</member>
-    <member>White-List</member>
   </alert>
   <block>
+    <member>Black-List</member>
     <member>command-and-control</member>
+    <member>grayware</member>
     <member>hacking</member>
     <member>malware</member>
     <member>phishing</member>
-    <member>Black-List</member>
   </block>
 </entry></url-filtering><wildfire-analysis><entry name="Outbound-WF">
   <rules>
