@@ -52,14 +52,8 @@ def build_xpath(parent_doc, xpath, new_element_contents):
     modified_xpath = re.sub('^/config', '.', xpath)
     print(f'Checking xpath {modified_xpath}')
     # let's check if the xpath exists as is first of all
+    # is exists later will do merge of children instead of add full element
     is_present = parent_doc.find(modified_xpath)
-    #if is_present is not None:
-    #if is_present == 'jay':
-    #    print('This xpath has been found and will perform a merge')
-    #    print('$' * 80)
-    #    print(modified_xpath)
-    #    print('$' * 80)
-    #else:
 
     # get a list of the tree elements that make up the xpath
     split_path = modified_xpath.split('/')
@@ -80,7 +74,6 @@ def build_xpath(parent_doc, xpath, new_element_contents):
         parent_element = parent_doc.find(parent_path)
         print(f'parent_element is {parent_element}')
         # go ahead and keep this around even if it exists or not
-        # FIXME could be problematic if we ever need to merge items and not just overwrite them
         print(f'appending {tail} to path_to_build')
         path_to_build.append(tail)
         if parent_element is not None:
@@ -103,12 +96,14 @@ def build_xpath(parent_doc, xpath, new_element_contents):
     # we should now have a document that has the tree fully built out to the xpath we want
     # wrap up the new_element_contents in the leaf node and attach it to the last known parent_element
     leaf_node = path_to_build[0]
+    # use if merging into an existing xpath
+    # instead of wrap with tail and merge will load each child of the tail node
     if is_present is not None:
         print('tail exists so merging element')
         # only temp wrap to create a parent and then append each child
-        # ensure no jinja conditionals are outside the child tags
+        # WARNING: ensure no jinja conditionals are outside the child tags
         wrapped_snippet = f"<{leaf_node}>{new_element_contents}</{leaf_node}>"
-        print(wrapped_snippet)
+        #print(wrapped_snippet)
         snippet_xml = ElementTree.fromstring(wrapped_snippet)
         for item in snippet_xml:
             print(item)
@@ -126,7 +121,7 @@ def build_xpath(parent_doc, xpath, new_element_contents):
         parent_element.append(snippet_xml)
         # print it out if needed
         #print(ElementTree.tostring(parent_element))
-
+    # returning parent_doc to use as the new baseline config
     return(parent_doc)
 
 def generate_full_config_template(config_type):
@@ -161,11 +156,6 @@ def generate_full_config_template(config_type):
     # append to the sys path for module lookup
     sys.path.append(config_path)
 
-    # import both python files here based on config_type
-    '''
-    FIXME fix this to use the yaml file
-    '''
-
     # read the metafile to get xpaths and load order
     try:
         with open(metadata_file, 'r') as snippet_metadata:
@@ -176,9 +166,9 @@ def generate_full_config_template(config_type):
         print(ioe)
         sys.exit()
 
-    # iterator through the metadata snippets load order
+    # iterate through the metadata snippets load order
     # parse the snippets into XML objects
-    # attach to the full_config dom
+    # attach to the current full_config dom
     for xml_snippet in service_config['snippets']:
         # xml_snippet is a set of attributes in the .meta-cnc.yaml file
         # that includes the xpaths and files listed in the proper load order
@@ -202,8 +192,8 @@ def generate_full_config_template(config_type):
         # magic happens here
         # update the document in place to attach the snippet string in the correct place according to it's xpath
         updated_config = build_xpath(full_config, xpath, snippet_string)
+        # create a new baseline full config after above element added
         full_config = updated_config
-
 
     print('=' * 80)
     raw_xml = str(ElementTree.tostring(full_config.getroot(), encoding='unicode'))
@@ -213,7 +203,6 @@ def generate_full_config_template(config_type):
         output_config_obj.write(raw_xml)
     print('=' * 80)
 
-
 if __name__ == '__main__':
-    for config_type in ['panos']:
+    for config_type in ['panos', 'panorama']:
         generate_full_config_template(config_type)
