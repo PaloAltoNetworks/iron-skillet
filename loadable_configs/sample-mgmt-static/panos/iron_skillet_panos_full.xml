@@ -1,6 +1,6 @@
 <config urldb="paloaltonetworks" version="9.0.0">
   <mgt-config><users><entry name="admin">
-  <phash>$1$NtKTZ/vI$7f0G9MiI.RutRrbX3Hfb4.</phash>
+  <phash>$1$mmfm.8bC$CkJJziu8WSXPVuXOlCzt90</phash>
   <permissions>
     <role-based>
       <superuser>yes</superuser>
@@ -82,7 +82,29 @@
       <filter>All Logs</filter>
     </entry>
   </match-list>
-</iptag></log-settings><reports><entry name="Host-visit malicious sites plus">
+</iptag><email>
+  <entry name="Sample_Email_Profile">
+    <server>
+      <entry name="Sample_Email_Profile">
+        <display-name>Panorama</display-name>
+        <gateway>192.0.2.1</gateway>
+        <from>sentfrom@yourdomain.com</from>
+        <to>sendto@yourdomain.com</to>
+      </entry>
+    </server>
+  </entry>
+</email>
+<system>
+  <match-list>
+    <entry name="Email_Critical_System_Logs">
+      <send-email>
+        <member>Sample_Email_Profile</member>
+      </send-email>
+      <filter>(severity eq critical)</filter>
+      <description>Email Critical System Logs</description>
+    </entry>
+  </match-list>
+</system></log-settings><reports><entry name="Host-visit malicious sites plus">
   <period>last-7-calendar-days</period>
   <topn>500</topn>
   <topm>50</topm>
@@ -357,7 +379,17 @@
   <strip-tcp-fast-open-and-data>no</strip-tcp-fast-open-and-data>
   <strip-mptcp-option>global</strip-mptcp-option>
 </entry></zone-protection-profile></profiles></network>
-      <deviceconfig><system><update-schedule>
+      <deviceconfig><system><type>
+    <static />
+  
+</type>
+<ip-address>192.0.2.6</ip-address>
+<netmask>255.255.128.0</netmask>
+<default-gateway>192.0.2.7</default-gateway>
+<dns-setting><servers>
+  <primary>8.8.8.8</primary>
+  <secondary>8.8.4.4</secondary>
+</servers></dns-setting><update-schedule>
   <statistics-service>
     <application-reports>yes</application-reports>
     <threat-prevention-reports>yes</threat-prevention-reports>
@@ -427,10 +459,7 @@
 <login-banner>You have accessed a protected system.
 Log off immediately if you are not an authorized user.</login-banner>
 <timezone>UTC</timezone>
-<hostname>sample</hostname><dns-settings><servers>
-  <primary>8.8.8.8</primary>
-  <secondary>8.8.4.4</secondary>
-</servers></dns-settings></system><setting><ctd>
+<hostname>sample</hostname></system><setting><ctd>
   <strip-x-fwd-for>yes</strip-x-fwd-for>
   <x-forwarded-for>yes</x-forwarded-for>
   <allow-http-range>no</allow-http-range>
@@ -780,6 +809,27 @@ Log off immediately if you are not an authorized user.</login-banner>
       <send-syslog>
         <member>Sample_Syslog_Profile</member>
       </send-syslog>
+    </entry>
+  </match-list>
+</entry><entry name="default">
+  <match-list>
+    <entry name="Email_Malicious_Verdicts">
+      <send-email>
+        <member>Sample_Email_Profile</member>
+      </send-email>
+      <action-desc>Email Malicious Wildfire Verdicts</action-desc>
+      <log-type>wildfire</log-type>
+      <filter>(verdict eq malicious)</filter>
+      <send-to-panorama>no</send-to-panorama>
+    </entry>
+    <entry name="Email_Phishing_Verdicts">
+      <send-email>
+        <member>Sample_Email_Profile</member>
+      </send-email>
+      <action-desc>Email Phishing Wildfire Verdicts</action-desc>
+      <log-type>wildfire</log-type>
+      <filter>(verdict eq phishing)</filter>
+      <send-to-panorama>no</send-to-panorama>
     </entry>
   </match-list>
 </entry></profiles></log-settings><profiles><custom-url-category><entry name="Black-List">

@@ -31,6 +31,7 @@ import sys
 import oyaml
 
 from xml.etree import ElementTree
+#from lxml.etree import ElementTree
 
 
 def build_xpath(parent_doc, xpath, new_element_contents):
@@ -52,61 +53,81 @@ def build_xpath(parent_doc, xpath, new_element_contents):
     print(f'Checking xpath {modified_xpath}')
     # let's check if the xpath exists as is first of all
     is_present = parent_doc.find(modified_xpath)
+    #if is_present is not None:
+    #if is_present == 'jay':
+    #    print('This xpath has been found and will perform a merge')
+    #    print('$' * 80)
+    #    print(modified_xpath)
+    #    print('$' * 80)
+    #else:
+
+    # get a list of the tree elements that make up the xpath
+    split_path = modified_xpath.split('/')
+    # keep a list of things we'll need to manually construct
+    path_to_build = []
+    orig_tail = split_path[-1]
+    # begin infinite loop
+    while True:
+        # grab the last part of the xpath and start there
+        # we will work backwards 'up' the tree until we find something that exists and build all the parts we
+        # need back 'down' the tree
+        tail = split_path[-1]
+        print(f'tail is {tail}')
+        # put the path back together minus the 'tail' (last node)
+        parent_path = "/".join(split_path[:-1])
+        print(f'parent_path is {parent_path}')
+        # does this one exist?
+        parent_element = parent_doc.find(parent_path)
+        print(f'parent_element is {parent_element}')
+        # go ahead and keep this around even if it exists or not
+        # FIXME could be problematic if we ever need to merge items and not just overwrite them
+        print(f'appending {tail} to path_to_build')
+        path_to_build.append(tail)
+        if parent_element is not None:
+            print('found a parent element')
+            print(parent_element)
+            # found a node that exists so we can break out of the loop here
+            break
+        else:
+            # pop tail from the path we're searching and try again
+            split_path.pop()
+
+    # we now have a path that exists and list of items we need to build
+    # flesh out the tree if the path we need to build is larger than one, i.e. the leaf node needs to attach
+    # to another node that doesn't yet exist, go ahead and build them all the up
+    while len(path_to_build) > 1:
+        p = path_to_build.pop()
+        print('appending {} to parent_element'.format(p))
+        parent_element = ElementTree.SubElement(parent_element, p)
+
+    # we should now have a document that has the tree fully built out to the xpath we want
+    # wrap up the new_element_contents in the leaf node and attach it to the last known parent_element
+    leaf_node = path_to_build[0]
     if is_present is not None:
-        print('This one has been found')
-        print('$' * 80)
-        print(modified_xpath)
-        print('$' * 80)
+        print('tail exists so merging element')
+        # only temp wrap to create a parent and then append each child
+        # ensure no jinja conditionals are outside the child tags
+        wrapped_snippet = f"<{leaf_node}>{new_element_contents}</{leaf_node}>"
+        print(wrapped_snippet)
+        snippet_xml = ElementTree.fromstring(wrapped_snippet)
+        for item in snippet_xml:
+            print(item)
+            print('merging to parent_element')
+            parent_element = parent_doc.find(modified_xpath)
+            parent_element.append(item)
+        # print it out if needed
+        #print(ElementTree.tostring(parent_element))
     else:
-        # get a list of the tree elements that make up the xpath
-        split_path = modified_xpath.split('/')
-        # keep a list of things we'll need to manually construct
-        path_to_build = []
-        # begin infinite loop
-        while True:
-            # grab the last part of the xpath and start there
-            # we will work backwards 'up' the tree until we find something that exists and build all the parts we
-            # need back 'down' the tree
-            tail = split_path[-1]
-            print(f'tail is {tail}')
-            # put the path back together minus the 'tail' (last node)
-            parent_path = "/".join(split_path[:-1])
-            print(f'parent_path is {parent_path}')
-            # does this one exist?
-            parent_element = parent_doc.find(parent_path)
-            print(f'parent_element is {parent_element}')
-            # go ahead and keep this around even if it exists or not
-            # FIXME could be problematic if we ever need to merge items and not just overwrite them
-            print(f'appending {tail} to path_to_build')
-            path_to_build.append(tail)
-            if parent_element is not None:
-                print('found a parent element')
-                print(parent_element)
-                # found a node that exists so we can break out of the loop here
-                break
-            else:
-                # pop tail from the path we're searching and try again
-                split_path.pop()
-
-        # we now have a path that exists and list of items we need to build
-        # flesh out the tree if the path we need to build is larger than one, i.e. the leaf node needs to attach
-        # to another node that doesn't yet exist, go ahead and build them all the up
-        while len(path_to_build) > 1:
-            p = path_to_build.pop()
-            #print('appending {} to parent_element'.format(p))
-            parent_element = ElementTree.SubElement(parent_element, p)
-
-        # we should now have a document that has the tree fully built out to the xpath we want
-        # wrap up the new_element_contents in the leaf node and attach it to the last known parent_element
-        leaf_node = path_to_build[0]
+        # wrap to create new leaf element and insert
         wrapped_snippet = f"<{leaf_node}>{new_element_contents}</{leaf_node}>"
         #print(wrapped_snippet)
         snippet_xml = ElementTree.fromstring(wrapped_snippet)
-        #print('appending to parent_element')
+        print('appending to parent_element')
         parent_element.append(snippet_xml)
         # print it out if needed
-        # print(ElementTree.tostring(parent_element))
+        #print(ElementTree.tostring(parent_element))
 
+    return(parent_doc)
 
 def generate_full_config_template(config_type):
     """
@@ -175,13 +196,14 @@ def generate_full_config_template(config_type):
         with open(snippet_path, 'r') as snippet_obj:
             snippet_string = snippet_obj.read()
 
-
         # verify this snippet has an xpath associated and if so, let's attach to the document
         #if xml_snippet in xpaths_configtype:
 
         # magic happens here
         # update the document in place to attach the snippet string in the correct place according to it's xpath
-        build_xpath(full_config, xpath, snippet_string)
+        updated_config = build_xpath(full_config, xpath, snippet_string)
+        full_config = updated_config
+
 
     print('=' * 80)
     raw_xml = str(ElementTree.tostring(full_config.getroot(), encoding='unicode'))
@@ -193,5 +215,5 @@ def generate_full_config_template(config_type):
 
 
 if __name__ == '__main__':
-    for config_type in ['panos', 'panorama']:
+    for config_type in ['panos']:
         generate_full_config_template(config_type)
