@@ -2,7 +2,7 @@
   <mgt-config>
     <devices />
   <users> <entry name="admin">
-  <phash>$1$eJT/u97u$9Ori9YHZUEZ3p91c68osr/</phash>
+  <phash>$1$qdf4U665$xfXOtLonGC6u8UyQjfe7u.</phash>
   <permissions>
     <role-based>
       <superuser>yes</superuser>
@@ -543,7 +543,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     </devices>
   <mgt-config><users>
   <entry name="admin">
-    <phash>$1$MP/xCNfF$mLJXbQeJ6kx99dqLo1Ppk/</phash>
+    <phash>$1$uIlarMKs$pNgaJ2SquOlRXcW8LYviH0</phash>
     <permissions>
       <role-based>
         <superuser>yes</superuser>

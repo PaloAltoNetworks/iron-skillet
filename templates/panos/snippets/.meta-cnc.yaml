@@ -135,9 +135,12 @@ snippets:
   - name: shared_log_settings
     xpath: /config/shared/log-settings
     file: shared_log_settings.xml
-  - name: shared_log_settings_email
+  - name: shared_log_settings_email_profile
     xpath: /config/shared/log-settings
-    file: shared_log_settings_email.xml
+    file: shared_log_settings_email_profile.xml
+  - name: shared_log_settings_email_system_critical
+    xpath: /config/shared/log-settings/system/match-list
+    file: shared_log_settings_email_system_critical.xml
   - name: address
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/address
     file: address.xml
@@ -148,7 +151,7 @@ snippets:
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/log-settings/profiles
     file: log_settings_profiles.xml
   - name: log_settings_profiles_email
-    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/log-settings/profiles
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/log-settings/profiles/entry[@name='default']/match-list
     file: log_settings_profiles_email.xml
   - name: profiles_custom_url_category
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/custom-url-category
