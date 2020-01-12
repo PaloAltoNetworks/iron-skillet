@@ -1,8 +1,8 @@
-name: validate-IronSkillet-v90-bae945bc-c667-4e56-a3fc-73bbb5afbe0g
-label: IronSkillet - check config for updated v9.0 elements
+name: validate-IronSkillet-v90-panos-bae945bc-c667-4e56-a3fc-73bbb5afbe0g
+label: IronSkillet - check NGFW config for updated v9.0 elements
 
 description: |
-  Check for new items updated in IronSkillet v9.0 skillet
+  Check NGFW for new items updated in IronSkillet v9.0 skillet
 
 type: pan_validation
 labels:
