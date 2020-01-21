@@ -2,7 +2,7 @@
   <mgt-config>
     <devices />
   <users> <entry name="admin">
-  <phash>$1$gP2cPbwq$SV80BUjJTmgsWq5hu.Ov51</phash>
+  <phash>$1$Zn1hgQL5$1HuAA/UOFG.cpPPAI7Ezp1</phash>
   <permissions>
     <role-based>
       <superuser>yes</superuser>
@@ -17,10 +17,7 @@
 <minimum-special-characters>1</minimum-special-characters>
 <block-username-inclusion>yes</block-username-inclusion>
 <password-history-count>24</password-history-count>
-<new-password-differs-by-characters>3</new-password-differs-by-characters>
-<password-change>
-  <expiration-period>90</expiration-period>
-</password-change></password-complexity></mgt-config>
+<new-password-differs-by-characters>3</new-password-differs-by-characters></password-complexity></mgt-config>
   <devices>
     <entry name="localhost.localdomain">
       <deviceconfig>
@@ -527,7 +524,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     </devices>
   <mgt-config><users>
   <entry name="admin">
-    <phash>$1$860RQa9H$Xzbp8NHn47cqj5LoOsZM80</phash>
+    <phash>$1$Jq1rmGkj$GSQevaQWI1A7cNrN2Gs/r.</phash>
     <permissions>
       <role-based>
         <superuser>yes</superuser>
@@ -545,9 +542,6 @@ Log off immediately if you are not an authorized user.</login-banner>
   <block-username-inclusion>yes</block-username-inclusion>
   <password-history-count>24</password-history-count>
   <new-password-differs-by-characters>3</new-password-differs-by-characters>
-  <password-change>
-    <expiration-period>90</expiration-period>
-  </password-change>
 </password-complexity></mgt-config><shared><log-settings><email>
   <entry name="Sample_Email_Profile">
     <server>
@@ -1010,7 +1004,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 	<comments>Internal to Internal</comments>
 </entry>
 <entry name="iron-skillet-version">
-	<comments>version 0.0.3 for 9.0: version of this IronSkillet template file</comments>
+	<comments>version 0.0.4 for 9.0: version of this IronSkillet template file</comments>
 </entry></tag><address><entry name="Sinkhole-IPv4">
     <fqdn>sinkhole.paloaltonetworks.com</fqdn>
 </entry>
@@ -1738,6 +1732,8 @@ Log off immediately if you are not an authorized user.</login-banner>
     </mode>
     <log-severity>high</log-severity>
     <block>
+      <member>Black-List</member>
+      <member>White-List</member>
       <member>abortion</member>
       <member>abused-drugs</member>
       <member>adult</member>
@@ -1748,6 +1744,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>computer-and-internet-info</member>
       <member>content-delivery-networks</member>
       <member>copyright-infringement</member>
+      <member>cryptocurrency</member>
       <member>dating</member>
       <member>dynamic-dns</member>
       <member>educational-institutions</member>
@@ -1757,6 +1754,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>gambling</member>
       <member>games</member>
       <member>government</member>
+      <member>grayware</member>
       <member>hacking</member>
       <member>health-and-medicine</member>
       <member>high-risk</member>
@@ -1808,14 +1806,13 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>web-advertisements</member>
       <member>web-based-email</member>
       <member>web-hosting</member>
-      <member>Black-List</member>
-      <member>White-List</member>
     </block>
   </credential-enforcement>
   <log-http-hdr-user-agent>yes</log-http-hdr-user-agent>
   <log-http-hdr-referer>yes</log-http-hdr-referer>
   <log-http-hdr-xff>yes</log-http-hdr-xff>
   <alert>
+    <member>White-List</member>
     <member>abortion</member>
     <member>abused-drugs</member>
     <member>adult</member>
@@ -1825,6 +1822,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>computer-and-internet-info</member>
     <member>content-delivery-networks</member>
     <member>copyright-infringement</member>
+    <member>cryptocurrency</member>
     <member>dating</member>
     <member>dynamic-dns</member>
     <member>educational-institutions</member>
@@ -1882,14 +1880,14 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>web-advertisements</member>
     <member>web-based-email</member>
     <member>web-hosting</member>
-    <member>White-List</member>
   </alert>
   <block>
+    <member>Black-List</member>
     <member>command-and-control</member>
+    <member>grayware</member>
     <member>hacking</member>
     <member>malware</member>
     <member>phishing</member>
-    <member>Black-List</member>
   </block>
 </entry>
 <entry name="Alert-Only-URL">
@@ -1899,6 +1897,8 @@ Log off immediately if you are not an authorized user.</login-banner>
     </mode>
     <log-severity>medium</log-severity>
     <alert>
+      <member>Black-List</member>
+      <member>White-List</member>
       <member>abortion</member>
       <member>abused-drugs</member>
       <member>adult</member>
@@ -1909,6 +1909,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>computer-and-internet-info</member>
       <member>content-delivery-networks</member>
       <member>copyright-infringement</member>
+      <member>cryptocurrency</member>
       <member>dating</member>
       <member>dynamic-dns</member>
       <member>educational-institutions</member>
@@ -1918,6 +1919,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>gambling</member>
       <member>games</member>
       <member>government</member>
+      <member>grayware</member>
       <member>hacking</member>
       <member>health-and-medicine</member>
       <member>high-risk</member>
@@ -1969,11 +1971,11 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>web-advertisements</member>
       <member>web-based-email</member>
       <member>web-hosting</member>
-      <member>Black-List</member>
-      <member>White-List</member>
     </alert>
   </credential-enforcement>
   <alert>
+    <member>Black-List</member>
+    <member>White-List</member>
     <member>abortion</member>
     <member>abused-drugs</member>
     <member>adult</member>
@@ -1984,6 +1986,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>computer-and-internet-info</member>
     <member>content-delivery-networks</member>
     <member>copyright-infringement</member>
+    <member>cryptocurrency</member>
     <member>dating</member>
     <member>dynamic-dns</member>
     <member>educational-institutions</member>
@@ -1993,6 +1996,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>gambling</member>
     <member>games</member>
     <member>government</member>
+    <member>grayware</member>
     <member>hacking</member>
     <member>health-and-medicine</member>
     <member>high-risk</member>
@@ -2044,8 +2048,6 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>web-advertisements</member>
     <member>web-based-email</member>
     <member>web-hosting</member>
-    <member>Black-List</member>
-    <member>White-List</member>
   </alert>
 </entry>
 <entry name="Exception-URL">
@@ -2055,6 +2057,8 @@ Log off immediately if you are not an authorized user.</login-banner>
     </mode>
     <log-severity>high</log-severity>
     <block>
+      <member>Black-List</member>
+      <member>White-List</member>
       <member>abortion</member>
       <member>abused-drugs</member>
       <member>adult</member>
@@ -2065,6 +2069,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>computer-and-internet-info</member>
       <member>content-delivery-networks</member>
       <member>copyright-infringement</member>
+      <member>cryptocurrency</member>
       <member>dating</member>
       <member>dynamic-dns</member>
       <member>educational-institutions</member>
@@ -2074,6 +2079,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>gambling</member>
       <member>games</member>
       <member>government</member>
+      <member>grayware</member>
       <member>hacking</member>
       <member>health-and-medicine</member>
       <member>high-risk</member>
@@ -2125,14 +2131,13 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>web-advertisements</member>
       <member>web-based-email</member>
       <member>web-hosting</member>
-      <member>Black-List</member>
-      <member>White-List</member>
     </block>
   </credential-enforcement>
   <log-http-hdr-user-agent>yes</log-http-hdr-user-agent>
   <log-http-hdr-referer>yes</log-http-hdr-referer>
   <log-http-hdr-xff>yes</log-http-hdr-xff>
   <alert>
+    <member>White-List</member>
     <member>abortion</member>
     <member>abused-drugs</member>
     <member>adult</member>
@@ -2142,6 +2147,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>computer-and-internet-info</member>
     <member>content-delivery-networks</member>
     <member>copyright-infringement</member>
+    <member>cryptocurrency</member>
     <member>dating</member>
     <member>dynamic-dns</member>
     <member>educational-institutions</member>
@@ -2199,14 +2205,14 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>web-advertisements</member>
     <member>web-based-email</member>
     <member>web-hosting</member>
-    <member>White-List</member>
   </alert>
   <block>
+    <member>Black-List</member>
     <member>command-and-control</member>
+    <member>grayware</member>
     <member>hacking</member>
     <member>malware</member>
     <member>phishing</member>
-    <member>Black-List</member>
   </block>
 </entry></url-filtering><wildfire-analysis><entry name="Outbound-WF">
   <rules>

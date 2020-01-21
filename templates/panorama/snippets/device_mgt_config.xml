@@ -18,7 +18,4 @@
   <block-username-inclusion>yes</block-username-inclusion>
   <password-history-count>24</password-history-count>
   <new-password-differs-by-characters>3</new-password-differs-by-characters>
-  <password-change>
-    <expiration-period>90</expiration-period>
-  </password-change>
 </password-complexity>

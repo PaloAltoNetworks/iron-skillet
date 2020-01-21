@@ -1,0 +1,24 @@
+<type>
+  {%- if MGMT_TYPE == "static" %}
+    <static/>
+  {% elif MGMT_TYPE == "dhcp-client" %}
+    <dhcp-client>
+     <send-hostname>yes</send-hostname>
+     <send-client-id>no</send-client-id>
+     <accept-dhcp-hostname>no</accept-dhcp-hostname>
+     <accept-dhcp-domain>no</accept-dhcp-domain>
+    </dhcp-client>
+  {% else %}
+    <dhcp-client>
+     <send-hostname>yes</send-hostname>
+     <send-client-id>no</send-client-id>
+     <accept-dhcp-hostname>no</accept-dhcp-hostname>
+     <accept-dhcp-domain>no</accept-dhcp-domain>
+    </dhcp-client>
+  {% endif %}
+</type>
+{%- if MGMT_TYPE == "static" %}
+<ip-address>{{ MGMT_IP }}</ip-address>
+<netmask>{{ MGMT_MASK }}</netmask>
+<default-gateway>{{ MGMT_DG }}</default-gateway>
+{% endif %}
