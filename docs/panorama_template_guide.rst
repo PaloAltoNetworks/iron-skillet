@@ -73,8 +73,6 @@ Administrative user password complexity profile
 
     + Attributes including minimum length, characters, and history
 
-    + Password expiration period
-
 
 Panorama settings
 ~~~~~~~~~~~~~~~~~
