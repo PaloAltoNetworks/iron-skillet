@@ -114,6 +114,12 @@ variables:
 # snippets used for api configuration including xpath and element as file name
 # files will load in the order listed
 snippets:
+  - name: device_system_mgmt_ip
+    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    file: device_system_mgmt_ip.xml
+  - name: device_system_dns
+    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system/dns-setting
+    file: device_system_dns.xml
   - name: device_system
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
     file: device_system.xml
@@ -129,6 +135,12 @@ snippets:
   - name: shared_log_settings
     xpath: /config/shared/log-settings
     file: shared_log_settings.xml
+  - name: shared_log_settings_email_profile
+    xpath: /config/shared/log-settings
+    file: shared_log_settings_email_profile.xml
+  - name: shared_log_settings_email_system_critical
+    xpath: /config/shared/log-settings/system/match-list
+    file: shared_log_settings_email_system_critical.xml
   - name: address
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/address
     file: address.xml
@@ -138,6 +150,9 @@ snippets:
   - name: log_settings_profiles
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/log-settings/profiles
     file: log_settings_profiles.xml
+  - name: log_settings_profiles_email
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/log-settings/profiles/entry[@name='default']/match-list
+    file: log_settings_profiles_email.xml
   - name: profiles_custom_url_category
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/custom-url-category
     file: profiles_custom_url_category.xml

@@ -119,7 +119,6 @@ This is a Palo Alto Networks contributed project.
 * Scott Shoaf [(@scotchoaf)](https://github.com/scotchoaf)
 * Suzi VanPatten - [(@suzivp)](https://github.com/suzivp)
 * Edward Arcuri - [(@sdndude)](https://github.com/sdndude)
-* Nate Bitting - [(@nbitting)](https://github.com/nbitting)
 * Bob Hagen - [(@stealthllama)](https://github.com/stealthllama)
 * Erik Yunghans - [(@shadow-box)](https://github.com/shadow-box)
 

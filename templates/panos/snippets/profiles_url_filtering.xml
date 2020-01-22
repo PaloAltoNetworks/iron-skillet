@@ -5,6 +5,8 @@
     </mode>
     <log-severity>high</log-severity>
     <block>
+      <member>Black-List</member>
+      <member>White-List</member>
       <member>abortion</member>
       <member>abused-drugs</member>
       <member>adult</member>
@@ -15,6 +17,7 @@
       <member>computer-and-internet-info</member>
       <member>content-delivery-networks</member>
       <member>copyright-infringement</member>
+      <member>cryptocurrency</member>
       <member>dating</member>
       <member>dynamic-dns</member>
       <member>educational-institutions</member>
@@ -24,6 +27,7 @@
       <member>gambling</member>
       <member>games</member>
       <member>government</member>
+      <member>grayware</member>
       <member>hacking</member>
       <member>health-and-medicine</member>
       <member>high-risk</member>
@@ -75,14 +79,13 @@
       <member>web-advertisements</member>
       <member>web-based-email</member>
       <member>web-hosting</member>
-      <member>Black-List</member>
-      <member>White-List</member>
     </block>
   </credential-enforcement>
   <log-http-hdr-user-agent>yes</log-http-hdr-user-agent>
   <log-http-hdr-referer>yes</log-http-hdr-referer>
   <log-http-hdr-xff>yes</log-http-hdr-xff>
   <alert>
+    <member>White-List</member>
     <member>abortion</member>
     <member>abused-drugs</member>
     <member>adult</member>
@@ -92,6 +95,7 @@
     <member>computer-and-internet-info</member>
     <member>content-delivery-networks</member>
     <member>copyright-infringement</member>
+    <member>cryptocurrency</member>
     <member>dating</member>
     <member>dynamic-dns</member>
     <member>educational-institutions</member>
@@ -149,14 +153,14 @@
     <member>web-advertisements</member>
     <member>web-based-email</member>
     <member>web-hosting</member>
-    <member>White-List</member>
   </alert>
   <block>
+    <member>Black-List</member>
     <member>command-and-control</member>
+    <member>grayware</member>
     <member>hacking</member>
     <member>malware</member>
     <member>phishing</member>
-    <member>Black-List</member>
   </block>
 </entry>
 <entry name="Alert-Only-URL">
@@ -166,6 +170,8 @@
     </mode>
     <log-severity>medium</log-severity>
     <alert>
+      <member>Black-List</member>
+      <member>White-List</member>
       <member>abortion</member>
       <member>abused-drugs</member>
       <member>adult</member>
@@ -176,6 +182,7 @@
       <member>computer-and-internet-info</member>
       <member>content-delivery-networks</member>
       <member>copyright-infringement</member>
+      <member>cryptocurrency</member>
       <member>dating</member>
       <member>dynamic-dns</member>
       <member>educational-institutions</member>
@@ -185,6 +192,7 @@
       <member>gambling</member>
       <member>games</member>
       <member>government</member>
+      <member>grayware</member>
       <member>hacking</member>
       <member>health-and-medicine</member>
       <member>high-risk</member>
@@ -236,11 +244,11 @@
       <member>web-advertisements</member>
       <member>web-based-email</member>
       <member>web-hosting</member>
-      <member>Black-List</member>
-      <member>White-List</member>
     </alert>
   </credential-enforcement>
   <alert>
+    <member>Black-List</member>
+    <member>White-List</member>
     <member>abortion</member>
     <member>abused-drugs</member>
     <member>adult</member>
@@ -251,6 +259,7 @@
     <member>computer-and-internet-info</member>
     <member>content-delivery-networks</member>
     <member>copyright-infringement</member>
+    <member>cryptocurrency</member>
     <member>dating</member>
     <member>dynamic-dns</member>
     <member>educational-institutions</member>
@@ -260,6 +269,7 @@
     <member>gambling</member>
     <member>games</member>
     <member>government</member>
+    <member>grayware</member>
     <member>hacking</member>
     <member>health-and-medicine</member>
     <member>high-risk</member>
@@ -311,8 +321,6 @@
     <member>web-advertisements</member>
     <member>web-based-email</member>
     <member>web-hosting</member>
-    <member>Black-List</member>
-    <member>White-List</member>
   </alert>
 </entry>
 <entry name="Exception-URL">
@@ -322,6 +330,8 @@
     </mode>
     <log-severity>high</log-severity>
     <block>
+      <member>Black-List</member>
+      <member>White-List</member>
       <member>abortion</member>
       <member>abused-drugs</member>
       <member>adult</member>
@@ -332,6 +342,7 @@
       <member>computer-and-internet-info</member>
       <member>content-delivery-networks</member>
       <member>copyright-infringement</member>
+      <member>cryptocurrency</member>
       <member>dating</member>
       <member>dynamic-dns</member>
       <member>educational-institutions</member>
@@ -341,6 +352,7 @@
       <member>gambling</member>
       <member>games</member>
       <member>government</member>
+      <member>grayware</member>
       <member>hacking</member>
       <member>health-and-medicine</member>
       <member>high-risk</member>
@@ -392,14 +404,13 @@
       <member>web-advertisements</member>
       <member>web-based-email</member>
       <member>web-hosting</member>
-      <member>Black-List</member>
-      <member>White-List</member>
     </block>
   </credential-enforcement>
   <log-http-hdr-user-agent>yes</log-http-hdr-user-agent>
   <log-http-hdr-referer>yes</log-http-hdr-referer>
   <log-http-hdr-xff>yes</log-http-hdr-xff>
   <alert>
+    <member>White-List</member>
     <member>abortion</member>
     <member>abused-drugs</member>
     <member>adult</member>
@@ -409,6 +420,7 @@
     <member>computer-and-internet-info</member>
     <member>content-delivery-networks</member>
     <member>copyright-infringement</member>
+    <member>cryptocurrency</member>
     <member>dating</member>
     <member>dynamic-dns</member>
     <member>educational-institutions</member>
@@ -466,13 +478,13 @@
     <member>web-advertisements</member>
     <member>web-based-email</member>
     <member>web-hosting</member>
-    <member>White-List</member>
   </alert>
   <block>
+    <member>Black-List</member>
     <member>command-and-control</member>
+    <member>grayware</member>
     <member>hacking</member>
     <member>malware</member>
     <member>phishing</member>
-    <member>Black-List</member>
   </block>
 </entry>

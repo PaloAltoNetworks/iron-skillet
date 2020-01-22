@@ -1,0 +1,4 @@
+<servers>
+  <primary>{{ DNS_1 }}</primary>
+  <secondary>{{ DNS_2 }}</secondary>
+</servers>
