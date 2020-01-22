@@ -9,10 +9,39 @@ Includes:
     + documentation revisions
 
 
+9.1 Template Release History
+----------------------------
+
+Template content updates are high level. Details can be found in the template guides.
+
+0.0.1
+^^^^^
+Released January 22, 2020
+
+    + first release based on v9.0
+    + no release specific additions
+
+
 9.0 Template Release History
 ----------------------------
 
 Template content updates are high level. Details can be found in the template guides.
+
+0.0.4
+^^^^^
+Released January 22, 2020
+
+    + added grayware and cryptcurrency url categories
+    + added missing User tag log settings
+    + inclusion of validation skillets
+
+0.0.3
+^^^^^
+
+Released c September, 2019
+
+    + minor updates
+
 
 0.0.2
 ^^^^^
@@ -156,6 +185,11 @@ Released: May 10, 2018
 Tools Release Updates
 ---------------------
 
+Jan 22, 2020
+^^^^^^^^^^^^
+
+    + updated the build_full_config.py with the ability to merge snippets using same xpath
+
 Jul 30, 2019
 ^^^^^^^^^^^^
 
@@ -201,6 +235,12 @@ Documentation Revisions
 
 Documentation revisions outside of template-tooling updates. These are documented by date, not verison.
 
+Janurary 22, 2020
+^^^^^^^^^^^^^^^^^
+
+    + addition of visual guide for panos
+    + validation skillet section added
+    + add 9.1 related content links
 
 July 30, 2019
 ^^^^^^^^^^^^^
