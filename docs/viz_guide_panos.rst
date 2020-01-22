@@ -9,7 +9,7 @@ changes or compare IronSkillet manually to their existing configuration.
 
 So based on popular demand here is the GUI-based visual guide to all of the IronSkillet configuration elements.
 
-This is based on PAN-OS 9.0 with callouts for any features not supported in the 8.x releases.
+This is based on PAN-OS 9.x with callouts for any features not supported in the 8.x releases.
 Also note that based on software release, there may be other items configured or ‘checked’ as defaults and not part of IronSkillet.
 These items are not referenced in this guide.
 

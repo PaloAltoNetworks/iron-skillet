@@ -15,6 +15,7 @@ Welcome to Iron Skillet template documentation!
    panos_template_guide
    panorama_template_guide
    viz_guide_panos
+   validations_panos
    using_default_templates
    using_the_spreadsheet
    creating_loadable_configs

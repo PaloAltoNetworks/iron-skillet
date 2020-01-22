@@ -36,9 +36,15 @@ Using the templates
 The templates are available on GitHub specific to each PAN-OS software version.
 
 `View github repo:` [
-`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/80dev>`_ |
-`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/81dev>`_ |
-`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/90dev>`_ ]
+`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1>`_ |
+`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0>`_ |
+`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1>`_ |
+`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0>`_ |
+ ]
+
+.. Note::
+    version 8.0 is still available but no longer will be updated due to sw release EOE
+
 
 Use the branch specific to the software release for your deployment.
 
@@ -53,6 +59,13 @@ The templates in each device-type folder include:
     + ``full config file`` to use for bootstrap or full import + load into a device
     + ``set commands`` for traditional CLI configuration
 
+There are also validation skillets for analysis of existing configurations
+
+    + ``full assessment`` to see what IronSkillet elements are missing
+    + ``9.x upgrade from 8.1`` to check for new skillet additions
+
+Validation insights currently require applications such as panHandler (https://panhandler.readthedocs.io) for
+analysis and results output.
 
 Quick start using loadable configurations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -64,7 +77,6 @@ The xml file can be imported and loaded easily to Panorama or a firewall. The se
 from the CLI.
 
 More information for loading and editing these configurations can be found at: :ref:`using_default_configs`.
-
 
 
 Excel set command spreadsheet
