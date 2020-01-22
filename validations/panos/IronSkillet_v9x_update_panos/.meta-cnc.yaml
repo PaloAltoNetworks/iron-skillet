@@ -51,7 +51,7 @@ snippets:
     label: set api key lifetime
     test: device_setting | tag_present('management.api.key.lifetime')
     fail_messasge: |
-      set this value to allow for larger log exports using csv. recommended to increase row count to 1,048,576
+      set to a non-zero value to periodically force a key value update
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-management-authentication-settings
 
   - name: wf_new_type_limits
