@@ -132,7 +132,6 @@ System Configuration
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/device_system_mgmt_ip.xml>`_
 ]
 
-
 System configuration settings for dynamic updates and network services
 (eg. DNS, NTP).
 

@@ -45,7 +45,6 @@ The templates are available on GitHub specific to each PAN-OS software version.
 .. Note::
     version 8.0 is still available but no longer will be updated due to sw release EOE
 
-
 Use the branch specific to the software release for your deployment.
 
 The library consists of a set of xml and set configuration templates grouped by:
