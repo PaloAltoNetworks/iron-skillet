@@ -315,7 +315,6 @@ snippets:
       and password_complexity | element_value('block-username-inclusion') == 'yes'
       and password_complexity | element_value('password-history-count') == '24'
       and password_complexity | element_value('new-password-differs-by-characters') == '3'
-      and password_complexity | element_value('password-change.expiration-period') == '90'
       )
     fail_message: |
       enable password complexity settings to ensure that local administrator accounts on the firewall
