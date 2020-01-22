@@ -34,4 +34,3 @@ If you are proposing a change:
 * Explain in detail why it is needed.
 * Keep the scope as narrow as possible, to make it easier to implement.
 * Remember that this is a volunteer-driven project and that contributions are welcome :)
-

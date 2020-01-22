@@ -8,4 +8,3 @@ This project is contributed by Palo Alto Networks and is not formally supported.
 More information on Palo Alto Networks support policies may be found at:
 
 http://www.paloaltonetworks.com/support
-

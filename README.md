@@ -6,16 +6,11 @@ Current template versions include:
 
 [**9.1**](https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v9.1)
 
-
 [**9.0**](https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v9.0)
-
 
 [**8.1**](https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.1)
 
-
-
-[**8.0**](https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.0) (available without additional updates)
-
+[**8.0**](https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.0) (available without future updates)
 
 
 [**Documentation**](https://iron-skillet.readthedocs.io)
