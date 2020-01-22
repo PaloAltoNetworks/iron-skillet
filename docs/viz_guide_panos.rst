@@ -119,6 +119,10 @@ Device > Setup > Management > Minimum Password Complexity
 Enable minimum password requirements for local accounts.
 With this feature, you can ensure that local administrator accounts on the firewall will adhere to a defined set of password requirements.
 
+.. Note::
+    password expiration has been removed based on NIST standards although users can still opt to set an expiration and
+    notification period
+
 
 Operations
 ~~~~~~~~~~
