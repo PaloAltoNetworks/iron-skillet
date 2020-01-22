@@ -1,8 +1,8 @@
-name: validate-IronSkillet-v90-panos-bae945bc-c667-4e56-a3fc-73bbb5afbe0d
+name: validate-IronSkillet-v91-panos-bae945bc-c667-4e56-a3fc-73bbb5afbe0d
 label: IronSkillet Assessment - check for missing config elements used in NGFW IronSkillet configuration
 
 description: |
-  This skillet does a full NGFW validation of IronSkillet day one configuration - panos v9.0
+  This skillet does a full NGFW validation of IronSkillet day one configuration - panos v9.1
   Any missing config elements will result in a test fail and the doc links will provide
   GUI pointers for remediation
 
