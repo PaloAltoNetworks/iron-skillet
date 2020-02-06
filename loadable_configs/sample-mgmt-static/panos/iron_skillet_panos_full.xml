@@ -1,6 +1,6 @@
 <config urldb="paloaltonetworks" version="9.0.0">
   <mgt-config><users><entry name="admin">
-  <phash>$1$xI1wADog$03TxDUZsCUm6GalWqyCt41</phash>
+  <phash>$1$d.zqTOc7$hvKF9iagIJwp3bx9vOZI5.</phash>
   <permissions>
     <role-based>
       <superuser>yes</superuser>
@@ -106,7 +106,7 @@
   <topm>50</topm>
   <caption>Host-visit malicious sites plus</caption>
   <frequency>daily</frequency>
-  <query>(category eq command-and-control) or (category eq hacking) or (category eq malware) or (category eq phishing)</query>
+  <query>(category eq command-and-control) or (category eq hacking) or (category eq malware) or (category eq phishing) or (category eq grayware)</query>
   <type>
     <url>
       <sortby>repeatcnt</sortby>
@@ -129,7 +129,7 @@
   <topm>50</topm>
   <caption>Hosts visit malicious sites</caption>
   <frequency>daily</frequency>
-  <query>(category eq command-and-control) or (category eq hacking) or (category eq malware) or (category eq phishing)</query>
+  <query>(category eq command-and-control) or (category eq hacking) or (category eq malware) or (category eq phishing) or (category eq grayware)</query>
   <type>
     <url>
       <sortby>repeatcnt</sortby>
@@ -303,6 +303,110 @@
         <interface>
           <ethernet />
         </interface>
+        <ike>
+         <crypto-profiles>
+           <ike-crypto-profiles>
+             <entry name="default">
+               <encryption>
+                 <member>aes-128-cbc</member>
+                 <member>3des</member>
+               </encryption>
+               <hash>
+                 <member>sha1</member>
+               </hash>
+               <dh-group>
+                 <member>group2</member>
+               </dh-group>
+               <lifetime>
+                 <hours>8</hours>
+               </lifetime>
+             </entry>
+             <entry name="Suite-B-GCM-128">
+               <encryption>
+                 <member>aes-128-cbc</member>
+               </encryption>
+               <hash>
+                 <member>sha256</member>
+               </hash>
+               <dh-group>
+                 <member>group19</member>
+               </dh-group>
+               <lifetime>
+                 <hours>8</hours>
+               </lifetime>
+             </entry>
+             <entry name="Suite-B-GCM-256">
+               <encryption>
+                 <member>aes-256-cbc</member>
+               </encryption>
+               <hash>
+                 <member>sha384</member>
+               </hash>
+               <dh-group>
+                 <member>group20</member>
+               </dh-group>
+               <lifetime>
+                 <hours>8</hours>
+               </lifetime>
+             </entry>
+           </ike-crypto-profiles>
+           <ipsec-crypto-profiles>
+             <entry name="default">
+               <esp>
+                 <encryption>
+                   <member>aes-128-cbc</member>
+                   <member>3des</member>
+                 </encryption>
+                 <authentication>
+                   <member>sha1</member>
+                 </authentication>
+               </esp>
+               <dh-group>group2</dh-group>
+               <lifetime>
+                 <hours>1</hours>
+               </lifetime>
+             </entry>
+             <entry name="Suite-B-GCM-128">
+               <esp>
+                 <encryption>
+                   <member>aes-128-gcm</member>
+                 </encryption>
+                 <authentication>
+                   <member>none</member>
+                 </authentication>
+               </esp>
+               <dh-group>group19</dh-group>
+               <lifetime>
+                 <hours>1</hours>
+               </lifetime>
+             </entry>
+             <entry name="Suite-B-GCM-256">
+               <esp>
+                 <encryption>
+                   <member>aes-256-gcm</member>
+                 </encryption>
+                 <authentication>
+                   <member>none</member>
+                 </authentication>
+               </esp>
+               <dh-group>group20</dh-group>
+               <lifetime>
+                 <hours>1</hours>
+               </lifetime>
+             </entry>
+           </ipsec-crypto-profiles>
+           <global-protect-app-crypto-profiles>
+             <entry name="default">
+               <encryption>
+                 <member>aes-128-cbc</member>
+               </encryption>
+               <authentication>
+                 <member>sha1</member>
+               </authentication>
+             </entry>
+           </global-protect-app-crypto-profiles>
+         </crypto-profiles>
+       </ike>
       <profiles><zone-protection-profile><entry name="Recommended_Zone_Protection">
   <flood>
     <tcp-syn>
