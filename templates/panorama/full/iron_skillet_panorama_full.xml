@@ -680,7 +680,7 @@ Log off immediately if you are not an authorized user.</login-banner>
   <topm>50</topm>
   <caption>Host-visit malicious sites plus</caption>
   <frequency>daily</frequency>
-  <query>(category eq command-and-control) or (category eq hacking) or (category eq malware) or (category eq phishing)</query>
+  <query>(category eq command-and-control) or (category eq hacking) or (category eq malware) or (category eq phishing) or (category eq grayware)</query>
   <type>
     <panorama-url>
       <sortby>repeatcnt</sortby>
@@ -703,7 +703,7 @@ Log off immediately if you are not an authorized user.</login-banner>
   <topm>50</topm>
   <caption>Hosts visit malicious sites</caption>
   <frequency>daily</frequency>
-  <query>(category eq command-and-control) or (category eq hacking) or (category eq malware) or (category eq phishing)</query>
+  <query>(category eq command-and-control) or (category eq hacking) or (category eq malware) or (category eq phishing) or (category eq grayware)</query>
   <type>
     <panorama-url>
       <sortby>repeatcnt</sortby>
@@ -1749,6 +1749,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>gambling</member>
       <member>games</member>
       <member>government</member>
+      <member>grayware</member>
       <member>hacking</member>
       <member>health-and-medicine</member>
       <member>home-and-garden</member>
@@ -1871,6 +1872,7 @@ Log off immediately if you are not an authorized user.</login-banner>
   </alert>
   <block>
     <member>command-and-control</member>
+    <member>grayware</member>
     <member>hacking</member>
     <member>malware</member>
     <member>phishing</member>
@@ -1903,6 +1905,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>gambling</member>
       <member>games</member>
       <member>government</member>
+      <member>grayware</member>
       <member>hacking</member>
       <member>health-and-medicine</member>
       <member>home-and-garden</member>
@@ -1975,6 +1978,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>gambling</member>
     <member>games</member>
     <member>government</member>
+    <member>grayware</member>
     <member>hacking</member>
     <member>health-and-medicine</member>
     <member>home-and-garden</member>
@@ -2052,6 +2056,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>gambling</member>
       <member>games</member>
       <member>government</member>
+      <member>grayware</member>
       <member>hacking</member>
       <member>health-and-medicine</member>
       <member>home-and-garden</member>
@@ -2174,6 +2179,7 @@ Log off immediately if you are not an authorized user.</login-banner>
   </alert>
   <block>
     <member>command-and-control</member>
+    <member>grayware</member>
     <member>hacking</member>
     <member>malware</member>
     <member>phishing</member>

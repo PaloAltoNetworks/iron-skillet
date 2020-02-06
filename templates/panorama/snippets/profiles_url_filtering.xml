@@ -24,6 +24,7 @@
       <member>gambling</member>
       <member>games</member>
       <member>government</member>
+      <member>grayware</member>
       <member>hacking</member>
       <member>health-and-medicine</member>
       <member>home-and-garden</member>
@@ -146,6 +147,7 @@
   </alert>
   <block>
     <member>command-and-control</member>
+    <member>grayware</member>
     <member>hacking</member>
     <member>malware</member>
     <member>phishing</member>
@@ -178,6 +180,7 @@
       <member>gambling</member>
       <member>games</member>
       <member>government</member>
+      <member>grayware</member>
       <member>hacking</member>
       <member>health-and-medicine</member>
       <member>home-and-garden</member>
@@ -250,6 +253,7 @@
     <member>gambling</member>
     <member>games</member>
     <member>government</member>
+    <member>grayware</member>
     <member>hacking</member>
     <member>health-and-medicine</member>
     <member>home-and-garden</member>
@@ -327,6 +331,7 @@
       <member>gambling</member>
       <member>games</member>
       <member>government</member>
+      <member>grayware</member>
       <member>hacking</member>
       <member>health-and-medicine</member>
       <member>home-and-garden</member>
@@ -449,6 +454,7 @@
   </alert>
   <block>
     <member>command-and-control</member>
+    <member>grayware</member>
     <member>hacking</member>
     <member>malware</member>
     <member>phishing</member>
