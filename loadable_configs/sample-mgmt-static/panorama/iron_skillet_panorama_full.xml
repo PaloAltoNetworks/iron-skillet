@@ -2,7 +2,7 @@
   <mgt-config>
     <devices />
   <users> <entry name="admin">
-  <phash>$1$Xl8MvCiw$tLsEcU4j007ds0Rt3tiXN/</phash>
+  <phash>$1$/hzcRHvL$nD05kSzFmuQADq2Yvb0Yh/</phash>
   <permissions>
     <role-based>
       <superuser>yes</superuser>
@@ -524,7 +524,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     </devices>
   <mgt-config><users>
   <entry name="admin">
-    <phash>$1$AVlxkLtR$.Txx7THA8oyydhdklHvJd/</phash>
+    <phash>$1$hlP0XDzr$xka/Za/C9rwSbquEMTaYU.</phash>
     <permissions>
       <role-based>
         <superuser>yes</superuser>
@@ -640,7 +640,7 @@ Log off immediately if you are not an authorized user.</login-banner>
   <topm>50</topm>
   <caption>Host-visit malicious sites plus</caption>
   <frequency>daily</frequency>
-  <query>(category eq command-and-control) or (category eq hacking) or (category eq malware) or (category eq phishing)</query>
+  <query>(category eq command-and-control) or (category eq hacking) or (category eq malware) or (category eq phishing) or (category eq grayware)</query>
   <type>
     <panorama-url>
       <sortby>repeatcnt</sortby>
@@ -663,7 +663,7 @@ Log off immediately if you are not an authorized user.</login-banner>
   <topm>50</topm>
   <caption>Hosts visit malicious sites</caption>
   <frequency>daily</frequency>
-  <query>(category eq command-and-control) or (category eq hacking) or (category eq malware) or (category eq phishing)</query>
+  <query>(category eq command-and-control) or (category eq hacking) or (category eq malware) or (category eq phishing) or (category eq grayware)</query>
   <type>
     <panorama-url>
       <sortby>repeatcnt</sortby>
