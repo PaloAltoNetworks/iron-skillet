@@ -1,6 +1,6 @@
 <config urldb="paloaltonetworks" version="9.1.0">
   <mgt-config><users><entry name="admin">
-  <phash>$1$jqfusWF5$qV5ZP3nUzfOUrt9gp2uZF/</phash>
+  <phash>$1$4GI5PghP$Tdr1c6psygyS3lafVhyUW1</phash>
   <permissions>
     <role-based>
       <superuser>yes</superuser>
@@ -106,7 +106,7 @@
   <topm>50</topm>
   <caption>Host-visit malicious sites plus</caption>
   <frequency>daily</frequency>
-  <query>(category eq command-and-control) or (category eq hacking) or (category eq malware) or (category eq phishing)</query>
+  <query>(category eq command-and-control) or (category eq hacking) or (category eq malware) or (category eq phishing) or (category eq grayware)</query>
   <type>
     <url>
       <sortby>repeatcnt</sortby>
@@ -129,7 +129,7 @@
   <topm>50</topm>
   <caption>Hosts visit malicious sites</caption>
   <frequency>daily</frequency>
-  <query>(category eq command-and-control) or (category eq hacking) or (category eq malware) or (category eq phishing)</query>
+  <query>(category eq command-and-control) or (category eq hacking) or (category eq malware) or (category eq phishing) or (category eq grayware)</query>
   <type>
     <url>
       <sortby>repeatcnt</sortby>
