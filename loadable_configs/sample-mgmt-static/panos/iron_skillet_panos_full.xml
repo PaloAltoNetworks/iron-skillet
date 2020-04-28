@@ -1,15 +1,12 @@
 <config urldb="paloaltonetworks" version="9.1.0">
-  <mgt-config>
-    <devices />
-  <users> <entry name="{{ ADMINISTRATOR_USERNAME }}">
-  <phash>{{ ADMINISTRATOR_PASSWORD | md5_hash }}</phash>
+  <mgt-config><users><entry name="admin">
+  <phash>$1$cJMxVRng$Rfv4eK2vXubyNMS5lR77H.</phash>
   <permissions>
     <role-based>
       <superuser>yes</superuser>
     </role-based>
   </permissions>
-</entry>
-</users><password-complexity><enabled>yes</enabled>
+</entry></users><password-complexity><enabled>yes</enabled>
 <minimum-length>12</minimum-length>
 <minimum-uppercase-letters>1</minimum-uppercase-letters>
 <minimum-lowercase-letters>1</minimum-lowercase-letters>
@@ -17,464 +14,304 @@
 <minimum-special-characters>1</minimum-special-characters>
 <block-username-inclusion>yes</block-username-inclusion>
 <password-history-count>24</password-history-count>
-<new-password-differs-by-characters>3</new-password-differs-by-characters></password-complexity></mgt-config>
+<new-password-differs-by-characters>3</new-password-differs-by-characters>
+</password-complexity></mgt-config>
+  <shared><log-settings><syslog>
+  <entry name="Sample_Syslog_Profile">
+    <server>
+      <entry name="Sample_Syslog">
+        <transport>UDP</transport>
+        <port>514</port>
+        <format>BSD</format>
+        <server>192.0.2.2</server>
+        <facility>LOG_USER</facility>
+      </entry>
+    </server>
+  </entry>
+</syslog>
+<system>
+  <match-list>
+    <entry name="System_Log_Forwarding">
+      <filter>All Logs</filter>
+      <send-to-panorama>no</send-to-panorama>
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
+    </entry>
+  <entry name="Email_Critical_System_Logs">
+      <send-email>
+        <member>Sample_Email_Profile</member>
+      </send-email>
+      <filter>(severity eq critical)</filter>
+      <description>Email Critical System Logs</description>
+ </entry>
+</match-list>
+</system>
+<config>
+  <match-list>
+    <entry name="Configuration_Log_Forwarding">
+      <filter>All Logs</filter>
+      <send-to-panorama>no</send-to-panorama>
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
+    </entry>
+  </match-list>
+</config>
+<userid>
+  <match-list>
+    <entry name="User-ID_Log_Forwarding">
+      <filter>All Logs</filter>
+      <send-to-panorama>no</send-to-panorama>
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
+    </entry>
+  </match-list>
+</userid>
+<hipmatch>
+  <match-list>
+    <entry name="HIP_Log_Forwarding">
+      <filter>All Logs</filter>
+      <send-to-panorama>no</send-to-panorama>
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
+    </entry>
+  </match-list>
+</hipmatch>
+<iptag>
+  <match-list>
+    <entry name="IP-Tag_Log_Forwarding">
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
+      <filter>All Logs</filter>
+    </entry>
+  </match-list>
+</iptag><email>
+  <entry name="Sample_Email_Profile">
+    <server>
+      <entry name="Sample_Email_Profile">
+        <display-name>Panorama</display-name>
+        <gateway>192.0.2.1</gateway>
+        <from>sentfrom@yourdomain.com</from>
+        <to>sendto@yourdomain.com</to>
+      </entry>
+    </server>
+  </entry>
+</email></log-settings><reports><entry name="Host-visit malicious sites plus">
+  <period>last-7-calendar-days</period>
+  <topn>500</topn>
+  <topm>50</topm>
+  <caption>Host-visit malicious sites plus</caption>
+  <frequency>daily</frequency>
+  <query>(category eq command-and-control) or (category eq hacking) or (category eq malware) or (category eq phishing) or (category eq grayware)</query>
+  <type>
+    <url>
+      <sortby>repeatcnt</sortby>
+      <group-by>src</group-by>
+      <aggregate-by>
+        <member>from</member>
+        <member>srcuser</member>
+        <member>category</member>
+        <member>action</member>
+      </aggregate-by>
+      <values>
+        <member>repeatcnt</member>
+      </values>
+    </url>
+  </type>
+</entry>
+<entry name="Hosts visit malicious sites">
+  <period>last-7-calendar-days</period>
+  <topn>500</topn>
+  <topm>50</topm>
+  <caption>Hosts visit malicious sites</caption>
+  <frequency>daily</frequency>
+  <query>(category eq command-and-control) or (category eq hacking) or (category eq malware) or (category eq phishing) or (category eq grayware)</query>
+  <type>
+    <url>
+      <sortby>repeatcnt</sortby>
+      <group-by>src</group-by>
+      <aggregate-by>
+        <member>from</member>
+        <member>srcuser</member>
+      </aggregate-by>
+      <values>
+        <member>repeatcnt</member>
+      </values>
+    </url>
+  </type>
+</entry>
+<entry name="Hosts visit questionable sites">
+  <period>last-7-calendar-days</period>
+  <topn>500</topn>
+  <topm>50</topm>
+  <caption>Hosts visit questionable sites</caption>
+  <frequency>daily</frequency>
+  <query>(category eq dynamic-dns) and (category eq parked) and (category eq questionable) and (category eq unknown)</query>
+  <type>
+    <url>
+      <sortby>repeatcnt</sortby>
+      <group-by>src</group-by>
+      <aggregate-by>
+        <member>from</member>
+        <member>srcuser</member>
+      </aggregate-by>
+      <values>
+        <member>repeatcnt</member>
+      </values>
+    </url>
+  </type>
+</entry>
+<entry name="Host-visit quest sites plus">
+  <period>last-7-calendar-days</period>
+  <topn>500</topn>
+  <topm>50</topm>
+  <caption>Host-visit quest sites plus</caption>
+  <frequency>daily</frequency>
+  <query>(category eq dynamic-dns) and (category eq parked) and (category eq questionable) and (category eq unknown)</query>
+  <description>Detail of hosts visiting questionable URLs</description>
+  <type>
+    <url>
+      <sortby>repeatcnt</sortby>
+      <group-by>src</group-by>
+      <aggregate-by>
+        <member>from</member>
+        <member>srcuser</member>
+        <member>category</member>
+        <member>action</member>
+      </aggregate-by>
+      <values>
+        <member>repeatcnt</member>
+      </values>
+    </url>
+  </type>
+</entry>
+<entry name="Wildfire malicious verdicts">
+  <period>last-30-calendar-days</period>
+  <topn>500</topn>
+  <topm>10</topm>
+  <caption>Wildfire malicious verdicts</caption>
+  <frequency>daily</frequency>
+  <query>(app neq smtp) and (category neq benign)</query>
+  <description>Files uploaded or downloaded that were later found to be malicious. This is a summary. Act on real-time email.</description>
+  <type>
+    <wildfire>
+      <sortby>repeatcnt</sortby>
+      <aggregate-by>
+        <member>filedigest</member>
+        <member>container-of-app</member>
+        <member>app</member>
+        <member>category</member>
+        <member>filetype</member>
+        <member>rule</member>
+      </aggregate-by>
+      <values>
+        <member>repeatcnt</member>
+      </values>
+    </wildfire>
+  </type>
+</entry>
+<entry name="Wildfire verdicts SMTP">
+  <period>last-30-calendar-days</period>
+  <topn>500</topn>
+  <topm>10</topm>
+  <caption>Wildfire verdicts SMTP</caption>
+  <frequency>daily</frequency>
+  <query>(app eq smtp) and (category neq benign)</query>
+  <description>Links sent from emails found to be malicious. </description>
+  <type>
+    <wildfire>
+      <sortby>repeatcnt</sortby>
+      <aggregate-by>
+        <member>filedigest</member>
+        <member>container-of-app</member>
+        <member>app</member>
+        <member>category</member>
+        <member>filetype</member>
+        <member>rule</member>
+        <member>subject</member>
+        <member>sender</member>
+        <member>recipient</member>
+        <member>misc</member>
+      </aggregate-by>
+    </wildfire>
+  </type>
+</entry>
+<entry name="Clients sinkholed">
+  <period>last-30-calendar-days</period>
+  <topn>500</topn>
+  <topm>50</topm>
+  <caption>Clients sinkholed</caption>
+  <query>(rule eq 'DNS Sinkhole Block')</query>
+  <frequency>daily</frequency>
+  <type>
+    <traffic>
+      <sortby>repeatcnt</sortby>
+      <group-by>from</group-by>
+      <aggregate-by>
+        <member>src</member>
+        <member>srcuser</member>
+      </aggregate-by>
+      <values>
+        <member>repeatcnt</member>
+      </values>
+    </traffic>
+  </type>
+</entry></reports><report-group><entry name="Possible Compromise">
+  <custom-widget>
+    <entry name="1">
+      <custom-report>Clients sinkholed</custom-report>
+    </entry>
+    <entry name="2">
+      <custom-report>Wildfire malicious verdicts</custom-report>
+    </entry>
+    <entry name="3">
+      <custom-report>Wildfire verdicts SMTP</custom-report>
+    </entry>
+    <entry name="4">
+      <custom-report>Hosts visit malicious sites</custom-report>
+    </entry>
+    <entry name="5">
+      <custom-report>Host-visit malicious sites plus</custom-report>
+    </entry>
+    <entry name="6">
+      <custom-report>Hosts visit questionable sites</custom-report>
+    </entry>
+    <entry name="7">
+      <custom-report>Host-visit quest sites plus</custom-report>
+    </entry>
+  </custom-widget>
+  <title-page>yes</title-page>
+  <variable>
+    <entry name="title">
+      <value>Possible Compromise</value>
+    </entry>
+  </variable>
+</entry></report-group><email-scheduler><entry name="Possible Compromise">
+  <report-group>Possible Compromise</report-group>
+  <recurring>
+    <disabled />
+  </recurring>
+  <email-profile>Sample_Email_Profile</email-profile>
+</entry></email-scheduler></shared>
   <devices>
     <entry name="localhost.localdomain">
-      <deviceconfig>
-      <system><hostname>{{ PANORAMA_NAME }}</hostname>
-{%- if PANORAMA_TYPE == "static" %}
-<ip-address>{{ PANORAMA_IP }}</ip-address>
-<netmask>{{ PANORAMA_MASK }}</netmask>
-<default-gateway>{{ PANORAMA_DG }}</default-gateway>
-{%- elif PANORAMA_TYPE == "cloud" %}
-<type>
-   <dhcp-client>
-     <send-hostname>yes</send-hostname>
-     <send-client-id>no</send-client-id>
-     <accept-dhcp-hostname>no</accept-dhcp-hostname>
-     <accept-dhcp-domain>no</accept-dhcp-domain>
-   </dhcp-client>
-</type>
-{% endif %}
-<update-server>updates.paloaltonetworks.com</update-server>
-<update-schedule>
-<threats>
-    <recurring>
-      <every-30-mins>
-        <at>2</at>
-        <action>download-and-install</action>
-      </every-30-mins>
-      <threshold>48</threshold>
-    </recurring>
-  </threats>
-  <anti-virus>
-    <recurring>
-      <hourly>
-        <at>4</at>
-        <action>download-and-install</action>
-      </hourly>
-    </recurring>
-  </anti-virus>
-  <wildfire>
-    <recurring>
-      <every-min>
-        <action>download-and-install</action>
-      </every-min>
-    </recurring>
-  </wildfire>
-</update-schedule>
-<timezone>UTC</timezone>
-<service>
-  <disable-telnet>yes</disable-telnet>
-  <disable-http>yes</disable-http>
-</service>
-<server-verification>yes</server-verification>
-<dns-setting>
-  <servers>
-    <primary>{{ DNS_1 }}</primary>
-    <secondary>{{ DNS_2 }}</secondary>
-  </servers>
-</dns-setting>
-<ntp-servers>
-  <primary-ntp-server>
-    <ntp-server-address>{{ NTP_1 }}</ntp-server-address>
-  </primary-ntp-server>
-  <secondary-ntp-server>
-    <ntp-server-address>{{ NTP_2 }}</ntp-server-address>
-  </secondary-ntp-server>
-</ntp-servers>
-<login-banner>You have accessed a protected system.
-Log off immediately if you are not an authorized user.</login-banner>
-<snmp-setting>
-  <access-setting>
-    <version>
-      <v3 />
-    </version>
-  </access-setting>
-</snmp-setting>
-<config-bundle-export-schedule>
-  <entry name="Recommended_Config_Export">
-    <protocol>
-      <scp>
-        <hostname>{{ CONFIG_EXPORT_IP }}</hostname>
-        <username>testuser</username>
-        <password>-AQ==zPJb3ngM1sGjXlfX2+Qk6rbdv1I=ucInIpBmFcnkQK7zF4VO1w==</password>
-      </scp>
-    </protocol>
-    <start-time>02:00</start-time>
-    <enable>yes</enable>
-  </entry>
-</config-bundle-export-schedule></system><setting><management>
-  {%- if PANORAMA_TYPE == "cloud" %}
-  <initcfg>
-    <type>
-       <dhcp-client>
-           <send-hostname>yes</send-hostname>
-           <send-client-id>no</send-client-id>
-           <accept-dhcp-hostname>no</accept-dhcp-hostname>
-           <accept-dhcp-domain>no</accept-dhcp-domain>
-       </dhcp-client>
-    </type>
-   <hostname>{{ PANORAMA_NAME }}</hostname>
-   <username>{{ ADMINISTRATOR_USERNAME }}</username>
-  </initcfg>
-  {% endif %}
-  <storage-partition>
-    <internal />
-  </storage-partition>
-  <hostname-type-in-syslog>FQDN</hostname-type-in-syslog>
-  <enable-reporting-on-groups>yes</enable-reporting-on-groups>
-  <share-unused-objects-with-devices>no</share-unused-objects-with-devices>
-  <max-rows-in-csv-export>1048576</max-rows-in-csv-export>
-  <api>
-    <key>
-      <lifetime>{{ API_KEY_LIFETIME }}</lifetime>
-    </key>
-  </api>
-  <admin-lockout>
-    <failed-attempts>5</failed-attempts>
-    <lockout-time>30</lockout-time>
-  </admin-lockout>
-  <idle-timeout>10</idle-timeout>
-  <auto-acquire-commit-lock>yes</auto-acquire-commit-lock>
-</management></setting></deviceconfig>
-    <log-collector-group><entry name="Default_Collector_Group">
-  <monitoring-setting>
-    <snmp-setting>
-      <access-setting>
-        <version>
-          <v2c />
-        </version>
-      </access-setting>
-    </snmp-setting>
-  </monitoring-setting>
-  <log-settings>
-    <system>
-      <match-list>
-        <entry name="Email_Critical_System_Logs">
-          <send-email>
-            <member>Sample_Email_Profile</member>
-          </send-email>
-          <filter>(severity eq critical)</filter>
-          <description>Email Critical System Logs</description>
-        </entry>
-        <entry name="Syslog_System_Logs">
-          <send-syslog>
-            <member>Sample_Syslog_Profile</member>
-          </send-syslog>
-          <filter>All Logs</filter>
-          <description>Syslog All System Logs</description>
-        </entry>
-      </match-list>
-    </system>
-    <config>
-      <match-list>
-        <entry name="Syslog_Config_Logs">
-          <send-syslog>
-            <member>Sample_Syslog_Profile</member>
-          </send-syslog>
-          <filter>All Logs</filter>
-        </entry>
-      </match-list>
-    </config>
-    <hipmatch>
-      <match-list>
-        <entry name="Syslog_HIP_Logs">
-          <send-syslog>
-            <member>Sample_Syslog_Profile</member>
-          </send-syslog>
-          <filter>All Logs</filter>
-          <description>Syslog All HIP Logs</description>
-        </entry>
-      </match-list>
-    </hipmatch>
-    <traffic>
-      <match-list>
-        <entry name="Syslog_Traffic_Logs">
-          <send-syslog>
-            <member>Sample_Syslog_Profile</member>
-          </send-syslog>
-          <filter>All Logs</filter>
-          <description>Syslog All Traffic Logs</description>
-        </entry>
-      </match-list>
-    </traffic>
-    <threat>
-      <match-list>
-        <entry name="Syslog_Threat_Logs">
-          <send-syslog>
-            <member>Sample_Syslog_Profile</member>
-          </send-syslog>
-          <filter>All Logs</filter>
-          <description>Syslog All Threat Logs</description>
-        </entry>
-      </match-list>
-    </threat>
-    <url>
-      <match-list>
-        <entry name="Syslog_URL_Logs">
-          <send-syslog>
-            <member>Sample_Syslog_Profile</member>
-          </send-syslog>
-          <filter>All Logs</filter>
-          <description>Syslog All URL Logs</description>
-        </entry>
-      </match-list>
-    </url>
-    <data>
-      <match-list>
-        <entry name="Syslog_Data_Logs">
-          <send-syslog>
-            <member>Sample_Syslog_Profile</member>
-          </send-syslog>
-          <filter>All Logs</filter>
-          <description>Syslog All Data Logs</description>
-        </entry>
-      </match-list>
-    </data>
-    <wildfire>
-      <match-list>
-        <entry name="Email_Malicious_Verdicts">
-          <send-email>
-            <member>Sample_Email_Profile</member>
-          </send-email>
-          <filter>(verdict eq malicious)</filter>
-          <description>Email Malicious WildFire Verdicts</description>
-        </entry>
-        <entry name="Email_Phishing_Verdicts">
-          <send-email>
-            <member>Sample_Email_Profile</member>
-          </send-email>
-          <filter>(verdict eq phishing)</filter>
-          <description>Email All Phishing Verdicts</description>
-        </entry>
-        <entry name="Syslog_WildFire_Logs">
-          <send-syslog>
-            <member>Sample_Syslog_Profile</member>
-          </send-syslog>
-          <filter>All Logs</filter>
-          <description>Syslog All WildFire Logs</description>
-        </entry>
-      </match-list>
-    </wildfire>
-    <correlation>
-      <match-list>
-        <entry name="Email_Critical_Correlations">
-          <send-email>
-            <member>Sample_Email_Profile</member>
-          </send-email>
-          <filter>(severity geq medium)</filter>
-          <description>Emal all Critical Correlation Events</description>
-        </entry>
-        <entry name="Syslog_Correlation_Logs">
-          <send-syslog>
-            <member>Sample_Syslog_Profile</member>
-          </send-syslog>
-          <filter>All Logs</filter>
-          <description>Syslog All Correlation Logs</description>
-        </entry>
-      </match-list>
-    </correlation>
-    <auth>
-      <match-list>
-        <entry name="Syslog_Auth_Logs">
-          <send-syslog>
-            <member>Sample_Syslog_Profile</member>
-          </send-syslog>
-          <filter>All Logs</filter>
-          <description>Syslog All Authentication Logs</description>
-        </entry>
-      </match-list>
-    </auth>
-    <userid>
-      <match-list>
-        <entry name="Syslog_User-ID_Logs">
-          <send-syslog>
-            <member>Sample_Syslog_Profile</member>
-          </send-syslog>
-          <filter>All Logs</filter>
-          <description>Syslog All User-ID Logs</description>
-        </entry>
-      </match-list>
-    </userid>
-    <tunnel>
-      <match-list>
-        <entry name="Syslog_Tunnel_Logs">
-          <send-syslog>
-            <member>Sample_Syslog_Profile</member>
-          </send-syslog>
-          <filter>All Logs</filter>
-          <description>Syslog All Tunnel Logs</description>
-        </entry>
-      </match-list>
-    </tunnel>
-  </log-settings>
-  <logfwd-setting />
-  <general-setting>
-    <management>
-      <quota-settings />
-    </management>
-  </general-setting>
-</entry></log-collector-group><template><entry name="iron-skillet">
-  <settings>
-    <default-vsys>vsys1</default-vsys>
-  </settings>
-  <config>
-    <devices>
-      <entry name="localhost.localdomain">
-        <vsys>
-          <entry name="vsys1" />
-        </vsys>
-      <deviceconfig><system><update-schedule>
-  <statistics-service>
-    <application-reports>yes</application-reports>
-    <threat-prevention-reports>yes</threat-prevention-reports>
-    <threat-prevention-pcap>yes</threat-prevention-pcap>
-    <threat-prevention-information>yes</threat-prevention-information>
-    <passive-dns-monitoring>yes</passive-dns-monitoring>
-    <url-reports>yes</url-reports>
-    <health-performance-reports>yes</health-performance-reports>
-    <file-identification-reports>yes</file-identification-reports>
-  </statistics-service>
-  <threats>
-    <recurring>
-      <every-30-mins>
-        <at>2</at>
-        <action>download-and-install</action>
-      </every-30-mins>
-      <threshold>48</threshold>
-    </recurring>
-  </threats>
-  <anti-virus>
-    <recurring>
-      <hourly>
-        <at>4</at>
-        <action>download-and-install</action>
-      </hourly>
-    </recurring>
-  </anti-virus>
-  <wildfire>
-    <recurring>
-      <every-min>
-        <action>download-and-install</action>
-      </every-min>
-    </recurring>
-  </wildfire>
-  <global-protect-datafile>
-    <recurring>
-      <hourly>
-        <at>40</at>
-        <action>download-and-install</action>
-      </hourly>
-    </recurring>
-  </global-protect-datafile>
-  <global-protect-clientless-vpn>
-    <recurring>
-      <hourly>
-        <at>50</at>
-        <action>download-and-install</action>
-      </hourly>
-    </recurring>
-  </global-protect-clientless-vpn>
-</update-schedule>
-<snmp-setting>
-  <access-setting>
-    <version>
-      <v3 />
-    </version>
-  </access-setting>
-</snmp-setting>
-<dns-setting>
-  <servers>
-    <primary>{{ DNS_1 }}</primary>
-    <secondary>{{ DNS_2 }}</secondary>
-  </servers>
-</dns-setting>
-<ntp-servers>
-  <primary-ntp-server>
-    <ntp-server-address>{{ NTP_1 }}</ntp-server-address>
-  </primary-ntp-server>
-  <secondary-ntp-server>
-    <ntp-server-address>{{ NTP_2 }}</ntp-server-address>
-  </secondary-ntp-server>
-</ntp-servers>
-<login-banner>You have accessed a protected system.
-Log off immediately if you are not an authorized user.</login-banner>
-<timezone>UTC</timezone></system><setting><ctd>
-  <strip-x-fwd-for>yes</strip-x-fwd-for>
-  <x-forwarded-for>yes</x-forwarded-for>
-  <allow-http-range>no</allow-http-range>
-  <tcp-bypass-exceed-queue>no</tcp-bypass-exceed-queue>
-  <udp-bypass-exceed-queue>no</udp-bypass-exceed-queue>
-</ctd>
-<management>
-  <enable-log-high-dp-load>yes</enable-log-high-dp-load>
-  <max-rows-in-csv-export>1048576</max-rows-in-csv-export>
-  <api>
-    <key>
-      <lifetime>{{ API_KEY_LIFETIME }}</lifetime>
-    </key>
-  </api>
-  <admin-lockout>
-    <failed-attempts>5</failed-attempts>
-    <lockout-time>30</lockout-time>
-  </admin-lockout>
-  <idle-timeout>10</idle-timeout>
-  <auto-acquire-commit-lock>yes</auto-acquire-commit-lock>
-</management>
-<wildfire>
-  <file-size-limit>
-    <entry name="pe">
-      <size-limit>16</size-limit>
-    </entry>
-    <entry name="apk">
-      <size-limit>30</size-limit>
-    </entry>
-    <entry name="pdf">
-      <size-limit>3072</size-limit>
-    </entry>
-    <entry name="ms-office">
-      <size-limit>16384</size-limit>
-    </entry>
-    <entry name="jar">
-      <size-limit>5</size-limit>
-    </entry>
-    <entry name="flash">
-      <size-limit>5</size-limit>
-    </entry>
-    <entry name="MacOSX">
-      <size-limit>10</size-limit>
-    </entry>
-    <entry name="archive">
-      <size-limit>50</size-limit>
-    </entry>
-    <entry name="linux">
-      <size-limit>50</size-limit>
-    </entry>
-    <entry name="script">
-      <size-limit>2000</size-limit>
-    </entry>
-  </file-size-limit>
-  <report-benign-file>yes</report-benign-file>
-  <report-grayware-file>yes</report-grayware-file>
-</wildfire>
-<config>
-  <rematch>yes</rematch>
-</config>
-<application>
-  <notify-user>yes</notify-user>
-  <bypass-exceed-queue>no</bypass-exceed-queue>
-</application>
-<logging>
-  <log-suppression>no</log-suppression>
-</logging>
-<tcp>
-  <urgent-data>clear</urgent-data>
-  <drop-zero-flag>yes</drop-zero-flag>
-  <bypass-exceed-oo-queue>no</bypass-exceed-oo-queue>
-  <check-timestamp-option>yes</check-timestamp-option>
-  <strip-mptcp-option>yes</strip-mptcp-option>
-</tcp></setting></deviceconfig><network><profiles><zone-protection-profile><entry name="Recommended_Zone_Protection">
+      <network>
+          <interface>
+              <ethernet />
+          </interface>
+          <profiles>
+              <monitor-profile>
+                  <entry name="default">
+                      <interval>3</interval>
+                      <threshold>5</threshold>
+                      <action>wait-recover</action>
+                  </entry>
+              </monitor-profile>
+          <zone-protection-profile><entry name="Recommended_Zone_Protection">
   <flood>
     <tcp-syn>
       <red>
@@ -545,500 +382,526 @@ Log off immediately if you are not an authorized user.</login-banner>
   <remove-tcp-timestamp>yes</remove-tcp-timestamp>
   <strip-tcp-fast-open-and-data>no</strip-tcp-fast-open-and-data>
   <strip-mptcp-option>global</strip-mptcp-option>
-</entry></zone-protection-profile></profiles></network></entry>
-    </devices>
-  <mgt-config><users>
-  <entry name="{{ ADMINISTRATOR_USERNAME }}">
-    <phash>{{ ADMINISTRATOR_PASSWORD | md5_hash }}</phash>
-    <permissions>
-      <role-based>
-        <superuser>yes</superuser>
-      </role-based>
-    </permissions>
-  </entry>
-</users>
-<password-complexity>
-  <enabled>yes</enabled>
-  <minimum-length>12</minimum-length>
-  <minimum-uppercase-letters>1</minimum-uppercase-letters>
-  <minimum-lowercase-letters>1</minimum-lowercase-letters>
-  <minimum-numeric-letters>1</minimum-numeric-letters>
-  <minimum-special-characters>1</minimum-special-characters>
-  <block-username-inclusion>yes</block-username-inclusion>
-  <password-history-count>24</password-history-count>
-  <new-password-differs-by-characters>3</new-password-differs-by-characters>
-</password-complexity></mgt-config><shared><log-settings><email>
-  <entry name="Sample_Email_Profile">
-    <server>
-      <entry name="Sample_Email_Profile">
-        <display-name>Panorama</display-name>
-        <gateway>{{ EMAIL_PROFILE_GATEWAY }}</gateway>
-        <from>{{ EMAIL_PROFILE_FROM }}</from>
-        <to>{{ EMAIL_PROFILE_TO }}</to>
-      </entry>
-    </server>
-  </entry>
-</email>
-<syslog>
-  <entry name="Sample_Syslog_Profile">
-    <server>
-      <entry name="Sample_Syslog">
-        <transport>UDP</transport>
-        <port>514</port>
-        <format>BSD</format>
-        <server>{{ SYSLOG_SERVER }}</server>
-        <facility>LOG_USER</facility>
-      </entry>
-    </server>
-  </entry>
-</syslog>
-<system>
-  <match-list>
-    <entry name="System_Log_Forwarding">
-      <filter>All Logs</filter>
-      <send-to-panorama>yes</send-to-panorama>
-    </entry>
-  </match-list>
-</system>
-<config>
-  <match-list>
-    <entry name="Configuration_Log_Forwarding">
-      <filter>All Logs</filter>
-      <send-to-panorama>yes</send-to-panorama>
-    </entry>
-  </match-list>
-</config>
-<userid>
-  <match-list>
-    <entry name="User-ID_Log_Forwarding">
-      <filter>All Logs</filter>
-      <send-to-panorama>yes</send-to-panorama>
-    </entry>
-  </match-list>
-</userid>
-<hipmatch>
-  <match-list>
-    <entry name="HIP_Log_Forwarding">
-      <filter>All Logs</filter>
-      <send-to-panorama>yes</send-to-panorama>
-    </entry>
-  </match-list>
-</hipmatch>
-<correlation>
-  <match-list>
-    <entry name="Correlation_Log_Forwarding">
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-      <filter>All Logs</filter>
-    </entry>
-  </match-list>
-</correlation></log-settings></shared></config>
-</entry></template><template-stack><entry name="{{ STACK }}">
-  <templates>
-    <member>iron-skillet</member>
-  </templates>
-  <settings>
-    <default-vsys>vsys1</default-vsys>
-  </settings>
-    <config>
-      <devices>
-        <entry name="localhost.localdomain">
-          <vsys>
-            <entry name="vsys1" />
-          </vsys>
-        <deviceconfig><system><hostname>{{ FW_NAME }}</hostname>
-{%- if MGMT_TYPE == "static" %}
-<type>
-  <static />
+</entry></zone-protection-profile></profiles>
+          <ike>
+              <crypto-profiles>
+                  <ike-crypto-profiles>
+                      <entry name="default">
+                          <encryption>
+                              <member>aes-128-cbc</member>
+                              <member>3des</member>
+                          </encryption>
+                          <hash>
+                              <member>sha1</member>
+                          </hash>
+                          <dh-group>
+                              <member>group2</member>
+                          </dh-group>
+                          <lifetime>
+                              <hours>8</hours>
+                          </lifetime>
+                      </entry>
+                      <entry name="Suite-B-GCM-128">
+                          <encryption>
+                              <member>aes-128-cbc</member>
+                          </encryption>
+                          <hash>
+                              <member>sha256</member>
+                          </hash>
+                          <dh-group>
+                              <member>group19</member>
+                          </dh-group>
+                          <lifetime>
+                              <hours>8</hours>
+                          </lifetime>
+                      </entry>
+                      <entry name="Suite-B-GCM-256">
+                          <encryption>
+                              <member>aes-256-cbc</member>
+                          </encryption>
+                          <hash>
+                              <member>sha384</member>
+                          </hash>
+                          <dh-group>
+                              <member>group20</member>
+                          </dh-group>
+                          <lifetime>
+                              <hours>8</hours>
+                          </lifetime>
+                      </entry>
+                  </ike-crypto-profiles>
+                  <ipsec-crypto-profiles>
+                      <entry name="default">
+                          <esp>
+                              <encryption>
+                                  <member>aes-128-cbc</member>
+                                  <member>3des</member>
+                              </encryption>
+                              <authentication>
+                                  <member>sha1</member>
+                              </authentication>
+                          </esp>
+                          <dh-group>group2</dh-group>
+                          <lifetime>
+                              <hours>1</hours>
+                          </lifetime>
+                      </entry>
+                      <entry name="Suite-B-GCM-128">
+                          <esp>
+                              <encryption>
+                                  <member>aes-128-gcm</member>
+                              </encryption>
+                              <authentication>
+                                  <member>none</member>
+                              </authentication>
+                          </esp>
+                          <dh-group>group19</dh-group>
+                          <lifetime>
+                              <hours>1</hours>
+                          </lifetime>
+                      </entry>
+                      <entry name="Suite-B-GCM-256">
+                          <esp>
+                              <encryption>
+                                  <member>aes-256-gcm</member>
+                              </encryption>
+                              <authentication>
+                                  <member>none</member>
+                              </authentication>
+                          </esp>
+                          <dh-group>group20</dh-group>
+                          <lifetime>
+                              <hours>1</hours>
+                          </lifetime>
+                      </entry>
+                  </ipsec-crypto-profiles>
+                  <global-protect-app-crypto-profiles>
+                      <entry name="default">
+                          <encryption>
+                              <member>aes-128-cbc</member>
+                          </encryption>
+                          <authentication>
+                              <member>sha1</member>
+                          </authentication>
+                      </entry>
+                  </global-protect-app-crypto-profiles>
+              </crypto-profiles>
+          </ike>
+          <qos>
+              <profile>
+                  <entry name="default">
+                      <class>
+                          <entry name="class1">
+                              <priority>real-time</priority>
+                          </entry>
+                          <entry name="class2">
+                              <priority>high</priority>
+                          </entry>
+                          <entry name="class3">
+                              <priority>high</priority>
+                          </entry>
+                          <entry name="class4">
+                              <priority>medium</priority>
+                          </entry>
+                          <entry name="class5">
+                              <priority>medium</priority>
+                          </entry>
+                          <entry name="class6">
+                              <priority>low</priority>
+                          </entry>
+                          <entry name="class7">
+                              <priority>low</priority>
+                          </entry>
+                          <entry name="class8">
+                              <priority>low</priority>
+                          </entry>
+                      </class>
+                  </entry>
+              </profile>
+          </qos>
+          <virtual-router>
+              <entry name="default">
+                  <protocol>
+                      <bgp>
+                          <enable>no</enable>
+                          <dampening-profile>
+                              <entry name="default">
+                                  <cutoff>1.25</cutoff>
+                                  <reuse>0.5</reuse>
+                                  <max-hold-time>900</max-hold-time>
+                                  <decay-half-life-reachable>300</decay-half-life-reachable>
+                                  <decay-half-life-unreachable>900</decay-half-life-unreachable>
+                                  <enable>yes</enable>
+                              </entry>
+                          </dampening-profile>
+                      </bgp>
+                  </protocol>
+              </entry>
+          </virtual-router>
+        </network>
+      <deviceconfig><system><type>
+    <static />
+  
 </type>
-<ip-address>{{ MGMT_IP }}</ip-address>
-<netmask>{{ MGMT_MASK }}</netmask>
-<default-gateway>{{ MGMT_DG }}</default-gateway>
-{% elif MGMT_TYPE == "dhcp-client" %}
-<type>
-   <dhcp-client>
-     <send-hostname>yes</send-hostname>
-     <send-client-id>no</send-client-id>
-     <accept-dhcp-hostname>no</accept-dhcp-hostname>
-     <accept-dhcp-domain>no</accept-dhcp-domain>
-   </dhcp-client>
-</type>
-{% else %}
-<type>
-   <dhcp-client>
-     <send-hostname>yes</send-hostname>
-     <send-client-id>no</send-client-id>
-     <accept-dhcp-hostname>no</accept-dhcp-hostname>
-     <accept-dhcp-domain>no</accept-dhcp-domain>
-   </dhcp-client>
-</type>
-{% endif %}</system></deviceconfig></entry>
-      </devices>
-  </config>
-</entry></template-stack><device-group><entry name="{{ DEVICE_GROUP }}">
- <devices />
-<reports><entry name="Host-visit malicious sites plus">
-  <period>last-7-calendar-days</period>
-  <topn>500</topn>
-  <topm>50</topm>
-  <caption>Host-visit malicious sites plus</caption>
-  <frequency>daily</frequency>
-  <query>(category eq command-and-control) or (category eq hacking) or (category eq malware) or (category eq phishing) or (category eq grayware)</query>
-  <type>
-    <panorama-url>
-      <sortby>repeatcnt</sortby>
-      <group-by>src</group-by>
-      <aggregate-by>
-        <member>from</member>
-        <member>srcuser</member>
-        <member>category</member>
-        <member>action</member>
-      </aggregate-by>
-      <values>
-        <member>repeatcnt</member>
-      </values>
-    </panorama-url>
-  </type>
-</entry>
-<entry name="Hosts visit malicious sites">
-  <period>last-7-calendar-days</period>
-  <topn>500</topn>
-  <topm>50</topm>
-  <caption>Hosts visit malicious sites</caption>
-  <frequency>daily</frequency>
-  <query>(category eq command-and-control) or (category eq hacking) or (category eq malware) or (category eq phishing) or (category eq grayware)</query>
-  <type>
-    <panorama-url>
-      <sortby>repeatcnt</sortby>
-      <group-by>src</group-by>
-      <aggregate-by>
-        <member>from</member>
-        <member>srcuser</member>
-      </aggregate-by>
-      <values>
-        <member>repeatcnt</member>
-      </values>
-    </panorama-url>
-  </type>
-</entry>
-<entry name="Hosts visit questionable sites">
-  <period>last-7-calendar-days</period>
-  <topn>500</topn>
-  <topm>50</topm>
-  <caption>Hosts visit questionable sites</caption>
-  <frequency>daily</frequency>
-  <query>(category eq dynamic-dns) and (category eq parked) and (category eq questionable) and (category eq unknown)</query>
-  <type>
-    <panorama-url>
-      <sortby>repeatcnt</sortby>
-      <group-by>src</group-by>
-      <aggregate-by>
-        <member>from</member>
-        <member>srcuser</member>
-      </aggregate-by>
-      <values>
-        <member>repeatcnt</member>
-      </values>
-    </panorama-url>
-  </type>
-</entry>
-<entry name="Host-visit quest sites plus">
-  <period>last-7-calendar-days</period>
-  <topn>500</topn>
-  <topm>50</topm>
-  <caption>Host-visit quest sites plus</caption>
-  <frequency>daily</frequency>
-  <query>(category eq dynamic-dns) and (category eq parked) and (category eq questionable) and (category eq unknown)</query>
-  <description>Detail of hosts visiting questionable URLs</description>
-  <type>
-    <panorama-url>
-      <sortby>repeatcnt</sortby>
-      <group-by>src</group-by>
-      <aggregate-by>
-        <member>from</member>
-        <member>srcuser</member>
-        <member>category</member>
-        <member>action</member>
-      </aggregate-by>
-      <values>
-        <member>repeatcnt</member>
-      </values>
-    </panorama-url>
-  </type>
-</entry>
-<entry name="Wildfire malicious verdicts">
-  <period>last-30-calendar-days</period>
-  <topn>500</topn>
-  <topm>10</topm>
-  <caption>Wildfire malicious verdicts</caption>
-  <frequency>daily</frequency>
-  <query>(app neq smtp) and (category neq benign)</query>
-  <description>Files uploaded or downloaded that were later found to be malicious. This is a summary. Act on real-time email.</description>
-  <type>
-    <panorama-wildfire>
-      <sortby>repeatcnt</sortby>
-      <aggregate-by>
-        <member>filedigest</member>
-        <member>container-of-app</member>
-        <member>app</member>
-        <member>category</member>
-        <member>filetype</member>
-        <member>rule</member>
-      </aggregate-by>
-      <values>
-        <member>repeatcnt</member>
-      </values>
-    </panorama-wildfire>
-  </type>
-</entry>
-<entry name="Wildfire verdicts SMTP">
-  <period>last-30-calendar-days</period>
-  <topn>500</topn>
-  <topm>10</topm>
-  <caption>Wildfire verdicts SMTP</caption>
-  <frequency>daily</frequency>
-  <query>(app eq smtp) and (category neq benign)</query>
-  <description>Links sent from emails found to be malicious. </description>
-  <type>
-    <panorama-wildfire>
-      <sortby>repeatcnt</sortby>
-      <aggregate-by>
-        <member>filedigest</member>
-        <member>container-of-app</member>
-        <member>app</member>
-        <member>category</member>
-        <member>filetype</member>
-        <member>rule</member>
-        <member>subject</member>
-        <member>sender</member>
-        <member>recipient</member>
-        <member>misc</member>
-      </aggregate-by>
-    </panorama-wildfire>
-  </type>
-</entry>
-<entry name="Clients sinkholed">
-  <period>last-30-calendar-days</period>
-  <topn>500</topn>
-  <topm>50</topm>
-  <caption>Clients sinkholed</caption>
-  <query>(rule eq 'DNS Sinkhole Block')</query>
-  <frequency>daily</frequency>
-  <type>
-    <panorama-traffic>
-      <sortby>repeatcnt</sortby>
-      <group-by>from</group-by>
-      <aggregate-by>
-        <member>src</member>
-        <member>srcuser</member>
-      </aggregate-by>
-      <values>
-        <member>repeatcnt</member>
-      </values>
-    </panorama-traffic>
-  </type>
-</entry></reports><report-group><entry name="Possible Compromise">
-  <custom-widget>
-    <entry name="1">
-      <custom-report>Clients sinkholed</custom-report>
-    </entry>
-    <entry name="2">
-      <custom-report>Wildfire malicious verdicts</custom-report>
-    </entry>
-    <entry name="3">
-      <custom-report>Wildfire verdicts SMTP</custom-report>
-    </entry>
-    <entry name="4">
-      <custom-report>Hosts visit malicious sites</custom-report>
-    </entry>
-    <entry name="5">
-      <custom-report>Host-visit malicious sites plus</custom-report>
-    </entry>
-    <entry name="6">
-      <custom-report>Hosts visit questionable sites</custom-report>
-    </entry>
-    <entry name="7">
-      <custom-report>Host-visit quest sites plus</custom-report>
-    </entry>
-  </custom-widget>
-  <title-page>yes</title-page>
-  <variable>
-    <entry name="title">
-      <value>Possible Compromise</value>
-    </entry>
-  </variable>
-</entry></report-group><email-scheduler><entry name="Possible Compromise">
-  <report-group>Possible Compromise</report-group>
-  <recurring>
-    <disabled />
-  </recurring>
-  <email-profile>Sample_Email_Profile</email-profile>
-</entry></email-scheduler></entry></device-group></entry>
-  </devices>
-<panorama><log-settings><email>
-  <entry name="Sample_Email_Profile">
-    <server>
-      <entry name="Sample_Email_Profile">
-        <display-name>Panorama</display-name>
-        <gateway>{{ EMAIL_PROFILE_GATEWAY }}</gateway>
-        <from>{{ EMAIL_PROFILE_FROM }}</from>
-        <to>{{ EMAIL_PROFILE_TO }}</to>
-      </entry>
-    </server>
-  </entry>
-</email>
-<system>
-  <match-list>
-    <entry name="Critical_System_Log_Email">
-      <send-email>
-        <member>Sample_Email_Profile</member>
-      </send-email>
-      <filter>(severity eq critical)</filter>
-    </entry>
-    <entry name="System_Log_Forwarding">
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-      <filter>All Logs</filter>
-    </entry>
-  </match-list>
-</system>
-<syslog>
-  <entry name="Sample_Syslog_Profile">
-    <server>
-      <entry name="Sample_Syslog">
-        <transport>UDP</transport>
-        <port>514</port>
-        <format>BSD</format>
-        <server>{{ SYSLOG_SERVER }}</server>
-        <facility>LOG_USER</facility>
-      </entry>
-    </server>
-  </entry>
-</syslog>
-<config>
-  <match-list>
-    <entry name="Configuration_Log_Forwarding">
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-      <filter>All Logs</filter>
-    </entry>
-  </match-list>
-</config>
-<userid>
-  <match-list>
-    <entry name="User-ID_Log_Forwarding">
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-      <filter>All Logs</filter>
-    </entry>
-  </match-list>
-</userid>
-<threat>
-  <match-list>
-    <entry name="Threat_Log_Forwarding">
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-      <filter>All Logs</filter>
-    </entry>
-  </match-list>
-</threat>
-<data>
-  <match-list>
-    <entry name="Data_Log_Forwarding">
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-      <filter>All Logs</filter>
-    </entry>
-  </match-list>
-</data>
+<ip-address>192.0.2.6</ip-address>
+<netmask>255.255.128.0</netmask>
+<default-gateway>192.0.2.7</default-gateway>
+<dns-setting><servers>
+  <primary>8.8.8.8</primary>
+  <secondary>8.8.4.4</secondary>
+</servers></dns-setting><update-schedule>
+  <statistics-service>
+    <application-reports>yes</application-reports>
+    <threat-prevention-reports>yes</threat-prevention-reports>
+    <threat-prevention-pcap>yes</threat-prevention-pcap>
+    <threat-prevention-information>yes</threat-prevention-information>
+    <passive-dns-monitoring>yes</passive-dns-monitoring>
+    <url-reports>yes</url-reports>
+    <health-performance-reports>yes</health-performance-reports>
+    <file-identification-reports>yes</file-identification-reports>
+  </statistics-service>
+  <threats>
+    <recurring>
+      <every-30-mins>
+        <at>2</at>
+        <action>download-and-install</action>
+      </every-30-mins>
+      <threshold>48</threshold>
+    </recurring>
+  </threats>
+  <anti-virus>
+    <recurring>
+      <hourly>
+        <at>4</at>
+        <action>download-and-install</action>
+      </hourly>
+    </recurring>
+  </anti-virus>
+  <wildfire>
+    <recurring>
+      <every-min>
+        <action>download-and-install</action>
+      </every-min>
+    </recurring>
+  </wildfire>
+  <global-protect-datafile>
+    <recurring>
+      <hourly>
+        <at>40</at>
+        <action>download-and-install</action>
+      </hourly>
+    </recurring>
+  </global-protect-datafile>
+  <global-protect-clientless-vpn>
+    <recurring>
+      <hourly>
+        <at>50</at>
+        <action>download-and-install</action>
+      </hourly>
+    </recurring>
+  </global-protect-clientless-vpn>
+</update-schedule>
+<snmp-setting>
+  <access-setting>
+    <version>
+      <v3 />
+    </version>
+  </access-setting>
+</snmp-setting>
+<ntp-servers>
+  <primary-ntp-server>
+    <ntp-server-address>0.pool.ntp.org</ntp-server-address>
+  </primary-ntp-server>
+  <secondary-ntp-server>
+    <ntp-server-address>1.pool.ntp.org</ntp-server-address>
+  </secondary-ntp-server>
+</ntp-servers>
+<login-banner>You have accessed a protected system.
+Log off immediately if you are not an authorized user.</login-banner>
+<timezone>UTC</timezone>
+<hostname>sample</hostname></system><setting><ctd>
+  <strip-x-fwd-for>yes</strip-x-fwd-for>
+  <x-forwarded-for>yes</x-forwarded-for>
+  <allow-http-range>no</allow-http-range>
+  <tcp-bypass-exceed-queue>no</tcp-bypass-exceed-queue>
+  <udp-bypass-exceed-queue>no</udp-bypass-exceed-queue>
+</ctd>
+<management>
+  <enable-log-high-dp-load>yes</enable-log-high-dp-load>
+  <max-rows-in-csv-export>1048576</max-rows-in-csv-export>
+  <api>
+    <key>
+      <lifetime>525600</lifetime>
+    </key>
+  </api>
+  <admin-lockout>
+    <failed-attempts>5</failed-attempts>
+    <lockout-time>30</lockout-time>
+  </admin-lockout>
+  <idle-timeout>10</idle-timeout>
+  <auto-acquire-commit-lock>yes</auto-acquire-commit-lock>
+</management>
 <wildfire>
-  <match-list>
-    <entry name="WildFire_Malicious">
-      <send-email>
-        <member>Sample_Email_Profile</member>
-      </send-email>
-      <filter>(verdict eq malicious) or (verdict eq phishing)</filter>
+   <file-size-limit>
+    <entry name="pe">
+      <size-limit>16</size-limit>
     </entry>
-    <entry name="WildFire_Log_Forwarding">
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-      <filter>All Logs</filter>
+    <entry name="apk">
+      <size-limit>30</size-limit>
     </entry>
-  </match-list>
+    <entry name="pdf">
+      <size-limit>3072</size-limit>
+    </entry>
+    <entry name="ms-office">
+      <size-limit>16384</size-limit>
+    </entry>
+    <entry name="jar">
+      <size-limit>5</size-limit>
+    </entry>
+    <entry name="flash">
+      <size-limit>5</size-limit>
+    </entry>
+    <entry name="MacOSX">
+      <size-limit>10</size-limit>
+    </entry>
+    <entry name="archive">
+      <size-limit>50</size-limit>
+    </entry>
+    <entry name="linux">
+      <size-limit>50</size-limit>
+    </entry>
+    <entry name="script">
+      <size-limit>2000</size-limit>
+    </entry>
+   </file-size-limit>
+  <report-benign-file>yes</report-benign-file>
+  <report-grayware-file>yes</report-grayware-file>
 </wildfire>
-<tunnel>
-  <match-list>
-    <entry name="Tunnel_Log_Forwarding">
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-      <filter>All Logs</filter>
-    </entry>
-  </match-list>
-</tunnel>
-<auth>
-  <match-list>
-    <entry name="Auth_Log_Forwarding">
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-      <filter>All Logs</filter>
-    </entry>
-  </match-list>
-</auth>
-<correlation>
-  <match-list>
-    <entry name="Correlation_Critical_Email">
-      <send-email>
-        <member>Sample_Email_Profile</member>
-      </send-email>
-      <filter>(severity geq medium)</filter>
-    </entry>
-    <entry name="Correlation_Log_Forwarding">
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-      <filter>All Logs</filter>
-    </entry>
-  </match-list>
-</correlation>
-<traffic>
-  <match-list>
-    <entry name="Traffic_Log_Forwarding">
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-      <filter>All Logs</filter>
-    </entry>
-  </match-list>
-</traffic>
-<hipmatch>
-  <match-list>
-    <entry name="HIP_Log_Forwarding">
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-      <filter>All Logs</filter>
-    </entry>
-  </match-list>
-</hipmatch>
-<url>
-  <match-list>
-    <entry name="URL_Log_Forwarding">
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-      <filter>All Logs</filter>
-    </entry>
-  </match-list>
-</url></log-settings></panorama><shared><tag><entry name="Outbound">
+<config>
+  <rematch>yes</rematch>
+</config>
+<application>
+  <notify-user>yes</notify-user>
+  <bypass-exceed-queue>no</bypass-exceed-queue>
+</application>
+<logging>
+  <log-suppression>no</log-suppression>
+</logging>
+<tcp>
+  <urgent-data>clear</urgent-data>
+  <drop-zero-flag>yes</drop-zero-flag>
+  <bypass-exceed-oo-queue>no</bypass-exceed-oo-queue>
+  <check-timestamp-option>yes</check-timestamp-option>
+  <strip-mptcp-option>yes</strip-mptcp-option>
+</tcp></setting></deviceconfig>
+      <vsys>
+        <entry name="vsys1">
+          <application />
+          <application-group />
+          <zone />
+          <service />
+          <service-group />
+          <schedule />
+          <rulebase><default-security-rules><rules>
+  <entry name="intrazone-default">
+    <action>allow</action>
+    <log-start>no</log-start>
+    <log-end>yes</log-end>
+    <profile-setting>
+      <group>
+        <member>Inbound</member>
+      </group>
+    </profile-setting>
+    <log-setting>default</log-setting>
+  </entry>
+  <entry name="interzone-default">
+    <action>drop</action>
+    <log-start>no</log-start>
+    <log-end>yes</log-end>
+    <log-setting>default</log-setting>
+  </entry>
+</rules></default-security-rules><security><rules>
+  <entry name="Outbound Block Rule">
+    <description>Block outbound sessions with destination address matching one of the Palo Alto Networks external dynamic lists for high risk and known malicious IP addresses.</description>
+    <to>
+      <member>any</member>
+    </to>
+    <from>
+      <member>any</member>
+    </from>
+    <source>
+      <member>any</member>
+    </source>
+    <destination>
+      <member>panw-highrisk-ip-list</member>
+      <member>panw-known-ip-list</member>
+      <member>panw-bulletproof-ip-list</member>
+    </destination>
+    <source-user>
+      <member>any</member>
+    </source-user>
+    <category>
+      <member>any</member>
+    </category>
+    <application>
+      <member>any</member>
+    </application>
+    <service>
+      <member>any</member>
+    </service>
+    <hip-profiles>
+      <member>any</member>
+    </hip-profiles>
+    <action>deny</action>
+    <log-setting>default</log-setting>
+    <tag>
+      <member>Outbound</member>
+    </tag>
+  </entry>
+  <entry name="Inbound Block Rule">
+    <description>Block inbound sessions with source address matching one of the Palo Alto Networks external dynamic lists for high risk and known malicious IP addresses.</description>
+    <to>
+      <member>any</member>
+    </to>
+    <from>
+      <member>any</member>
+    </from>
+    <source>
+      <member>panw-highrisk-ip-list</member>
+      <member>panw-known-ip-list</member>
+      <member>panw-bulletproof-ip-list</member>
+    </source>
+    <destination>
+      <member>any</member>
+    </destination>
+    <source-user>
+      <member>any</member>
+    </source-user>
+    <category>
+      <member>any</member>
+    </category>
+    <application>
+      <member>any</member>
+    </application>
+    <service>
+      <member>any</member>
+    </service>
+    <hip-profiles>
+      <member>any</member>
+    </hip-profiles>
+    <action>deny</action>
+    <log-setting>default</log-setting>
+    <tag>
+      <member>Inbound</member>
+    </tag>
+  </entry>
+    
+  <entry name="DNS Sinkhole Block">
+  <description>Block outbound sessions that match a malicious domain and have been redirected to a configured sinkhole IP address.</description>
+    <to>
+      <member>any</member>
+    </to>
+    <from>
+      <member>any</member>
+    </from>
+    <source>
+      <member>any</member>
+    </source>
+    <destination>
+      <member>Sinkhole-IPv4</member>
+      <member>Sinkhole-IPv6</member>
+    </destination>
+    <source-user>
+      <member>any</member>
+    </source-user>
+    <category>
+      <member>any</member>
+    </category>
+    <application>
+      <member>any</member>
+    </application>
+    <service>
+      <member>any</member>
+    </service>
+    <hip-profiles>
+      <member>any</member>
+    </hip-profiles>
+    <action>deny</action>
+    <log-setting>default</log-setting>
+    <tag>
+      <member>Outbound</member>
+    </tag>
+  </entry>
+</rules></security><decryption><rules>
+  <entry name="NO-Decrypt URL Categories">
+    <category>
+      <member>financial-services</member>
+      <member>government</member>
+      <member>health-and-medicine</member>
+      <member>Custom-No-Decrypt</member>
+    </category>
+    <service>
+      <member>any</member>
+    </service>
+    <type>
+      <ssl-forward-proxy />
+    </type>
+    <from>
+      <member>any</member>
+    </from>
+    <to>
+      <member>any</member>
+    </to>
+    <source>
+      <member>any</member>
+    </source>
+    <destination>
+      <member>any</member>
+    </destination>
+    <source-user>
+      <member>any</member>
+    </source-user>
+    <profile>Recommended_Decryption_Profile</profile>
+    <action>no-decrypt</action>
+    <disabled>yes</disabled>
+    <description>This rule does not do Decryption.  This rule is validating SSL Protocol Communications.</description>
+  </entry>
+  <entry name="NO-Decrypt Rule">
+    <category>
+      <member>any</member>
+    </category>
+    <service>
+      <member>any</member>
+    </service>
+    <type>
+      <ssl-forward-proxy />
+    </type>
+    <from>
+      <member>any</member>
+    </from>
+    <to>
+      <member>any</member>
+    </to>
+    <source>
+      <member>any</member>
+    </source>
+    <destination>
+      <member>any</member>
+    </destination>
+    <source-user>
+      <member>any</member>
+    </source-user>
+    <profile>Recommended_Decryption_Profile</profile>
+    <action>no-decrypt</action>
+    <description>This rule does not do Decryption.  This rule is validating SSL Protocol Communications.</description>
+  </entry>
+</rules></decryption></rulebase>
+        <address><entry name="Sinkhole-IPv4">
+  <fqdn>sinkhole.paloaltonetworks.com</fqdn>
+</entry>
+<entry name="Sinkhole-IPv6">
+  <ip-netmask>2600:5200::1</ip-netmask>
+</entry></address><tag><entry name="Outbound">
 	<comments>Outbound to the Internet</comments>
 </entry>
 <entry name="Inbound">
@@ -1049,49 +912,83 @@ Log off immediately if you are not an authorized user.</login-banner>
 </entry>
 <entry name="iron-skillet-version">
 	<comments>version 0.0.1 for 9.1: version of this IronSkillet template file</comments>
-</entry></tag><address><entry name="Sinkhole-IPv4">
-    <fqdn>{{ SINKHOLE_IPV4 }}</fqdn>
-</entry>
-<entry name="Sinkhole-IPv6">
-    <ip-netmask>{{ SINKHOLE_IPV6 }}</ip-netmask>
-</entry></address><log-settings><profiles><entry name="default">
+</entry></tag><log-settings><profiles><entry name="default">
   <match-list>
     <entry name="Traffic_Log_Forwarding">
       <log-type>traffic</log-type>
       <filter>All Logs</filter>
-      <send-to-panorama>yes</send-to-panorama>
+      <send-to-panorama>no</send-to-panorama>
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
     </entry>
     <entry name="Threat_Log_Forwarding">
       <log-type>threat</log-type>
       <filter>All Logs</filter>
-      <send-to-panorama>yes</send-to-panorama>
+      <send-to-panorama>no</send-to-panorama>
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
     </entry>
     <entry name="Wildfire_Log_Forwarding">
       <log-type>wildfire</log-type>
       <filter>All Logs</filter>
-      <send-to-panorama>yes</send-to-panorama>
+      <send-to-panorama>no</send-to-panorama>
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
     </entry>
     <entry name="URL_Log_Forwarding">
       <log-type>url</log-type>
       <filter>All Logs</filter>
-      <send-to-panorama>yes</send-to-panorama>
+      <send-to-panorama>no</send-to-panorama>
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
     </entry>
     <entry name="Data_Log_Forwarding">
       <log-type>data</log-type>
       <filter>All Logs</filter>
-      <send-to-panorama>yes</send-to-panorama>
+      <send-to-panorama>no</send-to-panorama>
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
     </entry>
     <entry name="Tunnel_Log_Forwarding">
       <log-type>tunnel</log-type>
       <filter>All Logs</filter>
-      <send-to-panorama>yes</send-to-panorama>
+      <send-to-panorama>no</send-to-panorama>
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
     </entry>
     <entry name="Auth_Log_Forwarding">
       <log-type>auth</log-type>
       <filter>All Logs</filter>
-      <send-to-panorama>yes</send-to-panorama>
+      <send-to-panorama>no</send-to-panorama>
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
     </entry>
-  </match-list>
+  <entry name="Email_Malicious_Verdicts">
+  <send-email>
+    <member>Sample_Email_Profile</member>
+  </send-email>
+  <action-desc>Email Malicious Wildfire Verdicts</action-desc>
+  <log-type>wildfire</log-type>
+  <filter>(verdict eq malicious)</filter>
+  <send-to-panorama>no</send-to-panorama>
+</entry>
+<entry name="Email_Phishing_Verdicts">
+  <send-email>
+    <member>Sample_Email_Profile</member>
+  </send-email>
+  <action-desc>Email Phishing Wildfire Verdicts</action-desc>
+  <log-type>wildfire</log-type>
+  <filter>(verdict eq phishing)</filter>
+  <send-to-panorama>no</send-to-panorama>
+</entry>
+</match-list>
 </entry></profiles></log-settings><profiles><custom-url-category><entry name="Black-List">
   <type>URL List</type>
 </entry>
@@ -1261,15 +1158,15 @@ Log off immediately if you are not an authorized user.</login-banner>
   <decoder>
     <entry name="ftp">
       <action>reset-both</action>
-      <wildfire-action>reset-both</wildfire-action>
+      <wildfire-action>default</wildfire-action>
     </entry>
     <entry name="http">
       <action>reset-both</action>
-      <wildfire-action>reset-both</wildfire-action>
+      <wildfire-action>default</wildfire-action>
     </entry>
     <entry name="http2">
       <action>reset-both</action>
-      <wildfire-action>reset-both</wildfire-action>
+      <wildfire-action>default</wildfire-action>
     </entry>
     <entry name="imap">
       <action>reset-both</action>
@@ -1281,7 +1178,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     </entry>
     <entry name="smb">
       <action>reset-both</action>
-      <wildfire-action>reset-both</wildfire-action>
+      <wildfire-action>default</wildfire-action>
     </entry>
     <entry name="smtp">
       <action>reset-both</action>
@@ -1306,8 +1203,8 @@ Log off immediately if you are not an authorized user.</login-banner>
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
-      <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+      <ipv4-address>sinkhole.paloaltonetworks.com</ipv4-address>
+      <ipv6-address>2600:5200::1</ipv6-address>
     </sinkhole>
   </botnet-domains>
   <rules>
@@ -1355,8 +1252,8 @@ Log off immediately if you are not an authorized user.</login-banner>
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
-      <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+      <ipv4-address>sinkhole.paloaltonetworks.com</ipv4-address>
+      <ipv6-address>2600:5200::1</ipv6-address>
     </sinkhole>
   </botnet-domains>
   <rules>
@@ -1404,8 +1301,8 @@ Log off immediately if you are not an authorized user.</login-banner>
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
-      <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+      <ipv4-address>sinkhole.paloaltonetworks.com</ipv4-address>
+      <ipv6-address>2600:5200::1</ipv6-address>
     </sinkhole>
   </botnet-domains>
   <rules>
@@ -1453,8 +1350,8 @@ Log off immediately if you are not an authorized user.</login-banner>
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
-      <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+      <ipv4-address>sinkhole.paloaltonetworks.com</ipv4-address>
+      <ipv6-address>2600:5200::1</ipv6-address>
     </sinkhole>
   </botnet-domains>
   <rules>
@@ -1488,8 +1385,8 @@ Log off immediately if you are not an authorized user.</login-banner>
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
-      <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+      <ipv4-address>sinkhole.paloaltonetworks.com</ipv4-address>
+      <ipv6-address>2600:5200::1</ipv6-address>
     </sinkhole>
   </botnet-domains>
 </entry></spyware><vulnerability><entry name="Outbound-VP">
@@ -2406,214 +2303,8 @@ Log off immediately if you are not an authorized user.</login-banner>
   <wildfire-analysis>
     <member>Outbound-WF</member>
   </wildfire-analysis>
-</entry></profile-group><post-rulebase><default-security-rules><rules>
-  <entry name="intrazone-default">
-    <action>allow</action>
-    <log-start>no</log-start>
-    <log-end>yes</log-end>
-    <profile-setting>
-      <group>
-        <member>Inbound</member>
-      </group>
-    </profile-setting>
-    <log-setting>default</log-setting>
-  </entry>
-  <entry name="interzone-default">
-    <action>drop</action>
-    <log-start>no</log-start>
-    <log-end>yes</log-end>
-    <log-setting>default</log-setting>
-  </entry>
-</rules></default-security-rules><decryption><rules>
-  <entry name="NO-Decrypt Rule">
-    <target>
-      <negate>no</negate>
-    </target>
-    <category>
-      <member>any</member>
-    </category>
-    <service>
-      <member>any</member>
-    </service>
-    <type>
-      <ssl-forward-proxy />
-    </type>
-    <from>
-      <member>any</member>
-    </from>
-    <to>
-      <member>any</member>
-    </to>
-    <source>
-      <member>any</member>
-    </source>
-    <destination>
-      <member>any</member>
-    </destination>
-    <source-user>
-      <member>any</member>
-    </source-user>
-    <profile>Recommended_Decryption_Profile</profile>
-    <action>no-decrypt</action>
-    <description>This rule does not do Decryption.  This rule is validating SSL Protocol Communications.</description>
-  </entry>
-</rules></decryption></post-rulebase><pre-rulebase><security><rules>
-  {%- if INCLUDE_PAN_EDL == 'yes' %}
-  <entry name="Outbound Block Rule">
-    <description>Block outbound sessions with destination address matching one of the Palo Alto Networks external dynamic lists for high risk and known malicious IP addresses.</description>
-    <target>
-      <negate>no</negate>
-    </target>
-    <to>
-      <member>any</member>
-    </to>
-    <from>
-      <member>any</member>
-    </from>
-    <source>
-      <member>any</member>
-    </source>
-    <destination>
-      <member>panw-highrisk-ip-list</member>
-      <member>panw-known-ip-list</member>
-      <member>panw-bulletproof-ip-list</member>
-    </destination>
-    <source-user>
-      <member>any</member>
-    </source-user>
-    <category>
-      <member>any</member>
-    </category>
-    <application>
-      <member>any</member>
-    </application>
-    <service>
-      <member>any</member>
-    </service>
-    <hip-profiles>
-      <member>any</member>
-    </hip-profiles>
-    <action>deny</action>
-    <log-setting>default</log-setting>
-    <tag>
-      <member>Outbound</member>
-    </tag>
-  </entry>
-  <entry name="Inbound Block Rule">
-    <description>Block inbound sessions with source address matching one of the Palo Alto Networks external dynamic lists for high risk and known malicious IP addresses.</description>
-    <target>
-      <negate>no</negate>
-    </target>
-    <to>
-      <member>any</member>
-    </to>
-    <from>
-      <member>any</member>
-    </from>
-    <source>
-      <member>panw-highrisk-ip-list</member>
-      <member>panw-known-ip-list</member>
-      <member>panw-bulletproof-ip-list</member>
-    </source>
-    <destination>
-      <member>any</member>
-    </destination>
-    <source-user>
-      <member>any</member>
-    </source-user>
-    <category>
-      <member>any</member>
-    </category>
-    <application>
-      <member>any</member>
-    </application>
-    <service>
-      <member>any</member>
-    </service>
-    <hip-profiles>
-      <member>any</member>
-    </hip-profiles>
-    <action>deny</action>
-    <log-setting>default</log-setting>
-    <tag>
-      <member>Inbound</member>
-    </tag>
-  </entry>
-  {% endif %}
-  <entry name="DNS Sinkhole Block">
-<description>Block outbound sessions that match a malicious domain and have been redirected to a configured sinkhole IP address.</description>
-    <target>
-      <negate>no</negate>
-    </target>
-    <to>
-      <member>any</member>
-    </to>
-    <from>
-      <member>any</member>
-    </from>
-    <source>
-      <member>any</member>
-    </source>
-    <destination>
-      <member>Sinkhole-IPv4</member>
-      <member>Sinkhole-IPv6</member>
-    </destination>
-    <source-user>
-      <member>any</member>
-    </source-user>
-    <category>
-      <member>any</member>
-    </category>
-    <application>
-      <member>any</member>
-    </application>
-    <service>
-      <member>any</member>
-    </service>
-    <hip-profiles>
-      <member>any</member>
-    </hip-profiles>
-    <action>deny</action>
-    <log-setting>default</log-setting>
-    <tag>
-      <member>Outbound</member>
-    </tag>
-  </entry>
-</rules></security><decryption><rules>
-  <entry name="NO-Decrypt URL Categories">
-    <target>
-      <negate>no</negate>
-    </target>
-    <category>
-      <member>financial-services</member>
-      <member>government</member>
-      <member>health-and-medicine</member>
-      <member>Custom-No-Decrypt</member>
-    </category>
-    <service>
-      <member>any</member>
-    </service>
-    <type>
-      <ssl-forward-proxy />
-    </type>
-    <from>
-      <member>any</member>
-    </from>
-    <to>
-      <member>any</member>
-    </to>
-    <source>
-      <member>any</member>
-    </source>
-    <destination>
-      <member>any</member>
-    </destination>
-    <source-user>
-      <member>any</member>
-    </source-user>
-    <profile>Recommended_Decryption_Profile</profile>
-    <action>no-decrypt</action>
-    <disabled>yes</disabled>
-    <description>This rule does not do Decryption.  This rule is validating SSL Protocol Communications.</description>
-  </entry>
-</rules></decryption></pre-rulebase></shared></config>
+</entry></profile-group></entry>
+      </vsys>
+    </entry>
+  </devices>
+</config>

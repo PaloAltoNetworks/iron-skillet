@@ -1,8 +1,8 @@
 <config urldb="paloaltonetworks" version="9.1.0">
   <mgt-config>
     <devices />
-  <users> <entry name="{{ ADMINISTRATOR_USERNAME }}">
-  <phash>{{ ADMINISTRATOR_PASSWORD | md5_hash }}</phash>
+  <users> <entry name="admin">
+  <phash>$1$gER5B1iA$pM1yoR3I1v.JhOJG6vqQk0</phash>
   <permissions>
     <role-based>
       <superuser>yes</superuser>
@@ -21,21 +21,10 @@
   <devices>
     <entry name="localhost.localdomain">
       <deviceconfig>
-      <system><hostname>{{ PANORAMA_NAME }}</hostname>
-{%- if PANORAMA_TYPE == "static" %}
-<ip-address>{{ PANORAMA_IP }}</ip-address>
-<netmask>{{ PANORAMA_MASK }}</netmask>
-<default-gateway>{{ PANORAMA_DG }}</default-gateway>
-{%- elif PANORAMA_TYPE == "cloud" %}
-<type>
-   <dhcp-client>
-     <send-hostname>yes</send-hostname>
-     <send-client-id>no</send-client-id>
-     <accept-dhcp-hostname>no</accept-dhcp-hostname>
-     <accept-dhcp-domain>no</accept-dhcp-domain>
-   </dhcp-client>
-</type>
-{% endif %}
+      <system><hostname>panorama01</hostname>
+<ip-address>192.168.55.161</ip-address>
+<netmask>255.255.255.0</netmask>
+<default-gateway>192.168.55.2</default-gateway>
 <update-server>updates.paloaltonetworks.com</update-server>
 <update-schedule>
 <threats>
@@ -71,16 +60,16 @@
 <server-verification>yes</server-verification>
 <dns-setting>
   <servers>
-    <primary>{{ DNS_1 }}</primary>
-    <secondary>{{ DNS_2 }}</secondary>
+    <primary>8.8.8.8</primary>
+    <secondary>8.8.4.4</secondary>
   </servers>
 </dns-setting>
 <ntp-servers>
   <primary-ntp-server>
-    <ntp-server-address>{{ NTP_1 }}</ntp-server-address>
+    <ntp-server-address>0.pool.ntp.org</ntp-server-address>
   </primary-ntp-server>
   <secondary-ntp-server>
-    <ntp-server-address>{{ NTP_2 }}</ntp-server-address>
+    <ntp-server-address>1.pool.ntp.org</ntp-server-address>
   </secondary-ntp-server>
 </ntp-servers>
 <login-banner>You have accessed a protected system.
@@ -96,7 +85,7 @@ Log off immediately if you are not an authorized user.</login-banner>
   <entry name="Recommended_Config_Export">
     <protocol>
       <scp>
-        <hostname>{{ CONFIG_EXPORT_IP }}</hostname>
+        <hostname>192.0.2.3</hostname>
         <username>testuser</username>
         <password>-AQ==zPJb3ngM1sGjXlfX2+Qk6rbdv1I=ucInIpBmFcnkQK7zF4VO1w==</password>
       </scp>
@@ -105,20 +94,6 @@ Log off immediately if you are not an authorized user.</login-banner>
     <enable>yes</enable>
   </entry>
 </config-bundle-export-schedule></system><setting><management>
-  {%- if PANORAMA_TYPE == "cloud" %}
-  <initcfg>
-    <type>
-       <dhcp-client>
-           <send-hostname>yes</send-hostname>
-           <send-client-id>no</send-client-id>
-           <accept-dhcp-hostname>no</accept-dhcp-hostname>
-           <accept-dhcp-domain>no</accept-dhcp-domain>
-       </dhcp-client>
-    </type>
-   <hostname>{{ PANORAMA_NAME }}</hostname>
-   <username>{{ ADMINISTRATOR_USERNAME }}</username>
-  </initcfg>
-  {% endif %}
   <storage-partition>
     <internal />
   </storage-partition>
@@ -128,7 +103,7 @@ Log off immediately if you are not an authorized user.</login-banner>
   <max-rows-in-csv-export>1048576</max-rows-in-csv-export>
   <api>
     <key>
-      <lifetime>{{ API_KEY_LIFETIME }}</lifetime>
+      <lifetime>525600</lifetime>
     </key>
   </api>
   <admin-lockout>
@@ -386,16 +361,16 @@ Log off immediately if you are not an authorized user.</login-banner>
 </snmp-setting>
 <dns-setting>
   <servers>
-    <primary>{{ DNS_1 }}</primary>
-    <secondary>{{ DNS_2 }}</secondary>
+    <primary>8.8.8.8</primary>
+    <secondary>8.8.4.4</secondary>
   </servers>
 </dns-setting>
 <ntp-servers>
   <primary-ntp-server>
-    <ntp-server-address>{{ NTP_1 }}</ntp-server-address>
+    <ntp-server-address>0.pool.ntp.org</ntp-server-address>
   </primary-ntp-server>
   <secondary-ntp-server>
-    <ntp-server-address>{{ NTP_2 }}</ntp-server-address>
+    <ntp-server-address>1.pool.ntp.org</ntp-server-address>
   </secondary-ntp-server>
 </ntp-servers>
 <login-banner>You have accessed a protected system.
@@ -412,7 +387,7 @@ Log off immediately if you are not an authorized user.</login-banner>
   <max-rows-in-csv-export>1048576</max-rows-in-csv-export>
   <api>
     <key>
-      <lifetime>{{ API_KEY_LIFETIME }}</lifetime>
+      <lifetime>525600</lifetime>
     </key>
   </api>
   <admin-lockout>
@@ -548,8 +523,8 @@ Log off immediately if you are not an authorized user.</login-banner>
 </entry></zone-protection-profile></profiles></network></entry>
     </devices>
   <mgt-config><users>
-  <entry name="{{ ADMINISTRATOR_USERNAME }}">
-    <phash>{{ ADMINISTRATOR_PASSWORD | md5_hash }}</phash>
+  <entry name="admin">
+    <phash>$1$H2Mu4fob$pM6rLTcsGfEyxWEKHQPou/</phash>
     <permissions>
       <role-based>
         <superuser>yes</superuser>
@@ -572,9 +547,9 @@ Log off immediately if you are not an authorized user.</login-banner>
     <server>
       <entry name="Sample_Email_Profile">
         <display-name>Panorama</display-name>
-        <gateway>{{ EMAIL_PROFILE_GATEWAY }}</gateway>
-        <from>{{ EMAIL_PROFILE_FROM }}</from>
-        <to>{{ EMAIL_PROFILE_TO }}</to>
+        <gateway>192.0.2.1</gateway>
+        <from>sentfrom@yourdomain.com</from>
+        <to>sendto@yourdomain.com</to>
       </entry>
     </server>
   </entry>
@@ -586,7 +561,7 @@ Log off immediately if you are not an authorized user.</login-banner>
         <transport>UDP</transport>
         <port>514</port>
         <format>BSD</format>
-        <server>{{ SYSLOG_SERVER }}</server>
+        <server>192.0.2.2</server>
         <facility>LOG_USER</facility>
       </entry>
     </server>
@@ -634,7 +609,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     </entry>
   </match-list>
 </correlation></log-settings></shared></config>
-</entry></template><template-stack><entry name="{{ STACK }}">
+</entry></template><template-stack><entry name="sample_stack">
   <templates>
     <member>iron-skillet</member>
   </templates>
@@ -647,36 +622,17 @@ Log off immediately if you are not an authorized user.</login-banner>
           <vsys>
             <entry name="vsys1" />
           </vsys>
-        <deviceconfig><system><hostname>{{ FW_NAME }}</hostname>
-{%- if MGMT_TYPE == "static" %}
+        <deviceconfig><system><hostname>sample</hostname>
 <type>
   <static />
 </type>
-<ip-address>{{ MGMT_IP }}</ip-address>
-<netmask>{{ MGMT_MASK }}</netmask>
-<default-gateway>{{ MGMT_DG }}</default-gateway>
-{% elif MGMT_TYPE == "dhcp-client" %}
-<type>
-   <dhcp-client>
-     <send-hostname>yes</send-hostname>
-     <send-client-id>no</send-client-id>
-     <accept-dhcp-hostname>no</accept-dhcp-hostname>
-     <accept-dhcp-domain>no</accept-dhcp-domain>
-   </dhcp-client>
-</type>
-{% else %}
-<type>
-   <dhcp-client>
-     <send-hostname>yes</send-hostname>
-     <send-client-id>no</send-client-id>
-     <accept-dhcp-hostname>no</accept-dhcp-hostname>
-     <accept-dhcp-domain>no</accept-dhcp-domain>
-   </dhcp-client>
-</type>
-{% endif %}</system></deviceconfig></entry>
+<ip-address>192.0.2.6</ip-address>
+<netmask>255.255.128.0</netmask>
+<default-gateway>192.0.2.7</default-gateway>
+</system></deviceconfig></entry>
       </devices>
   </config>
-</entry></template-stack><device-group><entry name="{{ DEVICE_GROUP }}">
+</entry></template-stack><device-group><entry name="sample_devicegroup">
  <devices />
 <reports><entry name="Host-visit malicious sites plus">
   <period>last-7-calendar-days</period>
@@ -881,9 +837,9 @@ Log off immediately if you are not an authorized user.</login-banner>
     <server>
       <entry name="Sample_Email_Profile">
         <display-name>Panorama</display-name>
-        <gateway>{{ EMAIL_PROFILE_GATEWAY }}</gateway>
-        <from>{{ EMAIL_PROFILE_FROM }}</from>
-        <to>{{ EMAIL_PROFILE_TO }}</to>
+        <gateway>192.0.2.1</gateway>
+        <from>sentfrom@yourdomain.com</from>
+        <to>sendto@yourdomain.com</to>
       </entry>
     </server>
   </entry>
@@ -911,7 +867,7 @@ Log off immediately if you are not an authorized user.</login-banner>
         <transport>UDP</transport>
         <port>514</port>
         <format>BSD</format>
-        <server>{{ SYSLOG_SERVER }}</server>
+        <server>192.0.2.2</server>
         <facility>LOG_USER</facility>
       </entry>
     </server>
@@ -1050,10 +1006,10 @@ Log off immediately if you are not an authorized user.</login-banner>
 <entry name="iron-skillet-version">
 	<comments>version 0.0.1 for 9.1: version of this IronSkillet template file</comments>
 </entry></tag><address><entry name="Sinkhole-IPv4">
-    <fqdn>{{ SINKHOLE_IPV4 }}</fqdn>
+    <fqdn>sinkhole.paloaltonetworks.com</fqdn>
 </entry>
 <entry name="Sinkhole-IPv6">
-    <ip-netmask>{{ SINKHOLE_IPV6 }}</ip-netmask>
+    <ip-netmask>2600:5200::1</ip-netmask>
 </entry></address><log-settings><profiles><entry name="default">
   <match-list>
     <entry name="Traffic_Log_Forwarding">
@@ -1306,8 +1262,8 @@ Log off immediately if you are not an authorized user.</login-banner>
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
-      <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+      <ipv4-address>sinkhole.paloaltonetworks.com</ipv4-address>
+      <ipv6-address>2600:5200::1</ipv6-address>
     </sinkhole>
   </botnet-domains>
   <rules>
@@ -1355,8 +1311,8 @@ Log off immediately if you are not an authorized user.</login-banner>
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
-      <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+      <ipv4-address>sinkhole.paloaltonetworks.com</ipv4-address>
+      <ipv6-address>2600:5200::1</ipv6-address>
     </sinkhole>
   </botnet-domains>
   <rules>
@@ -1404,8 +1360,8 @@ Log off immediately if you are not an authorized user.</login-banner>
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
-      <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+      <ipv4-address>sinkhole.paloaltonetworks.com</ipv4-address>
+      <ipv6-address>2600:5200::1</ipv6-address>
     </sinkhole>
   </botnet-domains>
   <rules>
@@ -1453,8 +1409,8 @@ Log off immediately if you are not an authorized user.</login-banner>
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
-      <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+      <ipv4-address>sinkhole.paloaltonetworks.com</ipv4-address>
+      <ipv6-address>2600:5200::1</ipv6-address>
     </sinkhole>
   </botnet-domains>
   <rules>
@@ -1488,8 +1444,8 @@ Log off immediately if you are not an authorized user.</login-banner>
       </entry>
     </lists>
     <sinkhole>
-      <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
-      <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+      <ipv4-address>sinkhole.paloaltonetworks.com</ipv4-address>
+      <ipv6-address>2600:5200::1</ipv6-address>
     </sinkhole>
   </botnet-domains>
 </entry></spyware><vulnerability><entry name="Outbound-VP">
@@ -2458,7 +2414,6 @@ Log off immediately if you are not an authorized user.</login-banner>
     <description>This rule does not do Decryption.  This rule is validating SSL Protocol Communications.</description>
   </entry>
 </rules></decryption></post-rulebase><pre-rulebase><security><rules>
-  {%- if INCLUDE_PAN_EDL == 'yes' %}
   <entry name="Outbound Block Rule">
     <description>Block outbound sessions with destination address matching one of the Palo Alto Networks external dynamic lists for high risk and known malicious IP addresses.</description>
     <target>
@@ -2539,7 +2494,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>Inbound</member>
     </tag>
   </entry>
-  {% endif %}
+  
   <entry name="DNS Sinkhole Block">
 <description>Block outbound sessions that match a malicious domain and have been redirected to a configured sinkhole IP address.</description>
     <target>
