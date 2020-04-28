@@ -25,9 +25,9 @@ labels:
 # type_hint defines the form field type in pan-cnc
 variables:
   - name: PANORAMA_NAME
-      description: Panorama hostname
-      default: panorama01
-      type_hint: text
+    description: Panorama hostname
+    default: panorama01
+    type_hint: text
   - name: PANORAMA_TYPE
     description: Panorama management IP type
     default: static
