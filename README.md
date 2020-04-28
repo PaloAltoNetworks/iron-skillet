@@ -9,18 +9,24 @@ Once loaded, the configuration can be augmented with use case specific
 security policies and other deployment requirements including interfaces,
 zones, and NAT.
 
-The IronSkillet template details and usage are documented at:
-
+Detailed information can be found in the 
 [IronSkillet Documentation](https://iron-skillet.readthedocs.io)
+
+The docs include a [IronSkillet Visual Guide](https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html)
+ for a view of IronSkillet from a GUI perspective.
 
 ## Quick Start
 The templates are provided with a variety of usage options based
-on the user operational environment. The Quick Start covers non-python
-template variable editing and loading options.
+on the user operational environment.
 
-As an alternative, the `tools` directory contains python scripts to help
-manage and create loadable configurations. Additional documentation can be
-found in `tools`.
+
+#### panHandler Skillet Player
+A quick an easy way to play IronSkillet and other skillets is with the panHandler application.
+
+The [panHandler quick start guide](https://live.paloaltonetworks.com/t5/Skillet-Tools/Install-and-Get-Started-With-Panhandler/ta-p/307916)
+in the Skillet District Live community walks you through installation and usage including
+how to import the IronSkillet skillets.
+
 
 #### Getting templates from the repo
 Users can either grab content file-by-file from the github repo or download all
@@ -37,7 +43,7 @@ git clone https://github.com/PaloAltoNetworks/iron-skillet.git
 ```
 
 
-#### Loading configurations using iron-skillet defaults
+#### Loading configurations using IronSkillet defaults
 The `loadable_configs` directory contains a variety of ready-to-go
 NGFW and Panorama configurations based on iron-skillet template defaults.
 These can be loaded 'as-is' and later updated using the GUI or CLI.
@@ -50,12 +56,14 @@ The two options to load are:
 ###### Full XML configuration file
 Loading the full XML file as a candidate configuration:
 
+```
 * Log into the GUI
 * Go to `Device` > `Setup` > `Operations`
 * Choose `Import named configuration snapshot`
 * Select the file from a local directory to import
 * Choose `Load named configuration snapshot`
 * Review the loaded configuration and `commit` to apply changes
+```
 
 **WARNING:** this configuration `replaces` the existing configuration and
 is not a merge of configurations. Merging configurations requires the
@@ -96,6 +104,12 @@ the configuration can then be loaded using the CLI.
 **WARNING:** only update the `values` worksheet. Using caution if editing
 the worksheets to ensure cell references and formulas are not incorrect.
 
+### Tools scripts
+As an alternative, the `tools` directory contains python scripts to help
+manage and create loadable configurations. Additional documentation can be
+found in `tools`.
+
+
 ## Recommended Reading for Additional Best Practice Configuration Steps
 
 Prior to utilizing these configuration templates, it is important to
@@ -120,7 +134,6 @@ This is a Palo Alto Networks contributed project.
 * Suzi VanPatten - [(@suzivp)](https://github.com/suzivp)
 * Edward Arcuri - [(@sdndude)](https://github.com/sdndude)
 * Bob Hagen - [(@stealthllama)](https://github.com/stealthllama)
-* Erik Yunghans - [(@shadow-box)](https://github.com/shadow-box)
 
 See also the list of [contributors](https://github.com/PaloAltoNetworks/iron-skillet/contributors) who have participated in this project.
 
