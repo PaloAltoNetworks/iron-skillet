@@ -36,19 +36,19 @@ snippets:
         capture_object: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/address/entry[@name='Sinkhole-IPv4']
 
   - name: security_rules_outbound_edl
-    label: check for IronSkillet outbound EDL block rule member
+    label: IronSkillet outbound EDL block rule destination includes panw-bulletproof-ip-list
     test: security_rule_outbound_edl | element_value_contains('destination.member', 'panw-bulletproof-ip-list')
     fail_message: IronSkillet EDL block rules should include the EDL panw-bulletproof-ip-list
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#ironskillet-security-policies
 
   - name: security_rules_inbound_edl
-    label: check for IronSkillet inbound EDL block rule member
+    label: IronSkillet inbound EDL block rule source includes panw-bulletproof-ip-list
     test: security_rule_inbound_edl | element_value_contains('source.member', 'panw-bulletproof-ip-list')
     fail_message: IronSkillet EDL block rules should include the EDL panw-bulletproof-ip-list
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#ironskillet-security-policies
 
   - name: api_key_lifetime
-    label: set api key lifetime
+    label: api key lifetime is configured
     test: device_setting | tag_present('management.api.key.lifetime')
     fail_messasge: |
       set to a non-zero value to periodically force a key value update
@@ -56,7 +56,7 @@ snippets:
 
   - name: wf_new_type_limits
     when: device_setting | tag_present('wildfire.file-size-limit')
-    label: check limits for new WF file types
+    label: new WF type script file size limit configured as 2000
     test: wf_limit_script | element_value('size-limit') == '2000'
     fail_message: newer script file types have been added for wildfire analysis but recommended sizes have not been configured.
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-wildfire-general-settings
@@ -68,20 +68,20 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#ironskillet-address-objects
 
   - name: as_profile_check
-    label: check for addition of DNS Security Service sinkhole configuration
+    label: DNS Security Service sinkhole is configured
     test: as_profiles_outbound_dns | attribute_present('entry', 'name', 'default-paloalto-cloud')
     fail_message: the anti-spyware dns configuration should include the new dns security service using default-paloalto-cloud
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#anti-spyware
 
   - name: url_new_domain
-    label: check that the newly-registred-domain category set to alert
+    label: the newly-registred-domain URL category is set to alert
     test: url_profile_outbound | element_value_contains('alert.member', 'newly-registered-domain')
-    fail_message: new url categories should be set to alert for logging visibility
+    fail_message: URL category newly-registered-domain should be set to alert for logging visibility
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#url-filtering
 
   - name: url_new_domain_grayware
-    label: check that the grayware category set to block
+    label: the grayware URL category set to block
     test: url_profile_outbound | element_value_contains('block.member', 'grayware')
-    fail_message: new url category grayware should be set to block
+    fail_message: URL category grayware should be set to block
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#url-filtering
 
