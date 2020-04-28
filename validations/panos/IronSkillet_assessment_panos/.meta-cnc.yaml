@@ -1,5 +1,5 @@
 name: validate-IronSkillet-v90-panos-bae945bc-c667-4e56-a3fc-73bbb5afbe0d
-label: IronSkillet Assessment - check for missing config elements used in NGFW IronSkillet configuration
+label: Full NGFW configuration assessment based on IronSkillet
 
 description: |
   This skillet does a full NGFW validation of IronSkillet day one configuration - panos v9.0
@@ -45,7 +45,7 @@ snippets:
         capture_object: /config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile
 
   - name: telemetry_fully_enabled
-    label: enable all telemetry attributes
+    label: all telemetry options are enabled
     test: |
       (
       telemetry | element_value('application-reports') == 'yes'
@@ -61,7 +61,7 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-telemetry-telemetry
 
   - name: ensure_threats_check_30_min
-    label: Ensure Threats Checks every 30 minutes
+    label: threat content updates recurring every 30 minutes
     test: threats_update | tag_present('recurring.every-30-mins')
     fail_message: |
       recommended settings are to check for content updates as often as possible to ensure the firewall has the
@@ -69,7 +69,7 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#ironskillet-dynamic-updates
 
   - name: ensure_av_check_hourly
-    label: Ensure AV update Checks every hour
+    label: AV content updates recurring every hour
     test: av_update | tag_present('recurring.hourly')
     fail_message: |
       recommended settings are to check for content updates as often as possible to ensure the firewall has the
@@ -77,7 +77,7 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#ironskillet-dynamic-updates
 
   - name: ensure_wildfire_check_1_min
-    label: Ensure Wildfire Checks every 1 minute
+    label: WF content updates recurring every 1 minute
     test: wf_update | tag_present('recurring.every-min')
     fail_message: |
       recommended settings are to check for content updates as often as possible to ensure the firewall has the
@@ -85,14 +85,14 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#ironskillet-dynamic-updates
 
   - name: snmp_v3
-    label: Use SNMPv3
+    label: SNMPv3 instead of older versions
     test: snmp_version | tag_present('v3')
     fail_message: |
       when using SNMP for polling and alerts use the latest v3 version in tandem with secure access credentials.
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-operations-snmp-setup
 
   - name: dns_servers
-    label: configure primary and secondary dns servers
+    label: DNS primary and secondary servers configured
     test: |
       (
       dns_servers | tag_present('primary')
@@ -104,7 +104,7 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-services-services
 
   - name: ntp_servers
-    label: configure primary and secondary ntp servers
+    label: NTP primary and secondary servers configured
     test: |
       (
       ntp_servers | tag_present('primary-ntp-server.ntp-server-address')
@@ -116,12 +116,12 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-services-services
 
   - name: login_banner
-    label: configure login banner
+    label: login banner configured
     test: login_banner | tag_present('login-banner')
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-management-general-settings
 
   - name: timezone
-    label: set timezone to UTC
+    label: timezone set to UTC
     test: timezone | element_value('timezone') == 'UTC'
     fail_message: set to UTC so all devices map to a common universal timezone
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-management-general-settings
@@ -136,13 +136,13 @@ snippets:
         capture_object: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
 
   - name: commit_lock
-    label: auto acquire commit lock enabled
+    label: auto acquire commit lock is enabled
     test: device_setting | element_value('management.auto-acquire-commit-lock') == 'yes'
     fail_message: block a commit across multiple web sessions and avoid potential configuration conflicts
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-management-general-settings
 
   - name: strip_xff
-    label: strip x-forward-for should be enabled
+    label: strip x-forward-for is enabled
     test: device_setting | element_value('ctd.strip-x-fwd-for') == 'yes'
     fail_message: |
       remove the X-Forwarded-For (XFF) header, which contains the IP address of a client requesting a web service
@@ -150,7 +150,7 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-content-id-x-forwarded-for-headers
 
   - name: xff_userid
-    label: use xff in userid
+    label: use xff in userid is enabled
     test: device_setting | element_value('ctd.x-forwarded-for') == 'yes'
     fail_message: |
       specify that User-ID reads IP addresses from the X-Forwarded-For (XFF) header in client requests for web services
@@ -158,7 +158,7 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-content-id-x-forwarded-for-headers
 
   - name: http_range
-    label: disable http partial response
+    label: http partial response is disabled
     test: device_setting | element_value('ctd.allow-http-range') == 'no'
     fail_message: |
       prevent the firewall from establishing a new session to download the remainder of a malicious file fragment
@@ -166,21 +166,21 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-content-id-content-id-settings
 
   - name: tcp_bypass_exceed_queue
-    label: disable Forward segments exceeding TCP content inspection queue
+    label: Forward segments exceeding TCP content inspection queue is disabled
     test: device_setting | element_value('ctd.tcp-bypass-exceed-queue') == 'no'
     fail_message: |
       prevent the firewall from forwarding TCP segments and skipping content inspection when the content inspection queue is full
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-content-id-content-id-settings
 
   - name: udp_bypass_exceed_queue
-    label: disable Forward segments exceeding UDP content inspection queue
+    label: Forward segments exceeding UDP content inspection queue is disabled
     test: device_setting | element_value('ctd.udp-bypass-exceed-queue') == 'no'
     fail_message: |
       prevent the firewall from forwarding UDP segments and skipping content inspection when the content inspection queue is full.
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-content-id-content-id-settings
 
   - name: app_bypass_exceed_queue
-    label: disable Forward segments exceeding TCP App-ID inspection queue
+    label: Forward segments exceeding TCP App-ID inspection queue is disabled
     test: device_setting | element_value('application.bypass-exceed-queue') != 'yes'
     fail_message: |
       Disable this option to prevent the firewall from forwarding TCP segments and skipping App-ID inspection when
@@ -188,28 +188,28 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-content-id-content-id-settings
 
   - name: log_high_dp_load
-    label: Enable Log on High DP Load should be enabled
+    label: Enable Log on High DP Load is enabled
     test: device_setting | element_value('management.enable-log-high-dp-load') == 'yes'
     fail_message: |
       allows a system log entry to be generated when the packet processing load on the firewall is at 100% CPU utilization
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-management-logging-and-reporting-settings
 
   - name: max_rows_csv_export
-    label: set max rows in log csv export to max
+    label: max rows in log csv export set to max
     test: device_setting | element_value('management.max-rows-in-csv-export') == '1048576'
     fail_messasge: |
       set this value to allow for larger log exports using csv. recommended to increase row count to 1,048,576
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-management-logging-and-reporting-settings
 
   - name: api_key_lifetime
-    label: set api key lifetime
+    label: api key lifetime is configured
     test: device_setting | tag_present('management.api.key.lifetime')
     fail_messasge: |
       set to a non-zero value to periodically force a key value update
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-management-authentication-settings
 
   - name: admin_lockout_strict
-    label: set admin lockout IronSkillet or better failed attempts and time
+    label: admin lockout-time and failed-attempts set to IronSkillet recommended or better values
     test: |
       (
       device_setting | element_value('management.admin-lockout.failed-attempts') | int <=5
@@ -220,16 +220,16 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-management-authentication-settings
 
   - name: idle_timeout
-    label: configure idle timeout
+    label: idle timeout is configured
     test: device_setting | tag_present('management.idle-timeout')
     fail_message: recommended to close the session after 10 minutes of idle timeout to prevent unauthorized access.
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-management-authentication-settings
 
   - name: wf_filesize_limits
-    label: configure WF file size limits
+    label: Wildfire file size limits configured
     test: device_setting | tag_present('wildfire.file-size-limit')
     fail_message: |
-      recommended to set file size limits for submission to wildfire. IronSkillet uses recommended and not max sizes in some cases.
+      Wildfire file size limits should be configured to recommended values
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-wildfire-general-settings
 
   # local granular parse to look at specific attributes in the tree - file type
@@ -237,29 +237,111 @@ snippets:
     cmd: parse
     variable: config
     outputs:
+      - name: wf_limit_pe
+        capture_value: |-
+          /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting/wildfire/file-size-limit/
+          entry[@name='pe']/size-limit/text()
+      - name: wf_limit_apk
+        capture_value: |
+          /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting/wildfire/file-size-limit/
+          entry[@name='apk']/size-limit/text()
+      - name: wf_limit_pdf
+        capture_value: |-
+          /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting/wildfire/file-size-limit/
+          entry[@name='pdf']/size-limit/text()
+      - name: wf_limit_msoffice
+        capture_value: |-
+          /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting/wildfire/file-size-limit/
+          entry[@name='ms-office']/size-limit/text()
+      - name: wf_limit_jar
+        capture_value: |-
+          /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting/wildfire/file-size-limit/
+          entry[@name='jar']/size-limit/text()
+      - name: wf_limit_flash
+        capture_value: |-
+          /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting/wildfire/file-size-limit/
+          entry[@name='flash']/size-limit/text()
+      - name: wf_limit_MacOSX
+        capture_value: |-
+          /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting/wildfire/file-size-limit/
+          entry[@name='MacOSX']/size-limit/text()
       - name: wf_limit_archive
-        capture_object: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting/wildfire/file-size-limit/entry[@name='archive']
+        capture_value: |-
+          /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting/wildfire/file-size-limit/
+          entry[@name='archive']/size-limit/text()
       - name: wf_limit_linux
-        capture_object: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting/wildfire/file-size-limit/entry[@name='linux']
+        capture_value: |-
+          /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting/wildfire/file-size-limit/
+          entry[@name='linux']/size-limit/text()
       - name: wf_limit_script
-        capture_object: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting/wildfire/file-size-limit/entry[@name='script']
-      - name: wf_report
-        capture_object: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting/wildfire
+        capture_value: |-
+          /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting/wildfire/file-size-limit/
+          entry[@name='script']/size-limit/text()
 
-  - name: wf_new_type_limits
-    when: device_setting | tag_present('wildfire.file-size-limit')
-    label: check limits for new WF file types
-    test: |
-      (
-      wf_limit_archive | element_value('size-limit') == '10'
-      and wf_limit_linux | element_value('size-limit') == '2'
-      and wf_limit_script | element_value('size-limit') == '2000'
-      )
-    fail_message: newer file types have been added for wildfire analysis but recommended sizes have not been configured.
+  # check all file types and sizes match BPA
+  - name:  wf_limit_pe_test
+    label: Wildfire pe file size limit set to 16
+    test: wf_limit_pe == '16'
+    fail_message: |
+      PE file size limit recommended as 16 and configured as {{ wf_limit_pe }}
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-wildfire-general-settings
+
+  - name:  wf_limit_apk_test
+    label: Wildfire apk file size limit set to 30
+    test: wf_limit_apk == '30'
+    fail_message: APK file size limit recommended as 30 and configured as {{ wf_limit_apk }}
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-wildfire-general-settings
+
+  - name:  wf_limit_pdf_test
+    label: Wildfire pdf file size limit set to 3072
+    test: wf_limit_pdf == '3072'
+    fail_message: PDF file size limit recommended as 3072 and configured as {{ wf_limit_pdf }}
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-wildfire-general-settings
+
+  - name:  wf_limit_msoffice_test
+    label: Wildfire ms-office file size limit set to 16384
+    test: wf_limit_msoffice == '16384'
+    fail_message: PE file size limit recommended as 16384 and configured as {{ wf_limit_msoffice }}
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-wildfire-general-settings
+
+  - name:  wf_limit_jar_test
+    label: Wildfire jar file size limit set to 5
+    test: wf_limit_jar == '5'
+    fail_message: jar file size limit recommended as 5 and configured as {{ wf_limit_jar }}
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-wildfire-general-settings
+
+  - name:  wf_limit_flash_test
+    label: Wildfire flash file size limit set to 5
+    test: wf_limit_flash == '5'
+    fail_message: flash file size limit recommended as 5 and configured as {{ wf_limit_flash }}
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-wildfire-general-settings
+
+  - name:  wf_limit_MacOSX_test
+    label: Wildfire MacOSX file size limit set to 10
+    test: wf_limit_MacOSX == '10'
+    fail_message: MacOSX file size limit recommended as 10 and configured as {{ wf_limit_MacOSX }}
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-wildfire-general-settings
+
+  - name:  wf_limit_archive_test
+    label: Wildfire archive file size limit set to 50
+    test: wf_limit_archive == '50'
+    fail_message: archive file size limit recommended as 50 and configured as {{ wf_limit_archive }}
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-wildfire-general-settings
+
+  - name:  wf_limit_linux_test
+    label: Wildfire linux file size limit set to 50
+    test: wf_limit_linux == '50'
+    fail_message: linux file size limit recommended as 50 and configured as {{ wf_limit_linux }}
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-wildfire-general-settings
+
+  - name:  wf_limit_script_test
+    label: Wildfire script file size limit set to 2000
+    test: wf_limit_script == '2000'
+    fail_message: script file size limit recommended as 2000 and configured as {{ wf_limit_script }}
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-wildfire-general-settings
 
   - name: wf_report_benign_grayware
-    label: enable reports for benign and grayware WF verdicts
+    label: reports for benign and grayware WF verdicts are enabled
     test: |
       (
       wf_report | element_value('report-benign-file') == 'yes'
@@ -269,13 +351,13 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-wildfire-general-settings
 
   - name: config_rematch
-    label: enable session rematch for new security policies
+    label: session rematch for new security policies is enabled
     test: device_setting | element_value('config.rematch') == 'yes'
     fail_message: cause the firewall to apply newly configured security policies to sessions that are already in progress
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-session-session-settings
 
   - name: enable_app_block_page
-    label: enable application block page
+    label: application block page is enabled
     test: device_setting | element_value('application.notify-user') == 'yes'
     fail_message: |
       It is recommended to enable the Application Block Page setting to notify users than application is blocked and
@@ -283,14 +365,14 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-response-pages-application-block-page
 
   - name: disable_log_suppression
-    label: disable log suppression
+    label: log suppression is disabled
     test: device_setting | element_value('logging.log-suppression') == 'no'
     fail_message: |
       Disabled to ensure unique log entries for each session even if similar session types
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#log-suppression-cli-only
 
   - name: prevent_tcp_evasions
-    label: configure TCP settings to prevent malware evasions
+    label: TCP settings to prevent malware evasions are configured
     test: |
       (
       device_setting | element_value('tcp.urgent-data') == 'clear'
@@ -303,7 +385,7 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-session-tcp-settings
 
   - name: password_complexity
-    label: configure strong password complexity
+    label: strong password complexity is configured
     test: |
       (
       password_complexity | element_value('enabled') == 'yes'
@@ -322,7 +404,7 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-management-minimum-password-complexity
 
   - name: zone_protect_profile
-    label: create and use recommended zone protection
+    label: recommended zone protection is configured
     test: zone_protect_profile | attribute_present('entry', 'name', 'Recommended_Zone_Protection')
     fail_mesage: |
       A Zone Protection profile applied to a zone offers protection against most common floods, reconnaissance attacks,
@@ -355,7 +437,7 @@ snippets:
         capture_object: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/log-settings/profiles
 
   - name: av_profile_check
-    label: check for IronSkillet named AV profiles
+    label: IronSkillet named AV profiles configured
     test: |
       (
       av_profiles | attribute_present('entry', 'name', 'Outbound-AV')
@@ -365,7 +447,7 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#object-security-profiles-antivirus-blocking
 
   - name: vp_profile_check
-    label: check for IronSkillet named Vulnerability profiles
+    label: IronSkillet named Vulnerability profiles configured
     test: |
       (
       vp_profiles | attribute_present('entry', 'name', 'Outbound-VP')
@@ -375,7 +457,7 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#vulnerability
 
   - name: as_profile_check
-    label: check for IronSkillet named anti-spyware profiles
+    label: IronSkillet named anti-spyware profiles configured
     test: |
       (
       as_profiles | attribute_present('entry', 'name', 'Outbound-AS')
@@ -385,7 +467,7 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#anti-spyware
 
   - name: url_profile_check
-    label: check for IronSkillet named URL filtering profiles
+    label: IronSkillet named URL filtering profiles configured
     test: |
       (
       url_profiles | attribute_present('entry', 'name', 'Outbound-URL')
@@ -394,7 +476,7 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#url-filtering
 
   - name: fb_profile_check
-    label: check for IronSkillet named file-blocking profiles
+    label: IronSkillet named file-blocking profiles configured
     test: |
       (
       fb_profiles | attribute_present('entry', 'name', 'Outbound-FB')
@@ -404,7 +486,7 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#file-blocking
 
   - name: wf_profile_check
-    label: check for IronSkillet named Wildfire profiles
+    label: IronSkillet named Wildfire profiles configured
     test: |
       (
       wf_profiles | attribute_present('entry', 'name', 'Outbound-WF')
@@ -414,7 +496,7 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#wildfire-analysis
 
   - name: profile_group_check
-    label: check for IronSkillet named profile groups
+    label: IronSkillet named profile groups configured
     test: |
       (
       profile_group | attribute_present('entry', 'name', 'Outbound')
@@ -424,7 +506,7 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#security-profile-groups
 
   - name: profile_decryption
-    label: check for IronSkillet recommended decryption profile
+    label: IronSkillet recommended decryption profile configured
     test: |
       (
       profile_decryption | attribute_present('entry', 'name', 'Recommended_Decryption_Profile')
@@ -433,7 +515,7 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#decryption-profile
 
   - name: profile_logging
-    label: check for IronSkillet default logging profile
+    label: IronSkillet default logging profile configured
     test: |
       (
       profile_logging | attribute_present('entry', 'name', 'default')
@@ -455,7 +537,7 @@ snippets:
         capture_object: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase/decryption/rules
 
   - name: security_rules
-    label: check for IronSkillet EDL block rules
+    label: IronSkillet EDL block rules configured
     test: |
       (
       security_rules | attribute_present('entry', 'name', 'Outbound Block Rule')
@@ -465,7 +547,7 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#ironskillet-security-policies
 
   - name: decryption_rules
-    label: check for IronSkillet no-decrypt decryption rules
+    label: IronSkillet no-decrypt decryption rules configured
     test: |
       (
       decryption_rules | attribute_present('entry', 'name', 'NO-Decrypt URL Categories')
@@ -486,7 +568,7 @@ snippets:
         capture_object: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag
 
   - name: tags
-    label: check for IronSkillet referenced tags
+    label: IronSkillet referenced tags configured
     test: |
       (
       tags | attribute_present('entry', 'name', 'Outbound')
@@ -497,7 +579,7 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#ironskillet-tag-objects
 
   - name: address
-    label: check for IronSkillet referenced address objects
+    label: IronSkillet referenced address objects configured
     test: |
       (
       address | attribute_present('entry', 'name', 'Sinkhole-IPv4')
@@ -522,7 +604,7 @@ snippets:
         capture_object: /config/shared/email-scheduler
 
   - name: email_profile
-    label: check for IronSkillet sample email profile
+    label: IronSkillet sample email profile configured
     test: |
       (
       log_settings | attribute_present('email.entry', 'name', 'Sample_Email_Profile')
@@ -531,7 +613,7 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-server-profiles-email
 
   - name: syslog_profile
-    label: check for IronSkillet sample syslog profile
+    label: IronSkillet sample syslog profile configured
     test: |
       (
       log_settings | attribute_present('syslog.entry', 'name', 'Sample_Syslog_Profile')
@@ -540,7 +622,7 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-server-profiles-syslog
 
   - name: system_logging
-    label: check for IronSkillet system logging configuration
+    label: IronSkillet system logging configured
     test: |
       (
       log_settings | attribute_present('system.match-list.entry', 'name', 'Email_Critical_System_Logs')
@@ -551,7 +633,7 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-log-settings-system
 
   - name: reports
-    label: check for IronSkillet threat reports
+    label: IronSkillet threat reports configured
     test: |
       (
       reports | attribute_present('entry', 'name', 'Host-visit malicious sites plus')
@@ -566,7 +648,7 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#ironskillet-custom-reports
 
   - name: report_group
-    label: check for IronSkillet threat report group
+    label: Possible Compromise threat report group configured
     test: |
       (
       report_groups | attribute_present('entry', 'name', 'Possible Compromise')
@@ -575,7 +657,7 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#report-groups
 
   - name: email_scheduler
-    label: check for IronSkillet report email scheduler
+    label: Possible Compromise report email scheduler configured
     test: |
       (
       email_scheduler | attribute_present('entry', 'name', 'Possible Compromise')
