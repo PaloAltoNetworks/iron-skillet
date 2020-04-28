@@ -81,7 +81,7 @@ snippets:
 
   - name: url_new_domain_grayware
     label: check that the grayware category set to block
-    test: url_profile_outbound | element_value_contains('alert.member', 'grayware')
+    test: url_profile_outbound | element_value_contains('block.member', 'grayware')
     fail_message: new url category grayware should be set to block
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#url-filtering
 
