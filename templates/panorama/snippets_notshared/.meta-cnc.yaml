@@ -192,10 +192,10 @@ snippets:
     file: ../snippets/panorama_log_settings.xml
   - name: panorama_mgt_config_users
     xpath: /config/mgt-config/users
-    file: ../panorama_mgt_config_users.xml
+    file: ../snippets/panorama_mgt_config_users.xml
   - name: panorama_mgt_config_pwd
     xpath: /config/mgt-config/password-complexity
-    file: ../panorama_mgt_config_pwd.xml
+    file: ../snippets/panorama_mgt_config_pwd.xml
   - name: log_collector_group
     xpath: /config/devices/entry[@name='localhost.localdomain']/log-collector-group
     file: ../snippets/log_collector_group.xml
