@@ -73,3 +73,18 @@ Device settings
         * Iniially set to a high value with configuration variable
         * Default in minutes --> 525,600 is 1 year
 
+9.1 new features
+~~~~~~~~~~~~~~~~
+
+Security profiles
+^^^^^^^^^^^^^^^^^
+
+    + new url categories (grayware, cryptocurrency)
+
+        * set grayware to block
+
+        * set cryptocurrency to alert
+
+.. Note::
+    these are shown with their initial 9.1 release but also supported in prior PAN-OS releases
+
