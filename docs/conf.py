@@ -1,10 +1,8 @@
-# -*- coding: utf-8 -*-
-#
 # Configuration file for the Sphinx documentation builder.
 #
-# This file does only contain a selection of the most common options. For a
-# full list see the documentation:
-# http://www.sphinx-doc.org/en/master/config
+# This file only contains a selection of the most common options. For a full
+# list see the documentation:
+# https://www.sphinx-doc.org/en/master/usage/configuration.html
 
 # -- Path setup --------------------------------------------------------------
 
@@ -19,14 +17,12 @@
 
 # -- Project information -----------------------------------------------------
 
-project = u'IronSkillet'
-copyright = u'2019, Scott Shoaf'
-author = u'Scott Shoaf'
+project = 'IronSkillet'
+copyright = '2020, Scott Shoaf'
+author = 'Scott Shoaf'
 
-# The short X.Y version
-version = u''
 # The full version, including alpha/beta/rc tags
-release = u'1.0.6'
+release = '0.0.5'
 
 
 # -- General configuration ---------------------------------------------------

@@ -66,17 +66,23 @@ There are also validation skillets for analysis of existing configurations
 Validation insights currently require applications such as panHandler (https://panhandler.readthedocs.io) for
 analysis and results output.
 
+Quick start using IronSkillet players
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+User can opt to use one of the :ref:`ironskillet_players` to render and load configurations. These apps and tools
+are a great starting point to begin using IronSkillet.
+
+
 Quick start using loadable configurations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The repo contains a set of ready-to-go loadable configurations that use iron-skillet placeholder values.
+The repo contains a set of ready-to-go loadable configurations that use IronSkillet placeholder values.
 Formats include both xml and set commands.
 
 The xml file can be imported and loaded easily to Panorama or a firewall. The set command model requires 'copy-and-paste'
 from the CLI.
 
 More information for loading and editing these configurations can be found at: :ref:`using_default_configs`.
-
 
 Excel set command spreadsheet
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
