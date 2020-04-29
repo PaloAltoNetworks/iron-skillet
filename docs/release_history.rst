@@ -14,6 +14,15 @@ Includes:
 
 Template content updates are high level. Details can be found in the template guides.
 
+0.0.2
+^^^^^
+Released April 28, 2020
+
+    + Update WF file size limits to match the BPA
+    + validation updates including grayware check and WF file size limits
+    + metadata file updates: variable clean up with toggle_hint and help_text
+    + Panorama not shared skillet file reference error
+
 0.0.1
 ^^^^^
 Released January 22, 2020
@@ -26,6 +35,15 @@ Released January 22, 2020
 ----------------------------
 
 Template content updates are high level. Details can be found in the template guides.
+
+0.0.5
+^^^^^
+Released April 28, 2020
+
+    + Update WF file size limits to match the BPA
+    + validation updates including grayware check and WF file size limits
+    + metadata file updates: variable clean up with toggle_hint and help_text
+    + Panorama not shared skillet file reference error
 
 0.0.4
 ^^^^^
@@ -234,6 +252,14 @@ Documentation Revisions
 -----------------------
 
 Documentation revisions outside of template-tooling updates. These are documented by date, not verison.
+
+April 29, 2020
+^^^^^^^^^^^^^^
+
+    + update WF file size limit image in visual guide
+    + create sidebar menu sections
+    + add content for skillet players
+
 
 Janurary 22, 2020
 ^^^^^^^^^^^^^^^^^

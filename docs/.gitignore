@@ -1,0 +1,8 @@
+# python virtual environment
+env/
+venv/
+
+# sphinx builds
+_build
+_static
+_templates

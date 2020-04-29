@@ -1,6 +1,6 @@
 
-New PAN-OS Version  Updates
-===========================
+New PAN-OS Version Updates
+==========================
 
 
 8.1 Update Items
