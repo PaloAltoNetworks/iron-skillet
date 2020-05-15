@@ -47,7 +47,7 @@ The templates are available on GitHub specific to each PAN-OS software version.
 
 Use the branch specific to the software release for your deployment.
 
-The library consists of a set of xml and set configuration templates grouped by:
+The library consists of a set of XML and set configuration templates grouped by:
 
     + ``panos`` for stand-alone next-gen firewall deployments
     + ``panorama`` for Panorama system and managed device configurations
@@ -77,9 +77,9 @@ Quick start using loadable configurations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The repo contains a set of ready-to-go loadable configurations that use IronSkillet placeholder values.
-Formats include both xml and set commands.
+Formats include both XML and set commands.
 
-The xml file can be imported and loaded easily to Panorama or a firewall. The set command model requires 'copy-and-paste'
+The XML file can be imported and loaded easily to Panorama or a firewall. The set command model requires 'copy-and-paste'
 from the CLI.
 
 More information for loading and editing these configurations can be found at: :ref:`using_default_configs`.
@@ -94,13 +94,13 @@ More information for using the spreadsheet can be found at: :ref:`using_the_spre
 
 
 
-Jinja-based xml snippet and set command templates
+Jinja-based XML snippet and set command templates
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Scripting or automation-centric users may prefer to use the base template files.
-These are variable-based templates using a jinja ``{{ variable }}`` notation.
+These are variable-based templates using a Jinja ``{{ variable }}`` notation.
 
-The xml snippets with metadata are designed to use API-based configuration loading into Panorama or the firewall and
+The XML snippets with metadata are designed to use API-based configuration loading into Panorama or the firewall and
 can be coupled with workflow tools for repeatable deployments.
 
 Sample utilities are provided in the ``tools`` directory to create loadable configurations using these base templates.
