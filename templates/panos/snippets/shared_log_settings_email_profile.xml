@@ -6,6 +6,7 @@
         <gateway>{{ EMAIL_PROFILE_GATEWAY }}</gateway>
         <from>{{ EMAIL_PROFILE_FROM }}</from>
         <to>{{ EMAIL_PROFILE_TO }}</to>
+        <protocol>SMTP</protocol>
       </entry>
     </server>
   </entry>
