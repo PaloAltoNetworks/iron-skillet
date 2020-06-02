@@ -277,6 +277,8 @@ snippets:
         capture_value: |-
           /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting/wildfire/file-size-limit/
           entry[@name='script']/size-limit/text()
+      - name: wf_report
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting/wildfire
 
   # check all file types and sizes match BPA
   - name:  wf_limit_pe_test
