@@ -5,7 +5,7 @@
 # snippet folder name
 name: skillet_panorama_notshared_v91
 # label used for menu selection
-label: v9.1 Iron-Skillet for Panorama (No Shared Values)
+label: v9.2 Iron-Skillet for Panorama (No Shared Values)
 description: Iron-Skillet baseline configuration for Panorama using shared values for device-group and templates
 dependency: snippets
 # type of device configuration

@@ -36,8 +36,8 @@
       </entry>
     </dns-security-categories>
     <sinkhole>
-      <ipv4-address>pan-sinkhole-default-ip</ipv4-address>
-      <ipv6-address>::1</ipv6-address>
+      <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
+      <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
     </sinkhole>
   </botnet-domains>
   <rules>
@@ -95,8 +95,8 @@
       </entry>
     </dns-security-categories>
     <sinkhole>
-      <ipv4-address>pan-sinkhole-default-ip</ipv4-address>
-      <ipv6-address>::1</ipv6-address>
+      <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
+      <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
     </sinkhole>
   </botnet-domains>
   <rules>
@@ -154,8 +154,8 @@
       </entry>
     </dns-security-categories>
     <sinkhole>
-      <ipv4-address>pan-sinkhole-default-ip</ipv4-address>
-      <ipv6-address>::1</ipv6-address>
+      <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
+      <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
     </sinkhole>
   </botnet-domains>
   <rules>
@@ -212,8 +212,8 @@
       </entry>
     </dns-security-categories>
     <sinkhole>
-      <ipv4-address>pan-sinkhole-default-ip</ipv4-address>
-      <ipv6-address>::1</ipv6-address>
+      <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
+      <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
     </sinkhole>
   </botnet-domains>
   <rules>

@@ -131,8 +131,6 @@ This is a Palo Alto Networks contributed project.
 ## Authors
 
 * Scott Shoaf [(@scotchoaf)](https://github.com/scotchoaf)
-* Suzi VanPatten - [(@suzivp)](https://github.com/suzivp)
-* Edward Arcuri - [(@sdndude)](https://github.com/sdndude)
 * Bob Hagen - [(@stealthllama)](https://github.com/stealthllama)
 
 See also the list of [contributors](https://github.com/PaloAltoNetworks/iron-skillet/contributors) who have participated in this project.
