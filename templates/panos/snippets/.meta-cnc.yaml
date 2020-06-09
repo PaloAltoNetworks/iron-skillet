@@ -1,17 +1,15 @@
 # snippets is used to load a full NGFW configuration
 
 # snippet folder name
-name: skillet_panos_v10_0
+name: skillet_panos_v10
 # label used for menu selection
 label: v10.0 Iron-Skillet for NGFW
 description: Iron-Skillet baseline configuration for a firewall
-dependency: snippets_panorama
 # type of device configuration
 type: panos
 
 # grouping of like snippets for dynamic menu creation in pan-cnc
 labels:
-  service_type: iron_skillet
   collection:
     - IronSkillet
     - Configure
