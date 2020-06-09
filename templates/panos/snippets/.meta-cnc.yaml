@@ -1,7 +1,7 @@
 # snippets is used to load a full NGFW configuration
 
 # snippet folder name
-name: skillet_panos_v10
+name: skillet_panos_v10_0
 # label used for menu selection
 label: v10.0 Iron-Skillet for NGFW
 description: Iron-Skillet baseline configuration for a firewall
@@ -155,9 +155,6 @@ snippets:
   - name: shared_log_settings_email_system_critical
     xpath: /config/shared/log-settings/system/match-list
     file: shared_log_settings_email_system_critical.xml
-  - name: address
-    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/address
-    file: address.xml
   - name: tag
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag
     file: tag.xml
