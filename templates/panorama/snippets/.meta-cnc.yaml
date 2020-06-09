@@ -4,7 +4,7 @@
 # this is based on a 'shared model' with all template elements in the 'iron-skillet' template
 
 # snippet folder name
-name: skillet_panorama_v91
+name: skillet_panorama_v10_0
 # label used for menu selection
 label: v9.2 Iron-Skillet for Panorama (Shared Values)
 description: Iron-Skillet baseline configuration for Panorama with device-group and stack specific values
