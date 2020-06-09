@@ -5,7 +5,7 @@
 # snippet name
 name: skillet_setcommand_panorama_v10_0
 # label used for menu selection
-label: v9.2 Iron-Skillet set commands for Panorama
+label: v10.0 Iron-Skillet set commands for Panorama
 description: Set command configuration for Panorama
 # type of device configuration
 type: template

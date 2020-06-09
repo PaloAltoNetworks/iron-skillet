@@ -2,7 +2,7 @@ name: validate-IronSkillet-v10_0-panos-bae945bc-c667-4e56-a3fc-73bbb5afbe0d
 label: Full NGFW configuration assessment based on IronSkillet
 
 description: |
-  This skillet does a full NGFW validation of IronSkillet day one configuration - panos v9.2
+  This skillet does a full NGFW validation of IronSkillet day one configuration - panos v10.0
   Any missing config elements will result in a test fail and the doc links will provide
   GUI pointers for remediation
 
