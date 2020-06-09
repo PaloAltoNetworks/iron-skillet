@@ -105,6 +105,7 @@
     <member>gambling</member>
     <member>games</member>
     <member>government</member>
+    <member>hacking</member>
     <member>health-and-medicine</member>
     <member>high-risk</member>
     <member>home-and-garden</member>
@@ -158,7 +159,6 @@
     <member>Black-List</member>
     <member>command-and-control</member>
     <member>grayware</member>
-    <member>hacking</member>
     <member>malware</member>
     <member>phishing</member>
   </block>
@@ -430,6 +430,7 @@
     <member>gambling</member>
     <member>games</member>
     <member>government</member>
+    <member>hacking</member>
     <member>health-and-medicine</member>
     <member>high-risk</member>
     <member>home-and-garden</member>
@@ -483,7 +484,6 @@
     <member>Black-List</member>
     <member>command-and-control</member>
     <member>grayware</member>
-    <member>hacking</member>
     <member>malware</member>
     <member>phishing</member>
   </block>
