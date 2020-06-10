@@ -18,23 +18,66 @@ snippets:
     cmd: parse
     variable: config
     outputs:
+      # used to check WF update interval
       - name: wf_update
         capture_object: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system/update-schedule/wildfire
-      - name: security_rule
-        capture_object: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase/security/rules
       - name: as_profiles_outbound_dns
         capture_object: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/spyware/entry[@name='Outbound-AS']/botnet-domains/lists
-      - name: url_profile_outbound
-        capture_object: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/url-filtering/entry[@name='Outbound-URL']
+
+      # list of dynamic classification options set to block
+      - name: url_dynclass_block
+        capture_list: |-
+          /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/url-filtering
+          /entry[@name='Outbound-URL']/mlav-engine-urlbased-enabled/entry/mlav-policy-action[text()='block']/../@name
+      # list of dynamic classification options not set to block
+      - name: url_dynclass_not_block
+        capture_list: |-
+          /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/url-filtering
+          /entry[@name='Outbound-URL']/mlav-engine-urlbased-enabled/entry/@name
+        filter_items: item not in url_dynclass_block
+
+      # list with the profile name if hacking is block
       - name: url_profiles_block_hacking
         capture_list: |-
           /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/url-filtering/entry[@name='Outbound-URL']
           /block/member[text()='hacking']/../../@name
+      # list with the profile name if hacking is alert
       - name: url_profiles_alert_hacking
         capture_list: |-
           /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/url-filtering/entry[@name='Outbound-URL']
           /alert/member[text()='hacking']/../../@name
 
+      # list with the dynamic classification action as reset-both
+      - name: av_decoder_dynclass_resetboth
+        capture_list: |-
+          /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/virus/
+          entry[@name='Outbound-AV']/decoder/entry/mlav-action[text()='reset-both']/../@name
+      # list with the dynamic classification action not reset-both
+      - name: av_decoder_dynclass_not_resetboth
+        capture_list: |-
+          /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/virus/
+          entry[@name='Outbound-AV']/decoder/entry/@name
+        filter_items: item not in av_decoder_dynclass_resetboth
+
+      # list with the dynamic classification engine action = enable
+      - name: av_engine_dynclass_enable
+        capture_list: |-
+          /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/virus/
+          entry[@name='Outbound-AV']/mlav-engine-filebased-enabled/entry/mlav-policy-action[text()='enable']/../@name
+      # list with the dynamic classification engine action != enable
+      - name: av_engine_dynclass_not_enable
+        capture_list: |-
+          /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/virus/
+          entry[@name='Outbound-AV']/mlav-engine-filebased-enabled/entry/@name
+        filter_items: item not in av_engine_dynclass_enable
+
+      - name: profile_decryption_max_version
+        capture_value: |-
+          /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/decryption/
+          entry[@name="Recommended_Decryption_Profile"]/ssl-protocol-settings/max-version/text()
+
+#-----------------
+# tests
 
   - name: wf_realtime_update
     label: Wildfire dynamic update schedule set to real-time
@@ -44,11 +87,12 @@ snippets:
 
   - name: url_dynclass
     label: URL Filtering Outbound dynamic classification set to block
-    test:
-    fail_message: Dynamic classification should be set to block
+    test: url_dynclass_not_block | length == 0
+    fail_message: |
+      Dynamic classification for all options should be set to block; {{ url_dynclass_not_block }} not blocking
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#ironskillet-security-policies
 
-  - name: url_hacking_lists
+  - name: url_hacking
     label: Outbound-URL hacking category moved from block to alert
     test: |
       (
@@ -60,39 +104,25 @@ snippets:
       This was set to alert since this category is not explicitly malicious.
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#ironskillet-security-policies
 
-  - name: url_hacking_object
-    label: Outbound-URL hacking category moved from block to alert
-    test: |
-      (
-      url_profile_outbound | element_value_contains('alert.member', 'hacking')
-      and url_profile_outbound | (! element_value_contains('block.member', 'hacking'))
-      )
-    fail_message: |
-      a fail here only shows that hacking is still set to block which may be desired in this configuration.
-      This was set to alert since this category is not explicitly malicious.
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#ironskillet-security-policies
-
   - name: av_dynclass_decoder_action
-    label: Dynamic Classification set to reset-both for all decoders
-    test:
-    fail_message: Dynamic classification should be set to reset-both for all decoders yet set to {{ something }}
+    label: Outbound Dynamic Classification set to reset-both for all decoders
+    test: av_decoder_dynclass_not_resetboth | length == 0
+    fail_message: |
+      Dynamic classification should be set to reset-both;
+      {{ av_decoder_dynclass_not_resetboth}} set to another value
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#anti-spyware
 
   - name: av_dynclass_engines_action
-    label: Dynamic Classification set to enable for all engines
-    test:
-    fail_message: Dynamic classification should be set to enable for all engines yet set to {{ something }}
+    label: Outbound Dynamic Classification set to enable for all engines
+    test: av_engine_dynclass_not_enable | length == 0
+    fail_message: |
+      Dynamic classification should be set to enable for all engines
+      {{ av_engine_dynclass_not_enable }} set to another value
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#anti-spyware
 
-  - name: spyware_profile_pcap
-    label: Anti-Spyware DNS Policies using single packet capture for malicious categories
-    test:
-    fail_message:
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#url-filtering
-
   - name: decrypt_profile_tls13
-    label: Decrypt profile Protocol Settings using TLSv1.3 as max version
-    test:
-    fail_message:
+    label: Decrypt profile Protocol Settings max version is TLS 1.3
+    test: profile_decryption_max_version == 'tls1-3'
+    fail_message: The max persion in the profile setting should be v1.3 yet set to {{ profile_decryption_max_version }}
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#url-filtering
 
