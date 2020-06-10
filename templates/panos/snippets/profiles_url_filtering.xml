@@ -162,6 +162,14 @@
     <member>malware</member>
     <member>phishing</member>
   </block>
+  <mlav-engine-urlbased-enabled>
+    <entry name="Phishing Detection">
+      <mlav-policy-action>block</mlav-policy-action>
+    </entry>
+    <entry name="Javascript Exploit Detection">
+      <mlav-policy-action>block</mlav-policy-action>
+    </entry>
+  </mlav-engine-urlbased-enabled>
 </entry>
 <entry name="Alert-Only-URL">
   <credential-enforcement>
@@ -322,6 +330,14 @@
     <member>web-based-email</member>
     <member>web-hosting</member>
   </alert>
+  <mlav-engine-urlbased-enabled>
+    <entry name="Phishing Detection">
+      <mlav-policy-action>alert</mlav-policy-action>
+    </entry>
+    <entry name="Javascript Exploit Detection">
+      <mlav-policy-action>alert</mlav-policy-action>
+    </entry>
+  </mlav-engine-urlbased-enabled>
 </entry>
 <entry name="Exception-URL">
   <credential-enforcement>
@@ -487,4 +503,12 @@
     <member>malware</member>
     <member>phishing</member>
   </block>
+  <mlav-engine-urlbased-enabled>
+    <entry name="Phishing Detection">
+      <mlav-policy-action>block</mlav-policy-action>
+    </entry>
+    <entry name="Javascript Exploit Detection">
+      <mlav-policy-action>block</mlav-policy-action>
+    </entry>
+  </mlav-engine-urlbased-enabled>
 </entry>

@@ -18,9 +18,7 @@
   </anti-virus>
   <wildfire>
     <recurring>
-      <every-min>
-        <action>download-and-install</action>
-      </every-min>
+      <real-time/>
     </recurring>
   </wildfire>
   <global-protect-datafile>
