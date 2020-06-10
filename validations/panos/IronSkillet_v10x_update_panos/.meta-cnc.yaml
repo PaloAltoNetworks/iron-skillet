@@ -36,11 +36,6 @@ snippets:
           /entry[@name='Outbound-URL']/mlav-engine-urlbased-enabled/entry/@name
         filter_items: item not in url_dynclass_block
 
-      # list with the profile name if hacking is block
-      - name: url_profiles_block_hacking
-        capture_list: |-
-          /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/url-filtering/entry[@name='Outbound-URL']
-          /block/member[text()='hacking']/../../@name
       # list with the profile name if hacking is alert
       - name: url_profiles_alert_hacking
         capture_list: |-
@@ -94,11 +89,7 @@ snippets:
 
   - name: url_hacking
     label: Outbound-URL hacking category moved from block to alert
-    test: |
-      (
-      url_profiles_block_hacking | length == 0
-      and url_profiles_alert_hacking | length
-      )
+    test: url_profiles_alert_hacking | length
     fail_message: |
       a fail here only shows that hacking is still set to block which may be desired in this configuration.
       This was set to alert since this category is not explicitly malicious.
