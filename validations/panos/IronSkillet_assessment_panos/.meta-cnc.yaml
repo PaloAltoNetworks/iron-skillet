@@ -60,7 +60,7 @@ snippets:
 
   - name: ensure_wildfire_check_1_min
     label: WF content updates recurring real-time or every 1 minute
-    test: wf_update | tag_present('recurring.every-min') or tag_present('recurring.real-time')
+    test: wf_update | tag_present('recurring.every-min') or wf_update | tag_present('recurring.real-time')
     fail_message: |
       recommended settings are to check for content updates as often as possible to ensure the firewall has the
       lastest content updates.
