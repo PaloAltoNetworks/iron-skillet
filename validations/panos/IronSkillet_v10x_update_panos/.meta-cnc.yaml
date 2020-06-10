@@ -77,12 +77,14 @@ snippets:
   - name: wf_realtime_update
     label: Wildfire dynamic update schedule set to real-time
     test: wf_update | tag_present('recurring.real-time')
+    severity: medium
     fail_message: Wildfire should be configured to use real-time updates
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#ironskillet-security-policies
 
   - name: url_dynclass
     label: URL Filtering Outbound dynamic classification set to block
     test: url_dynclass_not_block | length == 0
+    severity: high
     fail_message: |
       Dynamic classification for all options should be set to block; {{ url_dynclass_not_block }} not blocking
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#ironskillet-security-policies
@@ -98,6 +100,7 @@ snippets:
   - name: av_dynclass_decoder_action
     label: Outbound Dynamic Classification set to reset-both for all decoders
     test: av_decoder_dynclass_not_resetboth | length == 0
+    severity: high
     fail_message: |
       Dynamic classification should be set to reset-both;
       {{ av_decoder_dynclass_not_resetboth}} set to another value
@@ -106,6 +109,7 @@ snippets:
   - name: av_dynclass_engines_action
     label: Outbound Dynamic Classification set to enable for all engines
     test: av_engine_dynclass_not_enable | length == 0
+    severity: high
     fail_message: |
       Dynamic classification should be set to enable for all engines
       {{ av_engine_dynclass_not_enable }} set to another value
@@ -114,6 +118,7 @@ snippets:
   - name: decrypt_profile_tls13
     label: Decrypt profile Protocol Settings max version is TLS 1.3
     test: profile_decryption_max_version == 'tls1-3'
+    severity: medium
     fail_message: The max persion in the profile setting should be v1.3 yet set to {{ profile_decryption_max_version }}
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#url-filtering
 
