@@ -214,15 +214,12 @@ snippets:
   - name: device_mgt_config
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/mgt-config
     file: device_mgt_config.xml
-  - name: shared_log_settings
-    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/shared/log-settings
-    file: shared_log_settings.xml
+#  - name: shared_log_settings
+#    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/shared/log-settings
+#    file: shared_log_settings.xml
   - name: zone_protection_profile
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile
     file: zone_protection_profile.xml
-  - name: shared_address
-    xpath: /config/shared/address
-    file: address.xml
   - name: shared_log_profiles
     xpath: /config/shared/log-settings/profiles
     file: log_settings_profiles.xml
@@ -259,9 +256,6 @@ snippets:
   - name: pre_rulebase_security
     xpath: /config/shared/pre-rulebase/security
     file: pre_rulebase_security.xml
-  - name: post_rulebase_decryption
-    xpath: /config/shared/post-rulebase/decryption
-    file: post_rulebase_decryption.xml
   - name: pre_rulebase_decryption
     xpath: /config/shared/pre-rulebase/decryption
     file: pre_rulebase_decryption.xml
