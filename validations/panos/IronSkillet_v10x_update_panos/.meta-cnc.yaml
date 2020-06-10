@@ -1,0 +1,98 @@
+name: validate-IronSkillet-v10_0-panos-bae945bc-c667-4e56-a3fc-73bbb5afbe0g
+label: IronSkillet - check NGFW config for updated v10.0 elements
+
+description: |
+  Check NGFW for new items updated in IronSkillet v10.x skillet
+
+type: pan_validation
+labels:
+  collection:
+    - IronSkillet
+    - Validation
+
+variables:
+
+snippets:
+
+  - name: rules
+    cmd: parse
+    variable: config
+    outputs:
+      - name: wf_update
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system/update-schedule/wildfire
+      - name: security_rule
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase/security/rules
+      - name: as_profiles_outbound_dns
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/spyware/entry[@name='Outbound-AS']/botnet-domains/lists
+      - name: url_profile_outbound
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/url-filtering/entry[@name='Outbound-URL']
+      - name: url_profiles_block_hacking
+        capture_list: |-
+          /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/url-filtering/entry[@name='Outbound-URL']
+          /block/member[text()='hacking']/../../@name
+      - name: url_profiles_alert_hacking
+        capture_list: |-
+          /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/url-filtering/entry[@name='Outbound-URL']
+          /alert/member[text()='hacking']/../../@name
+
+
+  - name: wf_realtime_update
+    label: Wildfire dynamic update schedule set to real-time
+    test: wf_update | tag_present('recurring.real-time')
+    fail_message: Wildfire should be configured to use real-time updates
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#ironskillet-security-policies
+
+  - name: url_dynclass
+    label: URL Filtering Outbound dynamic classification set to block
+    test:
+    fail_message: Dynamic classification should be set to block
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#ironskillet-security-policies
+
+  - name: url_hacking_lists
+    label: Outbound-URL hacking category moved from block to alert
+    test: |
+      (
+      url_profiles_block_hacking | length == 0
+      and url_profiles_alert_hacking | length
+      )
+    fail_message: |
+      a fail here only shows that hacking is still set to block which may be desired in this configuration.
+      This was set to alert since this category is not explicitly malicious.
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#ironskillet-security-policies
+
+  - name: url_hacking_object
+    label: Outbound-URL hacking category moved from block to alert
+    test: |
+      (
+      url_profile_outbound | element_value_contains('alert.member', 'hacking')
+      and url_profile_outbound | (! element_value_contains('block.member', 'hacking'))
+      )
+    fail_message: |
+      a fail here only shows that hacking is still set to block which may be desired in this configuration.
+      This was set to alert since this category is not explicitly malicious.
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#ironskillet-security-policies
+
+  - name: av_dynclass_decoder_action
+    label: Dynamic Classification set to reset-both for all decoders
+    test:
+    fail_message: Dynamic classification should be set to reset-both for all decoders yet set to {{ something }}
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#anti-spyware
+
+  - name: av_dynclass_engines_action
+    label: Dynamic Classification set to enable for all engines
+    test:
+    fail_message: Dynamic classification should be set to enable for all engines yet set to {{ something }}
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#anti-spyware
+
+  - name: spyware_profile_pcap
+    label: Anti-Spyware DNS Policies using single packet capture for malicious categories
+    test:
+    fail_message:
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#url-filtering
+
+  - name: decrypt_profile_tls13
+    label: Decrypt profile Protocol Settings using TLSv1.3 as max version
+    test:
+    fail_message:
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#url-filtering
+
