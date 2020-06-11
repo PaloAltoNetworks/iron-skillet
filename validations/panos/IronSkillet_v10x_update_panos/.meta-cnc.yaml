@@ -142,6 +142,6 @@ snippets:
     fail_message: |
       {%- if 'Recommended_Decryption_Profile' not in IS_decrypt_profile %}Recommended_Decryption_Profile not in configuration
       {%- elif profile_decryption_max_version | length == 0 %}No max version is configured for Recommended_Decryption_Profile
-      {%- else%}The max persion in the profile setting should be v1.3 yet set to {{ profile_decryption_max_version }}
+      {%- else%}The max version in the profile setting should be v1.3 yet set to {{ profile_decryption_max_version }}
       {%- endif %}
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#url-filtering
