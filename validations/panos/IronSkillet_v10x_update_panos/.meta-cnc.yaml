@@ -29,6 +29,11 @@ snippets:
         capture_list: |-
           /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/url-filtering
           /entry[@name='Outbound-URL']/@name
+      # check that dynamic class is part of url filtering config
+      - name: url_dynclass_entries
+        capture_list: |-
+          /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/url-filtering
+          /entry[@name='Outbound-URL']/mlav-engine-urlbased-enabled/entry/@name
       # list of dynamic classification options set to block
       - name: url_dynclass_block
         capture_list: |-
@@ -98,7 +103,7 @@ snippets:
 
   - name: url_dynclass
     label: URL Filtering Outbound dynamic classification set to block
-    test: url_dynclass_not_block | length == 0 and 'Outbound-URL' in url_outbound
+    test: url_dynclass_not_block | length == 0 and 'Outbound-URL' in url_outbound and url_dynclass_entries | length
     severity: high
     fail_message: |
       {%- if 'Outbound-URL' not in url_outbound %}URL-filtering profile Outbound-URL not in configuration
