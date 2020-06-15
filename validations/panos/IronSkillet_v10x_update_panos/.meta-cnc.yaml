@@ -68,6 +68,11 @@ snippets:
           entry[@name='Outbound-AV']/decoder/entry/@name
         filter_items: item not in av_decoder_dynclass_resetboth
 
+      # check dynamic classification engine found in the configuration
+      - name: av_engine_entries
+        capture_list: |-
+          /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/virus/
+          entry[@name='Outbound-AV']/mlav-engine-filebased-enabled/entry/@name
       # list with the dynamic classification engine action = enable
       - name: av_engine_dynclass_enable
         capture_list: |-
@@ -133,10 +138,11 @@ snippets:
 
   - name: av_dynclass_engines_action
     label: Outbound Dynamic Classification set to enable for all engines
-    test: av_engine_dynclass_not_enable | length == 0 and 'Outbound-AV' in av_outbound
+    test: av_engine_dynclass_not_enable | length == 0 and 'Outbound-AV' in av_outbound and av_engine_entries | length
     severity: high
     fail_message: |
       {%- if 'Outbound-AV' not in av_outbound %}Antivirus profile Outbound-AV not in configuration
+      {%- elif av_engine_entries | length == 0 %}No AV engine configuration found in configuration; may be unsupported version
       {%- else %}Dynamic classification should be set to enable for all engines; {{ av_engine_dynclass_not_enable }} set to another value
       {%- endif %}
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#anti-spyware
