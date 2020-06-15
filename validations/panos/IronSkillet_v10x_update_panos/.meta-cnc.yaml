@@ -107,6 +107,7 @@ snippets:
     severity: high
     fail_message: |
       {%- if 'Outbound-URL' not in url_outbound %}URL-filtering profile Outbound-URL not in configuration
+      {%- elif url_dynclass_entries | length == 0 %}Dynamic classification options not found in configuration; may be unsupported version
       {%- else %}Dynamic classification for all options should be set to block; {{ url_dynclass_not_block }} not blocking
       {%- endif %}
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#ironskillet-security-policies
