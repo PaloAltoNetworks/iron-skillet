@@ -66,3 +66,19 @@
     </entry>
   </match-list>
 </correlation>
+<globalprotect>
+  <match-list>
+    <entry name="GP_Log_Forwarding">
+      <filter>All Logs</filter>
+      <send-to-panorama>yes</send-to-panorama>
+    </entry>
+  </match-list>
+</globalprotect>
+<iptag>
+  <match-list>
+    <entry name="IP_Tag_Log_Forwarding">
+      <filter>All Logs</filter>
+      <send-to-panorama>yes</send-to-panorama>
+    </entry>
+  </match-list>
+</iptag>
