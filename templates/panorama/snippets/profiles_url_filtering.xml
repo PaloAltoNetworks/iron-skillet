@@ -105,6 +105,7 @@
     <member>gambling</member>
     <member>games</member>
     <member>government</member>
+    <member>hacking</member>
     <member>health-and-medicine</member>
     <member>high-risk</member>
     <member>home-and-garden</member>
@@ -158,10 +159,17 @@
     <member>Black-List</member>
     <member>command-and-control</member>
     <member>grayware</member>
-    <member>hacking</member>
     <member>malware</member>
     <member>phishing</member>
   </block>
+  <mlav-engine-urlbased-enabled>
+    <entry name="Phishing Detection">
+      <mlav-policy-action>block</mlav-policy-action>
+    </entry>
+    <entry name="Javascript Exploit Detection">
+      <mlav-policy-action>block</mlav-policy-action>
+    </entry>
+  </mlav-engine-urlbased-enabled>
 </entry>
 <entry name="Alert-Only-URL">
   <credential-enforcement>
@@ -322,6 +330,14 @@
     <member>web-based-email</member>
     <member>web-hosting</member>
   </alert>
+  <mlav-engine-urlbased-enabled>
+    <entry name="Phishing Detection">
+      <mlav-policy-action>alert</mlav-policy-action>
+    </entry>
+    <entry name="Javascript Exploit Detection">
+      <mlav-policy-action>alert</mlav-policy-action>
+    </entry>
+  </mlav-engine-urlbased-enabled>
 </entry>
 <entry name="Exception-URL">
   <credential-enforcement>
@@ -430,6 +446,7 @@
     <member>gambling</member>
     <member>games</member>
     <member>government</member>
+    <member>hacking</member>
     <member>health-and-medicine</member>
     <member>high-risk</member>
     <member>home-and-garden</member>
@@ -483,8 +500,15 @@
     <member>Black-List</member>
     <member>command-and-control</member>
     <member>grayware</member>
-    <member>hacking</member>
     <member>malware</member>
     <member>phishing</member>
   </block>
+  <mlav-engine-urlbased-enabled>
+    <entry name="Phishing Detection">
+      <mlav-policy-action>block</mlav-policy-action>
+    </entry>
+    <entry name="Javascript Exploit Detection">
+      <mlav-policy-action>block</mlav-policy-action>
+    </entry>
+  </mlav-engine-urlbased-enabled>
 </entry>
