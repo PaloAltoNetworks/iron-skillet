@@ -2,7 +2,7 @@
   <mgt-config>
     <devices />
   <users> <entry name="admin">
-  <phash>$1$yGsEvF9C$2EtpkjTQuVeqs2AF8EAqP.</phash>
+  <phash>$1$7NVax7Je$yJcn.S8CtqoQG2oSg5YNb0</phash>
   <permissions>
     <role-based>
       <superuser>yes</superuser>
@@ -320,16 +320,6 @@ Log off immediately if you are not an authorized user.</login-banner>
           <entry name="vsys1" />
         </vsys>
       <deviceconfig><system><update-schedule>
-  <statistics-service>
-    <application-reports>yes</application-reports>
-    <threat-prevention-reports>yes</threat-prevention-reports>
-    <threat-prevention-pcap>yes</threat-prevention-pcap>
-    <threat-prevention-information>yes</threat-prevention-information>
-    <passive-dns-monitoring>yes</passive-dns-monitoring>
-    <url-reports>yes</url-reports>
-    <health-performance-reports>yes</health-performance-reports>
-    <file-identification-reports>yes</file-identification-reports>
-  </statistics-service>
   <threats>
     <recurring>
       <every-30-mins>
@@ -349,9 +339,7 @@ Log off immediately if you are not an authorized user.</login-banner>
   </anti-virus>
   <wildfire>
     <recurring>
-      <every-min>
-        <action>download-and-install</action>
-      </every-min>
+      <real-time />
     </recurring>
   </wildfire>
   <global-protect-datafile>
@@ -395,9 +383,6 @@ Log off immediately if you are not an authorized user.</login-banner>
 <login-banner>You have accessed a protected system.
 Log off immediately if you are not an authorized user.</login-banner>
 <timezone>UTC</timezone></system><setting><ctd>
-  <strip-x-fwd-for>yes</strip-x-fwd-for>
-  <x-forwarded-for>yes</x-forwarded-for>
-  <allow-http-range>no</allow-http-range>
   <tcp-bypass-exceed-queue>no</tcp-bypass-exceed-queue>
   <udp-bypass-exceed-queue>no</udp-bypass-exceed-queue>
 </ctd>
@@ -417,7 +402,7 @@ Log off immediately if you are not an authorized user.</login-banner>
   <auto-acquire-commit-lock>yes</auto-acquire-commit-lock>
 </management>
 <wildfire>
-  <file-size-limit>
+   <file-size-limit>
     <entry name="pe">
       <size-limit>16</size-limit>
     </entry>
@@ -448,7 +433,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <entry name="script">
       <size-limit>2000</size-limit>
     </entry>
-  </file-size-limit>
+   </file-size-limit>
   <report-benign-file>yes</report-benign-file>
   <report-grayware-file>yes</report-grayware-file>
 </wildfire>
@@ -543,7 +528,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     </devices>
   <mgt-config><users>
   <entry name="admin">
-    <phash>$1$ercvo7hR$rW/ozbrSl2UfoTAZ7Q0Co0</phash>
+    <phash>$1$2/nWHCkF$nTfkgYDXU.vEOB6FD/X1o1</phash>
     <permissions>
       <role-based>
         <superuser>yes</superuser>
@@ -561,7 +546,90 @@ Log off immediately if you are not an authorized user.</login-banner>
   <block-username-inclusion>yes</block-username-inclusion>
   <password-history-count>24</password-history-count>
   <new-password-differs-by-characters>3</new-password-differs-by-characters>
-</password-complexity></mgt-config></config>
+</password-complexity></mgt-config><shared><log-settings><email>
+  <entry name="Sample_Email_Profile">
+    <server>
+      <entry name="Sample_Email_Profile">
+        <display-name>Threat_Alerts</display-name>
+        <gateway>192.0.2.1</gateway>
+        <from>sentfrom@yourdomain.com</from>
+        <to>sendto@yourdomain.com</to>
+        <protocol>SMTP</protocol>
+      </entry>
+    </server>
+  </entry>
+</email>
+<syslog>
+  <entry name="Sample_Syslog_Profile">
+    <server>
+      <entry name="Sample_Syslog">
+        <transport>UDP</transport>
+        <port>514</port>
+        <format>BSD</format>
+        <server>192.0.2.2</server>
+        <facility>LOG_USER</facility>
+      </entry>
+    </server>
+  </entry>
+</syslog>
+<system>
+  <match-list>
+    <entry name="System_Log_Forwarding">
+      <filter>All Logs</filter>
+      <send-to-panorama>yes</send-to-panorama>
+    </entry>
+  </match-list>
+</system>
+<config>
+  <match-list>
+    <entry name="Configuration_Log_Forwarding">
+      <filter>All Logs</filter>
+      <send-to-panorama>yes</send-to-panorama>
+    </entry>
+  </match-list>
+</config>
+<userid>
+  <match-list>
+    <entry name="User-ID_Log_Forwarding">
+      <filter>All Logs</filter>
+      <send-to-panorama>yes</send-to-panorama>
+    </entry>
+  </match-list>
+</userid>
+<hipmatch>
+  <match-list>
+    <entry name="HIP_Log_Forwarding">
+      <filter>All Logs</filter>
+      <send-to-panorama>yes</send-to-panorama>
+    </entry>
+  </match-list>
+</hipmatch>
+<correlation>
+  <match-list>
+    <entry name="Correlation_Log_Forwarding">
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
+      <filter>All Logs</filter>
+    </entry>
+  </match-list>
+</correlation>
+<globalprotect>
+  <match-list>
+    <entry name="GP_Log_Forwarding">
+      <filter>All Logs</filter>
+      <send-to-panorama>yes</send-to-panorama>
+    </entry>
+  </match-list>
+</globalprotect>
+<iptag>
+  <match-list>
+    <entry name="IP_Tag_Log_Forwarding">
+      <filter>All Logs</filter>
+      <send-to-panorama>yes</send-to-panorama>
+    </entry>
+  </match-list>
+</iptag></log-settings></shared></config>
 </entry></template><template-stack><entry name="sample_stack">
   <templates>
     <member>iron-skillet</member>
@@ -795,10 +863,24 @@ Log off immediately if you are not an authorized user.</login-banner>
         <gateway>192.0.2.1</gateway>
         <from>sentfrom@yourdomain.com</from>
         <to>sendto@yourdomain.com</to>
+        <protocol>SMTP</protocol>
       </entry>
     </server>
   </entry>
 </email>
+<syslog>
+  <entry name="Sample_Syslog_Profile">
+    <server>
+      <entry name="Sample_Syslog">
+        <transport>UDP</transport>
+        <port>514</port>
+        <format>BSD</format>
+        <server>192.0.2.2</server>
+        <facility>LOG_USER</facility>
+      </entry>
+    </server>
+  </entry>
+</syslog>
 <system>
   <match-list>
     <entry name="Critical_System_Log_Email">
@@ -815,19 +897,6 @@ Log off immediately if you are not an authorized user.</login-banner>
     </entry>
   </match-list>
 </system>
-<syslog>
-  <entry name="Sample_Syslog_Profile">
-    <server>
-      <entry name="Sample_Syslog">
-        <transport>UDP</transport>
-        <port>514</port>
-        <format>BSD</format>
-        <server>192.0.2.2</server>
-        <facility>LOG_USER</facility>
-      </entry>
-    </server>
-  </entry>
-</syslog>
 <config>
   <match-list>
     <entry name="Configuration_Log_Forwarding">
@@ -847,109 +916,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <filter>All Logs</filter>
     </entry>
   </match-list>
-</userid>
-<threat>
-  <match-list>
-    <entry name="Threat_Log_Forwarding">
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-      <filter>All Logs</filter>
-    </entry>
-  </match-list>
-</threat>
-<data>
-  <match-list>
-    <entry name="Data_Log_Forwarding">
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-      <filter>All Logs</filter>
-    </entry>
-  </match-list>
-</data>
-<wildfire>
-  <match-list>
-    <entry name="WildFire_Malicious">
-      <send-email>
-        <member>Sample_Email_Profile</member>
-      </send-email>
-      <filter>(verdict eq malicious) or (verdict eq phishing)</filter>
-    </entry>
-    <entry name="WildFire_Log_Forwarding">
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-      <filter>All Logs</filter>
-    </entry>
-  </match-list>
-</wildfire>
-<tunnel>
-  <match-list>
-    <entry name="Tunnel_Log_Forwarding">
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-      <filter>All Logs</filter>
-    </entry>
-  </match-list>
-</tunnel>
-<auth>
-  <match-list>
-    <entry name="Auth_Log_Forwarding">
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-      <filter>All Logs</filter>
-    </entry>
-  </match-list>
-</auth>
-<correlation>
-  <match-list>
-    <entry name="Correlation_Critical_Email">
-      <send-email>
-        <member>Sample_Email_Profile</member>
-      </send-email>
-      <filter>(severity geq medium)</filter>
-    </entry>
-    <entry name="Correlation_Log_Forwarding">
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-      <filter>All Logs</filter>
-    </entry>
-  </match-list>
-</correlation>
-<traffic>
-  <match-list>
-    <entry name="Traffic_Log_Forwarding">
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-      <filter>All Logs</filter>
-    </entry>
-  </match-list>
-</traffic>
-<hipmatch>
-  <match-list>
-    <entry name="HIP_Log_Forwarding">
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-      <filter>All Logs</filter>
-    </entry>
-  </match-list>
-</hipmatch>
-<url>
-  <match-list>
-    <entry name="URL_Log_Forwarding">
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-      <filter>All Logs</filter>
-    </entry>
-  </match-list>
-</url></log-settings></panorama><shared><tag><entry name="Outbound">
+</userid></log-settings></panorama><shared><tag><entry name="Outbound">
 	<comments>Outbound to the Internet</comments>
 </entry>
 <entry name="Inbound">
@@ -1029,188 +996,299 @@ Log off immediately if you are not an authorized user.</login-banner>
   </ssh-proxy>
   <ssl-protocol-settings>
     <min-version>tls1-2</min-version>
+    <max-version>tls1-3</max-version>
     <keyxchg-algo-rsa>no</keyxchg-algo-rsa>
     <enc-algo-3des>no</enc-algo-3des>
     <enc-algo-rc4>no</enc-algo-rc4>
     <auth-algo-sha1>no</auth-algo-sha1>
   </ssl-protocol-settings>
-</entry></decryption><virus>
-<entry name="Alert-Only-AV">
+</entry></decryption><virus><entry name="Alert-Only-AV">
   <decoder>
     <entry name="ftp">
       <action>alert</action>
       <wildfire-action>alert</wildfire-action>
+      <mlav-action>alert</mlav-action>
     </entry>
     <entry name="http">
       <action>alert</action>
       <wildfire-action>alert</wildfire-action>
+      <mlav-action>alert</mlav-action>
     </entry>
     <entry name="http2">
       <action>alert</action>
       <wildfire-action>alert</wildfire-action>
+      <mlav-action>alert</mlav-action>
     </entry>
     <entry name="imap">
       <action>alert</action>
       <wildfire-action>alert</wildfire-action>
+      <mlav-action>alert</mlav-action>
     </entry>
     <entry name="pop3">
       <action>alert</action>
       <wildfire-action>alert</wildfire-action>
+      <mlav-action>alert</mlav-action>
     </entry>
     <entry name="smb">
       <action>alert</action>
       <wildfire-action>alert</wildfire-action>
+      <mlav-action>alert</mlav-action>
     </entry>
     <entry name="smtp">
       <action>alert</action>
       <wildfire-action>alert</wildfire-action>
+      <mlav-action>alert</mlav-action>
     </entry>
   </decoder>
+  <mlav-engine-filebased-enabled>
+    <entry name="Windows Executables">
+      <mlav-policy-action>enable(alert-only)</mlav-policy-action>
+    </entry>
+    <entry name="PowerShell Script 1">
+      <mlav-policy-action>enable(alert-only)</mlav-policy-action>
+    </entry>
+    <entry name="PowerShell Script 2">
+      <mlav-policy-action>enable(alert-only)</mlav-policy-action>
+    </entry>
+  </mlav-engine-filebased-enabled>
 </entry>
 <entry name="Outbound-AV">
   <decoder>
     <entry name="ftp">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
+      <mlav-action>reset-both</mlav-action>
     </entry>
     <entry name="http">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
+      <mlav-action>reset-both</mlav-action>
     </entry>
     <entry name="http2">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
+      <mlav-action>reset-both</mlav-action>
     </entry>
     <entry name="imap">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
+      <mlav-action>reset-both</mlav-action>
     </entry>
     <entry name="pop3">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
+      <mlav-action>reset-both</mlav-action>
     </entry>
     <entry name="smb">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
+      <mlav-action>reset-both</mlav-action>
     </entry>
     <entry name="smtp">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
+      <mlav-action>reset-both</mlav-action>
     </entry>
   </decoder>
+  <mlav-engine-filebased-enabled>
+    <entry name="Windows Executables">
+      <mlav-policy-action>enable</mlav-policy-action>
+    </entry>
+    <entry name="PowerShell Script 1">
+      <mlav-policy-action>enable</mlav-policy-action>
+    </entry>
+    <entry name="PowerShell Script 2">
+      <mlav-policy-action>enable</mlav-policy-action>
+    </entry>
+  </mlav-engine-filebased-enabled>
 </entry>
 <entry name="Inbound-AV">
   <decoder>
     <entry name="ftp">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
+      <mlav-action>reset-both</mlav-action>
     </entry>
     <entry name="http">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
+      <mlav-action>reset-both</mlav-action>
     </entry>
     <entry name="http2">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
+      <mlav-action>reset-both</mlav-action>
     </entry>
     <entry name="imap">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
+      <mlav-action>reset-both</mlav-action>
     </entry>
     <entry name="pop3">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
+      <mlav-action>reset-both</mlav-action>
     </entry>
     <entry name="smb">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
+      <mlav-action>reset-both</mlav-action>
     </entry>
     <entry name="smtp">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
+      <mlav-action>reset-both</mlav-action>
     </entry>
   </decoder>
+  <mlav-engine-filebased-enabled>
+    <entry name="Windows Executables">
+      <mlav-policy-action>enable</mlav-policy-action>
+    </entry>
+    <entry name="PowerShell Script 1">
+      <mlav-policy-action>enable</mlav-policy-action>
+    </entry>
+    <entry name="PowerShell Script 2">
+      <mlav-policy-action>enable</mlav-policy-action>
+    </entry>
+  </mlav-engine-filebased-enabled>
 </entry>
 <entry name="Internal-AV">
   <decoder>
     <entry name="ftp">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
+      <mlav-action>reset-both</mlav-action>
     </entry>
     <entry name="http">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
+      <mlav-action>reset-both</mlav-action>
     </entry>
     <entry name="http2">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
+      <mlav-action>reset-both</mlav-action>
     </entry>
     <entry name="imap">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
+      <mlav-action>reset-both</mlav-action>
     </entry>
     <entry name="pop3">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
+      <mlav-action>reset-both</mlav-action>
     </entry>
     <entry name="smb">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
+      <mlav-action>reset-both</mlav-action>
     </entry>
     <entry name="smtp">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
+      <mlav-action>reset-both</mlav-action>
     </entry>
   </decoder>
+  <mlav-engine-filebased-enabled>
+    <entry name="Windows Executables">
+      <mlav-policy-action>enable</mlav-policy-action>
+    </entry>
+    <entry name="PowerShell Script 1">
+      <mlav-policy-action>enable</mlav-policy-action>
+    </entry>
+    <entry name="PowerShell Script 2">
+      <mlav-policy-action>enable</mlav-policy-action>
+    </entry>
+  </mlav-engine-filebased-enabled>
 </entry>
 <entry name="Exception-AV">
   <decoder>
     <entry name="ftp">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
+      <mlav-action>reset-both</mlav-action>
     </entry>
     <entry name="http">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
+      <mlav-action>reset-both</mlav-action>
     </entry>
     <entry name="http2">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
+      <mlav-action>reset-both</mlav-action>
     </entry>
     <entry name="imap">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
+      <mlav-action>reset-both</mlav-action>
     </entry>
     <entry name="pop3">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
+      <mlav-action>reset-both</mlav-action>
     </entry>
     <entry name="smb">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
+      <mlav-action>reset-both</mlav-action>
     </entry>
     <entry name="smtp">
       <action>reset-both</action>
       <wildfire-action>reset-both</wildfire-action>
+      <mlav-action>reset-both</mlav-action>
     </entry>
   </decoder>
+  <mlav-engine-filebased-enabled>
+    <entry name="Windows Executables">
+      <mlav-policy-action>enable</mlav-policy-action>
+    </entry>
+    <entry name="PowerShell Script 1">
+      <mlav-policy-action>enable</mlav-policy-action>
+    </entry>
+    <entry name="PowerShell Script 2">
+      <mlav-policy-action>enable</mlav-policy-action>
+    </entry>
+  </mlav-engine-filebased-enabled>
   <description>Use this profile for rules needing modifications to the standard</description>
 </entry></virus><spyware><entry name="Outbound-AS">
   <botnet-domains>
     <lists>
-      <entry name="default-paloalto-cloud">
-        <packet-capture>single-packet</packet-capture>
-        <action>
-          <sinkhole />
-        </action>
-      </entry>
       <entry name="default-paloalto-dns">
-        <packet-capture>single-packet</packet-capture>
         <action>
           <sinkhole />
         </action>
+        <packet-capture>disable</packet-capture>
       </entry>
     </lists>
+    <dns-security-categories>
+      <entry name="pan-dns-sec-benign">
+        <log-level>default</log-level>
+        <action>default</action>
+        <packet-capture>disable</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-cc">
+        <log-level>default</log-level>
+        <action>sinkhole</action>
+        <packet-capture>single-packet</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-ddns">
+        <log-level>default</log-level>
+        <action>default</action>
+        <packet-capture>single-packet</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-malware">
+        <log-level>default</log-level>
+        <action>sinkhole</action>
+        <packet-capture>single-packet</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-recent">
+        <log-level>default</log-level>
+        <action>default</action>
+        <packet-capture>single-packet</packet-capture>
+      </entry>
+    </dns-security-categories>
     <sinkhole>
       <ipv4-address>sinkhole.paloaltonetworks.com</ipv4-address>
       <ipv6-address>2600:5200::1</ipv6-address>
@@ -1222,8 +1300,8 @@ Log off immediately if you are not an authorized user.</login-banner>
         <reset-both />
       </action>
       <severity>
-        <member>high</member>
         <member>critical</member>
+        <member>high</member>
         <member>medium</member>
       </severity>
       <threat-name>any</threat-name>
@@ -1247,19 +1325,40 @@ Log off immediately if you are not an authorized user.</login-banner>
 <entry name="Inbound-AS">
   <botnet-domains>
     <lists>
-      <entry name="default-paloalto-cloud">
-        <packet-capture>single-packet</packet-capture>
-        <action>
-          <sinkhole />
-        </action>
-      </entry>
       <entry name="default-paloalto-dns">
-        <packet-capture>single-packet</packet-capture>
         <action>
           <sinkhole />
         </action>
+        <packet-capture>disable</packet-capture>
       </entry>
     </lists>
+    <dns-security-categories>
+      <entry name="pan-dns-sec-benign">
+        <log-level>default</log-level>
+        <action>default</action>
+        <packet-capture>disable</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-cc">
+        <log-level>default</log-level>
+        <action>sinkhole</action>
+        <packet-capture>single-packet</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-ddns">
+        <log-level>default</log-level>
+        <action>default</action>
+        <packet-capture>single-packet</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-malware">
+        <log-level>default</log-level>
+        <action>sinkhole</action>
+        <packet-capture>single-packet</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-recent">
+        <log-level>default</log-level>
+        <action>default</action>
+        <packet-capture>single-packet</packet-capture>
+      </entry>
+    </dns-security-categories>
     <sinkhole>
       <ipv4-address>sinkhole.paloaltonetworks.com</ipv4-address>
       <ipv6-address>2600:5200::1</ipv6-address>
@@ -1271,8 +1370,8 @@ Log off immediately if you are not an authorized user.</login-banner>
         <reset-both />
       </action>
       <severity>
-        <member>high</member>
         <member>critical</member>
+        <member>high</member>
         <member>medium</member>
       </severity>
       <threat-name>any</threat-name>
@@ -1294,47 +1393,68 @@ Log off immediately if you are not an authorized user.</login-banner>
   </rules>
 </entry>
 <entry name="Internal-AS">
- <botnet-domains>
+  <botnet-domains>
     <lists>
-      <entry name="default-paloalto-cloud">
-        <packet-capture>single-packet</packet-capture>
-        <action>
-          <sinkhole />
-        </action>
-      </entry>
       <entry name="default-paloalto-dns">
-        <packet-capture>single-packet</packet-capture>
         <action>
           <sinkhole />
         </action>
+        <packet-capture>disable</packet-capture>
       </entry>
     </lists>
+    <dns-security-categories>
+      <entry name="pan-dns-sec-benign">
+        <log-level>default</log-level>
+        <action>default</action>
+        <packet-capture>disable</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-cc">
+        <log-level>default</log-level>
+        <action>sinkhole</action>
+        <packet-capture>single-packet</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-ddns">
+        <log-level>default</log-level>
+        <action>default</action>
+        <packet-capture>single-packet</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-malware">
+        <log-level>default</log-level>
+        <action>sinkhole</action>
+        <packet-capture>single-packet</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-recent">
+        <log-level>default</log-level>
+        <action>default</action>
+        <packet-capture>single-packet</packet-capture>
+      </entry>
+    </dns-security-categories>
     <sinkhole>
       <ipv4-address>sinkhole.paloaltonetworks.com</ipv4-address>
       <ipv6-address>2600:5200::1</ipv6-address>
     </sinkhole>
   </botnet-domains>
   <rules>
-    <entry name="Block-Critical-High">
+    <entry name="Block-Critical-High-Medium">
       <action>
         <reset-both />
       </action>
       <severity>
-        <member>high</member>
         <member>critical</member>
+        <member>high</member>
+        <member>medium</member>
       </severity>
       <threat-name>any</threat-name>
       <category>any</category>
       <packet-capture>single-packet</packet-capture>
     </entry>
-    <entry name="Default-Medium-Low-Info">
+    <entry name="Default-Low-Info">
       <action>
         <default />
       </action>
       <severity>
         <member>low</member>
         <member>informational</member>
-        <member>medium</member>
       </severity>
       <threat-name>any</threat-name>
       <category>any</category>
@@ -1343,21 +1463,42 @@ Log off immediately if you are not an authorized user.</login-banner>
   </rules>
 </entry>
 <entry name="Alert-Only-AS">
- <botnet-domains>
+  <botnet-domains>
     <lists>
-      <entry name="default-paloalto-cloud">
-        <packet-capture>disable</packet-capture>
-        <action>
-          <alert />
-        </action>
-      </entry>
       <entry name="default-paloalto-dns">
-        <packet-capture>disable</packet-capture>
         <action>
           <alert />
         </action>
+        <packet-capture>disable</packet-capture>
       </entry>
     </lists>
+    <dns-security-categories>
+      <entry name="pan-dns-sec-benign">
+        <log-level>default</log-level>
+        <action>allow</action>
+        <packet-capture>disable</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-cc">
+        <log-level>default</log-level>
+        <action>allow</action>
+        <packet-capture>single-packet</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-ddns">
+        <log-level>default</log-level>
+        <action>allow</action>
+        <packet-capture>single-packet</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-malware">
+        <log-level>default</log-level>
+        <action>allow</action>
+        <packet-capture>single-packet</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-recent">
+        <log-level>default</log-level>
+        <action>allow</action>
+        <packet-capture>single-packet</packet-capture>
+      </entry>
+    </dns-security-categories>
     <sinkhole>
       <ipv4-address>sinkhole.paloaltonetworks.com</ipv4-address>
       <ipv6-address>2600:5200::1</ipv6-address>
@@ -1378,14 +1519,9 @@ Log off immediately if you are not an authorized user.</login-banner>
   </rules>
 </entry>
 <entry name="Exception-AS">
- <botnet-domains>
+  <description>Used for exception cases not part of the recommended practice</description>
+  <botnet-domains>
     <lists>
-      <entry name="default-paloalto-cloud">
-        <packet-capture>disable</packet-capture>
-        <action>
-          <sinkhole />
-        </action>
-      </entry>
       <entry name="default-paloalto-dns">
         <packet-capture>disable</packet-capture>
         <action>
@@ -1393,6 +1529,33 @@ Log off immediately if you are not an authorized user.</login-banner>
         </action>
       </entry>
     </lists>
+    <dns-security-categories>
+      <entry name="pan-dns-sec-benign">
+        <log-level>default</log-level>
+        <action>default</action>
+        <packet-capture>disable</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-cc">
+        <log-level>default</log-level>
+        <action>default</action>
+        <packet-capture>disable</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-ddns">
+        <log-level>default</log-level>
+        <action>default</action>
+        <packet-capture>disable</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-malware">
+        <log-level>default</log-level>
+        <action>default</action>
+        <packet-capture>disable</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-recent">
+        <log-level>default</log-level>
+        <action>default</action>
+        <packet-capture>disable</packet-capture>
+      </entry>
+    </dns-security-categories>
     <sinkhole>
       <ipv4-address>sinkhole.paloaltonetworks.com</ipv4-address>
       <ipv6-address>2600:5200::1</ipv6-address>
@@ -1782,6 +1945,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>gambling</member>
     <member>games</member>
     <member>government</member>
+    <member>hacking</member>
     <member>health-and-medicine</member>
     <member>high-risk</member>
     <member>home-and-garden</member>
@@ -1835,10 +1999,17 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>Black-List</member>
     <member>command-and-control</member>
     <member>grayware</member>
-    <member>hacking</member>
     <member>malware</member>
     <member>phishing</member>
   </block>
+  <mlav-engine-urlbased-enabled>
+    <entry name="Phishing Detection">
+      <mlav-policy-action>block</mlav-policy-action>
+    </entry>
+    <entry name="Javascript Exploit Detection">
+      <mlav-policy-action>block</mlav-policy-action>
+    </entry>
+  </mlav-engine-urlbased-enabled>
 </entry>
 <entry name="Alert-Only-URL">
   <credential-enforcement>
@@ -1999,6 +2170,14 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>web-based-email</member>
     <member>web-hosting</member>
   </alert>
+  <mlav-engine-urlbased-enabled>
+    <entry name="Phishing Detection">
+      <mlav-policy-action>alert</mlav-policy-action>
+    </entry>
+    <entry name="Javascript Exploit Detection">
+      <mlav-policy-action>alert</mlav-policy-action>
+    </entry>
+  </mlav-engine-urlbased-enabled>
 </entry>
 <entry name="Exception-URL">
   <credential-enforcement>
@@ -2107,6 +2286,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>gambling</member>
     <member>games</member>
     <member>government</member>
+    <member>hacking</member>
     <member>health-and-medicine</member>
     <member>high-risk</member>
     <member>home-and-garden</member>
@@ -2160,10 +2340,17 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>Black-List</member>
     <member>command-and-control</member>
     <member>grayware</member>
-    <member>hacking</member>
     <member>malware</member>
     <member>phishing</member>
   </block>
+  <mlav-engine-urlbased-enabled>
+    <entry name="Phishing Detection">
+      <mlav-policy-action>block</mlav-policy-action>
+    </entry>
+    <entry name="Javascript Exploit Detection">
+      <mlav-policy-action>block</mlav-policy-action>
+    </entry>
+  </mlav-engine-urlbased-enabled>
 </entry></url-filtering><wildfire-analysis><entry name="Outbound-WF">
   <rules>
     <entry name="Forward-All">
@@ -2330,128 +2517,84 @@ Log off immediately if you are not an authorized user.</login-banner>
     <log-end>yes</log-end>
     <log-setting>default</log-setting>
   </entry>
-</rules></default-security-rules></post-rulebase><pre-rulebase><security><rules>
-  <entry name="Outbound Block Rule">
-    <description>Block outbound sessions with destination address matching one of the Palo Alto Networks external dynamic lists for high risk and known malicious IP addresses.</description>
-    <target>
-      <negate>no</negate>
-    </target>
-    <to>
-      <member>any</member>
-    </to>
-    <from>
-      <member>any</member>
-    </from>
-    <source>
-      <member>any</member>
-    </source>
-    <destination>
-      <member>panw-highrisk-ip-list</member>
-      <member>panw-known-ip-list</member>
-      <member>panw-bulletproof-ip-list</member>
-    </destination>
-    <source-user>
-      <member>any</member>
-    </source-user>
-    <category>
-      <member>any</member>
-    </category>
-    <application>
-      <member>any</member>
-    </application>
-    <service>
-      <member>any</member>
-    </service>
-    <hip-profiles>
-      <member>any</member>
-    </hip-profiles>
-    <action>deny</action>
-    <log-setting>default</log-setting>
-    <tag>
-      <member>Outbound</member>
-    </tag>
-  </entry>
-  <entry name="Inbound Block Rule">
-    <description>Block inbound sessions with source address matching one of the Palo Alto Networks external dynamic lists for high risk and known malicious IP addresses.</description>
-    <target>
-      <negate>no</negate>
-    </target>
-    <to>
-      <member>any</member>
-    </to>
-    <from>
-      <member>any</member>
-    </from>
-    <source>
-      <member>panw-highrisk-ip-list</member>
-      <member>panw-known-ip-list</member>
-      <member>panw-bulletproof-ip-list</member>
-    </source>
-    <destination>
-      <member>any</member>
-    </destination>
-    <source-user>
-      <member>any</member>
-    </source-user>
-    <category>
-      <member>any</member>
-    </category>
-    <application>
-      <member>any</member>
-    </application>
-    <service>
-      <member>any</member>
-    </service>
-    <hip-profiles>
-      <member>any</member>
-    </hip-profiles>
-    <action>deny</action>
-    <log-setting>default</log-setting>
-    <tag>
-      <member>Inbound</member>
-    </tag>
-  </entry>
-  
-  <entry name="DNS Sinkhole Block">
-<description>Block outbound sessions that match a malicious domain and have been redirected to a configured sinkhole IP address.</description>
-    <target>
-      <negate>no</negate>
-    </target>
-    <to>
-      <member>any</member>
-    </to>
-    <from>
-      <member>any</member>
-    </from>
-    <source>
-      <member>any</member>
-    </source>
-    <destination>
-      <member>Sinkhole-IPv4</member>
-      <member>Sinkhole-IPv6</member>
-    </destination>
-    <source-user>
-      <member>any</member>
-    </source-user>
-    <category>
-      <member>any</member>
-    </category>
-    <application>
-      <member>any</member>
-    </application>
-    <service>
-      <member>any</member>
-    </service>
-    <hip-profiles>
-      <member>any</member>
-    </hip-profiles>
-    <action>deny</action>
-    <log-setting>default</log-setting>
-    <tag>
-      <member>Outbound</member>
-    </tag>
-  </entry>
-</rules></security><decryption><rules>
+</rules></default-security-rules></post-rulebase><pre-rulebase><security>
+  <rules>
+    <entry name="Outbound Block Rule">
+      <description>Block outbound sessions with destination address matching one of the Palo Alto Networks external dynamic lists for high risk and known malicious IP addresses.</description>
+      <to>
+        <member>any</member>
+      </to>
+      <from>
+        <member>any</member>
+      </from>
+      <source>
+        <member>any</member>
+      </source>
+      <destination>
+        <member>panw-highrisk-ip-list</member>
+        <member>panw-known-ip-list</member>
+        <member>panw-bulletproof-ip-list</member>
+      </destination>
+      <source-user>
+        <member>any</member>
+      </source-user>
+      <category>
+        <member>any</member>
+      </category>
+      <application>
+        <member>any</member>
+      </application>
+      <service>
+        <member>any</member>
+      </service>
+      <hip-profiles>
+        <member>any</member>
+      </hip-profiles>
+      <action>deny</action>
+      <log-setting>default</log-setting>
+      <tag>
+        <member>Outbound</member>
+      </tag>
+    </entry>
+    <entry name="Inbound Block Rule">
+      <description>Block inbound sessions with source address matching one of the Palo Alto Networks external dynamic lists for high risk and known malicious IP addresses.</description>
+      <to>
+        <member>any</member>
+      </to>
+      <from>
+        <member>any</member>
+      </from>
+      <source>
+        <member>panw-highrisk-ip-list</member>
+        <member>panw-known-ip-list</member>
+        <member>panw-bulletproof-ip-list</member>
+      </source>
+      <destination>
+        <member>any</member>
+      </destination>
+      <source-user>
+        <member>any</member>
+      </source-user>
+      <category>
+        <member>any</member>
+      </category>
+      <application>
+        <member>any</member>
+      </application>
+      <service>
+        <member>any</member>
+      </service>
+      <hip-profiles>
+        <member>any</member>
+      </hip-profiles>
+      <action>deny</action>
+      <log-setting>default</log-setting>
+      <tag>
+        <member>Inbound</member>
+      </tag>
+    </entry>
+  </rules>
+</security><decryption><rules>
   <entry name="NO-Decrypt URL Categories">
     <target>
       <negate>no</negate>

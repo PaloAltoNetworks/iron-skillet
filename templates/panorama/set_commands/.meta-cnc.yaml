@@ -117,10 +117,6 @@ variables:
     description: admin username
     default: adminuser
     type_hint: text
-  - name: ADMINISTRATOR_PASSWORD
-    description: admin password
-    default: adminuser
-    type_hint: password
   - name: DNS_1
     description: primary dns server
     default: 8.8.8.8

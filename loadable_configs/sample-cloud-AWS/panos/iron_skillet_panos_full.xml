@@ -1,6 +1,6 @@
 <config urldb="paloaltonetworks" version="10.0.0">
   <mgt-config><users><entry name="admin">
-  <phash>$1$3DZ3tMfV$a3DGUmlcKMKGvHuTb8tfW/</phash>
+  <phash>$1$LiXoV/9z$QCzrxN0TNjGf7Tdt8msE10</phash>
   <permissions>
     <role-based>
       <superuser>yes</superuser>

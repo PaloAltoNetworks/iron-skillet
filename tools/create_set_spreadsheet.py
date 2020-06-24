@@ -50,7 +50,7 @@ def create_spreadsheet(config_type):
     sys.path.append(set_path)
 
     set_file = '{0}/iron_skillet_{1}_full.conf'.format(set_path, config_type)
-    config_variables = 'config_variables.yaml'.format(set_path)
+    config_variables = '{0}/.meta-cnc.yaml'.format(set_path)
 
     print('creating workbook based on {0}'.format(set_file))
     # Create a workbook and add worksheets.
@@ -90,7 +90,7 @@ def create_spreadsheet(config_type):
     for variable in set_variables['variables']:
         print('working with variable: {0}'.format(variable))
         worksheet_values.write(row, 0, variable['name'])
-        worksheet_values.write(row, 1, variable['value'])
+        worksheet_values.write(row, 1, variable['default'])
         worksheet_values.write(row, 2, variable['description'])
         variable_list.append(variable['name'])
 
