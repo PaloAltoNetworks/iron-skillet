@@ -214,9 +214,9 @@ snippets:
   - name: device_mgt_config
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/mgt-config
     file: device_mgt_config.xml
-#  - name: shared_log_settings
-#    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/shared/log-settings
-#    file: shared_log_settings.xml
+  - name: shared_log_settings
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/shared/log-settings
+    file: shared_log_settings.xml
   - name: zone_protection_profile
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile
     file: zone_protection_profile.xml
