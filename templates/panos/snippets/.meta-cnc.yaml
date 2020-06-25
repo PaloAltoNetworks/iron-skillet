@@ -32,16 +32,6 @@ variables:
         value: 'yes'
       - key: 'no'
         value: 'no'
-  - name: config_admin_user
-    description: Configure the admin user and password
-    default: 'no'
-    type_hint: dropdown
-    help_text: Set to NO if the IronSkillet config is being applied to a device with an existing admin superuser
-    dd_list:
-      - key: 'yes'
-        value: 'yes'
-      - key: 'no'
-        value: 'no'
   - name: MGMT_TYPE
     description: firewall management IP type
     default: dhcp-client
@@ -76,14 +66,16 @@ variables:
     toggle_hint:
       source: MGMT_TYPE
       value: static
-  - name: NTP_1
-    description: primary NTP server
-    default: 0.pool.ntp.org
-    type_hint: text
-  - name: NTP_2
-    description: secondary NTP server
-    default: 1.pool.ntp.org
-    type_hint: text
+ - name: config_admin_user
+    description: Configure the admin user and password
+    default: 'no'
+    type_hint: dropdown
+    help_text: Set to NO if the IronSkillet config is being applied to a device with an existing admin superuser
+    dd_list:
+      - key: 'yes'
+        value: 'yes'
+      - key: 'no'
+        value: 'no'
   - name: ADMINISTRATOR_USERNAME
     description: admin username
     default: adminuser
@@ -98,6 +90,14 @@ variables:
     toggle_hint:
       source: config_admin_user
       value: 'yes'
+  - name: NTP_1
+    description: primary NTP server
+    default: 0.pool.ntp.org
+    type_hint: text
+  - name: NTP_2
+    description: secondary NTP server
+    default: 1.pool.ntp.org
+    type_hint: text
   - name: DNS_1
     description: primary dns server
     default: 8.8.8.8
