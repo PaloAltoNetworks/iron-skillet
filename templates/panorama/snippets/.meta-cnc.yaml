@@ -31,7 +31,7 @@ variables:
     description: Configure the Panorama admin user and password
     default: 'no'
     type_hint: dropdown
-    help_text: Set to NO if the IronSkillet config is being applied to a device with an existing admin superuser
+    help_text: Set to NO if the IronSkillet config is being applied to a Panorama server with an existing admin superuser
     dd_list:
       - key: 'yes'
         value: 'yes'
@@ -51,7 +51,7 @@ variables:
     description: Configure the Panorama management interface IP settings
     default: 'no'
     type_hint: dropdown
-    help_text: Set to NO if the IronSkillet config is being applied to a device with existing Panorama management IP settings
+    help_text: Set to NO if the IronSkillet config is being applied to a Panorama server with existing management IP settings
     dd_list:
       - key: 'yes'
         value: 'yes'
