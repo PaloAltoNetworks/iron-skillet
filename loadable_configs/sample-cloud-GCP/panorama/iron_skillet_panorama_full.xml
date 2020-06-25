@@ -2,7 +2,7 @@
   <mgt-config>
     <devices />
   <users> <entry name="admin">
-  <phash>$1$0veKE0Dg$0t49F1f1odq7bBAz2bAcn1</phash>
+  <phash>$1$xlzISnGb$s1jCSwxud7F.kof2sqtxT0</phash>
   <permissions>
     <role-based>
       <superuser>yes</superuser>
@@ -21,16 +21,15 @@
   <devices>
     <entry name="localhost.localdomain">
       <deviceconfig>
-      <system><hostname>panorama01</hostname>
-<type>
-   <dhcp-client>
+      <system><type>
+    <dhcp-client>
      <send-hostname>yes</send-hostname>
      <send-client-id>no</send-client-id>
      <accept-dhcp-hostname>no</accept-dhcp-hostname>
      <accept-dhcp-domain>no</accept-dhcp-domain>
-   </dhcp-client>
-</type>
-
+    </dhcp-client>
+  
+</type><hostname>panorama01</hostname>
 <update-server>updates.paloaltonetworks.com</update-server>
 <update-schedule>
 <threats>
@@ -528,7 +527,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     </devices>
   <mgt-config><users>
   <entry name="admin">
-    <phash>$1$AO8jNcWl$/pU.WY/hZK6t0DGN4S5pt/</phash>
+    <phash>$1$hR9lXDGB$NUGj9rcz2eRqgUel7zmWc/</phash>
     <permissions>
       <role-based>
         <superuser>yes</superuser>
