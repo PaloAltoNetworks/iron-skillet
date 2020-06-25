@@ -22,6 +22,26 @@ variables:
     description: Firewall hostname
     default: panos-01
     type_hint: text
+  - name: config_mgmt_intf
+    description: Configure the management interface IP settings
+    default: 'no'
+    type_hint: dropdown
+    help_text: Set to NO if the IronSkillet config is being applied to a device with existing management IP settings
+    dd_list:
+      - key: 'yes'
+        value: 'yes'
+      - key: 'no'
+        value: 'no'
+  - name: config_admin_user
+    description: Configure the admin user and password
+    default: 'no'
+    type_hint: dropdown
+    help_text: Set to NO if the IronSkillet config is being applied to a device with an existing admin superuser
+    dd_list:
+      - key: 'yes'
+        value: 'yes'
+      - key: 'no'
+        value: 'no'
   - name: MGMT_TYPE
     description: firewall management IP type
     default: dhcp-client
@@ -32,6 +52,9 @@ variables:
         value: dhcp-client
       - key: static
         value: static
+    toggle_hint:
+      source: config_mgmt_intf
+      value: 'yes'
   - name: MGMT_IP
     description: NGFW management IP
     default: 192.0.2.6
@@ -65,10 +88,16 @@ variables:
     description: admin username
     default: adminuser
     type_hint: text
+    toggle_hint:
+      source: config_admin_user
+      value: 'yes'
   - name: ADMINISTRATOR_PASSWORD
     description: admin password
     default: adminuser
     type_hint: password
+    toggle_hint:
+      source: config_admin_user
+      value: 'yes'
   - name: DNS_1
     description: primary dns server
     default: 8.8.8.8
@@ -131,6 +160,7 @@ snippets:
   - name: device_system_mgmt_ip
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
     file: device_system_mgmt_ip.xml
+    when: config_mgmt_intf == 'yes'
   - name: device_system_dns
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system/dns-setting
     file: device_system_dns.xml
@@ -143,6 +173,7 @@ snippets:
   - name: mgt_config_users
     xpath: /config/mgt-config/users
     file: mgt_config_users.xml
+    when: config_admin_user == 'yes'
   - name: password_complexity
     xpath: /config/mgt-config/password-complexity
     file: password_complexity.xml
