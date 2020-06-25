@@ -27,6 +27,36 @@ variables:
     description: Panorama hostname
     default: panorama01
     type_hint: text
+  - name: config_admin_panorama
+    description: Configure the Panorama admin user and password
+    default: 'no'
+    type_hint: dropdown
+    help_text: Set to NO if the IronSkillet config is being applied to a device with an existing admin superuser
+    dd_list:
+      - key: 'yes'
+        value: 'yes'
+      - key: 'no'
+        value: 'no'
+  - name: ADMINISTRATOR_USERNAME
+    description: admin username
+    default: adminuser
+    type_hint: text
+    help_text: if the user opts out of the Panorama admin config, this user will still be applied as a firewall adminstrator
+  - name: ADMINISTRATOR_PASSWORD
+    description: admin password
+    default: adminuser
+    type_hint: password
+    help_text: if the user opts out of the Panorama admin config, this password will still be applied to the firewall administrator
+  - name: config_mgmt_intf_panorama
+    description: Configure the Panorama management interface IP settings
+    default: 'no'
+    type_hint: dropdown
+    help_text: Set to NO if the IronSkillet config is being applied to a device with existing Panorama management IP settings
+    dd_list:
+      - key: 'yes'
+        value: 'yes'
+      - key: 'no'
+        value: 'no'
   - name: PANORAMA_TYPE
     description: Panorama management IP type
     default: static
@@ -37,10 +67,14 @@ variables:
         value: static
       - key: cloud dhcp
         value: cloud
+    toggle_hint:
+      source: config_mgmt_intf_panorama
+      value: 'yes'
   - name: PANORAMA_IP
     description: Panorama IP
     default: 192.168.55.7
     type_hint: ip_address
+    help_text: If opting out of configuring the Panorama management IP, ignore this field
     toggle_hint:
       source: PANORAMA_TYPE
       value: static
@@ -48,6 +82,7 @@ variables:
     description: Panorama netmask
     default: 255.255.255.0
     type_hint: ip_address
+    help_text: If opting out of configuring the Panorama management IP, ignore this field
     toggle_hint:
       source: PANORAMA_TYPE
       value: static
@@ -55,6 +90,7 @@ variables:
     description: Panorama default gateway
     default: 192.168.55.2
     type_hint: ip_address
+    help_text: If opting out of configuring the Panorama management IP, ignore this field
     toggle_hint:
       source: PANORAMA_TYPE
       value: static
@@ -114,14 +150,6 @@ variables:
     description: secondary NTP server
     default: 1.pool.ntp.org
     type_hint: text
-  - name: ADMINISTRATOR_USERNAME
-    description: admin username
-    default: adminuser
-    type_hint: text
-  - name: ADMINISTRATOR_PASSWORD
-    description: admin password
-    default: adminuser
-    type_hint: password
   - name: DNS_1
     description: primary dns server
     default: 8.8.8.8
@@ -181,6 +209,10 @@ variables:
 # snippets used for api configuration including xpath and element as file name
 # files will load in the order listed
 snippets:
+  - name: panorama_system_mgmt_ip
+    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    file: panorama_system_mgmt_ip.xml
+    when: config_mgmt_intf_panorama == 'yes'
   - name: panorama_system
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
     file: panorama_system.xml
@@ -190,6 +222,7 @@ snippets:
   - name: panorama_mgt_config_users
     xpath: /config/mgt-config/users
     file: panorama_mgt_config_users.xml
+    when: config_admin_panorama == 'yes'
   - name: panorama_mgt_config_pwd
     xpath: /config/mgt-config/password-complexity
     file: panorama_mgt_config_pwd.xml
