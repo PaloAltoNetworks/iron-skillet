@@ -219,17 +219,17 @@ variables:
 snippets:
   - name: panorama_system_mgmt_ip
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
-    file: ../panorama_system_mgmt_ip.xml
+    file: ../snippets/panorama_system_mgmt_ip.xml
     when: config_mgmt_intf_panorama == 'yes'
   - name: panorama_system
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
-    file: ../panorama_system.xml
+    file: ../snippets/panorama_system.xml
   - name: panorama_setting
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
-    file: ../panorama_setting.xml
+    file: ../snippets/panorama_setting.xml
   - name: panorama_mgt_config_users
     xpath: /config/mgt-config/users
-    file: ../panorama_mgt_config_users.xml
+    file: ../snippets/panorama_mgt_config_users.xml
     when: config_admin_panorama == 'yes'
   - name: panorama_log_settings
     xpath: /config/panorama/log-settings
