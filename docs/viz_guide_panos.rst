@@ -127,7 +127,7 @@ With this feature, you can ensure that local administrator accounts on the firew
 Operations
 ~~~~~~~~~~
 
-.. _Device - Setup - Operations: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-web-interface-help/device/device-setup-operations.html
+.. _Device - Setup - Operations: https://docs.paloaltonetworks.com/pan-os/10-0/pan-os-web-interface-help/device/device-setup-operations.html
 
 
 .. admonition:: See also
@@ -147,7 +147,7 @@ If used, ensure SNMP version is V3
 Services
 ~~~~~~~~
 
-.. _Device - Setup - Services: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-web-interface-help/device/device-setup-services.html
+.. _Device - Setup - Services: https://docs.paloaltonetworks.com/pan-os/10-0/pan-os-web-interface-help/device/device-setup-services.html
 
 
 .. admonition:: See also
@@ -169,7 +169,7 @@ Key configuration elements:
 Interfaces
 ~~~~~~~~~~
 
-.. _Device - Setup - Interfaces: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-web-interface-help/device/device-setup-interfaces.html
+.. _Device - Setup - Interfaces: https://docs.paloaltonetworks.com/pan-os/10-0/pan-os-web-interface-help/device/device-setup-interfaces.html
 
 .. admonition:: See also
 
@@ -195,7 +195,7 @@ IronSkillet also gives the option of using the DHCP Client which removes the IP 
 Content-ID
 ~~~~~~~~~~
 
-.. _Device - Setup - Content-ID: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-web-interface-help/device/device-setup-content-id.html
+.. _Device - Setup - Content-ID: https://docs.paloaltonetworks.com/pan-os/10-0/pan-os-web-interface-help/device/device-setup-content-id.html
 
 .. admonition:: See also
 
@@ -251,7 +251,7 @@ contain internal source IP information.
 Wildfire
 ~~~~~~~~
 
-.. _Device - Setup - Wildfire: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-web-interface-help/device/device-setup-wildfire.html
+.. _Device - Setup - Wildfire: https://docs.paloaltonetworks.com/pan-os/10-0/pan-os-web-interface-help/device/device-setup-wildfire.html
 
 .. admonition:: See also
 
@@ -271,7 +271,7 @@ Key configuration elements:
     + **File Size Limits**: recommended maximum file sizes to send to WildFire
     + **Report Benign/Grayware Files**: shows these verdicts in the Wildfire submissions logs
 
-.. _wildfire global cloud documentation: https://docs.paloaltonetworks.com/wildfire/9-0/wildfire-admin/wildfire-overview/wildfire-deployments/wildfire-global-cloud.html#
+.. _wildfire global cloud documentation: https://docs.paloaltonetworks.com/wildfire/10-0/wildfire-admin/wildfire-overview/wildfire-deployments/wildfire-global-cloud.html#
 
 .. admonition:: See also
 
@@ -283,7 +283,7 @@ Session
 Configure session age-out times, decryption certificate settings, and global session-related settings such as firewalling 
 IPv6 traffic and rematching Security policy to existing sessions when the policy changes.
 
-.. _Device - Setup - Session: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-web-interface-help/device/device-setup-session.html
+.. _Device - Setup - Session: https://docs.paloaltonetworks.com/pan-os/10-0/pan-os-web-interface-help/device/device-setup-session.html
 
 .. admonition:: See also
 
@@ -323,7 +323,7 @@ Administrators
 IronSkillet default admin
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. _Device - Administrators: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-web-interface-help/device/device-administrators.html
+.. _Device - Administrators: https://docs.paloaltonetworks.com/pan-os/10-0/pan-os-web-interface-help/device/device-administrators.html
 
 .. admonition:: See also
 
@@ -348,7 +348,7 @@ Response Pages
 
 Response pages are the web pages that display when a user tries to access a URL.
 
-.. _Device - Response Pages: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-web-interface-help/device/device-response-pages.html
+.. _Device - Response Pages: https://docs.paloaltonetworks.com/pan-os/10-0/pan-os-web-interface-help/device/device-response-pages.html
 
 .. admonition:: See also
 
@@ -370,7 +370,7 @@ It is recommended to enable the **Application Block Page** setting so that users
 Log Settings
 ^^^^^^^^^^^^
 
-.. _Device - Log Settings: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-web-interface-help/device/device-log-settings.html
+.. _Device - Log Settings: https://docs.paloaltonetworks.com/pan-os/10-0/pan-os-web-interface-help/device/device-log-settings.html
 
 .. admonition:: See also
 
@@ -491,7 +491,7 @@ Profiles configurations are in the section :ref:`Server Profiles`.
 Server Profiles
 ^^^^^^^^^^^^^^^
 
-.. _Device - Server Profiles: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-web-interface-help/device/device-server-profiles.html
+.. _Device - Server Profiles: https://docs.paloaltonetworks.com/pan-os/10-0/pan-os-web-interface-help/device/device-server-profiles.html
 
 .. admonition:: See also
 
@@ -543,7 +543,7 @@ Sample email server profile for critical alert events including the new option f
 Dynamic Updates
 ^^^^^^^^^^^^^^^
 
-.. _Device - Dynamic Updates: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-web-interface-help/device/device-dynamic-updates.html
+.. _Device - Dynamic Updates: https://docs.paloaltonetworks.com/pan-os/10-0/pan-os-web-interface-help/device/device-dynamic-updates.html
 
 .. admonition:: See also
 
@@ -601,7 +601,7 @@ Network
 Network Profiles
 ^^^^^^^^^^^^^^^^
 
-.. _Network - Network Profiles: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-web-interface-help/network/network-network-profiles.html
+.. _Network - Network Profiles: https://docs.paloaltonetworks.com/pan-os/10-0/pan-os-web-interface-help/network/network-network-profiles.html
 
 .. admonition:: See also
 
@@ -659,7 +659,7 @@ This section includes various profiles, objects, and tags used primarily in secu
 Tags
 ^^^^
 
-.. _Objects - Tags: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-web-interface-help/objects/objects-tags.html
+.. _Objects - Tags: https://docs.paloaltonetworks.com/pan-os/10-0/pan-os-web-interface-help/objects/objects-tags.html
 
 .. admonition:: See also
 
@@ -687,7 +687,7 @@ Reference tags used in security policies along with an ‘IronSkillet’ version
 Custom Objects
 ^^^^^^^^^^^^^^
 
-.. _Objects - Custom Objects: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-web-interface-help/objects/objects-custom-objects.html
+.. _Objects - Custom Objects: https://docs.paloaltonetworks.com/pan-os/10-0/pan-os-web-interface-help/objects/objects-custom-objects.html
 
 .. admonition:: See also
 
@@ -715,7 +715,7 @@ Using these categories prevents the need to modify the default template.
 Security  Profiles
 ^^^^^^^^^^^^^^^^^^
 
-.. _Objects - Security Profiles: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-web-interface-help/objects/objects-security-profiles.html
+.. _Objects - Security Profiles: https://docs.paloaltonetworks.com/pan-os/10-0/pan-os-web-interface-help/objects/objects-security-profiles.html
 
 .. admonition:: See also
 
@@ -739,6 +739,10 @@ Outbound, Inbound, and Internal AntiVirus (AV) profiles.
 Object > Security Profiles > Antivirus : Blocking
 +++++++++++++++++++++++++++++++++++++++++++++++++
 
+    * reset-both for all decoder actions: Antivirus and Wildfire
+    * 10.0 includes reset-both for Dynamic Classification actions
+    * 10.0 includes enable for all file types
+
 .. image:: images/vg_profiles_av_block.png
    :width: 600
    :align: center
@@ -747,6 +751,10 @@ These are all explicitly set to reset-both for all decoders.
 
 Object > Security Profiles > Antivirus : Alert-Only
 +++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    * alert for all decoder actions: Antivirus and Wildfire
+    * 10.0 includes alert for Dynamic Classification actions
+    * 10.0 includes enable (alert only) for all file types
 
 .. image:: images/vg_profiles_av_alert.png
    :width: 600
@@ -795,7 +803,7 @@ The Action column shows default actions for each ID.
    :width: 600
    :align: center
 
-**DNS Signature: Sinkhole Malicious Domain Traffic**
+**DNS Signature: Sinkhole Malicious Domains**
 
 .. image:: images/vg_profiles_as_dns.png
    :width: 600
@@ -809,6 +817,16 @@ policies if no sinkhole server is used.
     As of 9.0, instead of only leveraging a list of locally stored malicious domains (Content DNS Signatures),
     Palo Alto Networks also provides a DNS Security service subscription for cloud-based domain lookups.
 
+**DNS Security Service: Sinkhole Malicious Domains by Category**
+
+.. image:: images/vg_profiles_as_dns_categories.png
+   :width: 600
+   :align: center
+
+In 10.0 and later, the DNS Security Service includes the ability to set actions by category. IronSkillet sets explicity
+'sinkhole' actions for each malicious category (Command-and-Control, Malware) leaving the others as default. Severities
+are also left as default.
+
 Object > Security Profiles > Antivirus : Internal-AS
 ++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -819,11 +837,7 @@ security posture for internal-only sessions.
    :width: 600
    :align: center
 
-The DNS Signatures configuration is the same as Outbound-AS and Inbound-AS.
-
-.. image:: images/vg_profiles_as_internal_dns.png
-   :width: 600
-   :align: center
+The DNS Signatures and Security Service configurations are the same as Outbound-AS and Inbound-AS.
 
 
 Object > Security Profiles > Antivirus : Alert-Only
@@ -835,7 +849,7 @@ This is a non-blocking alert-only configuration that can be used for testing/dem
    :width: 600
    :align: center
 
-The malicious domain actions are also ‘alert’ for monitoring purposes only.
+All DNS Security Service domain actions are set to 'allow' with no blocking posture.
 
 .. image:: images/vg_profiles_as_alert_dns.png
    :width: 600
@@ -937,12 +951,19 @@ Categories blocked in the Outbound and Exception profiles:
     + Malware
     + Command-and-Control
     + Phishing
-    + Hacking
+    + Grayware
     + Black-List [custom object users can edit]
 
 All other categories have their action set as ‘alert’ instead of the default ‘allow’ for logging purposes.
 
 .. image:: images/vg_profiles_url_outbound.png
+   :width: 600
+   :align: center
+
+For releases 10.0 and later, Dynamic Classification is configured for local machine learning and blocking based
+on web page analysis.
+
+.. image:: images/vg_profiles_url_dynamic_class.png
    :width: 600
    :align: center
 
@@ -952,8 +973,8 @@ If you block all the URL categories in a URL Filtering profile for user credenti
 you don’t need to check credentials.
 IronSkillet takes this approach blocking all categories under User Credential Submission.
 
-The Alert-Only-URL profile sets all actions to alert for logging purposes, include User Credential Submission.
-No categories are blocked.
+The Alert-Only-URL profile sets all actions to alert for logging purposes, including Dynamic Classification
+and User Credential Submission. No categories are blocked.
 
 File Blocking
 ~~~~~~~~~~~~~
@@ -993,7 +1014,7 @@ Object > Security Profiles > WildFire Analysis
 
 All profiles are set to send all file types for all applications in any direction to WildFire for analysis.
 
-This configuration is for file analysis only. WildFire signatures and protections are configured in the
+This configuration is for file analysis submissions only. WildFire signatures and protections are configured in the
 Anti-Virus profile. Below is the reference example for the Outbound-AV profile.
 
 .. image:: images/vg_profiles_av_outbound.png
@@ -1001,12 +1022,12 @@ Anti-Virus profile. Below is the reference example for the Outbound-AV profile.
    :align: center
 
 Based on the dynamic updates configuration, the device will check for new WildFire content updates based on
-worldwide analysis every minute to download the latest five minute release. These signatures are moved to the
+worldwide analysis to download the latest signatures. These signatures are moved to the
 antivirus signature set on a daily basis for customers not subscribing to the WildFire service.
 
 Security Profile Groups
 ^^^^^^^^^^^^^^^^^^^^^^^
-.. _Objects - Security Profile Groups: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-web-interface-help/objects/objects-security-profile-groups.html
+.. _Objects - Security Profile Groups: https://docs.paloaltonetworks.com/pan-os/10-0/pan-os-web-interface-help/objects/objects-security-profile-groups.html
 
 .. admonition:: See also
 
@@ -1034,7 +1055,7 @@ IronSkillet does not reference the security profile objects since IronSkillet do
 
 Log Forwarding
 ^^^^^^^^^^^^^^
-.. _Objects - Log Forwarding: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-web-interface-help/objects/objects-log-forwarding.html
+.. _Objects - Log Forwarding: https://docs.paloaltonetworks.com/pan-os/10-0/pan-os-web-interface-help/objects/objects-log-forwarding.html
 
 .. admonition:: See also
 
@@ -1068,7 +1089,7 @@ additionally enforced based on the profile settings.
 Decryption Profile
 ~~~~~~~~~~~~~~~~~~
 
-.. _Objects - Decryption Profile: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-web-interface-help/objects/objects-decryption-profile.html
+.. _Objects - Decryption Profile: https://docs.paloaltonetworks.com/pan-os/10-0/pan-os-web-interface-help/objects/objects-decryption-profile.html
 
 .. admonition:: See also
 
@@ -1097,6 +1118,8 @@ Decryption Profile > SSL Decryption : SSL Protocol Settings
 
 Protocol versions: Set the minimum protocol version to TLSv1.2. Any TLSv1.1 errors can help find outdated TLS endpoints
 
+In 10.0, the max protocol version is set to TLSv1.3.
+
 **Encryption Algorithms**: 3DES and RC4 not recommended and unavailable when TLSv1.2 is the minimum version.
 **Authentication Algorithms**: MD5 not recommended and unavailable when TLSv1.2 is the minimum version
 
@@ -1115,7 +1138,7 @@ Policies
 
 Security
 ^^^^^^^^
-.. _Policies - Security: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-web-interface-help/policies/policies-security.html
+.. _Policies - Security: https://docs.paloaltonetworks.com/pan-os/10-0/pan-os-web-interface-help/policies/policies-security.html
 
 .. admonition:: See also
 
@@ -1127,8 +1150,8 @@ IronSkillet Security Policies
 IronSkillet only provides suggested block rules and no traffic passing allow rules. When admins add new security rules,
 they should reference the security profile groups and logging profile configured under Objects.
 
-Policies > Security : edl and sinkhole
-++++++++++++++++++++++++++++++++++++++
+Policies > Security : Block Malicious IPs
++++++++++++++++++++++++++++++++++++++++++
 
 .. image:: images/vg_policy_security.png
    :width: 600
@@ -1148,16 +1171,10 @@ needs to ensure that the EDLs show up under Objects - External Dynamic Lists. If
 is not valid or the content update has not been performed.
 
 
-**DNS Sinkhole Block**
-This policy rule lets the firewall drop sinkhole redirected traffic as defined in the Spyware object profiles.
-DNS lookups matching a malicious domain will be sinkholed.
-
-If the admin chooses to allow the traffic to pass to a legitimate sinkhole, this rule can be disable or removed.
-
 Decryption
 ^^^^^^^^^^
 
-.. _Policies - Decryption: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-web-interface-help/policies/policies-decryption.html#
+.. _Policies - Decryption: https://docs.paloaltonetworks.com/pan-os/10-0/pan-os-web-interface-help/policies/policies-decryption.html#
 
 .. admonition:: See also
 
@@ -1182,7 +1199,7 @@ Policies > Decryption : no decrypt
 
 SSL Decryption is highly recommended to gain visibility to traffic sessions yet is not part of the IronSkillet
 configuration template due to various requirements around certificates and application testing before full
-implementations. Therefore as a Day One broad usage template, SSL decrypt is bypassed with only reference rules and profiles.
+implementations. Included is a reference decryption rule for 'no decrypt' URL categories.
 
 Monitor
 -------
@@ -1190,7 +1207,7 @@ Monitor
 Manage Custom Reports
 ^^^^^^^^^^^^^^^^^^^^^
 
-.. _Monitor - Custom Reports: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-web-interface-help/monitor/monitor-manage-custom-reports.html
+.. _Monitor - Custom Reports: https://docs.paloaltonetworks.com/pan-os/10-0/pan-os-web-interface-help/monitor/monitor-manage-custom-reports.html
 
 .. admonition:: See also
 
@@ -1296,7 +1313,7 @@ This rule allows for identification of the compromised client.
 PDF Reports
 ^^^^^^^^^^^
 
-.. _Monitor - PDF Reports: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-web-interface-help/monitor/monitor-pdf-reports.html
+.. _Monitor - PDF Reports: https://docs.paloaltonetworks.com/pan-os/10-0/pan-os-web-interface-help/monitor/monitor-pdf-reports.html
 
 .. admonition:: See also
 
