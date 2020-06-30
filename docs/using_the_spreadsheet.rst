@@ -9,16 +9,17 @@ model for configuration.
 
 The spreadsheets can be found at:
 
-`PAN-OS` [
-`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.0/templates/panos/set_commands>`_ |
+`PAN-OS` |
 `8.1 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.1/templates/panos/set_commands>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v9.0/templates/panos/set_commands>`_ ]
+`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v9.1/templates/panos/set_commands>`_ |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v10.0/templates/panos/set_commands>`_ |
 
-
-`Panorama` [
-`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.0/templates/panorama/set_commands>`_ |
+`Panorama` |
 `8.1 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.1/templates/panorama/set_commands>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v9.0/templates/panorama/set_commands>`_ ]
+`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v9.1/templates/panorama/set_commands>`_ |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v10.0/templates/panorama/set_commands>`_ |
 
 
 The ``values`` worksheet can be updated with user-specific values. Formulas embedded in the ``set commands`` worksheet

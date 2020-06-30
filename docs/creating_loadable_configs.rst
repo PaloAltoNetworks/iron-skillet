@@ -54,6 +54,9 @@ PANORAMA_MASK            255.255.255.0            Panorama netmask if to be adde
 PANORAMA_DG              192.168.55.2             Panorama default gateway if to be added to my_config
 API_KEY_LIFETIME         525600                   Panorama and device API key lifetime in minutes
 INCLUDE_PAN_EDL          yes                      Include the panw edl object security rules
+config_mgmt_intf         no                       Include management interface config snippet
+config_admin_user        no                       Include addition of admin user account
+config_dns               no                       Include DNS configuration element
 ======================   =======================  ==========================================================
 
 
@@ -65,9 +68,9 @@ The tools folder in the iron-skillet repo contains a simple python utility for v
 This tools folder can be found at:
 
 `Release branch` [
-`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.0/tools>`_ |
-`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.1/tools>`_ |
-`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v9.0/tools>`_ ]
+`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v9.0/tools>`_ |
+`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v9.1/tools>`_ |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v10.0/tools>`_ ]
 
 The directions below detail how to use the utility in a python virtual environment on Mac or Linux.
 Similar instructions can work for Windows with python and pip installed.

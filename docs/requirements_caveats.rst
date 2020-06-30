@@ -6,35 +6,35 @@ Please read before using the IronSkillet configuration templates.
 Requirements
 ------------
 
-Using IronSkillet requires the following to properly load into Panorama and/or the NGFW
+Using IronSkillet branch version panos_v10.0 requires the following to properly load into Panorama and/or the NGFW
 
 
-    * Running software version 9.0
+    * Running software version 10.0
 
-        + `Upgrade the firewall to 9.0`_
-        + `Upgrade Panorama to 9.0`_
+        + `Upgrade the firewall to 10.0`_
+        + `Upgrade Panorama to 10.0`_
 
 
-.. _Upgrade the firewall to 9.0: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-new-features/upgrade-to-pan-os-90.html
-.. _Upgrade Panorama to 9.0: https://docs.paloaltonetworks.com/panorama/9-0/panorama-admin/set-up-panorama/install-content-and-software-updates-for-panorama.html
+.. _Upgrade the firewall to 10.0: https://docs.paloaltonetworks.com/pan-os/10-0/pan-os-new-features/upgrade-to-pan-os-90.html
+.. _Upgrade Panorama to 10.0: https://docs.paloaltonetworks.com/panorama/10-0/panorama-admin/set-up-panorama/install-content-and-software-updates-for-panorama.html
 
 
     * Active subscription for Threat Prevention
 
         + `Activate the subscription licenses`_
 
-.. _Activate the subscription licenses: http://docs.paloaltonetworks.com/pan-os/9-0/pan-os-admin/subscriptions/activate-subscription-licenses
+.. _Activate the subscription licenses: http://docs.paloaltonetworks.com/pan-os/10-0/pan-os-admin/subscriptions/activate-subscription-licenses
 
     * Updated application and antivirus content
 
         + `Install content and software updates`_
 
 
-.. _Install content and software updates: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-admin/software-and-content-updates/install-content-and-software-updates.html
+.. _Install content and software updates: https://docs.paloaltonetworks.com/pan-os/10-0/pan-os-admin/software-and-content-updates/install-content-and-software-updates.html
 
 
 .. Note::
-    The links are specific to PAN-OS v9.0 and users may switch to 8.0 or 8.1 based on deployed release
+    The links are specific to PAN-OS v10.0 and users may switch to 9.1, 9.0, or 8.1 based on deployed release
 
 
 .. Note::
@@ -71,6 +71,6 @@ Please review the following to understand any limitations or recommendations reg
         + All `device-group configuration`_ at the Shared top of tree
         + Additional Panorama `template stacks`_ should include the IronSkillet template
 
-.. _Configure a Firewall Administrator: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-admin/firewall-administration/manage-firewall-administrators/configure-administrative-accounts-and-authentication/configure-a-firewall-administrator-account.html#
-.. _device-group configuration: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-web-interface-help/panorama-web-interface/panorama-device-groups.html
-.. _template stacks: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-web-interface-help/panorama-web-interface/panorama-templates.html
+.. _Configure a Firewall Administrator: https://docs.paloaltonetworks.com/pan-os/10-0/pan-os-admin/firewall-administration/manage-firewall-administrators/configure-administrative-accounts-and-authentication/configure-a-firewall-administrator-account.html#
+.. _device-group configuration: https://docs.paloaltonetworks.com/pan-os/10-0/pan-os-web-interface-help/panorama-web-interface/panorama-device-groups.html
+.. _template stacks: https://docs.paloaltonetworks.com/pan-os/10-0/pan-os-web-interface-help/panorama-web-interface/panorama-templates.html

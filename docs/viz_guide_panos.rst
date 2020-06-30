@@ -9,7 +9,7 @@ changes or compare IronSkillet manually to their existing configuration.
 
 So based on popular demand here is the GUI-based visual guide to all of the IronSkillet configuration elements.
 
-This is based on PAN-OS 9.x with callouts for any features not supported in the 8.x releases.
+This is based on PAN-OS 10.x with callouts for any features not supported in the 8.x releases.
 Also note that based on software release, there may be other items configured or ‘checked’ as defaults and not part of IronSkillet.
 These items are not referenced in this guide.
 
@@ -24,12 +24,12 @@ IronSkillet includes a mix of day one best practices for configuration types suc
 
 This visual guide is based on the `IronSkillet full configuration file`_
 
-.. _IronSkillet full configuration file: https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/loadable_configs/sample-mgmt-static/panos/iron_skillet_panos_full.xml
+.. _IronSkillet full configuration file: https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/loadable_configs/sample-mgmt-static/panos/iron_skillet_panos_full.xml
 
 This file uses default value settings and can be readily imported and loaded as a candidate configuration allowing the user to follow along with this guide.
 
 .. Note::
-    Documentation links for release 9.0 are provided for additional information.
+    Documentation links for release 10.0 are provided for additional information.
 
 
 Device
@@ -46,7 +46,7 @@ Setup
 Management
 ~~~~~~~~~~
 
-.. _Device - Setup - Management: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-web-interface-help/device/device-setup-management.html
+.. _Device - Setup - Management: https://docs.paloaltonetworks.com/pan-os/10-0/pan-os-web-interface-help/device/device-setup-management.html
 
 .. admonition:: See also
 
@@ -188,31 +188,9 @@ IronSkillet also gives the option of using the DHCP Client which removes the IP 
     + **Administrative Management Services**: limit to HTTPS and SSH
     + **Network Services**: only allow Ping unless other services are required
 
-Telemetry
-~~~~~~~~~
+.. NOTE::
+    Additional recommendations include restricting access to only authorized IP addresses
 
-.. _Device - Setup - Telemetry: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-web-interface-help/device/device-setup-telemetry.html
-
-.. admonition:: See also
-
-     General configuration information in the Admin Guide: `Device - Setup - Telemetry`_
-
-Device > Setup > Telemetry > Telemetry
-++++++++++++++++++++++++++++++++++++++
-
-.. image:: images/vg_telemetry.png
-   :width: 600
-   :align: center
-
-IronSkillet sets all telemetry optons to enabled.
-
-Telemetry is the process of collecting and transmitting data for analysis. 
-When you enable telemetry on the firewall, the firewall collects and forwards data that includes information on applications, 
-threats, device health, and passive DNS to Palo Alto Networks. All Palo Alto Networks users benefit 
-from the data that each telemetry participant shares, making telemetry a community-driven approach to threat prevention. 
-
-Telemetry is an opt-in feature and, for most telemetry data, you can preview the information that the firewall collects. 
-Palo Alto Networks does not share your telemetry data with other customers or third-party organizations.
 
 Content-ID
 ~~~~~~~~~~
@@ -241,14 +219,14 @@ from forwarding TCP segments and skipping content inspection when the content in
 **Disable Forward segments exceeding UDP content inspection queue**:
 Disable this option to prevent the firewall from forwarding UDP segments and skipping content inspection when the content inspection queue is full. 
 
-**Disable Allow HTTP partial response**
-This option allows a client to fetch only part of a file. When a next-generation firewall in the path of a transfer identifies and drops a malicious file, 
-it terminates the TCP session with an RST packet. If the web browser implements the HTTP Range option, it can start a new session to fetch only the 
-remaining part of the file. This prevents the firewall from triggering the same signature again due to the lack of context into the initial session, 
-while at the same time allowing the web browser to reassemble the file and deliver the malicious content. To prevent this, make sure this option is disabled.
 
 Device > Setup > Content-ID > X-Forwarded-For Headers
 +++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+.. NOTE::
+
+    IronSkillet only includes pre 10.0 release configuration. In 10.0 XFF moves from a global to policy or user configuration.
+
 
 .. image:: images/vg_content_id_xff.png
    :width: 600
@@ -259,14 +237,14 @@ Header field option that preserves the IP address of the user who made the GET r
 **Enable Use X-Forwarded-For Header in User-ID**
 
 Select this option to specify that User-ID reads IP addresses from the X-Forwarded-For (XFF) header in client requests for web services when the firewall
-is deployed between the Internet and a proxy server that would otherwise hide client IP addresses. User-ID matches the IP addresses it reads with usernames 
-that your policies reference so that those policies can control and log access for the associated users and groups. If the header has multiple IP addresses, 
+is deployed between the Internet and a proxy server that would otherwise hide client IP addresses. User-ID matches the IP addresses it reads with usernames
+that your policies reference so that those policies can control and log access for the associated users and groups. If the header has multiple IP addresses,
 User-ID uses the first entry from the left.
 
 **Enable Strip X-Forwarded-For Header**
 
 Select this option to remove the X-Forwarded-For (XFF) header, which contains the IP address of a client requesting a web service when the firewall is
-deployed between the Internet and a proxy server. The firewall zeroes out the header value before forwarding the request: the forwarded packets don’t 
+deployed between the Internet and a proxy server. The firewall zeroes out the header value before forwarding the request: the forwarded packets don’t
 contain internal source IP information.
 
 
@@ -403,7 +381,8 @@ There are multiple sections that can be configured for device log forwarding (Sy
 Options include sending all logs, logs by severity, and custom attributes using the filter builder.
 Iron Skillet recommended settings include forwarding critical system logs to email and using Syslog for all system logs
 
-Configuration, User-ID, and HIP Match should forward all logs to syslog
+Configuration, User-ID, and HIP Match should forward all logs to syslog or another logging platform such as Panorama
+or Cortex Data Lake.
 
 It is recommended to forward all logs to Panorama if the firewall is being managed by Panorama.
 This setting is unchecked as the Iron Skillet configuration assumes a standalone configuration
@@ -446,6 +425,7 @@ Device > Log Settings > Configuration
 
 Profiles configurations are in the section :ref:`Server Profiles`.
 
+
 User-ID
 ~~~~~~~
 
@@ -474,9 +454,35 @@ Device > Log Settings > HIP Match
    :width: 600
    :align: center
 
-**HIP_Log_Forwarding**
+**HIP_Log_Forwarding**: As reference, forward all HIP logs as syslog using a configured syslog profile
 
-As reference, forward all HIP logs as syslog using a configured syslog profile
+GlobalProtect (GP)
+~~~~~~~~~~~~~~~~~~
+
+GlobalProtect event log actions
+
+Device > Log Settings > GlobalProtect
++++++++++++++++++++++++++++++++++++++
+
+.. image:: images/vg_logging_globalprotect.png
+   :width: 600
+   :align: center
+
+**GP_Log_Forwarding**: As reference, forward all GP logs as syslog using a configured syslog profile
+
+IP-Tag
+~~~~~~
+
+GlobalProtect HIP event log actions
+
+Device > Log Settings > IP-Tag
+++++++++++++++++++++++++++++++
+
+.. image:: images/vg_logging_globalprotect.png
+   :width: 600
+   :align: center
+
+**IP_Tag**: As reference, forward all IP-Tag logs as syslog using a configured syslog profile
 
 Profiles configurations are in the section :ref:`Server Profiles`.  
 
@@ -528,7 +534,7 @@ Device > Server Profiles > Email
    :width: 600
    :align: center
 
-Sample email server profile for critical alert events.
+Sample email server profile for critical alert events including the new option for Protocol, IronSkillet using SMTP.
 
 .. Note::
     the from/to and gateway values are reference only. The gateway address is non-routable.
@@ -574,9 +580,7 @@ This means that the latest content update always includes the application and th
 
 WildFire
 ~~~~~~~~
-Provides near real-time malware and antivirus signatures created as a result of the analysis done by the WildFire public cloud. 
-WildFire signature updates are made available every five minutes. You can set the firewall to check for new updates as frequently 
-as every minute to ensure that the firewall retrieves the latest WildFire signatures within a minute of availability. 
+Provides real-time malware and antivirus signatures created as a result of the analysis done by the WildFire public cloud.
 Without the WildFire subscription, you must wait 24 to 48 hours for the WildFire signatures to roll into the Applications and Threat update. 
 
 GlobalProtect Clientless VPN
@@ -651,31 +655,6 @@ Objects
 
 This section includes various profiles, objects, and tags used primarily in security and decryption policies.
 
-
-Address
-^^^^^^^
-
-.. _Objects - Addresses: https://docs.paloaltonetworks.com/pan-os/9-0/pan-os-web-interface-help/objects/objects-addresses.html#
-
-.. admonition:: See also
-
-     General configuration information in the Admin Guide: `Objects - Addresses`_
-
-IronSkillet Address Objects
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Objects > Addresses : sinkholes
-+++++++++++++++++++++++++++++++
-
-.. image:: images/vg_object_addresses.png
-   :width: 600
-   :align: center
-
-IronSkillet provides two address objects reference in security policies.
-These are associated to the sinkhole addresses used in the :ref:`Anti-Spyware Profile` setting.
-
-.. Note::
-    8.x releases use type of IP Netmask whereas 9.0 requires an FQDN entry for the sinkhole address.
 
 Tags
 ^^^^
@@ -1348,8 +1327,4 @@ Monitor > PDF Reports > Email Scheduler
    :align: center
 
 It is up to the user to finalize configuration by setting the recurrence for how often the email should be generated and sent.
-
-
-
-
 

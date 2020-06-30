@@ -88,3 +88,35 @@ Security profiles
 .. Note::
     these are shown with their initial 9.1 release but also supported in prior PAN-OS releases
 
+10.0 new features
+~~~~~~~~~~~~~~~~~
+
+Security profiles
+^^^^^^^^^^^^^^^^^
+
+    + Antivirus profile: Wildfire ML dynamic classification to block all malicious file types
+
+        * set all decoders to reset-both
+
+        * set all file types to enabled
+
+    + Anti-spyware profile:  DNS Security Service malicious categories set to sinkhole
+
+    + URL Filtering: realtime page analysis; block all engines types under Dynamic Classification
+
+Device configuration
+^^^^^^^^^^^^^^^^^^^^
+
+    + dynamic updates: set Wildfire schedule to 'realtime'
+
+Decryption profile
+^^^^^^^^^^^^^^^^^^
+
+    + set protocol max version to TLSv1.3
+
+Log Setting
+^^^^^^^^^^^
+
+    + GlobalProtect log forwarding
+
+

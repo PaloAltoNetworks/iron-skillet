@@ -25,10 +25,10 @@ Management Users
 ~~~~~~~~~~~~~~~~
 
 `View xml snippet:` [
-`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0/templates/panos/snippets/mgt_config_users.xml>`_ |
 `8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panos/snippets/mgt_config_users.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/mgt_config_users.xml>`_ |
-`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/mgt_config_users.xml>`_
+`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/mgt_config_users.xml>`_ |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panos/snippets/mgt_config_users.xml>`_ |
 ]
 
 Management configuration superuser access
@@ -41,10 +41,10 @@ Password Complexity
 ~~~~~~~~~~~~~~~~~~~
 
 `View xml snippet:` [
-`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0/templates/panos/snippets/password_complexity.xml>`_ |
 `8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panos/snippets/password_complexity.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/password_complexity.xml>`_ |
-`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/password_complexity.xml>`_
+`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/password_complexity.xml>`_ |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panos/snippets/password_complexity.xml>`_ |
 ]
 
 Administrative user password complexity profile
@@ -56,20 +56,15 @@ Security-related Device Settings
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `View xml snippet:` [
-`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0/templates/panos/snippets/device_setting.xml>`_ |
 `8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panos/snippets/device_setting.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/device_setting.xml>`_ |
-`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/device_setting.xml>`_
+`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/device_setting.xml>`_ |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panos/snippets/device_setting.xml>`_ |
 ]
 
 General device settings that effect security posture. Found in Device > Setup in the GUI.
 
     + Wildfire: set optimal file size limits for Wildfire uploads and show verdict responses for grayware, malware and phishing
-
-    + X-Forwarded-For: To ensure that attackers can’t read and exploit the XFF values in web request packets that exit the firewall.
-
-        * Enable the firewall to use XFF values in policies and in the source user fields of logs
-        * Remove XFF values from outgoing web requests.
 
     + Session rematch: the firewall will go through all the existing sessions and apply the new security policy to any matching traffic
 
@@ -79,7 +74,6 @@ General device settings that effect security posture. Found in Device > Setup in
 
     + Prevent TCP and UDP buffer overflow and multi-part HTTP download evasions
 
-        * Disable 'allow HTTP header range'
         * Disable 'tcp-bypass-exceed-queue'
         * Disable 'udp-bypass-exceed-queue'
 
@@ -103,31 +97,27 @@ General device settings that effect security posture. Found in Device > Setup in
 
     + set export of csv log file to maximum of 1,048,576
 
-    + Administrative lockout and access
-
-        * failed attempts and lockout time
-        * idle timeout
-        * auto acquire commit lock
-
 
 System Configuration
 ~~~~~~~~~~~~~~~~~~~~
 
 `View xml snippet:` [
-`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0/templates/panos/snippets/device_system.xml>`_ |
 `8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panos/snippets/device_system.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/device_system.xml>`_ |
-`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/device_system.xml>`_
+`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/device_system.xml>`_ |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panos/snippets/device_system.xml>`_ |
 ]
 
 `View dns xml snippet:` [
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/device_system_dns.xml>`_ |
-`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/device_system_dns.xml>`_
+`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/device_system_dns.xml>`_ |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panos/snippets/device_system_dns.xml>`_ |
 ]
 
 `View mgmt IP config xml snippet:` [
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/device_system_mgmt_ip.xml>`_ |
-`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/device_system_mgmt_ip.xml>`_
+`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/device_system_mgmt_ip.xml>`_ |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panos/snippets/device_system_mgmt_ip.xml>`_ |
 ]
 
 System configuration settings for dynamic updates and network services
@@ -135,12 +125,10 @@ System configuration settings for dynamic updates and network services
 
     + Update schedule settings
 
-        * Turn on all telemetry settings
         * Check every 30 minutes for new threat signatures
         * Hourly checks for new AV signatures
-        * Check every minute for new Wildfire signatures
+        * Check realtime for new Wildfire signatures
         * Recommended time delays and thresholds for checks and installs
-        * Check for GlobalProtect datafile and clientless vpn updates
 
     + Use SNMPv3
 
@@ -178,15 +166,16 @@ Log forwarding profile
 ~~~~~~~~~~~~~~~~~~~~~~
 
 `View xml snippet:` [
-`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0/templates/panos/snippets/log_settings_profile.xml>`_ |
 `8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panos/snippets/log_settings_profile.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/log_settings_profiles.xml>`_ |
-`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/log_settings_profiles.xml>`_
+`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/log_settings_profiles.xml>`_ |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panos/snippets/log_settings_profile.xml>`_ |
 ]
 
 `View email xml snippet:` [
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/log_settings_profiles_email.xml>`_ |
-`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/log_settings_profiles_email.xml>`_
+`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/log_settings_profiles_email.xml>`_ |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panos/snippets/log_settings_profiles_email.xml>`_ |
 ]
 
 Log forward profile referenced in security rules to determine where to
@@ -202,20 +191,22 @@ Device log settings
 ~~~~~~~~~~~~~~~~~~~
 
 `View xml snippet:` [
-`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0/templates/panos/snippets/shared_log_settings.xml>`_ |
 `8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panos/snippets/shared_log_settings.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/shared_log_settings.xml>`_ |
-`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/shared_log_settings.xml>`_
+`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/shared_log_settings.xml>`_ |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panos/snippets/shared_log_settings.xml>`_ |
 ]
 
 `View email profile xml snippet:` [
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/shared_log_settings_email_profile.xml>`_ |
-`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/shared_log_settings_email_profile.xml>`_
+`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/shared_log_settings_email_profile.xml>`_ |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panos/snippets/shared_log_settings_email_profile.xml>`_ |
 ]
 
 `View email system critical xml snippet:` [
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/shared_log_settings_email_system_critical.xml>`_ |
-`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/shared_log_settings_email_system_critical.xml>`_
+`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/shared_log_settings_email_system_critical.xml>`_ |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panos/snippets/shared_log_settings_email_system_critical.xml>`_ |
 ]
 
 
@@ -250,34 +241,14 @@ Address, External Dynamic List (EDL), and tag objects that are
 referenced in security rules by name.
 
 
-Address Object
-~~~~~~~~~~~~~~
-
-`View xml snippet:` [
-`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0/templates/panos/snippets/address.xml>`_ |
-`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panos/snippets/address.xml>`_ |
-`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/address.xml>`_ |
-`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/address.xml>`_
-]
-
-Address object used to reference named addresses.
-
-
-        + Sinkhole-IPv4:
-            + [8.x] IP address used in security rule to block sinkhole traffic
-            + [9.x] FQDN address used in security rule to block sinkhole traffic
-
-        + Sinkhole-IPv6: IP address used in security rule to block sinkhole traffic
-
-
 Tags
 ~~~~
 
 `View xml snippet:` [
-`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0/templates/panos/snippets/tag.xml>`_ |
 `8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panos/snippets/tag.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/tag.xml>`_ |
-`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/tag.xml>`_
+`9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/tag.xml>`_ |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panos/snippets/tag.xml>`_ |
 ]
 
 Tags used in security rules and related objects.
@@ -287,6 +258,8 @@ Tags used in security rules and related objects.
         + Outbound - outbound (trust to untrust) elements
 
         + Internal - internal (trust) segmentation elements
+
+Tag showing IronSkillet loaded and the associated template version.
 
 
 Security Profiles and Groups
@@ -314,10 +287,10 @@ Custom URL Category
 ~~~~~~~~~~~~~~~~~~~
 
 `View xml snippet:` [
-`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0/templates/panos/snippets/profiles_custom_url_category.xml>`_ |
 `8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panos/snippets/profiles_custom_url_category.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/profiles_custom_url_category.xml>`_ |
-`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/profiles_custom_url_category.xml>`_
+`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/profiles_custom_url_category.xml>`_ |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panos/snippets/profiles_custom_url_category.xml>`_ |
 ]
 
 Placeholder for custom url categories used in security rules and url
@@ -340,10 +313,10 @@ File Blocking
 ~~~~~~~~~~~~~
 
 `View xml snippet:` [
-`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0/templates/panos/snippets/profiles_file_blocking.xml>`_ |
 `8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panos/snippets/profiles_file_blocking.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/profiles_file_blocking.xml>`_ |
-`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/profiles_file_blocking.xml>`_
+`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/profiles_file_blocking.xml>`_ |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panos/snippets/profiles_file_blocking.xml>`_ |
 ]
 
 Security profile for actions specific to file blocking (FB).
@@ -381,14 +354,13 @@ Anti-Spyware
 ~~~~~~~~~~~~
 
 `View xml snippet:` [
-`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0/templates/panos/snippets/profiles_spyware.xml>`_ |
 `8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panos/snippets/profiles_spyware.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/profiles_spyware.xml>`_ |
-`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/profiles_spyware.xml>`_
+`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/profiles_spyware.xml>`_ |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panos/snippets/profiles_spyware.xml>`_ |
 ]
 
 Security profile for actions specific to anti-spyware (AS).
-
 
 .. Note::
     **Sinkhole addresses**
@@ -396,9 +368,13 @@ Security profile for actions specific to anti-spyware (AS).
     currently provided by Palo Alto Networks. IPv6 is a bogon address. In 9.0
     the IPv4 address is replaced by an FQDN
 
-[9.0] Support for DNS Cloud subscription service
+[9.x] Support for DNS Cloud subscription service
 
     + In addition to the current malicious domain push to the device, also include domain lookups using the cloud service
+
+[10.x] Support for DNS Cloud subscription domain categories and actions
+
+    + set malicious categories to sinkhole
 
 
 Profiles:
@@ -437,10 +413,10 @@ URL Filtering
 ~~~~~~~~~~~~~
 
 `View xml snippet:` [
-`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0/templates/panos/snippets/profiles_url_filtering.xml>`_ |
 `8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panos/snippets/profiles_url_filtering.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/profiles_url_filtering.xml>`_ |
-`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/profiles_url_filtering.xml>`_
+`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/profiles_url_filtering.xml>`_ |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panos/snippets/profiles_url_filtering.xml>`_ |
 ]
 
 Security profile for actions specific to URL filtering (URL).
@@ -450,18 +426,23 @@ Security profile for actions specific to URL filtering (URL).
     All other URL categories will be set to ``ALERT`` in the templates for logging
     purposes. The complete list of categories can be found in the url filtering template.
 
+[10.x] Support for local machine learning based on web content
+
+    + block malicious content using dynamic classification
+
 
 Profiles:
 
         + Outbound-URL : For outbound (trust to untrust) security rules
 
             * URL Categories
-            * Site Access: Block command-and-control, malware, phishing, hacking, grayware
+            * Site Access: Block command-and-control, malware, phishing,
               Black List (custom URL category)
             * User Credential Submission: Block all categories
             * Alert category = includes White List (custom URL category)
             * URL Filtering Settings: HTTP Header Logging (user agent, referer, X
               -Forwarded-For)
+            * dynamic classification to block malicious web conent
 
         + Alert-Only-URL : No blocking, only alerts for logging purposes
 
@@ -472,29 +453,34 @@ Profiles:
           avoid modifying the default template profiles
 
             * URL Categories
-            * Site Access: Block command-and-control, malware, phishing, hacking, grayware
+            * Site Access: Block command-and-control, malware, phishing,
               Black List (custom URL category)
             * User Credential Submission: Block all categories
             * Alert category = includes White List (custom URL category)
             * URL Filtering Settings: HTTP Header Logging (user agent, referer, X
               -Forwarded-For)
+            * dynamic classification to block malicious web conent
 
 .. Note::
-    9.0 included new URL categories for risk and newly created domains. In future best practices, these categories
+    9.0 includes new URL categories for risk and newly created domains. In future best practices, these categories
     may be used to provide additional security protections when combined with existing URL categories. For now, these
     categories are only set to `alert`.
+
 
 Anti-Virus
 ~~~~~~~~~~
 
 `View xml snippet:` [
-`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0/templates/panos/snippets/profiles_virus.xml>`_ |
 `8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panos/snippets/profiles_virus.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/profiles_virus.xml>`_ |
-`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/profiles_virus.xml>`_
+`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/profiles_virus.xml>`_ |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panos/snippets/profiles_virus.xml>`_ |
 ]
 
-Security profile for actions specific to AntiVirus (AV).
+Security profile for actions specific to AntiVirus (AV) and Wildfire signatures. All decoders using 'reset-both'
+as actions except for the Alert-Only profile.
+
+[10.x] Support for WF-based local machine learning to block malicious content for exe and powershell files.
 
 
 Profiles:
@@ -529,10 +515,10 @@ Vulnerability Protection
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 `View xml snippet:` [
-`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0/templates/panos/snippets/profiles_vulnerability.xml>`_ |
 `8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panos/snippets/profiles_vulnerability.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/profiles_vulnerability.xml>`_ |
-`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/profiles_vulnerability.xml>`_
+`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/profiles_vulnerability.xml>`_ |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panos/snippets/profiles_vulnerability.xml>`_ |
 ]
 
 
@@ -571,14 +557,15 @@ Profiles:
 
 .. _Brute-Force-Exceptions: https://github.com/PaloAltoNetworks/iron-skillet/tree/bruteForceExceptions
 
+
 Wildfire Analysis
 ~~~~~~~~~~~~~~~~~
 
 `View xml snippet:` [
-`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0/templates/panos/snippets/profiles_wildfire_analysis.xml>`_ |
 `8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panos/snippets/profiles_wildfire_analysis.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/profiles_wildfire_analysis.xml>`_ |
-`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/profiles_wildfire_analysis.xml>`_
+`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/profiles_wildfire_analysis.xml>`_ |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panos/snippets/profiles_wildfire_analysis.xml>`_ |
 ]
 
 Security profile for actions specific to Wildfire upload and analysis
@@ -608,10 +595,10 @@ Security Profile Groups
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 `View xml snippet:` [
-`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0/templates/panos/snippets/profile_group.xml>`_ |
 `8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panos/snippets/profile_group.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/profile_group.xml>`_ |
-`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/profile_group.xml>`_
+`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/profile_group.xml>`_ |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panos/snippets/profile_group.xml>`_ |
 ]
 
 Security profile groups based on use case
@@ -638,10 +625,10 @@ Recommended Block Rules
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 `View xml snippet:` [
-`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0/templates/panos/snippets/rulebase_security.xml>`_ |
 `8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panos/snippets/rulebase_security.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/rulebase_security.xml>`_ |
-`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/rulebase_security.xml>`_
+`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/rulebase_security.xml>`_ |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panos/snippets/rulebase_security.xml>`_ |
 ]
 
 Recommended block rules for optimal security posture with associated
@@ -654,8 +641,6 @@ default log-forwarding profile
         + Inbound Block Rule: Block source IP address match based on the Palo
           Alto Networks predefined externals dynamic lists
 
-        + DNS Sinkhole Block: Block sessions redirected to defined sinkhole
-          addresses using the address objects (address.xml)
 
 .. Note::
     **Security rules in the template are block only**
@@ -668,10 +653,10 @@ Default Security Rules
 ~~~~~~~~~~~~~~~~~~~~~~
 
 `View xml snippet:` [
-`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0/templates/panos/snippets/rulebase_default_security_rules.xml>`_ |
 `8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panos/snippets/rulebase_default_security_rules.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/rulebase_default_security_rules.xml>`_ |
-`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/rulebase_default_security_rules.xml>`_
+`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/rulebase_default_security_rules.xml>`_ |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panos/snippets/rulebase_default_security_rules.xml>`_ |
 ]
 
 Configuration for the default interzone and intrazone default rules
@@ -698,10 +683,10 @@ Profiles
 ~~~~~~~~
 
 `View xml snippet:` [
-`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0/templates/panos/snippets/profiles_decryption.xml>`_ |
 `8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panos/snippets/profiles_decryption.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/profiles_decryption.xml>`_ |
-`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/profiles_decryption.xml>`_
+`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/profiles_decryption.xml>`_ |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panos/snippets/profiles_decryption.xml>`_ |
 ]
 
 Recommended_Decryption_Profile. Referenced by the default decryption
@@ -727,7 +712,7 @@ rule.
 
         + SSL Protocol Settings:
 
-            * Minimum Version: TLSv1.2; Any TLSv1.1 errors can help find outdated
+            * Minimum Version: TLSv1.2; Max version TLSv1.3; Any TLSv1.1 errors can help find outdated
               TLS endpoints
             * Key Exchange Algorithms: RSA not recommended and unchecked
             * Encryption Algorithms: 3DES and RC4 not recommended and unavailable
@@ -740,18 +725,16 @@ Decryption Rules
 ~~~~~~~~~~~~~~~~
 
 `View xml snippet:` [
-`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0/templates/panos/snippets/rulebase_decryption.xml>`_ |
 `8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panos/snippets/rulebase_decryption.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/rulebase_decryption.xml>`_ |
-`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/rulebase_decryption.xml>`_
+`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/rulebase_decryption.xml>`_ |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panos/snippets/rulebase_decryption.xml>`_ |
 ]
 
 Recommended SSL decryption pre-rules for no-decryption.
 
 
        + NO decrypt rule for select URL categories; Initially disabled in the Day 1 template until SSL decryption to be enabled
-
-       + NO decrypt rule used to validate SSL communications based on the ``Recommended Decrypt profile``
 
 
 Zone Protection
@@ -764,10 +747,10 @@ Profile
 ~~~~~~~
 
 `View xml snippet:` [
-`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0/templates/panos/snippets/zone_protection_profile.xml>`_ |
 `8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panos/snippets/zone_protection_profile.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/zone_protection_profile.xml>`_ |
-`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/zone_protection_profile.xml>`_
+`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/zone_protection_profile.xml>`_ |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panos/snippets/zone_protection_profile.xml>`_ |
 ]
 
 Recommended_Zone_Protection profile for standard, non-volumetric best
@@ -797,10 +780,10 @@ Reports
 ~~~~~~~
 
 `View xml snippet:` [
-`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0/templates/panos/snippets/reports_simple.xml>`_ |
 `8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panos/snippets/reports_simple.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/reports_simple.xml>`_ |
-`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/reports_simple.xml>`_
+`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/reports_simple.xml>`_ |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panos/snippets/reports_simple.xml>`_ |
 ]
 
 Series of reports to look for traffic anomalies, where to apply or
@@ -821,10 +804,10 @@ Report Groups
 ~~~~~~~~~~~~~
 
 `View xml snippet:` [
-`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0/templates/panos/snippets/report_group_simple.xml>`_ |
 `8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panos/snippets/report_group_simple.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/report_group_simple.xml>`_ |
-`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/report_group_simple.xml>`_
+`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/report_group_simple.xml>`_ |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panos/snippets/report_group_simple.xml>`_ |
 ]
 
 Report groups allow you to create sets of reports that the system can
@@ -867,10 +850,10 @@ Email Scheduler
 ~~~~~~~~~~~~~~~
 
 `View xml snippet:` [
-`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0/templates/panos/snippets/email_scheduler_simple.xml>`_ |
 `8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panos/snippets/email_scheduler_simple.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panos/snippets/email_scheduler_simple.xml>`_ |
-`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/email_scheduler_simple.xml>`_
+`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panos/snippets/email_scheduler_simple.xml>`_ |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panos/snippets/email_scheduler_simple.xml>`_ |
 ]
 
 Schedule and email recipients for each report group. The template uses
