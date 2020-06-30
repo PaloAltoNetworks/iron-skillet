@@ -55,6 +55,14 @@
     </entry>
   </match-list>
 </hipmatch>
+<globalprotect>
+  <match-list>
+    <entry name="GP_Log_Forwarding">
+      <filter>All Logs</filter>
+      <send-to-panorama>no</send-to-panorama>
+    </entry>
+  </match-list>
+</globalprotect>
 <iptag>
   <match-list>
     <entry name="IP-Tag_Log_Forwarding">
@@ -62,6 +70,7 @@
         <member>Sample_Syslog_Profile</member>
       </send-syslog>
       <filter>All Logs</filter>
+      <send-to-panorama>no</send-to-panorama>
     </entry>
   </match-list>
 </iptag>
