@@ -10,11 +10,10 @@ The following validations are provided with IronSkillet
 Full Configuration Assessment
 -----------------------------
 
-`View validation test file:` [
+`View validation test file:` |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/validations/panos/IronSkillet_assessment_panos/.meta-cnc.yaml>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/validations/panos/IronSkillet_assessment_panos/.meta-cnc.yaml>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/validations/panos/IronSkillet_assessment_panos/.meta-cnc.yaml>`_ |
-]
 
 Looks at a firewall xml configuration file to determine what elements recommended by IronSkillet are missing from the
 analyzed config file. Types of validation tests include the following based on IronSkillet recommendations with some
@@ -47,7 +46,7 @@ elements version specific:
 Upgrade to Newer Release Deltas [10.x]
 --------------------------------------
 
-`View validation test file:` [
+`View validation test file:` |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/validations/panos/IronSkillet_v90_update_panos/.meta-cnc.yaml>`_ |
 
 Looks at a firewall xml configuration file to determine what elements recommended by IronSkillet are missing from a
@@ -63,10 +62,10 @@ recently upgraded PAN-OS version to 10.x. Types of validation tests include the 
 Upgrade to Newer Release Deltas [9.x]
 -------------------------------------
 
-`View validation test file:` [
+`View validation test file:` |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/validations/panos/IronSkillet_v90_update_panos/.meta-cnc.yaml>`_ |
-`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/validations/panos/IronSkillet_v9x_update_panos/.meta-cnc.yaml>`_
-]
+`9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/validations/panos/IronSkillet_v9x_update_panos/.meta-cnc.yaml>`_ |
+
 
 Looks at a firewall xml configuration file to determine what elements recommended by IronSkillet are missing from a
 recently upgraded PAN-OS version to 9.x. Types of validation tests include the following based on IronSkillet recommendations:

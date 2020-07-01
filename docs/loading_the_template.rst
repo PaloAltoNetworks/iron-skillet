@@ -201,7 +201,7 @@ When complete, ensure the final load is entered and a status message received.
     load config partial from |panosconfigfile| from-xpath /config/shared/email-scheduler to-xpath /config/shared/email-scheduler mode merge
 
 
-`PAN-OS 9.0`
+`PAN-OS 9.0 and later`
 
 .. parsed-literal::
 
@@ -274,7 +274,7 @@ You can paste multiple items. The system will pause during each load config part
     load config partial from |panoramaconfigfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/log-collector-group to-xpath /config/devices/entry[@name='localhost.localdomain']/log-collector-group mode merge
 
 
-`Panorama 9.0`
+`Panorama 9.0 and later`
 
 .. parsed-literal::
 

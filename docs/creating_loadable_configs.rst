@@ -67,10 +67,10 @@ The tools folder in the iron-skillet repo contains a simple python utility for v
 
 This tools folder can be found at:
 
-`Release branch` [
+`Release branch` |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v9.0/tools>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v9.1/tools>`_ |
-`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v10.0/tools>`_ ]
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v10.0/tools>`_ |
 
 The directions below detail how to use the utility in a python virtual environment on Mac or Linux.
 Similar instructions can work for Windows with python and pip installed.
@@ -89,16 +89,16 @@ Install the repo and tools
 
 .. highlight:: bash
 
-The initial step is to clone the repo to a local machine with release|branch panos_v9.0.
+The initial step is to clone the repo to a local machine with release|branch panos_v10.0.
 
 Clone using ssh:
 
-    $ git clone -b panos_v9.0 |clonessh|
+    $ git clone -b panos_v10.0 |clonessh|
 
 
 Clone using https:
 
-    $ git clone -b panos_v9.0 |clonehttps|
+    $ git clone -b panos_v10.0 |clonehttps|
 
 
 After the repo is cloned locally, the following steps are used to setup and activate the python virtual environment.
@@ -106,7 +106,7 @@ After the repo is cloned locally, the following steps are used to setup and acti
 
 .. NOTE::
     The example below shows python version 3.6 in the second step.
-    If using python 3.5 or 3.7, replace with the respective version
+    If using another 3.x version, replace with the respective version
 
 ::
 

@@ -168,7 +168,7 @@ For a static management interface configuration, edit the IP address, subnet mas
 3. Edit the management interface attributes
 
 .. image:: images/setup_interfaces.png
-   :width: 600
+   :width: 400
 
 
 **Superuser Administrator**
@@ -184,7 +184,7 @@ user and add a new superuser or at a minimum change the admin user password.
 3. Choose to ``Add`` a new user entering the username and password in the pop-up window
 
 .. image:: images/device_administrators.png
-   :width: 400
+   :width: 300
 
 
 **Syslog IP Address**
@@ -231,7 +231,7 @@ These values should match the sinkhole IP addresses configured under ``Addresses
 3. Click on the DNS Signatures tab and update the IPv4 and IPv6 sinkhole addresses
 
 .. image:: images/spyware_sinkholes.png
-   :width: 400
+   :width: 600
 
 ----------------------------------------------------------------------
 
@@ -317,7 +317,7 @@ user and add a new superuser or at a minimum change the admin user password.
 3. Choose to ``Add`` a new user entering the username and password in the pop-up window
 
 .. image:: images/device_administrators.png
-   :width: 400
+   :width: 300
 
 
 **Panorama > Syslog IP Address**
@@ -356,7 +356,7 @@ The email profile is used to send key alerts to select recipients.
 3. In the pop-up window, edit the Hostname value
 
 .. image:: images/panorama_config_export.png
-   :width: 600
+   :width: 400
 
 
 **Panorama > Template Stack**
@@ -427,7 +427,7 @@ user and add a new superuser or at a minimum change the admin user password.
 3. Choose to ``Add`` a new user entering the username and password in the pop-up window
 
 .. image:: images/device_administrators.png
-   :width: 400
+   :width: 300
 
 
 **Syslog IP Address**
@@ -485,7 +485,7 @@ For a static management interface configuration, edit the IP address, subnet mas
 3. Edit the management interface attributes
 
 .. image:: images/setup_interfaces.png
-   :width: 600
+   :width: 400
 
 
 ** Shared device-group edits**
@@ -512,7 +512,7 @@ These values should match the sinkhole IP addresses configured under ``Addresses
 3. Click on the DNS Signatures tab and update the IPv4 and IPv6 sinkhole addresses
 
 .. image:: images/spyware_sinkholes.png
-   :width: 400
+   :width: 600
 
 
 ------------------------------------------------------------------------------------
