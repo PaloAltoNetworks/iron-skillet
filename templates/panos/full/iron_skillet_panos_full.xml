@@ -926,10 +926,10 @@ Log off immediately if you are not an authorized user.</login-banner>
   <send-to-panorama>no</send-to-panorama>
 </entry>
 </match-list>
-</entry></profiles></log-settings><profiles><custom-url-category><entry name="Black-List">
+</entry></profiles></log-settings><profiles><custom-url-category><entry name="Block">
   <type>URL List</type>
 </entry>
-<entry name="White-List">
+<entry name="Allow">
   <type>URL List</type>
 </entry>
 <entry name="Custom-No-Decrypt">
@@ -1806,8 +1806,8 @@ Log off immediately if you are not an authorized user.</login-banner>
     </mode>
     <log-severity>high</log-severity>
     <block>
-      <member>Black-List</member>
-      <member>White-List</member>
+      <member>Block</member>
+      <member>Allow</member>
       <member>abortion</member>
       <member>abused-drugs</member>
       <member>adult</member>
@@ -1886,7 +1886,7 @@ Log off immediately if you are not an authorized user.</login-banner>
   <log-http-hdr-referer>yes</log-http-hdr-referer>
   <log-http-hdr-xff>yes</log-http-hdr-xff>
   <alert>
-    <member>White-List</member>
+    <member>Allow</member>
     <member>abortion</member>
     <member>abused-drugs</member>
     <member>adult</member>
@@ -1957,7 +1957,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>web-hosting</member>
   </alert>
   <block>
-    <member>Black-List</member>
+    <member>Block</member>
     <member>command-and-control</member>
     <member>grayware</member>
     <member>malware</member>
@@ -1979,8 +1979,8 @@ Log off immediately if you are not an authorized user.</login-banner>
     </mode>
     <log-severity>medium</log-severity>
     <alert>
-      <member>Black-List</member>
-      <member>White-List</member>
+      <member>Block</member>
+      <member>Allow</member>
       <member>abortion</member>
       <member>abused-drugs</member>
       <member>adult</member>
@@ -2056,8 +2056,8 @@ Log off immediately if you are not an authorized user.</login-banner>
     </alert>
   </credential-enforcement>
   <alert>
-    <member>Black-List</member>
-    <member>White-List</member>
+    <member>Block</member>
+    <member>Allow</member>
     <member>abortion</member>
     <member>abused-drugs</member>
     <member>adult</member>
@@ -2147,8 +2147,8 @@ Log off immediately if you are not an authorized user.</login-banner>
     </mode>
     <log-severity>high</log-severity>
     <block>
-      <member>Black-List</member>
-      <member>White-List</member>
+      <member>Block</member>
+      <member>Allow</member>
       <member>abortion</member>
       <member>abused-drugs</member>
       <member>adult</member>
@@ -2227,7 +2227,7 @@ Log off immediately if you are not an authorized user.</login-banner>
   <log-http-hdr-referer>yes</log-http-hdr-referer>
   <log-http-hdr-xff>yes</log-http-hdr-xff>
   <alert>
-    <member>White-List</member>
+    <member>Allow</member>
     <member>abortion</member>
     <member>abused-drugs</member>
     <member>adult</member>
@@ -2298,7 +2298,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>web-hosting</member>
   </alert>
   <block>
-    <member>Black-List</member>
+    <member>Block</member>
     <member>command-and-control</member>
     <member>grayware</member>
     <member>malware</member>

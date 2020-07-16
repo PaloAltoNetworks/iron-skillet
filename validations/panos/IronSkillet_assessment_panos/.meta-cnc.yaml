@@ -474,7 +474,7 @@ snippets:
     fail_message: unable to find the recommended decryption profile
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#decryption-profile
 
-  - name: profile_logging
+  - name: profile_logging_test
     label: IronSkillet default logging profile configured
     test: |
       (
