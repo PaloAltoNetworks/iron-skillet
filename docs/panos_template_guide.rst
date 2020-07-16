@@ -298,10 +298,10 @@ profiles. Using these categories prevents the need to modify the
 default template.
 
 
-        + Black-List: placeholder to be used in block rules and objects to
+        + Block: placeholder to be used in block rules and objects to
           override default template behavior
 
-        + White-List: placeholder to be used in permit rules and objects to
+        + Allow: placeholder to be used in permit rules and objects to
           override default template behavior
 
         + Custom-No-Decrypt: to be used in the decryption no-decrypt rule to

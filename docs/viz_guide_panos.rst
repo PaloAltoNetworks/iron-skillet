@@ -708,8 +708,8 @@ Object > Custom Objects > URL Category
 Placeholder for custom url categories used in security rules and url profiles.
 Using these categories prevents the need to modify the default template.
 
-    + **Black-List**: placeholder to be used in block rules and objects to override default template behavior
-    + **White-List**: placeholder to be used in permit rules and objects to override default template behavior
+    + **Block**: placeholder to be used in block rules and objects to override default template behavior
+    + **Allow**: placeholder to be used in permit rules and objects to override default template behavior
     + **Custom-No-Decrypt**: to be used in the decryption no-decrypt rule to specify URLs that should no be decrypted
 
 Security  Profiles
@@ -952,7 +952,7 @@ Categories blocked in the Outbound and Exception profiles:
     + Command-and-Control
     + Phishing
     + Grayware
-    + Black-List [custom object users can edit]
+    + Block [custom object users can edit]
 
 All other categories have their action set as ‘alert’ instead of the default ‘allow’ for logging purposes.
 

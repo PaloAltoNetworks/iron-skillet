@@ -99,7 +99,7 @@ Released July 30, 2019
     + Removed the IPv4 and IPv6 Bogon EDLs and associated security rules
     + Updated the IPv4 sinkhole to use FQDN instead of an IP address
     + Clean up for the baseline configuration to remove IPSEC, IKE, QoS defaults
-    + Clean up for URL Black-List and White-List category usage in profiles
+    + Clean up for URL Block and Allow category usage in profiles
 
 0.0.1
 ^^^^^
@@ -126,7 +126,7 @@ Released July 30, 2019
     + Removed the IPv4 and IPv6 Bogon EDLs and associated security rules
     + Updated the IPv4 sinkhole to use FQDN instead of an IP address
     + Clean up for the baseline configuration to remove IPSEC, IKE, QoS defaults
-    + Clean up for URL Black-List and White-List category usage in profiles
+    + Clean up for URL Block and Allow category usage in profiles
 
 1.0.5
 ^^^^^
