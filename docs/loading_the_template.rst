@@ -15,6 +15,24 @@ using various models specific to the users expertise and current operational env
     created using the ```create_loadable_configs``` utility in the tools folder.
 
 
+Loading Configuration Snippets using Panhandler
+-----------------------------------------------
+
+----------------------------------------------------------------------
+
+panHandler overview
+~~~~~~~~~~~~~~~~~~~
+
+Panhandler is container-based UI used to aggregate and load configuration templates. PanHandler simplifies
+input of user data and using the NGFW API to push configuration snipipets.
+
+installing and using PanHandler
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+PanHandler is an easily distributed and loadable Docker container. Instructions for using PanHandler can
+be reviewing the `PanHandler Docs <https://panhandler.readthedocs.io>`_
+
+
 Preparing the configuration files
 ---------------------------------
 
@@ -183,7 +201,7 @@ When complete, ensure the final load is entered and a status message received.
     load config partial from |panosconfigfile| from-xpath /config/shared/email-scheduler to-xpath /config/shared/email-scheduler mode merge
 
 
-`PAN-OS 9.0`
+`PAN-OS 9.0 and later`
 
 .. parsed-literal::
 
@@ -256,7 +274,7 @@ You can paste multiple items. The system will pause during each load config part
     load config partial from |panoramaconfigfile| from-xpath /config/devices/entry[@name='localhost.localdomain']/log-collector-group to-xpath /config/devices/entry[@name='localhost.localdomain']/log-collector-group mode merge
 
 
-`Panorama 9.0`
+`Panorama 9.0 and later`
 
 .. parsed-literal::
 
@@ -296,25 +314,6 @@ device-group            reports, report groups, and email scheduler
 shared                  profile object, rules, and other device-group 'top of tree' items
 log collector           settings for Panorama when used as a log collector
 ======================  ==========================================================================
-
-
-Loading Configuration Snippets using Panhandler
-----------------------------------------------
-
-----------------------------------------------------------------------
-
-panHandler overview
-~~~~~~~~~~~~~~~~~~~
-
-Panhandler is container-based UI used to aggregate and load configuration templates. PanHandler simplifies
-input of user data and using the NGFW API to push configuration snipipets.
-
-installing and using PanHandler
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-PanHandler is an easily distributed and loadable Docker container. Instructions for using PanHandler can
-be reviewing the `PanHandler Docs <https://panhandler.readthedocs.io>`_
-
 
 
 Loading Configuration Snippets using skilletCLI

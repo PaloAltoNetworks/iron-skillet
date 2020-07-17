@@ -2,26 +2,38 @@
 New PAN-OS Version Updates
 ==========================
 
+10.0 new features
+~~~~~~~~~~~~~~~~~
 
-8.1 Update Items
-----------------
+Security profiles
+^^^^^^^^^^^^^^^^^
 
-This includes changes from the 8.0 IronSkillet configurations
+    + Antivirus profile: Wildfire ML dynamic classification to block all malicious file types
 
-.. _allow-http-range: https://github.com/PaloAltoNetworks/iron-skillet/blob/ab1c2719ad9153652008733613373dcac252c7bb/templates/panos/snippets/device_setting.xml#L4
+        * set all decoders to reset-both
 
-Syntax changes
-~~~~~~~~~~~~~~
+        * set all file types to enabled
 
-    + allow-http-range_ in device settings
+    + Anti-spyware profile:  DNS Security Service malicious categories set to sinkhole
+
+    + URL Filtering: realtime page analysis; block all engines types under Dynamic Classification
+
+Device configuration
+^^^^^^^^^^^^^^^^^^^^
+
+    + dynamic updates: set Wildfire schedule to 'realtime'
+
+Decryption profile
+^^^^^^^^^^^^^^^^^^
+
+    + set protocol max version to TLSv1.3
+
+Log Setting
+^^^^^^^^^^^
+
+    + GlobalProtect log forwarding
 
 
-8.1 new features
-~~~~~~~~~~~~~~~~
-
-    + WF file sizes
-
-        * new file type script, set to max 2000 file size [available in later releases]
 
 
 9.0 Update Items
@@ -87,4 +99,25 @@ Security profiles
 
 .. Note::
     these are shown with their initial 9.1 release but also supported in prior PAN-OS releases
+
+8.1 Update Items
+----------------
+
+This includes changes from the 8.0 IronSkillet configurations
+
+.. _allow-http-range: https://github.com/PaloAltoNetworks/iron-skillet/blob/ab1c2719ad9153652008733613373dcac252c7bb/templates/panos/snippets/device_setting.xml#L4
+
+Syntax changes
+~~~~~~~~~~~~~~
+
+    + allow-http-range_ in device settings
+
+
+8.1 new features
+~~~~~~~~~~~~~~~~
+
+    + WF file sizes
+
+        * new file type script, set to max 2000 file size [available in later releases]
+
 

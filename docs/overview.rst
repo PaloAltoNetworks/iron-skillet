@@ -35,15 +35,14 @@ Using the templates
 
 The templates are available on GitHub specific to each PAN-OS software version.
 
-`View github repo:` [
+`View github repo:` |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0>`_ |
 `8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1>`_ |
-`8.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.0>`_ |
- ]
 
 .. Note::
-    version 8.0 is still available but no longer will be updated due to sw release EOE
+    versions 8.0 and 8.1 are still available but no longer will be updated
 
 Use the branch specific to the software release for your deployment.
 
@@ -62,6 +61,7 @@ There are also validation skillets for analysis of existing configurations
 
     + ``full assessment`` to see what IronSkillet elements are missing
     + ``9.x upgrade from 8.1`` to check for new skillet additions
+    + ``10.x upgrade from 9.x`` to check for new skillet additions
 
 Validation insights currently require applications such as panHandler (https://panhandler.readthedocs.io) for
 analysis and results output.

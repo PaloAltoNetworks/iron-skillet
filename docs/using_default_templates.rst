@@ -168,7 +168,7 @@ For a static management interface configuration, edit the IP address, subnet mas
 3. Edit the management interface attributes
 
 .. image:: images/setup_interfaces.png
-   :width: 600
+   :width: 400
 
 
 **Superuser Administrator**
@@ -184,7 +184,7 @@ user and add a new superuser or at a minimum change the admin user password.
 3. Choose to ``Add`` a new user entering the username and password in the pop-up window
 
 .. image:: images/device_administrators.png
-   :width: 400
+   :width: 300
 
 
 **Syslog IP Address**
@@ -213,32 +213,6 @@ The email profile is used to send key alerts to select recipients.
    :width: 600
 
 
-**Object tab edits**
-
-
-The following edits are found under the ``Objects`` tab
-
-.. image:: images/objects_tab.png
-   :width: 600
-
-
-From here the following edits can be made:
-
-
-**Addresses**
-
-
-The template uses two address objects for sinkhole values, one each for IPv4 and IPv6. These are referenced in
-security rules.
-
-1. Go to Objects --> Address
-
-2. Click on the Sinkhole IPv4 and IPv6 links and edit the IP address
-
-.. image:: images/objects_addresses.png
-   :width: 600
-
-
 **Anti-Spyware Security Profiles**
 
 
@@ -257,7 +231,7 @@ These values should match the sinkhole IP addresses configured under ``Addresses
 3. Click on the DNS Signatures tab and update the IPv4 and IPv6 sinkhole addresses
 
 .. image:: images/spyware_sinkholes.png
-   :width: 400
+   :width: 600
 
 ----------------------------------------------------------------------
 
@@ -343,7 +317,7 @@ user and add a new superuser or at a minimum change the admin user password.
 3. Choose to ``Add`` a new user entering the username and password in the pop-up window
 
 .. image:: images/device_administrators.png
-   :width: 400
+   :width: 300
 
 
 **Panorama > Syslog IP Address**
@@ -382,7 +356,7 @@ The email profile is used to send key alerts to select recipients.
 3. In the pop-up window, edit the Hostname value
 
 .. image:: images/panorama_config_export.png
-   :width: 600
+   :width: 400
 
 
 **Panorama > Template Stack**
@@ -404,7 +378,7 @@ The email profile is used to send key alerts to select recipients.
 2. Click on the ``sample_devicegroup`` link and edit the name
 
 .. image:: images/panorama_devicegroup.png
-   :width: 400
+   :width: 600
 
 
 **Templates > Device tab edits**
@@ -453,7 +427,7 @@ user and add a new superuser or at a minimum change the admin user password.
 3. Choose to ``Add`` a new user entering the username and password in the pop-up window
 
 .. image:: images/device_administrators.png
-   :width: 400
+   :width: 300
 
 
 **Syslog IP Address**
@@ -511,40 +485,13 @@ For a static management interface configuration, edit the IP address, subnet mas
 3. Edit the management interface attributes
 
 .. image:: images/setup_interfaces.png
-   :width: 600
+   :width: 400
 
 
 ** Shared device-group edits**
 
 .. Note::
       Make sure the device-group selected in the GUI is `Shared` before completing the steps below
-
-
-**Device-Group > Objects tab edits**
-
-----------------------------------------------------------------------
-
-The following edits are found under the ``Objects`` tab
-
-.. image:: images/objects_tab.png
-   :width: 600
-
-
-From here the following edits can be made:
-
-
-**Addresses**
-
-
-The template uses two address objects for sinkhole values, one each for IPv4 and IPv6. These are referenced in
-security rules.
-
-1. Go to Objects --> Address
-
-2. Click on the Sinkhole IPv4 and IPv6 links and edit the IP address
-
-.. image:: images/objects_addresses.png
-   :width: 600
 
 
 **Anti-Spyware Security Profiles**
@@ -565,7 +512,7 @@ These values should match the sinkhole IP addresses configured under ``Addresses
 3. Click on the DNS Signatures tab and update the IPv4 and IPv6 sinkhole addresses
 
 .. image:: images/spyware_sinkholes.png
-   :width: 400
+   :width: 600
 
 
 ------------------------------------------------------------------------------------

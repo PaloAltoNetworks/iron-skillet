@@ -8,6 +8,33 @@ Includes:
     + tools updates
     + documentation revisions
 
+10.0 Template Release History
+----------------------------
+
+Template content updates are high level. Details can be found in the template guides.
+
+0.0.1
+^^^^^
+Released July dd, 2020
+
+    + set Wildfire dynamic updates to realtime
+    + Antivirus profile: reset-both for dynamic classification, all file types enabled
+    + Anti-spyware profile: set DNS malicious categories to sinkhole
+    + set max version of TLSv1.3 in the decryption profile
+    + URL filtering profile: use ML analysis and set to dynamic classification to block
+    + URL filtering profile: move 'hacking' category to alert since not malicious
+    + remove sinkhole address block policy and associated address object
+    + remove http partial response so now allowed
+    + remove XFF global configuration; now profile or policy specific
+    + remove 'no decrypt' decryption policy that checks for expired/invalid certs; too strict
+    + update WF malicious reports using 'neq benign' instead of equal to malicious categories
+    + remove telemetry configuration; new opt-in cert-based model in 10.0
+    + add email profile protocol 'SMTP' required in configuration; TLS config is optional
+    + add GlobalProtect log forwarding in log settings
+    + update validation skillets based on above modifications
+    + update metadata file for XML snippet skillets w/ option to skip IP address/admin user/DNS configuration elements
+    + add helper commands for scripting-mode on for CLI copy-paste model
+
 
 9.1 Template Release History
 ----------------------------
@@ -72,7 +99,7 @@ Released July 30, 2019
     + Removed the IPv4 and IPv6 Bogon EDLs and associated security rules
     + Updated the IPv4 sinkhole to use FQDN instead of an IP address
     + Clean up for the baseline configuration to remove IPSEC, IKE, QoS defaults
-    + Clean up for URL Black-List and White-List category usage in profiles
+    + Clean up for URL Block and Allow category usage in profiles
 
 0.0.1
 ^^^^^
@@ -99,7 +126,7 @@ Released July 30, 2019
     + Removed the IPv4 and IPv6 Bogon EDLs and associated security rules
     + Updated the IPv4 sinkhole to use FQDN instead of an IP address
     + Clean up for the baseline configuration to remove IPSEC, IKE, QoS defaults
-    + Clean up for URL Black-List and White-List category usage in profiles
+    + Clean up for URL Block and Allow category usage in profiles
 
 1.0.5
 ^^^^^
@@ -203,6 +230,11 @@ Released: May 10, 2018
 Tools Release Updates
 ---------------------
 
+Jul dd, 2020
+^^^^^^^^^^^^
+
+    + update set command and spreadsheet scripts to only use variables contained in config section
+
 Jan 22, 2020
 ^^^^^^^^^^^^
 
@@ -252,6 +284,12 @@ Documentation Revisions
 -----------------------
 
 Documentation revisions outside of template-tooling updates. These are documented by date, not verison.
+
+Jul dd, 2020
+^^^^^^^^^^^^
+
+    + update viz guide with 10.0 mods and UI
+    + update template text where required based on 10.0 mods
 
 April 29, 2020
 ^^^^^^^^^^^^^^
