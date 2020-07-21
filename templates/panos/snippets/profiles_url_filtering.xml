@@ -5,8 +5,8 @@
     </mode>
     <log-severity>high</log-severity>
     <block>
-      <member>Black-List</member>
-      <member>White-List</member>
+      <member>Block</member>
+      <member>Allow</member>
       <member>abortion</member>
       <member>abused-drugs</member>
       <member>adult</member>
@@ -85,7 +85,7 @@
   <log-http-hdr-referer>yes</log-http-hdr-referer>
   <log-http-hdr-xff>yes</log-http-hdr-xff>
   <alert>
-    <member>White-List</member>
+    <member>Allow</member>
     <member>abortion</member>
     <member>abused-drugs</member>
     <member>adult</member>
@@ -105,6 +105,7 @@
     <member>gambling</member>
     <member>games</member>
     <member>government</member>
+    <member>hacking</member>
     <member>health-and-medicine</member>
     <member>high-risk</member>
     <member>home-and-garden</member>
@@ -155,13 +156,20 @@
     <member>web-hosting</member>
   </alert>
   <block>
-    <member>Black-List</member>
+    <member>Block</member>
     <member>command-and-control</member>
     <member>grayware</member>
-    <member>hacking</member>
     <member>malware</member>
     <member>phishing</member>
   </block>
+  <mlav-engine-urlbased-enabled>
+    <entry name="Phishing Detection">
+      <mlav-policy-action>block</mlav-policy-action>
+    </entry>
+    <entry name="Javascript Exploit Detection">
+      <mlav-policy-action>block</mlav-policy-action>
+    </entry>
+  </mlav-engine-urlbased-enabled>
 </entry>
 <entry name="Alert-Only-URL">
   <credential-enforcement>
@@ -170,8 +178,8 @@
     </mode>
     <log-severity>medium</log-severity>
     <alert>
-      <member>Black-List</member>
-      <member>White-List</member>
+      <member>Block</member>
+      <member>Allow</member>
       <member>abortion</member>
       <member>abused-drugs</member>
       <member>adult</member>
@@ -247,8 +255,8 @@
     </alert>
   </credential-enforcement>
   <alert>
-    <member>Black-List</member>
-    <member>White-List</member>
+    <member>Block</member>
+    <member>Allow</member>
     <member>abortion</member>
     <member>abused-drugs</member>
     <member>adult</member>
@@ -322,6 +330,14 @@
     <member>web-based-email</member>
     <member>web-hosting</member>
   </alert>
+  <mlav-engine-urlbased-enabled>
+    <entry name="Phishing Detection">
+      <mlav-policy-action>alert</mlav-policy-action>
+    </entry>
+    <entry name="Javascript Exploit Detection">
+      <mlav-policy-action>alert</mlav-policy-action>
+    </entry>
+  </mlav-engine-urlbased-enabled>
 </entry>
 <entry name="Exception-URL">
   <credential-enforcement>
@@ -330,8 +346,8 @@
     </mode>
     <log-severity>high</log-severity>
     <block>
-      <member>Black-List</member>
-      <member>White-List</member>
+      <member>Block</member>
+      <member>Allow</member>
       <member>abortion</member>
       <member>abused-drugs</member>
       <member>adult</member>
@@ -410,7 +426,7 @@
   <log-http-hdr-referer>yes</log-http-hdr-referer>
   <log-http-hdr-xff>yes</log-http-hdr-xff>
   <alert>
-    <member>White-List</member>
+    <member>Allow</member>
     <member>abortion</member>
     <member>abused-drugs</member>
     <member>adult</member>
@@ -430,6 +446,7 @@
     <member>gambling</member>
     <member>games</member>
     <member>government</member>
+    <member>hacking</member>
     <member>health-and-medicine</member>
     <member>high-risk</member>
     <member>home-and-garden</member>
@@ -480,11 +497,18 @@
     <member>web-hosting</member>
   </alert>
   <block>
-    <member>Black-List</member>
+    <member>Block</member>
     <member>command-and-control</member>
     <member>grayware</member>
-    <member>hacking</member>
     <member>malware</member>
     <member>phishing</member>
   </block>
+  <mlav-engine-urlbased-enabled>
+    <entry name="Phishing Detection">
+      <mlav-policy-action>block</mlav-policy-action>
+    </entry>
+    <entry name="Javascript Exploit Detection">
+      <mlav-policy-action>block</mlav-policy-action>
+    </entry>
+  </mlav-engine-urlbased-enabled>
 </entry>

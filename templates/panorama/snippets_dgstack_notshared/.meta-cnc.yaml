@@ -3,9 +3,9 @@
 # all values are contained in the device-groups and template stacks; nothing shared
 
 # snippet folder name
-name: skillet_panorama_dgstack_notshared_v91
+name: skillet_panorama_dgstack_notshared_v10_0
 # label used for menu selection
-label: v9.1 Iron-Skillet for Panorama with Device-Group and Stack only (No Shared Values)
+label: v10.0 Iron-Skillet for Panorama with Device-Group and Stack only (No Shared Values)
 description: Iron Skillet device-group and template stack config for Panorama
 dependency: snippets
 # type of device configuration
@@ -77,11 +77,11 @@ variables:
     type_hint: text
   - name: ADMINISTRATOR_USERNAME
     description: admin username
-    default: admin
+    default: adminuser
     type_hint: text
   - name: ADMINISTRATOR_PASSWORD
     description: admin password
-    default: admin
+    default: adminuser
     type_hint: password
   - name: DNS_1
     description: primary dns server
@@ -176,9 +176,6 @@ snippets:
   - name: tag
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/tag
     file: ../snippets/tag.xml
-  - name: address
-    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/address
-    file: ../snippets/address.xml
   - name: local_log_profiles
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/log-settings/profiles
     file: ../snippets/log_settings_profiles.xml
@@ -213,11 +210,8 @@ snippets:
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/post-rulebase/default-security-rules
     file: ../snippets/post_rulebase_default_security_rules.xml
   - name: pre_rulebase_security
-    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/pre-rulebase/security
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/pre-rulebase
     file: ../snippets/pre_rulebase_security.xml
-  - name: post_rulebase_decryption
-    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/post-rulebase/decryption
-    file: ../snippets/post_rulebase_decryption.xml
   - name: pre_rulebase_decryption
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/pre-rulebase/decryption
     file: ../snippets/pre_rulebase_decryption.xml

@@ -21,6 +21,7 @@
   </ssh-proxy>
   <ssl-protocol-settings>
     <min-version>tls1-2</min-version>
+    <max-version>tls1-3</max-version>
     <keyxchg-algo-rsa>no</keyxchg-algo-rsa>
     <enc-algo-3des>no</enc-algo-3des>
     <enc-algo-rc4>no</enc-algo-rc4>

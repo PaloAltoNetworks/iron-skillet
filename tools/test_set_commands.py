@@ -102,7 +102,7 @@ def commit(device):
     if '<job>' in results:
         check_job_status(device, results)
 
-def test_set(ip_addr, user, mypassword, dev_type):
+def test_set(ip_addr, user, mypassword, dev_type, start_row, stop_row):
     '''
     expect style scripts to login and send set commands
     :param ip_addr: device ip address
@@ -129,19 +129,23 @@ def test_set(ip_addr, user, mypassword, dev_type):
     # read in conf file and do line by line configuration looking for errors
     # start_row bypasses interface and admin configuration items to avoid errors
     read_file = '../loadable_configs/sample-mgmt-dhcp/{0}/iron_skillet_{0}_full.conf'.format(dev_type)
-    start_row = 'set mgt-config password-complexity enabled yes\n'
+    #start_row = 'set mgt-config password-complexity enabled yes\n'
 
     start = False
 
-    with open(read_file) as fin:
-        for line in fin:
+
+    with open(read_file) as config_file:
+
+        for counter, line in enumerate(config_file, start=1):
             # use of start_row to start with a conf file line and skip others
-            if line == start_row:
+            # until end of file or last line encountered
+            if counter  == start_row:
                 start = True
                 print('start set command sequence')
 
             # ignore conf file comments and start config at start_row line
             if not line.startswith('#') and start is True:
+                #print(counter, line)
                 fw.sendline(line)
                 # not sure why pexpect needs this combo but works to get response
                 fw.expect('#')
@@ -158,6 +162,10 @@ def test_set(ip_addr, user, mypassword, dev_type):
                     print(fw_response)
                     break
 
+            if counter  == stop_row:
+                print('end set command sequence')
+                exit()
+
 if __name__ == '__main__':
 
     print('=' * 80)
@@ -168,9 +176,11 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
     parser.add_argument("-ip", "--ip_address", help="IP address of the device", type=str)
-    parser.add_argument("-u", "--username", help="Firewall Username", type=str)
-    parser.add_argument("-p", "--password", help="Firewall Password", type=str)
-    parser.add_argument("-t", "--type", help="panorama or panos", type=str)
+    parser.add_argument("-u", "--username", help="Firewall Username", type=str, default='admin')
+    parser.add_argument("-p", "--password", help="Firewall Password", type=str, default='Paloalto1')
+    parser.add_argument("-t", "--type", help="panorama or panos", type=str, default='panos')
+    parser.add_argument("-start", "--start_row", help='start row number from input file', type=int, default=1)
+    parser.add_argument("-stop", "--stop_row", help='stop row number from input file', type=int, default=10000)
     args = parser.parse_args()
 
     if len(sys.argv) < 2:
@@ -182,16 +192,18 @@ if __name__ == '__main__':
     username = args.username
     password = args.password
     dev_type = args.type
+    start_row = args.start_row
+    stop_row = args.stop_row
 
     # this is the real work with device login and configuration
-    test_set(ip_addr, username, password, dev_type)
+    test_set(ip_addr, username, password, dev_type, start_row, stop_row)
 
     print('\n')
     print('=' * 80)
     print('set commands loaded')
 
     # create panorama object using pan-python class
-    device = pan.xapi.PanXapi(api_username=username, api_password=password, hostname=ip_addr)
+    #device = pan.xapi.PanXapi(api_username=username, api_password=password, hostname=ip_addr)
     # get panorama api key and commit
-    api_key = device.keygen()
+    #api_key = device.keygen()
     #commit(device)

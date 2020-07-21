@@ -4,10 +4,10 @@
 # this is based on a 'shared model' with all template elements in the 'iron-skillet' template
 
 # snippet folder name
-name: skillet_full_panorama_v91
+name: skillet_full_panorama_v10_0
 # label used for menu selection
-label: v9.1 Iron-Skillet for Panorama (Shared Values)
-description: Iron-Skillet baseline configuration for Panorama with device-group and stack specific values
+label: v10.0 Iron-Skillet Full XML Configuration for Panorama (Shared Values)
+description: Iron-Skillet day one full XML configuration for Panorama with shared device-group and stack specific values
 # type of device configuration
 type: template
 extends:
@@ -117,11 +117,11 @@ variables:
     type_hint: text
   - name: ADMINISTRATOR_USERNAME
     description: admin username
-    default: admin
+    default: adminuser
     type_hint: text
   - name: ADMINISTRATOR_PASSWORD
     description: admin password
-    default: admin
+    default: adminuser
     type_hint: password
   - name: DNS_1
     description: primary dns server

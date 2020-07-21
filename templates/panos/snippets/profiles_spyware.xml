@@ -1,19 +1,40 @@
 <entry name="Outbound-AS">
   <botnet-domains>
     <lists>
-      <entry name="default-paloalto-cloud">
-        <packet-capture>single-packet</packet-capture>
-        <action>
-          <sinkhole/>
-        </action>
-      </entry>
       <entry name="default-paloalto-dns">
-        <packet-capture>single-packet</packet-capture>
         <action>
           <sinkhole/>
         </action>
+        <packet-capture>single-packet</packet-capture>
       </entry>
     </lists>
+    <dns-security-categories>
+      <entry name="pan-dns-sec-benign">
+        <log-level>default</log-level>
+        <action>default</action>
+        <packet-capture>disable</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-cc">
+        <log-level>default</log-level>
+        <action>sinkhole</action>
+        <packet-capture>single-packet</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-ddns">
+        <log-level>default</log-level>
+        <action>default</action>
+        <packet-capture>single-packet</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-malware">
+        <log-level>default</log-level>
+        <action>sinkhole</action>
+        <packet-capture>single-packet</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-recent">
+        <log-level>default</log-level>
+        <action>default</action>
+        <packet-capture>single-packet</packet-capture>
+      </entry>
+    </dns-security-categories>
     <sinkhole>
       <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
       <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
@@ -25,8 +46,8 @@
         <reset-both/>
       </action>
       <severity>
-        <member>high</member>
         <member>critical</member>
+        <member>high</member>
         <member>medium</member>
       </severity>
       <threat-name>any</threat-name>
@@ -50,19 +71,40 @@
 <entry name="Inbound-AS">
   <botnet-domains>
     <lists>
-      <entry name="default-paloalto-cloud">
-        <packet-capture>single-packet</packet-capture>
-        <action>
-          <sinkhole/>
-        </action>
-      </entry>
       <entry name="default-paloalto-dns">
-        <packet-capture>single-packet</packet-capture>
         <action>
           <sinkhole/>
         </action>
+        <packet-capture>single-packet</packet-capture>
       </entry>
     </lists>
+    <dns-security-categories>
+      <entry name="pan-dns-sec-benign">
+        <log-level>default</log-level>
+        <action>default</action>
+        <packet-capture>disable</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-cc">
+        <log-level>default</log-level>
+        <action>sinkhole</action>
+        <packet-capture>single-packet</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-ddns">
+        <log-level>default</log-level>
+        <action>default</action>
+        <packet-capture>single-packet</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-malware">
+        <log-level>default</log-level>
+        <action>sinkhole</action>
+        <packet-capture>single-packet</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-recent">
+        <log-level>default</log-level>
+        <action>default</action>
+        <packet-capture>single-packet</packet-capture>
+      </entry>
+    </dns-security-categories>
     <sinkhole>
       <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
       <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
@@ -74,8 +116,8 @@
         <reset-both/>
       </action>
       <severity>
-        <member>high</member>
         <member>critical</member>
+        <member>high</member>
         <member>medium</member>
       </severity>
       <threat-name>any</threat-name>
@@ -97,21 +139,42 @@
   </rules>
 </entry>
 <entry name="Internal-AS">
- <botnet-domains>
+  <botnet-domains>
     <lists>
-      <entry name="default-paloalto-cloud">
-        <packet-capture>single-packet</packet-capture>
-        <action>
-          <sinkhole/>
-        </action>
-      </entry>
       <entry name="default-paloalto-dns">
-        <packet-capture>single-packet</packet-capture>
         <action>
           <sinkhole/>
         </action>
+        <packet-capture>single-packet</packet-capture>
       </entry>
     </lists>
+    <dns-security-categories>
+      <entry name="pan-dns-sec-benign">
+        <log-level>default</log-level>
+        <action>default</action>
+        <packet-capture>disable</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-cc">
+        <log-level>default</log-level>
+        <action>sinkhole</action>
+        <packet-capture>single-packet</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-ddns">
+        <log-level>default</log-level>
+        <action>default</action>
+        <packet-capture>single-packet</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-malware">
+        <log-level>default</log-level>
+        <action>sinkhole</action>
+        <packet-capture>single-packet</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-recent">
+        <log-level>default</log-level>
+        <action>default</action>
+        <packet-capture>single-packet</packet-capture>
+      </entry>
+    </dns-security-categories>
     <sinkhole>
       <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
       <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
@@ -123,8 +186,8 @@
         <reset-both/>
       </action>
       <severity>
-        <member>high</member>
         <member>critical</member>
+        <member>high</member>
       </severity>
       <threat-name>any</threat-name>
       <category>any</category>
@@ -135,9 +198,9 @@
         <default/>
       </action>
       <severity>
+        <member>medium</member>
         <member>low</member>
         <member>informational</member>
-        <member>medium</member>
       </severity>
       <threat-name>any</threat-name>
       <category>any</category>
@@ -146,21 +209,42 @@
   </rules>
 </entry>
 <entry name="Alert-Only-AS">
- <botnet-domains>
+  <botnet-domains>
     <lists>
-      <entry name="default-paloalto-cloud">
-        <packet-capture>disable</packet-capture>
-        <action>
-          <alert/>
-        </action>
-      </entry>
       <entry name="default-paloalto-dns">
-        <packet-capture>disable</packet-capture>
         <action>
           <alert/>
         </action>
+        <packet-capture>single-packet</packet-capture>
       </entry>
     </lists>
+    <dns-security-categories>
+      <entry name="pan-dns-sec-benign">
+        <log-level>default</log-level>
+        <action>allow</action>
+        <packet-capture>disable</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-cc">
+        <log-level>default</log-level>
+        <action>allow</action>
+        <packet-capture>single-packet</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-ddns">
+        <log-level>default</log-level>
+        <action>allow</action>
+        <packet-capture>single-packet</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-malware">
+        <log-level>default</log-level>
+        <action>allow</action>
+        <packet-capture>single-packet</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-recent">
+        <log-level>default</log-level>
+        <action>allow</action>
+        <packet-capture>single-packet</packet-capture>
+      </entry>
+    </dns-security-categories>
     <sinkhole>
       <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
       <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
@@ -181,21 +265,43 @@
   </rules>
 </entry>
 <entry name="Exception-AS">
- <botnet-domains>
+  <description>Used for exception cases not part of the recommended practice</description>
+  <botnet-domains>
     <lists>
-      <entry name="default-paloalto-cloud">
-        <packet-capture>disable</packet-capture>
-        <action>
-          <sinkhole/>
-        </action>
-      </entry>
       <entry name="default-paloalto-dns">
-        <packet-capture>disable</packet-capture>
+        <packet-capture>single-packet</packet-capture>
         <action>
           <sinkhole/>
         </action>
       </entry>
     </lists>
+    <dns-security-categories>
+      <entry name="pan-dns-sec-benign">
+        <log-level>default</log-level>
+        <action>default</action>
+        <packet-capture>disable</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-cc">
+        <log-level>default</log-level>
+        <action>default</action>
+        <packet-capture>disable</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-ddns">
+        <log-level>default</log-level>
+        <action>default</action>
+        <packet-capture>disable</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-malware">
+        <log-level>default</log-level>
+        <action>default</action>
+        <packet-capture>disable</packet-capture>
+      </entry>
+      <entry name="pan-dns-sec-recent">
+        <log-level>default</log-level>
+        <action>default</action>
+        <packet-capture>disable</packet-capture>
+      </entry>
+    </dns-security-categories>
     <sinkhole>
       <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
       <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>

@@ -1,7 +1,4 @@
 <ctd>
-  <strip-x-fwd-for>yes</strip-x-fwd-for>
-  <x-forwarded-for>yes</x-forwarded-for>
-  <allow-http-range>no</allow-http-range>
   <tcp-bypass-exceed-queue>no</tcp-bypass-exceed-queue>
   <udp-bypass-exceed-queue>no</udp-bypass-exceed-queue>
 </ctd>
@@ -21,7 +18,7 @@
   <auto-acquire-commit-lock>yes</auto-acquire-commit-lock>
 </management>
 <wildfire>
-  <file-size-limit>
+   <file-size-limit>
     <entry name="pe">
       <size-limit>16</size-limit>
     </entry>
@@ -52,7 +49,7 @@
     <entry name="script">
       <size-limit>2000</size-limit>
     </entry>
-  </file-size-limit>
+   </file-size-limit>
   <report-benign-file>yes</report-benign-file>
   <report-grayware-file>yes</report-grayware-file>
 </wildfire>
