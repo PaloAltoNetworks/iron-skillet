@@ -2,7 +2,7 @@
   <mgt-config>
     <devices />
   <users> <entry name="admin">
-  <phash>$1$Kb.uRPvH$5cPwK/hx0g7RJsM56cS6D0</phash>
+  <phash>$1$KyzON0Bx$xCUihOYbICj7e1dg8M0uC/</phash>
   <permissions>
     <role-based>
       <superuser>yes</superuser>
@@ -513,7 +513,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     </devices>
   <mgt-config><users>
   <entry name="admin">
-    <phash>$1$VDmIYRhP$NerVF9uePCYUU4snlEaTx.</phash>
+    <phash>$1$rwfsLr71$AqTuGVmHlapcJaZImFhoY/</phash>
     <permissions>
       <role-based>
         <superuser>yes</superuser>
@@ -1244,7 +1244,7 @@ Log off immediately if you are not an authorized user.</login-banner>
         <action>
           <sinkhole />
         </action>
-        <packet-capture>disable</packet-capture>
+        <packet-capture>single-packet</packet-capture>
       </entry>
     </lists>
     <dns-security-categories>
@@ -1314,7 +1314,7 @@ Log off immediately if you are not an authorized user.</login-banner>
         <action>
           <sinkhole />
         </action>
-        <packet-capture>disable</packet-capture>
+        <packet-capture>single-packet</packet-capture>
       </entry>
     </lists>
     <dns-security-categories>
@@ -1384,7 +1384,7 @@ Log off immediately if you are not an authorized user.</login-banner>
         <action>
           <sinkhole />
         </action>
-        <packet-capture>disable</packet-capture>
+        <packet-capture>single-packet</packet-capture>
       </entry>
     </lists>
     <dns-security-categories>
@@ -1420,24 +1420,24 @@ Log off immediately if you are not an authorized user.</login-banner>
     </sinkhole>
   </botnet-domains>
   <rules>
-    <entry name="Block-Critical-High-Medium">
+    <entry name="Block-Critical-High">
       <action>
         <reset-both />
       </action>
       <severity>
         <member>critical</member>
         <member>high</member>
-        <member>medium</member>
       </severity>
       <threat-name>any</threat-name>
       <category>any</category>
       <packet-capture>single-packet</packet-capture>
     </entry>
-    <entry name="Default-Low-Info">
+    <entry name="Default-Medium-Low-Info">
       <action>
         <default />
       </action>
       <severity>
+        <member>medium</member>
         <member>low</member>
         <member>informational</member>
       </severity>
@@ -1454,7 +1454,7 @@ Log off immediately if you are not an authorized user.</login-banner>
         <action>
           <alert />
         </action>
-        <packet-capture>disable</packet-capture>
+        <packet-capture>single-packet</packet-capture>
       </entry>
     </lists>
     <dns-security-categories>

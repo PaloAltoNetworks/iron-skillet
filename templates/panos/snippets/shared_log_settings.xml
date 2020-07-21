@@ -58,6 +58,9 @@
 <globalprotect>
   <match-list>
     <entry name="GP_Log_Forwarding">
+      <send-syslog>
+        <member>Sample_Syslog_Profile</member>
+      </send-syslog>
       <filter>All Logs</filter>
       <send-to-panorama>no</send-to-panorama>
     </entry>

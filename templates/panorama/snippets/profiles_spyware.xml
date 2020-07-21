@@ -5,7 +5,7 @@
         <action>
           <sinkhole/>
         </action>
-        <packet-capture>disable</packet-capture>
+        <packet-capture>single-packet</packet-capture>
       </entry>
     </lists>
     <dns-security-categories>
@@ -75,7 +75,7 @@
         <action>
           <sinkhole/>
         </action>
-        <packet-capture>disable</packet-capture>
+        <packet-capture>single-packet</packet-capture>
       </entry>
     </lists>
     <dns-security-categories>
@@ -145,7 +145,7 @@
         <action>
           <sinkhole/>
         </action>
-        <packet-capture>disable</packet-capture>
+        <packet-capture>single-packet</packet-capture>
       </entry>
     </lists>
     <dns-security-categories>
@@ -181,24 +181,24 @@
     </sinkhole>
   </botnet-domains>
   <rules>
-    <entry name="Block-Critical-High-Medium">
+    <entry name="Block-Critical-High">
       <action>
         <reset-both/>
       </action>
       <severity>
         <member>critical</member>
         <member>high</member>
-        <member>medium</member>
       </severity>
       <threat-name>any</threat-name>
       <category>any</category>
       <packet-capture>single-packet</packet-capture>
     </entry>
-    <entry name="Default-Low-Info">
+    <entry name="Default-Medium-Low-Info">
       <action>
         <default/>
       </action>
       <severity>
+        <member>medium</member>
         <member>low</member>
         <member>informational</member>
       </severity>
@@ -215,7 +215,7 @@
         <action>
           <alert/>
         </action>
-        <packet-capture>disable</packet-capture>
+        <packet-capture>single-packet</packet-capture>
       </entry>
     </lists>
     <dns-security-categories>
