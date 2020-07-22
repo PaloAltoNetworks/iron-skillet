@@ -418,8 +418,8 @@ API Overview
 
 For extended reading about the API, you can access the documentation for 8.1 here:
 
-`PAN-OS API Reference
-<https://www.paloaltonetworks.com/documentation/81/pan-os/xml-api>`_
+`PAN-OS and Panorama API Reference
+<https://docs.paloaltonetworks.com/pan-os/10-0/pan-os-panorama-api.html>`_
 
 Additional information can be found as part of the pan-python documentation:
 

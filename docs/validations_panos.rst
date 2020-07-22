@@ -47,7 +47,7 @@ Upgrade to Newer Release Deltas [10.x]
 --------------------------------------
 
 `View validation test file:` |
-`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/validations/panos/IronSkillet_v90_update_panos/.meta-cnc.yaml>`_ |
+`10.0 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v10.0/validations/panos/IronSkillet_v10x_update_panos>`_ |
 
 Looks at a firewall xml configuration file to determine what elements recommended by IronSkillet are missing from a
 recently upgraded PAN-OS version to 10.x. Types of validation tests include the following based on IronSkillet recommendations:
