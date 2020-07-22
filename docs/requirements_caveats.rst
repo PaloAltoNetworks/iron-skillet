@@ -15,7 +15,7 @@ Using IronSkillet branch version panos_v10.0 requires the following to properly 
         + `Upgrade Panorama to 10.0`_
 
 
-.. _Upgrade the firewall to 10.0: https://docs.paloaltonetworks.com/pan-os/10-0/pan-os-new-features/upgrade-to-pan-os-90.html
+.. _Upgrade the firewall to 10.0: https://docs.paloaltonetworks.com/pan-os/10-0/pan-os-admin/software-and-content-updates/pan-os-software-updates.html
 .. _Upgrade Panorama to 10.0: https://docs.paloaltonetworks.com/panorama/10-0/panorama-admin/set-up-panorama/install-content-and-software-updates-for-panorama.html
 
 

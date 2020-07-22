@@ -15,7 +15,7 @@ Template content updates are high level. Details can be found in the template gu
 
 0.0.1
 ^^^^^
-Released July dd, 2020
+Released July 21, 2020
 
     + set Wildfire dynamic updates to realtime
     + Antivirus profile: reset-both for dynamic classification, all file types enabled
@@ -34,6 +34,9 @@ Released July dd, 2020
     + update validation skillets based on above modifications
     + update metadata file for XML snippet skillets w/ option to skip IP address/admin user/DNS configuration elements
     + add helper commands for scripting-mode on for CLI copy-paste model
+    + converted customer URL-filtering profile lingo from White-List/Black-List to Allow/Block
+    + fixed Panorama set commands: include type "URL-List"
+    + fix internal spyware XML snippets with medium severity as default
 
 
 9.1 Template Release History
@@ -230,10 +233,11 @@ Released: May 10, 2018
 Tools Release Updates
 ---------------------
 
-Jul dd, 2020
+Jul 21, 2020
 ^^^^^^^^^^^^
 
     + update set command and spreadsheet scripts to only use variables contained in config section
+    + modify set command expect test script to use start-stop row values
 
 Jan 22, 2020
 ^^^^^^^^^^^^
@@ -285,7 +289,7 @@ Documentation Revisions
 
 Documentation revisions outside of template-tooling updates. These are documented by date, not verison.
 
-Jul dd, 2020
+Jul 22, 2020
 ^^^^^^^^^^^^
 
     + update viz guide with 10.0 mods and UI
