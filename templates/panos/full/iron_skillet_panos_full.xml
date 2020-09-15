@@ -638,7 +638,6 @@ Log off immediately if you are not an authorized user.</login-banner>
 <hostname>{{ FW_NAME }}</hostname></system><setting><ctd>
   <strip-x-fwd-for>yes</strip-x-fwd-for>
   <x-forwarded-for>yes</x-forwarded-for>
-  <allow-http-range>no</allow-http-range>
   <tcp-bypass-exceed-queue>no</tcp-bypass-exceed-queue>
   <udp-bypass-exceed-queue>no</udp-bypass-exceed-queue>
 </ctd>
@@ -847,7 +846,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>any</member>
     </source-user>
     <profile>Recommended_Decryption_Profile</profile>
-    <action>no-decryptF</action>
+    <action>no-decrypt</action>
     <disabled>yes</disabled>
     <description>This rule does not do Decryption.  This rule is validating SSL Protocol Communications.</description>
   </entry>

@@ -1,6 +1,6 @@
 <config urldb="paloaltonetworks" version="9.1.0">
   <mgt-config><users><entry name="admin">
-  <phash>$1$Xo7i2QrU$Ypvp.fYCZLbju3s8l.vx1.</phash>
+  <phash>$1$1V4qQTUh$EgLsBt5xM/fGY98Meedw2.</phash>
   <permissions>
     <role-based>
       <superuser>yes</superuser>
@@ -623,7 +623,6 @@ Log off immediately if you are not an authorized user.</login-banner>
 <hostname>sample</hostname></system><setting><ctd>
   <strip-x-fwd-for>yes</strip-x-fwd-for>
   <x-forwarded-for>yes</x-forwarded-for>
-  <allow-http-range>no</allow-http-range>
   <tcp-bypass-exceed-queue>no</tcp-bypass-exceed-queue>
   <udp-bypass-exceed-queue>no</udp-bypass-exceed-queue>
 </ctd>
@@ -828,7 +827,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>any</member>
     </source-user>
     <profile>Recommended_Decryption_Profile</profile>
-    <action>no-decryptF</action>
+    <action>no-decrypt</action>
     <disabled>yes</disabled>
     <description>This rule does not do Decryption.  This rule is validating SSL Protocol Communications.</description>
   </entry>
