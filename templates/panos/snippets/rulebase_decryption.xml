@@ -28,7 +28,7 @@
       <member>any</member>
     </source-user>
     <profile>Recommended_Decryption_Profile</profile>
-    <action>no-decryptF</action>
+    <action>no-decrypt</action>
     <disabled>yes</disabled>
     <description>This rule does not do Decryption.  This rule is validating SSL Protocol Communications.</description>
   </entry>
