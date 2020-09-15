@@ -93,7 +93,7 @@
   <entry name="Sample_Email_Profile">
     <server>
       <entry name="Sample_Email_Profile">
-        <display-name>Panorama</display-name>
+        <display-name>Threat Alerts</display-name>
         <gateway>{{ EMAIL_PROFILE_GATEWAY }}</gateway>
         <from>{{ EMAIL_PROFILE_FROM }}</from>
         <to>{{ EMAIL_PROFILE_TO }}</to>
@@ -736,120 +736,88 @@ Log off immediately if you are not an authorized user.</login-banner>
     <log-end>yes</log-end>
     <log-setting>default</log-setting>
   </entry>
-</rules></default-security-rules><security><rules>
-    {%- if INCLUDE_PAN_EDL == 'yes' %}
-  <entry name="Outbound Block Rule">
-    <description>Block outbound sessions with destination address matching one of the Palo Alto Networks external dynamic lists for high risk and known malicious IP addresses.</description>
-    <to>
-      <member>any</member>
-    </to>
-    <from>
-      <member>any</member>
-    </from>
-    <source>
-      <member>any</member>
-    </source>
-    <destination>
-      <member>panw-highrisk-ip-list</member>
-      <member>panw-known-ip-list</member>
-      <member>panw-bulletproof-ip-list</member>
-    </destination>
-    <source-user>
-      <member>any</member>
-    </source-user>
-    <category>
-      <member>any</member>
-    </category>
-    <application>
-      <member>any</member>
-    </application>
-    <service>
-      <member>any</member>
-    </service>
-    <hip-profiles>
-      <member>any</member>
-    </hip-profiles>
-    <action>deny</action>
-    <log-setting>default</log-setting>
-    <tag>
-      <member>Outbound</member>
-    </tag>
-  </entry>
-  <entry name="Inbound Block Rule">
-    <description>Block inbound sessions with source address matching one of the Palo Alto Networks external dynamic lists for high risk and known malicious IP addresses.</description>
-    <to>
-      <member>any</member>
-    </to>
-    <from>
-      <member>any</member>
-    </from>
-    <source>
-      <member>panw-highrisk-ip-list</member>
-      <member>panw-known-ip-list</member>
-      <member>panw-bulletproof-ip-list</member>
-    </source>
-    <destination>
-      <member>any</member>
-    </destination>
-    <source-user>
-      <member>any</member>
-    </source-user>
-    <category>
-      <member>any</member>
-    </category>
-    <application>
-      <member>any</member>
-    </application>
-    <service>
-      <member>any</member>
-    </service>
-    <hip-profiles>
-      <member>any</member>
-    </hip-profiles>
-    <action>deny</action>
-    <log-setting>default</log-setting>
-    <tag>
-      <member>Inbound</member>
-    </tag>
-  </entry>
-    {% endif %}
-  <entry name="DNS Sinkhole Block">
-  <description>Block outbound sessions that match a malicious domain and have been redirected to a configured sinkhole IP address.</description>
-    <to>
-      <member>any</member>
-    </to>
-    <from>
-      <member>any</member>
-    </from>
-    <source>
-      <member>any</member>
-    </source>
-    <destination>
-      <member>Sinkhole-IPv4</member>
-      <member>Sinkhole-IPv6</member>
-    </destination>
-    <source-user>
-      <member>any</member>
-    </source-user>
-    <category>
-      <member>any</member>
-    </category>
-    <application>
-      <member>any</member>
-    </application>
-    <service>
-      <member>any</member>
-    </service>
-    <hip-profiles>
-      <member>any</member>
-    </hip-profiles>
-    <action>deny</action>
-    <log-setting>default</log-setting>
-    <tag>
-      <member>Outbound</member>
-    </tag>
-  </entry>
-</rules></security><decryption><rules>
+</rules></default-security-rules><security>
+  {%- if INCLUDE_PAN_EDL == 'no' %}
+  <rules />
+  {%- elif INCLUDE_PAN_EDL == 'yes' %}
+  <rules>
+    <entry name="Outbound Block Rule">
+      <description>Block outbound sessions with destination address matching one of the Palo Alto Networks external dynamic lists for high risk and known malicious IP addresses.</description>
+      <to>
+        <member>any</member>
+      </to>
+      <from>
+        <member>any</member>
+      </from>
+      <source>
+        <member>any</member>
+      </source>
+      <destination>
+        <member>panw-highrisk-ip-list</member>
+        <member>panw-known-ip-list</member>
+        <member>panw-bulletproof-ip-list</member>
+      </destination>
+      <source-user>
+        <member>any</member>
+      </source-user>
+      <category>
+        <member>any</member>
+      </category>
+      <application>
+        <member>any</member>
+      </application>
+      <service>
+        <member>any</member>
+      </service>
+      <hip-profiles>
+        <member>any</member>
+      </hip-profiles>
+      <action>deny</action>
+      <log-setting>default</log-setting>
+      <tag>
+        <member>Outbound</member>
+      </tag>
+    </entry>
+    <entry name="Inbound Block Rule">
+      <description>Block inbound sessions with source address matching one of the Palo Alto Networks external dynamic lists for high risk and known malicious IP addresses.</description>
+      <to>
+        <member>any</member>
+      </to>
+      <from>
+        <member>any</member>
+      </from>
+      <source>
+        <member>panw-highrisk-ip-list</member>
+        <member>panw-known-ip-list</member>
+        <member>panw-bulletproof-ip-list</member>
+      </source>
+      <destination>
+        <member>any</member>
+      </destination>
+      <source-user>
+        <member>any</member>
+      </source-user>
+      <category>
+        <member>any</member>
+      </category>
+      <application>
+        <member>any</member>
+      </application>
+      <service>
+        <member>any</member>
+      </service>
+      <hip-profiles>
+        <member>any</member>
+      </hip-profiles>
+      <action>deny</action>
+      <log-setting>default</log-setting>
+      <tag>
+        <member>Inbound</member>
+      </tag>
+    </entry>
+  </rules>
+  {%- endif %}
+</security><decryption><rules>
   <entry name="NO-Decrypt URL Categories">
     <category>
       <member>financial-services</member>
@@ -879,46 +847,12 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>any</member>
     </source-user>
     <profile>Recommended_Decryption_Profile</profile>
-    <action>no-decrypt</action>
+    <action>no-decryptF</action>
     <disabled>yes</disabled>
     <description>This rule does not do Decryption.  This rule is validating SSL Protocol Communications.</description>
   </entry>
-  <entry name="NO-Decrypt Rule">
-    <category>
-      <member>any</member>
-    </category>
-    <service>
-      <member>any</member>
-    </service>
-    <type>
-      <ssl-forward-proxy />
-    </type>
-    <from>
-      <member>any</member>
-    </from>
-    <to>
-      <member>any</member>
-    </to>
-    <source>
-      <member>any</member>
-    </source>
-    <destination>
-      <member>any</member>
-    </destination>
-    <source-user>
-      <member>any</member>
-    </source-user>
-    <profile>Recommended_Decryption_Profile</profile>
-    <action>no-decrypt</action>
-    <description>This rule does not do Decryption.  This rule is validating SSL Protocol Communications.</description>
-  </entry>
 </rules></decryption></rulebase>
-        <address><entry name="Sinkhole-IPv4">
-  <fqdn>{{ SINKHOLE_IPV4 }}</fqdn>
-</entry>
-<entry name="Sinkhole-IPv6">
-  <ip-netmask>{{ SINKHOLE_IPV6 }}</ip-netmask>
-</entry></address><tag><entry name="Outbound">
+        <tag><entry name="Outbound">
 	<comments>Outbound to the Internet</comments>
 </entry>
 <entry name="Inbound">
@@ -928,7 +862,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 	<comments>Internal to Internal</comments>
 </entry>
 <entry name="iron-skillet-version">
-	<comments>version 0.0.2 for 9.1: version of this IronSkillet template file</comments>
+	<comments>version 0.0.3 for 9.1: version of this IronSkillet template file</comments>
 </entry></tag><log-settings><profiles><entry name="default">
   <match-list>
     <entry name="Traffic_Log_Forwarding">
@@ -993,23 +927,14 @@ Log off immediately if you are not an authorized user.</login-banner>
   </send-email>
   <action-desc>Email Malicious Wildfire Verdicts</action-desc>
   <log-type>wildfire</log-type>
-  <filter>(verdict eq malicious)</filter>
-  <send-to-panorama>no</send-to-panorama>
-</entry>
-<entry name="Email_Phishing_Verdicts">
-  <send-email>
-    <member>Sample_Email_Profile</member>
-  </send-email>
-  <action-desc>Email Phishing Wildfire Verdicts</action-desc>
-  <log-type>wildfire</log-type>
-  <filter>(verdict eq phishing)</filter>
+  <filter>(verdict neq benign)</filter>
   <send-to-panorama>no</send-to-panorama>
 </entry>
 </match-list>
-</entry></profiles></log-settings><profiles><custom-url-category><entry name="Black-List">
+</entry></profiles></log-settings><profiles><custom-url-category><entry name="Block">
   <type>URL List</type>
 </entry>
-<entry name="White-List">
+<entry name="Allow">
   <type>URL List</type>
 </entry>
 <entry name="Custom-No-Decrypt">
@@ -1690,8 +1615,8 @@ Log off immediately if you are not an authorized user.</login-banner>
     </mode>
     <log-severity>high</log-severity>
     <block>
-      <member>Black-List</member>
-      <member>White-List</member>
+      <member>Block</member>
+      <member>Allow</member>
       <member>abortion</member>
       <member>abused-drugs</member>
       <member>adult</member>
@@ -1770,7 +1695,7 @@ Log off immediately if you are not an authorized user.</login-banner>
   <log-http-hdr-referer>yes</log-http-hdr-referer>
   <log-http-hdr-xff>yes</log-http-hdr-xff>
   <alert>
-    <member>White-List</member>
+    <member>Allow</member>
     <member>abortion</member>
     <member>abused-drugs</member>
     <member>adult</member>
@@ -1790,6 +1715,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>gambling</member>
     <member>games</member>
     <member>government</member>
+    <member>hacking</member>
     <member>health-and-medicine</member>
     <member>high-risk</member>
     <member>home-and-garden</member>
@@ -1840,10 +1766,9 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>web-hosting</member>
   </alert>
   <block>
-    <member>Black-List</member>
+    <member>Block</member>
     <member>command-and-control</member>
     <member>grayware</member>
-    <member>hacking</member>
     <member>malware</member>
     <member>phishing</member>
   </block>
@@ -1855,8 +1780,8 @@ Log off immediately if you are not an authorized user.</login-banner>
     </mode>
     <log-severity>medium</log-severity>
     <alert>
-      <member>Black-List</member>
-      <member>White-List</member>
+      <member>Block</member>
+      <member>Allow</member>
       <member>abortion</member>
       <member>abused-drugs</member>
       <member>adult</member>
@@ -1932,8 +1857,8 @@ Log off immediately if you are not an authorized user.</login-banner>
     </alert>
   </credential-enforcement>
   <alert>
-    <member>Black-List</member>
-    <member>White-List</member>
+    <member>Block</member>
+    <member>Allow</member>
     <member>abortion</member>
     <member>abused-drugs</member>
     <member>adult</member>
@@ -2015,8 +1940,8 @@ Log off immediately if you are not an authorized user.</login-banner>
     </mode>
     <log-severity>high</log-severity>
     <block>
-      <member>Black-List</member>
-      <member>White-List</member>
+      <member>Block</member>
+      <member>Allow</member>
       <member>abortion</member>
       <member>abused-drugs</member>
       <member>adult</member>
@@ -2095,7 +2020,7 @@ Log off immediately if you are not an authorized user.</login-banner>
   <log-http-hdr-referer>yes</log-http-hdr-referer>
   <log-http-hdr-xff>yes</log-http-hdr-xff>
   <alert>
-    <member>White-List</member>
+    <member>Allow</member>
     <member>abortion</member>
     <member>abused-drugs</member>
     <member>adult</member>
@@ -2115,6 +2040,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>gambling</member>
     <member>games</member>
     <member>government</member>
+    <member>hacking</member>
     <member>health-and-medicine</member>
     <member>high-risk</member>
     <member>home-and-garden</member>
@@ -2165,10 +2091,9 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>web-hosting</member>
   </alert>
   <block>
-    <member>Black-List</member>
+    <member>Block</member>
     <member>command-and-control</member>
     <member>grayware</member>
-    <member>hacking</member>
     <member>malware</member>
     <member>phishing</member>
   </block>

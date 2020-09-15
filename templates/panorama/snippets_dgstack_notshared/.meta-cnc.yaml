@@ -215,9 +215,6 @@ snippets:
   - name: pre_rulebase_security
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/pre-rulebase/security
     file: ../snippets/pre_rulebase_security.xml
-  - name: post_rulebase_decryption
-    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/post-rulebase/decryption
-    file: ../snippets/post_rulebase_decryption.xml
   - name: pre_rulebase_decryption
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/pre-rulebase/decryption
     file: ../snippets/pre_rulebase_decryption.xml
