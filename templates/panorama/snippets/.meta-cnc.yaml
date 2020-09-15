@@ -42,11 +42,17 @@ variables:
     default: adminuser
     type_hint: text
     help_text: if the user opts out of the Panorama admin config, this user will still be applied as a firewall adminstrator
+    toggle_hint:
+      source: config_admin_panorama
+      value: 'yes'
   - name: ADMINISTRATOR_PASSWORD
     description: admin password
     default: adminuser
     type_hint: password
     help_text: if the user opts out of the Panorama admin config, this password will still be applied to the firewall administrator
+    toggle_hint:
+      source: config_admin_panorama
+      value: 'yes'
   - name: config_mgmt_intf_panorama
     description: Configure the Panorama management interface IP settings
     default: 'no'
