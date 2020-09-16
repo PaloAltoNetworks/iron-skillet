@@ -1,18 +1,4 @@
 <hostname>{{ PANORAMA_NAME }}</hostname>
-{%- if PANORAMA_TYPE == "static" %}
-<ip-address>{{ PANORAMA_IP }}</ip-address>
-<netmask>{{ PANORAMA_MASK }}</netmask>
-<default-gateway>{{ PANORAMA_DG }}</default-gateway>
-{%- elif PANORAMA_TYPE == "cloud" %}
-<type>
-   <dhcp-client>
-     <send-hostname>yes</send-hostname>
-     <send-client-id>no</send-client-id>
-     <accept-dhcp-hostname>no</accept-dhcp-hostname>
-     <accept-dhcp-domain>no</accept-dhcp-domain>
-   </dhcp-client>
-</type>
-{% endif %}
 <update-server>updates.paloaltonetworks.com</update-server>
 <update-schedule>
 <threats>

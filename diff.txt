@@ -1,0 +1,135 @@
+diff --git a/tools/README.md b/tools/README.md
+index 643fe64..a29fa6f 100644
+--- a/tools/README.md
++++ b/tools/README.md
+@@ -5,11 +5,6 @@ The python tools can be broken into two categories:
+ * end user tools
+     + create_loadable_configs.py: variable substitutions for xml/set to create
+     loadable output files archied in `loadable_configs`
+-    
+-Instead of running the tools script to render or load IronSkillet configurations,
+-panHandler is recommended as a skillet player. 
+-See the [quick start guide for Panorama](https://live.paloaltonetworks.com/t5/Skillet-Tools/Install-and-Get-Started-With-Panhandler/ta-p/307916)
+-in Live.
+ 
+ * template administrator tools
+     + build_full_templates.py: merge xml snippets into a full template file
+diff --git a/tools/create_set_spreadsheet.py b/tools/create_set_spreadsheet.py
+index 50d4a8f..9305e2f 100644
+--- a/tools/create_set_spreadsheet.py
++++ b/tools/create_set_spreadsheet.py
+@@ -50,7 +50,7 @@ def create_spreadsheet(config_type):
+     sys.path.append(set_path)
+ 
+     set_file = '{0}/iron_skillet_{1}_full.conf'.format(set_path, config_type)
+-    config_variables = '{0}/.meta-cnc.yaml'.format(set_path)
++    config_variables = 'config_variables.yaml'.format(set_path)
+ 
+     print('creating workbook based on {0}'.format(set_file))
+     # Create a workbook and add worksheets.
+@@ -90,7 +90,7 @@ def create_spreadsheet(config_type):
+     for variable in set_variables['variables']:
+         print('working with variable: {0}'.format(variable))
+         worksheet_values.write(row, 0, variable['name'])
+-        worksheet_values.write(row, 1, variable['default'])
++        worksheet_values.write(row, 1, variable['value'])
+         worksheet_values.write(row, 2, variable['description'])
+         variable_list.append(variable['name'])
+ 
+@@ -162,4 +162,4 @@ if __name__ == '__main__':
+     print('=' * 80)
+ 
+     for config_type in ['panos', 'panorama']:
+-        create_spreadsheet(config_type)
+\ No newline at end of file
++        create_spreadsheet(config_type)
+diff --git a/tools/test_set_commands.py b/tools/test_set_commands.py
+index d7aad34..dd043be 100644
+--- a/tools/test_set_commands.py
++++ b/tools/test_set_commands.py
+@@ -102,7 +102,7 @@ def commit(device):
+     if '<job>' in results:
+         check_job_status(device, results)
+ 
+-def test_set(ip_addr, user, mypassword, dev_type, start_row, stop_row):
++def test_set(ip_addr, user, mypassword, dev_type):
+     '''
+     expect style scripts to login and send set commands
+     :param ip_addr: device ip address
+@@ -129,23 +129,19 @@ def test_set(ip_addr, user, mypassword, dev_type, start_row, stop_row):
+     # read in conf file and do line by line configuration looking for errors
+     # start_row bypasses interface and admin configuration items to avoid errors
+     read_file = '../loadable_configs/sample-mgmt-dhcp/{0}/iron_skillet_{0}_full.conf'.format(dev_type)
+-    #start_row = 'set mgt-config password-complexity enabled yes\n'
++    start_row = 'set mgt-config password-complexity enabled yes\n'
+ 
+     start = False
+ 
+-
+-    with open(read_file) as config_file:
+-
+-        for counter, line in enumerate(config_file, start=1):
++    with open(read_file) as fin:
++        for line in fin:
+             # use of start_row to start with a conf file line and skip others
+-            # until end of file or last line encountered
+-            if counter  == start_row:
++            if line == start_row:
+                 start = True
+                 print('start set command sequence')
+ 
+             # ignore conf file comments and start config at start_row line
+             if not line.startswith('#') and start is True:
+-                #print(counter, line)
+                 fw.sendline(line)
+                 # not sure why pexpect needs this combo but works to get response
+                 fw.expect('#')
+@@ -162,10 +158,6 @@ def test_set(ip_addr, user, mypassword, dev_type, start_row, stop_row):
+                     print(fw_response)
+                     break
+ 
+-            if counter  == stop_row:
+-                print('end set command sequence')
+-                exit()
+-
+ if __name__ == '__main__':
+ 
+     print('=' * 80)
+@@ -176,11 +168,9 @@ if __name__ == '__main__':
+ 
+     parser = argparse.ArgumentParser()
+     parser.add_argument("-ip", "--ip_address", help="IP address of the device", type=str)
+-    parser.add_argument("-u", "--username", help="Firewall Username", type=str, default='admin')
+-    parser.add_argument("-p", "--password", help="Firewall Password", type=str, default='Paloalto1')
+-    parser.add_argument("-t", "--type", help="panorama or panos", type=str, default='panos')
+-    parser.add_argument("-start", "--start_row", help='start row number from input file', type=int, default=1)
+-    parser.add_argument("-stop", "--stop_row", help='stop row number from input file', type=int, default=10000)
++    parser.add_argument("-u", "--username", help="Firewall Username", type=str)
++    parser.add_argument("-p", "--password", help="Firewall Password", type=str)
++    parser.add_argument("-t", "--type", help="panorama or panos", type=str)
+     args = parser.parse_args()
+ 
+     if len(sys.argv) < 2:
+@@ -192,18 +182,16 @@ if __name__ == '__main__':
+     username = args.username
+     password = args.password
+     dev_type = args.type
+-    start_row = args.start_row
+-    stop_row = args.stop_row
+ 
+     # this is the real work with device login and configuration
+-    test_set(ip_addr, username, password, dev_type, start_row, stop_row)
++    test_set(ip_addr, username, password, dev_type)
+ 
+     print('\n')
+     print('=' * 80)
+     print('set commands loaded')
+ 
+     # create panorama object using pan-python class
+-    #device = pan.xapi.PanXapi(api_username=username, api_password=password, hostname=ip_addr)
++    device = pan.xapi.PanXapi(api_username=username, api_password=password, hostname=ip_addr)
+     # get panorama api key and commit
+-    #api_key = device.keygen()
++    api_key = device.keygen()
+     #commit(device)
+\ No newline at end of file

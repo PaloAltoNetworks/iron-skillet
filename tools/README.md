@@ -5,6 +5,11 @@ The python tools can be broken into two categories:
 * end user tools
     + create_loadable_configs.py: variable substitutions for xml/set to create
     loadable output files archied in `loadable_configs`
+    
+Instead of running the tools script to render or load IronSkillet configurations,
+panHandler is recommended as a skillet player. 
+See the [quick start guide for Panorama](https://live.paloaltonetworks.com/t5/Skillet-Tools/Install-and-Get-Started-With-Panhandler/ta-p/307916)
+in Live.
 
 * template administrator tools
     + build_full_templates.py: merge xml snippets into a full template file

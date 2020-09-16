@@ -1,7 +1,7 @@
-<entry name="Black-List">
+<entry name="Block">
   <type>URL List</type>
 </entry>
-<entry name="White-List">
+<entry name="Allow">
   <type>URL List</type>
 </entry>
 <entry name="Custom-No-Decrypt">
