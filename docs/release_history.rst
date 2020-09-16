@@ -44,6 +44,19 @@ Released July 21, 2020
 
 Template content updates are high level. Details can be found in the template guides.
 
+0.0.3
+^^^^^
+Released September 16, 2020
+
+    + URL filtering profile: move 'hacking' category to alert since not malicious
+    + remove sinkhole address block policy and associated address object
+    + remove http partial response so now allowed
+    + remove 'no decrypt' decryption policy that checks for expired/invalid certs; too strict
+    + update WF malicious reports using 'neq benign' instead of equal to malicious categories
+    + update validation skillets based on above modifications
+    + update metadata file for XML snippet skillets w/ option to skip IP address/admin user/DNS configuration elements
+    + converted customer URL-filtering profile lingo from White-List/Black-List to Allow/Block
+
 0.0.2
 ^^^^^
 Released April 28, 2020
@@ -65,6 +78,19 @@ Released January 22, 2020
 ----------------------------
 
 Template content updates are high level. Details can be found in the template guides.
+
+0.0.6
+^^^^^
+Released September 16, 2020
+
+    + URL filtering profile: move 'hacking' category to alert since not malicious
+    + remove sinkhole address block policy and associated address object
+    + remove http partial response so now allowed
+    + remove 'no decrypt' decryption policy that checks for expired/invalid certs; too strict
+    + update WF malicious reports using 'neq benign' instead of equal to malicious categories
+    + update validation skillets based on above modifications
+    + update metadata file for XML snippet skillets w/ option to skip IP address/admin user/DNS configuration elements
+    + converted customer URL-filtering profile lingo from White-List/Black-List to Allow/Block
 
 0.0.5
 ^^^^^
