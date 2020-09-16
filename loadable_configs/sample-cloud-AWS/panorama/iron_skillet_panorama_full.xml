@@ -2,7 +2,7 @@
   <mgt-config>
     <devices />
   <users> <entry name="admin">
-  <phash>$1$OWMhGFV5$UAv2RIK.YjfB49fLVk8YE1</phash>
+  <phash>$1$rYpLLSST$HQRff7XOIzrFsPxEyEZ/W/</phash>
   <permissions>
     <role-based>
       <superuser>yes</superuser>
@@ -534,7 +534,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     </devices>
   <mgt-config><users>
   <entry name="admin">
-    <phash>$1$0RfoykPp$dvp4uqz41wGv04U6dMmpR/</phash>
+    <phash>$1$XJCtpREd$DPZYNE4MmptAvOWxzlnuu.</phash>
     <permissions>
       <role-based>
         <superuser>yes</superuser>
@@ -1016,7 +1016,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 	<comments>Internal to Internal</comments>
 </entry>
 <entry name="iron-skillet-version">
-	<comments>version 0.0.3 for 9.1: version of this IronSkillet template file</comments>
+	<comments>version 0.0.6 for 9.0: version of this IronSkillet template file</comments>
 </entry></tag><log-settings><profiles><entry name="default">
   <match-list>
     <entry name="Traffic_Log_Forwarding">
