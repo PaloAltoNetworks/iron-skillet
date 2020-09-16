@@ -5,8 +5,8 @@
     </mode>
     <log-severity>high</log-severity>
     <block>
-      <member>Black-List</member>
-      <member>White-List</member>
+      <member>Block</member>
+      <member>Allow</member>
       <member>abortion</member>
       <member>abused-drugs</member>
       <member>adult</member>
@@ -85,7 +85,7 @@
   <log-http-hdr-referer>yes</log-http-hdr-referer>
   <log-http-hdr-xff>yes</log-http-hdr-xff>
   <alert>
-    <member>White-List</member>
+    <member>Allow</member>
     <member>abortion</member>
     <member>abused-drugs</member>
     <member>adult</member>
@@ -105,6 +105,7 @@
     <member>gambling</member>
     <member>games</member>
     <member>government</member>
+    <member>hacking</member>
     <member>health-and-medicine</member>
     <member>high-risk</member>
     <member>home-and-garden</member>
@@ -155,10 +156,9 @@
     <member>web-hosting</member>
   </alert>
   <block>
-    <member>Black-List</member>
+    <member>Block</member>
     <member>command-and-control</member>
     <member>grayware</member>
-    <member>hacking</member>
     <member>malware</member>
     <member>phishing</member>
   </block>
@@ -170,8 +170,8 @@
     </mode>
     <log-severity>medium</log-severity>
     <alert>
-      <member>Black-List</member>
-      <member>White-List</member>
+      <member>Block</member>
+      <member>Allow</member>
       <member>abortion</member>
       <member>abused-drugs</member>
       <member>adult</member>
@@ -247,8 +247,8 @@
     </alert>
   </credential-enforcement>
   <alert>
-    <member>Black-List</member>
-    <member>White-List</member>
+    <member>Block</member>
+    <member>Allow</member>
     <member>abortion</member>
     <member>abused-drugs</member>
     <member>adult</member>
@@ -330,8 +330,8 @@
     </mode>
     <log-severity>high</log-severity>
     <block>
-      <member>Black-List</member>
-      <member>White-List</member>
+      <member>Block</member>
+      <member>Allow</member>
       <member>abortion</member>
       <member>abused-drugs</member>
       <member>adult</member>
@@ -410,7 +410,7 @@
   <log-http-hdr-referer>yes</log-http-hdr-referer>
   <log-http-hdr-xff>yes</log-http-hdr-xff>
   <alert>
-    <member>White-List</member>
+    <member>Allow</member>
     <member>abortion</member>
     <member>abused-drugs</member>
     <member>adult</member>
@@ -430,6 +430,7 @@
     <member>gambling</member>
     <member>games</member>
     <member>government</member>
+    <member>hacking</member>
     <member>health-and-medicine</member>
     <member>high-risk</member>
     <member>home-and-garden</member>
@@ -480,10 +481,9 @@
     <member>web-hosting</member>
   </alert>
   <block>
-    <member>Black-List</member>
+    <member>Block</member>
     <member>command-and-control</member>
     <member>grayware</member>
-    <member>hacking</member>
     <member>malware</member>
     <member>phishing</member>
   </block>

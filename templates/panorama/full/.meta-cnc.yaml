@@ -6,8 +6,8 @@
 # snippet folder name
 name: skillet_full_panorama_v90
 # label used for menu selection
-label: v9.0 Iron-Skillet full XML configuration for Panorama (Shared Values)
-description: Iron-Skillet full XML baseline configuration for Panorama with device-group and stack specific values
+label: v9.0 Iron-Skillet for Panorama (Shared Values)
+description: Iron-Skillet baseline configuration for Panorama with device-group and stack specific values
 # type of device configuration
 type: template
 extends:

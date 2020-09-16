@@ -98,15 +98,8 @@
           <send-email>
             <member>Sample_Email_Profile</member>
           </send-email>
-          <filter>(verdict eq malicious)</filter>
+          <filter>(verdict neq benign)</filter>
           <description>Email Malicious WildFire Verdicts</description>
-        </entry>
-        <entry name="Email_Phishing_Verdicts">
-          <send-email>
-            <member>Sample_Email_Profile</member>
-          </send-email>
-          <filter>(verdict eq phishing)</filter>
-          <description>Email All Phishing Verdicts</description>
         </entry>
         <entry name="Syslog_WildFire_Logs">
           <send-syslog>
