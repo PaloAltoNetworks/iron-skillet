@@ -58,7 +58,7 @@ snippets:
       and telemetry | element_value('file-identification-reports') == 'yes'
       )
     fail_message: telemetry should be enabled for all attributes
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-telemetry-telemetry
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-telemetry-telemetry
 
   - name: ensure_threats_check_30_min
     label: threat content updates recurring every 30 minutes
@@ -66,7 +66,7 @@ snippets:
     fail_message: |
       recommended settings are to check for content updates as often as possible to ensure the firewall has the
       lastest content updates. Content is only downloaded and installed when new versions are available.
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#ironskillet-dynamic-updates
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#ironskillet-dynamic-updates
 
   - name: ensure_av_check_hourly
     label: AV content updates recurring every hour
@@ -74,7 +74,7 @@ snippets:
     fail_message: |
       recommended settings are to check for content updates as often as possible to ensure the firewall has the
       lastest content updates. Content is only downloaded and installed when new versions are available.
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#ironskillet-dynamic-updates
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#ironskillet-dynamic-updates
 
   - name: ensure_wildfire_check_1_min
     label: WF content updates recurring every 1 minute
@@ -82,14 +82,14 @@ snippets:
     fail_message: |
       recommended settings are to check for content updates as often as possible to ensure the firewall has the
       lastest content updates. Content is only downloaded and installed when new versions are available.
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#ironskillet-dynamic-updates
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#ironskillet-dynamic-updates
 
   - name: snmp_v3
     label: SNMPv3 instead of older versions
     test: snmp_version | tag_present('v3')
     fail_message: |
       when using SNMP for polling and alerts use the latest v3 version in tandem with secure access credentials.
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-operations-snmp-setup
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-operations-snmp-setup
 
   - name: dns_servers
     label: DNS primary and secondary servers configured
@@ -101,7 +101,7 @@ snippets:
     fail_message: |
       dns server configured is required for management/firewall access to external systems for content updates
       and access to cloud services using fqdn configuration.
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-services-services
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-services-services
 
   - name: ntp_servers
     label: NTP primary and secondary servers configured
@@ -113,18 +113,18 @@ snippets:
     fail_message: |
       time server configuration is reccommended to ensure the firewall clock is in sync with external service and logging
       platforms.
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-services-services
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-services-services
 
   - name: login_banner
     label: login banner configured
     test: login_banner | tag_present('login-banner')
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-management-general-settings
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-management-general-settings
 
   - name: timezone
     label: timezone set to UTC
     test: timezone | element_value('timezone') == 'UTC'
     fail_message: set to UTC so all devices map to a common universal timezone
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-management-general-settings
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-management-general-settings
 
   # this is a section of parse using a higher level object reference instead of multiple, granular objects
   # the test checks use the dot notation to walk down the object tree to find children and values
@@ -139,7 +139,7 @@ snippets:
     label: auto acquire commit lock is enabled
     test: device_setting | element_value('management.auto-acquire-commit-lock') == 'yes'
     fail_message: block a commit across multiple web sessions and avoid potential configuration conflicts
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-management-general-settings
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-management-general-settings
 
   - name: strip_xff
     label: strip x-forward-for is enabled
@@ -147,7 +147,7 @@ snippets:
     fail_message: |
       remove the X-Forwarded-For (XFF) header, which contains the IP address of a client requesting a web service
       when the firewall is deployed between the Internet and a proxy server.
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-content-id-x-forwarded-for-headers
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-content-id-x-forwarded-for-headers
 
   - name: xff_userid
     label: use xff in userid is enabled
@@ -155,29 +155,21 @@ snippets:
     fail_message: |
       specify that User-ID reads IP addresses from the X-Forwarded-For (XFF) header in client requests for web services
       when the firewall is deployed between the Internet and a proxy server that would otherwise hide client IP addresses.
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-content-id-x-forwarded-for-headers
-
-  - name: http_range
-    label: http partial response is disabled
-    test: device_setting | element_value('ctd.allow-http-range') == 'no'
-    fail_message: |
-      prevent the firewall from establishing a new session to download the remainder of a malicious file fragment
-      blocked during a previous web session.
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-content-id-content-id-settings
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-content-id-x-forwarded-for-headers
 
   - name: tcp_bypass_exceed_queue
     label: Forward segments exceeding TCP content inspection queue is disabled
     test: device_setting | element_value('ctd.tcp-bypass-exceed-queue') == 'no'
     fail_message: |
       prevent the firewall from forwarding TCP segments and skipping content inspection when the content inspection queue is full
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-content-id-content-id-settings
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-content-id-content-id-settings
 
   - name: udp_bypass_exceed_queue
     label: Forward segments exceeding UDP content inspection queue is disabled
     test: device_setting | element_value('ctd.udp-bypass-exceed-queue') == 'no'
     fail_message: |
       prevent the firewall from forwarding UDP segments and skipping content inspection when the content inspection queue is full.
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-content-id-content-id-settings
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-content-id-content-id-settings
 
   - name: app_bypass_exceed_queue
     label: Forward segments exceeding TCP App-ID inspection queue is disabled
@@ -185,28 +177,28 @@ snippets:
     fail_message: |
       Disable this option to prevent the firewall from forwarding TCP segments and skipping App-ID inspection when
        the App-ID inspection queue is full. This is disabled by default.
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-content-id-content-id-settings
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-content-id-content-id-settings
 
   - name: log_high_dp_load
     label: Enable Log on High DP Load is enabled
     test: device_setting | element_value('management.enable-log-high-dp-load') == 'yes'
     fail_message: |
       allows a system log entry to be generated when the packet processing load on the firewall is at 100% CPU utilization
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-management-logging-and-reporting-settings
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-management-logging-and-reporting-settings
 
   - name: max_rows_csv_export
     label: max rows in log csv export set to max
     test: device_setting | element_value('management.max-rows-in-csv-export') == '1048576'
     fail_messasge: |
       set this value to allow for larger log exports using csv. recommended to increase row count to 1,048,576
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-management-logging-and-reporting-settings
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-management-logging-and-reporting-settings
 
   - name: api_key_lifetime
     label: api key lifetime is configured
     test: device_setting | tag_present('management.api.key.lifetime')
     fail_messasge: |
       set to a non-zero value to periodically force a key value update
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-management-authentication-settings
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-management-authentication-settings
 
   - name: admin_lockout_strict
     label: admin lockout-time and failed-attempts set to IronSkillet recommended or better values
@@ -217,20 +209,20 @@ snippets:
       )
     fail_message: |
       recommended to set minimum values for maximum number of failed loging attempts and associated lockout timer
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-management-authentication-settings
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-management-authentication-settings
 
   - name: idle_timeout
     label: idle timeout is configured
     test: device_setting | tag_present('management.idle-timeout')
     fail_message: recommended to close the session after 10 minutes of idle timeout to prevent unauthorized access.
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-management-authentication-settings
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-management-authentication-settings
 
   - name: wf_filesize_limits
     label: Wildfire file size limits configured
     test: device_setting | tag_present('wildfire.file-size-limit')
     fail_message: |
       Wildfire file size limits should be configured to recommended values
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-wildfire-general-settings
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-wildfire-general-settings
 
   # local granular parse to look at specific attributes in the tree - file type
   - name: wf_granular_parse
@@ -284,61 +276,61 @@ snippets:
     test: wf_limit_pe == '16'
     fail_message: |
       PE file size limit recommended as 16 and configured as {{ wf_limit_pe }}
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-wildfire-general-settings
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-wildfire-general-settings
 
   - name:  wf_limit_apk_test
     label: Wildfire apk file size limit set to 30
     test: wf_limit_apk == '30'
     fail_message: APK file size limit recommended as 30 and configured as {{ wf_limit_apk }}
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-wildfire-general-settings
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-wildfire-general-settings
 
   - name:  wf_limit_pdf_test
     label: Wildfire pdf file size limit set to 3072
     test: wf_limit_pdf == '3072'
     fail_message: PDF file size limit recommended as 3072 and configured as {{ wf_limit_pdf }}
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-wildfire-general-settings
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-wildfire-general-settings
 
   - name:  wf_limit_msoffice_test
     label: Wildfire ms-office file size limit set to 16384
     test: wf_limit_msoffice == '16384'
     fail_message: PE file size limit recommended as 16384 and configured as {{ wf_limit_msoffice }}
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-wildfire-general-settings
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-wildfire-general-settings
 
   - name:  wf_limit_jar_test
     label: Wildfire jar file size limit set to 5
     test: wf_limit_jar == '5'
     fail_message: jar file size limit recommended as 5 and configured as {{ wf_limit_jar }}
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-wildfire-general-settings
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-wildfire-general-settings
 
   - name:  wf_limit_flash_test
     label: Wildfire flash file size limit set to 5
     test: wf_limit_flash == '5'
     fail_message: flash file size limit recommended as 5 and configured as {{ wf_limit_flash }}
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-wildfire-general-settings
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-wildfire-general-settings
 
   - name:  wf_limit_MacOSX_test
     label: Wildfire MacOSX file size limit set to 10
     test: wf_limit_MacOSX == '10'
     fail_message: MacOSX file size limit recommended as 10 and configured as {{ wf_limit_MacOSX }}
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-wildfire-general-settings
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-wildfire-general-settings
 
   - name:  wf_limit_archive_test
     label: Wildfire archive file size limit set to 50
     test: wf_limit_archive == '50'
     fail_message: archive file size limit recommended as 50 and configured as {{ wf_limit_archive }}
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-wildfire-general-settings
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-wildfire-general-settings
 
   - name:  wf_limit_linux_test
     label: Wildfire linux file size limit set to 50
     test: wf_limit_linux == '50'
     fail_message: linux file size limit recommended as 50 and configured as {{ wf_limit_linux }}
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-wildfire-general-settings
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-wildfire-general-settings
 
   - name:  wf_limit_script_test
     label: Wildfire script file size limit set to 2000
     test: wf_limit_script == '2000'
     fail_message: script file size limit recommended as 2000 and configured as {{ wf_limit_script }}
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-wildfire-general-settings
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-wildfire-general-settings
 
   - name: wf_report_benign_grayware
     label: reports for benign and grayware WF verdicts are enabled
@@ -348,13 +340,13 @@ snippets:
       and wf_report | element_value('report-grayware-file') == 'yes'
       )
     fail_message: recommended to include all wildfire verdicts in the wildfire submission logs
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-wildfire-general-settings
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-wildfire-general-settings
 
   - name: config_rematch
     label: session rematch for new security policies is enabled
     test: device_setting | element_value('config.rematch') == 'yes'
     fail_message: cause the firewall to apply newly configured security policies to sessions that are already in progress
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-session-session-settings
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-session-session-settings
 
   - name: enable_app_block_page
     label: application block page is enabled
@@ -362,14 +354,14 @@ snippets:
     fail_message: |
       It is recommended to enable the Application Block Page setting to notify users than application is blocked and
       an indicator as to why the application is not working.
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-response-pages-application-block-page
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-response-pages-application-block-page
 
   - name: disable_log_suppression
     label: log suppression is disabled
     test: device_setting | element_value('logging.log-suppression') == 'no'
     fail_message: |
       Disabled to ensure unique log entries for each session even if similar session types
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#log-suppression-cli-only
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#log-suppression-cli-only
 
   - name: prevent_tcp_evasions
     label: TCP settings to prevent malware evasions are configured
@@ -382,7 +374,7 @@ snippets:
       and device_setting | element_value('tcp.strip-mptcp-option') == 'yes'
       )
     fail_message: use to prevent TCP and MPTCP malware evasions
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-session-tcp-settings
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-session-tcp-settings
 
   - name: password_complexity
     label: strong password complexity is configured
@@ -401,7 +393,7 @@ snippets:
     fail_message: |
       enable password complexity settings to ensure that local administrator accounts on the firewall
       will adhere to a defined set of password requirements.
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-management-minimum-password-complexity
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-management-minimum-password-complexity
 
   - name: zone_protect_profile
     label: recommended zone protection is configured
@@ -409,7 +401,7 @@ snippets:
     fail_mesage: |
       A Zone Protection profile applied to a zone offers protection against most common floods, reconnaissance attacks,
       other packet-based attacks, and the use of non-IP protocols.
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#zone-protection
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#zone-protection
 
   # sectional grouping of all the profile checks: security, decrypt, logging
   - name: profile_objects
@@ -444,7 +436,7 @@ snippets:
       and av_profiles | attribute_present('entry', 'name', 'Inbound-AV')
       )
     fail_message: unable to find matching named IronSkillet profiles that may be used by other skillets relying on IronSkillet
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#object-security-profiles-antivirus-blocking
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#object-security-profiles-antivirus-blocking
 
   - name: vp_profile_check
     label: IronSkillet named Vulnerability profiles configured
@@ -454,7 +446,7 @@ snippets:
       and vp_profiles | attribute_present('entry', 'name', 'Inbound-VP')
       )
     fail_message: unable to find matching named IronSkillet profiles that may be used by other skillets relying on IronSkillet
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#vulnerability
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#vulnerability
 
   - name: as_profile_check
     label: IronSkillet named anti-spyware profiles configured
@@ -464,7 +456,7 @@ snippets:
       and as_profiles | attribute_present('entry', 'name', 'Inbound-AS')
       )
     fail_message: unable to find named IronSkillet profiles that may be used by other skillets relying on IronSkillet
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#anti-spyware
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#anti-spyware
 
   - name: url_profile_check
     label: IronSkillet named URL filtering profiles configured
@@ -473,7 +465,7 @@ snippets:
       url_profiles | attribute_present('entry', 'name', 'Outbound-URL')
       )
     fail_message: unable to find named IronSkillet profiles that may be used by other skillets relying on IronSkillet
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#url-filtering
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#url-filtering
 
   - name: fb_profile_check
     label: IronSkillet named file-blocking profiles configured
@@ -483,7 +475,7 @@ snippets:
       and fb_profiles | attribute_present('entry', 'name', 'Inbound-FB')
       )
     fail_message: unable to find named IronSkillet profiles that may be used by other skillets relying on IronSkillet
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#file-blocking
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#file-blocking
 
   - name: wf_profile_check
     label: IronSkillet named Wildfire profiles configured
@@ -493,7 +485,7 @@ snippets:
       and wf_profiles | attribute_present('entry', 'name', 'Inbound-WF')
       )
     fail_message: unable to find named IronSkillet profiles that may be used by other skillets relying on IronSkillet
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#wildfire-analysis
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#wildfire-analysis
 
   - name: profile_group_check
     label: IronSkillet named profile groups configured
@@ -503,7 +495,7 @@ snippets:
       and profile_group | attribute_present('entry', 'name', 'default')
       )
     fail_message: unable to find named IronSkillet profile groups that may be used by other skillets relying on IronSkillet
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#security-profile-groups
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#security-profile-groups
 
   - name: profile_decryption
     label: IronSkillet recommended decryption profile configured
@@ -512,7 +504,7 @@ snippets:
       profile_decryption | attribute_present('entry', 'name', 'Recommended_Decryption_Profile')
       )
     fail_message: unable to find the recommended decryption profile
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#decryption-profile
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#decryption-profile
 
   - name: profile_logging
     label: IronSkillet default logging profile configured
@@ -521,7 +513,7 @@ snippets:
       profile_logging | attribute_present('entry', 'name', 'default')
       )
     fail_message: unable to find the default IronSkillet logging profile
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#object-log-forwarding-default
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#object-log-forwarding-default
 
  # sectional grouping of all the rulebase policies: decryption and security
   - name: rules
@@ -544,7 +536,7 @@ snippets:
       and security_rules | attribute_present('entry', 'name', 'Inbound Block Rule')
       )
     fail_message: no named IronSkillet and recommended inbound and outbound EDL block rules
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#ironskillet-security-policies
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#ironskillet-security-policies
 
   - name: decryption_rules
     label: IronSkillet no-decrypt decryption rules configured
@@ -554,7 +546,7 @@ snippets:
       and decryption_rules | attribute_present('entry', 'name', 'NO-Decrypt Rule')
       )
     fail_message: no recommended no-decrypt rules for cert validation and category exclusion for decryption policies
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#ironskillet-decryption-policies
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#ironskillet-decryption-policies
 
 # sectional grouping of referenced objects: tags and address
   - name: ref_objects
@@ -562,8 +554,6 @@ snippets:
     variable: config
     outputs:
       # capture all the object related profile information and match configured names
-      - name: address
-        capture_object: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/address
       - name: tags
         capture_object: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag
 
@@ -576,17 +566,7 @@ snippets:
       and tags | attribute_present('entry', 'name', 'Internal')
       )
     fail_message: tags used by IronSkillet policies not found in the configuration
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#ironskillet-tag-objects
-
-  - name: address
-    label: IronSkillet referenced address objects configured
-    test: |
-      (
-      address | attribute_present('entry', 'name', 'Sinkhole-IPv4')
-      and address | attribute_present('entry', 'name', 'Sinkhole-IPv6')
-      )
-    fail_message: address objects used by IronSkillet policy configuration not found in the configuration
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#ironskillet-address-objects
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#ironskillet-tag-objects
 
 # sectional grouping for logging, alerts, and reporting
   - name: notifications
@@ -610,7 +590,7 @@ snippets:
       log_settings | attribute_present('email.entry', 'name', 'Sample_Email_Profile')
       )
     fail_message: sample email profile referenced for event logging not found in the configuration
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-server-profiles-email
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-server-profiles-email
 
   - name: syslog_profile
     label: IronSkillet sample syslog profile configured
@@ -619,7 +599,7 @@ snippets:
       log_settings | attribute_present('syslog.entry', 'name', 'Sample_Syslog_Profile')
       )
     fail_message: sample syslog profile referenced for event logging not found in the configuration
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-server-profiles-syslog
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-server-profiles-syslog
 
   - name: system_logging
     label: IronSkillet system logging configured
@@ -630,7 +610,7 @@ snippets:
       and log_settings | attribute_present('config.match-list.entry', 'name', 'Configuration_Log_Forwarding')
       )
     fail_message: recommended system event logging configuration not found
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-log-settings-system
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-log-settings-system
 
   - name: reports
     label: IronSkillet threat reports configured
@@ -645,7 +625,7 @@ snippets:
       and reports | attribute_present('entry', 'name', 'Clients sinkholed')
       )
     fail_message: recommended threat reports used in the report group not found in the configuration
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#ironskillet-custom-reports
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#ironskillet-custom-reports
 
   - name: report_group
     label: Possible Compromise threat report group configured
@@ -654,7 +634,7 @@ snippets:
       report_groups | attribute_present('entry', 'name', 'Possible Compromise')
       )
     fail_message: report group 'Possible Compromise' not found in the configuration
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#report-groups
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#report-groups
 
   - name: email_scheduler
     label: Possible Compromise report email scheduler configured
@@ -663,4 +643,4 @@ snippets:
       email_scheduler | attribute_present('entry', 'name', 'Possible Compromise')
       )
     fail_message: email scheduling for reports is not currently configured
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#monitor-pdf-reports-email-scheduler
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#monitor-pdf-reports-email-scheduler

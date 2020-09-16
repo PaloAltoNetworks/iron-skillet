@@ -176,9 +176,6 @@ snippets:
   - name: tag
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/tag
     file: ../snippets/tag.xml
-  - name: address
-    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/address
-    file: ../snippets/address.xml
   - name: local_log_profiles
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/log-settings/profiles
     file: ../snippets/log_settings_profiles.xml
@@ -213,11 +210,8 @@ snippets:
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/post-rulebase/default-security-rules
     file: ../snippets/post_rulebase_default_security_rules.xml
   - name: pre_rulebase_security
-    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/pre-rulebase/security
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/pre-rulebase
     file: ../snippets/pre_rulebase_security.xml
-  - name: post_rulebase_decryption
-    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/post-rulebase/decryption
-    file: ../snippets/post_rulebase_decryption.xml
   - name: pre_rulebase_decryption
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/pre-rulebase/decryption
     file: ../snippets/pre_rulebase_decryption.xml

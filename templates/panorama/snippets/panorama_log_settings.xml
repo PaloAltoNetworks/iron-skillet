@@ -2,7 +2,7 @@
   <entry name="Sample_Email_Profile">
     <server>
       <entry name="Sample_Email_Profile">
-        <display-name>Panorama</display-name>
+        <display-name>Threat_Alerts</display-name>
         <gateway>{{ EMAIL_PROFILE_GATEWAY }}</gateway>
         <from>{{ EMAIL_PROFILE_FROM }}</from>
         <to>{{ EMAIL_PROFILE_TO }}</to>
@@ -85,7 +85,7 @@
       <send-email>
         <member>Sample_Email_Profile</member>
       </send-email>
-      <filter>(verdict eq malicious) or (verdict eq phishing)</filter>
+      <filter>(verdict neq benign)</filter>
     </entry>
     <entry name="WildFire_Log_Forwarding">
       <send-syslog>

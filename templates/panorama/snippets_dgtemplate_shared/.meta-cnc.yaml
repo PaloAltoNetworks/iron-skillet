@@ -153,9 +153,6 @@ snippets:
   - name: shared_tag
     xpath: /config/shared/tag
     file: ../snippets/tag.xml
-  - name: shared_address
-    xpath: /config/shared/address
-    file: ../snippets/address.xml
   - name: shared_log_profiles
     xpath: /config/shared/log-settings/profiles
     file: ../snippets/log_settings_profiles.xml
@@ -190,11 +187,8 @@ snippets:
     xpath: /config/shared/post-rulebase/default-security-rules
     file: ../snippets/post_rulebase_default_security_rules.xml
   - name: pre_rulebase_security
-    xpath: /config/shared/pre-rulebase/security
+    xpath: /config/shared/pre-rulebase
     file: ../snippets/pre_rulebase_security.xml
-  - name: post_rulebase_decryption
-    xpath: /config/shared/post-rulebase/decryption
-    file: ../snippets/post_rulebase_decryption.xml
   - name: pre_rulebase_decryption
     xpath: /config/shared/pre-rulebase/decryption
     file: ../snippets/pre_rulebase_decryption.xml

@@ -25,6 +25,16 @@ variables:
     description: Firewall hostname
     default: panos-01
     type_hint: text
+  - name: config_mgmt_intf
+    description: Configure the management interface IP settings
+    default: 'no'
+    type_hint: dropdown
+    help_text: Set to NO if the IronSkillet config is being applied to a device with existing management IP settings
+    dd_list:
+      - key: 'yes'
+        value: 'yes'
+      - key: 'no'
+        value: 'no'
   - name: MGMT_TYPE
     description: firewall management IP type
     default: dhcp-client
@@ -35,6 +45,9 @@ variables:
         value: dhcp-client
       - key: static
         value: static
+    toggle_hint:
+      source: config_mgmt_intf
+      value: 'yes'
   - name: MGMT_IP
     description: NGFW management IP
     default: 192.0.2.6
@@ -56,6 +69,54 @@ variables:
     toggle_hint:
       source: MGMT_TYPE
       value: static
+  - name: config_admin_user
+    description: Configure the admin user and password
+    default: 'no'
+    type_hint: dropdown
+    help_text: Set to NO if the IronSkillet config is being applied to a device with an existing admin superuser
+    dd_list:
+      - key: 'yes'
+        value: 'yes'
+      - key: 'no'
+        value: 'no'
+  - name: ADMINISTRATOR_USERNAME
+    description: admin username
+    default: adminuser
+    type_hint: text
+    toggle_hint:
+      source: config_admin_user
+      value: 'yes'
+  - name: ADMINISTRATOR_PASSWORD
+    description: admin password
+    default: adminuser
+    type_hint: password
+    toggle_hint:
+      source: config_admin_user
+      value: 'yes'
+  - name: config_dns
+    description: Configure the DNS primary and secondary servers
+    default: 'no'
+    type_hint: dropdown
+    help_text: Set to NO if the IronSkillet config is being applied to a device with an existing DNS configuration
+    dd_list:
+      - key: 'yes'
+        value: 'yes'
+      - key: 'no'
+        value: 'no'
+  - name: DNS_1
+    description: primary dns server
+    default: 8.8.8.8
+    type_hint: ip_address
+    toggle_hint:
+      source: config_dns
+      value: 'yes'
+  - name: DNS_2
+    description: secondary dns server
+    default: 8.8.4.4
+    type_hint: ip_address
+    toggle_hint:
+      source: config_dns
+      value: 'yes'
   - name: NTP_1
     description: primary NTP server
     default: 0.pool.ntp.org
@@ -72,14 +133,6 @@ variables:
     description: admin password
     default: admin
     type_hint: password
-  - name: DNS_1
-    description: primary dns server
-    default: 8.8.8.8
-    type_hint: ip_address
-  - name: DNS_2
-    description: secondary dns server
-    default: 8.8.4.4
-    type_hint: ip_address
   - name: SINKHOLE_IPV4
     description: sinkhole FQDN IPv4
     default: sinkhole.paloaltonetworks.com
@@ -134,9 +187,11 @@ snippets:
   - name: device_system_mgmt_ip
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
     file: device_system_mgmt_ip.xml
+    when: config_mgmt_intf == 'yes'
   - name: device_system_dns
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system/dns-setting
     file: device_system_dns.xml
+    when: config_dns == 'yes'
   - name: device_system
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
     file: device_system.xml
@@ -146,6 +201,7 @@ snippets:
   - name: mgt_config_users
     xpath: /config/mgt-config/users
     file: mgt_config_users.xml
+    when: config_admin_user == 'yes'
   - name: password_complexity
     xpath: /config/mgt-config/password-complexity
     file: password_complexity.xml
@@ -158,9 +214,6 @@ snippets:
   - name: shared_log_settings_email_system_critical
     xpath: /config/shared/log-settings/system/match-list
     file: shared_log_settings_email_system_critical.xml
-  - name: address
-    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/address
-    file: address.xml
   - name: tag
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag
     file: tag.xml
@@ -201,7 +254,7 @@ snippets:
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase/default-security-rules
     file: rulebase_default_security_rules.xml
   - name: security_rules
-    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase/security
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase
     file: rulebase_security.xml
   - name: decryption_rules
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase/decryption

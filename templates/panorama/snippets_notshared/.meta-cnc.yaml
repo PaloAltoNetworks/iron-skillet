@@ -27,6 +27,36 @@ variables:
     description: Panorama hostname
     default: panorama01
     type_hint: text
+  - name: config_admin_panorama
+    description: Configure the Panorama admin user and password
+    default: 'no'
+    type_hint: dropdown
+    help_text: Set to NO if the IronSkillet config is being applied to a Panorama server with an existing admin superuser
+    dd_list:
+      - key: 'yes'
+        value: 'yes'
+      - key: 'no'
+        value: 'no'
+  - name: ADMINISTRATOR_USERNAME
+    description: admin username
+    default: adminuser
+    type_hint: text
+    help_text: if the user opts out of the Panorama admin config, this user will still be applied as a firewall adminstrator
+  - name: ADMINISTRATOR_PASSWORD
+    description: admin password
+    default: adminuser
+    type_hint: password
+    help_text: if the user opts out of the Panorama admin config, this password will still be applied to the firewall administrator
+  - name: config_mgmt_intf_panorama
+    description: Configure the Panorama management interface IP settings
+    default: 'no'
+    type_hint: dropdown
+    help_text: Set to NO if the IronSkillet config is being applied to a Panorama server with existing management IP settings
+    dd_list:
+      - key: 'yes'
+        value: 'yes'
+      - key: 'no'
+        value: 'no'
   - name: PANORAMA_TYPE
     description: Panorama management IP type
     default: static
@@ -37,10 +67,14 @@ variables:
         value: static
       - key: cloud dhcp
         value: cloud
+    toggle_hint:
+      source: config_mgmt_intf_panorama
+      value: 'yes'
   - name: PANORAMA_IP
     description: Panorama IP
     default: 192.168.55.7
     type_hint: ip_address
+    help_text: If opting out of configuring the Panorama management IP, ignore this field
     toggle_hint:
       source: PANORAMA_TYPE
       value: static
@@ -48,6 +82,7 @@ variables:
     description: Panorama netmask
     default: 255.255.255.0
     type_hint: ip_address
+    help_text: If opting out of configuring the Panorama management IP, ignore this field
     toggle_hint:
       source: PANORAMA_TYPE
       value: static
@@ -55,6 +90,7 @@ variables:
     description: Panorama default gateway
     default: 192.168.55.2
     type_hint: ip_address
+    help_text: If opting out of configuring the Panorama management IP, ignore this field
     toggle_hint:
       source: PANORAMA_TYPE
       value: static
@@ -181,6 +217,10 @@ variables:
 # snippets used for api configuration including xpath and element as file name
 # files will load in the order listed
 snippets:
+  - name: panorama_system_mgmt_ip
+    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    file: ../snippets/panorama_system_mgmt_ip.xml
+    when: config_mgmt_intf_panorama == 'yes'
   - name: panorama_system
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
     file: ../snippets/panorama_system.xml
@@ -193,6 +233,7 @@ snippets:
   - name: panorama_mgt_config_users
     xpath: /config/mgt-config/users
     file: ../snippets/panorama_mgt_config_users.xml
+    when: config_admin_panorama == 'yes'
   - name: panorama_mgt_config_pwd
     xpath: /config/mgt-config/password-complexity
     file: ../snippets/panorama_mgt_config_pwd.xml
@@ -229,9 +270,6 @@ snippets:
   - name: tag
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/tag
     file: ../snippets/tag.xml
-  - name: address
-    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/address
-    file: ../snippets/address.xml
   - name: local_log_profiles
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/log-settings/profiles
     file: ../snippets/log_settings_profiles.xml
@@ -266,11 +304,8 @@ snippets:
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/post-rulebase/default-security-rules
     file: ../snippets/post_rulebase_default_security_rules.xml
   - name: pre_rulebase_security
-    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/pre-rulebase/security
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/pre-rulebase
     file: ../snippets/pre_rulebase_security.xml
-  - name: post_rulebase_decryption
-    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/post-rulebase/decryption
-    file: ../snippets/post_rulebase_decryption.xml
   - name: pre_rulebase_decryption
     xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/pre-rulebase/decryption
     file: ../snippets/pre_rulebase_decryption.xml  
