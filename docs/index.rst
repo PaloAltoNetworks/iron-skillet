@@ -30,6 +30,12 @@ Welcome to Iron Skillet template documentation!
 
 .. toctree::
    :maxdepth: 1
+   :caption: Compliance Tools
+
+   cis
+
+.. toctree::
+   :maxdepth: 1
    :caption: Reference and Release History
 
    snippets_common_or_device
