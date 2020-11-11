@@ -2,6 +2,9 @@
 
 # Report template for Iron Skillet 
 
+# Not to be called directly, but imported into Iron Skillet 
+# versions for different PAN-OS versions
+
 report:
 
     title: Iron Skillet full validation
