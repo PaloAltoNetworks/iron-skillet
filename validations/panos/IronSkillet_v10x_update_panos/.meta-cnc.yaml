@@ -104,7 +104,7 @@ snippets:
     test: wf_update | tag_present('recurring.real-time')
     severity: medium
     fail_message: Wildfire should be configured to use real-time updates
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#ironskillet-security-policies
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#ironskillet-security-policies
 
   - name: url_dynclass
     label: URL Filtering Outbound dynamic classification set to block
@@ -115,7 +115,7 @@ snippets:
       {%- elif url_dynclass_entries | length == 0 %}Dynamic classification options not found in configuration; may be unsupported version
       {%- else %}Dynamic classification for all options should be set to block; {{ url_dynclass_not_block }} not blocking
       {%- endif %}
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#ironskillet-security-policies
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#ironskillet-security-policies
 
   - name: url_hacking
     label: Outbound-URL hacking category moved from block to alert
@@ -124,7 +124,7 @@ snippets:
       {%- if 'Outbound-URL' not in url_outbound %}URL-filtering profile Outbound-URL not in configuration
       {%- else %}Hacking is set as alert in IronSkillet; No transfer of malicious content, only how to be malicious
       {%- endif %}
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#ironskillet-security-policies
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#ironskillet-security-policies
 
   - name: av_dynclass_decoder_action
     label: Outbound Dynamic Classification set to reset-both for all decoders
@@ -134,7 +134,7 @@ snippets:
       {%- if 'Outbound-AV' not in av_outbound %}Antivirus profile Outbound-AV not in configuration
       {%- else %}Dynamic classification should be set to reset-both; {{ av_decoder_dynclass_not_resetboth}} set to another value
       {%- endif %}
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#anti-spyware
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#anti-spyware
 
   - name: av_dynclass_engines_action
     label: Outbound Dynamic Classification set to enable for all engines
@@ -145,7 +145,7 @@ snippets:
       {%- elif av_engine_entries | length == 0 %}No AV engine configuration found in configuration; may be unsupported version
       {%- else %}Dynamic classification should be set to enable for all engines; {{ av_engine_dynclass_not_enable }} set to another value
       {%- endif %}
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#anti-spyware
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#anti-spyware
 
   - name: decrypt_profile_tls13
     label: Recommended_Decryption_Profile protocol settings max version is TLS 1.3
@@ -156,4 +156,4 @@ snippets:
       {%- elif profile_decryption_max_version | length == 0 %}The max version in the profile setting should be configured as v1.3
       {%- else %}The max version in the profile setting should be v1.3 instead of {{ profile_decryption_max_version }}
       {%- endif %}
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#url-filtering
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#url-filtering
