@@ -33,6 +33,7 @@ Welcome to Iron Skillet template documentation!
    :caption: Compliance Tools
 
    cis
+   nist
 
 .. toctree::
    :maxdepth: 1
