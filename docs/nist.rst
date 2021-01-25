@@ -2,10 +2,8 @@ Palo Alto Firewall NIST 800.53 V5
 ==================================
 Terms of Use
 ------------
-Control or Control Enhancement Identifier
------------------------------------------
 AC-1
-
+----
 
 Control or Control Name
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -50,9 +48,8 @@ Products
 N/A
 
 
-Control or Control Enhancement Identifier
------------------------------------------
 AC-2
+----
 
 
 Control or Control Name
@@ -112,9 +109,8 @@ Products
 N/A
 
 
-Control or Control Enhancement Identifier
------------------------------------------
 AC-2(1)
+-------
 
 
 Control or Control Name
