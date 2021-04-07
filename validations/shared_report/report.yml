@@ -1,0 +1,76 @@
+---
+
+# Report template for Iron Skillet 
+
+# Not to be called directly, but imported into Iron Skillet 
+# versions for different PAN-OS versions
+
+report:
+
+    title: Iron Skillet full validation
+    subtitle: Automated Solutions
+    second_logo: is_logo
+    second_logo_style:
+      height: 125px
+      width: 125px
+    footer_links:
+      - name: Palo Alto Networks
+        url: https://paloaltonetworks.com
+      - name: Iron Skillet
+        url: https://github.com/PaloAltoNetworks/iron-skillet/
+
+    sections:
+
+        - name: Validation Statistics
+          content:
+            - type: stats_block
+              key: stats
+              data:
+
+                - title: Total Checks
+                  key: total
+
+                - title: Checks Passed
+                  key: pass
+                  icon: checkmark
+
+                - title: Checks Failed
+                  key: fail
+                  icon: alert
+
+        - name: Iron Skillet validation results
+          content:
+            - type: table
+              key: checks
+              columns:
+
+                - title: Validation Check
+                  key: documentation_link
+                  type: url
+                  display_key: label
+
+                - title: Result
+                  key: icon 
+                  type: icon
+                  style:
+                    width: 30px
+                  tooltip:
+                    key: output_message
+                    style:
+                      left: -300px
+
+pre_processing: |-
+  {% set output = {'checks': [], 'stats': {'total':0, 'pass':0, 'fail':0}} %}
+  {% for check in data.keys() %}
+    {% set c = data[check] %}
+    {% if c.results %}
+      {% set _= c.__setitem__('icon', 'checkmark') %}
+      {% set _= output.stats.__setitem__('pass', output.stats.pass + 1) %}
+    {% else %}
+      {% set _= c.__setitem__('icon', 'alert') %}
+      {% set _= output.stats.__setitem__('fail', output.stats.fail + 1) %}
+    {% endif %}
+    {% set _= output['checks'].append(c) %}
+    {% set _= output.stats.__setitem__('total', output.stats.total + 1) %}
+  {% endfor %}
+  {{ output | tojson }}
