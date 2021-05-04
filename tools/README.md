@@ -31,6 +31,7 @@ Python3.6 is used in the example. Python3.5 or python3.7 may also be used.
 cd iron-skillet/tools
 python3.6 -m venv env
 source env/bin/activate
+pip install wheel
 pip install -r requirements.txt
 ```
 
