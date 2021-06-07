@@ -1,0 +1,115 @@
+name: ironskillet_panos_10_1
+label: PAN-OS NGFW IronSkillet 10.1
+description: |-
+  group of snippets for ironskillet 10.1 panos configuration
+type: panos
+labels:
+  collection:
+    - IronSkillet Playlists
+
+variables:
+# Need to add "Do we want includes variables"
+# Need to add the associated "when's" in the snippets sections
+  - name: config_mgmt_intf
+    description: Configure the management interface IP settings
+    default: 'no'
+    type_hint: dropdown
+    help_text: Set to NO if the IronSkillet config is being applied to a device with existing management IP settings
+    dd_list:
+      - key: 'yes'
+        value: 'yes'
+      - key: 'no'
+        value: 'no'
+
+  - name: config_admin_user
+    description: Configure the admin user and password
+    default: 'no'
+    type_hint: dropdown
+    help_text: Set to NO if the IronSkillet config is being applied to a device with an existing admin superuser
+    dd_list:
+      - key: 'yes'
+        value: 'yes'
+      - key: 'no'
+        value: 'no'
+
+  - name: config_dns
+    description: Configure the DNS primary and secondary servers
+    default: 'no'
+    type_hint: dropdown
+    help_text: Set to NO if the IronSkillet config is being applied to a device with an existing DNS configuration
+    dd_list:
+      - key: 'yes'
+        value: 'yes'
+      - key: 'no'
+        value: 'no'
+
+
+snippets:
+
+  # IronSkillet baseline
+  # general device system and setting configs
+  - name: panos_ngfw_device_system_mgmt_ip_10_1
+    include: panos_ngfw_device_system_mgmt_ip_10_1
+    when: config_mgmt_intf == 'yes'
+  - name: panos_ngfw_device_system_dns_10_1
+    include: panos_ngfw_device_system_dns_10_1
+    when: config_dns == 'yes'
+  - name: panos_ngfw_device_system_10_1
+    include: panos_ngfw_device_system_10_1
+  - name: panos_ngfw_device_setting_10_1
+    include: panos_ngfw_device_setting_10_1
+  - name: panos_ngfw_mgt_config_users_10_1
+    include: panos_ngfw_mgt_config_users_10_1
+    when: config_admin_user == 'yes'
+  - name: panos_ngfw_password_complexity_10_1
+    include: panos_ngfw_password_complexity_10_1
+  # shared log settings and profile
+  - name: panos_ngfw_shared_log_settings_10_1
+    include: panos_ngfw_shared_log_settings_10_1
+  - name: panos_ngfw_shared_log_settings_email_profile_10_1
+    include: panos_ngfw_shared_log_settings_email_profile_10_1
+  - name: panos_ngfw_shared_log_settings_email_system_critical_10_1
+    include: panos_ngfw_shared_log_settings_email_system_critical_10_1
+  # tag object
+  - name: panos_ngfw_tag_10_1
+    include: panos_ngfw_tag_10_1
+    # log settings
+  - name: panos_ngfw_log_settings_profiles_10_1
+    include: panos_ngfw_log_settings_profiles_10_1
+  - name: panos_ngfw_log_settings_profiles_email_10_1
+    include: panos_ngfw_log_settings_profiles_email_10_1
+  # security profiles and profile groups
+  - name: panos_ngfw_profile_custom_urlFiltering_10_1
+    include: panos_ngfw_profile_custom_urlFiltering_10_1
+  - name: panos_ngfw_profile_decryption_10_1
+    include: panos_ngfw_profile_decryption_10_1
+  - name: panos_ngfw_profile_antivirus_10_1
+    include: panos_ngfw_profile_antivirus_10_1
+  - name: panos_ngfw_profile_spyware_10_1
+    include: panos_ngfw_profile_spyware_10_1
+  - name: panos_ngfw_profile_vulnerability_10_1
+    include: panos_ngfw_profile_vulnerability_10_1
+  - name: panos_ngfw_profile_file-blocking_10_1
+    include: panos_ngfw_profile_file-blocking_10_1
+  - name: panos_ngfw_profile_urlFiltering_10_1
+    include: panos_ngfw_profile_urlFiltering_10_1
+  - name: panos_ngfw_profile_wildfire_analysis_10_1
+    include: panos_ngfw_profile_wildfire_analysis_10_1
+  - name: panos_ngfw_profile_group_10_1
+    include: panos_ngfw_profile_group_10_1
+  # rulebase
+  - name: panos_ngfw_rulebase_default_security_rules_10_1
+    include: panos_ngfw_rulebase_default_security_rules_10_1
+  - name: panos_ngfw_rulebase_security_10_1
+    include: panos_ngfw_rulebase_security_10_1
+  - name: panos_ngfw_rulebase_decryption_10_1
+    include: panos_ngfw_rulebase_decryption_10_1
+  - name: panos_ngfw_zone_protection_10_1
+    include: panos_ngfw_zone_protection_10_1
+  # reports and email
+  - name: panos_ngfw_reports_simple_10_1
+    include: panos_ngfw_reports_simple_10_1
+  - name: panos_ngfw_report_group_simple_10_1
+    include: panos_ngfw_report_group_simple_10_1
+  - name: panos_ngfw_email_scheduler_10_1
+    include: panos_ngfw_email_scheduler_10_1

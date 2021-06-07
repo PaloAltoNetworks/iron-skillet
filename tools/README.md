@@ -1,103 +1,190 @@
-# Using the tools
+# SLI Tooling
+Documentation showing how to install/use SLI in the CLI 
+and run the relevant tooling commands. SLI allows for the user
+to run a type panos or panorama skillet against a config file
+without the need to communicate to a live device.
 
-The python tools can be broken into two categories:
+**Quick overview of the SLI tooling capabilities**
+* `sli spreadsheet`: Read the panorama and panos template set commands .yaml
+    file and output a formula-based Excel file.
+  
+* `sli preview`: Variable substitutions for xml/set commands to create
+    loadable output files archived in the given directory
+  
+* `sli load_config`: Load a candidate config into the NGFW 
+    from an xml file
 
-* end user tools
-    + create_loadable_configs.py: variable substitutions for xml/set to create
-    loadable output files archied in `loadable_configs`
-    
-Instead of running the tools script to render or load IronSkillet configurations,
-panHandler is recommended as a skillet player. 
+* `sli load_set`: Load a candidate config from a file containing 
+    set commands
+  
+* `sli rollup_skillet`: Take in a .skillet.yaml file and performs a 
+    rollup on it resulting in an output .skillet.yaml file with full
+    XML snippets within.
+  
+* `sli create_template`: Input a skillet and baseline.xml file to 
+    Output a full XML Jinja file with default variables.
+  
+
+## Quick Start with PanHandler 
+PanHandler is one of the recommended tools to use as a skillet player. 
 See the [quick start guide for panHandler](https://live.paloaltonetworks.com/t5/Skillet-Tools/Install-and-Get-Started-With-Panhandler/ta-p/307916)
 in Live.
 
-* template administrator tools
-    + build_full_templates.py: merge xml snippets into a full template file
-    + create_set_spreadsheet.py: read the panorama and panos set commands .conf
-    file and output a formula-based Excel file
-    + build_all.py: generate all configs from snippet and set files
-    + test_set_commands: load set commands from loadable_configs dir
-    + test_full_config: import/load/commit the full xml loadable config
 
-## End user tools
+## Quick Start with SLI
+The SLI tool can also be used to run end user and template admin tools
+quickly and efficiently.
 
-The tools require python3.5 or later to be running in a virtual environment
-with required packages installed.
-
-The steps below are for a standard python virtual environment setup.
-Python3.6 is used in the example. Python3.5 or python3.7 may also be used.
-
+**SLI Setup Steps**
 ```bash
-cd iron-skillet/tools
-python3.6 -m venv env
-source env/bin/activate
-pip install wheel
-pip install -r requirements.txt
+> mkdir (choose a directory name)
+> cd (into directory from above)
+> python3 -m venv ./venv (create the venv)
+> source ./venv/bin/activate (activate the venv)
+> pip intall sli (install sli)
 ```
 
-#### create_loadable_configs.py
-Creates both full xml and set commands outputs with user-specified variable
-values contained in `config_variables.yaml`.
+Once SLI has been installed it can be tested by running `sli` or
+`sli --help` to see available commands. Visit the [SLI repository](https://gitlab.com/panw-gse/as/sli)
+for more information.
 
+
+## Using SLI to Create a SpreadSheet
+SLI can be used to read a yaml file and render it to load into a spreadsheet.
+To do this we can utilize the `sli spreadsheet` command. The command takes in
+a template type yaml file that creates set commands, if a yaml file is
+passed in that *doesn't* create set commands the `sli spreadsheet` command will error out.
+
+The expected result is an output spreadsheet containing all the variable names, default values
+and all loadable set commands with default variable values passed in.
+
+**SLI Spreadsheet Command**
 ```bash
-vi config_variables.yaml   [Edit variables for your local environment]
-python3 ./create_loadable_configs.py
+> sli spreadsheet -n {Template Skillet Name} -o {Output Directory}
+Example usage
+> sli spreadsheet -n skillet_set_command_panos_v10_1 -o /Users/bmutluoglu/Desktop/
+```
+Note: Make sure you are in the correct directory to access the template
+skillet.
+
+The -n flag takes in the name of the set command template skillet to be used.
+The -o flag takes in a directory to store the output spreadsheet.
+
+
+## Using SLI to Create a Loadable Config File
+The user can use the `sli preview` command to create a loadable config file.
+Running `sli preview` allows the user to make changes and gives the user a preview 
+of what the config file would look like. this command modifies the configuration of 
+the device but as opposed to modifying it on your device it saves the config file to 
+your specified directory.
+
+**SLI Preview Command**
+```bash
+> sli preview -uc -n {Panos or Panorama Skillet Name} -ad -o {Output Directory Ending in File Name}
+Example usage:
+> sli preview -uc -n ironskillet_panos_10_1 -ad -o /Users/bmutluoglu/Desktop/testing.xml
 ```
 
-The output loadable templates, full and snippet configs, are saved in the
-`loadable_configs` directory with name as `config prefix` + `datetime`.
+The `-uc` flag uses the NGFW information previously stored in the SLI context.
+You can check what is stored in your context by doing `sli show_context`. If you 
+have no NGFW stored in your context you can run the command without the -uc flag
+and enter in the information manually. The `-n` flag takes in a panos/panorama skillet.
+The `-ad` flag accepts all the default values for skillet variables. The `-o` flag
+writes the resulting file out to the given directory and to the specified filename.
 
-Each run results in a new archive directory allowing for new configs with
-modified variables.
 
-## Template Admin
-The admin utilities are also python based and assume a working python
-environment. Directions for activating the virtual environment are above.
+## Using SLI to Load a Config into the NGFW
+The user can also load a config saved in an xml or txt file to the NGFW.
+In order to load an xml config into the NGFW the user would use the
+command `sli load_config`. In order to load a set command config into the
+NGFW the user would use the command `sli load_set`. you can run these load 
+config commands, specify the config file, and it will load the file into 
+the device as the candidate config.
 
-#### create_set_spreadsheet.py
-Reads the set command .conf files in `/templates/panos/set_commands`
-and `/templates/panorama/set_commands` along with `config_variables.yaml`
-to generate a formula-based Excel spreadsheet of loadable set commands.
+**SLI Load Commands**
+```bash
+> sli load_config -uc {Directory Containing File}
+> sli load_set -uc {Directory Containing File}
+Example usage:
+> sli load_config -uc /Users/bmutluoglu/Desktop/testing.xml
+> sli load_set -uc /Users/bmutluoglu/Desktop/testing.txt
+```
 
-Output is in the respective set_commands directory.
+The `-uc` flag uses the NGFW information previously stored in the SLI context.
+You can check what is stored in your context by doing `sli show_context`. If you 
+have no NGFW stored in your context you can run the command without the -uc flag
+and enter in the information manually. Be sure to give the correct
+path to the required xml/txt file when running this command.
 
-#### build_full_templates.py
-Starts with the baseline.xml file for panorama and panos then adds in
-the xml snippets using the xml filenames and xpaths in the respective
-metadata.yaml files from the snippets folders to create a complete
-xml configuration file including jinja variables.
 
-The resulting templates are stored in the `full` directory as
-`iron_skillet_full.xml`
+## Using SLI to Rollup a Panos Skillet
+The user can use SLI to create a full config file from an existing file.
+The `sli rollup_skillet` command takes in a baseline skillet yaml file 
+that performs a rollup on all the snippets within as is with no Jinja
+variable rendering and then returns out a yaml skillet file containing
+the full XML snippets. The output file will appear in the current 
+working directory.
 
-#### build_all.py
+2 arguments, use the -n flag to get the playlist, specify the output file
+make sure it exists, take the header data from it, copy everything over
+and then override it.
 
-used by the IronSkillet admin to generate the full xml configs, loadable
-configs, and spreadsheets.
+**SLI Rollup Skillet Command**
+```bash
+> sli rollup_skillet {Input File Name} {Output File Name}
+Example Usage:
+> sli rollup_skillet skillet_full_panos_v10_1.meta-cnc.yaml out.skillet.yaml
+```
 
-In tandem with the config_variables.yaml file also uses the batch_variables.yaml
-file to generate all of the loadable config options.
+The user passes in a skillet yaml filename in their current working
+directory into the `Input File Name` section. The user can pass in
+any file name they want as long as it ends with .skillet.yaml into the
+`Output File Name` section.
 
-#### test_set_commands.py
 
-this is an expect-style script that logs into the device and loads the
-set command configuration. In the code is a 'start_row' value to
-determine where in the file to start loading. Useful to ignore mgmt intf
-changes and test loads deeper in the configuration.
+## Using SLI to Transform a Playlist to a Skillet
+The function sli `rollup_playlist` takes a playlist and turns it into a 
+standard skillet file. This function gets rid of all includes statements
+and expands them to be in the newly generated skillet file. The variables
+section would capture all of the playlist variables. The snippets section
+would contain all of the playlist snippets swapping the includes statements
+with XML Xpaths and XML element information.
 
-Also will commit the configuration to ensure no commit errors.
+**SLI Rollup Playlist Command**
+```bash
+> sli rollup_playlist -n {Input Skillet Name} {Output File Name}
+Example Usage:
+> sli rollup_playlist -n skillet_full_panos_v10_1.meta-cnc.yaml out.skillet.yaml
+```
 
-#### test_full_config.py
 
-this script imports, loads, and commits the dhcp-based full configuration.
-Provides a quick way to determine if any configuration/commit errors
-as part of skillet updates.
+## Using SLI to Output a Full XML Jinja Template
+The user can use SLI to create a full XML Jinja Template configuration
+through use of the `sli create_template` command. Running this command
+with the proper inputs results in a large XML template file with all
+the Jinja variables unrendered. This allows the user to load this
+new output file as a jinja template, render it and have it be a valid
+XML that works for a PANW device.
 
+**SLI Create Template Command**
+```bash
+> sli create_template -n {Input Full Skillet Name} {Baseline XML File} {Output XML File Name}
+Example Usage:
+> sli create_template -n ironskillet_panos_10_1 templates/panos/baseline/baseline.xml out.xml
+```
+
+The create template sli command takes 3 arguments. First it takes the 
+full skillet in the `Input Full Skillet Name` section which includes 
+many other skillets each of which reference other XML Jinja templates.
+It also takes the baseline XML file in the `Baseline XML File` section
+and the users choice of output file in the `Output XML File Name` section.
+
+
+## Build_all.sh Bash Script
+Used by the IronSkillet administrator to generate the full config skilets,
+loadable configs and spreadsheets.
 
 ## Variables used by iron-skillet
 For information about the variables used in iron-skillet can be found at:
 
 [iron-skillet variables](https://iron-skillet.readthedocs.io/en/docs_master/creating_loadable_configs.html#variables-list-and-descriptions)
-
-
-

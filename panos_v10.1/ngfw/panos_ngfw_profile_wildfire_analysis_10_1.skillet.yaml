@@ -1,0 +1,87 @@
+# panos wildfire-analysis configuration snippets
+
+name: panos_ngfw_profile_wildfire_analysis_10_1
+label: PAN_OS NGFW Profiles - wildfire-analysis
+description: |-
+    reference wildfire-analysis configuration snippets
+type: panos
+labels:
+    collection:
+      - IronSkillet 10.1 PAN-OS Snippets
+
+variables:
+
+
+snippets:
+
+-   name: ironskillet_wildfire_outbound
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/wildfire-analysis
+    element: |-
+      <entry name="Outbound-WF">
+        <rules>
+          <entry name="Forward-All">
+            <application>
+              <member>any</member>
+            </application>
+            <file-type>
+              <member>any</member>
+            </file-type>
+            <direction>both</direction>
+            <analysis>public-cloud</analysis>
+          </entry>
+        </rules>
+      </entry>
+
+-   name: ironskillet_wildfire_inbound
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/wildfire-analysis
+    element: |-
+      <entry name="Inbound-WF">
+        <rules>
+          <entry name="Forward-All">
+            <application>
+              <member>any</member>
+            </application>
+            <file-type>
+              <member>any</member>
+            </file-type>
+            <direction>both</direction>
+            <analysis>public-cloud</analysis>
+          </entry>
+        </rules>
+      </entry>
+
+-   name: ironskillet_wildfire_internal
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/wildfire-analysis
+    element: |-
+      <entry name="Internal-WF">
+        <rules>
+          <entry name="Forward-All">
+            <application>
+              <member>any</member>
+            </application>
+            <file-type>
+              <member>any</member>
+            </file-type>
+            <direction>both</direction>
+            <analysis>public-cloud</analysis>
+          </entry>
+        </rules>
+      </entry>
+
+-   name: ironskillet_wildfire_alert_all
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/wildfire-analysis
+    element: |-
+      <entry name="Alert-Only-WF">
+        <rules>
+          <entry name="Forward-All">
+            <application>
+              <member>any</member>
+            </application>
+            <file-type>
+              <member>any</member>
+            </file-type>
+            <direction>both</direction>
+            <analysis>public-cloud</analysis>
+          </entry>
+        </rules>
+      </entry>

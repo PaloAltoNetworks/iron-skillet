@@ -1,0 +1,37 @@
+# panos device system configuration snippets
+
+name: panos_ngfw_device_system_dns_10_1
+label: PAN_OS NGFW Device - System
+description: |-
+    reference device system configuration snippets for DNS
+type: panos
+labels:
+    collection:
+      - IronSkillet 10.1 PAN-OS Snippets
+
+variables:
+
+  - name: DNS_1
+    description: primary dns server
+    default: 8.8.8.8
+    type_hint: ip_address
+    toggle_hint:
+      source: config_dns
+      value: 'yes'
+  - name: DNS_2
+    description: secondary dns server
+    default: 8.8.4.4
+    type_hint: ip_address
+    toggle_hint:
+      source: config_dns
+      value: 'yes'
+
+snippets:
+
+-   name: ironskillet_device_system_servers
+    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system/dns-setting
+    element: |-
+      <servers>
+        <primary>{{ DNS_1 }}</primary>
+        <secondary>{{ DNS_2 }}</secondary>
+      </servers>

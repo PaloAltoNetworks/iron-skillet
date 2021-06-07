@@ -1,9 +1,0 @@
-<entry name="Block">
-  <type>URL List</type>
-</entry>
-<entry name="Allow">
-  <type>URL List</type>
-</entry>
-<entry name="Custom-No-Decrypt">
-  <type>URL List</type>
-</entry>

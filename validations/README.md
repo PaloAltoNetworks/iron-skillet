@@ -16,9 +16,9 @@ and other recommended day one practices.
 The documentation links map to the visual guide allowing the user to manually
 remediate any 'fail' state config items.
 
-### Upgrade to 10.0 Missing Elements
+### Upgrade to 10.1 Missing Elements
 
 This is a partial validation that only looks at new items added between
-PAN-OS 9.1 and 10.0. Users can opt to manually remediate missing
+PAN-OS 9.1 and 10.1. Users can opt to manually remediate missing
 elements using links to the visual guide.
 

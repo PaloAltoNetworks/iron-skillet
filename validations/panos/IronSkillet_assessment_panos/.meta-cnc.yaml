@@ -1,8 +1,8 @@
-name: validate-IronSkillet-v10_0-panos-bae945bc-c667-4e56-a3fc-73bbb5afbe0d
+name: validate-IronSkillet-v10_1-panos-bae945bc-c667-4e56-a3fc-73bbb5afbe0d
 label: Full NGFW configuration assessment based on IronSkillet
 
 description: |
-  This skillet does a full NGFW validation of IronSkillet day one configuration - panos v10.0
+  This skillet does a full NGFW validation of IronSkillet day one configuration - panos v10.1
   Any missing config elements will result in a test fail and the doc links will provide
   GUI pointers for remediation
 
@@ -42,25 +42,6 @@ snippets:
       - name: zone_protect_profile
         capture_object: /config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile
 
-<<<<<<< HEAD
-  - name: telemetry_fully_enabled
-    label: all telemetry options are enabled
-    test: |
-      (
-      telemetry | element_value('application-reports') == 'yes'
-      and telemetry | element_value('threat-prevention-reports') == 'yes'
-      and telemetry | element_value('threat-prevention-pcap') == 'yes'
-      and telemetry | element_value('passive-dns-monitoring') == 'yes'
-      and telemetry | element_value('url-reports') == 'yes'
-      and telemetry | element_value('health-performance-reports') == 'yes'
-      and telemetry | element_value('passive-dns-monitoring') == 'yes'
-      and telemetry | element_value('file-identification-reports') == 'yes'
-      )
-    fail_message: telemetry should be enabled for all attributes
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-telemetry-telemetry
-
-=======
->>>>>>> 67ab12ab7d013cf0d04a2bfde9c264e6663f7397
   - name: ensure_threats_check_30_min
     label: threat content updates recurring every 30 minutes
     test: threats_update | tag_present('recurring.every-30-mins')
@@ -82,11 +63,7 @@ snippets:
     test: wf_update | tag_present('recurring.every-min') or wf_update | tag_present('recurring.real-time')
     fail_message: |
       recommended settings are to check for content updates as often as possible to ensure the firewall has the
-<<<<<<< HEAD
-      lastest content updates. Content is only downloaded and installed when new versions are available.
-=======
       lastest content updates.
->>>>>>> 67ab12ab7d013cf0d04a2bfde9c264e6663f7397
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#ironskillet-dynamic-updates
 
   - name: snmp_v3
@@ -145,25 +122,6 @@ snippets:
     test: device_setting | element_value('management.auto-acquire-commit-lock') == 'yes'
     fail_message: block a commit across multiple web sessions and avoid potential configuration conflicts
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-management-general-settings
-<<<<<<< HEAD
-
-  - name: strip_xff
-    label: strip x-forward-for is enabled
-    test: device_setting | element_value('ctd.strip-x-fwd-for') == 'yes'
-    fail_message: |
-      remove the X-Forwarded-For (XFF) header, which contains the IP address of a client requesting a web service
-      when the firewall is deployed between the Internet and a proxy server.
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-content-id-x-forwarded-for-headers
-
-  - name: xff_userid
-    label: use xff in userid is enabled
-    test: device_setting | element_value('ctd.x-forwarded-for') == 'yes'
-    fail_message: |
-      specify that User-ID reads IP addresses from the X-Forwarded-For (XFF) header in client requests for web services
-      when the firewall is deployed between the Internet and a proxy server that would otherwise hide client IP addresses.
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-content-id-x-forwarded-for-headers
-=======
->>>>>>> 67ab12ab7d013cf0d04a2bfde9c264e6663f7397
 
   - name: tcp_bypass_exceed_queue
     label: Forward segments exceeding TCP content inspection queue is disabled
@@ -334,7 +292,7 @@ snippets:
     label: Wildfire linux file size limit set to 50
     test: wf_limit_linux == '50'
     fail_message: linux file size limit recommended as 50 and configured as {{ wf_limit_linux }}
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-wildfire-general-settings
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-wildfire-general-settings
 
   - name:  wf_limit_script_test
     label: Wildfire script file size limit set to 2000
@@ -546,18 +504,6 @@ snippets:
     fail_message: no named IronSkillet and recommended inbound and outbound EDL block rules
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#ironskillet-security-policies
 
-<<<<<<< HEAD
-  - name: decryption_rules
-    label: IronSkillet no-decrypt decryption rules configured
-    test: |
-      (
-      decryption_rules | attribute_present('entry', 'name', 'NO-Decrypt URL Categories')
-      and decryption_rules | attribute_present('entry', 'name', 'NO-Decrypt Rule')
-      )
-    fail_message: no recommended no-decrypt rules for cert validation and category exclusion for decryption policies
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#ironskillet-decryption-policies
-=======
->>>>>>> 67ab12ab7d013cf0d04a2bfde9c264e6663f7397
 
 # sectional grouping of referenced objects: tags and address
   - name: ref_objects
