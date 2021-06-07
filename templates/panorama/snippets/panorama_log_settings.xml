@@ -6,26 +6,11 @@
         <gateway>{{ EMAIL_PROFILE_GATEWAY }}</gateway>
         <from>{{ EMAIL_PROFILE_FROM }}</from>
         <to>{{ EMAIL_PROFILE_TO }}</to>
+        <protocol>SMTP</protocol>
       </entry>
     </server>
   </entry>
 </email>
-<system>
-  <match-list>
-    <entry name="Critical_System_Log_Email">
-      <send-email>
-        <member>Sample_Email_Profile</member>
-      </send-email>
-      <filter>(severity eq critical)</filter>
-    </entry>
-    <entry name="System_Log_Forwarding">
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-      <filter>All Logs</filter>
-    </entry>
-  </match-list>
-</system>
 <syslog>
   <entry name="Sample_Syslog_Profile">
     <server>
@@ -39,6 +24,7 @@
     </server>
   </entry>
 </syslog>
+<<<<<<< HEAD
 <config>
   <match-list>
     <entry name="Configuration_Log_Forwarding">
@@ -116,48 +102,41 @@
   </match-list>
 </auth>
 <correlation>
+=======
+<system>
+>>>>>>> 67ab12ab7d013cf0d04a2bfde9c264e6663f7397
   <match-list>
-    <entry name="Correlation_Critical_Email">
+    <entry name="Critical_System_Log_Email">
       <send-email>
         <member>Sample_Email_Profile</member>
       </send-email>
-      <filter>(severity geq medium)</filter>
+      <filter>(severity eq critical)</filter>
     </entry>
-    <entry name="Correlation_Log_Forwarding">
+    <entry name="System_Log_Forwarding">
       <send-syslog>
         <member>Sample_Syslog_Profile</member>
       </send-syslog>
       <filter>All Logs</filter>
     </entry>
   </match-list>
-</correlation>
-<traffic>
+</system>
+<config>
   <match-list>
-    <entry name="Traffic_Log_Forwarding">
+    <entry name="Configuration_Log_Forwarding">
       <send-syslog>
         <member>Sample_Syslog_Profile</member>
       </send-syslog>
       <filter>All Logs</filter>
     </entry>
   </match-list>
-</traffic>
-<hipmatch>
+</config>
+<userid>
   <match-list>
-    <entry name="HIP_Log_Forwarding">
+    <entry name="User-ID_Log_Forwarding">
       <send-syslog>
         <member>Sample_Syslog_Profile</member>
       </send-syslog>
       <filter>All Logs</filter>
     </entry>
   </match-list>
-</hipmatch>
-<url>
-  <match-list>
-    <entry name="URL_Log_Forwarding">
-      <send-syslog>
-        <member>Sample_Syslog_Profile</member>
-      </send-syslog>
-      <filter>All Logs</filter>
-    </entry>
-  </match-list>
-</url>
+</userid>

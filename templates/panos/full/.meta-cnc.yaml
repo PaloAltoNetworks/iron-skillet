@@ -1,9 +1,9 @@
 # full_panos is used to load a full NGFW configuration
 
 # snippet folder name
-name: skillet_full_panos_v91
+name: skillet_full_panos_v10_0
 # label used for menu selection
-label: v9.1 Iron-Skillet Full XML Configuration for NGFW
+label: v10.0 Iron-Skillet Full XML Configuration for NGFW
 description: Iron-Skillet day one configuration for a firewall
 dependency:
 # type of device configuration
@@ -67,11 +67,11 @@ variables:
     type_hint: text
   - name: ADMINISTRATOR_USERNAME
     description: admin username
-    default: admin
+    default: adminuser
     type_hint: text
   - name: ADMINISTRATOR_PASSWORD
     description: admin password
-    default: admin
+    default: adminuser
     type_hint: password
   - name: DNS_1
     description: primary dns server

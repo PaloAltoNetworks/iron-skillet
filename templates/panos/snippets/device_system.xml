@@ -1,14 +1,4 @@
 <update-schedule>
-  <statistics-service>
-    <application-reports>yes</application-reports>
-    <threat-prevention-reports>yes</threat-prevention-reports>
-    <threat-prevention-pcap>yes</threat-prevention-pcap>
-    <threat-prevention-information>yes</threat-prevention-information>
-    <passive-dns-monitoring>yes</passive-dns-monitoring>
-    <url-reports>yes</url-reports>
-    <health-performance-reports>yes</health-performance-reports>
-    <file-identification-reports>yes</file-identification-reports>
-  </statistics-service>
   <threats>
     <recurring>
       <every-30-mins>
@@ -28,9 +18,7 @@
   </anti-virus>
   <wildfire>
     <recurring>
-      <every-min>
-        <action>download-and-install</action>
-      </every-min>
+      <real-time/>
     </recurring>
   </wildfire>
   <global-protect-datafile>

@@ -3,9 +3,9 @@
 # all values are contained in the device-groups and template stacks; nothing shared
 
 # snippet name
-name: skillet_setcommand_panorama_v91
+name: skillet_setcommand_panorama_v10_0
 # label used for menu selection
-label: v9.1 Iron-Skillet set commands for Panorama
+label: v10.0 Iron-Skillet set commands for Panorama
 description: Set command configuration for Panorama
 # type of device configuration
 type: template
@@ -115,12 +115,8 @@ variables:
     type_hint: text
   - name: ADMINISTRATOR_USERNAME
     description: admin username
-    default: admin
+    default: adminuser
     type_hint: text
-  - name: ADMINISTRATOR_PASSWORD
-    description: admin password
-    default: admin
-    type_hint: password
   - name: DNS_1
     description: primary dns server
     default: 8.8.8.8

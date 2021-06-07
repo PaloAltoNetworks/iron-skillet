@@ -1,18 +1,15 @@
 # snippets is used to load a full NGFW configuration
 
 # snippet folder name
-name: skillet_panos_v91
+name: skillet_panos_v10_0
 # label used for menu selection
-label: v9.1 Iron-Skillet for NGFW
+label: v10.0 Iron-Skillet for NGFW
 description: Iron-Skillet baseline configuration for a firewall
-dependency: snippets_panorama
 # type of device configuration
 type: panos
-extends:
 
 # grouping of like snippets for dynamic menu creation in pan-cnc
 labels:
-  service_type: iron_skillet
   collection:
     - IronSkillet
     - Configure
@@ -79,6 +76,7 @@ variables:
         value: 'yes'
       - key: 'no'
         value: 'no'
+<<<<<<< HEAD
   - name: ADMINISTRATOR_USERNAME
     description: admin username
     default: adminuser
@@ -125,14 +123,57 @@ variables:
     description: secondary NTP server
     default: 1.pool.ntp.org
     type_hint: text
+=======
+>>>>>>> 67ab12ab7d013cf0d04a2bfde9c264e6663f7397
   - name: ADMINISTRATOR_USERNAME
     description: admin username
-    default: admin
+    default: adminuser
     type_hint: text
+    toggle_hint:
+      source: config_admin_user
+      value: 'yes'
   - name: ADMINISTRATOR_PASSWORD
     description: admin password
-    default: admin
+    default: adminuser
     type_hint: password
+<<<<<<< HEAD
+=======
+    toggle_hint:
+      source: config_admin_user
+      value: 'yes'
+  - name: config_dns
+    description: Configure the DNS primary and secondary servers
+    default: 'no'
+    type_hint: dropdown
+    help_text: Set to NO if the IronSkillet config is being applied to a device with an existing DNS configuration
+    dd_list:
+      - key: 'yes'
+        value: 'yes'
+      - key: 'no'
+        value: 'no'
+  - name: DNS_1
+    description: primary dns server
+    default: 8.8.8.8
+    type_hint: ip_address
+    toggle_hint:
+      source: config_dns
+      value: 'yes'
+  - name: DNS_2
+    description: secondary dns server
+    default: 8.8.4.4
+    type_hint: ip_address
+    toggle_hint:
+      source: config_dns
+      value: 'yes'
+  - name: NTP_1
+    description: primary NTP server
+    default: 0.pool.ntp.org
+    type_hint: text
+  - name: NTP_2
+    description: secondary NTP server
+    default: 1.pool.ntp.org
+    type_hint: text
+>>>>>>> 67ab12ab7d013cf0d04a2bfde9c264e6663f7397
   - name: SINKHOLE_IPV4
     description: sinkhole FQDN IPv4
     default: sinkhole.paloaltonetworks.com

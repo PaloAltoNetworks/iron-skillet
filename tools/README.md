@@ -8,7 +8,7 @@ The python tools can be broken into two categories:
     
 Instead of running the tools script to render or load IronSkillet configurations,
 panHandler is recommended as a skillet player. 
-See the [quick start guide for Panorama](https://live.paloaltonetworks.com/t5/Skillet-Tools/Install-and-Get-Started-With-Panhandler/ta-p/307916)
+See the [quick start guide for panHandler](https://live.paloaltonetworks.com/t5/Skillet-Tools/Install-and-Get-Started-With-Panhandler/ta-p/307916)
 in Live.
 
 * template administrator tools
@@ -31,6 +31,7 @@ Python3.6 is used in the example. Python3.5 or python3.7 may also be used.
 cd iron-skillet/tools
 python3.6 -m venv env
 source env/bin/activate
+pip install wheel
 pip install -r requirements.txt
 ```
 

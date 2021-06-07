@@ -1,0 +1,5 @@
+---
+import: ../../../shared_report
+
+report:
+  subtitle: PAN-OS 9.x

@@ -2,10 +2,11 @@
   <entry name="Sample_Email_Profile">
     <server>
       <entry name="Sample_Email_Profile">
-        <display-name>Panorama</display-name>
+        <display-name>Threat_Alerts</display-name>
         <gateway>{{ EMAIL_PROFILE_GATEWAY }}</gateway>
         <from>{{ EMAIL_PROFILE_FROM }}</from>
         <to>{{ EMAIL_PROFILE_TO }}</to>
+        <protocol>SMTP</protocol>
       </entry>
     </server>
   </entry>
@@ -65,3 +66,19 @@
     </entry>
   </match-list>
 </correlation>
+<globalprotect>
+  <match-list>
+    <entry name="GP_Log_Forwarding">
+      <filter>All Logs</filter>
+      <send-to-panorama>yes</send-to-panorama>
+    </entry>
+  </match-list>
+</globalprotect>
+<iptag>
+  <match-list>
+    <entry name="IP_Tag_Log_Forwarding">
+      <filter>All Logs</filter>
+      <send-to-panorama>yes</send-to-panorama>
+    </entry>
+  </match-list>
+</iptag>

@@ -1,6 +1,9 @@
 <ctd>
+<<<<<<< HEAD
   <strip-x-fwd-for>yes</strip-x-fwd-for>
   <x-forwarded-for>yes</x-forwarded-for>
+=======
+>>>>>>> 67ab12ab7d013cf0d04a2bfde9c264e6663f7397
   <tcp-bypass-exceed-queue>no</tcp-bypass-exceed-queue>
   <udp-bypass-exceed-queue>no</udp-bypass-exceed-queue>
 </ctd>

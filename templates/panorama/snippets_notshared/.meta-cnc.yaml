@@ -3,9 +3,9 @@
 # all values are contained in the device-groups and template stacks; nothing shared
 
 # snippet folder name
-name: skillet_panorama_notshared_v91
+name: skillet_panorama_notshared_v10_0
 # label used for menu selection
-label: v9.1 Iron-Skillet for Panorama (No Shared Values)
+label: v10.0 Iron-Skillet for Panorama (No Shared Values)
 description: Iron-Skillet baseline configuration for Panorama using shared values for device-group and templates
 dependency: snippets
 # type of device configuration
@@ -152,11 +152,11 @@ variables:
     type_hint: text
   - name: ADMINISTRATOR_USERNAME
     description: admin username
-    default: admin
+    default: adminuser
     type_hint: text
   - name: ADMINISTRATOR_PASSWORD
     description: admin password
-    default: admin
+    default: adminuser
     type_hint: password
   - name: DNS_1
     description: primary dns server
@@ -227,13 +227,16 @@ snippets:
   - name: panorama_setting
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     file: ../snippets/panorama_setting.xml
-  - name: panorama_log_settings
-    xpath: /config/panorama/log-settings
-    file: ../snippets/panorama_log_settings.xml
   - name: panorama_mgt_config_users
     xpath: /config/mgt-config/users
     file: ../snippets/panorama_mgt_config_users.xml
     when: config_admin_panorama == 'yes'
+<<<<<<< HEAD
+=======
+  - name: panorama_log_settings
+    xpath: /config/panorama/log-settings
+    file: ../snippets/panorama_log_settings.xml
+>>>>>>> 67ab12ab7d013cf0d04a2bfde9c264e6663f7397
   - name: panorama_mgt_config_pwd
     xpath: /config/mgt-config/password-complexity
     file: ../snippets/panorama_mgt_config_pwd.xml

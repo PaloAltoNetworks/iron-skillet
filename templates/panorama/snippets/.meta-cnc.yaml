@@ -4,9 +4,9 @@
 # this is based on a 'shared model' with all template elements in the 'iron-skillet' template
 
 # snippet folder name
-name: skillet_panorama_v91
+name: skillet_panorama_v10_0
 # label used for menu selection
-label: v9.1 Iron-Skillet for Panorama (Shared Values)
+label: v10.0 Iron-Skillet for Panorama (Shared Values)
 description: Iron-Skillet baseline configuration for Panorama with device-group and stack specific values
 # type of device configuration
 type: panorama
@@ -42,17 +42,23 @@ variables:
     default: adminuser
     type_hint: text
     help_text: if the user opts out of the Panorama admin config, this user will still be applied as a firewall adminstrator
+<<<<<<< HEAD
     toggle_hint:
       source: config_admin_panorama
       value: 'yes'
+=======
+>>>>>>> 67ab12ab7d013cf0d04a2bfde9c264e6663f7397
   - name: ADMINISTRATOR_PASSWORD
     description: admin password
     default: adminuser
     type_hint: password
     help_text: if the user opts out of the Panorama admin config, this password will still be applied to the firewall administrator
+<<<<<<< HEAD
     toggle_hint:
       source: config_admin_panorama
       value: 'yes'
+=======
+>>>>>>> 67ab12ab7d013cf0d04a2bfde9c264e6663f7397
   - name: config_mgmt_intf_panorama
     description: Configure the Panorama management interface IP settings
     default: 'no'
@@ -156,14 +162,6 @@ variables:
     description: secondary NTP server
     default: 1.pool.ntp.org
     type_hint: text
-  - name: ADMINISTRATOR_USERNAME
-    description: admin username
-    default: admin
-    type_hint: text
-  - name: ADMINISTRATOR_PASSWORD
-    description: admin password
-    default: admin
-    type_hint: password
   - name: DNS_1
     description: primary dns server
     default: 8.8.8.8

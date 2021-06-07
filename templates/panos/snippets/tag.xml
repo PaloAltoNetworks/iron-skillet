@@ -8,5 +8,9 @@
 	<comments>Internal to Internal</comments>
 </entry>
 <entry name="iron-skillet-version">
+<<<<<<< HEAD
 	<comments>version 0.0.3 for 9.1: version of this IronSkillet template file</comments>
+=======
+	<comments>version 0.0.1 for 10.0: version of this IronSkillet template file</comments>
+>>>>>>> 67ab12ab7d013cf0d04a2bfde9c264e6663f7397
 </entry>
