@@ -21,33 +21,6 @@ then
   source ./venv/bin/activate
   echo "Install Sli in venv"
   pip install sli
-  cd ..
-  cd loadable_configs
-  mkdir sample-cloud-AWS
-  cd sample-cloud-AWS
-  mkdir panorama
-  mkdir panos
-  cd ..
-  mkdir sample-cloud-Azure
-  cd sample-cloud-Azure
-  mkdir panorama
-  mkdir panos
-  cd ..
-  mkdir sample-cloud-GCP
-  cd sample-cloud-GCP
-  mkdir panorama
-  mkdir panos
-  cd ..
-  mkdir sample-mgmt-dhcp
-  cd sample-mgmt-dhcp
-  mkdir panorama
-  mkdir panos
-  cd ..
-  mkdir sample-mgmt-static
-  cd sample-mgmt-static
-  mkdir panorama
-  mkdir panos
-  cd ..
 else
   echo "Directory ./venv exists"
   echo "Activate the venv"
@@ -62,6 +35,35 @@ cd ..
 sli load
 cd tools
 
+echo "Create loadable_config directories"
+cd ..
+mkdir loadable_configs
+cd loadable_configs
+mkdir sample-cloud-AWS
+cd sample-cloud-AWS
+mkdir panorama
+mkdir panos
+cd ..
+mkdir sample-cloud-Azure
+cd sample-cloud-Azure
+mkdir panorama
+mkdir panos
+cd ..
+mkdir sample-cloud-GCP
+cd sample-cloud-GCP
+mkdir panorama
+mkdir panos
+cd ..
+mkdir sample-mgmt-dhcp
+cd sample-mgmt-dhcp
+mkdir panorama
+mkdir panos
+cd ..
+mkdir sample-mgmt-static
+cd sample-mgmt-static
+mkdir panorama
+mkdir panos
+cd ..
 
 # Below block of commands rolls up all skillets from the playlists directories
 echo "Rollup all skillets in the playlists/panos/ directory"
