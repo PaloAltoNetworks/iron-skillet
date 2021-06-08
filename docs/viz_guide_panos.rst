@@ -208,6 +208,10 @@ Device > Setup > Content-ID > Content-ID Settings
    :width: 600
    :align: center
 
+**Enable allow forwarding of decrypted content**:
+From version 10.1 and forwards enable the firewall to forward SSL
+traffic for WildFire analysis.
+
 **Disable Forward segments exceeding TCP App-ID inspection queue**:
 In newer releases disabled by default; explicit disable in IronSkillet template
 Disable this option to prevent the firewall from forwarding TCP segments and skipping App-ID inspection when the App-ID inspection queue is full.
@@ -937,6 +941,8 @@ Object > Security Profiles > URL-Filtering
 
 IronSkillet provides only 3 profiles for URL excluding the Inbound and Internal used in the other profiles.
 The IronSkillet assumption is that only outbound requests may be accessing malicious sites.
+In IronSkillet 10.1 added advanced URL Filtering changes, specifically updated real-time-detection categories to alert
+for all 3 profiles.
 
 Object > Security Profiles > URL-Filtering : Outbound-URL
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++

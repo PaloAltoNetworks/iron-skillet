@@ -8,6 +8,25 @@ Includes:
     + tools updates
     + documentation revisions
 
+10.1 Template Release History
+----------------------------
+
+Template content updates are high level. Details can be found in the template guides.
+
+0.0.1
+^^^^^
+
+Released xx/xx/xxxx
+
+    + URL filtering profiles: Updating real-time-detection category in the following URL Filtering profiles, Outbound-URL, Alert-Only-URL and Exception-URL
+    + URL filtering profiles: set real-time-detection to alert
+    + Anti-Spyware profiles: Updating the following DNS policies, Phishing Domains, Grayware Domains and proxy Avoidance and Anonymizers within the following anti-spyware profiles Outbound-AS, Inbound-AS and Internal-AS
+    + Anti-Spyware profiles: set DNS policies to sinkhole/single-packet
+    + Anti-Spyware profiles: Updating all DNS policies within Alert-Only-AS anti-spyware profile to allow/single-packet except for Parked Domains
+    + Anti-Spyware profiles: set DNS policies to allow/single-packet
+    + Allow packet buffer protection
+    + Allow forwarding of decrypted content
+
 10.0 Template Release History
 ----------------------------
 
@@ -258,6 +277,15 @@ Released: May 10, 2018
 
 Tools Release Updates
 ---------------------
+
+May 28th 2021
+^^^^^^^^^^^^^
+
+    + Major tooling revamp with all python scripts being obsoleted by the new SLI tool
+    + Replaced everything in the tooling directory with a README file on using SLI
+    + Sli has built in functions that do what the previous python scripts did in a more efficient fashion
+    + Added a Bash script the user can run that replaces the build_all.py script
+
 
 Jul 21, 2020
 ^^^^^^^^^^^^

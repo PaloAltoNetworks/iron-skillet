@@ -26,7 +26,6 @@ The xml template directories are group according to the user environment:
     + `snippets_panorama_dgstack_notshared`: used to add additional device-groups and stack, each with full configuration elements. Nothing is shared.
 
 
-
 .. Note::
     The template version is found in the template xml file as a tag attribute
 
@@ -34,6 +33,18 @@ The xml template directories are group according to the user environment:
 .. Note::
     The set commands utilize the same configuration settings
 
+Playlist Includes Model
+-----------------------
+
+----------------------------------------------------------------------
+
+    Starting with IronSkillet 10.1, the xml snippets are included in sub-skillets in the ironskillet-components
+    submodule. These sub-skillets are referenced in playlists through skillet includes, and allows for easy re-use
+    of individual snippets. It also allows for subsets of the configuration to be run, as reflected in the new playlist
+    options for panos and panorama configuration. An overview of the IronSkillet playlists available can be found in
+    the playlist folder in the IronSkillet repo.
+
+    See the Playlist Includes tutorial on SkilletBuilder for more information on how this works.
 
 General Device Configuration
 ----------------------------
@@ -47,10 +58,10 @@ Panorama Admin Users
 ~~~~~~~~~~~~~~~~~~~~
 
 `View xml snippet:` |
-`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panorama/snippets/panorama_mgt_config_users.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panorama/snippets/panorama_mgt_config_users.xml>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panorama/snippets/panorama_mgt_config_users.xml>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panorama/snippets/panorama_mgt_config_users.xml>`_ |
+`10.1` |
 
 
 Management configuration superuser access
@@ -63,10 +74,10 @@ Panorama Password Complexity
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `View xml snippet:` |
-`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panorama/snippets/panorama_mgt_config_pwd.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panorama/snippets/panorama_mgt_config_pwd.xml>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panorama/snippets/panorama_mgt_config_pwd.xml>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panorama/snippets/panorama_mgt_config_pwd.xml>`_ |
+`10.1` |
 
 
 Administrative user password complexity profile
@@ -78,10 +89,10 @@ Panorama settings
 ~~~~~~~~~~~~~~~~~
 
 `View xml snippet:` |
-`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panorama/snippets/panorama_system.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panorama/snippets/panorama_system.xml>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panorama/snippets/panorama_system.xml>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panorama/snippets/panorama_system.xml>`_ |
+`10.1` |
 
 
 System configuration settings for dynamic updates and network services
@@ -107,10 +118,10 @@ System configuration settings for dynamic updates and network services
     This is an option in the tools ```build_my_config``` utility to use the proper config option in the template.
 
 `View xml snippet:` |
-`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panorama/snippets/panorama_setting.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panorama/snippets/panorama_setting.xml>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panorama/snippets/panorama_setting.xml>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panorama/snippets/panorama_setting.xml>`_ |
+`10.1` |
 
 
 Panorama management settings
@@ -136,10 +147,10 @@ Security-related Device Settings
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `View xml snippet:` |
-`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panorama/snippets/device_setting.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panorama/snippets/device_setting.xml>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panorama/snippets/device_setting.xml>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panorama/snippets/device_setting.xml>`_ |
+`10.1` |
 
 
 General device settings that effect security posture. Found in Device > Setup in the GUI.
@@ -182,10 +193,10 @@ System Configuration
 ~~~~~~~~~~~~~~~~~~~~
 
 `View xml snippet:` |
-`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panorama/snippets/device_system_shared.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panorama/snippets/device_system_shared.xml>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panorama/snippets/device_system_shared.xml>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panorama/snippets/device_system_shared.xml>`_
+`10.1` |
 
 
 System configuration settings for dynamic updates and network services
@@ -235,10 +246,10 @@ Log forwarding profile
 ~~~~~~~~~~~~~~~~~~~~~~
 
 `View xml snippet:` |
-`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panorama/snippets/log_settings_profiles.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panorama/snippets/log_settings_profiles.xml>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panorama/snippets/log_settings_profiles.xml>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panorama/snippets/log_settings_profiles.xml>`_ |
+`10.1` |
 
 
 Log forward profile referenced in security rules to determine where to
@@ -254,10 +265,10 @@ Device log settings
 ~~~~~~~~~~~~~~~~~~~
 
 `View xml snippet:` |
-`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panorama/snippets/shared_log_settings.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panorama/snippets/shared_log_settings.xml>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panorama/snippets/shared_log_settings.xml>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panorama/snippets/shared_log_settings.xml>`_ |
+`10.1` |
 
 
 Device event logging including sample profiles for email and syslog
@@ -286,10 +297,10 @@ Panorama log settings
 ~~~~~~~~~~~~~~~~~~~~~
 
 `View xml snippet:` |
-`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panorama/snippets/panorama_log_settings.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panorama/snippets/panorama_log_settings.xml>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panorama/snippets/panorama_log_settings.xml>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panorama/snippets/panorama_log_settings.xml>`_ |
+`10.1` |
 
 
 Panorama event logging including sample profiles for email and syslog forwarding.
@@ -303,10 +314,10 @@ Panorama log collector group
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `View xml snippet:` |
-`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panorama/snippets/log_collector_group.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panorama/snippets/log_collector_group.xml>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panorama/snippets/log_collector_group.xml>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panorama/snippets/log_collector_group.xml>`_
+`10.1` |
 
 
 After you configure Log Collectors and firewalls, you must assign them to a Collector Group so that the firewalls can send logs to the Log Collectors.
@@ -332,10 +343,10 @@ Tags
 ~~~~
 
 `View xml snippet:` |
-`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panorama/snippets/tag.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panorama/snippets/tag.xml>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panorama/snippets/tag.xml>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panorama/snippets/tag.xml>`_ |
+`10.1` |
 
 
 Tags used in security rules and related objects.
@@ -372,10 +383,10 @@ Custom URL Category
 ~~~~~~~~~~~~~~~~~~~
 
 `View xml snippet:` |
-`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panorama/snippets/profiles_custom_url_category.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panorama/snippets/profiles_custom_url_category.xml>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panorama/snippets/profiles_custom_url_category.xml>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panorama/snippets/profiles_custom_url_category.xml>`_ |
+`10.1` |
 
 
 Placeholder for custom url categories used in security rules and url
@@ -398,10 +409,10 @@ File Blocking
 ~~~~~~~~~~~~~
 
 `View xml snippet:` |
-`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panorama/snippets/profiles_file_blocking.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panorama/snippets/profiles_file_blocking.xml>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panorama/snippets/profiles_file_blocking.xml>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panorama/snippets/profiles_file_blocking.xml>`_ |
+`10.1` |
 
 
 Security profile for actions specific to file blocking (FB).
@@ -439,10 +450,10 @@ Anti-Spyware
 ~~~~~~~~~~~~
 
 `View xml snippet:` |
-`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panorama/snippets/profiles_spyware.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panorama/snippets/profiles_spyware.xml>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panorama/snippets/profiles_spyware.xml>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panorama/snippets/profiles_spyware.xml>`_ |
+`10.1` |
 
 
 Security profile for actions specific to anti-spyware (AS).
@@ -498,10 +509,10 @@ URL Filtering
 ~~~~~~~~~~~~~
 
 `View xml snippet:` |
-`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panorama/snippets/profiles_url_filtering.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panorama/snippets/profiles_url_filtering.xml>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panorama/snippets/profiles_url_filtering.xml>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panorama/snippets/profiles_url_filtering.xml>`_ |
+`10.1` |
 
 
 Security profile for actions specific to URL filtering (URL).
@@ -555,10 +566,10 @@ Anti-Virus
 ~~~~~~~~~~
 
 `View xml snippet:` |
-`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panorama/snippets/profiles_virus.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panorama/snippets/profiles_virus.xml>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panorama/snippets/profiles_virus.xml>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panorama/snippets/profiles_virus.xml>`_ |
+`10.1` |
 
 
 Security profile for actions specific to AntiVirus (AV) and Wildfire signatures. All decoders using 'reset-both'
@@ -599,10 +610,10 @@ Vulnerability Protection
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 `View xml snippet:` |
-`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panorama/snippets/profiles_vulnerability.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panorama/snippets/profiles_vulnerability.xml>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panorama/snippets/profiles_vulnerability.xml>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panorama/snippets/profiles_vulnerability.xml>`_ |
+`10.1` |
 
 
 
@@ -646,10 +657,10 @@ Wildfire Analysis
 ~~~~~~~~~~~~~~~~~
 
 `View xml snippet:` |
-`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panorama/snippets/profiles_wildfire_analysis.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panorama/snippets/profiles_wildfire_analysis.xml>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panorama/snippets/profiles_wildfire_analysis.xml>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panorama/snippets/profiles_wildfire_analysis.xml>`_ |
+`10.1` |
 
 
 Security profile for actions specific to Wildfire upload and analysis
@@ -679,10 +690,10 @@ Security Profile Groups
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 `View xml snippet:` |
-`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panorama/snippets/profile_group.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panorama/snippets/profile_group.xml>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panorama/snippets/profile_group.xml>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panorama/snippets/profile_group.xml>`_ |
+`10.1` |
 
 
 Security profile groups based on use case
@@ -709,10 +720,10 @@ Recommended Block Rules
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 `View xml snippet:` |
-`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panorama/snippets/pre_rulebase_security.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panorama/snippets/pre_rulebase_security.xml>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panorama/snippets/pre_rulebase_security.xml>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panorama/snippets/pre_rulebase_security.xml>`_ |
+`10.1` |
 
 
 Recommended block rules for optimal security posture with associated
@@ -736,10 +747,10 @@ Default Security Rules
 ~~~~~~~~~~~~~~~~~~~~~~
 
 `View xml snippet:` |
-`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panorama/snippets/post_rulebase_default_security_rules.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panorama/snippets/post_rulebase_default_security_rules.xml>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panorama/snippets/post_rulebase_default_security_rules.xml>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panorama/snippets/post_rulebase_default_security_rules.xml>`_ |
+`10.1` |
 
 
 Configuration for the default interzone and intrazone default rules
@@ -766,10 +777,10 @@ Profiles
 ~~~~~~~~
 
 `View xml snippet:` |
-`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panorama/snippets/profiles_decryption.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panorama/snippets/profiles_decryption.xml>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panorama/snippets/profiles_decryption.xml>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panorama/snippets/profiles_decryption.xml>`_ |
+`10.1` |
 
 
 Recommended_Decryption_Profile. Referenced by the default decryption
@@ -808,10 +819,10 @@ Decryption Rules
 ~~~~~~~~~~~~~~~~
 
 `View xml snippet:` |
-`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panorama/snippets/pre_rulebase_decryption.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panorama/snippets/pre_rulebase_decryption.xml>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panorama/snippets/pre_rulebase_decryption.xml>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panorama/snippets/pre_rulebase_decryption.xml>`_ |
+`10.1` |
 
 
 Recommended SSL decryption pre-rules for no-decryption.
@@ -829,10 +840,10 @@ Profile
 ~~~~~~~
 
 `View xml snippet:` |
-`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panorama/snippets/zone_protection_profile.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panorama/snippets/zone_protection_profile.xml>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panorama/snippets/zone_protection_profile.xml>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panorama/snippets/zone_protection_profile.xml>`_ |
+`10.1` |
 
 
 Recommended_Zone_Protection profile for standard, non-volumetric best
@@ -862,10 +873,10 @@ Reports
 ~~~~~~~
 
 `View xml snippet:` |
-`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panorama/snippets/reports_simple.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panorama/snippets/reports_simple.xml>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panorama/snippets/reports_simple.xml>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panorama/snippets/reports_simple.xml>`_ |
+`10.1` |
 
 
 
@@ -893,10 +904,10 @@ Report Groups
 ~~~~~~~~~~~~~
 
 `View xml snippet:` |
-`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panorama/snippets/report_group_simple.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panorama/snippets/report_group_simple.xml>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panorama/snippets/report_group_simple.xml>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panorama/snippets/report_group_simple.xml>`_ |
+`10.1` |
 
 
 Report groups allow you to create sets of reports that the system can
@@ -939,10 +950,10 @@ Email Scheduler
 ~~~~~~~~~~~~~~~
 
 `View xml snippet:` |
-`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v8.1/templates/panorama/snippets/email_scheduler_simple.xml>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.0/templates/panorama/snippets/email_scheduler_simple.xml>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v9.1/templates/panorama/snippets/email_scheduler_simple.xml>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/templates/panorama/snippets/email_scheduler_simple.xml>`_ |
+`10.1` |
 
 
 Schedule and email recipients for each report group. The template uses

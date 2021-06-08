@@ -2,6 +2,22 @@
 New PAN-OS Version Updates
 ==========================
 
+10.1 new features
+~~~~~~~~~~~~~~~~~
+
+Security profiles
+^^^^^^^^^^^^^^^^^
+
+    + Anti-spyware profile:  New DNS Security Service malicious categories set to sinkhole
+
+    + URL Filtering: Set new real-time category to alert
+
+
+Device configuration
+^^^^^^^^^^^^^^^^^^^^
+
+    + packet buffer protection: set to allow (default)
+
 10.0 new features
 ~~~~~~~~~~~~~~~~~
 
