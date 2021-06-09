@@ -1,5 +1,5 @@
 name: ironskillet_panos_alert_only_10_1
-label: PAN-OS NGFW Alert Only IronSkillet 10.1
+label: PAN-OS NGFW Alert Only Profiles IronSkillet 10.1
 description: |-
   alert only profiles for ironskillet 10.1 panos configuration
 type: panos
