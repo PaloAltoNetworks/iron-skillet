@@ -9,7 +9,7 @@ changes or compare IronSkillet manually to their existing configuration.
 
 So based on popular demand here is the GUI-based visual guide to all of the IronSkillet configuration elements.
 
-This is based on PAN-OS 10.x with callouts for any features not supported in the 8.x releases.
+This is based on PAN-OS 10.x with callouts for any features not supported in the prior releases.
 Also note that based on software release, there may be other items configured or ‘checked’ as defaults and not part of IronSkillet.
 These items are not referenced in this guide.
 
@@ -24,7 +24,7 @@ IronSkillet includes a mix of day one best practices for configuration types suc
 
 This visual guide is based on the `IronSkillet full configuration file`_
 
-.. _IronSkillet full configuration file: https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.0/loadable_configs/sample-mgmt-static/panos/iron_skillet_panos_full.xml
+.. _IronSkillet full configuration file: https://github.com/PaloAltoNetworks/iron-skillet/blob/panos_v10.1/loadable_configs/sample-mgmt-static/panos/iron_skillet_panos_full.xml
 
 This file uses default value settings and can be readily imported and loaded as a candidate configuration allowing the user to follow along with this guide.
 

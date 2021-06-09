@@ -59,9 +59,21 @@ config_admin_user        no                       Include addition of admin user
 config_dns               no                       Include DNS configuration element
 ======================   =======================  ==========================================================
 
+Create Loadable Configuration python utility (pre 10.1)
+-------------------------------------------------------
 
-Create Loadable Configuration python utility
---------------------------------------------
+The tools folder in the iron-skillet repo contains a simple python utility for variable substitution.
+
+This tools folder can be found at:
+
+`Release branch` |
+`10.1 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v10.1/tools>`_ |
+
+TODO: Add the SLI commands to generate the render configuration file
+
+
+Create Loadable Configuration python utility (pre 10.1)
+-------------------------------------------------------
 
 The tools folder in the iron-skillet repo contains a simple python utility for variable substitution.
 

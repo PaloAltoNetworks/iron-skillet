@@ -32,6 +32,26 @@ installing and using PanHandler
 PanHandler is an easily distributed and loadable Docker container. Instructions for using PanHandler can
 be reviewing the `PanHandler Docs <https://panhandler.readthedocs.io>`_
 
+Loading Configuration Snippets using SLI
+----------------------------------------
+
+----------------------------------------------------------------------
+
+SLI overview
+~~~~~~~~~~~~
+
+The Skillet Line Interfacing tool is a CLI interface that can be used to load and work
+with skillets including IronSkillet. Please refer to the README document found within the following `SLI <https://gitlab.com/panw-gse/as/sli>`_
+repository. This will walk you through the installation and basic usage of SLI in the context of
+skillets.
+
+installing and using SLI
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+PanHandler is an easily distributed and loadable Docker container. Instructions for using PanHandler can
+be reviewing the `PanHandler Docs <https://panhandler.readthedocs.io>`_
+
+TODO: Add link to the SLI tools readme or add a few quick commands here
 
 Preparing the configuration files
 ---------------------------------

@@ -36,7 +36,7 @@ Using the templates
 The templates are available on GitHub specific to each PAN-OS software version.
 
 `View github repo:` |
-`10.1` |
+`10.1 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v10.1>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v10.0>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v9.1>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v9.0>`_ |
