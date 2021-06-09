@@ -15,6 +15,8 @@ snippets:
   # tag object
   - name: panos_ngfw_tag_10_1
     include: panos_ngfw_tag_10_1
+    include_snippets:
+      - name: ironskillet_tag_ironskillet_version
   # security profiles and profile groups
   - name: panos_ngfw_profile_custom_urlFiltering_10_1
     include: panos_ngfw_profile_custom_urlFiltering_10_1
