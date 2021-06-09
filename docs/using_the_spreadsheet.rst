@@ -13,13 +13,13 @@ The spreadsheets can be found at:
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v9.0/templates/panos/set_commands>`_ ]
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v9.1/templates/panos/set_commands>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v10.0/templates/panos/set_commands>`_ |
-`10.1` |
+`10.1 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v10.1/templates/panos/set_commands>`_ |
 
 `Panorama` |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v9.0/templates/panorama/set_commands>`_ ]
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v9.1/templates/panorama/set_commands>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v10.0/templates/panorama/set_commands>`_ |
-`10.1` |
+`10.1 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v10.1/templates/panorama/set_commands>`_ |
 
 The ``values`` worksheet can be updated with user-specific values. Formulas embedded in the ``set commands`` worksheet
 will use the user added values.
