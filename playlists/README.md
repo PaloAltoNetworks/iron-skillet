@@ -45,8 +45,9 @@ Users are welcome to create their own playlists to mix and match elements that a
 and [panorama template](https://iron-skillet.readthedocs.io/en/docs_master/panorama_template_guide.html) pages 
 have an overview of all the sub-skillets available in ironskillet-components to include in a playlist.
 
-Also, see the Includes Tutorial Page from SkilletBuilder readthedocs for more information on playlists, includes, 
-submodules, and how they all work together.
+Also, see the [Playlist Includes Tutorial](https://skilletbuilder.readthedocs.io/en/latest/tutorials/tutorial_includes.html)
+from [SkilletBuilder] for more information on playlists, includes, submodules, and how they all work together. The 
+tutorial shows how to use the playlist model to build configurations for IronSkillet.
 
 
 
