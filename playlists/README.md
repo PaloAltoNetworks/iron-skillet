@@ -3,7 +3,8 @@
 Starting with IronSkillet 10.1, skillets are now available in a playlist format. In this new playlist model, it is 
 possible to reference a set of sub-skillets from a submodule though skillet includes. A git submodule allows content 
 from one repository to be easily accessed and updated from another repository. For IronSkillet, the 
-playlists in this directory reference sub-skillets from a submodule called ironskillet-components. In 
+playlists in this directory reference sub-skillets from a submodule called 
+[ironskillet-components](https://github.com/PaloAltoNetworks/ironskillet-components). In 
 ironskillet-components, there is a set of panos sub-skillets and a set of panorama sub-skillets that contain the XML 
 snippets used in IronSkillet. See the panos and panorama template pages for details on what is included in each sub-skillet.
 
