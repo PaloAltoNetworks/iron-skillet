@@ -41,17 +41,17 @@ SLI overview
 ~~~~~~~~~~~~
 
 The Skillet Line Interfacing tool is a CLI interface that can be used to load and work
-with skillets including IronSkillet. Please refer to the README document found within the following `SLI <https://gitlab.com/panw-gse/as/sli>`_
-repository. This will walk you through the installation and basic usage of SLI in the context of
-skillets.
+with skillets including IronSkillet.
 
 installing and using SLI
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-PanHandler is an easily distributed and loadable Docker container. Instructions for using PanHandler can
-be reviewing the `PanHandler Docs <https://panhandler.readthedocs.io>`_
+Please refer to the README document found within the following `SLI <https://gitlab.com/panw-gse/as/sli>`_
+repository. This will walk you through the installation and basic usage of SLI in the context of
+skillets.
 
-TODO: Add link to the SLI tools readme or add a few quick commands here
+For more information on SLI commands and their use within the IronSkillet tools directory
+please refer to the following `link <https://github.com/scotchoaf/iron-skillet/blob/panos_v10.1/tools/README.md>`_.
 
 Preparing the configuration files
 ---------------------------------
