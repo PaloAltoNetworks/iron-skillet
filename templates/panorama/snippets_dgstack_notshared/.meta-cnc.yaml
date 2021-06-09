@@ -1,11 +1,11 @@
-name: ironskillet_panorama_notshared_dgstack_all_10_1_rollup
-label: Panorama Notshared DGTemplate IronSkillet 10.1
+name: skillet_panorama_dgstack_notshared_v10_1
+label: v10.0 Iron-Skillet for Panorama with Device-Group and Stack only (No Shared Values)
 description: group of snippets for ironskillet 10.1 panorama notshared dgtemplate
     configuration
 type: panorama
 labels:
     collection:
-    - IronSkillet Playlists
+    - IronSkillet
 variables:
 -   name: STACK
     description: Template stack name for Panorama

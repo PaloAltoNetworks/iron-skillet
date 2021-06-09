@@ -1,10 +1,10 @@
-name: ironskillet_panos_10_1_rollup
-label: PAN-OS NGFW IronSkillet 10.1
-description: group of snippets for ironskillet 10.1 panos configuration
+name: skillet_panos_v10_1
+label: v10.1 Iron-Skillet for NGFW
+description: Iron-Skillet baseline configuration for a firewall
 type: panos
 labels:
     collection:
-    - IronSkillet Playlists
+    - IronSkillet
 variables:
 -   name: config_mgmt_intf
     description: Configure the management interface IP settings

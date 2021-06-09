@@ -1,10 +1,10 @@
-name: ironskillet_panorama_shared_10_1_rollup
-label: Panorama Shared IronSkillet 10.1
-description: group of snippets for ironskillet 10.1 panorama shared configuration
+name: skillet_panorama_v10_1
+label: v10.0 Iron-Skillet for Panorama (Shared Values)
+description: Iron-Skillet baseline configuration for Panorama with device-group and stack specific values
 type: panorama
 labels:
     collection:
-    - IronSkillet Playlists
+    - IronSkillet
 variables:
 -   name: config_admin_panorama
     description: Configure the Panorama admin user and password

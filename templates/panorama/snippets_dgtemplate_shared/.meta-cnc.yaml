@@ -1,10 +1,10 @@
-name: ironskillet_panorama_shared_dgtemplate_10_1_rollup
-label: Panorama Shared IronSkillet 10.1
+name: skillet_panorama_dgtemplate_shared_v10_1
+label: v10.0 Iron-Skillet for Panorama with Device-Group and Template only (no Panorama system config)
 description: group of snippets for ironskillet 10.1 panorama shared dgtemplate configuration
 type: panorama
 labels:
     collection:
-    - IronSkillet Playlists
+    - IronSkillet
 variables:
 -   name: NTP_1
     description: primary NTP server

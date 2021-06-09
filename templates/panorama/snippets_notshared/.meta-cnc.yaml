@@ -1,11 +1,11 @@
-name: ironskillet_panorama_notshared_10_1_rollup
-label: Panorama Notshared IronSkillet 10.1
+name: skillet_panorama_notshared_v10_1
+label: v10.0 Iron-Skillet for Panorama (No Shared Values))
 description: group of snippets for ironskillet 10.1 panorama notshared dgtemplate
     configuration
 type: panorama
 labels:
     collection:
-    - IronSkillet Playlists
+    - IronSkillet
 variables:
 -   name: config_admin_panorama
     description: Configure the Panorama admin user and password

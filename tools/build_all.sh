@@ -69,11 +69,44 @@ cd ..
 echo "Rollup all skillets in the playlists/panos/ directory"
 sli -sd ../../ rollup_playlist -n ironskillet_panos_10_1 ../templates/panos/snippets/.meta-cnc.yaml
 
+# swap out skillet preamble text after rollup
+# temp fix until features added to SLI for value options
+cd ../templates/panos/snippets
+sed -i '' 's/ironskillet_panos_10_1_rollup/skillet_panos_v10_1/' .meta-cnc.yaml
+sed -i '' 's/PAN-OS NGFW IronSkillet 10.1/v10.1 Iron-Skillet for NGFW/' .meta-cnc.yaml
+sed -i '' 's/IronSkillet Playlists/IronSkillet/' .meta-cnc.yaml
+cd ../../../tools
+
 echo "Rollup all skillets in the playlists/panorama/ directory"
 sli -sd ../../ rollup_playlist -n ironskillet_panorama_notshared_dgstack_all_10_1 ../templates/panorama/snippets_dgstack_notshared/.meta-cnc.yaml
 sli -sd ../../ rollup_playlist -n ironskillet_panorama_notshared_10_1 ../templates/panorama/snippets_notshared/.meta-cnc.yaml
 sli -sd ../../ rollup_playlist -n ironskillet_panorama_shared_dgtemplate_10_1 ../templates/panorama/snippets_dgtemplate_shared/.meta-cnc.yaml
 sli -sd ../../ rollup_playlist -n ironskillet_panorama_shared_10_1 ../templates/panorama/snippets/.meta-cnc.yaml
+
+# swap out skillet preamble text after rollup
+# temp fix until features added to SLI for value options
+# shared snippets
+cd ../templates/panorama/snippets
+sed -i '' 's/ironskillet_panorama_shared_10_1_rollup/skillet_panorama_v10_1/' .meta-cnc.yaml
+sed -i '' 's/Panorama Shared IronSkillet 10.1/v10.0 Iron-Skillet for Panorama (Shared Values)/' .meta-cnc.yaml
+sed -i '' 's/IronSkillet Playlists/IronSkillet/' .meta-cnc.yaml
+# dgstack_notshared
+cd ../snippets_dgstack_notshared
+sed -i '' 's/ironskillet_panorama_notshared_dgstack_all_10_1_rollup/skillet_panorama_dgstack_notshared_v10_1/' .meta-cnc.yaml
+sed -i '' 's/Panorama Notshared DGTemplate IronSkillet 10.1/v10.0 Iron-Skillet for Panorama with Device-Group and Stack only (No Shared Values)/' .meta-cnc.yaml
+sed -i '' 's/IronSkillet Playlists/IronSkillet/' .meta-cnc.yaml
+# dgtemplate_shared
+cd ../snippets_dgtemplate_shared
+sed -i '' 's/ironskillet_panorama_shared_dgtemplate_10_1_rollup/skillet_panorama_dgtemplate_shared_v10_1/' .meta-cnc.yaml
+sed -i '' 's/Panorama Shared IronSkillet 10.1/v10.0 Iron-Skillet for Panorama with Device-Group and Template only (no Panorama system config)/' .meta-cnc.yaml
+sed -i '' 's/IronSkillet Playlists/IronSkillet/' .meta-cnc.yaml
+# snippets_notshared
+cd ../snippets_notshared
+sed -i '' 's/ironskillet_panorama_notshared_10_1_rollup/skillet_panorama_notshared_v10_1/' .meta-cnc.yaml
+sed -i '' 's/Panorama Notshared IronSkillet 10.1/v10.0 Iron-Skillet for Panorama (No Shared Values))/' .meta-cnc.yaml
+sed -i '' 's/IronSkillet Playlists/IronSkillet/' .meta-cnc.yaml
+cd ../../../tools
+
 
 
 # Below block of commands creates the full template configurations for Panos
