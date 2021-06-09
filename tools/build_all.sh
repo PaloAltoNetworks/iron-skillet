@@ -123,10 +123,10 @@ sli create_template $CONFIG_ALL_PANORAMA -n ironskillet_panorama_shared_10_1 tem
 cd tools
 
 
-# Create all loadable config XML file with rendered jinja for panos and panorama
-# Using full panos file from playlists/panos/panos_full outputting in respective
+# Create all loadable config XML and set command files with rendered jinja for panos and
+# Panorama Using full panos file from playlists/panos/panos_full outputting in respective
 # Loadable config folders
-echo "using sli preview to create the loadable config xml with rendered jinja for panos"
+echo "using sli template to create the loadable config xml with rendered jinja for panos"
 sli template -sd ../ -ad -n skillet_full_panos_v10_1 ../loadable_configs/sample-cloud-AWS/panos
 sli template -sd ../ -ad -n skillet_full_panos_v10_1 ../loadable_configs/sample-cloud-Azure/panos
 sli template -sd ../ -ad -n skillet_full_panos_v10_1 ../loadable_configs/sample-cloud-GCP/panos
@@ -140,7 +140,7 @@ sli template -sd ../ -ad -n skillet_set_command_panos_v10_1 ../loadable_configs/
 sli template -sd ../ -ad -n skillet_set_command_panos_v10_1 ../loadable_configs/sample-mgmt-dhcp/panos
 sli template -sd ../ -ad -n skillet_set_command_panos_v10_1 ../loadable_configs/sample-mgmt-static/panos
 
-echo "using sli preview to create the loadable config xml with rendered jinja for panorama"
+echo "using sli template to create the loadable config xml with rendered jinja for panorama"
 sli template -sd ../ -ad $PANORAMA_CLD -n skillet_full_panorama_v10_1 ../loadable_configs/sample-cloud-AWS/panorama
 sli template -sd ../ -ad $PANORAMA_CLD -n skillet_full_panorama_v10_1 ../loadable_configs/sample-cloud-Azure/panorama
 sli template -sd ../ -ad $PANORAMA_CLD -n skillet_full_panorama_v10_1 ../loadable_configs/sample-cloud-GCP/panorama

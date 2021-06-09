@@ -21,6 +21,12 @@ without the need to communicate to a live device.
     rollup on it resulting in an output .skillet.yaml file with full
     XML snippets within.
   
+* `sli rollup_playlist`: takes a playlist and turns it into a 
+    standard skillet file.
+  
+* `sli template`: Render an xml or set command template and save it to a file.
+    Templates will be created named as they are named in the skillet.
+  
 * `sli create_template`: Input a skillet and baseline.xml file to 
     Output a full XML Jinja file with default variables.
   
@@ -72,25 +78,22 @@ The -o flag takes in a directory to store the output spreadsheet.
 
 
 ## Using SLI to Create a Loadable Config File
-The user can use the `sli preview` command to create a loadable config file.
-Running `sli preview` allows the user to make changes and gives the user a preview 
-of what the config file would look like. this command modifies the configuration of 
-the device but as opposed to modifying it on your device it saves the config file to 
-your specified directory.
+The user can use the `sli template` command to create a loadable config file.
+with rendered Jinja variables. Running `sli template` allows the user to make 
+changes and gives the user a template of what the config file would look like.
+this command modifies the configuration of the device but as opposed to 
+modifying it on your device it saves the config file to your specified directory.
 
-**SLI Preview Command**
+**SLI Template Command**
 ```bash
-> sli preview -uc -n {Panos or Panorama Skillet Name} -ad -o {Output Directory Ending in File Name}
+> sli template -n {Panos or Panorama Skillet Name} {Output Directory Ending in File Name}
 Example usage:
-> sli preview -uc -n ironskillet_panos_10_1 -ad -o /Users/bmutluoglu/Desktop/testing.xml
+> sli template -sd ../ -ad -n skillet_full_panos_v10_1 ../loadable_configs/sample-cloud-AWS/panos
 ```
 
-The `-uc` flag uses the NGFW information previously stored in the SLI context.
-You can check what is stored in your context by doing `sli show_context`. If you 
-have no NGFW stored in your context you can run the command without the -uc flag
-and enter in the information manually. The `-n` flag takes in a panos/panorama skillet.
-The `-ad` flag accepts all the default values for skillet variables. The `-o` flag
-writes the resulting file out to the given directory and to the specified filename.
+The `-sd` flag specifies a directory to load all skillets from. The `-n` flag takes 
+in a panos/panorama skillet. The `-ad` flag accepts all the default values for 
+skillet variables.
 
 
 ## Using SLI to Load a Config into the NGFW
@@ -181,8 +184,10 @@ and the users choice of output file in the `Output XML File Name` section.
 
 
 ## Build_all.sh Bash Script
-Used by the IronSkillet administrator to generate the full config skilets,
-loadable configs and spreadsheets.
+Used by the IronSkillet administrator to generate the full config skillets,
+loadable configs and spreadsheets. Simply run the bash script to populate
+and update all templates/playlists/config directories.
+
 
 ## Variables used by iron-skillet
 For information about the variables used in iron-skillet can be found at:
