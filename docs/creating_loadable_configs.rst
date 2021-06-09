@@ -71,9 +71,10 @@ This tools folder can be found at:
 `Release branch` |
 `10.1 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v10.1/tools>`_ |
 
-```
-> sli template -n {template_name} {out_directory}
-```
+Command to create the loadable config using SLI:
+
+    $ sli template -n {template_name} {out_directory}
+
 
 This command takes in a full panos skillet file generated from the playlists
 directory and renders it with jinja variable substitution thus outputting
