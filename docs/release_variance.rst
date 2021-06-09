@@ -10,7 +10,7 @@ Security profiles
 
     + Anti-spyware profile:  New DNS Security Service malicious categories set to sinkhole
 
-    + URL Filtering: Set new real-time category to alert
+    + URL Filtering: Set new real-time url category to alert
 
 
 Device configuration
