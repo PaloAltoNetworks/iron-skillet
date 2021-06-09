@@ -46,7 +46,7 @@ and [panorama template](https://iron-skillet.readthedocs.io/en/docs_master/panor
 have an overview of all the sub-skillets available in ironskillet-components to include in a playlist.
 
 Also, see the [Playlist Includes Tutorial](https://skilletbuilder.readthedocs.io/en/latest/tutorials/tutorial_includes.html)
-from [SkilletBuilder] for more information on playlists, includes, submodules, and how they all work together. The 
+from SkilletBuilder for more information on playlists, includes, submodules, and how they all work together. The 
 tutorial shows how to use the playlist model to build configurations for IronSkillet.
 
 
