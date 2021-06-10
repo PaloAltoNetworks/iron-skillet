@@ -5,6 +5,15 @@ IronSkillet Players
 
 IronSkillet configuration files can be rendered and loaded with various apps and tools.
 
+SLI
+---
+
+The Skillet Line Interfacing tool is a CLI interface that can be used to load and work
+with skillets including IronSkillet. Please refer to the README document found within the following `SLI <https://gitlab.com/panw-gse/as/sli>`_
+repository. This will walk you through the installation and basic usage of SLI in the context of
+skillets.
+
+
 panHandler
 ----------
 

@@ -59,9 +59,30 @@ config_admin_user        no                       Include addition of admin user
 config_dns               no                       Include DNS configuration element
 ======================   =======================  ==========================================================
 
+Create Loadable Configuration using the SLI tool (10.1 onwards)
+---------------------------------------------------------------
 
-Create Loadable Configuration python utility
---------------------------------------------
+The tools folder in the iron-skillet repo contains a simple bash script
+the runs a series of SLI commands in order to create both XML and set
+command versions of the loadable configs with variable substitution.
+
+This tools folder can be found at:
+
+`Release branch` |
+`10.1 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v10.1/tools>`_ |
+
+Command to create the loadable config using SLI:
+
+    $ sli template -n {template_name} {out_directory}
+
+
+This command takes in a full panos skillet file generated from the playlists
+directory and renders it with jinja variable substitution thus outputting
+a final loadable config file in the specified directory. This is done for
+all 5 loadable_config directories.
+
+Create Loadable Configuration python utility (pre 10.1)
+-------------------------------------------------------
 
 The tools folder in the iron-skillet repo contains a simple python utility for variable substitution.
 

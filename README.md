@@ -18,6 +18,7 @@ This is a Palo Alto Networks contributed project.
 ## Authors
 
 * Scott Shoaf [(@scotchoaf)](https://github.com/scotchoaf)
+* Bora Mutluoglu [(@BoraMutluoglu)](https://github.com/BoraMutluoglu)
 
 See also the list of [contributors](https://github.com/PaloAltoNetworks/iron-skillet/contributors) who have participated in this project.
 

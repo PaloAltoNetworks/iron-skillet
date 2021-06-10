@@ -36,10 +36,11 @@ Using the templates
 The templates are available on GitHub specific to each PAN-OS software version.
 
 `View github repo:` |
+`10.1 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v10.1>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v10.0>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v9.1>`_ |
 `9.0 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v9.0>`_ |
-`8.1 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v8.1>`_ |
+
 
 .. Note::
     versions 8.0 and 8.1 are still available but no longer will be updated
@@ -53,9 +54,16 @@ The library consists of a set of XML and set configuration templates grouped by:
 
 The templates in each device-type folder include:
 
-    + ``snippets`` for more granular configuration elements
+    + ``snippets`` rolled up playlist for easy skillet viewing
     + ``full config file`` to use for bootstrap or full import + load into a device
     + ``set commands`` for traditional CLI configuration
+
+The playlists (new in 10.1) in each device-type folder consist of:
+
+    + **full config** for full configuration of IronSkillet
+    + **security profiles only** for configuring only the profiles for panos or panorama
+    + **device hardening** for configuring only security policies for panos or panorama
+    + **alert only** for configuring only the alert security profiles for panos
 
 There are also validation skillets for analysis of existing configurations
 

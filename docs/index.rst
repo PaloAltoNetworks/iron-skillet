@@ -38,6 +38,5 @@ Welcome to Iron Skillet template documentation!
    :maxdepth: 1
    :caption: Reference and Release History
 
-   snippets_common_or_device
    release_variance
    release_history
