@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<config version="10.0.0" urldb="paloaltonetworks">
+<config version="10.1.0" urldb="paloaltonetworks">
   <mgt-config>
     <devices/>
   </mgt-config>

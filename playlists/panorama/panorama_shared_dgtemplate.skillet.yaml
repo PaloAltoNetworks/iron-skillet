@@ -1,0 +1,61 @@
+name: ironskillet_panorama_shared_dgtemplate_10_1
+label: Panorama Shared DGTemplate IronSkillet 10.1
+description: |-
+  group of snippets for ironskillet 10.1 panorama shared dgtemplate configuration
+type: panorama
+labels:
+  collection:
+    - IronSkillet Playlists
+
+variables:
+
+
+snippets:
+  # template object
+  - name: panorama_template_10_1
+    include: panorama_template_10_1
+  # device settings
+  - name: panorama_device_system_shared_10_1
+    include: panorama_device_system_shared_10_1
+  - name: panorama_device_setting_10_1
+    include: panorama_device_setting_10_1
+  - name: panorama_device_mgt_config_10_1
+    include: panorama_device_mgt_config_10_1
+  # shared settings
+  - name: panorama_shared_log_settings_10_1
+    include: panorama_shared_log_settings_10_1
+  # zones
+  - name: panorama_zone_protection_profile_10_1
+    include: panorama_zone_protection_profile_10_1
+  # tag object
+  - name: panorama_tag_10_1
+    include: panorama_tag_10_1
+  # log settings
+  - name: panorama_log_settings_profiles_10_1
+    include: panorama_log_settings_profiles_10_1
+  # profiles
+  - name: panorama_profiles_custom_url_category_10_1
+    include: panorama_profiles_custom_url_category_10_1
+  - name: panorama_profiles_decryption_10_1
+    include: panorama_profiles_decryption_10_1
+  - name: panorama_profiles_virus_10_1
+    include: panorama_profiles_virus_10_1
+  - name: panorama_profiles_spyware_10_1
+    include: panorama_profiles_spyware_10_1
+  - name: panorama_profiles_vulnerability_10_1
+    include: panorama_profiles_vulnerability_10_1
+  - name: panorama_profiles_file_blocking_10_1
+    include: panorama_profiles_file_blocking_10_1
+  - name: panorama_profiles_url_filtering_10_1
+    include: panorama_profiles_url_filtering_10_1
+  - name: panorama_profiles_wildfire_analysis_10_1
+    include: panorama_profiles_wildfire_analysis_10_1
+  - name: panorama_profile_group_10_1
+    include: panorama_profile_group_10_1
+  # rulebase
+  - name: panorama_post_rulebase_default_security_rules_10_1
+    include: panorama_post_rulebase_default_security_rules_10_1
+  - name: panorama_pre_rulebase_security_10_1
+    include: panorama_pre_rulebase_security_10_1
+  - name: panorama_pre_rulebase_decryption_10_1
+    include: panorama_pre_rulebase_decryption_10_1

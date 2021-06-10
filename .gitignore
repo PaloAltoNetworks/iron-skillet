@@ -1,8 +1,11 @@
+# Developer testing
+changes.yaml
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
-
+git b
 # C extensions
 *.so
 

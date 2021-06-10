@@ -1,0 +1,3 @@
+[submodule "ironskillet-components"]
+	path = submodules/ironskillet-components
+	url = https://github.com/PaloAltoNetworks/ironskillet-components.git

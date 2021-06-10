@@ -20,12 +20,26 @@ The templates are provided with a variety of usage options based
 on the user operational environment.
 
 
-#### panHandler Skillet Player
-A quick an easy way to play IronSkillet and other skillets is with the panHandler application.
+#### PanHandler Skillet Player
+A quick and easy way to play IronSkillet and other skillets is with the panHandler application.
 
 The [panHandler quick start guide](https://live.paloaltonetworks.com/t5/Skillet-Tools/Install-and-Get-Started-With-Panhandler/ta-p/307916)
 in the Skillet District Live community walks you through installation and usage including
 how to import the IronSkillet skillets.
+
+### SLI 
+The Skillet Line Interfacing tool is a CLI interface that can also be used to load and work 
+with skillets. Please refer to the README document found within the following [SLI](https://gitlab.com/panw-gse/as/sli)
+repository. This will walk you through the installation and basic usage of SLI in the context of 
+skillets.
+
+**SLI Commands to Load Skillet**
+```bash
+> sli load
+# Above line loads and views all skillets found in the working directory
+> sli load -sd {Directory Containing Skillets}
+# Above line loads and views all skillets found in the given directory
+```
 
 
 #### Getting templates from the repo
@@ -85,14 +99,14 @@ use '?' as a command-line helper. If scripting mode is enabled and you wish
 to disable, simply return to CLI operation mode with `exit` and enter
 'set cli scripting-mode off'.
 
-#### Editing loaded configurations
+#### Editing Loaded Configurations
 The detailed documentation provides a list of variables that can be edited
 and instructions for GUI and CLI edits to these values.
 
 [IronSkillet variables](https://iron-skillet.readthedocs.io/en/docs_master/creating_loadable_configs.html#variables-list-and-descriptions)
 
 
-#### Using the SET command spreadsheet to edit values
+#### Using the SET Command Spreadsheet to Edit Values
 Found in `templates/panorama/set_commands` and `templates/panos/set_commands`
 are formula-based Excel files.
 
@@ -104,11 +118,12 @@ the configuration can then be loaded using the CLI.
 **WARNING:** only update the `values` worksheet. Using caution if editing
 the worksheets to ensure cell references and formulas are not incorrect.
 
-### Tools scripts
-As an alternative, the `tools` directory contains python scripts to help
-manage and create loadable configurations. Additional documentation can be
-found in `tools`.
-
+### SLI Tooling Directory
+As an alternative, the `Tools` directory within the IronSkillet repository
+contains a README.md file going over how to use various SLI commands to help
+manage and create loadable configurations among other useful functions. Following
+the detailed steps in the README and Using SLI to accomplish these tasks is quick, 
+efficient and easy.
 
 ## Recommended Reading for Additional Best Practice Configuration Steps
 
@@ -131,7 +146,7 @@ This is a Palo Alto Networks contributed project.
 ## Authors
 
 * Scott Shoaf [(@scotchoaf)](https://github.com/scotchoaf)
-* Bob Hagen - [(@stealthllama)](https://github.com/stealthllama)
+* Bora Mutluoglu - [(@BoraMutluoglu)](https://github.com/BoraMutluoglu)
 
 See also the list of [contributors](https://github.com/PaloAltoNetworks/iron-skillet/contributors) who have participated in this project.
 
