@@ -1,8 +1,8 @@
 name: validate-IronSkillet-v10_1-panos-bae945bc-c667-4e56-a3fc-73bbb5afbe0g
-label: IronSkillet - check NGFW config for updated v10.0 elements
+label: IronSkillet - check NGFW config for updated v10.1 elements
 
 description: |
-  Check NGFW for new items updated in IronSkillet v10.x skillet
+  Check NGFW for new items updated in IronSkillet v10.1 skillet
 
 type: pan_validation
 labels:
@@ -148,12 +148,12 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#anti-spyware
 
   - name: decrypt_profile_tls13
-    label: Recommended_Decryption_Profile protocol settings max version is TLS 1.3
-    test: profile_decryption_max_version == 'tls1-3' and 'Recommended_Decryption_Profile' in IS_decrypt_profile
+    label: Recommended_Decryption_Profile protocol settings max version is TLS 1.3 or max
+    test: (profile_decryption_max_version == 'tls1-3' or profile_decryption_max_version == 'max') and 'Recommended_Decryption_Profile' in IS_decrypt_profile
     severity: medium
     fail_message: |
       {%- if 'Recommended_Decryption_Profile' not in IS_decrypt_profile %}Recommended_Decryption_Profile not in configuration
-      {%- elif profile_decryption_max_version | length == 0 %}The max version in the profile setting should be configured as v1.3
-      {%- else %}The max version in the profile setting should be v1.3 instead of {{ profile_decryption_max_version }}
+      {%- elif profile_decryption_max_version | length == 0 %}The max version in the profile setting should be configured as v1.3 or max
+      {%- else %}The max version in the profile setting should be v1.3 or max instead of {{ profile_decryption_max_version }}
       {%- endif %}
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#url-filtering
