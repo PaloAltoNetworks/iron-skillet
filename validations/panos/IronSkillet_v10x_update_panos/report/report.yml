@@ -2,4 +2,4 @@
 import: ../../../shared_report
 
 report:
-  subtitle: PAN-OS 10.x
+  subtitle: PAN-OS 10.1
