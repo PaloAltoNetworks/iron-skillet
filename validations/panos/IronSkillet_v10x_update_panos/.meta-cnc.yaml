@@ -156,4 +156,4 @@ snippets:
       {%- elif profile_decryption_max_version | length == 0 %}The max version in the profile setting should be configured as v1.3 or max
       {%- else %}The max version in the profile setting should be v1.3 or max instead of {{ profile_decryption_max_version }}
       {%- endif %}
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#url-filtering
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#decryption-profile
