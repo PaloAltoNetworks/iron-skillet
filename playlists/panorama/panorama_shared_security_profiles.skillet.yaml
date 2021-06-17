@@ -1,0 +1,47 @@
+name: ironskillet_panorama_shared_security_profiles_10_0
+label: Panorama Shared Security Profiles IronSkillet 10.0
+description: |-
+  security profiles for ironskillet 10.0 panorama shared configuration
+type: panorama
+labels:
+  collection:
+    - IronSkillet Playlists
+
+variables:
+
+
+snippets:
+
+  # tag object
+  - name: panorama_tag_10_0
+    include: panorama_tag_10_0
+    include_snippets:
+      - name: ironskillet_tag_ironskillet_version
+  # template
+  - name: panorama_template_10_0
+    include: panorama_template_10_0
+  # profiles
+  - name: panorama_profiles_custom_url_category_10_0
+    include: panorama_profiles_custom_url_category_10_0
+  - name: panorama_profiles_decryption_10_0
+    include: panorama_profiles_decryption_10_0
+  - name: panorama_profiles_virus_10_0
+    include: panorama_profiles_virus_10_0
+  - name: panorama_profiles_spyware_10_0
+    include: panorama_profiles_spyware_10_0
+  - name: panorama_profiles_vulnerability_10_0
+    include: panorama_profiles_vulnerability_10_0
+  - name: panorama_profiles_file_blocking_10_0
+    include: panorama_profiles_file_blocking_10_0
+  - name: panorama_profiles_url_filtering_10_0
+    include: panorama_profiles_url_filtering_10_0
+  - name: panorama_profiles_wildfire_analysis_10_0
+    include: panorama_profiles_wildfire_analysis_10_0
+  - name: panorama_profile_group_10_0
+    include: panorama_profile_group_10_0
+  # template stack
+  - name: panorama_template_stack_10_0
+    include: panorama_template_stack_10_0
+  # device settings pt 2
+  - name: panorama_device_group_10_0
+    include: panorama_device_group_10_0
