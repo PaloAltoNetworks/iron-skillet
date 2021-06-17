@@ -32,6 +32,14 @@ Released xx/xx/xxxx
 
 Template content updates are high level. Details can be found in the template guides.
 
+0.0.2
+^^^^^
+Released June 17th, 2021
+
+    + URL filtering profiles: Updating real-time-detection category in the following URL Filtering profiles, Outbound-URL, Alert-Only-URL and Exception-URL
+    + Added playlists directory and IronSkillet Components Submodules
+    + Update IronSkillet Submodules repo with real-time-detection category
+
 0.0.1
 ^^^^^
 Released July 21, 2020
