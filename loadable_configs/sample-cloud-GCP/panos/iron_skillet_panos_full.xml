@@ -1,6 +1,6 @@
-<config urldb="paloaltonetworks" version="10.0.0">
+<config version="10.0.0" urldb="paloaltonetworks">
   <mgt-config><users><entry name="admin">
-  <phash>$1$rdbXCPmR$y7N/yGiB/PsaCPdZk6Bne/</phash>
+  <phash>$1$FMTjrcBS$GTtSUYHXB1LyQdy5C9eDU/</phash>
   <permissions>
     <role-based>
       <superuser>yes</superuser>
@@ -841,7 +841,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 	<comments>Internal to Internal</comments>
 </entry>
 <entry name="iron-skillet-version">
-	<comments>version 0.0.1 for 10.0: version of this IronSkillet template file</comments>
+	<comments>version 0.0.2 for 10.0: version of this IronSkillet template file</comments>
 </entry></tag><log-settings><profiles><entry name="default">
   <match-list>
     <entry name="Traffic_Log_Forwarding">
@@ -2016,6 +2016,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>proxy-avoidance-and-anonymizers</member>
       <member>questionable</member>
       <member>real-estate</member>
+      <member>real-time-detection</member>
       <member>recreation-and-hobbies</member>
       <member>reference-and-research</member>
       <member>religion</member>
