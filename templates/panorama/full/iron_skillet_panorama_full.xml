@@ -1930,6 +1930,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>proxy-avoidance-and-anonymizers</member>
       <member>questionable</member>
       <member>real-estate</member>
+      <member>real-time-detection</member>
       <member>recreation-and-hobbies</member>
       <member>reference-and-research</member>
       <member>religion</member>
@@ -2104,6 +2105,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>proxy-avoidance-and-anonymizers</member>
       <member>questionable</member>
       <member>real-estate</member>
+      <member>real-time-detection</member>
       <member>recreation-and-hobbies</member>
       <member>reference-and-research</member>
       <member>religion</member>
@@ -2181,6 +2183,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>proxy-avoidance-and-anonymizers</member>
     <member>questionable</member>
     <member>real-estate</member>
+    <member>real-time-detection</member>
     <member>recreation-and-hobbies</member>
     <member>reference-and-research</member>
     <member>religion</member>
@@ -2272,6 +2275,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>proxy-avoidance-and-anonymizers</member>
       <member>questionable</member>
       <member>real-estate</member>
+      <member>real-time-detection</member>
       <member>recreation-and-hobbies</member>
       <member>reference-and-research</member>
       <member>religion</member>
@@ -2347,6 +2351,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>proxy-avoidance-and-anonymizers</member>
     <member>questionable</member>
     <member>real-estate</member>
+    <member>real-time-detection</member>
     <member>recreation-and-hobbies</member>
     <member>reference-and-research</member>
     <member>religion</member>
@@ -2384,7 +2389,8 @@ Log off immediately if you are not an authorized user.</login-banner>
       <mlav-policy-action>block</mlav-policy-action>
     </entry>
   </mlav-engine-urlbased-enabled>
-</entry></url-filtering><wildfire-analysis><entry name="Outbound-WF">
+</entry>
+</url-filtering><wildfire-analysis><entry name="Outbound-WF">
   <rules>
     <entry name="Forward-All">
       <application>

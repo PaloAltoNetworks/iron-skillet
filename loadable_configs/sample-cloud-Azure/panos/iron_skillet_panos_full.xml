@@ -1,6 +1,6 @@
 <config version="10.0.0" urldb="paloaltonetworks">
   <mgt-config><users><entry name="admin">
-  <phash>$1$XAslNOf3$bywwNtWxpu/ULaoG8s0Jw1</phash>
+  <phash>$1$d7tZBDm8$lQcsYTuaOa7T8b49WbjA7.</phash>
   <permissions>
     <role-based>
       <superuser>yes</superuser>
@@ -1843,6 +1843,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>proxy-avoidance-and-anonymizers</member>
       <member>questionable</member>
       <member>real-estate</member>
+      <member>real-time-detection</member>
       <member>recreation-and-hobbies</member>
       <member>reference-and-research</member>
       <member>religion</member>
@@ -1918,6 +1919,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>proxy-avoidance-and-anonymizers</member>
     <member>questionable</member>
     <member>real-estate</member>
+    <member>real-time-detection</member>
     <member>recreation-and-hobbies</member>
     <member>reference-and-research</member>
     <member>religion</member>
@@ -2094,6 +2096,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>proxy-avoidance-and-anonymizers</member>
     <member>questionable</member>
     <member>real-estate</member>
+    <member>real-time-detection</member>
     <member>recreation-and-hobbies</member>
     <member>reference-and-research</member>
     <member>religion</member>
@@ -2185,6 +2188,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <member>proxy-avoidance-and-anonymizers</member>
       <member>questionable</member>
       <member>real-estate</member>
+      <member>real-time-detection</member>
       <member>recreation-and-hobbies</member>
       <member>reference-and-research</member>
       <member>religion</member>
@@ -2260,6 +2264,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     <member>proxy-avoidance-and-anonymizers</member>
     <member>questionable</member>
     <member>real-estate</member>
+    <member>real-time-detection</member>
     <member>recreation-and-hobbies</member>
     <member>reference-and-research</member>
     <member>religion</member>
@@ -2297,7 +2302,8 @@ Log off immediately if you are not an authorized user.</login-banner>
       <mlav-policy-action>block</mlav-policy-action>
     </entry>
   </mlav-engine-urlbased-enabled>
-</entry></url-filtering><wildfire-analysis><entry name="Outbound-WF">
+</entry>
+</url-filtering><wildfire-analysis><entry name="Outbound-WF">
   <rules>
     <entry name="Forward-All">
       <application>
