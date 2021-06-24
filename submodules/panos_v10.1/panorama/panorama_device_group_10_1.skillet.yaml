@@ -1,0 +1,27 @@
+# panorama device group configuration snippets
+
+name: panorama_device_group_10_1
+label: Panorama Device - Group
+description: |-
+    reference device group configuration snippets
+type: panorama
+labels:
+    collection:
+      - IronSkillet 10.1 Panorama Snippets
+
+variables:
+
+  - name: DEVICE_GROUP
+    description: Device-group name for Panorama
+    default: sample_devicegroup
+    type_hint: text
+    help_text: creates a sample device-group with IronSkillet configuration elements
+
+snippets:
+
+-   name: ironskillet_device_setting_ctd
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group
+    element: |-
+      <entry name="{{DEVICE_GROUP}}">
+       <devices></devices>
+      </entry>

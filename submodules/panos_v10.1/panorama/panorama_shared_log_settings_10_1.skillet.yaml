@@ -1,0 +1,153 @@
+# panorama shared log settings configuration snippets
+
+name: panorama_shared_log_settings_10_1
+label: Panorama Shared Log Settings
+description: |-
+    reference shared log settings configuration snippets
+type: panorama
+labels:
+    collection:
+      - IronSkillet 10.1 Panorama Snippets
+
+variables:
+
+  - name: EMAIL_PROFILE_GATEWAY
+    description: email gateway address for critical alerts
+    default: 192.0.2.1
+    type_hint: text
+    help_text: email server profile configuration under Device --> Server Profiles
+  - name: EMAIL_PROFILE_FROM
+    description: from address in email alerts
+    default: sentfrom@yourdomain.com
+    type_hint: text
+    help_text: email server profile configuration under Device --> Server Profiles
+  - name: EMAIL_PROFILE_TO
+    description: to address in email alerts
+    default: sendto@yourdomain.com
+    type_hint: text
+    help_text: email server profile configuration under Device --> Server Profiles
+  - name: SYSLOG_SERVER
+    description: syslog server ip address
+    default: 192.0.2.2
+    type_hint: text
+
+snippets:
+-   name: ironskillet_shared_log_settings_email_profile
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/shared/log-settings
+    element: |-
+      <email>
+        <entry name="Sample_Email_Profile">
+          <server>
+            <entry name="Sample_Email_Profile">
+              <display-name>Threat_Alerts</display-name>
+              <gateway>{{ EMAIL_PROFILE_GATEWAY }}</gateway>
+              <from>{{ EMAIL_PROFILE_FROM }}</from>
+              <to>{{ EMAIL_PROFILE_TO }}</to>
+              <protocol>SMTP</protocol>
+            </entry>
+          </server>
+        </entry>
+      </email>
+
+-   name: ironskillet_shared_log_settings_syslog_profile
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/shared/log-settings
+    element: |-
+      <syslog>
+        <entry name="Sample_Syslog_Profile">
+          <server>
+            <entry name="Sample_Syslog">
+              <transport>UDP</transport>
+              <port>514</port>
+              <format>BSD</format>
+              <server>{{ SYSLOG_SERVER }}</server>
+              <facility>LOG_USER</facility>
+            </entry>
+          </server>
+        </entry>
+      </syslog>
+
+-   name: ironskillet_shared_log_settings_syslog_forwarding
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/shared/log-settings
+    element: |-
+      <system>
+        <match-list>
+          <entry name="System_Log_Forwarding">
+            <filter>All Logs</filter>
+            <send-to-panorama>yes</send-to-panorama>
+          </entry>
+        </match-list>
+      </system>
+
+-   name: ironskillet_shared_log_settings_log_forwarding
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/shared/log-settings
+    element: |-
+      <config>
+        <match-list>
+          <entry name="Configuration_Log_Forwarding">
+            <filter>All Logs</filter>
+            <send-to-panorama>yes</send-to-panorama>
+          </entry>
+        </match-list>
+      </config>
+
+-   name: ironskillet_shared_log_settings_userid_forwarding
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/shared/log-settings
+    element: |-
+      <userid>
+        <match-list>
+          <entry name="User-ID_Log_Forwarding">
+            <filter>All Logs</filter>
+            <send-to-panorama>yes</send-to-panorama>
+          </entry>
+        </match-list>
+      </userid>
+
+-   name: ironskillet_shared_log_settings_hip_forwarding
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/shared/log-settings
+    element: |-
+      <hipmatch>
+        <match-list>
+          <entry name="HIP_Log_Forwarding">
+            <filter>All Logs</filter>
+            <send-to-panorama>yes</send-to-panorama>
+          </entry>
+        </match-list>
+      </hipmatch>
+
+-   name: ironskillet_shared_log_settings_correlation_forwarding
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/shared/log-settings
+    element: |-
+      <correlation>
+        <match-list>
+          <entry name="Correlation_Log_Forwarding">
+            <send-syslog>
+              <member>Sample_Syslog_Profile</member>
+            </send-syslog>
+            <filter>All Logs</filter>
+          </entry>
+        </match-list>
+      </correlation>
+
+-   name: ironskillet_shared_log_settings_gp_forwarding
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/shared/log-settings
+    element: |-
+      <globalprotect>
+        <match-list>
+          <entry name="GP_Log_Forwarding">
+            <filter>All Logs</filter>
+            <send-to-panorama>yes</send-to-panorama>
+          </entry>
+        </match-list>
+      </globalprotect>
+
+-   name: ironskillet_shared_log_settings_ip_tag_forwarding
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/shared/log-settings
+    element: |-
+      <iptag>
+        <match-list>
+          <entry name="IP_Tag_Log_Forwarding">
+            <filter>All Logs</filter>
+            <send-to-panorama>yes</send-to-panorama>
+          </entry>
+        </match-list>
+      </iptag>

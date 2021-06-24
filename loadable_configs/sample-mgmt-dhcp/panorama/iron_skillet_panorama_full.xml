@@ -3,7 +3,7 @@
     <devices/>
     <users>
     <entry name="adminuser">
-      <phash>$1$C/obcMIe$.ysesS0bLdOkRvgfAsmSK1</phash>
+      <phash>$1$0BkJxzaG$pF3XT//6LeY7./kkvXOgl1</phash>
       <permissions>
         <role-based>
           <superuser>yes</superuser>
@@ -574,7 +574,7 @@
             </password-complexity>
             <users>
               <entry name="adminuser">
-                <phash>$1$1E96DmA0$84QVpmQgpGxKms3tFVmvY0</phash>
+                <phash>$1$dTc196LY$hRrMeYU7INFD1s9rN5LpQ0</phash>
                 <permissions>
                   <role-based>
                     <superuser>yes</superuser>

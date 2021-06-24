@@ -1,0 +1,36 @@
+# panorama custom URL category profile configuration snippets
+
+name: panorama_profiles_custom_url_category_10_0
+label: Panorama Profiles - Custom URL Category
+description: |-
+    reference custom URL category profile configuration snippets
+type: panorama
+labels:
+    collection:
+      - IronSkillet 10.0 Panorama Snippets
+
+variables:
+
+
+snippets:
+
+-   name: ironskillet_custom_url_category_block
+    xpath: /config/shared/profiles/custom-url-category
+    element: |-
+      <entry name="Block">
+        <type>URL List</type>
+      </entry>
+
+-   name: ironskillet_custom_url_category_allow
+    xpath: /config/shared/profiles/custom-url-category
+    element: |-
+      <entry name="Allow">
+        <type>URL List</type>
+      </entry>
+
+-   name: ironskillet_custom_url_category_no_decrypt
+    xpath: /config/shared/profiles/custom-url-category
+    element: |-
+      <entry name="Custom-No-Decrypt">
+        <type>URL List</type>
+      </entry>

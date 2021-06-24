@@ -1,0 +1,28 @@
+# panos log settings configuration snippets
+
+name: panos_ngfw_log_settings_profiles_email_10_0
+label: PAN_OS NGFW Log Settings Profiles - Email
+description: |-
+    reference log settings profiles email configuration snippets
+type: panos
+labels:
+    collection:
+      - IronSkillet 10.0 PAN-OS Snippets
+
+variables:
+
+
+snippets:
+
+-   name: ironskillet_log_settings_email
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/log-settings/profiles/entry[@name='default']/match-list
+    element: |-
+      <entry name="Email_Malicious_Verdicts">
+        <send-email>
+          <member>Sample_Email_Profile</member>
+        </send-email>
+        <action-desc>Email Malicious Wildfire Verdicts</action-desc>
+        <log-type>wildfire</log-type>
+        <filter>(verdict neq benign)</filter>
+        <send-to-panorama>no</send-to-panorama>
+      </entry>

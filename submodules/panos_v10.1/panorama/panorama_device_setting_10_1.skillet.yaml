@@ -1,0 +1,157 @@
+# panorama device setting configuration snippets
+
+name: panorama_device_setting_10_1
+label: Panorama Device - Setting
+description: |-
+    reference device setting configuration snippets
+type: panorama
+labels:
+    collection:
+      - IronSkillet 10.1 Panorama Snippets
+
+variables:
+
+  - name: API_KEY_LIFETIME
+    description: lifetime for the api key in minutes
+    default: 525600
+    type_hint: text
+    help_text: sets the expiration period for generated API keys
+
+snippets:
+
+-   name: ironskillet_device_setting_ctd
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
+    element: |-
+      <ctd>
+        <tcp-bypass-exceed-queue>no</tcp-bypass-exceed-queue>
+        <udp-bypass-exceed-queue>no</udp-bypass-exceed-queue>
+      </ctd>
+
+-   name: ironskillet_device_setting_high_dp_load
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
+    element: |-
+      <management>
+        <enable-log-high-dp-load>yes</enable-log-high-dp-load>
+      </management>
+
+-   name: ironskillet_device_setting_max_csv
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
+    element: |-
+      <management>
+        <max-rows-in-csv-export>1048576</max-rows-in-csv-export>
+      </management>
+
+-   name: ironskillet_device_setting_api_key_lifetime
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
+    element: |-
+      <management>
+        <api>
+          <key>
+            <lifetime>{{ API_KEY_LIFETIME }}</lifetime>
+          </key>
+        </api>
+      </management>
+
+-   name: ironskillet_device_setting_admin_lockout
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
+    element: |-
+      <management>
+        <admin-lockout>
+          <failed-attempts>5</failed-attempts>
+          <lockout-time>30</lockout-time>
+        </admin-lockout>
+      </management>
+
+-   name: ironskillet_device_setting_idle_timeout
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
+    element: |-
+      <management>
+        <idle-timeout>10</idle-timeout>
+      </management>
+
+-   name: ironskillet_device_setting_commit_lock
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
+    element: |-
+      <management>
+        <auto-acquire-commit-lock>yes</auto-acquire-commit-lock>
+      </management>
+
+-   name: ironskillet_device_setting_wildfire
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
+    element: |-
+      <wildfire>
+         <file-size-limit>
+          <entry name="pe">
+            <size-limit>16</size-limit>
+          </entry>
+          <entry name="apk">
+            <size-limit>30</size-limit>
+          </entry>
+          <entry name="pdf">
+            <size-limit>3072</size-limit>
+          </entry>
+          <entry name="ms-office">
+            <size-limit>16384</size-limit>
+          </entry>
+          <entry name="jar">
+            <size-limit>5</size-limit>
+          </entry>
+          <entry name="flash">
+            <size-limit>5</size-limit>
+          </entry>
+          <entry name="MacOSX">
+            <size-limit>10</size-limit>
+          </entry>
+          <entry name="archive">
+            <size-limit>50</size-limit>
+          </entry>
+          <entry name="linux">
+            <size-limit>50</size-limit>
+          </entry>
+          <entry name="script">
+            <size-limit>2000</size-limit>
+          </entry>
+         </file-size-limit>
+        <report-benign-file>yes</report-benign-file>
+        <report-grayware-file>yes</report-grayware-file>
+      </wildfire>
+
+-   name: ironskillet_device_setting_config
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
+    element: |-
+      <config>
+        <rematch>yes</rematch>
+      </config>
+
+-   name: ironskillet_device_setting_application
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
+    element: |-
+      <application>
+        <notify-user>yes</notify-user>
+        <bypass-exceed-queue>no</bypass-exceed-queue>
+      </application>
+
+-   name: ironskillet_device_setting_logging
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
+    element: |-
+      <logging>
+        <log-suppression>no</log-suppression>
+      </logging>
+
+-   name: ironskillet_device_setting_tcp
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
+    element: |-
+      <tcp>
+        <urgent-data>clear</urgent-data>
+        <drop-zero-flag>yes</drop-zero-flag>
+        <bypass-exceed-oo-queue>no</bypass-exceed-oo-queue>
+        <check-timestamp-option>yes</check-timestamp-option>
+        <strip-mptcp-option>yes</strip-mptcp-option>
+      </tcp>
+
+-   name: ironskillet_device_setting_packet_buffer
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
+    element: |-
+      <session>
+        <packet-buffer-protection-enable>yes</packet-buffer-protection-enable>
+      </session>

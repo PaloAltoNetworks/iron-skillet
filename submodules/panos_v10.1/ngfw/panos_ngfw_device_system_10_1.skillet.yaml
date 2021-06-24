@@ -1,0 +1,110 @@
+# panos device system configuration snippets
+
+name: panos_ngfw_device_system_10_1
+label: PAN_OS NGFW Device - System
+description: |-
+    reference device system configuration snippets
+type: panos
+labels:
+    collection:
+      - IronSkillet 10.1 PAN-OS Snippets
+
+variables:
+
+  - name: FW_NAME
+    description: Firewall hostname
+    default: panos-01
+    type_hint: text
+  - name: NTP_1
+    description: primary NTP server
+    default: 0.pool.ntp.org
+    type_hint: text
+  - name: NTP_2
+    description: secondary NTP server
+    default: 1.pool.ntp.org
+    type_hint: text
+
+snippets:
+
+-   name: ironskillet_device_system_dynamic_updates
+    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    element: |-
+      <update-schedule>
+        <threats>
+          <recurring>
+            <every-30-mins>
+              <at>2</at>
+              <action>download-and-install</action>
+            </every-30-mins>
+            <threshold>48</threshold>
+          </recurring>
+        </threats>
+        <anti-virus>
+          <recurring>
+            <hourly>
+              <at>4</at>
+              <action>download-and-install</action>
+            </hourly>
+          </recurring>
+        </anti-virus>
+        <wildfire>
+          <recurring>
+            <real-time/>
+          </recurring>
+        </wildfire>
+        <global-protect-datafile>
+          <recurring>
+            <hourly>
+              <at>40</at>
+              <action>download-and-install</action>
+            </hourly>
+          </recurring>
+        </global-protect-datafile>
+        <global-protect-clientless-vpn>
+          <recurring>
+            <hourly>
+              <at>50</at>
+              <action>download-and-install</action>
+            </hourly>
+          </recurring>
+        </global-protect-clientless-vpn>
+      </update-schedule>
+
+-   name: ironskillet_device_system_snmp
+    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    element: |-
+      <snmp-setting>
+        <access-setting>
+          <version>
+            <v3/>
+          </version>
+        </access-setting>
+      </snmp-setting>
+
+-   name: ironskillet_device_system_ntp
+    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    element: |-
+      <ntp-servers>
+        <primary-ntp-server>
+          <ntp-server-address>{{ NTP_1 }}</ntp-server-address>
+        </primary-ntp-server>
+        <secondary-ntp-server>
+          <ntp-server-address>{{ NTP_2 }}</ntp-server-address>
+        </secondary-ntp-server>
+      </ntp-servers>
+
+-   name: ironskillet_device_system_login_banner
+    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    element: |-
+      <login-banner>You have accessed a protected system.
+      Log off immediately if you are not an authorized user.</login-banner>
+
+-   name: ironskillet_device_system_timezone
+    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    element: |-
+      <timezone>UTC</timezone>
+
+-   name: ironskillet_device_system_hostname
+    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    element: |-
+      <hostname>{{ FW_NAME }}</hostname>

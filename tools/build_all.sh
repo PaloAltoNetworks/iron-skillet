@@ -138,7 +138,7 @@ sli template -sd ../ -ad -n skillet_set_command_panos_v10_1 ../loadable_configs/
 sli template -sd ../ -ad -n skillet_set_command_panos_v10_1 ../loadable_configs/sample-cloud-Azure/panos
 sli template -sd ../ -ad -n skillet_set_command_panos_v10_1 ../loadable_configs/sample-cloud-GCP/panos
 sli template -sd ../ -ad -n skillet_set_command_panos_v10_1 ../loadable_configs/sample-mgmt-dhcp/panos
-sli template -sd ../ -ad -n skillet_set_command_panos_v10_1 ../loadable_configs/sample-mgmt-static/panos
+sli template -sd ../ -ad $MGMT_STATIC -n skillet_set_command_panos_v10_1 ../loadable_configs/sample-mgmt-static/panos
 
 echo "using sli template to create the loadable config xml with rendered jinja for panorama"
 sli template -sd ../ -ad $PANORAMA_CLD -n skillet_full_panorama_v10_1 ../loadable_configs/sample-cloud-AWS/panorama
@@ -152,7 +152,7 @@ sli template -sd ../ -ad -n skillet_setcommand_panorama_v10_1 ../loadable_config
 sli template -sd ../ -ad -n skillet_setcommand_panorama_v10_1 ../loadable_configs/sample-cloud-Azure/panorama
 sli template -sd ../ -ad -n skillet_setcommand_panorama_v10_1 ../loadable_configs/sample-cloud-GCP/panorama
 sli template -sd ../ -ad -n skillet_setcommand_panorama_v10_1 ../loadable_configs/sample-mgmt-dhcp/panorama
-sli template -sd ../ -ad -n skillet_setcommand_panorama_v10_1 ../loadable_configs/sample-mgmt-static/panorama
+sli template -sd ../ -ad $MGMT_STATIC -n skillet_setcommand_panorama_v10_1 ../loadable_configs/sample-mgmt-static/panorama
 
 
 # Below block of commands creates the spreadsheet files for both Panorama and Panos set commands

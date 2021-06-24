@@ -1,0 +1,80 @@
+# panorama  setting configuration snippets
+
+name: panorama_setting_10_0
+label: Panorama Setting
+description: |-
+    reference setting configuration snippets
+type: panorama
+labels:
+    collection:
+      - IronSkillet 10.0 Panorama Snippets
+
+variables:
+
+  - name: PANORAMA_TYPE
+    description: Panorama management IP type
+    default: static
+    type_hint: dropdown
+    help_text: select static unless panorama is cloud deployed and uses DHCP addressing
+    dd_list:
+      - key: static
+        value: static
+      - key: cloud dhcp
+        value: cloud
+    toggle_hint:
+      source: config_mgmt_intf_panorama
+      value: 'yes'
+  - name: PANORAMA_NAME
+    description: Panorama hostname
+    default: panorama01
+    type_hint: text
+  - name: ADMINISTRATOR_USERNAME
+    description: admin username
+    default: adminuser
+    type_hint: text
+    help_text: if the user opts out of the Panorama admin config, this user will still be applied as a firewall adminstrator
+  - name: API_KEY_LIFETIME
+    description: lifetime for the api key in minutes
+    default: 525600
+    type_hint: text
+    help_text: sets the expiration period for generated API keys
+
+snippets:
+
+-   name: ironskillet_panorama_setting_management
+    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
+    element: |-
+      <management>
+        {%- if PANORAMA_TYPE == "cloud" %}
+        <initcfg>
+          <type>
+             <dhcp-client>
+                 <send-hostname>yes</send-hostname>
+                 <send-client-id>no</send-client-id>
+                 <accept-dhcp-hostname>no</accept-dhcp-hostname>
+                 <accept-dhcp-domain>no</accept-dhcp-domain>
+             </dhcp-client>
+          </type>
+         <hostname>{{ PANORAMA_NAME }}</hostname>
+         <username>{{ ADMINISTRATOR_USERNAME }}</username>
+        </initcfg>
+        {% endif %}
+        <storage-partition>
+          <internal/>
+        </storage-partition>
+        <hostname-type-in-syslog>FQDN</hostname-type-in-syslog>
+        <enable-reporting-on-groups>yes</enable-reporting-on-groups>
+        <share-unused-objects-with-devices>no</share-unused-objects-with-devices>
+        <max-rows-in-csv-export>1048576</max-rows-in-csv-export>
+        <api>
+          <key>
+            <lifetime>{{ API_KEY_LIFETIME }}</lifetime>
+          </key>
+        </api>
+        <admin-lockout>
+          <failed-attempts>5</failed-attempts>
+          <lockout-time>30</lockout-time>
+        </admin-lockout>
+        <idle-timeout>10</idle-timeout>
+        <auto-acquire-commit-lock>yes</auto-acquire-commit-lock>
+      </management>

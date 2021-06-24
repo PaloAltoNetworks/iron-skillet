@@ -1,0 +1,24 @@
+# panos device setting forward decrypt
+# not included in IronSkillet full playlsit currently
+# xpath is nontraditional, and
+
+name: panos_ngfw_forward_decrypt_10_1
+label: PAN_OS NGFW Device - Forward Decrypt
+description: |-
+    reference device setting forward decrypt snippet
+type: panos
+labels:
+    collection:
+      - IronSkillet 10.1 PAN-OS Snippets
+
+variables:
+
+
+snippets:
+
+-   name: ironskillet_device_setting_forward_decrypt
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/vsys/entry[@name="vsys1"]/setting
+    element: |-
+      <ssl-decrypt>
+        <allow-forward-decrypted-content>yes</allow-forward-decrypted-content>
+      </ssl-decrypt>

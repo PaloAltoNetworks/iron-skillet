@@ -1,0 +1,129 @@
+# panos profile group configuration snippets
+
+name: panos_ngfw_profile_group_10_1
+label: PAN_OS NGFW Profiles - AntiVirus
+description: |-
+    reference profile-group configuration snippets
+type: panos
+labels:
+    collection:
+      - IronSkillet 10.1 PAN-OS Snippets
+
+variables:
+
+
+snippets:
+
+-   name: ironskillet_profile_group_outbound
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profile-group
+    element: |-
+      <entry name="Outbound">
+        <virus>
+          <member>Outbound-AV</member>
+        </virus>
+        <spyware>
+          <member>Outbound-AS</member>
+        </spyware>
+        <vulnerability>
+          <member>Outbound-VP</member>
+        </vulnerability>
+        <url-filtering>
+          <member>Outbound-URL</member>
+        </url-filtering>
+        <file-blocking>
+          <member>Outbound-FB</member>
+        </file-blocking>
+        <wildfire-analysis>
+          <member>Outbound-WF</member>
+        </wildfire-analysis>
+      </entry>
+
+-   name: ironskillet_profile_group_inbound
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profile-group
+    element: |-
+      <entry name="Inbound">
+        <virus>
+          <member>Inbound-AV</member>
+        </virus>
+        <spyware>
+          <member>Inbound-AS</member>
+        </spyware>
+        <vulnerability>
+          <member>Inbound-VP</member>
+        </vulnerability>
+        <file-blocking>
+          <member>Inbound-FB</member>
+        </file-blocking>
+        <wildfire-analysis>
+          <member>Inbound-WF</member>
+        </wildfire-analysis>
+      </entry>
+
+-   name: ironskillet_profile_group_internal
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profile-group
+    element: |-
+      <entry name="Internal">
+        <virus>
+          <member>Internal-AV</member>
+        </virus>
+        <spyware>
+          <member>Internal-AS</member>
+        </spyware>
+        <vulnerability>
+          <member>Internal-VP</member>
+        </vulnerability>
+        <file-blocking>
+          <member>Internal-FB</member>
+        </file-blocking>
+        <wildfire-analysis>
+          <member>Internal-WF</member>
+        </wildfire-analysis>
+      </entry>
+
+-   name: ironskillet_profile_group_alert_all
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profile-group
+    element: |-
+      <entry name="Alert-Only">
+        <virus>
+          <member>Alert-Only-AV</member>
+        </virus>
+        <spyware>
+          <member>Alert-Only-AS</member>
+        </spyware>
+        <vulnerability>
+          <member>Alert-Only-VP</member>
+        </vulnerability>
+        <url-filtering>
+          <member>Alert-Only-URL</member>
+        </url-filtering>
+        <file-blocking>
+          <member>Alert-Only-FB</member>
+        </file-blocking>
+        <wildfire-analysis>
+          <member>Alert-Only-WF</member>
+        </wildfire-analysis>
+      </entry>
+
+-   name: ironskillet_profile_group_default
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profile-group
+    element: |-
+      <entry name="default">
+        <virus>
+          <member>Outbound-AV</member>
+        </virus>
+        <spyware>
+          <member>Outbound-AS</member>
+        </spyware>
+        <vulnerability>
+          <member>Outbound-VP</member>
+        </vulnerability>
+        <url-filtering>
+          <member>Outbound-URL</member>
+        </url-filtering>
+        <file-blocking>
+          <member>Outbound-FB</member>
+        </file-blocking>
+        <wildfire-analysis>
+          <member>Outbound-WF</member>
+        </wildfire-analysis>
+      </entry>

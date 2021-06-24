@@ -1,0 +1,355 @@
+# panorama spyware profile configuration snippets
+
+name: panorama_profiles_spyware_10_0
+label: Panorama Profiles - Spyware
+description: |-
+    reference spyware profile configuration snippets
+type: panorama
+labels:
+    collection:
+      - IronSkillet 10.0 Panorama Snippets
+
+variables:
+
+  - name: SINKHOLE_IPV4
+    description: sinkhole FQDN IPv4
+    default: sinkhole.paloaltonetworks.com
+    type_hint: text
+    help_text: FQDN value for the IPV4 sinkhole address used in the anti-spyware security profile
+  - name: SINKHOLE_IPV6
+    description: sinkhole address IPv6
+    default: 2600:5200::1
+    type_hint: ip_address
+    help_text: IP address for the IPv6 sinkhole used in the anti-spyware security profile
+
+snippets:
+
+-   name: ironskillet_spyware_outbound
+    xpath: /config/shared/profiles/spyware
+    element: |-
+      <entry name="Outbound-AS">
+        <botnet-domains>
+          <lists>
+            <entry name="default-paloalto-dns">
+              <action>
+                <sinkhole/>
+              </action>
+              <packet-capture>single-packet</packet-capture>
+            </entry>
+          </lists>
+          <dns-security-categories>
+            <entry name="pan-dns-sec-benign">
+              <log-level>default</log-level>
+              <action>default</action>
+              <packet-capture>disable</packet-capture>
+            </entry>
+            <entry name="pan-dns-sec-cc">
+              <log-level>default</log-level>
+              <action>sinkhole</action>
+              <packet-capture>single-packet</packet-capture>
+            </entry>
+            <entry name="pan-dns-sec-ddns">
+              <log-level>default</log-level>
+              <action>default</action>
+              <packet-capture>single-packet</packet-capture>
+            </entry>
+            <entry name="pan-dns-sec-malware">
+              <log-level>default</log-level>
+              <action>sinkhole</action>
+              <packet-capture>single-packet</packet-capture>
+            </entry>
+            <entry name="pan-dns-sec-recent">
+              <log-level>default</log-level>
+              <action>default</action>
+              <packet-capture>single-packet</packet-capture>
+            </entry>
+          </dns-security-categories>
+          <sinkhole>
+            <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
+            <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+          </sinkhole>
+        </botnet-domains>
+        <rules>
+          <entry name="Block-Critical-High-Medium">
+            <action>
+              <reset-both/>
+            </action>
+            <severity>
+              <member>critical</member>
+              <member>high</member>
+              <member>medium</member>
+            </severity>
+            <threat-name>any</threat-name>
+            <category>any</category>
+            <packet-capture>single-packet</packet-capture>
+          </entry>
+          <entry name="Default-Low-Info">
+            <action>
+              <default/>
+            </action>
+            <severity>
+              <member>low</member>
+              <member>informational</member>
+            </severity>
+            <threat-name>any</threat-name>
+            <category>any</category>
+            <packet-capture>disable</packet-capture>
+          </entry>
+        </rules>
+      </entry>
+
+-   name: ironskillet_spyware_inbound
+    xpath: /config/shared/profiles/spyware
+    element: |-
+      <entry name="Inbound-AS">
+        <botnet-domains>
+          <lists>
+            <entry name="default-paloalto-dns">
+              <action>
+                <sinkhole/>
+              </action>
+              <packet-capture>single-packet</packet-capture>
+            </entry>
+          </lists>
+          <dns-security-categories>
+            <entry name="pan-dns-sec-benign">
+              <log-level>default</log-level>
+              <action>default</action>
+              <packet-capture>disable</packet-capture>
+            </entry>
+            <entry name="pan-dns-sec-cc">
+              <log-level>default</log-level>
+              <action>sinkhole</action>
+              <packet-capture>single-packet</packet-capture>
+            </entry>
+            <entry name="pan-dns-sec-ddns">
+              <log-level>default</log-level>
+              <action>default</action>
+              <packet-capture>single-packet</packet-capture>
+            </entry>
+            <entry name="pan-dns-sec-malware">
+              <log-level>default</log-level>
+              <action>sinkhole</action>
+              <packet-capture>single-packet</packet-capture>
+            </entry>
+            <entry name="pan-dns-sec-recent">
+              <log-level>default</log-level>
+              <action>default</action>
+              <packet-capture>single-packet</packet-capture>
+            </entry>
+          </dns-security-categories>
+          <sinkhole>
+            <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
+            <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+          </sinkhole>
+        </botnet-domains>
+        <rules>
+          <entry name="Block-Critical-High-Medium">
+            <action>
+              <reset-both/>
+            </action>
+            <severity>
+              <member>critical</member>
+              <member>high</member>
+              <member>medium</member>
+            </severity>
+            <threat-name>any</threat-name>
+            <category>any</category>
+            <packet-capture>single-packet</packet-capture>
+          </entry>
+          <entry name="Default-Low-Info">
+            <action>
+              <default/>
+            </action>
+            <severity>
+              <member>low</member>
+              <member>informational</member>
+            </severity>
+            <threat-name>any</threat-name>
+            <category>any</category>
+            <packet-capture>disable</packet-capture>
+          </entry>
+        </rules>
+      </entry>
+
+-   name: ironskillet_spyware_internal
+    xpath: /config/shared/profiles/spyware
+    element: |-
+      <entry name="Internal-AS">
+        <botnet-domains>
+          <lists>
+            <entry name="default-paloalto-dns">
+              <action>
+                <sinkhole/>
+              </action>
+              <packet-capture>single-packet</packet-capture>
+            </entry>
+          </lists>
+          <dns-security-categories>
+            <entry name="pan-dns-sec-benign">
+              <log-level>default</log-level>
+              <action>default</action>
+              <packet-capture>disable</packet-capture>
+            </entry>
+            <entry name="pan-dns-sec-cc">
+              <log-level>default</log-level>
+              <action>sinkhole</action>
+              <packet-capture>single-packet</packet-capture>
+            </entry>
+            <entry name="pan-dns-sec-ddns">
+              <log-level>default</log-level>
+              <action>default</action>
+              <packet-capture>single-packet</packet-capture>
+            </entry>
+            <entry name="pan-dns-sec-malware">
+              <log-level>default</log-level>
+              <action>sinkhole</action>
+              <packet-capture>single-packet</packet-capture>
+            </entry>
+            <entry name="pan-dns-sec-recent">
+              <log-level>default</log-level>
+              <action>default</action>
+              <packet-capture>single-packet</packet-capture>
+            </entry>
+          </dns-security-categories>
+          <sinkhole>
+            <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
+            <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+          </sinkhole>
+        </botnet-domains>
+        <rules>
+          <entry name="Block-Critical-High">
+            <action>
+              <reset-both/>
+            </action>
+            <severity>
+              <member>critical</member>
+              <member>high</member>
+            </severity>
+            <threat-name>any</threat-name>
+            <category>any</category>
+            <packet-capture>single-packet</packet-capture>
+          </entry>
+          <entry name="Default-Medium-Low-Info">
+            <action>
+              <default/>
+            </action>
+            <severity>
+              <member>medium</member>
+              <member>low</member>
+              <member>informational</member>
+            </severity>
+            <threat-name>any</threat-name>
+            <category>any</category>
+            <packet-capture>disable</packet-capture>
+          </entry>
+        </rules>
+      </entry>
+
+-   name: ironskillet_spyware_alert_all
+    xpath: /config/shared/profiles/spyware
+    element: |-
+      <entry name="Alert-Only-AS">
+        <botnet-domains>
+          <lists>
+            <entry name="default-paloalto-dns">
+              <action>
+                <alert/>
+              </action>
+              <packet-capture>single-packet</packet-capture>
+            </entry>
+          </lists>
+          <dns-security-categories>
+            <entry name="pan-dns-sec-benign">
+              <log-level>default</log-level>
+              <action>allow</action>
+              <packet-capture>disable</packet-capture>
+            </entry>
+            <entry name="pan-dns-sec-cc">
+              <log-level>default</log-level>
+              <action>allow</action>
+              <packet-capture>single-packet</packet-capture>
+            </entry>
+            <entry name="pan-dns-sec-ddns">
+              <log-level>default</log-level>
+              <action>allow</action>
+              <packet-capture>single-packet</packet-capture>
+            </entry>
+            <entry name="pan-dns-sec-malware">
+              <log-level>default</log-level>
+              <action>allow</action>
+              <packet-capture>single-packet</packet-capture>
+            </entry>
+            <entry name="pan-dns-sec-recent">
+              <log-level>default</log-level>
+              <action>allow</action>
+              <packet-capture>single-packet</packet-capture>
+            </entry>
+          </dns-security-categories>
+          <sinkhole>
+            <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
+            <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+          </sinkhole>
+        </botnet-domains>
+        <rules>
+          <entry name="Alert-All">
+            <action>
+              <alert/>
+            </action>
+            <severity>
+              <member>any</member>
+            </severity>
+            <threat-name>any</threat-name>
+            <category>any</category>
+            <packet-capture>disable</packet-capture>
+          </entry>
+        </rules>
+      </entry>
+
+-   name: ironskillet_exception
+    xpath: /config/shared/profiles/spyware
+    element: |-
+      <entry name="Exception-AS">
+        <description>Used for exception cases not part of the recommended practice</description>
+        <botnet-domains>
+          <lists>
+            <entry name="default-paloalto-dns">
+              <packet-capture>disable</packet-capture>
+              <action>
+                <sinkhole/>
+              </action>
+            </entry>
+          </lists>
+          <dns-security-categories>
+            <entry name="pan-dns-sec-benign">
+              <log-level>default</log-level>
+              <action>default</action>
+              <packet-capture>disable</packet-capture>
+            </entry>
+            <entry name="pan-dns-sec-cc">
+              <log-level>default</log-level>
+              <action>default</action>
+              <packet-capture>disable</packet-capture>
+            </entry>
+            <entry name="pan-dns-sec-ddns">
+              <log-level>default</log-level>
+              <action>default</action>
+              <packet-capture>disable</packet-capture>
+            </entry>
+            <entry name="pan-dns-sec-malware">
+              <log-level>default</log-level>
+              <action>default</action>
+              <packet-capture>disable</packet-capture>
+            </entry>
+            <entry name="pan-dns-sec-recent">
+              <log-level>default</log-level>
+              <action>default</action>
+              <packet-capture>disable</packet-capture>
+            </entry>
+          </dns-security-categories>
+          <sinkhole>
+            <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
+            <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+          </sinkhole>
+        </botnet-domains>
+      </entry>

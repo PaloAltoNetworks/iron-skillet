@@ -1,0 +1,33 @@
+# panorama template configuration snippets
+
+name: panorama_template_10_1
+label: Panorama Template Settings
+description: |-
+    reference template configuration snippets
+type: panorama
+labels:
+    collection:
+      - IronSkillet 10.1 Panorama Snippets
+
+variables:
+
+
+snippets:
+
+-   name: ironskillet_template
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template
+    element: |-
+      <entry name="iron-skillet">
+        <settings>
+          <default-vsys>vsys1</default-vsys>
+        </settings>
+        <config>
+          <devices>
+            <entry name="localhost.localdomain">
+              <vsys>
+                <entry name="vsys1"/>
+              </vsys>
+            </entry>
+          </devices>
+        </config>
+      </entry>
