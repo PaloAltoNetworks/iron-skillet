@@ -13,10 +13,16 @@ Includes:
 
 Template content updates are high level. Details can be found in the template guides.
 
+0.0.2
+^^^^^
+Released June 30th, 2021
+
+    + Update Alert-Only-AV profile to have ELF file detection and prevention set to Alert-Only
+    + Update all other AV profiles to have ELF file detection and prevention set to Enable
+
 0.0.1
 ^^^^^
-
-Released xx/xx/xxxx
+Released June 10th, 2021
 
     + URL filtering profiles: Updating real-time-detection category in the following URL Filtering profiles, Outbound-URL, Alert-Only-URL and Exception-URL
     + URL filtering profiles: set real-time-detection to alert
@@ -31,6 +37,13 @@ Released xx/xx/xxxx
 ----------------------------
 
 Template content updates are high level. Details can be found in the template guides.
+
+0.0.3
+^^^^^
+Released June 30th, 2021
+
+    + Update Alert-Only-AV profile to have ELF file detection and prevention set to Alert-Only
+    + Update all other AV profiles to have ELF file detection and prevention set to Enable
 
 0.0.2
 ^^^^^
