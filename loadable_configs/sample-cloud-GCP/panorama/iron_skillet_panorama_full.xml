@@ -2,7 +2,7 @@
   <mgt-config>
     <devices />
   <users> <entry name="admin">
-  <phash>$1$QWJjMfA4$VDH70UgnclAFSGhjQlR4C/</phash>
+  <phash>$1$ujavW3dA$qArMEH0vLmlQ1nHvNWS2L/</phash>
   <permissions>
     <role-based>
       <superuser>yes</superuser>
@@ -527,7 +527,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     </devices>
   <mgt-config><users>
   <entry name="admin">
-    <phash>$1$RQ8.iyN7$iA91w66ZR8v09uib79X5A/</phash>
+    <phash>$1$SB75YUaH$gOuxjU69UwXciaas6nYeq/</phash>
     <permissions>
       <role-based>
         <superuser>yes</superuser>
@@ -925,7 +925,7 @@ Log off immediately if you are not an authorized user.</login-banner>
 	<comments>Internal to Internal</comments>
 </entry>
 <entry name="iron-skillet-version">
-	<comments>version 0.0.2 for 10.0: version of this IronSkillet template file</comments>
+	<comments>version 0.0.3 for 10.0: version of this IronSkillet template file</comments>
 </entry></tag><log-settings><profiles><entry name="default">
   <match-list>
     <entry name="Traffic_Log_Forwarding">
@@ -1049,6 +1049,9 @@ Log off immediately if you are not an authorized user.</login-banner>
     <entry name="PowerShell Script 2">
       <mlav-policy-action>enable(alert-only)</mlav-policy-action>
     </entry>
+    <entry name="Executable Linked Format">
+      <mlav-policy-action>enable(alert-only)</mlav-policy-action>
+    </entry>
   </mlav-engine-filebased-enabled>
 </entry>
 <entry name="Outbound-AV">
@@ -1097,6 +1100,9 @@ Log off immediately if you are not an authorized user.</login-banner>
       <mlav-policy-action>enable</mlav-policy-action>
     </entry>
     <entry name="PowerShell Script 2">
+      <mlav-policy-action>enable</mlav-policy-action>
+    </entry>
+    <entry name="Executable Linked Format">
       <mlav-policy-action>enable</mlav-policy-action>
     </entry>
   </mlav-engine-filebased-enabled>
@@ -1149,6 +1155,9 @@ Log off immediately if you are not an authorized user.</login-banner>
     <entry name="PowerShell Script 2">
       <mlav-policy-action>enable</mlav-policy-action>
     </entry>
+    <entry name="Executable Linked Format">
+      <mlav-policy-action>enable</mlav-policy-action>
+    </entry>
   </mlav-engine-filebased-enabled>
 </entry>
 <entry name="Internal-AV">
@@ -1199,6 +1208,9 @@ Log off immediately if you are not an authorized user.</login-banner>
     <entry name="PowerShell Script 2">
       <mlav-policy-action>enable</mlav-policy-action>
     </entry>
+    <entry name="Executable Linked Format">
+      <mlav-policy-action>enable</mlav-policy-action>
+    </entry>
   </mlav-engine-filebased-enabled>
 </entry>
 <entry name="Exception-AV">
@@ -1247,6 +1259,9 @@ Log off immediately if you are not an authorized user.</login-banner>
       <mlav-policy-action>enable</mlav-policy-action>
     </entry>
     <entry name="PowerShell Script 2">
+      <mlav-policy-action>enable</mlav-policy-action>
+    </entry>
+    <entry name="Executable Linked Format">
       <mlav-policy-action>enable</mlav-policy-action>
     </entry>
   </mlav-engine-filebased-enabled>
