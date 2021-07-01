@@ -1,0 +1,55 @@
+# panorama report group configuration snippets
+
+name: panorama_report_group_simple_10_0
+label: Panorama Report Group Simple
+description: |-
+    reference report group configuration snippets
+type: panorama
+labels:
+    collection:
+      - IronSkillet 10.0 Panorama Snippets
+
+variables:
+
+  - name: DEVICE_GROUP
+    description: Device-group name for Panorama
+    default: sample_devicegroup
+    type_hint: text
+    help_text: creates a sample device-group with IronSkillet configuration elements
+
+snippets:
+
+-   name: ironskillet_report_group_simple
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{ DEVICE_GROUP }}']/report-group
+    element: |-
+      <entry name="Possible Compromise">
+        <custom-widget>
+          <entry name="1">
+            <custom-report>Clients sinkholed</custom-report>
+          </entry>
+          <entry name="2">
+            <custom-report>Wildfire malicious verdicts</custom-report>
+          </entry>
+          <entry name="3">
+            <custom-report>Wildfire verdicts SMTP</custom-report>
+          </entry>
+          <entry name="4">
+            <custom-report>Hosts visit malicious sites</custom-report>
+          </entry>
+          <entry name="5">
+            <custom-report>Host-visit malicious sites plus</custom-report>
+          </entry>
+          <entry name="6">
+            <custom-report>Hosts visit questionable sites</custom-report>
+          </entry>
+          <entry name="7">
+            <custom-report>Host-visit quest sites plus</custom-report>
+          </entry>
+        </custom-widget>
+        <title-page>yes</title-page>
+        <variable>
+          <entry name="title">
+            <value>Possible Compromise</value>
+          </entry>
+        </variable>
+      </entry>

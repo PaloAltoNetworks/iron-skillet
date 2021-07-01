@@ -1,0 +1,26 @@
+# panos profile group configuration snippets
+
+name: panos_ngfw_email_scheduler_10_0
+label: PAN_OS NGFW Email Scheduler
+description: |-
+    reference email configuration snippets
+type: panos
+labels:
+    collection:
+      - IronSkillet 10.0 PAN-OS Snippets
+
+variables:
+
+
+snippets:
+
+-   name: ironskillet_email_scheduler
+    xpath: /config/shared/email-scheduler
+    element: |-
+      <entry name="Possible Compromise">
+        <report-group>Possible Compromise</report-group>
+        <recurring>
+          <disabled/>
+        </recurring>
+        <email-profile>Sample_Email_Profile</email-profile>
+      </entry>

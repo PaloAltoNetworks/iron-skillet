@@ -1,0 +1,41 @@
+# panorama template stack configuration snippets
+
+name: panorama_template_stack_10_0
+label: Panorama Template Stack Settings
+description: |-
+    reference template stack configuration snippets
+type: panorama
+labels:
+    collection:
+      - IronSkillet 10.0 Panorama Snippets
+
+variables:
+
+  - name: STACK
+    description: Template stack name for Panorama
+    default: sample_stack
+    type_hint: text
+    help_text: creates a sample template stack with IronSkillet configuration elements
+
+snippets:
+
+-   name: ironskillet_template_stack
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack
+    element: |-
+      <entry name="{{ STACK }}">
+        <templates>
+          <member>iron-skillet</member>
+        </templates>
+        <settings>
+          <default-vsys>vsys1</default-vsys>
+        </settings>
+          <config>
+            <devices>
+              <entry name="localhost.localdomain">
+                <vsys>
+                  <entry name="vsys1"/>
+                </vsys>
+              </entry>
+            </devices>
+        </config>
+      </entry>

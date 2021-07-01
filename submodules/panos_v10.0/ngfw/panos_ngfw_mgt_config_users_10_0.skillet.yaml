@@ -1,0 +1,41 @@
+# panos mgmt users configuration snippets
+
+name: panos_ngfw_mgt_config_users_10_0
+label: PAN_OS NGFW Mgmt Config - Users
+description: |-
+    reference mgmt users configuration snippets
+type: panos
+labels:
+    collection:
+      - IronSkillet 10.0 PAN-OS Snippets
+
+variables:
+
+  - name: ADMINISTRATOR_USERNAME
+    description: admin username
+    default: adminuser
+    type_hint: text
+    toggle_hint:
+      source: config_admin_user
+      value: 'yes'
+  - name: ADMINISTRATOR_PASSWORD
+    description: admin password
+    default: adminuser
+    type_hint: password
+    toggle_hint:
+      source: config_admin_user
+      value: 'yes'
+
+snippets:
+
+-   name: ironskillet_mgmt_config_users
+    xpath: /config/mgt-config/users
+    element: |-
+      <entry name="{{ ADMINISTRATOR_USERNAME }}">
+        <phash>{{ ADMINISTRATOR_PASSWORD | md5_hash }}</phash>
+        <permissions>
+          <role-based>
+            <superuser>yes</superuser>
+          </role-based>
+        </permissions>
+      </entry>

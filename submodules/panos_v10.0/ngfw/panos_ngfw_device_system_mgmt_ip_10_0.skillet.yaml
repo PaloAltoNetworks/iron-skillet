@@ -1,0 +1,77 @@
+# panos device system configuration snippets
+
+name: panos_ngfw_device_system_mgmt_ip_10_0
+label: PAN_OS NGFW Device - System
+description: |-
+    reference device system configuration snippets for mgmt IP configuration
+type: panos
+labels:
+    collection:
+      - IronSkillet 10.0 PAN-OS Snippets
+
+variables:
+
+  - name: MGMT_TYPE
+    description: firewall management IP type
+    default: dhcp-client
+    type_hint: dropdown
+    help_text: select if the management interface will use DHCP or static configuration
+    dd_list:
+      - key: dhcp-client
+        value: dhcp-client
+      - key: static
+        value: static
+    toggle_hint:
+      source: config_mgmt_intf
+      value: 'yes'
+  - name: MGMT_IP
+    description: NGFW management IP
+    default: 192.0.2.6
+    type_hint: ip_address
+    toggle_hint:
+      source: MGMT_TYPE
+      value: static
+  - name: MGMT_MASK
+    description: NGFW management netmask
+    type_hint: ip_address
+    default: 255.255.255.0
+    toggle_hint:
+      source: MGMT_TYPE
+      value: static
+  - name: MGMT_DG
+    description: NGFW management default gateway
+    default: 192.0.2.7
+    type_hint: ip_address
+    toggle_hint:
+      source: MGMT_TYPE
+      value: static
+
+snippets:
+
+-   name: ironskillet_device_system_mgmt_type
+    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    element: |-
+      <type>
+        {%- if MGMT_TYPE == "static" %}
+          <static/>
+        {% elif MGMT_TYPE == "dhcp-client" %}
+          <dhcp-client>
+           <send-hostname>yes</send-hostname>
+           <send-client-id>no</send-client-id>
+           <accept-dhcp-hostname>no</accept-dhcp-hostname>
+           <accept-dhcp-domain>no</accept-dhcp-domain>
+          </dhcp-client>
+        {% else %}
+          <dhcp-client>
+           <send-hostname>yes</send-hostname>
+           <send-client-id>no</send-client-id>
+           <accept-dhcp-hostname>no</accept-dhcp-hostname>
+           <accept-dhcp-domain>no</accept-dhcp-domain>
+          </dhcp-client>
+        {% endif %}
+      </type>
+      {%- if MGMT_TYPE == "static" %}
+      <ip-address>{{ MGMT_IP }}</ip-address>
+      <netmask>{{ MGMT_MASK }}</netmask>
+      <default-gateway>{{ MGMT_DG }}</default-gateway>
+      {% endif %}
