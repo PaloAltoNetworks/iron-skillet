@@ -1,0 +1,38 @@
+name: ironskillet_panos_security_profiles_10_0
+label: PAN-OS NGFW Security Profiles IronSkillet 10.0
+description: |-
+  security profiles for ironskillet 10.0 panos configuration
+type: panos
+labels:
+  collection:
+    - IronSkillet Playlists
+
+variables:
+
+
+snippets:
+
+  # tag object
+  - name: panos_ngfw_tag_10_0
+    include: panos_ngfw_tag_10_0
+    include_snippets:
+      - name: ironskillet_tag_ironskillet_version
+  # security profiles and profile groups
+  - name: panos_ngfw_profile_custom_urlFiltering_10_0
+    include: panos_ngfw_profile_custom_urlFiltering_10_0
+  - name: panos_ngfw_profile_decryption_10_0
+    include: panos_ngfw_profile_decryption_10_0
+  - name: panos_ngfw_profile_antivirus_10_0
+    include: panos_ngfw_profile_antivirus_10_0
+  - name: panos_ngfw_profile_spyware_10_0
+    include: panos_ngfw_profile_spyware_10_0
+  - name: panos_ngfw_profile_vulnerability_10_0
+    include: panos_ngfw_profile_vulnerability_10_0
+  - name: panos_ngfw_profile_file-blocking_10_0
+    include: panos_ngfw_profile_file-blocking_10_0
+  - name: panos_ngfw_profile_urlFiltering_10_0
+    include: panos_ngfw_profile_urlFiltering_10_0
+  - name: panos_ngfw_profile_wildfire_analysis_10_0
+    include: panos_ngfw_profile_wildfire_analysis_10_0
+  - name: panos_ngfw_profile_group_10_0
+    include: panos_ngfw_profile_group_10_0
