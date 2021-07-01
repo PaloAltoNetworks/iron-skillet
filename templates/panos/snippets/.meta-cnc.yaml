@@ -669,7 +669,7 @@ snippets:
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag
     element: |-
         <entry name="iron-skillet-version">
-            <comments>version 0.0.1 for 10.1 - version of this IronSkillet template file</comments>
+            <comments>version 0.0.2 for 10.1 - version of this IronSkillet template file</comments>
         </entry>
     cmd: set
 
