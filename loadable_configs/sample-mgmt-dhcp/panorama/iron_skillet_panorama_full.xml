@@ -3,7 +3,7 @@
     <devices/>
     <users>
     <entry name="adminuser">
-      <phash>$1$9N34G36y$QEoQzN7lD.LXWfWcNa8Hf1</phash>
+      <phash>$1$.25gvDNc$4aR4XZ.AJKDCSnkBK/N/6/</phash>
       <permissions>
         <role-based>
           <superuser>yes</superuser>
@@ -574,7 +574,7 @@
             </password-complexity>
             <users>
               <entry name="adminuser">
-                <phash>$1$Fi2taM7r$wNRlSqfvkDEpM.xgkRKFk1</phash>
+                <phash>$1$cNQE4N4U$1mG1rit7wjoprknTNa3TS.</phash>
                 <permissions>
                   <role-based>
                     <superuser>yes</superuser>
@@ -998,7 +998,7 @@
   <shared>
     <tag>
     <entry name="iron-skillet-version">
-        <comments>version 0.0.1 for 10.1 - version of this IronSkillet template file</comments>
+        <comments>version 0.0.2 for 10.1 - version of this IronSkillet template file</comments>
     </entry>
     <entry name="Internal">
         <comments>Internal to Internal</comments>

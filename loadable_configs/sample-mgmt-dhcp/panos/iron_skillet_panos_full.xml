@@ -2,7 +2,7 @@
   <mgt-config>
     <users>
     <entry name="adminuser">
-      <phash>$1$KvJXKHnB$0apW0L73WF9zmWYLsavzX/</phash>
+      <phash>$1$e8lFiUqg$UtoX1XF6u/qXgAFHZNrXL/</phash>
       <permissions>
         <role-based>
           <superuser>yes</superuser>
@@ -817,7 +817,7 @@
           </rulebase>
           <tag>
           <entry name="iron-skillet-version">
-              <comments>version 0.0.1 for 10.1 - version of this IronSkillet template file</comments>
+              <comments>version 0.0.2 for 10.1 - version of this IronSkillet template file</comments>
           </entry>
           <entry name="Internal">
               <comments>Internal to Internal</comments>
