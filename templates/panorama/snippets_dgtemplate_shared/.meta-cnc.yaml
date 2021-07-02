@@ -810,6 +810,9 @@ snippets:
             <entry name="PowerShell Script 2">
               <mlav-policy-action>enable(alert-only)</mlav-policy-action>
             </entry>
+            <entry name="Executable Linked Format">
+              <mlav-policy-action>enable(alert-only)</mlav-policy-action>
+            </entry>
           </mlav-engine-filebased-enabled>
         </entry>
     cmd: set
@@ -863,6 +866,9 @@ snippets:
               <mlav-policy-action>enable</mlav-policy-action>
             </entry>
             <entry name="PowerShell Script 2">
+              <mlav-policy-action>enable</mlav-policy-action>
+            </entry>
+            <entry name="Executable Linked Format">
               <mlav-policy-action>enable</mlav-policy-action>
             </entry>
           </mlav-engine-filebased-enabled>
@@ -920,6 +926,9 @@ snippets:
             <entry name="PowerShell Script 2">
               <mlav-policy-action>enable</mlav-policy-action>
             </entry>
+            <entry name="Executable Linked Format">
+              <mlav-policy-action>enable</mlav-policy-action>
+            </entry>
           </mlav-engine-filebased-enabled>
         </entry>
     cmd: set
@@ -975,6 +984,9 @@ snippets:
             <entry name="PowerShell Script 2">
               <mlav-policy-action>enable</mlav-policy-action>
             </entry>
+            <entry name="Executable Linked Format">
+              <mlav-policy-action>enable</mlav-policy-action>
+            </entry>
           </mlav-engine-filebased-enabled>
         </entry>
     cmd: set
@@ -1028,6 +1040,9 @@ snippets:
               <mlav-policy-action>enable</mlav-policy-action>
             </entry>
             <entry name="PowerShell Script 2">
+              <mlav-policy-action>enable</mlav-policy-action>
+            </entry>
+            <entry name="Executable Linked Format">
               <mlav-policy-action>enable</mlav-policy-action>
             </entry>
           </mlav-engine-filebased-enabled>
