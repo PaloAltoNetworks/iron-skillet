@@ -1,8 +1,8 @@
 <config version="10.1.0" urldb="paloaltonetworks">
   <mgt-config>
     <users>
-    <entry name="{{ ADMINISTRATOR_USERNAME }}">
-      <phash>{{ ADMINISTRATOR_PASSWORD | md5_hash }}</phash>
+    <entry name="{{ADMINISTRATOR_USERNAME}}">
+      <phash>{{ADMINISTRATOR_PASSWORD | md5_hash}}</phash>
       <permissions>
         <role-based>
           <superuser>yes</superuser>
@@ -29,9 +29,9 @@
         <server>
           <entry name="Sample_Email_Profile">
             <display-name>Threat_Alerts</display-name>
-            <gateway>{{ EMAIL_PROFILE_GATEWAY }}</gateway>
-            <from>{{ EMAIL_PROFILE_FROM }}</from>
-            <to>{{ EMAIL_PROFILE_TO }}</to>
+            <gateway>{{EMAIL_PROFILE_GATEWAY}}</gateway>
+            <from>{{EMAIL_PROFILE_FROM}}</from>
+            <to>{{EMAIL_PROFILE_TO}}</to>
             <protocol>SMTP</protocol>
           </entry>
         </server>
@@ -110,7 +110,7 @@
             <transport>UDP</transport>
             <port>514</port>
             <format>BSD</format>
-            <server>{{ SYSLOG_SERVER }}</server>
+            <server>{{SYSLOG_SERVER}}</server>
             <facility>LOG_USER</facility>
           </entry>
         </server>
@@ -581,16 +581,16 @@
       </network>
       <deviceconfig>
         <system>
-        <hostname>{{ FW_NAME }}</hostname>
+        <hostname>{{FW_NAME}}</hostname>
         <timezone>UTC</timezone>
         <login-banner>You have accessed a protected system.
         Log off immediately if you are not an authorized user.</login-banner>
         <ntp-servers>
           <primary-ntp-server>
-            <ntp-server-address>{{ NTP_1 }}</ntp-server-address>
+            <ntp-server-address>{{NTP_1}}</ntp-server-address>
           </primary-ntp-server>
           <secondary-ntp-server>
-            <ntp-server-address>{{ NTP_2 }}</ntp-server-address>
+            <ntp-server-address>{{NTP_2}}</ntp-server-address>
           </secondary-ntp-server>
         </ntp-servers>
         <snmp-setting>
@@ -660,14 +660,14 @@
           {% endif %}
         </type>
         {%- if MGMT_TYPE == "static" %}
-        <ip-address>{{ MGMT_IP }}</ip-address>
-        <netmask>{{ MGMT_MASK }}</netmask>
-        <default-gateway>{{ MGMT_DG }}</default-gateway>
+        <ip-address>{{MGMT_IP}}</ip-address>
+        <netmask>{{MGMT_MASK}}</netmask>
+        <default-gateway>{{MGMT_DG}}</default-gateway>
         {% endif %}
           <dns-setting>
           <servers>
-            <primary>{{ DNS_1 }}</primary>
-            <secondary>{{ DNS_2 }}</secondary>
+            <primary>{{DNS_1}}</primary>
+            <secondary>{{DNS_2}}</secondary>
           </servers>
           </dns-setting>
         </system>
@@ -743,7 +743,7 @@
         <management>
           <api>
             <key>
-              <lifetime>{{ API_KEY_LIFETIME }}</lifetime>
+              <lifetime>{{API_KEY_LIFETIME}}</lifetime>
             </key>
           </api>
         </management>
@@ -1372,8 +1372,8 @@
                   </entry>
                 </dns-security-categories>
                 <sinkhole>
-                  <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
-                  <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+                  <ipv4-address>{{SINKHOLE_IPV4}}</ipv4-address>
+                  <ipv6-address>{{SINKHOLE_IPV6}}</ipv6-address>
                 </sinkhole>
               </botnet-domains>
             </entry>
@@ -1435,8 +1435,8 @@
                   </entry>
                 </dns-security-categories>
                 <sinkhole>
-                  <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
-                  <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+                  <ipv4-address>{{SINKHOLE_IPV4}}</ipv4-address>
+                  <ipv6-address>{{SINKHOLE_IPV6}}</ipv6-address>
                 </sinkhole>
               </botnet-domains>
               <rules>
@@ -1511,8 +1511,8 @@
                   </entry>
                 </dns-security-categories>
                 <sinkhole>
-                  <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
-                  <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+                  <ipv4-address>{{SINKHOLE_IPV4}}</ipv4-address>
+                  <ipv6-address>{{SINKHOLE_IPV6}}</ipv6-address>
                 </sinkhole>
               </botnet-domains>
               <rules>
@@ -1601,8 +1601,8 @@
                   </entry>
                 </dns-security-categories>
                 <sinkhole>
-                  <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
-                  <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+                  <ipv4-address>{{SINKHOLE_IPV4}}</ipv4-address>
+                  <ipv6-address>{{SINKHOLE_IPV6}}</ipv6-address>
                 </sinkhole>
               </botnet-domains>
               <rules>
@@ -1691,8 +1691,8 @@
                   </entry>
                 </dns-security-categories>
                 <sinkhole>
-                  <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
-                  <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+                  <ipv4-address>{{SINKHOLE_IPV4}}</ipv4-address>
+                  <ipv6-address>{{SINKHOLE_IPV6}}</ipv6-address>
                 </sinkhole>
               </botnet-domains>
               <rules>
