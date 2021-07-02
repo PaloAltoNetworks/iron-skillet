@@ -1,262 +1,2906 @@
-# snippets is used to load a full NGFW configuration
-
-# snippet folder name
 name: skillet_panos_v10_0
-# label used for menu selection
+
 label: v10.0 Iron-Skillet for NGFW
-description: Iron-Skillet baseline configuration for a firewall
-# type of device configuration
+
+description: group of snippets for ironskillet 10.0 panos configuration
+
 type: panos
 
-# grouping of like snippets for dynamic menu creation in pan-cnc
 labels:
-  collection:
-    - IronSkillet
-    - Configure
-    - Best Practice
 
-# variables used in the configuration templates
-# type_hint defines the form field type in pan-cnc
+    collection:
+    - IronSkillet
+
 variables:
-  - name: FW_NAME
-    description: Firewall hostname
-    default: panos-01
-    type_hint: text
-  - name: config_mgmt_intf
+
+-   name: config_mgmt_intf
     description: Configure the management interface IP settings
     default: 'no'
     type_hint: dropdown
-    help_text: Set to NO if the IronSkillet config is being applied to a device with existing management IP settings
+    help_text: Set to NO if the IronSkillet config is being applied to a device with
+        existing management IP settings
     dd_list:
-      - key: 'yes'
+    -   key: 'yes'
         value: 'yes'
-      - key: 'no'
+    -   key: 'no'
         value: 'no'
-  - name: MGMT_TYPE
+
+-   name: config_admin_user
+    description: Configure the admin user and password
+    default: 'no'
+    type_hint: dropdown
+    help_text: Set to NO if the IronSkillet config is being applied to a device with
+        an existing admin superuser
+    dd_list:
+    -   key: 'yes'
+        value: 'yes'
+    -   key: 'no'
+        value: 'no'
+
+-   name: config_dns
+    description: Configure the DNS primary and secondary servers
+    default: 'no'
+    type_hint: dropdown
+    help_text: Set to NO if the IronSkillet config is being applied to a device with
+        an existing DNS configuration
+    dd_list:
+    -   key: 'yes'
+        value: 'yes'
+    -   key: 'no'
+        value: 'no'
+
+-   name: MGMT_TYPE
     description: firewall management IP type
     default: dhcp-client
     type_hint: dropdown
     help_text: select if the management interface will use DHCP or static configuration
     dd_list:
-      - key: dhcp-client
+    -   key: dhcp-client
         value: dhcp-client
-      - key: static
+    -   key: static
         value: static
     toggle_hint:
-      source: config_mgmt_intf
-      value: 'yes'
-  - name: MGMT_IP
+        source: config_mgmt_intf
+        value: 'yes'
+
+-   name: MGMT_IP
     description: NGFW management IP
     default: 192.0.2.6
     type_hint: ip_address
     toggle_hint:
-      source: MGMT_TYPE
-      value: static
-  - name: MGMT_MASK
+        source: MGMT_TYPE
+        value: static
+
+-   name: MGMT_MASK
     description: NGFW management netmask
     type_hint: ip_address
     default: 255.255.255.0
     toggle_hint:
-      source: MGMT_TYPE
-      value: static
-  - name: MGMT_DG
+        source: MGMT_TYPE
+        value: static
+
+-   name: MGMT_DG
     description: NGFW management default gateway
     default: 192.0.2.7
     type_hint: ip_address
     toggle_hint:
-      source: MGMT_TYPE
-      value: static
-  - name: config_admin_user
-    description: Configure the admin user and password
-    default: 'no'
-    type_hint: dropdown
-    help_text: Set to NO if the IronSkillet config is being applied to a device with an existing admin superuser
-    dd_list:
-      - key: 'yes'
-        value: 'yes'
-      - key: 'no'
-        value: 'no'
-  - name: ADMINISTRATOR_USERNAME
-    description: admin username
-    default: adminuser
-    type_hint: text
-    toggle_hint:
-      source: config_admin_user
-      value: 'yes'
-  - name: ADMINISTRATOR_PASSWORD
-    description: admin password
-    default: adminuser
-    type_hint: password
-    toggle_hint:
-      source: config_admin_user
-      value: 'yes'
-  - name: config_dns
-    description: Configure the DNS primary and secondary servers
-    default: 'no'
-    type_hint: dropdown
-    help_text: Set to NO if the IronSkillet config is being applied to a device with an existing DNS configuration
-    dd_list:
-      - key: 'yes'
-        value: 'yes'
-      - key: 'no'
-        value: 'no'
-  - name: DNS_1
+        source: MGMT_TYPE
+        value: static
+
+-   name: DNS_1
     description: primary dns server
     default: 8.8.8.8
     type_hint: ip_address
     toggle_hint:
-      source: config_dns
-      value: 'yes'
-  - name: DNS_2
+        source: config_dns
+        value: 'yes'
+
+-   name: DNS_2
     description: secondary dns server
     default: 8.8.4.4
     type_hint: ip_address
     toggle_hint:
-      source: config_dns
-      value: 'yes'
-  - name: NTP_1
+        source: config_dns
+        value: 'yes'
+
+-   name: FW_NAME
+    description: Firewall hostname
+    default: panos-01
+    type_hint: text
+
+-   name: NTP_1
     description: primary NTP server
     default: 0.pool.ntp.org
     type_hint: text
-  - name: NTP_2
+
+-   name: NTP_2
     description: secondary NTP server
     default: 1.pool.ntp.org
     type_hint: text
-  - name: SINKHOLE_IPV4
-    description: sinkhole FQDN IPv4
-    default: sinkhole.paloaltonetworks.com
-    type_hint: text
-    help_text: FQDN value for the IPV4 sinkhole address used in the anti-spyware security profile
-  - name: SINKHOLE_IPV6
-    description: sinkhole address IPv6
-    default: 2600:5200::1
-    type_hint: ip_address
-    help_text: IP address for the IPv6 sinkhole used in the anti-spyware security profile
-  - name: EMAIL_PROFILE_GATEWAY
-    description: email gateway address for critical alerts
-    default: 192.0.2.1
-    type_hint: text
-    help_text: email server profile configuration under Device --> Server Profiles
-  - name: EMAIL_PROFILE_FROM
-    description: from address in email alerts
-    default: sentfrom@yourdomain.com
-    type_hint: text
-    help_text: email server profile configuration under Device --> Server Profiles
-  - name: EMAIL_PROFILE_TO
-    description: to address in email alerts
-    default: sendto@yourdomain.com
-    type_hint: text
-    help_text: email server profile configuration under Device --> Server Profiles
-  - name: SYSLOG_SERVER
-    description: syslog server ip address
-    default: 192.0.2.2
-    type_hint: text
-  - name: API_KEY_LIFETIME
+
+-   name: API_KEY_LIFETIME
     description: lifetime for the api key in minutes
     default: 525600
     type_hint: text
     help_text: sets the expiration period for generated API keys
-# option built into the templates to ignore the panw published external dynamic lists security rules
-# should ONLY be excluded based on licensing limitations outside of best practices
-# when 'yes' (default) will include the EDL rule
-  - name: INCLUDE_PAN_EDL
-    description: include the predefined Palo Alto Networks external lists security rules
+
+-   name: ADMINISTRATOR_USERNAME
+    description: admin username
+    default: adminuser
+    type_hint: text
+    toggle_hint:
+        source: config_admin_user
+        value: 'yes'
+
+-   name: ADMINISTRATOR_PASSWORD
+    description: admin password
+    default: adminuser
+    type_hint: password
+    toggle_hint:
+        source: config_admin_user
+        value: 'yes'
+
+-   name: SYSLOG_SERVER
+    description: syslog server ip address
+    default: 192.0.2.2
+    type_hint: text
+
+-   name: EMAIL_PROFILE_GATEWAY
+    description: email gateway address for critical alerts
+    default: 192.0.2.1
+    type_hint: text
+    help_text: email server profile configuration under Device --> Server Profiles
+
+-   name: EMAIL_PROFILE_FROM
+    description: from address in email alerts
+    default: sentfrom@yourdomain.com
+    type_hint: text
+    help_text: email server profile configuration under Device --> Server Profiles
+
+-   name: EMAIL_PROFILE_TO
+    description: to address in email alerts
+    default: sendto@yourdomain.com
+    type_hint: text
+    help_text: email server profile configuration under Device --> Server Profiles
+
+-   name: SINKHOLE_IPV4
+    description: sinkhole FQDN IPv4
+    default: sinkhole.paloaltonetworks.com
+    type_hint: text
+    help_text: FQDN value for the IPV4 sinkhole address used in the anti-spyware security
+        profile
+
+-   name: SINKHOLE_IPV6
+    description: sinkhole address IPv6
+    default: 2600:5200::1
+    type_hint: ip_address
+    help_text: IP address for the IPv6 sinkhole used in the anti-spyware security
+        profile
+
+-   name: INCLUDE_PAN_EDL
+    description: include the predefined Palo Alto Networks external lists security
+        rules
     default: 'no'
     type_hint: dropdown
-    help_text: a valid threat license and content updates are required to access the panw external-lists used in the rules
+    help_text: a valid threat license and content updates are required to access the
+        panw external-lists used in the rules
     dd_list:
-      - key: 'yes'
+    -   key: 'yes'
         value: 'yes'
-      - key: 'no'
+    -   key: 'no'
         value: 'no'
 
-# snippets used for api configuration including xpath and element as file name
-# files will load in the order listed
 snippets:
-  - name: device_system_mgmt_ip
+
+-   name: panos_ngfw_device_system_mgmt_ip_10_0.ironskillet_device_system_mgmt_type
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
-    file: device_system_mgmt_ip.xml
+    element: |-
+        <type>
+          {%- if MGMT_TYPE == "static" %}
+            <static/>
+          {% elif MGMT_TYPE == "dhcp-client" %}
+            <dhcp-client>
+             <send-hostname>yes</send-hostname>
+             <send-client-id>no</send-client-id>
+             <accept-dhcp-hostname>no</accept-dhcp-hostname>
+             <accept-dhcp-domain>no</accept-dhcp-domain>
+            </dhcp-client>
+          {% else %}
+            <dhcp-client>
+             <send-hostname>yes</send-hostname>
+             <send-client-id>no</send-client-id>
+             <accept-dhcp-hostname>no</accept-dhcp-hostname>
+             <accept-dhcp-domain>no</accept-dhcp-domain>
+            </dhcp-client>
+          {% endif %}
+        </type>
+        {%- if MGMT_TYPE == "static" %}
+        <ip-address>{{ MGMT_IP }}</ip-address>
+        <netmask>{{ MGMT_MASK }}</netmask>
+        <default-gateway>{{ MGMT_DG }}</default-gateway>
+        {% endif %}
+    cmd: set
     when: config_mgmt_intf == 'yes'
-  - name: device_system_dns
+
+-   name: panos_ngfw_device_system_dns_10_0.ironskillet_device_system_servers
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system/dns-setting
-    file: device_system_dns.xml
+    element: |-
+        <servers>
+          <primary>{{ DNS_1 }}</primary>
+          <secondary>{{ DNS_2 }}</secondary>
+        </servers>
+    cmd: set
     when: config_dns == 'yes'
-  - name: device_system
+
+-   name: panos_ngfw_device_system_10_0.ironskillet_device_system_dynamic_updates
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
-    file: device_system.xml
-  - name: device_setting
+    element: |-
+        <update-schedule>
+          <threats>
+            <recurring>
+              <every-30-mins>
+                <at>2</at>
+                <action>download-and-install</action>
+              </every-30-mins>
+              <threshold>48</threshold>
+            </recurring>
+          </threats>
+          <anti-virus>
+            <recurring>
+              <hourly>
+                <at>4</at>
+                <action>download-and-install</action>
+              </hourly>
+            </recurring>
+          </anti-virus>
+          <wildfire>
+            <recurring>
+              <real-time/>
+            </recurring>
+          </wildfire>
+          <global-protect-datafile>
+            <recurring>
+              <hourly>
+                <at>40</at>
+                <action>download-and-install</action>
+              </hourly>
+            </recurring>
+          </global-protect-datafile>
+          <global-protect-clientless-vpn>
+            <recurring>
+              <hourly>
+                <at>50</at>
+                <action>download-and-install</action>
+              </hourly>
+            </recurring>
+          </global-protect-clientless-vpn>
+        </update-schedule>
+    cmd: set
+
+-   name: panos_ngfw_device_system_10_0.ironskillet_device_system_snmp
+    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    element: |-
+        <snmp-setting>
+          <access-setting>
+            <version>
+              <v3/>
+            </version>
+          </access-setting>
+        </snmp-setting>
+    cmd: set
+
+-   name: panos_ngfw_device_system_10_0.ironskillet_device_system_ntp
+    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    element: |-
+        <ntp-servers>
+          <primary-ntp-server>
+            <ntp-server-address>{{ NTP_1 }}</ntp-server-address>
+          </primary-ntp-server>
+          <secondary-ntp-server>
+            <ntp-server-address>{{ NTP_2 }}</ntp-server-address>
+          </secondary-ntp-server>
+        </ntp-servers>
+    cmd: set
+
+-   name: panos_ngfw_device_system_10_0.ironskillet_device_system_login_banner
+    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    element: |-
+        <login-banner>You have accessed a protected system.
+        Log off immediately if you are not an authorized user.</login-banner>
+    cmd: set
+
+-   name: panos_ngfw_device_system_10_0.ironskillet_device_system_timezone
+    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    element: <timezone>UTC</timezone>
+    cmd: set
+
+-   name: panos_ngfw_device_system_10_0.ironskillet_device_system_hostname
+    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    element: <hostname>{{ FW_NAME }}</hostname>
+    cmd: set
+
+-   name: panos_ngfw_device_setting_10_0.ironskillet_device_setting_ctd
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
-    file: device_setting.xml
-  - name: mgt_config_users
+    element: |-
+        <ctd>
+          <tcp-bypass-exceed-queue>no</tcp-bypass-exceed-queue>
+          <udp-bypass-exceed-queue>no</udp-bypass-exceed-queue>
+        </ctd>
+    cmd: set
+
+-   name: panos_ngfw_device_setting_10_0.ironskillet_device_setting_management
+    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
+    element: |-
+        <management>
+          <enable-log-high-dp-load>yes</enable-log-high-dp-load>
+          <max-rows-in-csv-export>1048576</max-rows-in-csv-export>
+          <api>
+            <key>
+              <lifetime>{{ API_KEY_LIFETIME }}</lifetime>
+            </key>
+          </api>
+          <admin-lockout>
+            <failed-attempts>5</failed-attempts>
+            <lockout-time>30</lockout-time>
+          </admin-lockout>
+          <idle-timeout>10</idle-timeout>
+          <auto-acquire-commit-lock>yes</auto-acquire-commit-lock>
+        </management>
+    cmd: set
+
+-   name: panos_ngfw_device_setting_10_0.ironskillet_device_setting_wildfire
+    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
+    element: |-
+        <wildfire>
+           <file-size-limit>
+            <entry name="pe">
+              <size-limit>16</size-limit>
+            </entry>
+            <entry name="apk">
+              <size-limit>30</size-limit>
+            </entry>
+            <entry name="pdf">
+              <size-limit>3072</size-limit>
+            </entry>
+            <entry name="ms-office">
+              <size-limit>16384</size-limit>
+            </entry>
+            <entry name="jar">
+              <size-limit>5</size-limit>
+            </entry>
+            <entry name="flash">
+              <size-limit>5</size-limit>
+            </entry>
+            <entry name="MacOSX">
+              <size-limit>10</size-limit>
+            </entry>
+            <entry name="archive">
+              <size-limit>50</size-limit>
+            </entry>
+            <entry name="linux">
+              <size-limit>50</size-limit>
+            </entry>
+            <entry name="script">
+              <size-limit>2000</size-limit>
+            </entry>
+           </file-size-limit>
+          <report-benign-file>yes</report-benign-file>
+          <report-grayware-file>yes</report-grayware-file>
+        </wildfire>
+    cmd: set
+
+-   name: panos_ngfw_device_setting_10_0.ironskillet_device_setting_config
+    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
+    element: |-
+        <config>
+          <rematch>yes</rematch>
+        </config>
+    cmd: set
+
+-   name: panos_ngfw_device_setting_10_0.ironskillet_device_setting_application
+    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
+    element: |-
+        <application>
+          <notify-user>yes</notify-user>
+          <bypass-exceed-queue>no</bypass-exceed-queue>
+        </application>
+    cmd: set
+
+-   name: panos_ngfw_device_setting_10_0.ironskillet_device_setting_logging
+    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
+    element: |-
+        <logging>
+          <log-suppression>no</log-suppression>
+        </logging>
+    cmd: set
+
+-   name: panos_ngfw_device_setting_10_0.ironskillet_device_setting_tcp
+    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
+    element: |-
+        <tcp>
+          <urgent-data>clear</urgent-data>
+          <drop-zero-flag>yes</drop-zero-flag>
+          <bypass-exceed-oo-queue>no</bypass-exceed-oo-queue>
+          <check-timestamp-option>yes</check-timestamp-option>
+          <strip-mptcp-option>yes</strip-mptcp-option>
+        </tcp>
+    cmd: set
+
+-   name: panos_ngfw_mgt_config_users_10_0.ironskillet_mgmt_config_users
     xpath: /config/mgt-config/users
-    file: mgt_config_users.xml
+    element: |-
+        <entry name="{{ ADMINISTRATOR_USERNAME }}">
+          <phash>{{ ADMINISTRATOR_PASSWORD | md5_hash }}</phash>
+          <permissions>
+            <role-based>
+              <superuser>yes</superuser>
+            </role-based>
+          </permissions>
+        </entry>
+    cmd: set
     when: config_admin_user == 'yes'
-  - name: password_complexity
+
+-   name: panos_ngfw_password_complexity_10_0.ironskillet_password_complexity
     xpath: /config/mgt-config/password-complexity
-    file: password_complexity.xml
-  - name: shared_log_settings
+    element: |-
+        <enabled>yes</enabled>
+        <minimum-length>12</minimum-length>
+        <minimum-uppercase-letters>1</minimum-uppercase-letters>
+        <minimum-lowercase-letters>1</minimum-lowercase-letters>
+        <minimum-numeric-letters>1</minimum-numeric-letters>
+        <minimum-special-characters>1</minimum-special-characters>
+        <block-username-inclusion>yes</block-username-inclusion>
+        <password-history-count>24</password-history-count>
+        <new-password-differs-by-characters>3</new-password-differs-by-characters>
+    cmd: set
+
+-   name: panos_ngfw_shared_log_settings_10_0.ironskillet_shared_log_settings_sample_syslog_profile
     xpath: /config/shared/log-settings
-    file: shared_log_settings.xml
-  - name: shared_log_settings_email_profile
+    element: |-
+        <syslog>
+          <entry name="Sample_Syslog_Profile">
+            <server>
+              <entry name="Sample_Syslog">
+                <transport>UDP</transport>
+                <port>514</port>
+                <format>BSD</format>
+                <server>{{ SYSLOG_SERVER }}</server>
+                <facility>LOG_USER</facility>
+              </entry>
+            </server>
+          </entry>
+        </syslog>
+    cmd: set
+
+-   name: panos_ngfw_shared_log_settings_10_0.ironskillet_shared_log_settings_syslog_forwarding
     xpath: /config/shared/log-settings
-    file: shared_log_settings_email_profile.xml
-  - name: shared_log_settings_email_system_critical
+    element: |-
+        <system>
+          <match-list>
+            <entry name="System_Log_Forwarding">
+              <filter>All Logs</filter>
+              <send-to-panorama>no</send-to-panorama>
+              <send-syslog>
+                <member>Sample_Syslog_Profile</member>
+              </send-syslog>
+            </entry>
+          </match-list>
+        </system>
+    cmd: set
+
+-   name: panos_ngfw_shared_log_settings_10_0.ironskillet_shared_log_settings_log_forwarding
+    xpath: /config/shared/log-settings
+    element: |-
+        <config>
+          <match-list>
+            <entry name="Configuration_Log_Forwarding">
+              <filter>All Logs</filter>
+              <send-to-panorama>no</send-to-panorama>
+              <send-syslog>
+                <member>Sample_Syslog_Profile</member>
+              </send-syslog>
+            </entry>
+          </match-list>
+        </config>
+    cmd: set
+
+-   name: panos_ngfw_shared_log_settings_10_0.ironskillet_shared_log_settings_userid_forwarding
+    xpath: /config/shared/log-settings
+    element: |-
+        <userid>
+          <match-list>
+            <entry name="User-ID_Log_Forwarding">
+              <filter>All Logs</filter>
+              <send-to-panorama>no</send-to-panorama>
+              <send-syslog>
+                <member>Sample_Syslog_Profile</member>
+              </send-syslog>
+            </entry>
+          </match-list>
+        </userid>
+    cmd: set
+
+-   name: panos_ngfw_shared_log_settings_10_0.ironskillet_shared_log_settings_hip_forwarding
+    xpath: /config/shared/log-settings
+    element: |-
+        <hipmatch>
+          <match-list>
+            <entry name="HIP_Log_Forwarding">
+              <filter>All Logs</filter>
+              <send-to-panorama>no</send-to-panorama>
+              <send-syslog>
+                <member>Sample_Syslog_Profile</member>
+              </send-syslog>
+            </entry>
+          </match-list>
+        </hipmatch>
+    cmd: set
+
+-   name: panos_ngfw_shared_log_settings_10_0.ironskillet_shared_log_settings_gp_forwarding
+    xpath: /config/shared/log-settings
+    element: |-
+        <globalprotect>
+          <match-list>
+            <entry name="GP_Log_Forwarding">
+              <send-syslog>
+                <member>Sample_Syslog_Profile</member>
+              </send-syslog>
+              <filter>All Logs</filter>
+              <send-to-panorama>no</send-to-panorama>
+            </entry>
+          </match-list>
+        </globalprotect>
+    cmd: set
+
+-   name: panos_ngfw_shared_log_settings_10_0.ironskillet_shared_log_settings_ip_tag_forwarding
+    xpath: /config/shared/log-settings
+    element: |-
+        <iptag>
+          <match-list>
+            <entry name="IP-Tag_Log_Forwarding">
+              <send-syslog>
+                <member>Sample_Syslog_Profile</member>
+              </send-syslog>
+              <filter>All Logs</filter>
+              <send-to-panorama>no</send-to-panorama>
+            </entry>
+          </match-list>
+        </iptag>
+    cmd: set
+
+-   name: panos_ngfw_shared_log_settings_email_profile_10_0.ironskillet_shared_log_settings_email_profile
+    xpath: /config/shared/log-settings
+    element: |-
+        <email>
+          <entry name="Sample_Email_Profile">
+            <server>
+              <entry name="Sample_Email_Profile">
+                <display-name>Threat_Alerts</display-name>
+                <gateway>{{ EMAIL_PROFILE_GATEWAY }}</gateway>
+                <from>{{ EMAIL_PROFILE_FROM }}</from>
+                <to>{{ EMAIL_PROFILE_TO }}</to>
+                <protocol>SMTP</protocol>
+              </entry>
+            </server>
+          </entry>
+        </email>
+    cmd: set
+
+-   name: panos_ngfw_shared_log_settings_email_system_critical_10_0.ironskillet_shared_log_settings_email_system_critical
     xpath: /config/shared/log-settings/system/match-list
-    file: shared_log_settings_email_system_critical.xml
-  - name: tag
+    element: |-
+        <entry name="Email_Critical_System_Logs">
+             <send-email>
+               <member>Sample_Email_Profile</member>
+             </send-email>
+             <filter>(severity eq critical)</filter>
+             <description>Email Critical System Logs</description>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_tag_10_0.ironskillet_tag_outbound
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag
-    file: tag.xml
-  - name: log_settings_profiles
+    element: |-
+        <entry name="Outbound">
+            <comments>Outbound to the Internet</comments>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_tag_10_0.ironskillet_tag_inbound
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag
+    element: |-
+        <entry name="Inbound">
+            <comments>Inbound from the Internet</comments>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_tag_10_0.ironskillet_tag_internal
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag
+    element: |-
+        <entry name="Internal">
+            <comments>Internal to Internal</comments>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_tag_10_0.ironskillet_tag_ironskillet_version
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag
+    element: |-
+        <entry name="iron-skillet-version">
+            <comments>version 0.0.3 for 10.0 - version of this IronSkillet template file</comments>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_log_settings_profiles_10_0.ironskillet_log_settings_profiles
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/log-settings/profiles
-    file: log_settings_profiles.xml
-  - name: log_settings_profiles_email
+    element: |-
+        <entry name="default">
+          <match-list>
+            <entry name="Traffic_Log_Forwarding">
+              <log-type>traffic</log-type>
+              <filter>All Logs</filter>
+              <send-to-panorama>no</send-to-panorama>
+              <send-syslog>
+                <member>Sample_Syslog_Profile</member>
+              </send-syslog>
+            </entry>
+            <entry name="Threat_Log_Forwarding">
+              <log-type>threat</log-type>
+              <filter>All Logs</filter>
+              <send-to-panorama>no</send-to-panorama>
+              <send-syslog>
+                <member>Sample_Syslog_Profile</member>
+              </send-syslog>
+            </entry>
+            <entry name="Wildfire_Log_Forwarding">
+              <log-type>wildfire</log-type>
+              <filter>All Logs</filter>
+              <send-to-panorama>no</send-to-panorama>
+              <send-syslog>
+                <member>Sample_Syslog_Profile</member>
+              </send-syslog>
+            </entry>
+            <entry name="URL_Log_Forwarding">
+              <log-type>url</log-type>
+              <filter>All Logs</filter>
+              <send-to-panorama>no</send-to-panorama>
+              <send-syslog>
+                <member>Sample_Syslog_Profile</member>
+              </send-syslog>
+            </entry>
+            <entry name="Data_Log_Forwarding">
+              <log-type>data</log-type>
+              <filter>All Logs</filter>
+              <send-to-panorama>no</send-to-panorama>
+              <send-syslog>
+                <member>Sample_Syslog_Profile</member>
+              </send-syslog>
+            </entry>
+            <entry name="Tunnel_Log_Forwarding">
+              <log-type>tunnel</log-type>
+              <filter>All Logs</filter>
+              <send-to-panorama>no</send-to-panorama>
+              <send-syslog>
+                <member>Sample_Syslog_Profile</member>
+              </send-syslog>
+            </entry>
+            <entry name="Auth_Log_Forwarding">
+              <log-type>auth</log-type>
+              <filter>All Logs</filter>
+              <send-to-panorama>no</send-to-panorama>
+              <send-syslog>
+                <member>Sample_Syslog_Profile</member>
+              </send-syslog>
+            </entry>
+          </match-list>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_log_settings_profiles_email_10_0.ironskillet_log_settings_email
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/log-settings/profiles/entry[@name='default']/match-list
-    file: log_settings_profiles_email.xml
-  - name: profiles_custom_url_category
+    element: |-
+        <entry name="Email_Malicious_Verdicts">
+          <send-email>
+            <member>Sample_Email_Profile</member>
+          </send-email>
+          <action-desc>Email Malicious Wildfire Verdicts</action-desc>
+          <log-type>wildfire</log-type>
+          <filter>(verdict neq benign)</filter>
+          <send-to-panorama>no</send-to-panorama>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_custom_urlFiltering_10_0.ironskillet_custom_url_category_block
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/custom-url-category
-    file: profiles_custom_url_category.xml
-  - name: profiles_decryption
+    element: |-
+        <entry name="Block">
+          <type>URL List</type>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_custom_urlFiltering_10_0.ironskillet_custom_url_category_allow
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/custom-url-category
+    element: |-
+        <entry name="Allow">
+          <type>URL List</type>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_custom_urlFiltering_10_0.ironskillet_custom_url_category_no_decrypt
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/custom-url-category
+    element: |-
+        <entry name="Custom-No-Decrypt">
+          <type>URL List</type>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_decryption_10_0.ironskillet_decryption_profile
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/decryption
-    file: profiles_decryption.xml
-  - name: profiles_virus
+    element: |-
+        <entry name="Recommended_Decryption_Profile">
+          <ssl-forward-proxy>
+            <block-expired-certificate>yes</block-expired-certificate>
+            <block-untrusted-issuer>yes</block-untrusted-issuer>
+            <block-unknown-cert>yes</block-unknown-cert>
+            <block-timeout-cert>yes</block-timeout-cert>
+            <block-unsupported-version>yes</block-unsupported-version>
+            <block-unsupported-cipher>yes</block-unsupported-cipher>
+          </ssl-forward-proxy>
+          <ssl-no-proxy>
+            <block-expired-certificate>yes</block-expired-certificate>
+            <block-untrusted-issuer>yes</block-untrusted-issuer>
+          </ssl-no-proxy>
+          <ssl-inbound-proxy>
+            <block-unsupported-version>no</block-unsupported-version>
+            <block-unsupported-cipher>no</block-unsupported-cipher>
+          </ssl-inbound-proxy>
+          <ssh-proxy>
+            <block-unsupported-version>yes</block-unsupported-version>
+            <block-unsupported-alg>yes</block-unsupported-alg>
+          </ssh-proxy>
+          <ssl-protocol-settings>
+            <min-version>tls1-2</min-version>
+            <max-version>tls1-3</max-version>
+            <keyxchg-algo-rsa>no</keyxchg-algo-rsa>
+            <enc-algo-3des>no</enc-algo-3des>
+            <enc-algo-rc4>no</enc-algo-rc4>
+            <auth-algo-sha1>no</auth-algo-sha1>
+          </ssl-protocol-settings>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_antivirus_10_0.ironskillet_antivirus_alert_all
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/virus
-    file: profiles_virus.xml
-  - name: profiles_spyware
+    element: |-
+        <entry name="Alert-Only-AV">
+          <decoder>
+            <entry name="ftp">
+              <action>alert</action>
+              <wildfire-action>alert</wildfire-action>
+              <mlav-action>alert</mlav-action>
+            </entry>
+            <entry name="http">
+              <action>alert</action>
+              <wildfire-action>alert</wildfire-action>
+              <mlav-action>alert</mlav-action>
+            </entry>
+            <entry name="http2">
+              <action>alert</action>
+              <wildfire-action>alert</wildfire-action>
+              <mlav-action>alert</mlav-action>
+            </entry>
+            <entry name="imap">
+              <action>alert</action>
+              <wildfire-action>alert</wildfire-action>
+              <mlav-action>alert</mlav-action>
+            </entry>
+            <entry name="pop3">
+              <action>alert</action>
+              <wildfire-action>alert</wildfire-action>
+              <mlav-action>alert</mlav-action>
+            </entry>
+            <entry name="smb">
+              <action>alert</action>
+              <wildfire-action>alert</wildfire-action>
+              <mlav-action>alert</mlav-action>
+            </entry>
+            <entry name="smtp">
+              <action>alert</action>
+              <wildfire-action>alert</wildfire-action>
+              <mlav-action>alert</mlav-action>
+            </entry>
+          </decoder>
+          <mlav-engine-filebased-enabled>
+            <entry name="Windows Executables">
+              <mlav-policy-action>enable(alert-only)</mlav-policy-action>
+            </entry>
+            <entry name="PowerShell Script 1">
+              <mlav-policy-action>enable(alert-only)</mlav-policy-action>
+            </entry>
+            <entry name="PowerShell Script 2">
+              <mlav-policy-action>enable(alert-only)</mlav-policy-action>
+            </entry>
+          </mlav-engine-filebased-enabled>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_antivirus_10_0.ironskillet_antivirus_outbound
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/virus
+    element: |-
+        <entry name="Outbound-AV">
+          <decoder>
+            <entry name="ftp">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+            <entry name="http">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+            <entry name="http2">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+            <entry name="imap">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+            <entry name="pop3">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+            <entry name="smb">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+            <entry name="smtp">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+          </decoder>
+          <mlav-engine-filebased-enabled>
+            <entry name="Windows Executables">
+              <mlav-policy-action>enable</mlav-policy-action>
+            </entry>
+            <entry name="PowerShell Script 1">
+              <mlav-policy-action>enable</mlav-policy-action>
+            </entry>
+            <entry name="PowerShell Script 2">
+              <mlav-policy-action>enable</mlav-policy-action>
+            </entry>
+          </mlav-engine-filebased-enabled>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_antivirus_10_0.ironskillet_antivirus_inbound
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/virus
+    element: |-
+        <entry name="Inbound-AV">
+          <decoder>
+            <entry name="ftp">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+            <entry name="http">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+            <entry name="http2">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+            <entry name="imap">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+            <entry name="pop3">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+            <entry name="smb">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+            <entry name="smtp">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+          </decoder>
+          <mlav-engine-filebased-enabled>
+            <entry name="Windows Executables">
+              <mlav-policy-action>enable</mlav-policy-action>
+            </entry>
+            <entry name="PowerShell Script 1">
+              <mlav-policy-action>enable</mlav-policy-action>
+            </entry>
+            <entry name="PowerShell Script 2">
+              <mlav-policy-action>enable</mlav-policy-action>
+            </entry>
+          </mlav-engine-filebased-enabled>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_antivirus_10_0.ironskillet_antivirus_internal
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/virus
+    element: |-
+        <entry name="Internal-AV">
+          <decoder>
+            <entry name="ftp">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+            <entry name="http">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+            <entry name="http2">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+            <entry name="imap">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+            <entry name="pop3">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+            <entry name="smb">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+            <entry name="smtp">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+          </decoder>
+          <mlav-engine-filebased-enabled>
+            <entry name="Windows Executables">
+              <mlav-policy-action>enable</mlav-policy-action>
+            </entry>
+            <entry name="PowerShell Script 1">
+              <mlav-policy-action>enable</mlav-policy-action>
+            </entry>
+            <entry name="PowerShell Script 2">
+              <mlav-policy-action>enable</mlav-policy-action>
+            </entry>
+          </mlav-engine-filebased-enabled>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_antivirus_10_0.ironskillet_antivirus_exception
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/virus
+    element: |-
+        <entry name="Exception-AV">
+          <decoder>
+            <entry name="ftp">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+            <entry name="http">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+            <entry name="http2">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+            <entry name="imap">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+            <entry name="pop3">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+            <entry name="smb">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+            <entry name="smtp">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+          </decoder>
+          <mlav-engine-filebased-enabled>
+            <entry name="Windows Executables">
+              <mlav-policy-action>enable</mlav-policy-action>
+            </entry>
+            <entry name="PowerShell Script 1">
+              <mlav-policy-action>enable</mlav-policy-action>
+            </entry>
+            <entry name="PowerShell Script 2">
+              <mlav-policy-action>enable</mlav-policy-action>
+            </entry>
+          </mlav-engine-filebased-enabled>
+          <description>Use this profile for rules needing modifications to the standard</description>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_spyware_10_0.ironskillet_spyware_outbound
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/spyware
-    file: profiles_spyware.xml
-  - name: profiles_vulnerability
+    element: |-
+        <entry name="Outbound-AS">
+          <botnet-domains>
+            <lists>
+              <entry name="default-paloalto-dns">
+                <action>
+                  <sinkhole/>
+                </action>
+                <packet-capture>single-packet</packet-capture>
+              </entry>
+            </lists>
+            <dns-security-categories>
+              <entry name="pan-dns-sec-benign">
+                <log-level>default</log-level>
+                <action>default</action>
+                <packet-capture>disable</packet-capture>
+              </entry>
+              <entry name="pan-dns-sec-cc">
+                <log-level>default</log-level>
+                <action>sinkhole</action>
+                <packet-capture>single-packet</packet-capture>
+              </entry>
+              <entry name="pan-dns-sec-ddns">
+                <log-level>default</log-level>
+                <action>default</action>
+                <packet-capture>single-packet</packet-capture>
+              </entry>
+              <entry name="pan-dns-sec-malware">
+                <log-level>default</log-level>
+                <action>sinkhole</action>
+                <packet-capture>single-packet</packet-capture>
+              </entry>
+              <entry name="pan-dns-sec-recent">
+                <log-level>default</log-level>
+                <action>default</action>
+                <packet-capture>single-packet</packet-capture>
+              </entry>
+            </dns-security-categories>
+            <sinkhole>
+              <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
+              <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+            </sinkhole>
+          </botnet-domains>
+          <rules>
+            <entry name="Block-Critical-High-Medium">
+              <action>
+                <reset-both/>
+              </action>
+              <severity>
+                <member>critical</member>
+                <member>high</member>
+                <member>medium</member>
+              </severity>
+              <threat-name>any</threat-name>
+              <category>any</category>
+              <packet-capture>single-packet</packet-capture>
+            </entry>
+            <entry name="Default-Low-Info">
+              <action>
+                <default/>
+              </action>
+              <severity>
+                <member>low</member>
+                <member>informational</member>
+              </severity>
+              <threat-name>any</threat-name>
+              <category>any</category>
+              <packet-capture>disable</packet-capture>
+            </entry>
+          </rules>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_spyware_10_0.ironskillet_spyware_inbound
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/spyware
+    element: |-
+        <entry name="Inbound-AS">
+          <botnet-domains>
+            <lists>
+              <entry name="default-paloalto-dns">
+                <action>
+                  <sinkhole/>
+                </action>
+                <packet-capture>single-packet</packet-capture>
+              </entry>
+            </lists>
+            <dns-security-categories>
+              <entry name="pan-dns-sec-benign">
+                <log-level>default</log-level>
+                <action>default</action>
+                <packet-capture>disable</packet-capture>
+              </entry>
+              <entry name="pan-dns-sec-cc">
+                <log-level>default</log-level>
+                <action>sinkhole</action>
+                <packet-capture>single-packet</packet-capture>
+              </entry>
+              <entry name="pan-dns-sec-ddns">
+                <log-level>default</log-level>
+                <action>default</action>
+                <packet-capture>single-packet</packet-capture>
+              </entry>
+              <entry name="pan-dns-sec-malware">
+                <log-level>default</log-level>
+                <action>sinkhole</action>
+                <packet-capture>single-packet</packet-capture>
+              </entry>
+              <entry name="pan-dns-sec-recent">
+                <log-level>default</log-level>
+                <action>default</action>
+                <packet-capture>single-packet</packet-capture>
+              </entry>
+            </dns-security-categories>
+            <sinkhole>
+              <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
+              <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+            </sinkhole>
+          </botnet-domains>
+          <rules>
+            <entry name="Block-Critical-High-Medium">
+              <action>
+                <reset-both/>
+              </action>
+              <severity>
+                <member>critical</member>
+                <member>high</member>
+                <member>medium</member>
+              </severity>
+              <threat-name>any</threat-name>
+              <category>any</category>
+              <packet-capture>single-packet</packet-capture>
+            </entry>
+            <entry name="Default-Low-Info">
+              <action>
+                <default/>
+              </action>
+              <severity>
+                <member>low</member>
+                <member>informational</member>
+              </severity>
+              <threat-name>any</threat-name>
+              <category>any</category>
+              <packet-capture>disable</packet-capture>
+            </entry>
+          </rules>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_spyware_10_0.ironskillet_spyware_internal
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/spyware
+    element: |-
+        <entry name="Internal-AS">
+          <botnet-domains>
+            <lists>
+              <entry name="default-paloalto-dns">
+                <action>
+                  <sinkhole/>
+                </action>
+                <packet-capture>single-packet</packet-capture>
+              </entry>
+            </lists>
+            <dns-security-categories>
+              <entry name="pan-dns-sec-benign">
+                <log-level>default</log-level>
+                <action>default</action>
+                <packet-capture>disable</packet-capture>
+              </entry>
+              <entry name="pan-dns-sec-cc">
+                <log-level>default</log-level>
+                <action>sinkhole</action>
+                <packet-capture>single-packet</packet-capture>
+              </entry>
+              <entry name="pan-dns-sec-ddns">
+                <log-level>default</log-level>
+                <action>default</action>
+                <packet-capture>single-packet</packet-capture>
+              </entry>
+              <entry name="pan-dns-sec-malware">
+                <log-level>default</log-level>
+                <action>sinkhole</action>
+                <packet-capture>single-packet</packet-capture>
+              </entry>
+              <entry name="pan-dns-sec-recent">
+                <log-level>default</log-level>
+                <action>default</action>
+                <packet-capture>single-packet</packet-capture>
+              </entry>
+            </dns-security-categories>
+            <sinkhole>
+              <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
+              <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+            </sinkhole>
+          </botnet-domains>
+          <rules>
+            <entry name="Block-Critical-High">
+              <action>
+                <reset-both/>
+              </action>
+              <severity>
+                <member>critical</member>
+                <member>high</member>
+              </severity>
+              <threat-name>any</threat-name>
+              <category>any</category>
+              <packet-capture>single-packet</packet-capture>
+            </entry>
+            <entry name="Default-Medium-Low-Info">
+              <action>
+                <default/>
+              </action>
+              <severity>
+                <member>medium</member>
+                <member>low</member>
+                <member>informational</member>
+              </severity>
+              <threat-name>any</threat-name>
+              <category>any</category>
+              <packet-capture>disable</packet-capture>
+            </entry>
+          </rules>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_spyware_10_0.ironskillet_spyware_alert_all
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/spyware
+    element: |-
+        <entry name="Alert-Only-AS">
+          <botnet-domains>
+            <lists>
+              <entry name="default-paloalto-dns">
+                <action>
+                  <alert/>
+                </action>
+                <packet-capture>single-packet</packet-capture>
+              </entry>
+            </lists>
+            <dns-security-categories>
+              <entry name="pan-dns-sec-benign">
+                <log-level>default</log-level>
+                <action>allow</action>
+                <packet-capture>disable</packet-capture>
+              </entry>
+              <entry name="pan-dns-sec-cc">
+                <log-level>default</log-level>
+                <action>allow</action>
+                <packet-capture>single-packet</packet-capture>
+              </entry>
+              <entry name="pan-dns-sec-ddns">
+                <log-level>default</log-level>
+                <action>allow</action>
+                <packet-capture>single-packet</packet-capture>
+              </entry>
+              <entry name="pan-dns-sec-malware">
+                <log-level>default</log-level>
+                <action>allow</action>
+                <packet-capture>single-packet</packet-capture>
+              </entry>
+              <entry name="pan-dns-sec-recent">
+                <log-level>default</log-level>
+                <action>allow</action>
+                <packet-capture>single-packet</packet-capture>
+              </entry>
+            </dns-security-categories>
+            <sinkhole>
+              <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
+              <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+            </sinkhole>
+          </botnet-domains>
+          <rules>
+            <entry name="Alert-All">
+              <action>
+                <alert/>
+              </action>
+              <severity>
+                <member>any</member>
+              </severity>
+              <threat-name>any</threat-name>
+              <category>any</category>
+              <packet-capture>disable</packet-capture>
+            </entry>
+          </rules>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_spyware_10_0.ironskillet_spyware_exception
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/spyware
+    element: |-
+        <entry name="Exception-AS">
+          <description>Used for exception cases not part of the recommended practice</description>
+          <botnet-domains>
+            <lists>
+              <entry name="default-paloalto-dns">
+                <packet-capture>single-packet</packet-capture>
+                <action>
+                  <sinkhole/>
+                </action>
+              </entry>
+            </lists>
+            <dns-security-categories>
+              <entry name="pan-dns-sec-benign">
+                <log-level>default</log-level>
+                <action>default</action>
+                <packet-capture>disable</packet-capture>
+              </entry>
+              <entry name="pan-dns-sec-cc">
+                <log-level>default</log-level>
+                <action>default</action>
+                <packet-capture>disable</packet-capture>
+              </entry>
+              <entry name="pan-dns-sec-ddns">
+                <log-level>default</log-level>
+                <action>default</action>
+                <packet-capture>disable</packet-capture>
+              </entry>
+              <entry name="pan-dns-sec-malware">
+                <log-level>default</log-level>
+                <action>default</action>
+                <packet-capture>disable</packet-capture>
+              </entry>
+              <entry name="pan-dns-sec-recent">
+                <log-level>default</log-level>
+                <action>default</action>
+                <packet-capture>disable</packet-capture>
+              </entry>
+            </dns-security-categories>
+            <sinkhole>
+              <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
+              <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+            </sinkhole>
+          </botnet-domains>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_vulnerability_10_0.ironskillet_vulnerability_outbound
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/vulnerability
-    file: profiles_vulnerability.xml
-  - name: profiles_file_blocking
+    element: |-
+        <entry name="Outbound-VP">
+          <rules>
+            <entry name="Block-Critical-High-Medium">
+              <action>
+                <reset-both/>
+              </action>
+              <vendor-id>
+                <member>any</member>
+              </vendor-id>
+              <severity>
+                <member>critical</member>
+                <member>high</member>
+                <member>medium</member>
+              </severity>
+              <cve>
+                <member>any</member>
+              </cve>
+              <threat-name>any</threat-name>
+              <host>any</host>
+              <category>any</category>
+              <packet-capture>single-packet</packet-capture>
+            </entry>
+            <entry name="Default-Low-Info">
+              <action>
+                <default/>
+              </action>
+              <vendor-id>
+                <member>any</member>
+              </vendor-id>
+              <severity>
+                <member>low</member>
+                <member>informational</member>
+              </severity>
+              <cve>
+                <member>any</member>
+              </cve>
+              <threat-name>any</threat-name>
+              <host>any</host>
+              <category>any</category>
+              <packet-capture>disable</packet-capture>
+            </entry>
+          </rules>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_vulnerability_10_0.ironskillet_vulnerability_inbound
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/vulnerability
+    element: |-
+        <entry name="Inbound-VP">
+          <rules>
+            <entry name="Block-Critical-High-Medium">
+              <action>
+                <reset-both/>
+              </action>
+              <vendor-id>
+                <member>any</member>
+              </vendor-id>
+              <severity>
+                <member>critical</member>
+                <member>high</member>
+                <member>medium</member>
+              </severity>
+              <cve>
+                <member>any</member>
+              </cve>
+              <threat-name>any</threat-name>
+              <host>any</host>
+              <category>any</category>
+              <packet-capture>single-packet</packet-capture>
+            </entry>
+            <entry name="Default-Low-Info">
+              <action>
+                <default/>
+              </action>
+              <vendor-id>
+                <member>any</member>
+              </vendor-id>
+              <severity>
+                <member>low</member>
+                <member>informational</member>
+              </severity>
+              <cve>
+                <member>any</member>
+              </cve>
+              <threat-name>any</threat-name>
+              <host>any</host>
+              <category>any</category>
+              <packet-capture>disable</packet-capture>
+            </entry>
+          </rules>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_vulnerability_10_0.ironskillet_vulnerability_internal
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/vulnerability
+    element: |-
+        <entry name="Internal-VP">
+          <rules>
+            <entry name="Block-Critical-High">
+              <action>
+                <reset-both/>
+              </action>
+              <vendor-id>
+                <member>any</member>
+              </vendor-id>
+              <severity>
+                <member>critical</member>
+                <member>high</member>
+              </severity>
+              <cve>
+                <member>any</member>
+              </cve>
+              <threat-name>any</threat-name>
+              <host>any</host>
+              <category>any</category>
+              <packet-capture>single-packet</packet-capture>
+            </entry>
+            <entry name="Default-Medium-Low-Info">
+              <action>
+                <default/>
+              </action>
+              <vendor-id>
+                <member>any</member>
+              </vendor-id>
+              <severity>
+                <member>low</member>
+                <member>informational</member>
+                <member>medium</member>
+              </severity>
+              <cve>
+                <member>any</member>
+              </cve>
+              <threat-name>any</threat-name>
+              <host>any</host>
+              <category>any</category>
+              <packet-capture>disable</packet-capture>
+            </entry>
+          </rules>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_vulnerability_10_0.ironskillet_vulnerability_alert_all
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/vulnerability
+    element: |-
+        <entry name="Alert-Only-VP">
+          <rules>
+            <entry name="Alert-All">
+              <action>
+                <alert/>
+              </action>
+              <vendor-id>
+                <member>any</member>
+              </vendor-id>
+              <severity>
+                <member>any</member>
+              </severity>
+              <cve>
+                <member>any</member>
+              </cve>
+              <threat-name>any</threat-name>
+              <host>any</host>
+              <category>any</category>
+              <packet-capture>disable</packet-capture>
+            </entry>
+          </rules>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_vulnerability_10_0.ironskillet_vulnerability_exception
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/vulnerability
+    element: <entry name="Exception-VP"/>
+    cmd: set
+
+-   name: panos_ngfw_profile_file-blocking_10_0.ironskillet_file_blocking_outbound
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/file-blocking
-    file: profiles_file_blocking.xml
-  - name: profiles_url_filtering
+    element: |-
+        <entry name="Outbound-FB">
+          <rules>
+            <entry name="Alert-All">
+              <application>
+                <member>any</member>
+              </application>
+              <file-type>
+                <member>any</member>
+              </file-type>
+              <direction>both</direction>
+              <action>alert</action>
+            </entry>
+            <entry name="Block">
+              <application>
+                <member>any</member>
+              </application>
+              <file-type>
+                <member>7z</member>
+                <member>bat</member>
+                <member>chm</member>
+                <member>class</member>
+                <member>cpl</member>
+                <member>dll</member>
+                <member>hlp</member>
+                <member>hta</member>
+                <member>jar</member>
+                <member>ocx</member>
+                <member>pif</member>
+                <member>scr</member>
+                <member>torrent</member>
+                <member>vbe</member>
+                <member>wsf</member>
+              </file-type>
+              <direction>both</direction>
+              <action>block</action>
+            </entry>
+          </rules>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_file-blocking_10_0.ironskillet_file_blocking_inbound
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/file-blocking
+    element: |-
+        <entry name="Inbound-FB">
+          <rules>
+            <entry name="Alert-All">
+              <application>
+                <member>any</member>
+              </application>
+              <file-type>
+                <member>any</member>
+              </file-type>
+              <direction>both</direction>
+              <action>alert</action>
+            </entry>
+            <entry name="Block">
+              <application>
+                <member>any</member>
+              </application>
+              <file-type>
+                <member>7z</member>
+                <member>bat</member>
+                <member>chm</member>
+                <member>class</member>
+                <member>cpl</member>
+                <member>dll</member>
+                <member>hlp</member>
+                <member>hta</member>
+                <member>jar</member>
+                <member>ocx</member>
+                <member>pif</member>
+                <member>scr</member>
+                <member>torrent</member>
+                <member>vbe</member>
+                <member>wsf</member>
+              </file-type>
+              <direction>both</direction>
+              <action>block</action>
+            </entry>
+          </rules>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_file-blocking_10_0.ironskillet_file_blocking_internal
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/file-blocking
+    element: |-
+        <entry name="Internal-FB">
+          <rules>
+            <entry name="Alert-All">
+              <application>
+                <member>any</member>
+              </application>
+              <file-type>
+                <member>any</member>
+              </file-type>
+              <direction>both</direction>
+              <action>alert</action>
+            </entry>
+            <entry name="Block">
+              <application>
+                <member>any</member>
+              </application>
+              <file-type>
+                <member>7z</member>
+                <member>bat</member>
+                <member>chm</member>
+                <member>class</member>
+                <member>cpl</member>
+                <member>hlp</member>
+                <member>hta</member>
+                <member>jar</member>
+                <member>ocx</member>
+                <member>pif</member>
+                <member>scr</member>
+                <member>torrent</member>
+                <member>vbe</member>
+                <member>wsf</member>
+              </file-type>
+              <direction>both</direction>
+              <action>block</action>
+            </entry>
+          </rules>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_file-blocking_10_0.ironskillet_file_blocking_alert_all
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/file-blocking
+    element: |-
+        <entry name="Alert-Only-FB">
+          <rules>
+            <entry name="Alert-Only">
+              <application>
+                <member>any</member>
+              </application>
+              <file-type>
+                <member>any</member>
+              </file-type>
+              <direction>both</direction>
+              <action>alert</action>
+            </entry>
+          </rules>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_urlFiltering_10_0.ironskillet_url_outbound
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/url-filtering
-    file: profiles_url_filtering.xml
-  - name: profiles_wildfire_analysis
+    element: |-
+        <entry name="Outbound-URL">
+          <credential-enforcement>
+            <mode>
+              <ip-user/>
+            </mode>
+            <log-severity>high</log-severity>
+            <block>
+              <member>Block</member>
+              <member>Allow</member>
+              <member>abortion</member>
+              <member>abused-drugs</member>
+              <member>adult</member>
+              <member>alcohol-and-tobacco</member>
+              <member>auctions</member>
+              <member>business-and-economy</member>
+              <member>command-and-control</member>
+              <member>computer-and-internet-info</member>
+              <member>content-delivery-networks</member>
+              <member>copyright-infringement</member>
+              <member>cryptocurrency</member>
+              <member>dating</member>
+              <member>dynamic-dns</member>
+              <member>educational-institutions</member>
+              <member>entertainment-and-arts</member>
+              <member>extremism</member>
+              <member>financial-services</member>
+              <member>gambling</member>
+              <member>games</member>
+              <member>government</member>
+              <member>grayware</member>
+              <member>hacking</member>
+              <member>health-and-medicine</member>
+              <member>high-risk</member>
+              <member>home-and-garden</member>
+              <member>hunting-and-fishing</member>
+              <member>insufficient-content</member>
+              <member>internet-communications-and-telephony</member>
+              <member>internet-portals</member>
+              <member>job-search</member>
+              <member>legal</member>
+              <member>low-risk</member>
+              <member>malware</member>
+              <member>medium-risk</member>
+              <member>military</member>
+              <member>motor-vehicles</member>
+              <member>music</member>
+              <member>newly-registered-domain</member>
+              <member>news</member>
+              <member>not-resolved</member>
+              <member>nudity</member>
+              <member>online-storage-and-backup</member>
+              <member>parked</member>
+              <member>peer-to-peer</member>
+              <member>personal-sites-and-blogs</member>
+              <member>philosophy-and-political-advocacy</member>
+              <member>phishing</member>
+              <member>private-ip-addresses</member>
+              <member>proxy-avoidance-and-anonymizers</member>
+              <member>questionable</member>
+              <member>real-estate</member>
+              <member>real-time-detection</member>
+              <member>recreation-and-hobbies</member>
+              <member>reference-and-research</member>
+              <member>religion</member>
+              <member>search-engines</member>
+              <member>sex-education</member>
+              <member>shareware-and-freeware</member>
+              <member>shopping</member>
+              <member>social-networking</member>
+              <member>society</member>
+              <member>sports</member>
+              <member>stock-advice-and-tools</member>
+              <member>streaming-media</member>
+              <member>swimsuits-and-intimate-apparel</member>
+              <member>training-and-tools</member>
+              <member>translation</member>
+              <member>travel</member>
+              <member>unknown</member>
+              <member>weapons</member>
+              <member>web-advertisements</member>
+              <member>web-based-email</member>
+              <member>web-hosting</member>
+            </block>
+          </credential-enforcement>
+          <log-http-hdr-user-agent>yes</log-http-hdr-user-agent>
+          <log-http-hdr-referer>yes</log-http-hdr-referer>
+          <log-http-hdr-xff>yes</log-http-hdr-xff>
+          <alert>
+            <member>Allow</member>
+            <member>abortion</member>
+            <member>abused-drugs</member>
+            <member>adult</member>
+            <member>alcohol-and-tobacco</member>
+            <member>auctions</member>
+            <member>business-and-economy</member>
+            <member>computer-and-internet-info</member>
+            <member>content-delivery-networks</member>
+            <member>copyright-infringement</member>
+            <member>cryptocurrency</member>
+            <member>dating</member>
+            <member>dynamic-dns</member>
+            <member>educational-institutions</member>
+            <member>entertainment-and-arts</member>
+            <member>extremism</member>
+            <member>financial-services</member>
+            <member>gambling</member>
+            <member>games</member>
+            <member>government</member>
+            <member>hacking</member>
+            <member>health-and-medicine</member>
+            <member>high-risk</member>
+            <member>home-and-garden</member>
+            <member>hunting-and-fishing</member>
+            <member>insufficient-content</member>
+            <member>internet-communications-and-telephony</member>
+            <member>internet-portals</member>
+            <member>job-search</member>
+            <member>legal</member>
+            <member>low-risk</member>
+            <member>medium-risk</member>
+            <member>military</member>
+            <member>motor-vehicles</member>
+            <member>music</member>
+            <member>newly-registered-domain</member>
+            <member>news</member>
+            <member>not-resolved</member>
+            <member>nudity</member>
+            <member>online-storage-and-backup</member>
+            <member>parked</member>
+            <member>peer-to-peer</member>
+            <member>personal-sites-and-blogs</member>
+            <member>philosophy-and-political-advocacy</member>
+            <member>private-ip-addresses</member>
+            <member>proxy-avoidance-and-anonymizers</member>
+            <member>questionable</member>
+            <member>real-estate</member>
+            <member>real-time-detection</member>
+            <member>recreation-and-hobbies</member>
+            <member>reference-and-research</member>
+            <member>religion</member>
+            <member>search-engines</member>
+            <member>sex-education</member>
+            <member>shareware-and-freeware</member>
+            <member>shopping</member>
+            <member>social-networking</member>
+            <member>society</member>
+            <member>sports</member>
+            <member>stock-advice-and-tools</member>
+            <member>streaming-media</member>
+            <member>swimsuits-and-intimate-apparel</member>
+            <member>training-and-tools</member>
+            <member>translation</member>
+            <member>travel</member>
+            <member>unknown</member>
+            <member>weapons</member>
+            <member>web-advertisements</member>
+            <member>web-based-email</member>
+            <member>web-hosting</member>
+          </alert>
+          <block>
+            <member>Block</member>
+            <member>command-and-control</member>
+            <member>grayware</member>
+            <member>malware</member>
+            <member>phishing</member>
+          </block>
+          <mlav-engine-urlbased-enabled>
+            <entry name="Phishing Detection">
+              <mlav-policy-action>block</mlav-policy-action>
+            </entry>
+            <entry name="Javascript Exploit Detection">
+              <mlav-policy-action>block</mlav-policy-action>
+            </entry>
+          </mlav-engine-urlbased-enabled>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_urlFiltering_10_0.ironskillet_url_alert_all
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/url-filtering
+    element: |-
+        <entry name="Alert-Only-URL">
+          <credential-enforcement>
+            <mode>
+              <ip-user/>
+            </mode>
+            <log-severity>medium</log-severity>
+            <alert>
+              <member>Block</member>
+              <member>Allow</member>
+              <member>abortion</member>
+              <member>abused-drugs</member>
+              <member>adult</member>
+              <member>alcohol-and-tobacco</member>
+              <member>auctions</member>
+              <member>business-and-economy</member>
+              <member>command-and-control</member>
+              <member>computer-and-internet-info</member>
+              <member>content-delivery-networks</member>
+              <member>copyright-infringement</member>
+              <member>cryptocurrency</member>
+              <member>dating</member>
+              <member>dynamic-dns</member>
+              <member>educational-institutions</member>
+              <member>entertainment-and-arts</member>
+              <member>extremism</member>
+              <member>financial-services</member>
+              <member>gambling</member>
+              <member>games</member>
+              <member>government</member>
+              <member>grayware</member>
+              <member>hacking</member>
+              <member>health-and-medicine</member>
+              <member>high-risk</member>
+              <member>home-and-garden</member>
+              <member>hunting-and-fishing</member>
+              <member>insufficient-content</member>
+              <member>internet-communications-and-telephony</member>
+              <member>internet-portals</member>
+              <member>job-search</member>
+              <member>legal</member>
+              <member>low-risk</member>
+              <member>malware</member>
+              <member>medium-risk</member>
+              <member>military</member>
+              <member>motor-vehicles</member>
+              <member>music</member>
+              <member>newly-registered-domain</member>
+              <member>news</member>
+              <member>not-resolved</member>
+              <member>nudity</member>
+              <member>online-storage-and-backup</member>
+              <member>parked</member>
+              <member>peer-to-peer</member>
+              <member>personal-sites-and-blogs</member>
+              <member>philosophy-and-political-advocacy</member>
+              <member>phishing</member>
+              <member>private-ip-addresses</member>
+              <member>proxy-avoidance-and-anonymizers</member>
+              <member>questionable</member>
+              <member>real-estate</member>
+              <member>real-time-detection</member>
+              <member>recreation-and-hobbies</member>
+              <member>reference-and-research</member>
+              <member>religion</member>
+              <member>search-engines</member>
+              <member>sex-education</member>
+              <member>shareware-and-freeware</member>
+              <member>shopping</member>
+              <member>social-networking</member>
+              <member>society</member>
+              <member>sports</member>
+              <member>stock-advice-and-tools</member>
+              <member>streaming-media</member>
+              <member>swimsuits-and-intimate-apparel</member>
+              <member>training-and-tools</member>
+              <member>translation</member>
+              <member>travel</member>
+              <member>unknown</member>
+              <member>weapons</member>
+              <member>web-advertisements</member>
+              <member>web-based-email</member>
+              <member>web-hosting</member>
+            </alert>
+          </credential-enforcement>
+          <alert>
+            <member>Block</member>
+            <member>Allow</member>
+            <member>abortion</member>
+            <member>abused-drugs</member>
+            <member>adult</member>
+            <member>alcohol-and-tobacco</member>
+            <member>auctions</member>
+            <member>business-and-economy</member>
+            <member>command-and-control</member>
+            <member>computer-and-internet-info</member>
+            <member>content-delivery-networks</member>
+            <member>copyright-infringement</member>
+            <member>cryptocurrency</member>
+            <member>dating</member>
+            <member>dynamic-dns</member>
+            <member>educational-institutions</member>
+            <member>entertainment-and-arts</member>
+            <member>extremism</member>
+            <member>financial-services</member>
+            <member>gambling</member>
+            <member>games</member>
+            <member>government</member>
+            <member>grayware</member>
+            <member>hacking</member>
+            <member>health-and-medicine</member>
+            <member>high-risk</member>
+            <member>home-and-garden</member>
+            <member>hunting-and-fishing</member>
+            <member>insufficient-content</member>
+            <member>internet-communications-and-telephony</member>
+            <member>internet-portals</member>
+            <member>job-search</member>
+            <member>legal</member>
+            <member>low-risk</member>
+            <member>malware</member>
+            <member>medium-risk</member>
+            <member>military</member>
+            <member>motor-vehicles</member>
+            <member>music</member>
+            <member>newly-registered-domain</member>
+            <member>news</member>
+            <member>not-resolved</member>
+            <member>nudity</member>
+            <member>online-storage-and-backup</member>
+            <member>parked</member>
+            <member>peer-to-peer</member>
+            <member>personal-sites-and-blogs</member>
+            <member>philosophy-and-political-advocacy</member>
+            <member>phishing</member>
+            <member>private-ip-addresses</member>
+            <member>proxy-avoidance-and-anonymizers</member>
+            <member>questionable</member>
+            <member>real-estate</member>
+            <member>real-time-detection</member>
+            <member>recreation-and-hobbies</member>
+            <member>reference-and-research</member>
+            <member>religion</member>
+            <member>search-engines</member>
+            <member>sex-education</member>
+            <member>shareware-and-freeware</member>
+            <member>shopping</member>
+            <member>social-networking</member>
+            <member>society</member>
+            <member>sports</member>
+            <member>stock-advice-and-tools</member>
+            <member>streaming-media</member>
+            <member>swimsuits-and-intimate-apparel</member>
+            <member>training-and-tools</member>
+            <member>translation</member>
+            <member>travel</member>
+            <member>unknown</member>
+            <member>weapons</member>
+            <member>web-advertisements</member>
+            <member>web-based-email</member>
+            <member>web-hosting</member>
+          </alert>
+          <mlav-engine-urlbased-enabled>
+            <entry name="Phishing Detection">
+              <mlav-policy-action>alert</mlav-policy-action>
+            </entry>
+            <entry name="Javascript Exploit Detection">
+              <mlav-policy-action>alert</mlav-policy-action>
+            </entry>
+          </mlav-engine-urlbased-enabled>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_urlFiltering_10_0.ironskillet_url_exception
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/url-filtering
+    element: |-
+        <entry name="Exception-URL">
+          <credential-enforcement>
+            <mode>
+              <ip-user/>
+            </mode>
+            <log-severity>high</log-severity>
+            <block>
+              <member>Block</member>
+              <member>Allow</member>
+              <member>abortion</member>
+              <member>abused-drugs</member>
+              <member>adult</member>
+              <member>alcohol-and-tobacco</member>
+              <member>auctions</member>
+              <member>business-and-economy</member>
+              <member>command-and-control</member>
+              <member>computer-and-internet-info</member>
+              <member>content-delivery-networks</member>
+              <member>copyright-infringement</member>
+              <member>cryptocurrency</member>
+              <member>dating</member>
+              <member>dynamic-dns</member>
+              <member>educational-institutions</member>
+              <member>entertainment-and-arts</member>
+              <member>extremism</member>
+              <member>financial-services</member>
+              <member>gambling</member>
+              <member>games</member>
+              <member>government</member>
+              <member>grayware</member>
+              <member>hacking</member>
+              <member>health-and-medicine</member>
+              <member>high-risk</member>
+              <member>home-and-garden</member>
+              <member>hunting-and-fishing</member>
+              <member>insufficient-content</member>
+              <member>internet-communications-and-telephony</member>
+              <member>internet-portals</member>
+              <member>job-search</member>
+              <member>legal</member>
+              <member>low-risk</member>
+              <member>malware</member>
+              <member>medium-risk</member>
+              <member>military</member>
+              <member>motor-vehicles</member>
+              <member>music</member>
+              <member>newly-registered-domain</member>
+              <member>news</member>
+              <member>not-resolved</member>
+              <member>nudity</member>
+              <member>online-storage-and-backup</member>
+              <member>parked</member>
+              <member>peer-to-peer</member>
+              <member>personal-sites-and-blogs</member>
+              <member>philosophy-and-political-advocacy</member>
+              <member>phishing</member>
+              <member>private-ip-addresses</member>
+              <member>proxy-avoidance-and-anonymizers</member>
+              <member>questionable</member>
+              <member>real-estate</member>
+              <member>real-time-detection</member>
+              <member>recreation-and-hobbies</member>
+              <member>reference-and-research</member>
+              <member>religion</member>
+              <member>search-engines</member>
+              <member>sex-education</member>
+              <member>shareware-and-freeware</member>
+              <member>shopping</member>
+              <member>social-networking</member>
+              <member>society</member>
+              <member>sports</member>
+              <member>stock-advice-and-tools</member>
+              <member>streaming-media</member>
+              <member>swimsuits-and-intimate-apparel</member>
+              <member>training-and-tools</member>
+              <member>translation</member>
+              <member>travel</member>
+              <member>unknown</member>
+              <member>weapons</member>
+              <member>web-advertisements</member>
+              <member>web-based-email</member>
+              <member>web-hosting</member>
+            </block>
+          </credential-enforcement>
+          <log-http-hdr-user-agent>yes</log-http-hdr-user-agent>
+          <log-http-hdr-referer>yes</log-http-hdr-referer>
+          <log-http-hdr-xff>yes</log-http-hdr-xff>
+          <alert>
+            <member>Allow</member>
+            <member>abortion</member>
+            <member>abused-drugs</member>
+            <member>adult</member>
+            <member>alcohol-and-tobacco</member>
+            <member>auctions</member>
+            <member>business-and-economy</member>
+            <member>computer-and-internet-info</member>
+            <member>content-delivery-networks</member>
+            <member>copyright-infringement</member>
+            <member>cryptocurrency</member>
+            <member>dating</member>
+            <member>dynamic-dns</member>
+            <member>educational-institutions</member>
+            <member>entertainment-and-arts</member>
+            <member>extremism</member>
+            <member>financial-services</member>
+            <member>gambling</member>
+            <member>games</member>
+            <member>government</member>
+            <member>hacking</member>
+            <member>health-and-medicine</member>
+            <member>high-risk</member>
+            <member>home-and-garden</member>
+            <member>hunting-and-fishing</member>
+            <member>insufficient-content</member>
+            <member>internet-communications-and-telephony</member>
+            <member>internet-portals</member>
+            <member>job-search</member>
+            <member>legal</member>
+            <member>low-risk</member>
+            <member>medium-risk</member>
+            <member>military</member>
+            <member>motor-vehicles</member>
+            <member>music</member>
+            <member>newly-registered-domain</member>
+            <member>news</member>
+            <member>not-resolved</member>
+            <member>nudity</member>
+            <member>online-storage-and-backup</member>
+            <member>parked</member>
+            <member>peer-to-peer</member>
+            <member>personal-sites-and-blogs</member>
+            <member>philosophy-and-political-advocacy</member>
+            <member>private-ip-addresses</member>
+            <member>proxy-avoidance-and-anonymizers</member>
+            <member>questionable</member>
+            <member>real-estate</member>
+            <member>real-time-detection</member>
+            <member>recreation-and-hobbies</member>
+            <member>reference-and-research</member>
+            <member>religion</member>
+            <member>search-engines</member>
+            <member>sex-education</member>
+            <member>shareware-and-freeware</member>
+            <member>shopping</member>
+            <member>social-networking</member>
+            <member>society</member>
+            <member>sports</member>
+            <member>stock-advice-and-tools</member>
+            <member>streaming-media</member>
+            <member>swimsuits-and-intimate-apparel</member>
+            <member>training-and-tools</member>
+            <member>translation</member>
+            <member>travel</member>
+            <member>unknown</member>
+            <member>weapons</member>
+            <member>web-advertisements</member>
+            <member>web-based-email</member>
+            <member>web-hosting</member>
+          </alert>
+          <block>
+            <member>Block</member>
+            <member>command-and-control</member>
+            <member>grayware</member>
+            <member>malware</member>
+            <member>phishing</member>
+          </block>
+          <mlav-engine-urlbased-enabled>
+            <entry name="Phishing Detection">
+              <mlav-policy-action>block</mlav-policy-action>
+            </entry>
+            <entry name="Javascript Exploit Detection">
+              <mlav-policy-action>block</mlav-policy-action>
+            </entry>
+          </mlav-engine-urlbased-enabled>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_wildfire_analysis_10_0.ironskillet_wildfire_outbound
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/wildfire-analysis
-    file: profiles_wildfire_analysis.xml
-  - name: profile_group
+    element: |-
+        <entry name="Outbound-WF">
+          <rules>
+            <entry name="Forward-All">
+              <application>
+                <member>any</member>
+              </application>
+              <file-type>
+                <member>any</member>
+              </file-type>
+              <direction>both</direction>
+              <analysis>public-cloud</analysis>
+            </entry>
+          </rules>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_wildfire_analysis_10_0.ironskillet_wildfire_inbound
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/wildfire-analysis
+    element: |-
+        <entry name="Inbound-WF">
+          <rules>
+            <entry name="Forward-All">
+              <application>
+                <member>any</member>
+              </application>
+              <file-type>
+                <member>any</member>
+              </file-type>
+              <direction>both</direction>
+              <analysis>public-cloud</analysis>
+            </entry>
+          </rules>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_wildfire_analysis_10_0.ironskillet_wildfire_internal
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/wildfire-analysis
+    element: |-
+        <entry name="Internal-WF">
+          <rules>
+            <entry name="Forward-All">
+              <application>
+                <member>any</member>
+              </application>
+              <file-type>
+                <member>any</member>
+              </file-type>
+              <direction>both</direction>
+              <analysis>public-cloud</analysis>
+            </entry>
+          </rules>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_wildfire_analysis_10_0.ironskillet_wildfire_alert_all
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/wildfire-analysis
+    element: |-
+        <entry name="Alert-Only-WF">
+          <rules>
+            <entry name="Forward-All">
+              <application>
+                <member>any</member>
+              </application>
+              <file-type>
+                <member>any</member>
+              </file-type>
+              <direction>both</direction>
+              <analysis>public-cloud</analysis>
+            </entry>
+          </rules>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_group_10_0.ironskillet_profile_group_outbound
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profile-group
-    file: profile_group.xml
-  - name: default_security_rules
+    element: |-
+        <entry name="Outbound">
+          <virus>
+            <member>Outbound-AV</member>
+          </virus>
+          <spyware>
+            <member>Outbound-AS</member>
+          </spyware>
+          <vulnerability>
+            <member>Outbound-VP</member>
+          </vulnerability>
+          <url-filtering>
+            <member>Outbound-URL</member>
+          </url-filtering>
+          <file-blocking>
+            <member>Outbound-FB</member>
+          </file-blocking>
+          <wildfire-analysis>
+            <member>Outbound-WF</member>
+          </wildfire-analysis>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_group_10_0.ironskillet_profile_group_inbound
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profile-group
+    element: |-
+        <entry name="Inbound">
+          <virus>
+            <member>Inbound-AV</member>
+          </virus>
+          <spyware>
+            <member>Inbound-AS</member>
+          </spyware>
+          <vulnerability>
+            <member>Inbound-VP</member>
+          </vulnerability>
+          <file-blocking>
+            <member>Inbound-FB</member>
+          </file-blocking>
+          <wildfire-analysis>
+            <member>Inbound-WF</member>
+          </wildfire-analysis>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_group_10_0.ironskillet_profile_group_internal
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profile-group
+    element: |-
+        <entry name="Internal">
+          <virus>
+            <member>Internal-AV</member>
+          </virus>
+          <spyware>
+            <member>Internal-AS</member>
+          </spyware>
+          <vulnerability>
+            <member>Internal-VP</member>
+          </vulnerability>
+          <file-blocking>
+            <member>Internal-FB</member>
+          </file-blocking>
+          <wildfire-analysis>
+            <member>Internal-WF</member>
+          </wildfire-analysis>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_group_10_0.ironskillet_profile_group_alert_all
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profile-group
+    element: |-
+        <entry name="Alert-Only">
+          <virus>
+            <member>Alert-Only-AV</member>
+          </virus>
+          <spyware>
+            <member>Alert-Only-AS</member>
+          </spyware>
+          <vulnerability>
+            <member>Alert-Only-VP</member>
+          </vulnerability>
+          <url-filtering>
+            <member>Alert-Only-URL</member>
+          </url-filtering>
+          <file-blocking>
+            <member>Alert-Only-FB</member>
+          </file-blocking>
+          <wildfire-analysis>
+            <member>Alert-Only-WF</member>
+          </wildfire-analysis>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_group_10_0.ironskillet_profile_group_default
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profile-group
+    element: |-
+        <entry name="default">
+          <virus>
+            <member>Outbound-AV</member>
+          </virus>
+          <spyware>
+            <member>Outbound-AS</member>
+          </spyware>
+          <vulnerability>
+            <member>Outbound-VP</member>
+          </vulnerability>
+          <url-filtering>
+            <member>Outbound-URL</member>
+          </url-filtering>
+          <file-blocking>
+            <member>Outbound-FB</member>
+          </file-blocking>
+          <wildfire-analysis>
+            <member>Outbound-WF</member>
+          </wildfire-analysis>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_rulebase_default_security_rules_10_0.ironskillet_rulebase_default_security_rules
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase/default-security-rules
-    file: rulebase_default_security_rules.xml
-  - name: security_rules
+    element: |-
+        <rules>
+          <entry name="intrazone-default">
+            <action>allow</action>
+            <log-start>no</log-start>
+            <log-end>yes</log-end>
+            <profile-setting>
+              <group>
+                <member>Inbound</member>
+              </group>
+            </profile-setting>
+            <log-setting>default</log-setting>
+          </entry>
+          <entry name="interzone-default">
+            <action>drop</action>
+            <log-start>no</log-start>
+            <log-end>yes</log-end>
+            <log-setting>default</log-setting>
+          </entry>
+        </rules>
+    cmd: set
+
+-   name: panos_ngfw_rulebase_security_10_0.ironskillet_rulebase_security
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase
-    file: rulebase_security.xml
-  - name: decryption_rules
+    element: |-
+        <security>
+          {%- if INCLUDE_PAN_EDL == 'no' %}
+          <rules/>
+          {%- elif INCLUDE_PAN_EDL == 'yes' %}
+          <rules>
+            <entry name="Outbound Block Rule">
+              <description>Block outbound sessions with destination address matching one of the Palo Alto Networks external dynamic lists for high risk and known malicious IP addresses.</description>
+              <to>
+                <member>any</member>
+              </to>
+              <from>
+                <member>any</member>
+              </from>
+              <source>
+                <member>any</member>
+              </source>
+              <destination>
+                <member>panw-highrisk-ip-list</member>
+                <member>panw-known-ip-list</member>
+                <member>panw-bulletproof-ip-list</member>
+              </destination>
+              <source-user>
+                <member>any</member>
+              </source-user>
+              <category>
+                <member>any</member>
+              </category>
+              <application>
+                <member>any</member>
+              </application>
+              <service>
+                <member>any</member>
+              </service>
+              <hip-profiles>
+                <member>any</member>
+              </hip-profiles>
+              <action>deny</action>
+              <log-setting>default</log-setting>
+              <tag>
+                <member>Outbound</member>
+              </tag>
+            </entry>
+            <entry name="Inbound Block Rule">
+              <description>Block inbound sessions with source address matching one of the Palo Alto Networks external dynamic lists for high risk and known malicious IP addresses.</description>
+              <to>
+                <member>any</member>
+              </to>
+              <from>
+                <member>any</member>
+              </from>
+              <source>
+                <member>panw-highrisk-ip-list</member>
+                <member>panw-known-ip-list</member>
+                <member>panw-bulletproof-ip-list</member>
+              </source>
+              <destination>
+                <member>any</member>
+              </destination>
+              <source-user>
+                <member>any</member>
+              </source-user>
+              <category>
+                <member>any</member>
+              </category>
+              <application>
+                <member>any</member>
+              </application>
+              <service>
+                <member>any</member>
+              </service>
+              <hip-profiles>
+                <member>any</member>
+              </hip-profiles>
+              <action>deny</action>
+              <log-setting>default</log-setting>
+              <tag>
+                <member>Inbound</member>
+              </tag>
+            </entry>
+          </rules>
+          {%- endif %}
+        </security>
+    cmd: set
+
+-   name: panos_ngfw_rulebase_decryption_10_0.ironskillet_rulebase_decryption
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase/decryption
-    file: rulebase_decryption.xml
-  - name: zone_protection_profile
+    element: |-
+        <rules>
+          <entry name="NO-Decrypt URL Categories">
+            <category>
+              <member>financial-services</member>
+              <member>government</member>
+              <member>health-and-medicine</member>
+              <member>Custom-No-Decrypt</member>
+            </category>
+            <service>
+              <member>any</member>
+            </service>
+            <type>
+              <ssl-forward-proxy/>
+            </type>
+            <from>
+              <member>any</member>
+            </from>
+            <to>
+              <member>any</member>
+            </to>
+            <source>
+              <member>any</member>
+            </source>
+            <destination>
+              <member>any</member>
+            </destination>
+            <source-user>
+              <member>any</member>
+            </source-user>
+            <profile>Recommended_Decryption_Profile</profile>
+            <action>no-decrypt</action>
+            <disabled>yes</disabled>
+            <description>This rule does not do Decryption.  This rule is validating SSL Protocol Communications.</description>
+          </entry>
+        </rules>
+    cmd: set
+
+-   name: panos_ngfw_zone_protection_10_0.ironskillet_zone_protection
     xpath: /config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile
-    file: zone_protection_profile.xml
-  - name: reports
+    element: |-
+        <entry name="Recommended_Zone_Protection">
+          <flood>
+            <tcp-syn>
+              <red>
+                <alarm-rate>10000</alarm-rate>
+                <activate-rate>10000</activate-rate>
+                <maximal-rate>40000</maximal-rate>
+              </red>
+              <enable>no</enable>
+            </tcp-syn>
+            <icmp>
+              <red>
+                <alarm-rate>10000</alarm-rate>
+                <activate-rate>10000</activate-rate>
+                <maximal-rate>40000</maximal-rate>
+              </red>
+              <enable>no</enable>
+            </icmp>
+            <icmpv6>
+              <red>
+                <alarm-rate>10000</alarm-rate>
+                <activate-rate>10000</activate-rate>
+                <maximal-rate>40000</maximal-rate>
+              </red>
+              <enable>no</enable>
+            </icmpv6>
+            <other-ip>
+              <red>
+                <alarm-rate>10000</alarm-rate>
+                <activate-rate>10000</activate-rate>
+                <maximal-rate>40000</maximal-rate>
+              </red>
+              <enable>no</enable>
+            </other-ip>
+            <udp>
+              <red>
+                <alarm-rate>10000</alarm-rate>
+                <activate-rate>10000</activate-rate>
+                <maximal-rate>40000</maximal-rate>
+              </red>
+              <enable>no</enable>
+            </udp>
+          </flood>
+          <scan>
+            <entry name="8001">
+              <action>
+                <alert/>
+              </action>
+              <interval>2</interval>
+              <threshold>100</threshold>
+            </entry>
+            <entry name="8002">
+              <action>
+                <alert/>
+              </action>
+              <interval>10</interval>
+              <threshold>100</threshold>
+            </entry>
+            <entry name="8003">
+              <action>
+                <alert/>
+              </action>
+              <interval>2</interval>
+              <threshold>100</threshold>
+            </entry>
+          </scan>
+          <discard-ip-spoof>yes</discard-ip-spoof>
+          <discard-malformed-option>yes</discard-malformed-option>
+          <remove-tcp-timestamp>yes</remove-tcp-timestamp>
+          <strip-tcp-fast-open-and-data>no</strip-tcp-fast-open-and-data>
+          <strip-mptcp-option>global</strip-mptcp-option>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_reports_simple_10_0.ironskillet_reports_host_visit_malicious_plus
     xpath: /config/shared/reports
-    file: reports_simple.xml
-  - name: report_group_simple
+    element: |-
+        <entry name="Host-visit malicious sites plus">
+          <period>last-7-calendar-days</period>
+          <topn>500</topn>
+          <topm>50</topm>
+          <caption>Host-visit malicious sites plus</caption>
+          <frequency>daily</frequency>
+          <query>(category eq command-and-control) or (category eq hacking) or (category eq malware) or (category eq phishing) or (category eq grayware)</query>
+          <type>
+            <url>
+              <sortby>repeatcnt</sortby>
+              <group-by>src</group-by>
+              <aggregate-by>
+                <member>from</member>
+                <member>srcuser</member>
+                <member>category</member>
+                <member>action</member>
+              </aggregate-by>
+              <values>
+                <member>repeatcnt</member>
+              </values>
+            </url>
+          </type>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_reports_simple_10_0.ironskillet_reports_host_visit_malicious
+    xpath: /config/shared/reports
+    element: |-
+        <entry name="Hosts visit malicious sites">
+          <period>last-7-calendar-days</period>
+          <topn>500</topn>
+          <topm>50</topm>
+          <caption>Hosts visit malicious sites</caption>
+          <frequency>daily</frequency>
+          <query>(category eq command-and-control) or (category eq hacking) or (category eq malware) or (category eq phishing) or (category eq grayware)</query>
+          <type>
+            <url>
+              <sortby>repeatcnt</sortby>
+              <group-by>src</group-by>
+              <aggregate-by>
+                <member>from</member>
+                <member>srcuser</member>
+              </aggregate-by>
+              <values>
+                <member>repeatcnt</member>
+              </values>
+            </url>
+          </type>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_reports_simple_10_0.ironskillet_reports_host_visit_questionable
+    xpath: /config/shared/reports
+    element: |-
+        <entry name="Hosts visit questionable sites">
+          <period>last-7-calendar-days</period>
+          <topn>500</topn>
+          <topm>50</topm>
+          <caption>Hosts visit questionable sites</caption>
+          <frequency>daily</frequency>
+          <query>(category eq dynamic-dns) and (category eq parked) and (category eq questionable) and (category eq unknown)</query>
+          <type>
+            <url>
+              <sortby>repeatcnt</sortby>
+              <group-by>src</group-by>
+              <aggregate-by>
+                <member>from</member>
+                <member>srcuser</member>
+              </aggregate-by>
+              <values>
+                <member>repeatcnt</member>
+              </values>
+            </url>
+          </type>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_reports_simple_10_0.ironskillet_reports_host_visit_questionable_plus
+    xpath: /config/shared/reports
+    element: |-
+        <entry name="Host-visit quest sites plus">
+          <period>last-7-calendar-days</period>
+          <topn>500</topn>
+          <topm>50</topm>
+          <caption>Host-visit quest sites plus</caption>
+          <frequency>daily</frequency>
+          <query>(category eq dynamic-dns) and (category eq parked) and (category eq questionable) and (category eq unknown)</query>
+          <description>Detail of hosts visiting questionable URLs</description>
+          <type>
+            <url>
+              <sortby>repeatcnt</sortby>
+              <group-by>src</group-by>
+              <aggregate-by>
+                <member>from</member>
+                <member>srcuser</member>
+                <member>category</member>
+                <member>action</member>
+              </aggregate-by>
+              <values>
+                <member>repeatcnt</member>
+              </values>
+            </url>
+          </type>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_reports_simple_10_0.ironskillet_reports_wildfire_malicious_verdicts
+    xpath: /config/shared/reports
+    element: |-
+        <entry name="Wildfire malicious verdicts">
+          <period>last-30-calendar-days</period>
+          <topn>500</topn>
+          <topm>10</topm>
+          <caption>Wildfire malicious verdicts</caption>
+          <frequency>daily</frequency>
+          <query>(app neq smtp) and (category neq benign)</query>
+          <description>Files uploaded or downloaded that were later found to be malicious. This is a summary. Act on real-time email.</description>
+          <type>
+            <wildfire>
+              <sortby>repeatcnt</sortby>
+              <aggregate-by>
+                <member>filedigest</member>
+                <member>container-of-app</member>
+                <member>app</member>
+                <member>category</member>
+                <member>filetype</member>
+                <member>rule</member>
+              </aggregate-by>
+              <values>
+                <member>repeatcnt</member>
+              </values>
+            </wildfire>
+          </type>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_reports_simple_10_0.ironskillet_reports_wildfire_verdicts_smtp
+    xpath: /config/shared/reports
+    element: |-
+        <entry name="Wildfire verdicts SMTP">
+          <period>last-30-calendar-days</period>
+          <topn>500</topn>
+          <topm>10</topm>
+          <caption>Wildfire verdicts SMTP</caption>
+          <frequency>daily</frequency>
+          <query>(app eq smtp) and (category neq benign)</query>
+          <description>Links sent from emails found to be malicious. </description>
+          <type>
+            <wildfire>
+              <sortby>repeatcnt</sortby>
+              <aggregate-by>
+                <member>filedigest</member>
+                <member>container-of-app</member>
+                <member>app</member>
+                <member>category</member>
+                <member>filetype</member>
+                <member>rule</member>
+                <member>subject</member>
+                <member>sender</member>
+                <member>recipient</member>
+                <member>misc</member>
+              </aggregate-by>
+            </wildfire>
+          </type>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_reports_simple_10_0.ironskillet_reports_clients_sinkholed
+    xpath: /config/shared/reports
+    element: |-
+        <entry name="Clients sinkholed">
+          <period>last-30-calendar-days</period>
+          <topn>500</topn>
+          <topm>50</topm>
+          <caption>Clients sinkholed</caption>
+          <query>(rule eq 'DNS Sinkhole Block')</query>
+          <frequency>daily</frequency>
+          <type>
+            <traffic>
+              <sortby>repeatcnt</sortby>
+              <group-by>from</group-by>
+              <aggregate-by>
+                <member>src</member>
+                <member>srcuser</member>
+              </aggregate-by>
+              <values>
+                <member>repeatcnt</member>
+              </values>
+            </traffic>
+          </type>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_report_group_simple_10_0.ironskillet_report_group_simple
     xpath: /config/shared/report-group
-    file: report_group_simple.xml
-  - name: email_scheduler_simple
+    element: |-
+        <entry name="Possible Compromise">
+          <custom-widget>
+            <entry name="1">
+              <custom-report>Clients sinkholed</custom-report>
+            </entry>
+            <entry name="2">
+              <custom-report>Wildfire malicious verdicts</custom-report>
+            </entry>
+            <entry name="3">
+              <custom-report>Wildfire verdicts SMTP</custom-report>
+            </entry>
+            <entry name="4">
+              <custom-report>Hosts visit malicious sites</custom-report>
+            </entry>
+            <entry name="5">
+              <custom-report>Host-visit malicious sites plus</custom-report>
+            </entry>
+            <entry name="6">
+              <custom-report>Hosts visit questionable sites</custom-report>
+            </entry>
+            <entry name="7">
+              <custom-report>Host-visit quest sites plus</custom-report>
+            </entry>
+          </custom-widget>
+          <title-page>yes</title-page>
+          <variable>
+            <entry name="title">
+              <value>Possible Compromise</value>
+            </entry>
+          </variable>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_email_scheduler_10_0.ironskillet_email_scheduler
     xpath: /config/shared/email-scheduler
-    file: email_scheduler_simple.xml
+    element: |-
+        <entry name="Possible Compromise">
+          <report-group>Possible Compromise</report-group>
+          <recurring>
+            <disabled/>
+          </recurring>
+          <email-profile>Sample_Email_Profile</email-profile>
+        </entry>
+    cmd: set
+
