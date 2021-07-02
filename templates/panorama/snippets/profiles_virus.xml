@@ -46,6 +46,9 @@
     <entry name="PowerShell Script 2">
       <mlav-policy-action>enable(alert-only)</mlav-policy-action>
     </entry>
+    <entry name="Executable Linked Format">
+      <mlav-policy-action>enable(alert-only)</mlav-policy-action>
+    </entry>
   </mlav-engine-filebased-enabled>
 </entry>
 <entry name="Outbound-AV">
@@ -94,6 +97,9 @@
       <mlav-policy-action>enable</mlav-policy-action>
     </entry>
     <entry name="PowerShell Script 2">
+      <mlav-policy-action>enable</mlav-policy-action>
+    </entry>
+    <entry name="Executable Linked Format">
       <mlav-policy-action>enable</mlav-policy-action>
     </entry>
   </mlav-engine-filebased-enabled>
@@ -146,6 +152,9 @@
     <entry name="PowerShell Script 2">
       <mlav-policy-action>enable</mlav-policy-action>
     </entry>
+    <entry name="Executable Linked Format">
+      <mlav-policy-action>enable</mlav-policy-action>
+    </entry>
   </mlav-engine-filebased-enabled>
 </entry>
 <entry name="Internal-AV">
@@ -196,6 +205,9 @@
     <entry name="PowerShell Script 2">
       <mlav-policy-action>enable</mlav-policy-action>
     </entry>
+    <entry name="Executable Linked Format">
+      <mlav-policy-action>enable</mlav-policy-action>
+    </entry>
   </mlav-engine-filebased-enabled>
 </entry>
 <entry name="Exception-AV">
@@ -244,6 +256,9 @@
       <mlav-policy-action>enable</mlav-policy-action>
     </entry>
     <entry name="PowerShell Script 2">
+      <mlav-policy-action>enable</mlav-policy-action>
+    </entry>
+    <entry name="Executable Linked Format">
       <mlav-policy-action>enable</mlav-policy-action>
     </entry>
   </mlav-engine-filebased-enabled>
