@@ -3,7 +3,7 @@
     <devices/>
     <users>
     <entry name="adminuser">
-      <phash>$1$jx4maO9g$Yz4YJgSAXowNCGLDLRywK1</phash>
+      <phash>$1$3AYApxGi$ZDxbhzAv84MbkfYeNKEsa1</phash>
       <permissions>
         <role-based>
           <superuser>yes</superuser>
@@ -588,7 +588,7 @@
             </password-complexity>
             <users>
               <entry name="adminuser">
-                <phash>$1$6sgykDL5$miInuSgbl/9W5Exr.60ds1</phash>
+                <phash>$1$sYQVYi3M$5XiTIjIVfncmm77WCXpV30</phash>
                 <permissions>
                   <role-based>
                     <superuser>yes</superuser>
@@ -1160,6 +1160,9 @@
           <entry name="PowerShell Script 2">
             <mlav-policy-action>enable</mlav-policy-action>
           </entry>
+          <entry name="Executable Linked Format">
+            <mlav-policy-action>enable</mlav-policy-action>
+          </entry>
         </mlav-engine-filebased-enabled>
         <description>Use this profile for rules needing modifications to the standard</description>
       </entry>
@@ -1209,6 +1212,9 @@
             <mlav-policy-action>enable</mlav-policy-action>
           </entry>
           <entry name="PowerShell Script 2">
+            <mlav-policy-action>enable</mlav-policy-action>
+          </entry>
+          <entry name="Executable Linked Format">
             <mlav-policy-action>enable</mlav-policy-action>
           </entry>
         </mlav-engine-filebased-enabled>
@@ -1261,6 +1267,9 @@
           <entry name="PowerShell Script 2">
             <mlav-policy-action>enable</mlav-policy-action>
           </entry>
+          <entry name="Executable Linked Format">
+            <mlav-policy-action>enable</mlav-policy-action>
+          </entry>
         </mlav-engine-filebased-enabled>
       </entry>
       <entry name="Outbound-AV">
@@ -1311,6 +1320,9 @@
           <entry name="PowerShell Script 2">
             <mlav-policy-action>enable</mlav-policy-action>
           </entry>
+          <entry name="Executable Linked Format">
+            <mlav-policy-action>enable</mlav-policy-action>
+          </entry>
         </mlav-engine-filebased-enabled>
       </entry>
       <entry name="Alert-Only-AV">
@@ -1359,6 +1371,9 @@
             <mlav-policy-action>enable(alert-only)</mlav-policy-action>
           </entry>
           <entry name="PowerShell Script 2">
+            <mlav-policy-action>enable(alert-only)</mlav-policy-action>
+          </entry>
+          <entry name="Executable Linked Format">
             <mlav-policy-action>enable(alert-only)</mlav-policy-action>
           </entry>
         </mlav-engine-filebased-enabled>
