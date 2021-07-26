@@ -104,7 +104,7 @@ snippets:
 
   - name: timezone
     label: timezone set to UTC
-    test: timezone | element_value('timezone') == 'UTC'
+    test: ("UTC" in (timezone | element_value('timezone')))
     fail_message: set to UTC so all devices map to a common universal timezone
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-management-general-settings
 
