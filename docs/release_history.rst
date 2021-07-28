@@ -299,6 +299,12 @@ Released: May 10, 2018
 Tools Release Updates
 ---------------------
 
+July 14th 2021
+^^^^^^^^^^^^^^
+
+    + Added a Bash script the user can run that automatically updates the Submodules folder
+
+
 May 28th 2021
 ^^^^^^^^^^^^^
 
