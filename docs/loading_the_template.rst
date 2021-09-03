@@ -46,7 +46,7 @@ with skillets including IronSkillet.
 installing and using SLI
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Please refer to the README document found within the following `SLI <https://gitlab.com/panw-gse/as/sli>`_
+Please refer to the README document found within the following `SLI <https://pypi.org/project/sli/>`_
 repository. This will walk you through the installation and basic usage of SLI in the context of
 skillets.
 
