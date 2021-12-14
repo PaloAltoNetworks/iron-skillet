@@ -1554,7 +1554,6 @@ snippets:
             </entry>
           </rules>
         </entry>
-        <entry name="Exception-VP"/>
     cmd: set
 
 -   name: panorama_profiles_vulnerability_10_0.ironskillet_vulnerability_exception
