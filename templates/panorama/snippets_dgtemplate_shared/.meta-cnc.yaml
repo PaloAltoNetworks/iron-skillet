@@ -1560,6 +1560,8 @@ snippets:
     xpath: /config/shared/profiles/vulnerability
     element: |-
         <entry name="Exception-VP">
+          <rules>
+          </rules>
         </entry>
     cmd: set
 
