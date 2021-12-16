@@ -3,7 +3,7 @@
     <devices/>
     <users>
     <entry name="adminuser">
-      <phash>$1$ap85R8ht$QNZIs6i9UNQW5CtIXikcq1</phash>
+      <phash>$1$JXT4qRnu$xBr7xYqZ5FYlYj3nu68dp1</phash>
       <permissions>
         <role-based>
           <superuser>yes</superuser>
@@ -592,7 +592,7 @@
             </password-complexity>
             <users>
               <entry name="adminuser">
-                <phash>$1$KB6Pcj29$cIhypJLrH4JLq3pgS9oRm.</phash>
+                <phash>$1$/6WfTfBI$ctQkr0DBbb/BtEoE0iYkp.</phash>
                 <permissions>
                   <role-based>
                     <superuser>yes</superuser>
@@ -1697,6 +1697,7 @@
       </spyware>
       <vulnerability>
       <entry name="Exception-VP">
+        <rules/>
       </entry>
       <entry name="Alert-Only-VP">
         <rules>
@@ -1720,7 +1721,6 @@
           </entry>
         </rules>
       </entry>
-      <entry name="Exception-VP"/>
       <entry name="Internal-VP">
         <rules>
           <entry name="Block-Critical-High">
