@@ -2,7 +2,7 @@
   <mgt-config>
     <users>
     <entry name="adminuser">
-      <phash>$1$i7XkXYo5$AHClIjIDkaMYcFyFWAktr1</phash>
+      <phash>$1$tG4opiYo$Utjpd3tBwvKggD47ewXzc.</phash>
       <permissions>
         <role-based>
           <superuser>yes</superuser>
@@ -706,7 +706,7 @@
               <size-limit>50</size-limit>
             </entry>
             <entry name="script">
-              <size-limit>2000</size-limit>
+              <size-limit>20</size-limit>
             </entry>
            </file-size-limit>
           <report-benign-file>yes</report-benign-file>

@@ -3,7 +3,7 @@
     <devices/>
     <users>
     <entry name="adminuser">
-      <phash>$1$MfNIdGP7$9hBN9G.Kn855zM/9TdZGK0</phash>
+      <phash>$1$.aZkdMlQ$hPN9DXcfldriIqMayhagf.</phash>
       <permissions>
         <role-based>
           <superuser>yes</superuser>
@@ -460,7 +460,7 @@
                         <size-limit>50</size-limit>
                       </entry>
                       <entry name="script">
-                        <size-limit>2000</size-limit>
+                        <size-limit>20</size-limit>
                       </entry>
                      </file-size-limit>
                     <report-benign-file>yes</report-benign-file>
@@ -591,7 +591,7 @@
             </password-complexity>
             <users>
               <entry name="adminuser">
-                <phash>$1$qiuEjuHy$F10b4h7i4jOFEFoQ2Wx1e.</phash>
+                <phash>$1$Ap5iO30A$LOsrFwIrutGC.2w/s7Q421</phash>
                 <permissions>
                   <role-based>
                     <superuser>yes</superuser>
@@ -1796,6 +1796,7 @@
       </spyware>
       <vulnerability>
       <entry name="Exception-VP">
+        <rules/>
       </entry>
       <entry name="Alert-Only-VP">
         <rules>

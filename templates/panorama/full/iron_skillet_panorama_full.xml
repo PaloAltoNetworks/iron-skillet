@@ -1829,6 +1829,7 @@
       </spyware>
       <vulnerability>
       <entry name="Exception-VP">
+        <rules/>
       </entry>
       <entry name="Alert-Only-VP">
         <rules>
