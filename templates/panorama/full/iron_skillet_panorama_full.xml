@@ -1,4 +1,4 @@
-<config urldb="paloaltonetworks" version="9.0.0">
+<config version="9.0.0" urldb="paloaltonetworks">
   <mgt-config>
     <devices />
   <users> <entry name="{{ ADMINISTRATOR_USERNAME }}">
@@ -475,7 +475,8 @@ Log off immediately if you are not an authorized user.</login-banner>
   <bypass-exceed-oo-queue>no</bypass-exceed-oo-queue>
   <check-timestamp-option>yes</check-timestamp-option>
   <strip-mptcp-option>yes</strip-mptcp-option>
-</tcp></setting></deviceconfig><network><profiles><zone-protection-profile><entry name="Recommended_Zone_Protection">
+</tcp>
+</setting></deviceconfig><network><profiles><zone-protection-profile><entry name="Recommended_Zone_Protection">
   <flood>
     <tcp-syn>
       <red>
