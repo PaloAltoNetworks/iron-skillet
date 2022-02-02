@@ -295,9 +295,9 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_dev/viz_guide_panos.html#device-setup-wildfire-general-settings
 
   - name:  wf_limit_script_test
-    label: Wildfire script file size limit set to 2000
-    test: wf_limit_script == '2000'
-    fail_message: script file size limit recommended as 2000 and configured as {{ wf_limit_script }}
+    label: Wildfire script file size limit set to 20
+    test: wf_limit_script == '20'
+    fail_message: script file size limit recommended as 20 and configured as {{ wf_limit_script }}
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-wildfire-general-settings
 
   - name: wf_report_benign_grayware
