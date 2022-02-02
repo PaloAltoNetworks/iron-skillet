@@ -1,8 +1,8 @@
-<config urldb="paloaltonetworks" version="9.1.0">
+<config version="9.1.0" urldb="paloaltonetworks">
   <mgt-config>
     <devices />
   <users> <entry name="admin">
-  <phash>$1$lckWJzoU$ChLg5CympmefsAcmpiCCg1</phash>
+  <phash>$1$/2xWt/iR$BRR9qf7uuUdzNrzn.bXDM/</phash>
   <permissions>
     <role-based>
       <superuser>yes</superuser>
@@ -423,7 +423,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <size-limit>50</size-limit>
     </entry>
     <entry name="script">
-      <size-limit>2000</size-limit>
+      <size-limit>20</size-limit>
     </entry>
   </file-size-limit>
   <report-benign-file>yes</report-benign-file>
@@ -445,7 +445,8 @@ Log off immediately if you are not an authorized user.</login-banner>
   <bypass-exceed-oo-queue>no</bypass-exceed-oo-queue>
   <check-timestamp-option>yes</check-timestamp-option>
   <strip-mptcp-option>yes</strip-mptcp-option>
-</tcp></setting></deviceconfig><network><profiles><zone-protection-profile><entry name="Recommended_Zone_Protection">
+</tcp>
+</setting></deviceconfig><network><profiles><zone-protection-profile><entry name="Recommended_Zone_Protection">
   <flood>
     <tcp-syn>
       <red>
@@ -520,7 +521,7 @@ Log off immediately if you are not an authorized user.</login-banner>
     </devices>
   <mgt-config><users>
   <entry name="admin">
-    <phash>$1$dZ9w3fRr$o9pd70AA8RjUEW.HEXQ0N1</phash>
+    <phash>$1$yISHAJTk$KL40luSfx53xBPtoVB4bx/</phash>
     <permissions>
       <role-based>
         <superuser>yes</superuser>
