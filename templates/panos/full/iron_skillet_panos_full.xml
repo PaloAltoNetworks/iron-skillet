@@ -719,7 +719,7 @@
               <size-limit>50</size-limit>
             </entry>
             <entry name="script">
-              <size-limit>2000</size-limit>
+              <size-limit>20</size-limit>
             </entry>
            </file-size-limit>
           <report-benign-file>yes</report-benign-file>
