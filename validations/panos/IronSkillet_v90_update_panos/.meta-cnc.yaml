@@ -56,8 +56,8 @@ snippets:
 
   - name: wf_new_type_limits
     when: device_setting | tag_present('wildfire.file-size-limit')
-    label: new WF type script file size limit configured as 2000
-    test: wf_limit_script | element_value('size-limit') == '2000'
+    label: new WF type script file size limit configured as 20
+    test: wf_limit_script | element_value('size-limit') == '20'
     fail_message: newer script file types have been added for wildfire analysis but recommended sizes have not been configured.
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-wildfire-general-settings
 
