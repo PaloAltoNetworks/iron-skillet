@@ -3,7 +3,7 @@
     <devices/>
     <users>
     <entry name="adminuser">
-      <phash>$1$JXT4qRnu$xBr7xYqZ5FYlYj3nu68dp1</phash>
+      <phash>$1$Vy.YdtKz$JSX7Zn9hK5GQRb/BNNi5u0</phash>
       <permissions>
         <role-based>
           <superuser>yes</superuser>
@@ -446,7 +446,7 @@
                         <size-limit>50</size-limit>
                       </entry>
                       <entry name="script">
-                        <size-limit>2000</size-limit>
+                        <size-limit>20</size-limit>
                       </entry>
                      </file-size-limit>
                     <report-benign-file>yes</report-benign-file>
@@ -592,7 +592,7 @@
             </password-complexity>
             <users>
               <entry name="adminuser">
-                <phash>$1$/6WfTfBI$ctQkr0DBbb/BtEoE0iYkp.</phash>
+                <phash>$1$.hAm83aX$mpfYWe1vdaQFt4E2wjrzq.</phash>
                 <permissions>
                   <role-based>
                     <superuser>yes</superuser>
