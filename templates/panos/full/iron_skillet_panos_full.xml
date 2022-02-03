@@ -1,4 +1,4 @@
-<config urldb="paloaltonetworks" version="9.1.0">
+<config version="9.1.0" urldb="paloaltonetworks">
   <mgt-config><users><entry name="{{ ADMINISTRATOR_USERNAME }}">
   <phash>{{ ADMINISTRATOR_PASSWORD | md5_hash }}</phash>
   <permissions>
@@ -686,7 +686,7 @@ Log off immediately if you are not an authorized user.</login-banner>
       <size-limit>50</size-limit>
     </entry>
     <entry name="script">
-      <size-limit>2000</size-limit>
+      <size-limit>20</size-limit>
     </entry>
    </file-size-limit>
   <report-benign-file>yes</report-benign-file>
@@ -708,7 +708,8 @@ Log off immediately if you are not an authorized user.</login-banner>
   <bypass-exceed-oo-queue>no</bypass-exceed-oo-queue>
   <check-timestamp-option>yes</check-timestamp-option>
   <strip-mptcp-option>yes</strip-mptcp-option>
-</tcp></setting></deviceconfig>
+</tcp>
+</setting></deviceconfig>
       <vsys>
         <entry name="vsys1">
           <application />
