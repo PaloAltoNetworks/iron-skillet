@@ -1843,11 +1843,11 @@ snippets:
     cmd: set
 
 -   name: panorama_profiles_vulnerability_10_1.ironskillet_vulnerability_exception
-    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{DEVICE_GROUP}}']/profiles/vulnerability
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{DEVICE_GROUP}}']/profiles
     element: |-
-        <entry name="Exception-VP">
-          <rules/>
-        </entry>
+        <vulnerability>
+            <entry name="Exception-VP"/>
+        </vulnerability>
     cmd: set
 
 -   name: panorama_profiles_file_blocking_10_1.ironskillet_file_blocking_outbound
