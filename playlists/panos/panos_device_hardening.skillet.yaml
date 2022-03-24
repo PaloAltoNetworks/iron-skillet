@@ -1,5 +1,5 @@
-name: ironskillet_panos_device_hardening_10_1
-label: PAN-OS NGFW Device Hardening IronSkillet 10.1
+name: ironskillet_panos_device_hardening_10_2
+label: PAN-OS NGFW Device Hardening IronSkillet 10.2
 description: |-
   device hardening for ironskillet 10.1 panos configuration
 type: panos
@@ -13,17 +13,17 @@ variables:
 snippets:
 
   # general device system and setting configs
-  - name: panos_ngfw_device_system_10_1
-    include: panos_ngfw_device_system_10_1
-  - name: panos_ngfw_device_setting_10_1
-    include: panos_ngfw_device_setting_10_1
-  - name: panos_ngfw_password_complexity_10_1
-    include: panos_ngfw_password_complexity_10_1
+  - name: panos_ngfw_device_system_10_2
+    include: panos_ngfw_device_system_10_2
+  - name: panos_ngfw_device_setting_10_2
+    include: panos_ngfw_device_setting_10_2
+  - name: panos_ngfw_password_complexity_10_2
+    include: panos_ngfw_password_complexity_10_2
   # zone protection
-  - name: panos_ngfw_zone_protection_10_1
-    include: panos_ngfw_zone_protection_10_1
+  - name: panos_ngfw_zone_protection_10_2
+    include: panos_ngfw_zone_protection_10_2
   # tag object
-  - name: panos_ngfw_tag_10_1
-    include: panos_ngfw_tag_10_1
+  - name: panos_ngfw_tag_10_2
+    include: panos_ngfw_tag_10_2
     include_snippets:
       - name: ironskillet_tag_ironskillet_version

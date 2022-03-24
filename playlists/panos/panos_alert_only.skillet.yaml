@@ -1,7 +1,7 @@
-name: ironskillet_panos_alert_only_10_1
-label: PAN-OS NGFW Alert Only Profiles IronSkillet 10.1
+name: ironskillet_panos_alert_only_10_2
+label: PAN-OS NGFW Alert Only Profiles IronSkillet 10.2
 description: |-
-  alert only profiles for ironskillet 10.1 panos configuration
+  alert only profiles for ironskillet 10.2 panos configuration
 type: panos
 labels:
   collection:
@@ -13,43 +13,43 @@ variables:
 snippets:
 
   # tag object
-  - name: panos_ngfw_tag_10_1
-    include: panos_ngfw_tag_10_1
+  - name: panos_ngfw_tag_10_2
+    include: panos_ngfw_tag_10_2
     include_snippets:
       - name: ironskillet_tag_ironskillet_version
   # security profiles and profile groups
-  - name: panos_ngfw_profile_custom_urlFiltering_10_1
-    include: panos_ngfw_profile_custom_urlFiltering_10_1
+  - name: panos_ngfw_profile_custom_urlFiltering_10_2
+    include: panos_ngfw_profile_custom_urlFiltering_10_2
     include_snippets:
       - name: ironskillet_custom_url_category_allow
-  - name: panos_ngfw_profile_decryption_10_1
-    include: panos_ngfw_profile_decryption_10_1
-  - name: panos_ngfw_profile_antivirus_10_1
-    include: panos_ngfw_profile_antivirus_10_1
+  - name: panos_ngfw_profile_decryption_10_2
+    include: panos_ngfw_profile_decryption_10_2
+  - name: panos_ngfw_profile_antivirus_10_2
+    include: panos_ngfw_profile_antivirus_10_2
     include_snippets:
       - name: ironskillet_antivirus_alert_all
-  - name: panos_ngfw_profile_spyware_10_1
-    include: panos_ngfw_profile_spyware_10_1
+  - name: panos_ngfw_profile_spyware_10_2
+    include: panos_ngfw_profile_spyware_10_2
     include_variables: all
     include_snippets:
       - name: ironskillet_spyware_alert_all
-  - name: panos_ngfw_profile_vulnerability_10_1
-    include: panos_ngfw_profile_vulnerability_10_1
+  - name: panos_ngfw_profile_vulnerability_10_2
+    include: panos_ngfw_profile_vulnerability_10_2
     include_snippets:
       - name: ironskillet_vulnerability_alert_all
-  - name: panos_ngfw_profile_file-blocking_10_1
-    include: panos_ngfw_profile_file-blocking_10_1
+  - name: panos_ngfw_profile_file-blocking_10_2
+    include: panos_ngfw_profile_file-blocking_10_2
     include_snippets:
       - name: ironskillet_file_blocking_alert_all
-  - name: panos_ngfw_profile_urlFiltering_10_1
-    include: panos_ngfw_profile_urlFiltering_10_1
+  - name: panos_ngfw_profile_urlFiltering_10_2
+    include: panos_ngfw_profile_urlFiltering_10_2
     include_snippets:
       - name: ironskillet_url_alert_all
-  - name: panos_ngfw_profile_wildfire_analysis_10_1
-    include: panos_ngfw_profile_wildfire_analysis_10_1
+  - name: panos_ngfw_profile_wildfire_analysis_10_2
+    include: panos_ngfw_profile_wildfire_analysis_10_2
     include_snippets:
       - name: ironskillet_wildfire_alert_all
-  - name: panos_ngfw_profile_group_10_1
-    include: panos_ngfw_profile_group_10_1
+  - name: panos_ngfw_profile_group_10_2
+    include: panos_ngfw_profile_group_10_2
     include_snippets:
       - name: ironskillet_profile_group_alert_all
