@@ -1,0 +1,3 @@
+[submodule "submodules"]
+	path = submodules
+	url = git@github.com:BoraMutluoglu/ironskillet-components.git
