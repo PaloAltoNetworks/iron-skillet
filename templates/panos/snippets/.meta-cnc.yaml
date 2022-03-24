@@ -419,7 +419,7 @@ snippets:
               <size-limit>20</size-limit>
             </entry>
            </file-size-limit>
-          <report-benign-file>no</report-benign-file>
+          <report-benign-file>yes</report-benign-file>
           <report-grayware-file>yes</report-grayware-file>
         </wildfire>
     cmd: set
@@ -865,12 +865,6 @@ snippets:
             <entry name="Executable Linked Format">
               <mlav-policy-action>enable(alert-only)</mlav-policy-action>
             </entry>
-            <entry name="MSOffice">
-                <mlav-policy-action>enable(alert-only)</mlav-policy-action>
-            </entry>
-            <entry name="Shell">
-                <mlav-policy-action>enable(alert-only)</mlav-policy-action>
-            </entry>
           </mlav-engine-filebased-enabled>
         </entry>
     cmd: set
@@ -928,12 +922,6 @@ snippets:
             </entry>
             <entry name="Executable Linked Format">
               <mlav-policy-action>enable</mlav-policy-action>
-            </entry>
-            <entry name="MSOffice">
-                <mlav-policy-action>enable</mlav-policy-action>
-            </entry>
-            <entry name="Shell">
-                <mlav-policy-action>enable</mlav-policy-action>
             </entry>
           </mlav-engine-filebased-enabled>
         </entry>
@@ -993,12 +981,6 @@ snippets:
             <entry name="Executable Linked Format">
               <mlav-policy-action>enable</mlav-policy-action>
             </entry>
-            <entry name="MSOffice">
-                <mlav-policy-action>enable</mlav-policy-action>
-            </entry>
-            <entry name="Shell">
-                <mlav-policy-action>enable</mlav-policy-action>
-            </entry>
           </mlav-engine-filebased-enabled>
         </entry>
     cmd: set
@@ -1057,13 +1039,66 @@ snippets:
             <entry name="Executable Linked Format">
               <mlav-policy-action>enable</mlav-policy-action>
             </entry>
-            <entry name="MSOffice">
-                <mlav-policy-action>enable</mlav-policy-action>
+          </mlav-engine-filebased-enabled>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_antivirus_10_1.ironskillet_antivirus_exception
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/virus
+    element: |-
+        <entry name="Exception-AV">
+          <decoder>
+            <entry name="ftp">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
             </entry>
-            <entry name="Shell">
-                <mlav-policy-action>enable</mlav-policy-action>
+            <entry name="http">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+            <entry name="http2">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+            <entry name="imap">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+            <entry name="pop3">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+            <entry name="smb">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+            <entry name="smtp">
+              <action>reset-both</action>
+              <wildfire-action>reset-both</wildfire-action>
+              <mlav-action>reset-both</mlav-action>
+            </entry>
+          </decoder>
+          <mlav-engine-filebased-enabled>
+            <entry name="Windows Executables">
+              <mlav-policy-action>enable</mlav-policy-action>
+            </entry>
+            <entry name="PowerShell Script 1">
+              <mlav-policy-action>enable</mlav-policy-action>
+            </entry>
+            <entry name="PowerShell Script 2">
+              <mlav-policy-action>enable</mlav-policy-action>
+            </entry>
+            <entry name="Executable Linked Format">
+              <mlav-policy-action>enable</mlav-policy-action>
             </entry>
           </mlav-engine-filebased-enabled>
+          <description>Use this profile for rules needing modifications to the standard</description>
         </entry>
     cmd: set
 
@@ -1433,6 +1468,75 @@ snippets:
         </entry>
     cmd: set
 
+-   name: panos_ngfw_profile_spyware_10_1.ironskillet_spyware_exception
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/spyware
+    element: |-
+        <entry name="Exception-AS">
+          <description>Used for exception cases not part of the recommended practice</description>
+          <botnet-domains>
+            <lists>
+              <entry name="default-paloalto-dns">
+                <packet-capture>single-packet</packet-capture>
+                <action>
+                  <sinkhole/>
+                </action>
+              </entry>
+            </lists>
+            <dns-security-categories>
+              <entry name="pan-dns-sec-benign">
+                <log-level>default</log-level>
+                <action>default</action>
+                <packet-capture>disable</packet-capture>
+              </entry>
+              <entry name="pan-dns-sec-cc">
+                <log-level>default</log-level>
+                <action>default</action>
+                <packet-capture>disable</packet-capture>
+              </entry>
+              <entry name="pan-dns-sec-ddns">
+                <log-level>default</log-level>
+                <action>default</action>
+                <packet-capture>disable</packet-capture>
+              </entry>
+              <entry name="pan-dns-sec-grayware">
+                <log-level>default</log-level>
+                <action>default</action>
+                <packet-capture>disable</packet-capture>
+              </entry>
+              <entry name="pan-dns-sec-malware">
+                <log-level>default</log-level>
+                <action>default</action>
+                <packet-capture>disable</packet-capture>
+              </entry>
+              <entry name="pan-dns-sec-parked">
+                <log-level>default</log-level>
+                <action>default</action>
+                <packet-capture>disable</packet-capture>
+              </entry>
+              <entry name="pan-dns-sec-phishing">
+                <log-level>default</log-level>
+                <action>default</action>
+                <packet-capture>disable</packet-capture>
+              </entry>
+              <entry name="pan-dns-sec-proxy">
+                <log-level>default</log-level>
+                <action>default</action>
+                <packet-capture>disable</packet-capture>
+              </entry>
+              <entry name="pan-dns-sec-recent">
+                <log-level>default</log-level>
+                <action>default</action>
+                <packet-capture>disable</packet-capture>
+              </entry>
+            </dns-security-categories>
+            <sinkhole>
+              <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
+              <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
+            </sinkhole>
+          </botnet-domains>
+        </entry>
+    cmd: set
+
 -   name: panos_ngfw_profile_vulnerability_10_1.ironskillet_vulnerability_outbound
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/vulnerability
     element: |-
@@ -1602,6 +1706,11 @@ snippets:
             </entry>
           </rules>
         </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_vulnerability_10_1.ironskillet_vulnerability_exception
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/vulnerability
+    element: <entry name="Exception-VP"/>
     cmd: set
 
 -   name: panos_ngfw_profile_file-blocking_10_1.ironskillet_file_blocking_outbound
@@ -1841,8 +1950,6 @@ snippets:
           <log-http-hdr-user-agent>yes</log-http-hdr-user-agent>
           <log-http-hdr-referer>yes</log-http-hdr-referer>
           <log-http-hdr-xff>yes</log-http-hdr-xff>
-          <local-inline-cat>yes</local-inline-cat>
-          <cloud-inline-cat>yes</cloud-inline-cat>
           <alert>
             <member>Allow</member>
             <member>abortion</member>
@@ -1922,6 +2029,14 @@ snippets:
             <member>malware</member>
             <member>phishing</member>
           </block>
+          <mlav-engine-urlbased-enabled>
+            <entry name="Phishing Detection">
+              <mlav-policy-action>block</mlav-policy-action>
+            </entry>
+            <entry name="Javascript Exploit Detection">
+              <mlav-policy-action>block</mlav-policy-action>
+            </entry>
+          </mlav-engine-urlbased-enabled>
         </entry>
     cmd: set
 
@@ -2012,11 +2127,6 @@ snippets:
               <member>web-hosting</member>
             </alert>
           </credential-enforcement>
-          <log-http-hdr-user-agent>yes</log-http-hdr-user-agent>
-          <log-http-hdr-referer>yes</log-http-hdr-referer>
-          <log-http-hdr-xff>yes</log-http-hdr-xff>
-          <local-inline-cat>yes</local-inline-cat>
-          <cloud-inline-cat>yes</cloud-inline-cat>
           <alert>
             <member>Block</member>
             <member>Allow</member>
@@ -2094,6 +2204,194 @@ snippets:
             <member>web-based-email</member>
             <member>web-hosting</member>
           </alert>
+          <mlav-engine-urlbased-enabled>
+            <entry name="Phishing Detection">
+              <mlav-policy-action>alert</mlav-policy-action>
+            </entry>
+            <entry name="Javascript Exploit Detection">
+              <mlav-policy-action>alert</mlav-policy-action>
+            </entry>
+          </mlav-engine-urlbased-enabled>
+        </entry>
+    cmd: set
+
+-   name: panos_ngfw_profile_urlFiltering_10_1.ironskillet_url_exception
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/url-filtering
+    element: |-
+        <entry name="Exception-URL">
+          <credential-enforcement>
+            <mode>
+              <ip-user/>
+            </mode>
+            <log-severity>high</log-severity>
+            <block>
+              <member>Block</member>
+              <member>Allow</member>
+              <member>abortion</member>
+              <member>abused-drugs</member>
+              <member>adult</member>
+              <member>alcohol-and-tobacco</member>
+              <member>auctions</member>
+              <member>business-and-economy</member>
+              <member>command-and-control</member>
+              <member>computer-and-internet-info</member>
+              <member>content-delivery-networks</member>
+              <member>copyright-infringement</member>
+              <member>cryptocurrency</member>
+              <member>dating</member>
+              <member>dynamic-dns</member>
+              <member>educational-institutions</member>
+              <member>entertainment-and-arts</member>
+              <member>extremism</member>
+              <member>financial-services</member>
+              <member>gambling</member>
+              <member>games</member>
+              <member>government</member>
+              <member>grayware</member>
+              <member>hacking</member>
+              <member>health-and-medicine</member>
+              <member>high-risk</member>
+              <member>home-and-garden</member>
+              <member>hunting-and-fishing</member>
+              <member>insufficient-content</member>
+              <member>internet-communications-and-telephony</member>
+              <member>internet-portals</member>
+              <member>job-search</member>
+              <member>legal</member>
+              <member>low-risk</member>
+              <member>malware</member>
+              <member>medium-risk</member>
+              <member>military</member>
+              <member>motor-vehicles</member>
+              <member>music</member>
+              <member>newly-registered-domain</member>
+              <member>news</member>
+              <member>not-resolved</member>
+              <member>nudity</member>
+              <member>online-storage-and-backup</member>
+              <member>parked</member>
+              <member>peer-to-peer</member>
+              <member>personal-sites-and-blogs</member>
+              <member>philosophy-and-political-advocacy</member>
+              <member>phishing</member>
+              <member>private-ip-addresses</member>
+              <member>proxy-avoidance-and-anonymizers</member>
+              <member>questionable</member>
+              <member>real-estate</member>
+              <member>real-time-detection</member>
+              <member>recreation-and-hobbies</member>
+              <member>reference-and-research</member>
+              <member>religion</member>
+              <member>search-engines</member>
+              <member>sex-education</member>
+              <member>shareware-and-freeware</member>
+              <member>shopping</member>
+              <member>social-networking</member>
+              <member>society</member>
+              <member>sports</member>
+              <member>stock-advice-and-tools</member>
+              <member>streaming-media</member>
+              <member>swimsuits-and-intimate-apparel</member>
+              <member>training-and-tools</member>
+              <member>translation</member>
+              <member>travel</member>
+              <member>unknown</member>
+              <member>weapons</member>
+              <member>web-advertisements</member>
+              <member>web-based-email</member>
+              <member>web-hosting</member>
+            </block>
+          </credential-enforcement>
+          <log-http-hdr-user-agent>yes</log-http-hdr-user-agent>
+          <log-http-hdr-referer>yes</log-http-hdr-referer>
+          <log-http-hdr-xff>yes</log-http-hdr-xff>
+          <alert>
+            <member>Allow</member>
+            <member>abortion</member>
+            <member>abused-drugs</member>
+            <member>adult</member>
+            <member>alcohol-and-tobacco</member>
+            <member>auctions</member>
+            <member>business-and-economy</member>
+            <member>computer-and-internet-info</member>
+            <member>content-delivery-networks</member>
+            <member>copyright-infringement</member>
+            <member>cryptocurrency</member>
+            <member>dating</member>
+            <member>dynamic-dns</member>
+            <member>educational-institutions</member>
+            <member>entertainment-and-arts</member>
+            <member>extremism</member>
+            <member>financial-services</member>
+            <member>gambling</member>
+            <member>games</member>
+            <member>government</member>
+            <member>hacking</member>
+            <member>health-and-medicine</member>
+            <member>high-risk</member>
+            <member>home-and-garden</member>
+            <member>hunting-and-fishing</member>
+            <member>insufficient-content</member>
+            <member>internet-communications-and-telephony</member>
+            <member>internet-portals</member>
+            <member>job-search</member>
+            <member>legal</member>
+            <member>low-risk</member>
+            <member>medium-risk</member>
+            <member>military</member>
+            <member>motor-vehicles</member>
+            <member>music</member>
+            <member>newly-registered-domain</member>
+            <member>news</member>
+            <member>not-resolved</member>
+            <member>nudity</member>
+            <member>online-storage-and-backup</member>
+            <member>parked</member>
+            <member>peer-to-peer</member>
+            <member>personal-sites-and-blogs</member>
+            <member>philosophy-and-political-advocacy</member>
+            <member>private-ip-addresses</member>
+            <member>proxy-avoidance-and-anonymizers</member>
+            <member>questionable</member>
+            <member>real-estate</member>
+            <member>real-time-detection</member>
+            <member>recreation-and-hobbies</member>
+            <member>reference-and-research</member>
+            <member>religion</member>
+            <member>search-engines</member>
+            <member>sex-education</member>
+            <member>shareware-and-freeware</member>
+            <member>shopping</member>
+            <member>social-networking</member>
+            <member>society</member>
+            <member>sports</member>
+            <member>stock-advice-and-tools</member>
+            <member>streaming-media</member>
+            <member>swimsuits-and-intimate-apparel</member>
+            <member>training-and-tools</member>
+            <member>translation</member>
+            <member>travel</member>
+            <member>unknown</member>
+            <member>weapons</member>
+            <member>web-advertisements</member>
+            <member>web-based-email</member>
+            <member>web-hosting</member>
+          </alert>
+          <block>
+            <member>Block</member>
+            <member>command-and-control</member>
+            <member>grayware</member>
+            <member>malware</member>
+            <member>phishing</member>
+          </block>
+          <mlav-engine-urlbased-enabled>
+            <entry name="Phishing Detection">
+              <mlav-policy-action>block</mlav-policy-action>
+            </entry>
+            <entry name="Javascript Exploit Detection">
+              <mlav-policy-action>block</mlav-policy-action>
+            </entry>
+          </mlav-engine-urlbased-enabled>
         </entry>
     cmd: set
 
