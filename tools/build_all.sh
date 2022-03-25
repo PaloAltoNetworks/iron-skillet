@@ -143,11 +143,11 @@ cd tools
 # Panorama Using full panos file from playlists/panos/panos_full outputting in respective
 # Loadable config folders
 echo "using sli template to create the loadable config xml with rendered jinja for panos"
-sli template -sd ../ -ad -n skillet_full_panos_v10_1 -o ../loadable_configs/sample-cloud-AWS/panos/iron_skillet_panos_full.xml
-sli template -sd ../ -ad -n skillet_full_panos_v10_1 -o ../loadable_configs/sample-cloud-Azure/panos/iron_skillet_panos_full.xml
-sli template -sd ../ -ad -n skillet_full_panos_v10_1 -o ../loadable_configs/sample-cloud-GCP/panos/iron_skillet_panos_full.xml
-sli template -sd ../ -ad -n skillet_full_panos_v10_1 -o ../loadable_configs/sample-mgmt-dhcp/panos/iron_skillet_panos_full.xml
-sli template -sd ../ -ad $MGMT_STATIC -n skillet_full_panos_v10_1 -o ../loadable_configs/sample-mgmt-static/panos/iron_skillet_panos_full.xml
+sli template -sd ../ -ad -n skillet_full_panos_v10_2 -o ../loadable_configs/sample-cloud-AWS/panos/iron_skillet_panos_full.xml
+sli template -sd ../ -ad -n skillet_full_panos_v10_2 -o ../loadable_configs/sample-cloud-Azure/panos/iron_skillet_panos_full.xml
+sli template -sd ../ -ad -n skillet_full_panos_v10_2 -o ../loadable_configs/sample-cloud-GCP/panos/iron_skillet_panos_full.xml
+sli template -sd ../ -ad -n skillet_full_panos_v10_2 -o ../loadable_configs/sample-mgmt-dhcp/panos/iron_skillet_panos_full.xml
+sli template -sd ../ -ad $MGMT_STATIC -n skillet_full_panos_v10_2 -o ../loadable_configs/sample-mgmt-static/panos/iron_skillet_panos_full.xml
 
 echo "Using sli template to create the loadable config set commands with rendered jinja for panos"
 sli template -sd ../ -ad -n skillet_set_command_panos_v10_1 -o ../loadable_configs/sample-set-commands/panos/iron_skillet_panos_full.conf
@@ -165,6 +165,6 @@ sli template -sd ../ -ad -n skillet_setcommand_panorama_v10_1 -o ../loadable_con
 
 # Below block of commands creates the spreadsheet files for both Panorama and Panos set commands
 echo "Creating Panos spreadsheet to be output in /templates/panos/set_commands/"
-sli spreadsheet -sd ../templates/panos/set_commands -n skillet_set_command_panos_v10_1 -o ../templates/panos/set_commands/
+sli spreadsheet -sd ../templates/panos/set_commands -n skillet_set_command_panos_v10_2 -o ../templates/panos/set_commands/
 echo "Creating Panorama spreadsheet to be output in /templates/panorama/set_commands/"
 sli spreadsheet -sd ../templates/panorama/set_commands -n skillet_setcommand_panorama_v10_1 -o ../templates/panorama/set_commands/
