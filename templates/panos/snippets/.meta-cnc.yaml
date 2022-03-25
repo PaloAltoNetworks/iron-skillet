@@ -1,6 +1,6 @@
 name: skillet_panos_v10_2
 
-label: PAN-OS NGFW IronSkillet 10.2
+label: v10.2 Iron-Skillet for NGFW
 
 description: group of snippets for ironskillet 10.2 panos configuration
 

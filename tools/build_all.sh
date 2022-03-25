@@ -89,7 +89,7 @@ sli -sd ../../ rollup_playlist -n ironskillet_panos_10_2 ../templates/panos/snip
 # temp fix until features added to SLI for value options
 cd ../templates/panos/snippets
 sed -i '' 's/ironskillet_panos_10_2_rollup/skillet_panos_v10_2/' .meta-cnc.yaml
-sed -i '' 's/PAN-OS NGFW IronSkillet 10.1/v10.1 Iron-Skillet for NGFW/' .meta-cnc.yaml
+sed -i '' 's/PAN-OS NGFW IronSkillet 10.2/v10.2 Iron-Skillet for NGFW/' .meta-cnc.yaml
 sed -i '' 's/IronSkillet Playlists/IronSkillet/' .meta-cnc.yaml
 cd ../../../tools
 
@@ -130,7 +130,7 @@ cd ../../../tools
 # but leaves Jinja unrendered and results are outputted in templates/panos/full/ directory.
 echo "Creating a full XML Jinja Template configuration for Panos"
 cd ..
-sli create_template $CONFIG_ALL_PANOS -n ironskillet_panos_10_1 templates/panos/baseline/baseline.xml templates/panos/full/iron_skillet_panos_full.xml
+sli create_template $CONFIG_ALL_PANOS -n ironskillet_panos_10_2 templates/panos/baseline/baseline.xml templates/panos/full/iron_skillet_panos_full.xml
 cd tools
 
 echo "Creating a full XML Jinja Template configuration for Panorama"
