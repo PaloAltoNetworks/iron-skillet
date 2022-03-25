@@ -83,12 +83,12 @@ cd ..
 
 # Below block of commands rolls up all skillets from the playlists directories
 echo "Rollup all skillets in the playlists/panos/ directory"
-sli -sd ../../ rollup_playlist -n ironskillet_panos_10_1 ../templates/panos/snippets/.meta-cnc.yaml
+sli -sd ../../ rollup_playlist -n ironskillet_panos_10_2 ../templates/panos/snippets/.meta-cnc.yaml
 
 # swap out skillet preamble text after rollup
 # temp fix until features added to SLI for value options
 cd ../templates/panos/snippets
-sed -i '' 's/ironskillet_panos_10_1_rollup/skillet_panos_v10_1/' .meta-cnc.yaml
+sed -i '' 's/ironskillet_panos_10_2_rollup/skillet_panos_v10_2/' .meta-cnc.yaml
 sed -i '' 's/PAN-OS NGFW IronSkillet 10.1/v10.1 Iron-Skillet for NGFW/' .meta-cnc.yaml
 sed -i '' 's/IronSkillet Playlists/IronSkillet/' .meta-cnc.yaml
 cd ../../../tools
