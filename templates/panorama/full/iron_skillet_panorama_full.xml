@@ -479,7 +479,7 @@
                         <size-limit>20</size-limit>
                       </entry>
                      </file-size-limit>
-                    <report-benign-file>yes</report-benign-file>
+                    <report-benign-file>no</report-benign-file>
                     <report-grayware-file>yes</report-grayware-file>
                   </wildfire>
                   <management>
@@ -587,6 +587,48 @@
                       <remove-tcp-timestamp>yes</remove-tcp-timestamp>
                       <strip-tcp-fast-open-and-data>no</strip-tcp-fast-open-and-data>
                       <strip-mptcp-option>global</strip-mptcp-option>
+                    </entry>
+                    <entry name="Alert_Only_Zone_Protection">
+                      <flood>
+                        <tcp-syn>
+                          <enable>no</enable>
+                        </tcp-syn>
+                        <udp>
+                          <enable>no</enable>
+                        </udp>
+                        <icmp>
+                          <enable>no</enable>
+                        </icmp>
+                        <icmpv6>
+                          <enable>no</enable>
+                        </icmpv6>
+                        <other-ip>
+                          <enable>no</enable>
+                        </other-ip>
+                      </flood>
+                      <scan>
+                        <entry name="8001">
+                          <action>
+                            <alert/>
+                          </action>
+                          <interval>2</interval>
+                          <threshold>100</threshold>
+                        </entry>
+                        <entry name="8002">
+                          <action>
+                            <alert/>
+                          </action>
+                          <interval>10</interval>
+                          <threshold>100</threshold>
+                        </entry>
+                        <entry name="8003">
+                          <action>
+                            <alert/>
+                          </action>
+                          <interval>2</interval>
+                          <threshold>100</threshold>
+                        </entry>
+                      </scan>
                     </entry>
                     </zone-protection-profile>
                   </profiles>
@@ -707,69 +749,31 @@
           </config>
         </entry>
       </template>
-      <template-stack>
-      <entry name="{{STACK}}">
-        <templates>
-          <member>iron-skillet</member>
-        </templates>
-        <settings>
-          <default-vsys>vsys1</default-vsys>
-        </settings>
-          <config>
-            <devices>
-              <entry name="localhost.localdomain">
-                <vsys>
-                  <entry name="vsys1"/>
-                </vsys>
-              </entry>
-            </devices>
-        </config>
-      </entry>
-        <entry name="{{STACK}}">
-          <config>
-            <devices>
-              <entry name="localhost.localdomain">
-                <deviceconfig>
-                  <system>
-                  {%- if MGMT_TYPE == "static" %}
-                  <type>
-                    <static/>
-                  </type>
-                  <ip-address>{{MGMT_IP}}</ip-address>
-                  <netmask>{{MGMT_MASK}}</netmask>
-                  <default-gateway>{{MGMT_DG}}</default-gateway>
-                  {% elif MGMT_TYPE == "dhcp-client" %}
-                  <type>
-                     <dhcp-client>
-                       <send-hostname>yes</send-hostname>
-                       <send-client-id>no</send-client-id>
-                       <accept-dhcp-hostname>no</accept-dhcp-hostname>
-                       <accept-dhcp-domain>no</accept-dhcp-domain>
-                     </dhcp-client>
-                  </type>
-                  {% else %}
-                  <type>
-                     <dhcp-client>
-                       <send-hostname>yes</send-hostname>
-                       <send-client-id>no</send-client-id>
-                       <accept-dhcp-hostname>no</accept-dhcp-hostname>
-                       <accept-dhcp-domain>no</accept-dhcp-domain>
-                     </dhcp-client>
-                  </type>
-                  {% endif %}
-                  <hostname>{{FW_NAME}}</hostname>
-                  </system>
-                </deviceconfig>
-              </entry>
-            </devices>
-          </config>
-        </entry>
-      </template-stack>
       <device-group>
       <entry name="{{DEVICE_GROUP}}">
        <devices></devices>
       </entry>
         <entry name="{{DEVICE_GROUP}}">
+        <external-list>
+          <entry name="Palo Alto Networks Tor exit IP Addresses">
+            <type>
+              <predefined-ip>
+                <url>panw-torexit-ip-list</url>
+                <description>IP addresses supplied by multiple providers and validated with Palo Alto Networks threat intelligence data as active Tor exit nodes. Traffic from Tor exit nodes are disproportionately associated with malicious activity.</description>
+              </predefined-ip>
+            </type>
+          </entry>
+        </external-list>
+        <external-list>
+          <entry name="Palo Alto Networks BulletProof IP Addresses">
+            <type>
+              <predefined-ip>
+                <url>panw-bulletproof-ip-list</url>
+                <description>IP addresses that are provided by bulletproof hosting providers. Because bulletproof hosting providers place few, if any, restrictions on content, attackers can use these services to host and distribute malicious, illegal, and unethical material.</description>
+              </predefined-ip>
+            </type>
+          </entry>
+        </external-list>
           <reports>
           <entry name="Clients sinkholed">
             <period>last-30-calendar-days</period>
@@ -977,6 +981,64 @@
           </email-scheduler>
         </entry>
       </device-group>
+      <template-stack>
+      <entry name="{{STACK}}">
+        <templates>
+          <member>iron-skillet</member>
+        </templates>
+        <settings>
+          <default-vsys>vsys1</default-vsys>
+        </settings>
+          <config>
+            <devices>
+              <entry name="localhost.localdomain">
+                <vsys>
+                  <entry name="vsys1"/>
+                </vsys>
+              </entry>
+            </devices>
+        </config>
+      </entry>
+        <entry name="{{STACK}}">
+          <config>
+            <devices>
+              <entry name="localhost.localdomain">
+                <deviceconfig>
+                  <system>
+                  {%- if MGMT_TYPE == "static" %}
+                  <type>
+                    <static/>
+                  </type>
+                  <ip-address>{{MGMT_IP}}</ip-address>
+                  <netmask>{{MGMT_MASK}}</netmask>
+                  <default-gateway>{{MGMT_DG}}</default-gateway>
+                  {% elif MGMT_TYPE == "dhcp-client" %}
+                  <type>
+                     <dhcp-client>
+                       <send-hostname>yes</send-hostname>
+                       <send-client-id>no</send-client-id>
+                       <accept-dhcp-hostname>no</accept-dhcp-hostname>
+                       <accept-dhcp-domain>no</accept-dhcp-domain>
+                     </dhcp-client>
+                  </type>
+                  {% else %}
+                  <type>
+                     <dhcp-client>
+                       <send-hostname>yes</send-hostname>
+                       <send-client-id>no</send-client-id>
+                       <accept-dhcp-hostname>no</accept-dhcp-hostname>
+                       <accept-dhcp-domain>no</accept-dhcp-domain>
+                     </dhcp-client>
+                  </type>
+                  {% endif %}
+                  <hostname>{{FW_NAME}}</hostname>
+                  </system>
+                </deviceconfig>
+              </entry>
+            </devices>
+          </config>
+        </entry>
+      </template-stack>
     </entry>
   </devices>
   <panorama>
@@ -1048,7 +1110,7 @@
   <shared>
     <tag>
     <entry name="iron-skillet-version">
-        <comments>version 0.0.2 for 10.1 - version of this IronSkillet template file</comments>
+        <comments>version 0.0.1 for 10.2 - version of this IronSkillet template file</comments>
     </entry>
     <entry name="Internal">
         <comments>Internal to Internal</comments>
@@ -1148,60 +1210,6 @@
       </entry>
       </decryption>
       <virus>
-      <entry name="Exception-AV">
-        <decoder>
-          <entry name="ftp">
-            <action>reset-both</action>
-            <wildfire-action>reset-both</wildfire-action>
-            <mlav-action>reset-both</mlav-action>
-          </entry>
-          <entry name="http">
-            <action>reset-both</action>
-            <wildfire-action>reset-both</wildfire-action>
-            <mlav-action>reset-both</mlav-action>
-          </entry>
-          <entry name="http2">
-            <action>reset-both</action>
-            <wildfire-action>reset-both</wildfire-action>
-            <mlav-action>reset-both</mlav-action>
-          </entry>
-          <entry name="imap">
-            <action>reset-both</action>
-            <wildfire-action>reset-both</wildfire-action>
-            <mlav-action>reset-both</mlav-action>
-          </entry>
-          <entry name="pop3">
-            <action>reset-both</action>
-            <wildfire-action>reset-both</wildfire-action>
-            <mlav-action>reset-both</mlav-action>
-          </entry>
-          <entry name="smb">
-            <action>reset-both</action>
-            <wildfire-action>reset-both</wildfire-action>
-            <mlav-action>reset-both</mlav-action>
-          </entry>
-          <entry name="smtp">
-            <action>reset-both</action>
-            <wildfire-action>reset-both</wildfire-action>
-            <mlav-action>reset-both</mlav-action>
-          </entry>
-        </decoder>
-        <mlav-engine-filebased-enabled>
-          <entry name="Windows Executables">
-            <mlav-policy-action>enable</mlav-policy-action>
-          </entry>
-          <entry name="PowerShell Script 1">
-            <mlav-policy-action>enable</mlav-policy-action>
-          </entry>
-          <entry name="PowerShell Script 2">
-            <mlav-policy-action>enable</mlav-policy-action>
-          </entry>
-          <entry name="Executable Linked Format">
-            <mlav-policy-action>enable</mlav-policy-action>
-          </entry>
-        </mlav-engine-filebased-enabled>
-        <description>Use this profile for rules needing modifications to the standard</description>
-      </entry>
       <entry name="Internal-AV">
         <decoder>
           <entry name="ftp">
@@ -1251,6 +1259,12 @@
             <mlav-policy-action>enable</mlav-policy-action>
           </entry>
           <entry name="Executable Linked Format">
+            <mlav-policy-action>enable</mlav-policy-action>
+          </entry>
+          <entry name="MSOffice">
+            <mlav-policy-action>enable</mlav-policy-action>
+          </entry>
+          <entry name="Shell">
             <mlav-policy-action>enable</mlav-policy-action>
           </entry>
         </mlav-engine-filebased-enabled>
@@ -1306,6 +1320,12 @@
           <entry name="Executable Linked Format">
             <mlav-policy-action>enable</mlav-policy-action>
           </entry>
+          <entry name="MSOffice">
+            <mlav-policy-action>enable</mlav-policy-action>
+          </entry>
+          <entry name="Shell">
+            <mlav-policy-action>enable</mlav-policy-action>
+          </entry>
         </mlav-engine-filebased-enabled>
       </entry>
       <entry name="Outbound-AV">
@@ -1357,6 +1377,12 @@
             <mlav-policy-action>enable</mlav-policy-action>
           </entry>
           <entry name="Executable Linked Format">
+            <mlav-policy-action>enable</mlav-policy-action>
+          </entry>
+          <entry name="MSOffice">
+            <mlav-policy-action>enable</mlav-policy-action>
+          </entry>
+          <entry name="Shell">
             <mlav-policy-action>enable</mlav-policy-action>
           </entry>
         </mlav-engine-filebased-enabled>
@@ -1412,74 +1438,16 @@
           <entry name="Executable Linked Format">
             <mlav-policy-action>enable(alert-only)</mlav-policy-action>
           </entry>
+          <entry name="MSOffice">
+            <mlav-policy-action>enable(alert-only)</mlav-policy-action>
+          </entry>
+          <entry name="Shell">
+            <mlav-policy-action>enable(alert-only)</mlav-policy-action>
+          </entry>
         </mlav-engine-filebased-enabled>
       </entry>
       </virus>
       <spyware>
-      <entry name="Exception-AS">
-        <description>Used for exception cases not part of the recommended practice</description>
-        <botnet-domains>
-          <lists>
-            <entry name="default-paloalto-dns">
-              <packet-capture>disable</packet-capture>
-              <action>
-                <sinkhole/>
-              </action>
-            </entry>
-          </lists>
-          <dns-security-categories>
-            <entry name="pan-dns-sec-benign">
-              <log-level>default</log-level>
-              <action>default</action>
-              <packet-capture>disable</packet-capture>
-            </entry>
-            <entry name="pan-dns-sec-cc">
-              <log-level>default</log-level>
-              <action>default</action>
-              <packet-capture>disable</packet-capture>
-            </entry>
-            <entry name="pan-dns-sec-ddns">
-              <log-level>default</log-level>
-              <action>default</action>
-              <packet-capture>disable</packet-capture>
-            </entry>
-            <entry name="pan-dns-sec-grayware">
-              <log-level>default</log-level>
-              <action>default</action>
-              <packet-capture>disable</packet-capture>
-            </entry>
-            <entry name="pan-dns-sec-malware">
-              <log-level>default</log-level>
-              <action>default</action>
-              <packet-capture>disable</packet-capture>
-            </entry>
-            <entry name="pan-dns-sec-parked">
-              <log-level>default</log-level>
-              <action>default</action>
-              <packet-capture>disable</packet-capture>
-            </entry>
-            <entry name="pan-dns-sec-phishing">
-              <log-level>default</log-level>
-              <action>default</action>
-              <packet-capture>disable</packet-capture>
-            </entry>
-            <entry name="pan-dns-sec-proxy">
-              <log-level>default</log-level>
-              <action>default</action>
-              <packet-capture>disable</packet-capture>
-            </entry>
-            <entry name="pan-dns-sec-recent">
-              <log-level>default</log-level>
-              <action>default</action>
-              <packet-capture>disable</packet-capture>
-            </entry>
-          </dns-security-categories>
-          <sinkhole>
-            <ipv4-address>{{SINKHOLE_IPV4}}</ipv4-address>
-            <ipv6-address>{{SINKHOLE_IPV6}}</ipv6-address>
-          </sinkhole>
-        </botnet-domains>
-      </entry>
       <entry name="Alert-Only-AS">
         <botnet-domains>
           <lists>
@@ -1828,9 +1796,6 @@
       </entry>
       </spyware>
       <vulnerability>
-      <entry name="Exception-VP">
-        <rules/>
-      </entry>
       <entry name="Alert-Only-VP">
         <rules>
           <entry name="Alert-All">
@@ -2113,181 +2078,6 @@
       </entry>
       </file-blocking>
       <url-filtering>
-      <entry name="Exception-URL">
-        <credential-enforcement>
-          <mode>
-            <ip-user/>
-          </mode>
-          <log-severity>high</log-severity>
-          <block>
-            <member>Block</member>
-            <member>Allow</member>
-            <member>abortion</member>
-            <member>abused-drugs</member>
-            <member>adult</member>
-            <member>alcohol-and-tobacco</member>
-            <member>auctions</member>
-            <member>business-and-economy</member>
-            <member>command-and-control</member>
-            <member>computer-and-internet-info</member>
-            <member>content-delivery-networks</member>
-            <member>copyright-infringement</member>
-            <member>cryptocurrency</member>
-            <member>dating</member>
-            <member>dynamic-dns</member>
-            <member>educational-institutions</member>
-            <member>entertainment-and-arts</member>
-            <member>extremism</member>
-            <member>financial-services</member>
-            <member>gambling</member>
-            <member>games</member>
-            <member>government</member>
-            <member>grayware</member>
-            <member>hacking</member>
-            <member>health-and-medicine</member>
-            <member>high-risk</member>
-            <member>home-and-garden</member>
-            <member>hunting-and-fishing</member>
-            <member>insufficient-content</member>
-            <member>internet-communications-and-telephony</member>
-            <member>internet-portals</member>
-            <member>job-search</member>
-            <member>legal</member>
-            <member>low-risk</member>
-            <member>malware</member>
-            <member>medium-risk</member>
-            <member>military</member>
-            <member>motor-vehicles</member>
-            <member>music</member>
-            <member>newly-registered-domain</member>
-            <member>news</member>
-            <member>not-resolved</member>
-            <member>nudity</member>
-            <member>online-storage-and-backup</member>
-            <member>parked</member>
-            <member>peer-to-peer</member>
-            <member>personal-sites-and-blogs</member>
-            <member>philosophy-and-political-advocacy</member>
-            <member>phishing</member>
-            <member>private-ip-addresses</member>
-            <member>proxy-avoidance-and-anonymizers</member>
-            <member>questionable</member>
-            <member>real-estate</member>
-            <member>real-time-detection</member>
-            <member>recreation-and-hobbies</member>
-            <member>reference-and-research</member>
-            <member>religion</member>
-            <member>search-engines</member>
-            <member>sex-education</member>
-            <member>shareware-and-freeware</member>
-            <member>shopping</member>
-            <member>social-networking</member>
-            <member>society</member>
-            <member>sports</member>
-            <member>stock-advice-and-tools</member>
-            <member>streaming-media</member>
-            <member>swimsuits-and-intimate-apparel</member>
-            <member>training-and-tools</member>
-            <member>translation</member>
-            <member>travel</member>
-            <member>unknown</member>
-            <member>weapons</member>
-            <member>web-advertisements</member>
-            <member>web-based-email</member>
-            <member>web-hosting</member>
-          </block>
-        </credential-enforcement>
-        <log-http-hdr-user-agent>yes</log-http-hdr-user-agent>
-        <log-http-hdr-referer>yes</log-http-hdr-referer>
-        <log-http-hdr-xff>yes</log-http-hdr-xff>
-        <alert>
-          <member>Allow</member>
-          <member>abortion</member>
-          <member>abused-drugs</member>
-          <member>adult</member>
-          <member>alcohol-and-tobacco</member>
-          <member>auctions</member>
-          <member>business-and-economy</member>
-          <member>computer-and-internet-info</member>
-          <member>content-delivery-networks</member>
-          <member>copyright-infringement</member>
-          <member>cryptocurrency</member>
-          <member>dating</member>
-          <member>dynamic-dns</member>
-          <member>educational-institutions</member>
-          <member>entertainment-and-arts</member>
-          <member>extremism</member>
-          <member>financial-services</member>
-          <member>gambling</member>
-          <member>games</member>
-          <member>government</member>
-          <member>hacking</member>
-          <member>health-and-medicine</member>
-          <member>high-risk</member>
-          <member>home-and-garden</member>
-          <member>hunting-and-fishing</member>
-          <member>insufficient-content</member>
-          <member>internet-communications-and-telephony</member>
-          <member>internet-portals</member>
-          <member>job-search</member>
-          <member>legal</member>
-          <member>low-risk</member>
-          <member>medium-risk</member>
-          <member>military</member>
-          <member>motor-vehicles</member>
-          <member>music</member>
-          <member>newly-registered-domain</member>
-          <member>news</member>
-          <member>not-resolved</member>
-          <member>nudity</member>
-          <member>online-storage-and-backup</member>
-          <member>parked</member>
-          <member>peer-to-peer</member>
-          <member>personal-sites-and-blogs</member>
-          <member>philosophy-and-political-advocacy</member>
-          <member>private-ip-addresses</member>
-          <member>proxy-avoidance-and-anonymizers</member>
-          <member>questionable</member>
-          <member>real-estate</member>
-          <member>real-time-detection</member>
-          <member>recreation-and-hobbies</member>
-          <member>reference-and-research</member>
-          <member>religion</member>
-          <member>search-engines</member>
-          <member>sex-education</member>
-          <member>shareware-and-freeware</member>
-          <member>shopping</member>
-          <member>social-networking</member>
-          <member>society</member>
-          <member>sports</member>
-          <member>stock-advice-and-tools</member>
-          <member>streaming-media</member>
-          <member>swimsuits-and-intimate-apparel</member>
-          <member>training-and-tools</member>
-          <member>translation</member>
-          <member>travel</member>
-          <member>unknown</member>
-          <member>weapons</member>
-          <member>web-advertisements</member>
-          <member>web-based-email</member>
-          <member>web-hosting</member>
-        </alert>
-        <block>
-          <member>Block</member>
-          <member>command-and-control</member>
-          <member>grayware</member>
-          <member>malware</member>
-          <member>phishing</member>
-        </block>
-        <mlav-engine-urlbased-enabled>
-          <entry name="Phishing Detection">
-            <mlav-policy-action>block</mlav-policy-action>
-          </entry>
-          <entry name="Javascript Exploit Detection">
-            <mlav-policy-action>block</mlav-policy-action>
-          </entry>
-        </mlav-engine-urlbased-enabled>
-      </entry>
       <entry name="Alert-Only-URL">
         <credential-enforcement>
           <mode>
@@ -2372,6 +2162,11 @@
             <member>web-hosting</member>
           </alert>
         </credential-enforcement>
+        <log-http-hdr-user-agent>yes</log-http-hdr-user-agent>
+        <log-http-hdr-referer>yes</log-http-hdr-referer>
+        <log-http-hdr-xff>yes</log-http-hdr-xff>
+        <local-inline-cat>yes</local-inline-cat>
+        <cloud-inline-cat>yes</cloud-inline-cat>
         <alert>
           <member>Block</member>
           <member>Allow</member>
@@ -2449,14 +2244,6 @@
           <member>web-based-email</member>
           <member>web-hosting</member>
         </alert>
-        <mlav-engine-urlbased-enabled>
-          <entry name="Phishing Detection">
-            <mlav-policy-action>alert</mlav-policy-action>
-          </entry>
-          <entry name="Javascript Exploit Detection">
-            <mlav-policy-action>alert</mlav-policy-action>
-          </entry>
-        </mlav-engine-urlbased-enabled>
       </entry>
       <entry name="Outbound-URL">
         <credential-enforcement>
@@ -2545,6 +2332,8 @@
         <log-http-hdr-user-agent>yes</log-http-hdr-user-agent>
         <log-http-hdr-referer>yes</log-http-hdr-referer>
         <log-http-hdr-xff>yes</log-http-hdr-xff>
+        <local-inline-cat>yes</local-inline-cat>
+        <cloud-inline-cat>yes</cloud-inline-cat>
         <alert>
           <member>Allow</member>
           <member>abortion</member>
@@ -2624,14 +2413,6 @@
           <member>malware</member>
           <member>phishing</member>
         </block>
-        <mlav-engine-urlbased-enabled>
-          <entry name="Phishing Detection">
-            <mlav-policy-action>block</mlav-policy-action>
-          </entry>
-          <entry name="Javascript Exploit Detection">
-            <mlav-policy-action>block</mlav-policy-action>
-          </entry>
-        </mlav-engine-urlbased-enabled>
       </entry>
       </url-filtering>
       <wildfire-analysis>

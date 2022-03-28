@@ -154,6 +154,12 @@ variables:
     default: 192.0.2.2
     type_hint: text
 
+-   name: DEVICE_GROUP
+    description: Device-group name for Panorama
+    default: sample_devicegroup
+    type_hint: text
+    help_text: creates a sample device-group with IronSkillet configuration elements
+
 -   name: SINKHOLE_IPV4
     description: sinkhole FQDN IPv4
     default: sinkhole.paloaltonetworks.com
@@ -225,12 +231,6 @@ variables:
     toggle_hint:
         source: MGMT_TYPE
         value: static
-
--   name: DEVICE_GROUP
-    description: Device-group name for Panorama
-    default: sample_devicegroup
-    type_hint: text
-    help_text: creates a sample device-group with IronSkillet configuration elements
 
 snippets:
 
@@ -1075,6 +1075,38 @@ snippets:
           <password-history-count>24</password-history-count>
           <new-password-differs-by-characters>3</new-password-differs-by-characters>
         </password-complexity>
+    cmd: set
+
+-   name: panorama_edl_10_2.bulletproof_ip_edl
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/device-group/entry[@name="{{
+        DEVICE_GROUP }}"]
+    element: |-
+        <external-list>
+          <entry name="Palo Alto Networks BulletProof IP Addresses">
+            <type>
+              <predefined-ip>
+                <url>panw-bulletproof-ip-list</url>
+                <description>IP addresses that are provided by bulletproof hosting providers. Because bulletproof hosting providers place few, if any, restrictions on content, attackers can use these services to host and distribute malicious, illegal, and unethical material.</description>
+              </predefined-ip>
+            </type>
+          </entry>
+        </external-list>
+    cmd: set
+
+-   name: panorama_edl_10_2.tor_exit_edl
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/device-group/entry[@name="{{
+        DEVICE_GROUP }}"]
+    element: |-
+        <external-list>
+          <entry name="Palo Alto Networks Tor exit IP Addresses">
+            <type>
+              <predefined-ip>
+                <url>panw-torexit-ip-list</url>
+                <description>IP addresses supplied by multiple providers and validated with Palo Alto Networks threat intelligence data as active Tor exit nodes. Traffic from Tor exit nodes are disproportionately associated with malicious activity.</description>
+              </predefined-ip>
+            </type>
+          </entry>
+        </external-list>
     cmd: set
 
 -   name: panorama_shared_log_settings_10_2.ironskillet_shared_log_settings_email_profile
@@ -3372,3 +3404,4 @@ snippets:
           <email-profile>Sample_Email_Profile</email-profile>
         </entry>
     cmd: set
+

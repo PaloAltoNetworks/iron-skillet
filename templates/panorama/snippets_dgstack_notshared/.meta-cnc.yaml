@@ -216,36 +216,6 @@ snippets:
           </entry>
         </email>
     cmd: set
-    
--   name: panos_ngfw_edl_10_2.bulletproof_ip_edl
-    xpath: /config/devices/entry[@name="localhost.localdomain"]/device-group/entry[@name="{{ DEVICE_GROUP }}"]
-    element: |-
-        <external-list>
-          <entry name="Palo Alto Networks BulletProof IP Addresses">
-            <type>
-              <predefined-ip>
-                <url>panw-bulletproof-ip-list</url>
-                <description>IP addresses that are provided by bulletproof hosting providers. Because bulletproof hosting providers place few, if any, restrictions on content, attackers can use these services to host and distribute malicious, illegal, and unethical material.</description>
-              </predefined-ip>
-            </type>
-          </entry>
-        </external-list>
-    cmd: set
-    
--   name: panos_ngfw_edl_10_2.tor_exit_edl
-    xpath: /config/devices/entry[@name="localhost.localdomain"]/device-group/entry[@name="{{ DEVICE_GROUP }}"]
-    element: |-
-        <external-list>
-          <entry name="Palo Alto Networks Tor exit IP Addresses">
-            <type>
-              <predefined-ip>
-                <url>panw-torexit-ip-list</url>
-                <description>IP addresses supplied by multiple providers and validated with Palo Alto Networks threat intelligence data as active Tor exit nodes. Traffic from Tor exit nodes are disproportionately associated with malicious activity.</description>
-              </predefined-ip>
-            </type>
-          </entry>
-        </external-list>
-    cmd: set
 
 -   name: panorama_log_settings_10_2.ironskillet_log_settings_syslog_profile
     xpath: /config/panorama/log-settings
@@ -829,6 +799,48 @@ snippets:
           <remove-tcp-timestamp>yes</remove-tcp-timestamp>
           <strip-tcp-fast-open-and-data>no</strip-tcp-fast-open-and-data>
           <strip-mptcp-option>global</strip-mptcp-option>
+        </entry>
+        <entry name="Alert_Only_Zone_Protection">
+          <flood>
+            <tcp-syn>
+              <enable>no</enable>
+            </tcp-syn>
+            <udp>
+              <enable>no</enable>
+            </udp>
+            <icmp>
+              <enable>no</enable>
+            </icmp>
+            <icmpv6>
+              <enable>no</enable>
+            </icmpv6>
+            <other-ip>
+              <enable>no</enable>
+            </other-ip>
+          </flood>
+          <scan>
+            <entry name="8001">
+              <action>
+                <alert/>
+              </action>
+              <interval>2</interval>
+              <threshold>100</threshold>
+            </entry>
+            <entry name="8002">
+              <action>
+                <alert/>
+              </action>
+              <interval>10</interval>
+              <threshold>100</threshold>
+            </entry>
+            <entry name="8003">
+              <action>
+                <alert/>
+              </action>
+              <interval>2</interval>
+              <threshold>100</threshold>
+            </entry>
+          </scan>
         </entry>
     cmd: set
 
@@ -2853,3 +2865,4 @@ snippets:
           <email-profile>Sample_Email_Profile</email-profile>
         </entry>
     cmd: set
+
