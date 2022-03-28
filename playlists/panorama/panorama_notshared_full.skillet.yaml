@@ -199,8 +199,6 @@ snippets:
         xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{DEVICE_GROUP}}']/profiles/virus
       - name: ironskillet_antivirus_internal
         xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{DEVICE_GROUP}}']/profiles/virus
-      - name: ironskillet_antivirus_exception
-        xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{DEVICE_GROUP}}']/profiles/virus
   - name: panorama_profiles_spyware_10_2
     include: panorama_profiles_spyware_10_2
     include_variables: all
@@ -213,8 +211,6 @@ snippets:
         xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{DEVICE_GROUP}}']/profiles/spyware
       - name: ironskillet_spyware_alert_all
         xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{DEVICE_GROUP}}']/profiles/spyware
-      - name: ironskillet_spyware_exception
-        xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{DEVICE_GROUP}}']/profiles/spyware
   - name: panorama_profiles_vulnerability_10_2
     include: panorama_profiles_vulnerability_10_2
     include_snippets:
@@ -225,8 +221,6 @@ snippets:
       - name: ironskillet_vulnerability_internal
         xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{DEVICE_GROUP}}']/profiles/vulnerability
       - name: ironskillet_vulnerability_alert_all
-        xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{DEVICE_GROUP}}']/profiles/vulnerability
-      - name: ironskillet_vulnerability_exception
         xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{DEVICE_GROUP}}']/profiles/vulnerability
   - name: panorama_profiles_file_blocking_10_2
     include: panorama_profiles_file_blocking_10_2
@@ -245,8 +239,6 @@ snippets:
       - name: ironskillet_url_outbound
         xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{DEVICE_GROUP}}']/profiles/url-filtering
       - name: ironskillet_url_alert_all
-        xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{DEVICE_GROUP}}']/profiles/url-filtering
-      - name: ironskillet_url_exception
         xpath: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='{{DEVICE_GROUP}}']/profiles/url-filtering
   - name: panorama_profiles_wildfire_analysis_10_2
     include: panorama_profiles_wildfire_analysis_10_2
