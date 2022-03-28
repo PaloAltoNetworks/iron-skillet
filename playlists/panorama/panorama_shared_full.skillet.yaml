@@ -62,6 +62,9 @@ snippets:
     include: panorama_device_setting_10_2
   - name: panorama_device_mgt_config_10_2
     include: panorama_device_mgt_config_10_2
+  # external dynamic lists
+  - name: panorama_edl_10_2
+    include: panorama_edl_10_2
   # log settings
   - name: panorama_shared_log_settings_10_2
     include: panorama_shared_log_settings_10_2
