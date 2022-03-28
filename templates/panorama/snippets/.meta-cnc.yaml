@@ -1685,6 +1685,7 @@ snippets:
     cmd: set
 
 -   name: panorama_profiles_spyware_10_2.ironskillet_spyware_outbound
+    xpath: /config/shared/profiles/spyware
     element: |-
         <entry name="Outbound-AS">
           <botnet-domains>
