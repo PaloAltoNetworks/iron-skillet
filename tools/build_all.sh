@@ -150,7 +150,7 @@ sli template -sd ../ -ad -n skillet_full_panos_v10_2 -o ../loadable_configs/samp
 sli template -sd ../ -ad $MGMT_STATIC -n skillet_full_panos_v10_2 -o ../loadable_configs/sample-mgmt-static/panos/iron_skillet_panos_full.xml
 
 echo "Using sli template to create the loadable config set commands with rendered jinja for panos"
-sli template -sd ../ -ad -n skillet_set_command_panos_v10_1 -o ../loadable_configs/sample-set-commands/panos/iron_skillet_panos_full.conf
+sli template -sd ../ -ad -n skillet_set_command_panos_v10_2 -o ../loadable_configs/sample-set-commands/panos/iron_skillet_panos_full.conf
 
 echo "using sli template to create the loadable config xml with rendered jinja for panorama"
 sli template -sd ../ -ad $PANORAMA_CLD -n skillet_full_panorama_v10_2 -o ../loadable_configs/sample-cloud-AWS/panorama/iron_skillet_panorama_full.xml
