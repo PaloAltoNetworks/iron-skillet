@@ -469,6 +469,36 @@ snippets:
           </entry>
         </email>
     cmd: set
+    
+-   name: panos_ngfw_edl_10_2.bulletproof_ip_edl
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/vsys/entry[@name="vsys1"]
+    element: |-
+        <external-list>
+          <entry name="Palo Alto Networks BulletProof IP Addresses">
+            <type>
+              <predefined-ip>
+                <url>panw-bulletproof-ip-list</url>
+                <description>IP addresses that are provided by bulletproof hosting providers. Because bulletproof hosting providers place few, if any, restrictions on content, attackers can use these services to host and distribute malicious, illegal, and unethical material.</description>
+              </predefined-ip>
+            </type>
+          </entry>
+        </external-list>
+    cmd: set
+    
+-   name: panos_ngfw_edl_10_2.tor_exit_edl
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/vsys/entry[@name="vsys1"]
+    element: |-
+        <external-list>
+          <entry name="Palo Alto Networks Tor exit IP Addresses">
+            <type>
+              <predefined-ip>
+                <url>panw-torexit-ip-list</url>
+                <description>IP addresses supplied by multiple providers and validated with Palo Alto Networks threat intelligence data as active Tor exit nodes. Traffic from Tor exit nodes are disproportionately associated with malicious activity.</description>
+              </predefined-ip>
+            </type>
+          </entry>
+        </external-list>
+    cmd: set
 
 -   name: panorama_log_settings_10_1.ironskillet_log_settings_syslog_profile
     xpath: /config/panorama/log-settings
@@ -966,7 +996,7 @@ snippets:
               <size-limit>20</size-limit>
             </entry>
            </file-size-limit>
-          <report-benign-file>yes</report-benign-file>
+          <report-benign-file>no</report-benign-file>
           <report-grayware-file>yes</report-grayware-file>
         </wildfire>
     cmd: set
@@ -1251,6 +1281,48 @@ snippets:
           <strip-tcp-fast-open-and-data>no</strip-tcp-fast-open-and-data>
           <strip-mptcp-option>global</strip-mptcp-option>
         </entry>
+        <entry name="Alert_Only_Zone_Protection">
+          <flood>
+            <tcp-syn>
+              <enable>no</enable>
+            </tcp-syn>
+            <udp>
+              <enable>no</enable>
+            </udp>
+            <icmp>
+              <enable>no</enable>
+            </icmp>
+            <icmpv6>
+              <enable>no</enable>
+            </icmpv6>
+            <other-ip>
+              <enable>no</enable>
+            </other-ip>
+          </flood>
+          <scan>
+            <entry name="8001">
+              <action>
+                <alert/>
+              </action>
+              <interval>2</interval>
+              <threshold>100</threshold>
+            </entry>
+            <entry name="8002">
+              <action>
+                <alert/>
+              </action>
+              <interval>10</interval>
+              <threshold>100</threshold>
+            </entry>
+            <entry name="8003">
+              <action>
+                <alert/>
+              </action>
+              <interval>2</interval>
+              <threshold>100</threshold>
+            </entry>
+          </scan>
+        </entry>
     cmd: set
 
 -   name: panorama_log_settings_profiles_10_1.ironskillet_log_settings_profiles
@@ -1410,6 +1482,12 @@ snippets:
             <entry name="Executable Linked Format">
               <mlav-policy-action>enable(alert-only)</mlav-policy-action>
             </entry>
+            <entry name="MSOffice">
+              <mlav-policy-action>enable(alert-only)</mlav-policy-action>
+            </entry>
+            <entry name="Shell">
+              <mlav-policy-action>enable(alert-only)</mlav-policy-action>
+            </entry>
           </mlav-engine-filebased-enabled>
         </entry>
     cmd: set
@@ -1466,6 +1544,12 @@ snippets:
               <mlav-policy-action>enable</mlav-policy-action>
             </entry>
             <entry name="Executable Linked Format">
+              <mlav-policy-action>enable</mlav-policy-action>
+            </entry>
+            <entry name="MSOffice">
+              <mlav-policy-action>enable</mlav-policy-action>
+            </entry>
+            <entry name="Shell">
               <mlav-policy-action>enable</mlav-policy-action>
             </entry>
           </mlav-engine-filebased-enabled>
@@ -1526,6 +1610,12 @@ snippets:
             <entry name="Executable Linked Format">
               <mlav-policy-action>enable</mlav-policy-action>
             </entry>
+            <entry name="MSOffice">
+              <mlav-policy-action>enable</mlav-policy-action>
+            </entry>
+            <entry name="Shell">
+              <mlav-policy-action>enable</mlav-policy-action>
+            </entry>
           </mlav-engine-filebased-enabled>
         </entry>
     cmd: set
@@ -1584,71 +1674,17 @@ snippets:
             <entry name="Executable Linked Format">
               <mlav-policy-action>enable</mlav-policy-action>
             </entry>
-          </mlav-engine-filebased-enabled>
-        </entry>
-    cmd: set
-
--   name: panorama_profiles_virus_10_1.ironskillet_antivirus_exception
-    xpath: /config/shared/profiles/virus
-    element: |-
-        <entry name="Exception-AV">
-          <decoder>
-            <entry name="ftp">
-              <action>reset-both</action>
-              <wildfire-action>reset-both</wildfire-action>
-              <mlav-action>reset-both</mlav-action>
-            </entry>
-            <entry name="http">
-              <action>reset-both</action>
-              <wildfire-action>reset-both</wildfire-action>
-              <mlav-action>reset-both</mlav-action>
-            </entry>
-            <entry name="http2">
-              <action>reset-both</action>
-              <wildfire-action>reset-both</wildfire-action>
-              <mlav-action>reset-both</mlav-action>
-            </entry>
-            <entry name="imap">
-              <action>reset-both</action>
-              <wildfire-action>reset-both</wildfire-action>
-              <mlav-action>reset-both</mlav-action>
-            </entry>
-            <entry name="pop3">
-              <action>reset-both</action>
-              <wildfire-action>reset-both</wildfire-action>
-              <mlav-action>reset-both</mlav-action>
-            </entry>
-            <entry name="smb">
-              <action>reset-both</action>
-              <wildfire-action>reset-both</wildfire-action>
-              <mlav-action>reset-both</mlav-action>
-            </entry>
-            <entry name="smtp">
-              <action>reset-both</action>
-              <wildfire-action>reset-both</wildfire-action>
-              <mlav-action>reset-both</mlav-action>
-            </entry>
-          </decoder>
-          <mlav-engine-filebased-enabled>
-            <entry name="Windows Executables">
+            <entry name="MSOffice">
               <mlav-policy-action>enable</mlav-policy-action>
             </entry>
-            <entry name="PowerShell Script 1">
-              <mlav-policy-action>enable</mlav-policy-action>
-            </entry>
-            <entry name="PowerShell Script 2">
-              <mlav-policy-action>enable</mlav-policy-action>
-            </entry>
-            <entry name="Executable Linked Format">
+            <entry name="Shell">
               <mlav-policy-action>enable</mlav-policy-action>
             </entry>
           </mlav-engine-filebased-enabled>
-          <description>Use this profile for rules needing modifications to the standard</description>
         </entry>
     cmd: set
 
 -   name: panorama_profiles_spyware_10_1.ironskillet_spyware_outbound
-    xpath: /config/shared/profiles/spyware
     element: |-
         <entry name="Outbound-AS">
           <botnet-domains>
@@ -2013,75 +2049,6 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_profiles_spyware_10_1.ironskillet_spyware_exception
-    xpath: /config/shared/profiles/spyware
-    element: |-
-        <entry name="Exception-AS">
-          <description>Used for exception cases not part of the recommended practice</description>
-          <botnet-domains>
-            <lists>
-              <entry name="default-paloalto-dns">
-                <packet-capture>disable</packet-capture>
-                <action>
-                  <sinkhole/>
-                </action>
-              </entry>
-            </lists>
-            <dns-security-categories>
-              <entry name="pan-dns-sec-benign">
-                <log-level>default</log-level>
-                <action>default</action>
-                <packet-capture>disable</packet-capture>
-              </entry>
-              <entry name="pan-dns-sec-cc">
-                <log-level>default</log-level>
-                <action>default</action>
-                <packet-capture>disable</packet-capture>
-              </entry>
-              <entry name="pan-dns-sec-ddns">
-                <log-level>default</log-level>
-                <action>default</action>
-                <packet-capture>disable</packet-capture>
-              </entry>
-              <entry name="pan-dns-sec-grayware">
-                <log-level>default</log-level>
-                <action>default</action>
-                <packet-capture>disable</packet-capture>
-              </entry>
-              <entry name="pan-dns-sec-malware">
-                <log-level>default</log-level>
-                <action>default</action>
-                <packet-capture>disable</packet-capture>
-              </entry>
-              <entry name="pan-dns-sec-parked">
-                <log-level>default</log-level>
-                <action>default</action>
-                <packet-capture>disable</packet-capture>
-              </entry>
-              <entry name="pan-dns-sec-phishing">
-                <log-level>default</log-level>
-                <action>default</action>
-                <packet-capture>disable</packet-capture>
-              </entry>
-              <entry name="pan-dns-sec-proxy">
-                <log-level>default</log-level>
-                <action>default</action>
-                <packet-capture>disable</packet-capture>
-              </entry>
-              <entry name="pan-dns-sec-recent">
-                <log-level>default</log-level>
-                <action>default</action>
-                <packet-capture>disable</packet-capture>
-              </entry>
-            </dns-security-categories>
-            <sinkhole>
-              <ipv4-address>{{ SINKHOLE_IPV4 }}</ipv4-address>
-              <ipv6-address>{{ SINKHOLE_IPV6 }}</ipv6-address>
-            </sinkhole>
-          </botnet-domains>
-        </entry>
-    cmd: set
-
 -   name: panorama_profiles_vulnerability_10_1.ironskillet_vulnerability_outbound
     xpath: /config/shared/profiles/vulnerability
     element: |-
@@ -2250,14 +2217,6 @@ snippets:
               <packet-capture>disable</packet-capture>
             </entry>
           </rules>
-        </entry>
-    cmd: set
-
--   name: panorama_profiles_vulnerability_10_1.ironskillet_vulnerability_exception
-    xpath: /config/shared/profiles/vulnerability
-    element: |-
-        <entry name="Exception-VP">
-          <rules/>
         </entry>
     cmd: set
 
@@ -2498,6 +2457,8 @@ snippets:
           <log-http-hdr-user-agent>yes</log-http-hdr-user-agent>
           <log-http-hdr-referer>yes</log-http-hdr-referer>
           <log-http-hdr-xff>yes</log-http-hdr-xff>
+          <local-inline-cat>yes</local-inline-cat>
+          <cloud-inline-cat>yes</cloud-inline-cat>
           <alert>
             <member>Allow</member>
             <member>abortion</member>
@@ -2577,14 +2538,6 @@ snippets:
             <member>malware</member>
             <member>phishing</member>
           </block>
-          <mlav-engine-urlbased-enabled>
-            <entry name="Phishing Detection">
-              <mlav-policy-action>block</mlav-policy-action>
-            </entry>
-            <entry name="Javascript Exploit Detection">
-              <mlav-policy-action>block</mlav-policy-action>
-            </entry>
-          </mlav-engine-urlbased-enabled>
         </entry>
     cmd: set
 
@@ -2675,185 +2628,13 @@ snippets:
               <member>web-hosting</member>
             </alert>
           </credential-enforcement>
-          <alert>
-            <member>Block</member>
-            <member>Allow</member>
-            <member>abortion</member>
-            <member>abused-drugs</member>
-            <member>adult</member>
-            <member>alcohol-and-tobacco</member>
-            <member>auctions</member>
-            <member>business-and-economy</member>
-            <member>command-and-control</member>
-            <member>computer-and-internet-info</member>
-            <member>content-delivery-networks</member>
-            <member>copyright-infringement</member>
-            <member>cryptocurrency</member>
-            <member>dating</member>
-            <member>dynamic-dns</member>
-            <member>educational-institutions</member>
-            <member>entertainment-and-arts</member>
-            <member>extremism</member>
-            <member>financial-services</member>
-            <member>gambling</member>
-            <member>games</member>
-            <member>government</member>
-            <member>grayware</member>
-            <member>hacking</member>
-            <member>health-and-medicine</member>
-            <member>high-risk</member>
-            <member>home-and-garden</member>
-            <member>hunting-and-fishing</member>
-            <member>insufficient-content</member>
-            <member>internet-communications-and-telephony</member>
-            <member>internet-portals</member>
-            <member>job-search</member>
-            <member>legal</member>
-            <member>low-risk</member>
-            <member>malware</member>
-            <member>medium-risk</member>
-            <member>military</member>
-            <member>motor-vehicles</member>
-            <member>music</member>
-            <member>newly-registered-domain</member>
-            <member>news</member>
-            <member>not-resolved</member>
-            <member>nudity</member>
-            <member>online-storage-and-backup</member>
-            <member>parked</member>
-            <member>peer-to-peer</member>
-            <member>personal-sites-and-blogs</member>
-            <member>philosophy-and-political-advocacy</member>
-            <member>phishing</member>
-            <member>private-ip-addresses</member>
-            <member>proxy-avoidance-and-anonymizers</member>
-            <member>questionable</member>
-            <member>real-estate</member>
-            <member>real-time-detection</member>
-            <member>recreation-and-hobbies</member>
-            <member>reference-and-research</member>
-            <member>religion</member>
-            <member>search-engines</member>
-            <member>sex-education</member>
-            <member>shareware-and-freeware</member>
-            <member>shopping</member>
-            <member>social-networking</member>
-            <member>society</member>
-            <member>sports</member>
-            <member>stock-advice-and-tools</member>
-            <member>streaming-media</member>
-            <member>swimsuits-and-intimate-apparel</member>
-            <member>training-and-tools</member>
-            <member>translation</member>
-            <member>travel</member>
-            <member>unknown</member>
-            <member>weapons</member>
-            <member>web-advertisements</member>
-            <member>web-based-email</member>
-            <member>web-hosting</member>
-          </alert>
-          <mlav-engine-urlbased-enabled>
-            <entry name="Phishing Detection">
-              <mlav-policy-action>alert</mlav-policy-action>
-            </entry>
-            <entry name="Javascript Exploit Detection">
-              <mlav-policy-action>alert</mlav-policy-action>
-            </entry>
-          </mlav-engine-urlbased-enabled>
-        </entry>
-    cmd: set
-
--   name: panorama_profiles_url_filtering_10_1.ironskillet_url_exception
-    xpath: /config/shared/profiles/url-filtering
-    element: |-
-        <entry name="Exception-URL">
-          <credential-enforcement>
-            <mode>
-              <ip-user/>
-            </mode>
-            <log-severity>high</log-severity>
-            <block>
-              <member>Block</member>
-              <member>Allow</member>
-              <member>abortion</member>
-              <member>abused-drugs</member>
-              <member>adult</member>
-              <member>alcohol-and-tobacco</member>
-              <member>auctions</member>
-              <member>business-and-economy</member>
-              <member>command-and-control</member>
-              <member>computer-and-internet-info</member>
-              <member>content-delivery-networks</member>
-              <member>copyright-infringement</member>
-              <member>cryptocurrency</member>
-              <member>dating</member>
-              <member>dynamic-dns</member>
-              <member>educational-institutions</member>
-              <member>entertainment-and-arts</member>
-              <member>extremism</member>
-              <member>financial-services</member>
-              <member>gambling</member>
-              <member>games</member>
-              <member>government</member>
-              <member>grayware</member>
-              <member>hacking</member>
-              <member>health-and-medicine</member>
-              <member>high-risk</member>
-              <member>home-and-garden</member>
-              <member>hunting-and-fishing</member>
-              <member>insufficient-content</member>
-              <member>internet-communications-and-telephony</member>
-              <member>internet-portals</member>
-              <member>job-search</member>
-              <member>legal</member>
-              <member>low-risk</member>
-              <member>malware</member>
-              <member>medium-risk</member>
-              <member>military</member>
-              <member>motor-vehicles</member>
-              <member>music</member>
-              <member>newly-registered-domain</member>
-              <member>news</member>
-              <member>not-resolved</member>
-              <member>nudity</member>
-              <member>online-storage-and-backup</member>
-              <member>parked</member>
-              <member>peer-to-peer</member>
-              <member>personal-sites-and-blogs</member>
-              <member>philosophy-and-political-advocacy</member>
-              <member>phishing</member>
-              <member>private-ip-addresses</member>
-              <member>proxy-avoidance-and-anonymizers</member>
-              <member>questionable</member>
-              <member>real-estate</member>
-              <member>real-time-detection</member>
-              <member>recreation-and-hobbies</member>
-              <member>reference-and-research</member>
-              <member>religion</member>
-              <member>search-engines</member>
-              <member>sex-education</member>
-              <member>shareware-and-freeware</member>
-              <member>shopping</member>
-              <member>social-networking</member>
-              <member>society</member>
-              <member>sports</member>
-              <member>stock-advice-and-tools</member>
-              <member>streaming-media</member>
-              <member>swimsuits-and-intimate-apparel</member>
-              <member>training-and-tools</member>
-              <member>translation</member>
-              <member>travel</member>
-              <member>unknown</member>
-              <member>weapons</member>
-              <member>web-advertisements</member>
-              <member>web-based-email</member>
-              <member>web-hosting</member>
-            </block>
-          </credential-enforcement>
           <log-http-hdr-user-agent>yes</log-http-hdr-user-agent>
           <log-http-hdr-referer>yes</log-http-hdr-referer>
           <log-http-hdr-xff>yes</log-http-hdr-xff>
+          <local-inline-cat>yes</local-inline-cat>
+          <cloud-inline-cat>yes</cloud-inline-cat>
           <alert>
+            <member>Block</member>
             <member>Allow</member>
             <member>abortion</member>
             <member>abused-drugs</member>
@@ -2861,6 +2642,7 @@ snippets:
             <member>alcohol-and-tobacco</member>
             <member>auctions</member>
             <member>business-and-economy</member>
+            <member>command-and-control</member>
             <member>computer-and-internet-info</member>
             <member>content-delivery-networks</member>
             <member>copyright-infringement</member>
@@ -2874,6 +2656,7 @@ snippets:
             <member>gambling</member>
             <member>games</member>
             <member>government</member>
+            <member>grayware</member>
             <member>hacking</member>
             <member>health-and-medicine</member>
             <member>high-risk</member>
@@ -2885,6 +2668,7 @@ snippets:
             <member>job-search</member>
             <member>legal</member>
             <member>low-risk</member>
+            <member>malware</member>
             <member>medium-risk</member>
             <member>military</member>
             <member>motor-vehicles</member>
@@ -2898,6 +2682,7 @@ snippets:
             <member>peer-to-peer</member>
             <member>personal-sites-and-blogs</member>
             <member>philosophy-and-political-advocacy</member>
+            <member>phishing</member>
             <member>private-ip-addresses</member>
             <member>proxy-avoidance-and-anonymizers</member>
             <member>questionable</member>
@@ -2925,21 +2710,6 @@ snippets:
             <member>web-based-email</member>
             <member>web-hosting</member>
           </alert>
-          <block>
-            <member>Block</member>
-            <member>command-and-control</member>
-            <member>grayware</member>
-            <member>malware</member>
-            <member>phishing</member>
-          </block>
-          <mlav-engine-urlbased-enabled>
-            <entry name="Phishing Detection">
-              <mlav-policy-action>block</mlav-policy-action>
-            </entry>
-            <entry name="Javascript Exploit Detection">
-              <mlav-policy-action>block</mlav-policy-action>
-            </entry>
-          </mlav-engine-urlbased-enabled>
         </entry>
     cmd: set
 
