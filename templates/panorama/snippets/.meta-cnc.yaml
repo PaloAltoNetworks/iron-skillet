@@ -1175,36 +1175,6 @@ snippets:
           </match-list>
         </iptag>
     cmd: set
-    
--   name: panos_ngfw_edl_10_2.bulletproof_ip_edl
-    xpath: /config/devices/entry[@name="localhost.localdomain"]/device-group/entry[@name="{{ DEVICE_GROUP }}"]
-    element: |-
-        <external-list>
-          <entry name="Palo Alto Networks BulletProof IP Addresses">
-            <type>
-              <predefined-ip>
-                <url>panw-bulletproof-ip-list</url>
-                <description>IP addresses that are provided by bulletproof hosting providers. Because bulletproof hosting providers place few, if any, restrictions on content, attackers can use these services to host and distribute malicious, illegal, and unethical material.</description>
-              </predefined-ip>
-            </type>
-          </entry>
-        </external-list>
-    cmd: set
-    
--   name: panos_ngfw_edl_10_2.tor_exit_edl
-    xpath: /config/devices/entry[@name="localhost.localdomain"]/device-group/entry[@name="{{ DEVICE_GROUP }}"]
-    element: |-
-        <external-list>
-          <entry name="Palo Alto Networks Tor exit IP Addresses">
-            <type>
-              <predefined-ip>
-                <url>panw-torexit-ip-list</url>
-                <description>IP addresses supplied by multiple providers and validated with Palo Alto Networks threat intelligence data as active Tor exit nodes. Traffic from Tor exit nodes are disproportionately associated with malicious activity.</description>
-              </predefined-ip>
-            </type>
-          </entry>
-        </external-list>
-    cmd: set
 
 -   name: panorama_zone_protection_profile_10_2.ironskillet_zone_protection
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile
