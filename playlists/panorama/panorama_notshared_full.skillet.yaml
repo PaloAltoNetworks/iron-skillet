@@ -126,6 +126,9 @@ snippets:
         xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{STACK}}']/config/mgt-config
       - name: ironskillet_device_mgt_password_complexity
         xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='{{STACK}}']/config/mgt-config
+  # external dynamic lists
+  - name: panorama_edl_10_2
+    include: panorama_edl_10_2
   # shared log settings
   - name: panorama_shared_log_settings_10_2
     include: panorama_shared_log_settings_10_2
