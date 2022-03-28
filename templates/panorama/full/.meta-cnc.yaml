@@ -4,9 +4,9 @@
 # this is based on a 'shared model' with all template elements in the 'iron-skillet' template
 
 # snippet folder name
-name: skillet_full_panorama_v10_1
+name: skillet_full_panorama_v10_2
 # label used for menu selection
-label: v10.1 Iron-Skillet Full XML Configuration for Panorama (Shared Values)
+label: v10.2 Iron-Skillet Full XML Configuration for Panorama (Shared Values)
 description: Iron-Skillet day one full XML configuration for Panorama with shared device-group and stack specific values
 # type of device configuration
 type: template
@@ -182,4 +182,3 @@ variables:
 snippets:
   - name: panorama-full
     file: iron_skillet_panorama_full.xml
-
