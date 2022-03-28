@@ -160,11 +160,11 @@ sli template -sd ../ -ad -n skillet_full_panorama_v10_2 -o ../loadable_configs/s
 sli template -sd ../ -ad $MGMT_STATIC -n skillet_full_panorama_v10_2 -o ../loadable_configs/sample-mgmt-static/panorama/iron_skillet_panorama_full.xml
 
 echo "Using sli template to create the loadable config set commands with rendered jinja for panorama"
-sli template -sd ../ -ad -n skillet_setcommand_panorama_v10_1 -o ../loadable_configs/sample-set-commands/panorama/iron_skillet_panorama_full.conf
+sli template -sd ../ -ad -n skillet_setcommand_panorama_v10_2 -o ../loadable_configs/sample-set-commands/panorama/iron_skillet_panorama_full.conf
 
 
 # Below block of commands creates the spreadsheet files for both Panorama and Panos set commands
 echo "Creating Panos spreadsheet to be output in /templates/panos/set_commands/"
 sli spreadsheet -sd ../templates/panos/set_commands -n skillet_set_command_panos_v10_2 -o ../templates/panos/set_commands/
 echo "Creating Panorama spreadsheet to be output in /templates/panorama/set_commands/"
-sli spreadsheet -sd ../templates/panorama/set_commands -n skillet_setcommand_panorama_v10_1 -o ../templates/panorama/set_commands/
+sli spreadsheet -sd ../templates/panorama/set_commands -n skillet_setcommand_panorama_v10_2 -o ../templates/panorama/set_commands/
