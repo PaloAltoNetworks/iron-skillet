@@ -471,7 +471,7 @@ snippets:
     cmd: set
     
 -   name: panos_ngfw_edl_10_2.bulletproof_ip_edl
-    xpath: /config/devices/entry[@name="localhost.localdomain"]/device-group
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/device-group/entry[@name="{{ DEVICE_GROUP }}"]
     element: |-
         <external-list>
           <entry name="Palo Alto Networks BulletProof IP Addresses">
@@ -486,7 +486,7 @@ snippets:
     cmd: set
     
 -   name: panos_ngfw_edl_10_2.tor_exit_edl
-    xpath: /config/devices/entry[@name="localhost.localdomain"]/device-group
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/device-group/entry[@name="{{ DEVICE_GROUP }}"]
     element: |-
         <external-list>
           <entry name="Palo Alto Networks Tor exit IP Addresses">
