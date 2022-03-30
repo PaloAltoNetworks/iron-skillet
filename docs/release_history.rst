@@ -8,6 +8,22 @@ Includes:
     + tools updates
     + documentation revisions
 
+10.2 Template Release History
+----------------------------
+
+Template content updates are high level. Details can be found in the template guides.
+
+0.0.1
+^^^^^
+Released March 30th, 2022
+
+    + Update AV profiles to include inline ML MsOffice and Shell analysis support settings
+    + Enabled cloud-delivered Advanced Threat Protection for URL Filtering profiles
+    + Added Tor Exit and Bulletproof IP addresses External Dynamic Lists
+    + Disabled Wildfire reporting of benign files
+    + Added an Alert Only Zone Protection profile
+    + Removed all Exception Profiles
+
 10.1 Template Release History
 ----------------------------
 

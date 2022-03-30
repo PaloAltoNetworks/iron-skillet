@@ -2,6 +2,27 @@
 New PAN-OS Version Updates
 ==========================
 
+10.2 new features
+~~~~~~~~~~~~~~~~~
+
+Security profiles
+^^^^^^^^^^^^^^^^^
+
+    + URL Filtering: Enable Cloud and Local Inline Categorizations
+
+    + URL Filtering: Enable HTTP Header Logging options, User-Agent, Referer, X-Forwarded-For
+    
+    + Antivirus: Enable MsOffice and Shell analysis settings
+
+    + External Dynamic Lists: Added Bulletproof and Tor Exit IP address EDLs
+
+    + Zone Protection Profile: Added Alert Only ZPP
+
+Device configuration
+^^^^^^^^^^^^^^^^^
+
+    + Disabled reporting of benign files
+
 10.1 new features
 ~~~~~~~~~~~~~~~~~
 
@@ -135,5 +156,3 @@ Syntax changes
     + WF file sizes
 
         * new file type script, set to max 2000 file size [available in later releases]
-
-
