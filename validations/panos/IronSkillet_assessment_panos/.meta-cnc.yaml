@@ -365,11 +365,7 @@ snippets:
 
   - name: zone_protect_profile
     label: recommended zone protection is configured
-    test: |
-      (
-      zone_protect_profile | attribute_present('entry', 'name', 'Recommended_Zone_Protection')
-      zone_protect_profile | attribute_present('entry', 'name', 'Alert_Only_Zone_Protection')
-      )
+    test: zone_protect_profile | attribute_present('entry', 'name', 'Recommended_Zone_Protection')
     fail_message: |
       A Zone Protection profile applied to a zone offers protection against most common floods, reconnaissance attacks,
       other packet-based attacks, and the use of non-IP protocols.
