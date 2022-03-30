@@ -2,7 +2,7 @@ name: validate-IronSkillet-v10_0-panos-bae945bc-c667-4e56-a3fc-73bbb5afbe0d
 label: Full NGFW configuration assessment based on IronSkillet
 
 description: |
-  This skillet does a full NGFW validation of IronSkillet day one configuration - panos v10.0
+  This skillet does a full NGFW validation of IronSkillet day one configuration - panos v10.2
   Any missing config elements will result in a test fail and the doc links will provide
   GUI pointers for remediation
 
@@ -301,10 +301,10 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-wildfire-general-settings
 
   - name: wf_report_benign_grayware
-    label: reports for benign and grayware WF verdicts are enabled
+    label: reports for benign is disabled and grayware WF verdict is enabled
     test: |
       (
-      wf_report | element_value('report-benign-file') == 'yes'
+      wf_report | element_value('report-benign-file') == 'no'
       and wf_report | element_value('report-grayware-file') == 'yes'
       )
     fail_message: recommended to include all wildfire verdicts in the wildfire submission logs
@@ -365,8 +365,12 @@ snippets:
 
   - name: zone_protect_profile
     label: recommended zone protection is configured
-    test: zone_protect_profile | attribute_present('entry', 'name', 'Recommended_Zone_Protection')
-    fail_mesage: |
+    test: |
+      (
+      zone_protect_profile | attribute_present('entry', 'name', 'Recommended_Zone_Protection')
+      zone_protect_profile | attribute_present('entry', 'name', 'Alert_Only_Zone_Protection')
+      )
+    fail_message: |
       A Zone Protection profile applied to a zone offers protection against most common floods, reconnaissance attacks,
       other packet-based attacks, and the use of non-IP protocols.
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#zone-protection
