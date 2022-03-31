@@ -73,11 +73,9 @@ snippets:
   # tag object
   - name: panos_ngfw_tag_10_1
     include: panos_ngfw_tag_10_1
-    # log settings
+  # log settings
   - name: panos_ngfw_log_settings_profiles_10_1
     include: panos_ngfw_log_settings_profiles_10_1
-  - name: panos_ngfw_log_settings_profiles_email_10_1
-    include: panos_ngfw_log_settings_profiles_email_10_1
   # security profiles and profile groups
   - name: panos_ngfw_profile_custom_urlFiltering_10_1
     include: panos_ngfw_profile_custom_urlFiltering_10_1
