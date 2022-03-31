@@ -2,7 +2,7 @@
   <mgt-config>
     <users>
     <entry name="adminuser">
-      <phash>$1$JaVMaLlZ$iHJ6APS1/pkoeUej/YNlZ0</phash>
+      <phash>$1$oRJjoEBS$aztnOpPNANY7/wnxpVkCs/</phash>
       <permissions>
         <role-based>
           <superuser>yes</superuser>
@@ -889,10 +889,6 @@
                     <member>Sample_Syslog_Profile</member>
                   </send-syslog>
                 </entry>
-              </match-list>
-            </entry>
-              <entry name="default">
-                <match-list>
                 <entry name="Email_Malicious_Verdicts">
                   <send-email>
                     <member>Sample_Email_Profile</member>
@@ -902,8 +898,8 @@
                   <filter>(verdict neq benign)</filter>
                   <send-to-panorama>no</send-to-panorama>
                 </entry>
-                </match-list>
-              </entry>
+              </match-list>
+            </entry>
             </profiles>
           </log-settings>
           <profiles>
