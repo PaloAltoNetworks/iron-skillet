@@ -76,8 +76,6 @@ snippets:
     # log settings
   - name: panos_ngfw_log_settings_profiles_10_2
     include: panos_ngfw_log_settings_profiles_10_2
-  - name: panos_ngfw_log_settings_profiles_email_10_2
-    include: panos_ngfw_log_settings_profiles_email_10_2
   # External dynamic Lists
   - name: panos_ngfw_edl_10_2
     include: panos_ngfw_edl_10_2
