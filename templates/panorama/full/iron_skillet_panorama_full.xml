@@ -2627,9 +2627,9 @@
           <service>
             <member>any</member>
           </service>
-          <hip-profiles>
+          <source-hip>
             <member>any</member>
-          </hip-profiles>
+          </source-hip>
           <action>deny</action>
           <log-setting>default</log-setting>
           <tag>
@@ -2664,9 +2664,9 @@
           <service>
             <member>any</member>
           </service>
-          <hip-profiles>
+          <source-hip>
             <member>any</member>
-          </hip-profiles>
+          </source-hip>
           <action>deny</action>
           <log-setting>default</log-setting>
           <tag>
