@@ -30,12 +30,31 @@ day one configurations that can be readily loaded into Panorama or a next-genera
     + Improve security posture
 
 
+Supported releases
+-------------------
+
+IronSkillet is currently supported on the three most recent releases. Earlier releases of Ironskillet are supported based
+on community best efforts.
+
+Available and currently supported releases:
+    + 10.2
+    + 10.1
+    + 10.0
+
+Available but end of support releases:
+    + 9.1
+    + 9.0
+    + 8.1
+    + 8.0
+
+
 Using the templates
 -------------------
 
 The templates are available on GitHub specific to each PAN-OS software version.
 
 `View github repo:` |
+`10.2 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v10.2>`_ |
 `10.1 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v10.1>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v10.0>`_ |
 `9.1 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v9.1>`_ |
@@ -43,7 +62,7 @@ The templates are available on GitHub specific to each PAN-OS software version.
 
 
 .. Note::
-    versions 8.0 and 8.1 are still available but no longer will be updated
+    versions 8.0, 8.1, 9.0 and 9.1 are still available but no longer will be updated
 
 Use the branch specific to the software release for your deployment.
 
