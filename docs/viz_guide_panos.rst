@@ -97,8 +97,8 @@ Changes to Logging and Reporting Settings:
 Log Suppression (CLI only)
 ++++++++++++++++++++++++++
 
-Log suppression, when enabled, is a feature that instructs the Palo Alto Networks device to combine multiple similar logs into a single log entry 
-on the Monitor > Logs > Traffic page. 
+Log suppression, when enabled, is a feature that instructs the Palo Alto Networks device to combine multiple similar logs into a single log entry
+on the Monitor > Logs > Traffic page.
 
 Disabled to ensure unique log entries even if similar session types
 
@@ -221,7 +221,7 @@ Disable this option to prevent the firewall
 from forwarding TCP segments and skipping content inspection when the content inspection queue is full.
 
 **Disable Forward segments exceeding UDP content inspection queue**:
-Disable this option to prevent the firewall from forwarding UDP segments and skipping content inspection when the content inspection queue is full. 
+Disable this option to prevent the firewall from forwarding UDP segments and skipping content inspection when the content inspection queue is full.
 
 
 Device > Setup > Content-ID > X-Forwarded-For Headers
@@ -273,7 +273,7 @@ Key configuration elements:
 
     + **WildFire Public Cloud**: where to send file samples for analysis; defaults to the US-based url and can be changed to various regional sites
     + **File Size Limits**: recommended maximum file sizes to send to WildFire
-    + **Report Benign/Grayware Files**: shows these verdicts in the Wildfire submissions logs
+    + **Report Grayware Files**: shows verdicts in the Wildfire submissions logs
 
 .. _wildfire global cloud documentation: https://docs.paloaltonetworks.com/wildfire/10-0/wildfire-admin/wildfire-overview/wildfire-deployments/wildfire-global-cloud.html#
 
@@ -284,7 +284,7 @@ Key configuration elements:
 Session
 ~~~~~~~~
 
-Configure session age-out times, decryption certificate settings, and global session-related settings such as firewalling 
+Configure session age-out times, decryption certificate settings, and global session-related settings such as firewalling
 IPv6 traffic and rematching Security policy to existing sessions when the policy changes.
 
 .. _Device - Setup - Session: https://docs.paloaltonetworks.com/pan-os/10-0/pan-os-web-interface-help/device/device-setup-session.html
@@ -411,7 +411,7 @@ Device > Log Settings > System
 
 **System_Log_Forwarding**: As reference, forward all system logs as syslog using a configured syslog profile
 
-Profiles configurations are in the section :ref:`Server Profiles`. 
+Profiles configurations are in the section :ref:`Server Profiles`.
 
 Configuration
 ~~~~~~~~~~~~~
@@ -444,7 +444,7 @@ Device > Log Settings > User-ID
 
 **User-ID_Log_Forwarding**: As reference, forward all user ID logs as syslog using a configured syslog profile
 
-Profiles configurations are in the section :ref:`Server Profiles`. 
+Profiles configurations are in the section :ref:`Server Profiles`.
 
 Host Information Profile (HIP) Match
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -488,7 +488,7 @@ Device > Log Settings > IP-Tag
 
 **IP_Tag**: As reference, forward all IP-Tag logs as syslog using a configured syslog profile
 
-Profiles configurations are in the section :ref:`Server Profiles`.  
+Profiles configurations are in the section :ref:`Server Profiles`.
 
 .. _Server Profiles:
 
@@ -502,7 +502,7 @@ Server Profiles
      General configuration information in the Admin Guide: `Device - Server Profiles`_
 
 .. Note::
-    Since are operational and may vary across user environments, these are focused as ‘reference configurations’ as part of a 
+    Since are operational and may vary across user environments, these are focused as ‘reference configurations’ as part of a
     recommended day one starter configuration.
 
 .. Note::
@@ -556,7 +556,7 @@ Dynamic Updates
 IronSkillet Dynamic Updates
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Dynamic updates allow the firewall to periodically check for content updates. Without this schedule configured, no new signature, 
+Dynamic updates allow the firewall to periodically check for content updates. Without this schedule configured, no new signature,
 vulnerabilities, malicious domains, or GlobalProtect files will be locally loaded into the firewall.
 
 Device > Dynamic Updates : schedules
@@ -566,37 +566,37 @@ Device > Dynamic Updates : schedules
    :width: 600
    :align: center
 
-Updates are configured with minimum time values to ensure new content loads are applied when available. 
+Updates are configured with minimum time values to ensure new content loads are applied when available.
 They are also installed at the time of download.
 
 Time schedules are varied around the hour to avoid download/install overlap between update types.
 
 Antivirus
 ~~~~~~~~~
-Includes new and updated antivirus signatures, including signatures discovered by WildFire. You must have a Threat Prevention 
+Includes new and updated antivirus signatures, including signatures discovered by WildFire. You must have a Threat Prevention
 subscription to get these updates. New antivirus signatures are published daily.
 
 Applications and Threats
 ~~~~~~~~~~~~~~~~~~~~~~~~
-Includes new and updated application and threat signatures. This update is available if you have a Threat Prevention subscription 
-(and in this case you will get this update instead of the Applications update). New Applications and Threats updates are published weekly. 
+Includes new and updated application and threat signatures. This update is available if you have a Threat Prevention subscription
+(and in this case you will get this update instead of the Applications update). New Applications and Threats updates are published weekly.
 This means that the latest content update always includes the application and threat signatures released in previous versions.
 
 WildFire
 ~~~~~~~~
 Provides real-time malware and antivirus signatures created as a result of the analysis done by the WildFire public cloud.
-Without the WildFire subscription, you must wait 24 to 48 hours for the WildFire signatures to roll into the Applications and Threat update. 
+Without the WildFire subscription, you must wait 24 to 48 hours for the WildFire signatures to roll into the Applications and Threat update.
 
 GlobalProtect Clientless VPN
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Contains new and updated application signatures to enable Clientless VPN access to common web applications from the GlobalProtect portal. 
-You must have a GlobalProtect subscription to receive these updates. In addition, you must create a schedule for these updates before 
+Contains new and updated application signatures to enable Clientless VPN access to common web applications from the GlobalProtect portal.
+You must have a GlobalProtect subscription to receive these updates. In addition, you must create a schedule for these updates before
 GlobalProtect Clientless VPN will function.
 
 GlobalProtect Data File
 ~~~~~~~~~~~~~~~~~~~~~~~
-Contains the vendor-specific information for defining and evaluating host information profile (HIP) data returned by GlobalProtect apps. 
-You must have a GlobalProtect gateway subscription in order to receive these updates. In addition, you must create a schedule for these 
+Contains the vendor-specific information for defining and evaluating host information profile (HIP) data returned by GlobalProtect apps.
+You must have a GlobalProtect gateway subscription in order to receive these updates. In addition, you must create a schedule for these
 updates before GlobalProtect will function.
 
 Network
@@ -614,20 +614,21 @@ Network Profiles
 Zone Protection
 ~~~~~~~~~~~~~~~
 
-IronSkillet includes ‘non volumetric’ recommendations that are device and deployment specific. 
-This is configured as the Recommended_Zone_Protection profile and should be added to configured zones.
+IronSkillet includes ‘non volumetric’ recommendations that are device and deployment specific.
+This is configured as the Recommended_Zone_Protection profile and should be added to configured zones. IronSkillet also
+provides an Alert_Only_Zone_Protection profile for users to monitor zones without blocking traffic.
 
 .. Note::
     IronSkillet does not include zone configurations so the user must apply this profile when configured zones.
 
-Network > Network Profiles > Zone Protection Profile > Recommended_Zone_Protection > Reconnaissance Protection
+Network > Network Profiles > Zone Protection Profile > Recommended_Zone_Protection/Alert_Only_Zone_Protection > Reconnaissance Protection
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 .. image:: images/vg_zoneProtect_recon.png
    :width: 600
    :align: center
 
-TCP Port Scan, Host Sweep, and UDP Port Scan are enabled in alert-only mode to monitoring without blocking. 
+TCP Port Scan, Host Sweep, and UDP Port Scan are enabled in alert-only mode to monitoring without blocking.
 
 .. Note::
     Active blocking requires network tuning.
@@ -641,6 +642,15 @@ Network > Network Profiles > Zone Protection Profile > Recommended_Zone_Protecti
 
 IP Drop settings enabled for a spoofed IP address and malformed packets.
 
+Network > Network Profiles > Zone Protection Profile > Alert_Only_Zone_Protection > Packet Based Attack Protection > IP Drop
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+.. image:: images/vg_alert_zoneProtect_packetBased.png
+   :width: 600
+   :align: center
+
+No IP Drop settings have been enabled for the the Alert Only profile.
+
 Network > Network Profiles > Zone Protection Profile > Recommended_Zone_Protection > Packet Based Attack Protection > TCP Drop
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -649,6 +659,16 @@ Network > Network Profiles > Zone Protection Profile > Recommended_Zone_Protecti
    :align: center
 
 TCP Drop settings enabled for TCP SYN with Data, SYNACK with Data. Also to strip TCP Timestamp.
+
+
+Network > Network Profiles > Zone Protection Profile > Alert_Only_Zone_Protection > Packet Based Attack Protection > TCP Drop
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+.. image:: images/vg_alert_zoneProtect_TCPdrop.png
+   :width: 600
+   :align: center
+
+Default TCP Drop settings are set here with nothing more enabled for the Alert Only profile.
 
 .. Note::
     These are explicit enables in the template to ensure not disabled across software versions.
@@ -730,7 +750,6 @@ Security profiles in IronSkillet are explicitly named using one or more of the f
     + **Outbound**: traffic originating inside the network accessing external sites
     + **Inbound**: traffic originating outside the network accessing internal sites
     + **Internal**: traffic originating inside the network access other internal sites
-    + **Exception**: user-defined profile that can be used without changing the base profiles
     + **Alert-Only**: alert-only for any traffic sessions; not recommended when blocking required
 
 AntiVirus
@@ -744,8 +763,8 @@ Object > Security Profiles > Antivirus : Blocking
 +++++++++++++++++++++++++++++++++++++++++++++++++
 
     * reset-both for all decoder actions: Antivirus and Wildfire
-    * 10.0 includes reset-both for Dynamic Classification actions
-    * 10.0 includes enable for all file types
+    * Includes reset-both for Dynamic Classification actions
+    * Includes enable for all file types
 
 .. image:: images/vg_profiles_av_block.png
    :width: 600
@@ -757,24 +776,14 @@ Object > Security Profiles > Antivirus : Alert-Only
 +++++++++++++++++++++++++++++++++++++++++++++++++++
 
     * alert for all decoder actions: Antivirus and Wildfire
-    * 10.0 includes alert for Dynamic Classification actions
-    * 10.0 includes enable (alert only) for all file types
+    * Includes alert for Dynamic Classification actions
+    * Includes enable (alert only) for all file types
 
 .. image:: images/vg_profiles_av_alert.png
    :width: 600
    :align: center
 
 Sets all decoders to alert mode.
-
-Object > Security Profiles > Antivirus : Exception
-++++++++++++++++++++++++++++++++++++++++++++++++++
-
-.. image:: images/vg_profiles_av_exception.png
-   :width: 600
-   :align: center
-
-Set in blocking mode as default. This profile is a placeholder to be customized by the user and used in security
-profile groups and policies without the need to edit the IronSkillet blocking profiles.
 
 .. _Anti-Spyware Profile:
 
@@ -860,16 +869,6 @@ All DNS Security Service domain actions are set to 'allow' with no blocking post
    :align: center
 
 
-Object > Security Profiles > Antivirus : Exception-AS
-+++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-This is a placeholder allowing for custom rules without editing the base template configuration profiles.
-The exception placeholder contains no preconfigured rules.
-
-.. image:: images/vg_profiles_as_exception.png
-   :width: 600
-   :align: center
-
 Vulnerability
 ~~~~~~~~~~~~~
 
@@ -917,15 +916,6 @@ Object > Security Profiles > Vulnerability Protection : Alert-Only-VP
 Alert-Only provides a monitoring-only profile for vulnerability events.
 It is designed for use in demonstration or test deployments without active blocking.
 
-Object > Security Profiles > Vulnerability Protection : Exception-VP
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-.. image:: images/vg_profiles_vp_exception.png
-   :width: 600
-   :align: center
-
-This profile is a placeholder only allowing a user to customize their own ruleset without modifying the
-default IronSkillet profiles.
 
 URL Filtering
 ~~~~~~~~~~~~~
@@ -939,10 +929,29 @@ Object > Security Profiles > URL-Filtering
    :width: 600
    :align: center
 
-IronSkillet provides only 3 profiles for URL excluding the Inbound and Internal used in the other profiles.
+IronSkillet provides only 2 profiles for URL excluding the Inbound and Internal used in the other profiles.
 The IronSkillet assumption is that only outbound requests may be accessing malicious sites.
 In IronSkillet 10.1 added advanced URL Filtering changes, specifically updated real-time-detection categories to alert
-for all 3 profiles.
+for all profiles.
+
+Object > Security Profiles > URL-Filtering : HTTP Header Logging
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+.. image:: images/vg_profiles_HTTP_header_url.png
+   :width: 600
+   :align: center
+
+User-Agent, Referer and X-Forwarded-For HTTP Header Logging options have all been toggled on, added
+in IronSkillet 10.2.
+
+Object > Security Profiles > URL-Filtering : Advanced URL Filtering
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+.. image:: images/vg_advanced_url.png
+   :width: 600
+   :align: center
+
+Advanced URL Filtering inline local and cloud categorization have all been toggled on, added in Ironskillet 10.2.
 
 Object > Security Profiles > URL-Filtering : Outbound-URL
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -952,7 +961,7 @@ Object > Security Profiles > URL-Filtering : Outbound-URL
 IronSkillet only blocks known malicious categories and not high risk categories such as copyright-infringement
 mentioned in our Best Practice Assessment (BPA).
 
-Categories blocked in the Outbound and Exception profiles:
+Categories blocked in the Outbound profiles:
 
     + Malware
     + Command-and-Control
@@ -985,7 +994,7 @@ and User Credential Submission. No categories are blocked.
 File Blocking
 ~~~~~~~~~~~~~
 
-This set of profiles allow the NGFW to explicitly block files transiting the firewall by type and direction. 
+This set of profiles allow the NGFW to explicitly block files transiting the firewall by type and direction.
 
 Object > Security Profiles > File-Blocking
 ++++++++++++++++++++++++++++++++++++++++++
@@ -1004,6 +1013,23 @@ although not recommended, business purposes.
 .. Note::
     Supported WildFire file types, even if blocked, will be sent to WildFire for analysis if Wildfire is
     license and configured in the device.
+
+
+External Dynamic Lists
+~~~~~~~~~~~~~~~~~~~~~~
+
+EDL's are text files that allow the firewall to import objects and enforce policies based on contents
+of the EDL. In order to enforce policies on the entries included in the EDL, the list must be referenced
+in a supported policy rule or profile. Added in 10.2 Ironskillet are Bulletproof IP addresses and Tor
+exit IP addresses.
+
+Object > External Dynamic Lists
++++++++++++++++++++++++++++++++
+
+.. image:: images/vg_external_dynamic_list.png
+   :width: 600
+   :align: center
+
 
 WildFire Analysis
 ~~~~~~~~~~~~~~~~~
@@ -1350,4 +1376,3 @@ Monitor > PDF Reports > Email Scheduler
    :align: center
 
 It is up to the user to finalize configuration by setting the recurrence for how often the email should be generated and sent.
-
