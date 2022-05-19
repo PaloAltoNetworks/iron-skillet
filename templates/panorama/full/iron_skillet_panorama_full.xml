@@ -1,4 +1,4 @@
-<config version="10.1.0" urldb="paloaltonetworks">
+<config version="10.2.0" urldb="paloaltonetworks">
   <mgt-config>
     <devices/>
     <users>
