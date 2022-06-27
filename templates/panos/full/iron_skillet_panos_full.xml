@@ -99,7 +99,7 @@
             <transport>UDP</transport>
             <port>514</port>
             <format>BSD</format>
-            <server>192.0.2.2</server>
+            <server>{{ SYSLOG_SERVER }}</server>
             <facility>LOG_USER</facility>
           </entry>
         </server>
@@ -739,7 +739,7 @@
           <max-rows-in-csv-export>1048576</max-rows-in-csv-export>
           <api>
             <key>
-              <lifetime>525600</lifetime>
+              <lifetime>{{ API_KEY_LIFETIME }}</lifetime>
             </key>
           </api>
           <admin-lockout>
