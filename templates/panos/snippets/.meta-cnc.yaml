@@ -333,52 +333,17 @@ snippets:
     element: |-
         <management>
           <enable-log-high-dp-load>yes</enable-log-high-dp-load>
-        </management>
-    cmd: set
-
--   name: panos_ngfw_device_setting_10_1.ironskillet_device_setting_max_csv
-    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
-    element: |-
-        <management>
           <max-rows-in-csv-export>1048576</max-rows-in-csv-export>
-        </management>
-    cmd: set
-
--   name: panos_ngfw_device_setting_10_1.ironskillet_device_setting_api_key_lifetime
-    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
-    element: |-
-        <management>
           <api>
             <key>
               <lifetime>{{ API_KEY_LIFETIME }}</lifetime>
             </key>
           </api>
-        </management>
-    cmd: set
-
--   name: panos_ngfw_device_setting_10_1.ironskillet_device_setting_admin_lockout
-    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
-    element: |-
-        <management>
           <admin-lockout>
             <failed-attempts>5</failed-attempts>
             <lockout-time>30</lockout-time>
           </admin-lockout>
-        </management>
-    cmd: set
-
--   name: panos_ngfw_device_setting_10_1.ironskillet_device_setting_idle_timeout
-    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
-    element: |-
-        <management>
           <idle-timeout>10</idle-timeout>
-        </management>
-    cmd: set
-
--   name: panos_ngfw_device_setting_10_1.ironskillet_device_setting_commmit_lock
-    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
-    element: |-
-        <management>
           <auto-acquire-commit-lock>yes</auto-acquire-commit-lock>
         </management>
     cmd: set
@@ -515,22 +480,6 @@ snippets:
         </syslog>
     cmd: set
 
--   name: panos_ngfw_shared_log_settings_10_1.ironskillet_shared_log_settings_syslog_forwarding
-    xpath: /config/shared/log-settings
-    element: |-
-        <system>
-          <match-list>
-            <entry name="System_Log_Forwarding">
-              <filter>All Logs</filter>
-              <send-to-panorama>no</send-to-panorama>
-              <send-syslog>
-                <member>Sample_Syslog_Profile</member>
-              </send-syslog>
-            </entry>
-          </match-list>
-        </system>
-    cmd: set
-
 -   name: panos_ngfw_shared_log_settings_10_1.ironskillet_shared_log_settings_log_forwarding
     xpath: /config/shared/log-settings
     element: |-
@@ -629,7 +578,7 @@ snippets:
         </email>
     cmd: set
 
--   name: panos_ngfw_shared_log_settings_email_system_critical_10_1.ironskillet_shared_log_settings_email_system_critical
+-   name: panos_ngfw_shared_log_settings_email_system_critical_10_1.ironskillet_shared_log_settings_system
     xpath: /config/shared/log-settings/system/match-list
     element: |-
         <entry name="Email_Critical_System_Logs">
@@ -639,7 +588,15 @@ snippets:
              <filter>(severity eq critical)</filter>
              <description>Email Critical System Logs</description>
         </entry>
+        <entry name="System_Log_Forwarding">
+             <filter>All Logs</filter>
+             <send-to-panorama>no</send-to-panorama>
+             <send-syslog>
+               <member>Sample_Syslog_Profile</member>
+             </send-syslog>
+        </entry>
     cmd: set
+
 
 -   name: panos_ngfw_tag_10_1.ironskillet_tag_outbound
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag
