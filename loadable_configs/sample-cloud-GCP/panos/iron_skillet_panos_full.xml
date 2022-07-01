@@ -2,7 +2,7 @@
   <mgt-config>
     <users>
     <entry name="adminuser">
-      <phash>$1$zlZyVDED$SknXU9KBjAP3ctXXBv73S0</phash>
+      <phash>$1$bxnbENDW$xBMNjEwq9zeR6x65ZW.Il1</phash>
       <permissions>
         <role-based>
           <superuser>yes</superuser>
