@@ -328,7 +328,7 @@ snippets:
         </ctd>
     cmd: set
 
--   name: panos_ngfw_device_setting_10_1.ironskillet_device_setting_high_dp_load
+-   name: panos_ngfw_device_setting_10_1.ironskillet_device_setting
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     element: |-
         <management>
