@@ -328,57 +328,22 @@ snippets:
         </ctd>
     cmd: set
 
--   name: panos_ngfw_device_setting_10_1.ironskillet_device_setting_high_dp_load
+-   name: panos_ngfw_device_setting_10_1.ironskillet_device_setting
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     element: |-
         <management>
           <enable-log-high-dp-load>yes</enable-log-high-dp-load>
-        </management>
-    cmd: set
-
--   name: panos_ngfw_device_setting_10_1.ironskillet_device_setting_max_csv
-    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
-    element: |-
-        <management>
           <max-rows-in-csv-export>1048576</max-rows-in-csv-export>
-        </management>
-    cmd: set
-
--   name: panos_ngfw_device_setting_10_1.ironskillet_device_setting_api_key_lifetime
-    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
-    element: |-
-        <management>
           <api>
             <key>
               <lifetime>{{ API_KEY_LIFETIME }}</lifetime>
             </key>
           </api>
-        </management>
-    cmd: set
-
--   name: panos_ngfw_device_setting_10_1.ironskillet_device_setting_admin_lockout
-    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
-    element: |-
-        <management>
           <admin-lockout>
             <failed-attempts>5</failed-attempts>
             <lockout-time>30</lockout-time>
           </admin-lockout>
-        </management>
-    cmd: set
-
--   name: panos_ngfw_device_setting_10_1.ironskillet_device_setting_idle_timeout
-    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
-    element: |-
-        <management>
           <idle-timeout>10</idle-timeout>
-        </management>
-    cmd: set
-
--   name: panos_ngfw_device_setting_10_1.ironskillet_device_setting_commmit_lock
-    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
-    element: |-
-        <management>
           <auto-acquire-commit-lock>yes</auto-acquire-commit-lock>
         </management>
     cmd: set
@@ -497,121 +462,7 @@ snippets:
         <new-password-differs-by-characters>3</new-password-differs-by-characters>
     cmd: set
 
--   name: panos_ngfw_shared_log_settings_10_1.ironskillet_shared_log_settings_sample_syslog_profile
-    xpath: /config/shared/log-settings
-    element: |-
-        <syslog>
-          <entry name="Sample_Syslog_Profile">
-            <server>
-              <entry name="Sample_Syslog">
-                <transport>UDP</transport>
-                <port>514</port>
-                <format>BSD</format>
-                <server>{{ SYSLOG_SERVER }}</server>
-                <facility>LOG_USER</facility>
-              </entry>
-            </server>
-          </entry>
-        </syslog>
-    cmd: set
-
--   name: panos_ngfw_shared_log_settings_10_1.ironskillet_shared_log_settings_syslog_forwarding
-    xpath: /config/shared/log-settings
-    element: |-
-        <system>
-          <match-list>
-            <entry name="System_Log_Forwarding">
-              <filter>All Logs</filter>
-              <send-to-panorama>no</send-to-panorama>
-              <send-syslog>
-                <member>Sample_Syslog_Profile</member>
-              </send-syslog>
-            </entry>
-          </match-list>
-        </system>
-    cmd: set
-
--   name: panos_ngfw_shared_log_settings_10_1.ironskillet_shared_log_settings_log_forwarding
-    xpath: /config/shared/log-settings
-    element: |-
-        <config>
-          <match-list>
-            <entry name="Configuration_Log_Forwarding">
-              <filter>All Logs</filter>
-              <send-to-panorama>no</send-to-panorama>
-              <send-syslog>
-                <member>Sample_Syslog_Profile</member>
-              </send-syslog>
-            </entry>
-          </match-list>
-        </config>
-    cmd: set
-
--   name: panos_ngfw_shared_log_settings_10_1.ironskillet_shared_log_settings_userid_forwarding
-    xpath: /config/shared/log-settings
-    element: |-
-        <userid>
-          <match-list>
-            <entry name="User-ID_Log_Forwarding">
-              <filter>All Logs</filter>
-              <send-to-panorama>no</send-to-panorama>
-              <send-syslog>
-                <member>Sample_Syslog_Profile</member>
-              </send-syslog>
-            </entry>
-          </match-list>
-        </userid>
-    cmd: set
-
--   name: panos_ngfw_shared_log_settings_10_1.ironskillet_shared_log_settings_hip_forwarding
-    xpath: /config/shared/log-settings
-    element: |-
-        <hipmatch>
-          <match-list>
-            <entry name="HIP_Log_Forwarding">
-              <filter>All Logs</filter>
-              <send-to-panorama>no</send-to-panorama>
-              <send-syslog>
-                <member>Sample_Syslog_Profile</member>
-              </send-syslog>
-            </entry>
-          </match-list>
-        </hipmatch>
-    cmd: set
-
--   name: panos_ngfw_shared_log_settings_10_1.ironskillet_shared_log_settings_gp_forwarding
-    xpath: /config/shared/log-settings
-    element: |-
-        <globalprotect>
-          <match-list>
-            <entry name="GP_Log_Forwarding">
-              <send-syslog>
-                <member>Sample_Syslog_Profile</member>
-              </send-syslog>
-              <filter>All Logs</filter>
-              <send-to-panorama>no</send-to-panorama>
-            </entry>
-          </match-list>
-        </globalprotect>
-    cmd: set
-
--   name: panos_ngfw_shared_log_settings_10_1.ironskillet_shared_log_settings_ip_tag_forwarding
-    xpath: /config/shared/log-settings
-    element: |-
-        <iptag>
-          <match-list>
-            <entry name="IP-Tag_Log_Forwarding">
-              <send-syslog>
-                <member>Sample_Syslog_Profile</member>
-              </send-syslog>
-              <filter>All Logs</filter>
-              <send-to-panorama>no</send-to-panorama>
-            </entry>
-          </match-list>
-        </iptag>
-    cmd: set
-
--   name: panos_ngfw_shared_log_settings_email_profile_10_1.ironskillet_shared_log_settings_email_profile
+-   name: panos_ngfw_shared_log_settings_10_1.ironskillet_shared_log_settings
     xpath: /config/shared/log-settings
     element: |-
         <email>
@@ -627,18 +478,92 @@ snippets:
             </server>
           </entry>
         </email>
-    cmd: set
-
--   name: panos_ngfw_shared_log_settings_email_system_critical_10_1.ironskillet_shared_log_settings_email_system_critical
-    xpath: /config/shared/log-settings/system/match-list
-    element: |-
-        <entry name="Email_Critical_System_Logs">
-             <send-email>
-               <member>Sample_Email_Profile</member>
-             </send-email>
-             <filter>(severity eq critical)</filter>
-             <description>Email Critical System Logs</description>
-        </entry>
+        <iptag>
+          <match-list>
+            <entry name="IP-Tag_Log_Forwarding">
+              <send-syslog>
+                <member>Sample_Syslog_Profile</member>
+              </send-syslog>
+              <filter>All Logs</filter>
+              <send-to-panorama>no</send-to-panorama>
+            </entry>
+          </match-list>
+        </iptag>
+        <globalprotect>
+          <match-list>
+            <entry name="GP_Log_Forwarding">
+              <send-syslog>
+                <member>Sample_Syslog_Profile</member>
+              </send-syslog>
+              <filter>All Logs</filter>
+              <send-to-panorama>no</send-to-panorama>
+            </entry>
+          </match-list>
+        </globalprotect>
+        <hipmatch>
+          <match-list>
+            <entry name="HIP_Log_Forwarding">
+              <filter>All Logs</filter>
+              <send-to-panorama>no</send-to-panorama>
+              <send-syslog>
+                <member>Sample_Syslog_Profile</member>
+              </send-syslog>
+            </entry>
+          </match-list>
+        </hipmatch>
+        <userid>
+          <match-list>
+            <entry name="User-ID_Log_Forwarding">
+              <filter>All Logs</filter>
+              <send-to-panorama>no</send-to-panorama>
+              <send-syslog>
+                <member>Sample_Syslog_Profile</member>
+              </send-syslog>
+            </entry>
+          </match-list>
+        </userid>
+        <config>
+          <match-list>
+            <entry name="Configuration_Log_Forwarding">
+              <filter>All Logs</filter>
+              <send-to-panorama>no</send-to-panorama>
+              <send-syslog>
+                <member>Sample_Syslog_Profile</member>
+              </send-syslog>
+            </entry>
+          </match-list>
+        </config>
+        <syslog>
+          <entry name="Sample_Syslog_Profile">
+            <server>
+              <entry name="Sample_Syslog">
+                <transport>UDP</transport>
+                <port>514</port>
+                <format>BSD</format>
+                <server>{{ SYSLOG_SERVER }}</server>
+                <facility>LOG_USER</facility>
+              </entry>
+            </server>
+          </entry>
+        </syslog>
+        <system>
+          <match-list>
+            <entry name="System_Log_Forwarding">
+              <filter>All Logs</filter>
+              <send-to-panorama>no</send-to-panorama>
+              <send-syslog>
+                <member>Sample_Syslog_Profile</member>
+              </send-syslog>
+            </entry>
+            <entry name="Email_Critical_System_Logs">
+                 <send-email>
+                   <member>Sample_Email_Profile</member>
+                 </send-email>
+                 <filter>(severity eq critical)</filter>
+                 <description>Email Critical System Logs</description>
+            </entry>
+            </match-list>
+          </system>
     cmd: set
 
 -   name: panos_ngfw_tag_10_1.ironskillet_tag_outbound

@@ -2,7 +2,7 @@
   <mgt-config>
     <users>
     <entry name="adminuser">
-      <phash>$1$3B0DkXgy$PcsNzbGXAUnN2sLxQfGP8/</phash>
+      <phash>$1$lu8S/.zi$szRO8zyJZFSWgnt4q8Yt..</phash>
       <permissions>
         <role-based>
           <superuser>yes</superuser>
@@ -92,17 +92,6 @@
         </entry>
       </match-list>
     </config>
-    <system>
-      <match-list>
-        <entry name="System_Log_Forwarding">
-          <filter>All Logs</filter>
-          <send-to-panorama>no</send-to-panorama>
-          <send-syslog>
-            <member>Sample_Syslog_Profile</member>
-          </send-syslog>
-        </entry>
-      </match-list>
-    </system>
     <syslog>
       <entry name="Sample_Syslog_Profile">
         <server>
@@ -116,8 +105,15 @@
         </server>
       </entry>
     </syslog>
-      <system>
-        <match-list>
+    <system>
+      <match-list>
+        <entry name="System_Log_Forwarding">
+          <filter>All Logs</filter>
+          <send-to-panorama>no</send-to-panorama>
+          <send-syslog>
+            <member>Sample_Syslog_Profile</member>
+          </send-syslog>
+        </entry>
         <entry name="Email_Critical_System_Logs">
              <send-email>
                <member>Sample_Email_Profile</member>
@@ -714,29 +710,19 @@
           <report-grayware-file>yes</report-grayware-file>
         </wildfire>
         <management>
-          <auto-acquire-commit-lock>yes</auto-acquire-commit-lock>
-        </management>
-        <management>
-          <idle-timeout>10</idle-timeout>
-        </management>
-        <management>
-          <admin-lockout>
-            <failed-attempts>5</failed-attempts>
-            <lockout-time>30</lockout-time>
-          </admin-lockout>
-        </management>
-        <management>
+          <enable-log-high-dp-load>yes</enable-log-high-dp-load>
+          <max-rows-in-csv-export>1048576</max-rows-in-csv-export>
           <api>
             <key>
               <lifetime>525600</lifetime>
             </key>
           </api>
-        </management>
-        <management>
-          <max-rows-in-csv-export>1048576</max-rows-in-csv-export>
-        </management>
-        <management>
-          <enable-log-high-dp-load>yes</enable-log-high-dp-load>
+          <admin-lockout>
+            <failed-attempts>5</failed-attempts>
+            <lockout-time>30</lockout-time>
+          </admin-lockout>
+          <idle-timeout>10</idle-timeout>
+          <auto-acquire-commit-lock>yes</auto-acquire-commit-lock>
         </management>
         <ctd>
           <tcp-bypass-exceed-queue>no</tcp-bypass-exceed-queue>
