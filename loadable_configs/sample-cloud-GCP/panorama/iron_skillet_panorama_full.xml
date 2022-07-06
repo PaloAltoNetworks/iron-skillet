@@ -1,9 +1,9 @@
-<config version="10.1.0" urldb="paloaltonetworks">
+<config version="10.2.0" urldb="paloaltonetworks">
   <mgt-config>
     <devices/>
     <users>
     <entry name="adminuser">
-      <phash>$1$lQhCelQb$lbOKHzWJlQX9nZWRiHFwV0</phash>
+      <phash>$1$96sicX1b$T0qaSjEmqmWsPAnI8Umt4/</phash>
       <permissions>
         <role-based>
           <superuser>yes</superuser>
@@ -633,7 +633,7 @@
             </password-complexity>
             <users>
               <entry name="adminuser">
-                <phash>$1$mB5C2Rap$PWqOH1FAKWz7LtxZEFFjK0</phash>
+                <phash>$1$ro.WlVll$qpeLi0xS0svAOhJhp0P5n.</phash>
                 <permissions>
                   <role-based>
                     <superuser>yes</superuser>
