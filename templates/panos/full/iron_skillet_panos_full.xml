@@ -99,7 +99,7 @@
             <transport>UDP</transport>
             <port>514</port>
             <format>BSD</format>
-            <server>{{ SYSLOG_SERVER }}</server>
+            <server>{{SYSLOG_SERVER}}</server>
             <facility>LOG_USER</facility>
           </entry>
         </server>
@@ -565,6 +565,38 @@
             </global-protect-app-crypto-profiles>
           </crypto-profiles>
         </ike>
+        <qos>
+          <profile>
+            <entry name="default">
+              <class>
+                <entry name="class1">
+                  <priority>real-time</priority>
+                </entry>
+                <entry name="class2">
+                  <priority>high</priority>
+                </entry>
+                <entry name="class3">
+                  <priority>high</priority>
+                </entry>
+                <entry name="class4">
+                  <priority>medium</priority>
+                </entry>
+                <entry name="class5">
+                  <priority>medium</priority>
+                </entry>
+                <entry name="class6">
+                  <priority>low</priority>
+                </entry>
+                <entry name="class7">
+                  <priority>low</priority>
+                </entry>
+                <entry name="class8">
+                  <priority>low</priority>
+                </entry>
+              </class>
+            </entry>
+          </profile>
+        </qos>
         <virtual-router>
           <entry name="default">
             <protocol>
@@ -739,7 +771,7 @@
           <max-rows-in-csv-export>1048576</max-rows-in-csv-export>
           <api>
             <key>
-              <lifetime>{{ API_KEY_LIFETIME }}</lifetime>
+              <lifetime>{{API_KEY_LIFETIME}}</lifetime>
             </key>
           </api>
           <admin-lockout>
@@ -758,19 +790,19 @@
       <vsys>
         <entry name="vsys1">
         <external-list>
-          <entry name="Palo Alto Networks Tor exit IP Addresses">
-            <type>
-              <predefined-ip>
-                <url>panw-torexit-ip-list</url>
-                <description>IP addresses supplied by multiple providers and validated with Palo Alto Networks threat intelligence data as active Tor exit nodes. Traffic from Tor exit nodes are disproportionately associated with malicious activity.</description>
-              </predefined-ip>
-            </type>
-          </entry>
           <entry name="Palo Alto Networks BulletProof IP Addresses">
             <type>
               <predefined-ip>
                 <url>panw-bulletproof-ip-list</url>
                 <description>IP addresses that are provided by bulletproof hosting providers. Because bulletproof hosting providers place few, if any, restrictions on content, attackers can use these services to host and distribute malicious, illegal, and unethical material.</description>
+              </predefined-ip>
+            </type>
+          </entry>
+          <entry name="Palo Alto Networks Tor exit IP Addresses">
+            <type>
+              <predefined-ip>
+                <url>panw-torexit-ip-list</url>
+                <description>IP addresses supplied by multiple providers and validated with Palo Alto Networks threat intelligence data as active Tor exit nodes. Traffic from Tor exit nodes are disproportionately associated with malicious activity.</description>
               </predefined-ip>
             </type>
           </entry>
