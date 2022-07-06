@@ -66,10 +66,6 @@ snippets:
   # shared log settings and profile
   - name: panos_ngfw_shared_log_settings_10_1
     include: panos_ngfw_shared_log_settings_10_1
-  - name: panos_ngfw_shared_log_settings_email_profile_10_1
-    include: panos_ngfw_shared_log_settings_email_profile_10_1
-  - name: panos_ngfw_shared_log_settings_email_system_critical_10_1
-    include: panos_ngfw_shared_log_settings_email_system_critical_10_1
   # tag object
   - name: panos_ngfw_tag_10_1
     include: panos_ngfw_tag_10_1
