@@ -92,19 +92,6 @@
         </entry>
       </match-list>
     </config>
-    <syslog>
-      <entry name="Sample_Syslog_Profile">
-        <server>
-          <entry name="Sample_Syslog">
-            <transport>UDP</transport>
-            <port>514</port>
-            <format>BSD</format>
-            <server>192.0.2.2</server>
-            <facility>LOG_USER</facility>
-          </entry>
-        </server>
-      </entry>
-    </syslog>
     <system>
       <match-list>
         <entry name="System_Log_Forwarding">
@@ -114,15 +101,32 @@
             <member>Sample_Syslog_Profile</member>
           </send-syslog>
         </entry>
-        <entry name="Email_Critical_System_Logs">
-            <send-email>
-              <member>Sample_Email_Profile</member>
-            </send-email>
-            <filter>(severity eq critical)</filter>
-            <description>Email Critical System Logs</description>
-        </entry>
       </match-list>
     </system>
+    <syslog>
+      <entry name="Sample_Syslog_Profile">
+        <server>
+          <entry name="Sample_Syslog">
+            <transport>UDP</transport>
+            <port>514</port>
+            <format>BSD</format>
+            <server>{{SYSLOG_SERVER}}</server>
+            <facility>LOG_USER</facility>
+          </entry>
+        </server>
+      </entry>
+    </syslog>
+      <system>
+        <match-list>
+        <entry name="Email_Critical_System_Logs">
+             <send-email>
+               <member>Sample_Email_Profile</member>
+             </send-email>
+             <filter>(severity eq critical)</filter>
+             <description>Email Critical System Logs</description>
+        </entry>
+        </match-list>
+      </system>
     </log-settings>
     <reports>
     <entry name="Clients sinkholed">
@@ -523,6 +527,38 @@
             </global-protect-app-crypto-profiles>
           </crypto-profiles>
         </ike>
+        <qos>
+          <profile>
+            <entry name="default">
+              <class>
+                <entry name="class1">
+                  <priority>real-time</priority>
+                </entry>
+                <entry name="class2">
+                  <priority>high</priority>
+                </entry>
+                <entry name="class3">
+                  <priority>high</priority>
+                </entry>
+                <entry name="class4">
+                  <priority>medium</priority>
+                </entry>
+                <entry name="class5">
+                  <priority>medium</priority>
+                </entry>
+                <entry name="class6">
+                  <priority>low</priority>
+                </entry>
+                <entry name="class7">
+                  <priority>low</priority>
+                </entry>
+                <entry name="class8">
+                  <priority>low</priority>
+                </entry>
+              </class>
+            </entry>
+          </profile>
+        </qos>
         <virtual-router>
           <entry name="default">
             <protocol>
@@ -693,19 +729,29 @@
           <report-grayware-file>yes</report-grayware-file>
         </wildfire>
         <management>
-          <enable-log-high-dp-load>yes</enable-log-high-dp-load>
-          <max-rows-in-csv-export>1048576</max-rows-in-csv-export>
-          <api>
-            <key>
-              <lifetime>{{ API_KEY_LIFETIME }}</lifetime>
-            </key>
-          </api>
+          <auto-acquire-commit-lock>yes</auto-acquire-commit-lock>
+        </management>
+        <management>
+          <idle-timeout>10</idle-timeout>
+        </management>
+        <management>
           <admin-lockout>
             <failed-attempts>5</failed-attempts>
             <lockout-time>30</lockout-time>
           </admin-lockout>
-          <idle-timeout>10</idle-timeout>
-          <auto-acquire-commit-lock>yes</auto-acquire-commit-lock>
+        </management>
+        <management>
+          <api>
+            <key>
+              <lifetime>{{API_KEY_LIFETIME}}</lifetime>
+            </key>
+          </api>
+        </management>
+        <management>
+          <max-rows-in-csv-export>1048576</max-rows-in-csv-export>
+        </management>
+        <management>
+          <enable-log-high-dp-load>yes</enable-log-high-dp-load>
         </management>
         <ctd>
           <tcp-bypass-exceed-queue>no</tcp-bypass-exceed-queue>
