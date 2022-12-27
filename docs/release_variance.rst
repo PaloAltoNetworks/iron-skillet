@@ -2,6 +2,18 @@
 New PAN-OS Version Updates
 ==========================
 
+11.0 new features
+~~~~~~~~~~~~~~~~~
+
+Security profiles
+^^^^^^^^^^^^^^^^^
+
+    + URL Filtering: Added "ransomware" and "encrypted-dns" categories with recommended enforcement settings
+
+    + Vulnerability Protection: Enabled Cloud Inline Analysis
+
+    + Vulnerability Protection: Enabled and Configured "SQL Injection" and "Command Injection" categories with recommended settings
+
 10.2 new features
 ~~~~~~~~~~~~~~~~~
 
