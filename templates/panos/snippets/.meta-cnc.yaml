@@ -1,8 +1,8 @@
-name: skillet_panos_v10_2
+name: skillet_panos_v11_0
 
-label: v10.2 Iron-Skillet for NGFW
+label: v11.0 Iron-Skillet for NGFW
 
-description: group of snippets for ironskillet 10.2 panos configuration
+description: group of snippets for ironskillet 11.0 panos configuration
 
 type: panos
 
@@ -192,7 +192,7 @@ variables:
 
 snippets:
 
--   name: panos_ngfw_device_system_mgmt_ip_10_2.ironskillet_device_system_mgmt_type
+-   name: panos_ngfw_device_system_mgmt_ip_11_0.ironskillet_device_system_mgmt_type
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
     element: |-
         <type>
@@ -222,7 +222,7 @@ snippets:
     cmd: set
     when: config_mgmt_intf == 'yes'
 
--   name: panos_ngfw_device_system_dns_10_2.ironskillet_device_system_servers
+-   name: panos_ngfw_device_system_dns_11_0.ironskillet_device_system_servers
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system/dns-setting
     element: |-
         <servers>
@@ -232,7 +232,7 @@ snippets:
     cmd: set
     when: config_dns == 'yes'
 
--   name: panos_ngfw_device_system_10_2.ironskillet_device_system_dynamic_updates
+-   name: panos_ngfw_device_system_11_0.ironskillet_device_system_dynamic_updates
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
     element: |-
         <update-schedule>
@@ -277,7 +277,7 @@ snippets:
         </update-schedule>
     cmd: set
 
--   name: panos_ngfw_device_system_10_2.ironskillet_device_system_snmp
+-   name: panos_ngfw_device_system_11_0.ironskillet_device_system_snmp
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
     element: |-
         <snmp-setting>
@@ -289,7 +289,7 @@ snippets:
         </snmp-setting>
     cmd: set
 
--   name: panos_ngfw_device_system_10_2.ironskillet_device_system_ntp
+-   name: panos_ngfw_device_system_11_0.ironskillet_device_system_ntp
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
     element: |-
         <ntp-servers>
@@ -302,24 +302,24 @@ snippets:
         </ntp-servers>
     cmd: set
 
--   name: panos_ngfw_device_system_10_2.ironskillet_device_system_login_banner
+-   name: panos_ngfw_device_system_11_0.ironskillet_device_system_login_banner
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
     element: |-
         <login-banner>You have accessed a protected system.
         Log off immediately if you are not an authorized user.</login-banner>
     cmd: set
 
--   name: panos_ngfw_device_system_10_2.ironskillet_device_system_timezone
+-   name: panos_ngfw_device_system_11_0.ironskillet_device_system_timezone
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
     element: <timezone>UTC</timezone>
     cmd: set
 
--   name: panos_ngfw_device_system_10_2.ironskillet_device_system_hostname
+-   name: panos_ngfw_device_system_11_0.ironskillet_device_system_hostname
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
     element: <hostname>{{ FW_NAME }}</hostname>
     cmd: set
 
--   name: panos_ngfw_device_setting_10_2.ironskillet_device_setting_ctd
+-   name: panos_ngfw_device_setting_11_0.ironskillet_device_setting_ctd
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     element: |-
         <ctd>
@@ -328,7 +328,7 @@ snippets:
         </ctd>
     cmd: set
 
--   name: panos_ngfw_device_setting_10_2.ironskillet_device_setting
+-   name: panos_ngfw_device_setting_11_0.ironskillet_device_setting
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     element: |-
         <management>
@@ -348,7 +348,7 @@ snippets:
         </management>
     cmd: set
 
--   name: panos_ngfw_device_setting_10_2.ironskillet_device_setting_wildfire
+-   name: panos_ngfw_device_setting_11_0.ironskillet_device_setting_wildfire
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     element: |-
         <wildfire>
@@ -389,7 +389,7 @@ snippets:
         </wildfire>
     cmd: set
 
--   name: panos_ngfw_device_setting_10_2.ironskillet_device_setting_config
+-   name: panos_ngfw_device_setting_11_0.ironskillet_device_setting_config
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     element: |-
         <config>
@@ -397,7 +397,7 @@ snippets:
         </config>
     cmd: set
 
--   name: panos_ngfw_device_setting_10_2.ironskillet_device_setting_application
+-   name: panos_ngfw_device_setting_11_0.ironskillet_device_setting_application
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     element: |-
         <application>
@@ -406,7 +406,7 @@ snippets:
         </application>
     cmd: set
 
--   name: panos_ngfw_device_setting_10_2.ironskillet_device_setting_logging
+-   name: panos_ngfw_device_setting_11_0.ironskillet_device_setting_logging
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     element: |-
         <logging>
@@ -414,7 +414,7 @@ snippets:
         </logging>
     cmd: set
 
--   name: panos_ngfw_device_setting_10_2.ironskillet_device_setting_tcp
+-   name: panos_ngfw_device_setting_11_0.ironskillet_device_setting_tcp
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     element: |-
         <tcp>
@@ -426,7 +426,7 @@ snippets:
         </tcp>
     cmd: set
 
--   name: panos_ngfw_device_setting_10_2.ironskillet_device_setting_packet_buffer
+-   name: panos_ngfw_device_setting_11_0.ironskillet_device_setting_packet_buffer
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     element: |-
         <session>
@@ -434,7 +434,7 @@ snippets:
         </session>
     cmd: set
 
--   name: panos_ngfw_mgt_config_users_10_2.ironskillet_mgmt_config_users
+-   name: panos_ngfw_mgt_config_users_11_0.ironskillet_mgmt_config_users
     xpath: /config/mgt-config/users
     element: |-
         <entry name="{{ ADMINISTRATOR_USERNAME }}">
@@ -448,7 +448,7 @@ snippets:
     cmd: set
     when: config_admin_user == 'yes'
 
--   name: panos_ngfw_password_complexity_10_2.ironskillet_password_complexity
+-   name: panos_ngfw_password_complexity_11_0.ironskillet_password_complexity
     xpath: /config/mgt-config/password-complexity
     element: |-
         <enabled>yes</enabled>
@@ -462,7 +462,7 @@ snippets:
         <new-password-differs-by-characters>3</new-password-differs-by-characters>
     cmd: set
 
--   name: panos_ngfw_shared_log_settings_10_2.ironskillet_shared_log_settings
+-   name: panos_ngfw_shared_log_settings_11_0.ironskillet_shared_log_settings
     xpath: /config/shared/log-settings
     element: |-
         <email>
@@ -566,7 +566,7 @@ snippets:
           </system>
     cmd: set
 
--   name: panos_ngfw_tag_10_2.ironskillet_tag_outbound
+-   name: panos_ngfw_tag_11_0.ironskillet_tag_outbound
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag
     element: |-
         <entry name="Outbound">
@@ -574,7 +574,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_tag_10_2.ironskillet_tag_inbound
+-   name: panos_ngfw_tag_11_0.ironskillet_tag_inbound
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag
     element: |-
         <entry name="Inbound">
@@ -582,7 +582,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_tag_10_2.ironskillet_tag_internal
+-   name: panos_ngfw_tag_11_0.ironskillet_tag_internal
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag
     element: |-
         <entry name="Internal">
@@ -590,15 +590,15 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_tag_10_2.ironskillet_tag_ironskillet_version
+-   name: panos_ngfw_tag_11_0.ironskillet_tag_ironskillet_version
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag
     element: |-
         <entry name="iron-skillet-version">
-            <comments>version 0.0.1 for 10.2 - version of this IronSkillet template file</comments>
+            <comments>version 0.0.1 for 11.0 - version of this IronSkillet template file</comments>
         </entry>
     cmd: set
 
--   name: panos_ngfw_log_settings_profiles_10_2.ironskillet_log_settings_profiles
+-   name: panos_ngfw_log_settings_profiles_11_0.ironskillet_log_settings_profiles
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/log-settings/profiles
     element: |-
         <entry name="default">
@@ -672,7 +672,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_edl_10_2.bulletproof_tor_edl
+-   name: panos_ngfw_edl_11_0.bulletproof_tor_edl
     xpath: /config/devices/entry[@name="localhost.localdomain"]/vsys/entry[@name="vsys1"]
     element: |-
         <external-list>
@@ -695,7 +695,7 @@ snippets:
         </external-list>
     cmd: set
 
--   name: panos_ngfw_profile_custom_urlFiltering_10_2.ironskillet_custom_url_category_block
+-   name: panos_ngfw_profile_custom_urlFiltering_11_0.ironskillet_custom_url_category_block
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/custom-url-category
     element: |-
         <entry name="Block">
@@ -703,7 +703,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_profile_custom_urlFiltering_10_2.ironskillet_custom_url_category_allow
+-   name: panos_ngfw_profile_custom_urlFiltering_11_0.ironskillet_custom_url_category_allow
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/custom-url-category
     element: |-
         <entry name="Allow">
@@ -711,7 +711,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_profile_custom_urlFiltering_10_2.ironskillet_custom_url_category_no_decrypt
+-   name: panos_ngfw_profile_custom_urlFiltering_11_0.ironskillet_custom_url_category_no_decrypt
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/custom-url-category
     element: |-
         <entry name="Custom-No-Decrypt">
@@ -719,7 +719,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_profile_decryption_10_2.ironskillet_decryption_profile
+-   name: panos_ngfw_profile_decryption_11_0.ironskillet_decryption_profile
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/decryption
     element: |-
         <entry name="Recommended_Decryption_Profile">
@@ -754,7 +754,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_profile_antivirus_10_2.ironskillet_antivirus_alert_all
+-   name: panos_ngfw_profile_antivirus_11_0.ironskillet_antivirus_alert_all
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/virus
     element: |-
         <entry name="Alert-Only-AV">
@@ -818,7 +818,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_profile_antivirus_10_2.ironskillet_antivirus_outbound
+-   name: panos_ngfw_profile_antivirus_11_0.ironskillet_antivirus_outbound
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/virus
     element: |-
         <entry name="Outbound-AV">
@@ -882,7 +882,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_profile_antivirus_10_2.ironskillet_antivirus_inbound
+-   name: panos_ngfw_profile_antivirus_11_0.ironskillet_antivirus_inbound
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/virus
     element: |-
         <entry name="Inbound-AV">
@@ -946,7 +946,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_profile_antivirus_10_2.ironskillet_antivirus_internal
+-   name: panos_ngfw_profile_antivirus_11_0.ironskillet_antivirus_internal
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/virus
     element: |-
         <entry name="Internal-AV">
@@ -1010,7 +1010,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_profile_spyware_10_2.ironskillet_spyware_outbound
+-   name: panos_ngfw_profile_spyware_11_0.ironskillet_spyware_outbound
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/spyware
     element: |-
         <entry name="Outbound-AS">
@@ -1105,7 +1105,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_profile_spyware_10_2.ironskillet_spyware_inbound
+-   name: panos_ngfw_profile_spyware_11_0.ironskillet_spyware_inbound
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/spyware
     element: |-
         <entry name="Inbound-AS">
@@ -1200,7 +1200,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_profile_spyware_10_2.ironskillet_spyware_internal
+-   name: panos_ngfw_profile_spyware_11_0.ironskillet_spyware_internal
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/spyware
     element: |-
         <entry name="Internal-AS">
@@ -1295,7 +1295,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_profile_spyware_10_2.ironskillet_spyware_alert_all
+-   name: panos_ngfw_profile_spyware_11_0.ironskillet_spyware_alert_all
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/spyware
     element: |-
         <entry name="Alert-Only-AS">
@@ -1376,7 +1376,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_profile_vulnerability_10_2.ironskillet_vulnerability_outbound
+-   name: panos_ngfw_profile_vulnerability_11_0.ironskillet_vulnerability_outbound
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/vulnerability
     element: |-
         <entry name="Outbound-VP">
@@ -1421,10 +1421,19 @@ snippets:
               <packet-capture>disable</packet-capture>
             </entry>
           </rules>
+          <cloud-inline-analysis>yes</cloud-inline-analysis>
+          <mica-engine-vulnerability-enabled>
+            <entry name="SQL Injection">
+              <inline-policy-action>reset-both</inline-policy-action>
+            </entry>
+            <entry name="Command Injection">
+              <inline-policy-action>reset-both</inline-policy-action>
+            </entry>
+          </mica-engine-vulnerability-enabled>
         </entry>
     cmd: set
 
--   name: panos_ngfw_profile_vulnerability_10_2.ironskillet_vulnerability_inbound
+-   name: panos_ngfw_profile_vulnerability_11_0.ironskillet_vulnerability_inbound
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/vulnerability
     element: |-
         <entry name="Inbound-VP">
@@ -1469,10 +1478,19 @@ snippets:
               <packet-capture>disable</packet-capture>
             </entry>
           </rules>
+          <cloud-inline-analysis>yes</cloud-inline-analysis>
+          <mica-engine-vulnerability-enabled>
+            <entry name="SQL Injection">
+              <inline-policy-action>reset-both</inline-policy-action>
+            </entry>
+            <entry name="Command Injection">
+              <inline-policy-action>reset-both</inline-policy-action>
+            </entry>
+          </mica-engine-vulnerability-enabled>
         </entry>
     cmd: set
 
--   name: panos_ngfw_profile_vulnerability_10_2.ironskillet_vulnerability_internal
+-   name: panos_ngfw_profile_vulnerability_11_0.ironskillet_vulnerability_internal
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/vulnerability
     element: |-
         <entry name="Internal-VP">
@@ -1517,10 +1535,19 @@ snippets:
               <packet-capture>disable</packet-capture>
             </entry>
           </rules>
+          <cloud-inline-analysis>yes</cloud-inline-analysis>
+          <mica-engine-vulnerability-enabled>
+            <entry name="SQL Injection">
+              <inline-policy-action>reset-both</inline-policy-action>
+            </entry>
+            <entry name="Command Injection">
+              <inline-policy-action>reset-both</inline-policy-action>
+            </entry>
+          </mica-engine-vulnerability-enabled>
         </entry>
     cmd: set
 
--   name: panos_ngfw_profile_vulnerability_10_2.ironskillet_vulnerability_alert_all
+-   name: panos_ngfw_profile_vulnerability_11_0.ironskillet_vulnerability_alert_all
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/vulnerability
     element: |-
         <entry name="Alert-Only-VP">
@@ -1544,10 +1571,19 @@ snippets:
               <packet-capture>disable</packet-capture>
             </entry>
           </rules>
+          <cloud-inline-analysis>yes</cloud-inline-analysis>
+          <mica-engine-vulnerability-enabled>
+            <entry name="SQL Injection">
+              <inline-policy-action>alert</inline-policy-action>
+            </entry>
+            <entry name="Command Injection">
+              <inline-policy-action>alert</inline-policy-action>
+            </entry>
+          </mica-engine-vulnerability-enabled>
         </entry>
     cmd: set
 
--   name: panos_ngfw_profile_file-blocking_10_2.ironskillet_file_blocking_outbound
+-   name: panos_ngfw_profile_file-blocking_11_0.ironskillet_file_blocking_outbound
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/file-blocking
     element: |-
         <entry name="Outbound-FB">
@@ -1590,7 +1626,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_profile_file-blocking_10_2.ironskillet_file_blocking_inbound
+-   name: panos_ngfw_profile_file-blocking_11_0.ironskillet_file_blocking_inbound
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/file-blocking
     element: |-
         <entry name="Inbound-FB">
@@ -1633,7 +1669,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_profile_file-blocking_10_2.ironskillet_file_blocking_internal
+-   name: panos_ngfw_profile_file-blocking_11_0.ironskillet_file_blocking_internal
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/file-blocking
     element: |-
         <entry name="Internal-FB">
@@ -1675,7 +1711,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_profile_file-blocking_10_2.ironskillet_file_blocking_alert_all
+-   name: panos_ngfw_profile_file-blocking_11_0.ironskillet_file_blocking_alert_all
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/file-blocking
     element: |-
         <entry name="Alert-Only-FB">
@@ -1694,7 +1730,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_profile_urlFiltering_10_2.ironskillet_url_outbound
+-   name: panos_ngfw_profile_urlFiltering_11_0.ironskillet_url_outbound
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/url-filtering
     element: |-
         <entry name="Outbound-URL">
@@ -1720,6 +1756,7 @@ snippets:
               <member>dating</member>
               <member>dynamic-dns</member>
               <member>educational-institutions</member>
+              <member>encrypted-dns</member>
               <member>entertainment-and-arts</member>
               <member>extremism</member>
               <member>financial-services</member>
@@ -1756,6 +1793,7 @@ snippets:
               <member>private-ip-addresses</member>
               <member>proxy-avoidance-and-anonymizers</member>
               <member>questionable</member>
+              <member>ransomware</member>
               <member>real-estate</member>
               <member>real-time-detection</member>
               <member>recreation-and-hobbies</member>
@@ -1801,6 +1839,7 @@ snippets:
             <member>dating</member>
             <member>dynamic-dns</member>
             <member>educational-institutions</member>
+            <member>encrypted-dns</member>
             <member>entertainment-and-arts</member>
             <member>extremism</member>
             <member>financial-services</member>
@@ -1864,11 +1903,12 @@ snippets:
             <member>grayware</member>
             <member>malware</member>
             <member>phishing</member>
+            <member>ransomware</member>
           </block>
         </entry>
     cmd: set
 
--   name: panos_ngfw_profile_urlFiltering_10_2.ironskillet_url_alert_all
+-   name: panos_ngfw_profile_urlFiltering_11_0.ironskillet_url_alert_all
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/url-filtering
     element: |-
         <entry name="Alert-Only-URL">
@@ -1894,6 +1934,7 @@ snippets:
               <member>dating</member>
               <member>dynamic-dns</member>
               <member>educational-institutions</member>
+              <member>encrypted-dns</member>
               <member>entertainment-and-arts</member>
               <member>extremism</member>
               <member>financial-services</member>
@@ -1930,6 +1971,7 @@ snippets:
               <member>private-ip-addresses</member>
               <member>proxy-avoidance-and-anonymizers</member>
               <member>questionable</member>
+              <member>ransomware</member>
               <member>real-estate</member>
               <member>real-time-detection</member>
               <member>recreation-and-hobbies</member>
@@ -1977,6 +2019,7 @@ snippets:
             <member>dating</member>
             <member>dynamic-dns</member>
             <member>educational-institutions</member>
+            <member>encrypted-dns</member>
             <member>entertainment-and-arts</member>
             <member>extremism</member>
             <member>financial-services</member>
@@ -2013,6 +2056,7 @@ snippets:
             <member>private-ip-addresses</member>
             <member>proxy-avoidance-and-anonymizers</member>
             <member>questionable</member>
+            <member>ransomware</member>
             <member>real-estate</member>
             <member>real-time-detection</member>
             <member>recreation-and-hobbies</member>
@@ -2040,7 +2084,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_profile_wildfire_analysis_10_2.ironskillet_wildfire_outbound
+-   name: panos_ngfw_profile_wildfire_analysis_11_0.ironskillet_wildfire_outbound
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/wildfire-analysis
     element: |-
         <entry name="Outbound-WF">
@@ -2059,7 +2103,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_profile_wildfire_analysis_10_2.ironskillet_wildfire_inbound
+-   name: panos_ngfw_profile_wildfire_analysis_11_0.ironskillet_wildfire_inbound
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/wildfire-analysis
     element: |-
         <entry name="Inbound-WF">
@@ -2078,7 +2122,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_profile_wildfire_analysis_10_2.ironskillet_wildfire_internal
+-   name: panos_ngfw_profile_wildfire_analysis_11_0.ironskillet_wildfire_internal
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/wildfire-analysis
     element: |-
         <entry name="Internal-WF">
@@ -2097,7 +2141,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_profile_wildfire_analysis_10_2.ironskillet_wildfire_alert_all
+-   name: panos_ngfw_profile_wildfire_analysis_11_0.ironskillet_wildfire_alert_all
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/wildfire-analysis
     element: |-
         <entry name="Alert-Only-WF">
@@ -2116,7 +2160,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_profile_group_10_2.ironskillet_profile_group_outbound
+-   name: panos_ngfw_profile_group_11_0.ironskillet_profile_group_outbound
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profile-group
     element: |-
         <entry name="Outbound">
@@ -2141,7 +2185,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_profile_group_10_2.ironskillet_profile_group_inbound
+-   name: panos_ngfw_profile_group_11_0.ironskillet_profile_group_inbound
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profile-group
     element: |-
         <entry name="Inbound">
@@ -2163,7 +2207,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_profile_group_10_2.ironskillet_profile_group_internal
+-   name: panos_ngfw_profile_group_11_0.ironskillet_profile_group_internal
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profile-group
     element: |-
         <entry name="Internal">
@@ -2185,7 +2229,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_profile_group_10_2.ironskillet_profile_group_alert_all
+-   name: panos_ngfw_profile_group_11_0.ironskillet_profile_group_alert_all
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profile-group
     element: |-
         <entry name="Alert-Only">
@@ -2210,7 +2254,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_profile_group_10_2.ironskillet_profile_group_default
+-   name: panos_ngfw_profile_group_11_0.ironskillet_profile_group_default
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profile-group
     element: |-
         <entry name="default">
@@ -2235,7 +2279,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_rulebase_default_security_rules_10_2.ironskillet_rulebase_default_security_rules
+-   name: panos_ngfw_rulebase_default_security_rules_11_0.ironskillet_rulebase_default_security_rules
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase/default-security-rules
     element: |-
         <rules>
@@ -2259,7 +2303,7 @@ snippets:
         </rules>
     cmd: set
 
--   name: panos_ngfw_rulebase_security_10_2.ironskillet_rulebase_security
+-   name: panos_ngfw_rulebase_security_11_0.ironskillet_rulebase_security
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase
     element: |-
         <security>
@@ -2346,7 +2390,7 @@ snippets:
         </security>
     cmd: set
 
--   name: panos_ngfw_rulebase_decryption_10_2.ironskillet_rulebase_decryption
+-   name: panos_ngfw_rulebase_decryption_11_0.ironskillet_rulebase_decryption
     xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase/decryption
     element: |-
         <rules>
@@ -2386,7 +2430,7 @@ snippets:
         </rules>
     cmd: set
 
--   name: panos_ngfw_zone_protection_10_2.ironskillet_zone_protection
+-   name: panos_ngfw_zone_protection_11_0.ironskillet_zone_protection
     xpath: /config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile
     element: |-
         <entry name="Recommended_Zone_Protection">
@@ -2505,7 +2549,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_reports_simple_10_2.ironskillet_reports_host_visit_malicious_plus
+-   name: panos_ngfw_reports_simple_11_0.ironskillet_reports_host_visit_malicious_plus
     xpath: /config/shared/reports
     element: |-
         <entry name="Host-visit malicious sites plus">
@@ -2533,7 +2577,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_reports_simple_10_2.ironskillet_reports_host_visit_malicious
+-   name: panos_ngfw_reports_simple_11_0.ironskillet_reports_host_visit_malicious
     xpath: /config/shared/reports
     element: |-
         <entry name="Hosts visit malicious sites">
@@ -2559,7 +2603,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_reports_simple_10_2.ironskillet_reports_host_visit_questionable
+-   name: panos_ngfw_reports_simple_11_0.ironskillet_reports_host_visit_questionable
     xpath: /config/shared/reports
     element: |-
         <entry name="Hosts visit questionable sites">
@@ -2585,7 +2629,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_reports_simple_10_2.ironskillet_reports_host_visit_questionable_plus
+-   name: panos_ngfw_reports_simple_11_0.ironskillet_reports_host_visit_questionable_plus
     xpath: /config/shared/reports
     element: |-
         <entry name="Host-visit quest sites plus">
@@ -2614,7 +2658,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_reports_simple_10_2.ironskillet_reports_wildfire_malicious_verdicts
+-   name: panos_ngfw_reports_simple_11_0.ironskillet_reports_wildfire_malicious_verdicts
     xpath: /config/shared/reports
     element: |-
         <entry name="Wildfire malicious verdicts">
@@ -2644,7 +2688,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_reports_simple_10_2.ironskillet_reports_wildfire_verdicts_smtp
+-   name: panos_ngfw_reports_simple_11_0.ironskillet_reports_wildfire_verdicts_smtp
     xpath: /config/shared/reports
     element: |-
         <entry name="Wildfire verdicts SMTP">
@@ -2675,7 +2719,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_reports_simple_10_2.ironskillet_reports_clients_sinkholed
+-   name: panos_ngfw_reports_simple_11_0.ironskillet_reports_clients_sinkholed
     xpath: /config/shared/reports
     element: |-
         <entry name="Clients sinkholed">
@@ -2701,7 +2745,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_report_group_simple_10_2.ironskillet_report_group_simple
+-   name: panos_ngfw_report_group_simple_11_0.ironskillet_report_group_simple
     xpath: /config/shared/report-group
     element: |-
         <entry name="Possible Compromise">
@@ -2737,7 +2781,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panos_ngfw_email_scheduler_10_2.ironskillet_email_scheduler
+-   name: panos_ngfw_email_scheduler_11_0.ironskillet_email_scheduler
     xpath: /config/shared/email-scheduler
     element: |-
         <entry name="Possible Compromise">

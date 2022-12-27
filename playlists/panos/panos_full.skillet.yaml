@@ -1,7 +1,7 @@
-name: ironskillet_panos_10_2
-label: PAN-OS NGFW IronSkillet 10.2
+name: ironskillet_panos_11_0
+label: PAN-OS NGFW IronSkillet 11.0
 description: |-
-  group of snippets for ironskillet 10.2 panos configuration
+  group of snippets for ironskillet 11.0 panos configuration
 type: panos
 labels:
   collection:
@@ -48,65 +48,65 @@ snippets:
 
   # IronSkillet baseline
   # general device system and setting configs
-  - name: panos_ngfw_device_system_mgmt_ip_10_2
-    include: panos_ngfw_device_system_mgmt_ip_10_2
+  - name: panos_ngfw_device_system_mgmt_ip_11_0
+    include: panos_ngfw_device_system_mgmt_ip_11_0
     when: config_mgmt_intf == 'yes'
-  - name: panos_ngfw_device_system_dns_10_2
-    include: panos_ngfw_device_system_dns_10_2
+  - name: panos_ngfw_device_system_dns_11_0
+    include: panos_ngfw_device_system_dns_11_0
     when: config_dns == 'yes'
-  - name: panos_ngfw_device_system_10_2
-    include: panos_ngfw_device_system_10_2
-  - name: panos_ngfw_device_setting_10_2
-    include: panos_ngfw_device_setting_10_2
-  - name: panos_ngfw_mgt_config_users_10_2
-    include: panos_ngfw_mgt_config_users_10_2
+  - name: panos_ngfw_device_system_11_0
+    include: panos_ngfw_device_system_11_0
+  - name: panos_ngfw_device_setting_11_0
+    include: panos_ngfw_device_setting_11_0
+  - name: panos_ngfw_mgt_config_users_11_0
+    include: panos_ngfw_mgt_config_users_11_0
     when: config_admin_user == 'yes'
-  - name: panos_ngfw_password_complexity_10_2
-    include: panos_ngfw_password_complexity_10_2
+  - name: panos_ngfw_password_complexity_11_0
+    include: panos_ngfw_password_complexity_11_0
   # shared log settings and profile
-  - name: panos_ngfw_shared_log_settings_10_2
-    include: panos_ngfw_shared_log_settings_10_2
+  - name: panos_ngfw_shared_log_settings_11_0
+    include: panos_ngfw_shared_log_settings_11_0
   # tag object
-  - name: panos_ngfw_tag_10_2
-    include: panos_ngfw_tag_10_2
+  - name: panos_ngfw_tag_11_0
+    include: panos_ngfw_tag_11_0
     # log settings
-  - name: panos_ngfw_log_settings_profiles_10_2
-    include: panos_ngfw_log_settings_profiles_10_2
+  - name: panos_ngfw_log_settings_profiles_11_0
+    include: panos_ngfw_log_settings_profiles_11_0
   # External dynamic Lists
-  - name: panos_ngfw_edl_10_2
-    include: panos_ngfw_edl_10_2
+  - name: panos_ngfw_edl_11_0
+    include: panos_ngfw_edl_11_0
   # security profiles and profile groups
-  - name: panos_ngfw_profile_custom_urlFiltering_10_2
-    include: panos_ngfw_profile_custom_urlFiltering_10_2
-  - name: panos_ngfw_profile_decryption_10_2
-    include: panos_ngfw_profile_decryption_10_2
-  - name: panos_ngfw_profile_antivirus_10_2
-    include: panos_ngfw_profile_antivirus_10_2
-  - name: panos_ngfw_profile_spyware_10_2
-    include: panos_ngfw_profile_spyware_10_2
-  - name: panos_ngfw_profile_vulnerability_10_2
-    include: panos_ngfw_profile_vulnerability_10_2
-  - name: panos_ngfw_profile_file-blocking_10_2
-    include: panos_ngfw_profile_file-blocking_10_2
-  - name: panos_ngfw_profile_urlFiltering_10_2
-    include: panos_ngfw_profile_urlFiltering_10_2
-  - name: panos_ngfw_profile_wildfire_analysis_10_2
-    include: panos_ngfw_profile_wildfire_analysis_10_2
-  - name: panos_ngfw_profile_group_10_2
-    include: panos_ngfw_profile_group_10_2
+  - name: panos_ngfw_profile_custom_urlFiltering_11_0
+    include: panos_ngfw_profile_custom_urlFiltering_11_0
+  - name: panos_ngfw_profile_decryption_11_0
+    include: panos_ngfw_profile_decryption_11_0
+  - name: panos_ngfw_profile_antivirus_11_0
+    include: panos_ngfw_profile_antivirus_11_0
+  - name: panos_ngfw_profile_spyware_11_0
+    include: panos_ngfw_profile_spyware_11_0
+  - name: panos_ngfw_profile_vulnerability_11_0
+    include: panos_ngfw_profile_vulnerability_11_0
+  - name: panos_ngfw_profile_file-blocking_11_0
+    include: panos_ngfw_profile_file-blocking_11_0
+  - name: panos_ngfw_profile_urlFiltering_11_0
+    include: panos_ngfw_profile_urlFiltering_11_0
+  - name: panos_ngfw_profile_wildfire_analysis_11_0
+    include: panos_ngfw_profile_wildfire_analysis_11_0
+  - name: panos_ngfw_profile_group_11_0
+    include: panos_ngfw_profile_group_11_0
   # rulebase
-  - name: panos_ngfw_rulebase_default_security_rules_10_2
-    include: panos_ngfw_rulebase_default_security_rules_10_2
-  - name: panos_ngfw_rulebase_security_10_2
-    include: panos_ngfw_rulebase_security_10_2
-  - name: panos_ngfw_rulebase_decryption_10_2
-    include: panos_ngfw_rulebase_decryption_10_2
-  - name: panos_ngfw_zone_protection_10_2
-    include: panos_ngfw_zone_protection_10_2
+  - name: panos_ngfw_rulebase_default_security_rules_11_0
+    include: panos_ngfw_rulebase_default_security_rules_11_0
+  - name: panos_ngfw_rulebase_security_11_0
+    include: panos_ngfw_rulebase_security_11_0
+  - name: panos_ngfw_rulebase_decryption_11_0
+    include: panos_ngfw_rulebase_decryption_11_0
+  - name: panos_ngfw_zone_protection_11_0
+    include: panos_ngfw_zone_protection_11_0
   # reports and email
-  - name: panos_ngfw_reports_simple_10_2
-    include: panos_ngfw_reports_simple_10_2
-  - name: panos_ngfw_report_group_simple_10_2
-    include: panos_ngfw_report_group_simple_10_2
-  - name: panos_ngfw_email_scheduler_10_2
-    include: panos_ngfw_email_scheduler_10_2
+  - name: panos_ngfw_reports_simple_11_0
+    include: panos_ngfw_reports_simple_11_0
+  - name: panos_ngfw_report_group_simple_11_0
+    include: panos_ngfw_report_group_simple_11_0
+  - name: panos_ngfw_email_scheduler_11_0
+    include: panos_ngfw_email_scheduler_11_0

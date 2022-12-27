@@ -9,7 +9,7 @@ Once loaded, the configuration can be augmented with use case specific
 security policies and other deployment requirements including interfaces,
 zones, and NAT.
 
-Detailed information can be found in the 
+Detailed information can be found in the
 [IronSkillet Documentation](https://iron-skillet.readthedocs.io)
 
 The docs include a [IronSkillet Visual Guide](https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html)
@@ -27,10 +27,10 @@ The [panHandler quick start guide](https://live.paloaltonetworks.com/t5/Skillet-
 in the Skillet District Live community walks you through installation and usage including
 how to import the IronSkillet skillets.
 
-### SLI 
-The Skillet Line Interfacing tool is a CLI interface that can also be used to load and work 
+### SLI
+The Skillet Line Interfacing tool is a CLI interface that can also be used to load and work
 with skillets. Please refer to the README document found within the following [SLI](https://gitlab.com/panw-gse/as/sli)
-repository. This will walk you through the installation and basic usage of SLI in the context of 
+repository. This will walk you through the installation and basic usage of SLI in the context of
 skillets.
 
 **SLI Commands to Load Skillet**
@@ -122,7 +122,7 @@ the worksheets to ensure cell references and formulas are not incorrect.
 As an alternative, the `Tools` directory within the IronSkillet repository
 contains a README.md file going over how to use various SLI commands to help
 manage and create loadable configurations among other useful functions. Following
-the detailed steps in the README and Using SLI to accomplish these tasks is quick, 
+the detailed steps in the README and Using SLI to accomplish these tasks is quick,
 efficient and easy.
 
 ## Recommended Reading for Additional Best Practice Configuration Steps
@@ -131,14 +131,14 @@ Prior to utilizing these configuration templates, it is important to
 familiarize yourself with the best practice recommendations for
 Internet Gateway, Datacenter, Wildfire, L4-L7 evasions and other use cases.
 
-[Best Practice Recommendations](https://www.paloaltonetworks.com/documentation/best-practices)
+[Best Practice Recommendations](https://docs.paloaltonetworks.com/best-practices)
 
 While useful as suggestions and recommendations, the user is still required
 to manually use the GUI or CLI to configure each recommendation.
 
 
 ## Contributing
-Please read [CONTRIBUTING.md](https://github.com/PaloAltoNetworks/iron-skillet/CONTRIBUTING.md) for details on how you can help contribute to this project.
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on how you can help contribute to this project.
 
 ## Support
 This is a Palo Alto Networks contributed project.
@@ -152,4 +152,4 @@ See also the list of [contributors](https://github.com/PaloAltoNetworks/iron-ski
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
