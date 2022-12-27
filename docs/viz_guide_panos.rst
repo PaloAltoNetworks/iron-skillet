@@ -886,6 +886,12 @@ IronSkillet adds two rules:
     (1) reset-both for critical/high/medium severity events
     (2) the use of default actions for low and informational severities.
 
+.. image:: images/vg_profiles_vp_outbound2.png
+   :width: 600
+   :align: center
+   
+IronSkillet in 11.0 also enables cloud inline analysis and sets analysis engines to reset-both.
+
 Object > Security Profiles > Vulnerability Protection : Inbound-VP
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -895,6 +901,13 @@ Object > Security Profiles > Vulnerability Protection : Inbound-VP
 
 Currently identical to the above Outbound profile to block critical/high/medium and use ‘default’ for low
 and informational severities.
+
+.. image:: images/vg_profiles_vp_inbound2.png
+   :width: 600
+   :align: center
+
+For IronSkillet 11.0 the cloud inline analysis settings for the Inbound-VP profile are also identical to
+the Outbound profile.
 
 Object > Security Profiles > Vulnerability Protection : Internal-VP
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -906,6 +919,13 @@ Object > Security Profiles > Vulnerability Protection : Internal-VP
 As with the Anti-spyware internal profile, medium is set as ‘default’ along with low and informational.
 This adds some trust to internal-only communications.
 
+.. image:: images/vg_profiles_vp_internal2.png
+   :width: 600
+   :align: center
+
+For IronSkillet 11.0 the cloud inline analysis settings for the Internal-VP profile are identical to
+the Outbound and Inbound profiles.
+
 Object > Security Profiles > Vulnerability Protection : Alert-Only-VP
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -915,6 +935,12 @@ Object > Security Profiles > Vulnerability Protection : Alert-Only-VP
 
 Alert-Only provides a monitoring-only profile for vulnerability events.
 It is designed for use in demonstration or test deployments without active blocking.
+
+.. image:: images/vg_profiles_vp_alert2.png
+   :width: 600
+   :align: center
+
+For IronSkillet 11.0 the cloud inline analysis settings are activated while the analysis engines are set to alert mode.
 
 
 URL Filtering
@@ -966,6 +992,7 @@ Categories blocked in the Outbound profiles:
     + Malware
     + Command-and-Control
     + Phishing
+    + Ransomware
     + Grayware
     + Block [custom object users can edit]
 
