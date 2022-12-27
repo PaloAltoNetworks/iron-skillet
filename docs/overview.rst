@@ -6,7 +6,7 @@ Welcome to the IronSkillet day one configuration templates library.
 The next-generation firewall configuration templates are based on existing `best practice recommendations`_
 from Palo Alto Networks.
 
-.. _best practice recommendations: https://www.paloaltonetworks.com/documentation/best-practices
+.. _best practice recommendations: https://docs.paloaltonetworks.com/best-practices
 
 
 Instead of extensive and detailed 'how to' documentation, the templates provide an easy to implement
@@ -37,11 +37,12 @@ IronSkillet is currently supported on the three most recent releases. Earlier re
 on community best efforts.
 
 Available and currently supported releases:
+    + 11.0
     + 10.2
     + 10.1
-    + 10.0
 
 Available but end of support releases:
+    + 10.0
     + 9.1
     + 9.0
     + 8.1
@@ -54,6 +55,7 @@ Using the templates
 The templates are available on GitHub specific to each PAN-OS software version.
 
 `View github repo:` |
+`11.0 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v11.0>`_ |
 `10.2 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v10.2>`_ |
 `10.1 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v10.1>`_ |
 `10.0 <https://github.com/PaloAltoNetworks/iron-skillet/tree/panos_v10.0>`_ |
@@ -62,7 +64,7 @@ The templates are available on GitHub specific to each PAN-OS software version.
 
 
 .. Note::
-    versions 8.0, 8.1, 9.0 and 9.1 are still available but no longer will be updated
+    versions 8.0, 8.1, 9.0, 9.1 and 10.0 are still available but no longer will be updated
 
 Use the branch specific to the software release for your deployment.
 
