@@ -1,8 +1,8 @@
-name: skillet_panorama_dgtemplate_shared_v10_2
+name: skillet_panorama_dgtemplate_shared_v11_0
 
-label: Panorama Shared DGTemplate IronSkillet 10.2
+label: Panorama Shared DGTemplate IronSkillet 11.0
 
-description: group of snippets for ironskillet 10.2 panorama shared dgtemplate configuration
+description: group of snippets for ironskillet 11.0 panorama shared dgtemplate configuration
 
 type: panorama
 
@@ -105,7 +105,7 @@ variables:
 
 snippets:
 
--   name: panorama_template_10_2.ironskillet_template
+-   name: panorama_template_11_0.ironskillet_template
     xpath: /config/devices/entry[@name='localhost.localdomain']/template
     element: |-
         <entry name="iron-skillet">
@@ -124,7 +124,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_device_system_shared_10_2.ironskillet_device_system_dynamic_updates
+-   name: panorama_device_system_shared_11_0.ironskillet_device_system_dynamic_updates
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
     element: |-
         <update-schedule>
@@ -169,7 +169,7 @@ snippets:
         </update-schedule>
     cmd: set
 
--   name: panorama_device_system_shared_10_2.ironskillet_device_system_snmp
+-   name: panorama_device_system_shared_11_0.ironskillet_device_system_snmp
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
     element: |-
         <snmp-setting>
@@ -181,7 +181,7 @@ snippets:
         </snmp-setting>
     cmd: set
 
--   name: panorama_device_system_shared_10_2.ironskillet_device_system_dns
+-   name: panorama_device_system_shared_11_0.ironskillet_device_system_dns
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
     element: |-
         <dns-setting>
@@ -192,7 +192,7 @@ snippets:
         </dns-setting>
     cmd: set
 
--   name: panorama_device_system_shared_10_2.ironskillet_device_system_ntp
+-   name: panorama_device_system_shared_11_0.ironskillet_device_system_ntp
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
     element: |-
         <ntp-servers>
@@ -205,19 +205,19 @@ snippets:
         </ntp-servers>
     cmd: set
 
--   name: panorama_device_system_shared_10_2.ironskillet_device_system_login_banner
+-   name: panorama_device_system_shared_11_0.ironskillet_device_system_login_banner
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
     element: |-
         <login-banner>You have accessed a protected system.
         Log off immediately if you are not an authorized user.</login-banner>
     cmd: set
 
--   name: panorama_device_system_shared_10_2.ironskillet_device_system_timezone
+-   name: panorama_device_system_shared_11_0.ironskillet_device_system_timezone
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
     element: <timezone>UTC</timezone>
     cmd: set
 
--   name: panorama_device_setting_10_2.ironskillet_device_setting_ctd
+-   name: panorama_device_setting_11_0.ironskillet_device_setting_ctd
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     element: |-
         <ctd>
@@ -226,7 +226,7 @@ snippets:
         </ctd>
     cmd: set
 
--   name: panorama_device_setting_10_2.ironskillet_device_setting_high_dp_load
+-   name: panorama_device_setting_11_0.ironskillet_device_setting_high_dp_load
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     element: |-
         <management>
@@ -234,7 +234,7 @@ snippets:
         </management>
     cmd: set
 
--   name: panorama_device_setting_10_2.ironskillet_device_setting_max_csv
+-   name: panorama_device_setting_11_0.ironskillet_device_setting_max_csv
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     element: |-
         <management>
@@ -242,7 +242,7 @@ snippets:
         </management>
     cmd: set
 
--   name: panorama_device_setting_10_2.ironskillet_device_setting_api_key_lifetime
+-   name: panorama_device_setting_11_0.ironskillet_device_setting_api_key_lifetime
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     element: |-
         <management>
@@ -254,7 +254,7 @@ snippets:
         </management>
     cmd: set
 
--   name: panorama_device_setting_10_2.ironskillet_device_setting_admin_lockout
+-   name: panorama_device_setting_11_0.ironskillet_device_setting_admin_lockout
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     element: |-
         <management>
@@ -265,7 +265,7 @@ snippets:
         </management>
     cmd: set
 
--   name: panorama_device_setting_10_2.ironskillet_device_setting_idle_timeout
+-   name: panorama_device_setting_11_0.ironskillet_device_setting_idle_timeout
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     element: |-
         <management>
@@ -273,7 +273,7 @@ snippets:
         </management>
     cmd: set
 
--   name: panorama_device_setting_10_2.ironskillet_device_setting_commit_lock
+-   name: panorama_device_setting_11_0.ironskillet_device_setting_commit_lock
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     element: |-
         <management>
@@ -281,7 +281,7 @@ snippets:
         </management>
     cmd: set
 
--   name: panorama_device_setting_10_2.ironskillet_device_setting_wildfire
+-   name: panorama_device_setting_11_0.ironskillet_device_setting_wildfire
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     element: |-
         <wildfire>
@@ -322,7 +322,7 @@ snippets:
         </wildfire>
     cmd: set
 
--   name: panorama_device_setting_10_2.ironskillet_device_setting_config
+-   name: panorama_device_setting_11_0.ironskillet_device_setting_config
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     element: |-
         <config>
@@ -330,7 +330,7 @@ snippets:
         </config>
     cmd: set
 
--   name: panorama_device_setting_10_2.ironskillet_device_setting_application
+-   name: panorama_device_setting_11_0.ironskillet_device_setting_application
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     element: |-
         <application>
@@ -339,7 +339,7 @@ snippets:
         </application>
     cmd: set
 
--   name: panorama_device_setting_10_2.ironskillet_device_setting_logging
+-   name: panorama_device_setting_11_0.ironskillet_device_setting_logging
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     element: |-
         <logging>
@@ -347,7 +347,7 @@ snippets:
         </logging>
     cmd: set
 
--   name: panorama_device_setting_10_2.ironskillet_device_setting_tcp
+-   name: panorama_device_setting_11_0.ironskillet_device_setting_tcp
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     element: |-
         <tcp>
@@ -359,7 +359,7 @@ snippets:
         </tcp>
     cmd: set
 
--   name: panorama_device_setting_10_2.ironskillet_device_setting_packet_buffer
+-   name: panorama_device_setting_11_0.ironskillet_device_setting_packet_buffer
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
     element: |-
         <session>
@@ -367,7 +367,7 @@ snippets:
         </session>
     cmd: set
 
--   name: panorama_device_mgt_config_10_2.ironskillet_device_mgt_users
+-   name: panorama_device_mgt_config_11_0.ironskillet_device_mgt_users
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/mgt-config
     element: |-
         <users>
@@ -382,7 +382,7 @@ snippets:
         </users>
     cmd: set
 
--   name: panorama_device_mgt_config_10_2.ironskillet_device_mgt_password_complexity
+-   name: panorama_device_mgt_config_11_0.ironskillet_device_mgt_password_complexity
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/mgt-config
     element: |-
         <password-complexity>
@@ -398,7 +398,7 @@ snippets:
         </password-complexity>
     cmd: set
 
--   name: panorama_shared_log_settings_10_2.ironskillet_shared_log_settings_email_profile
+-   name: panorama_shared_log_settings_11_0.ironskillet_shared_log_settings_email_profile
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/shared/log-settings
     element: |-
         <email>
@@ -416,7 +416,7 @@ snippets:
         </email>
     cmd: set
 
--   name: panorama_shared_log_settings_10_2.ironskillet_shared_log_settings_syslog_profile
+-   name: panorama_shared_log_settings_11_0.ironskillet_shared_log_settings_syslog_profile
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/shared/log-settings
     element: |-
         <syslog>
@@ -434,7 +434,7 @@ snippets:
         </syslog>
     cmd: set
 
--   name: panorama_shared_log_settings_10_2.ironskillet_shared_log_settings_syslog_forwarding
+-   name: panorama_shared_log_settings_11_0.ironskillet_shared_log_settings_syslog_forwarding
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/shared/log-settings
     element: |-
         <system>
@@ -447,7 +447,7 @@ snippets:
         </system>
     cmd: set
 
--   name: panorama_shared_log_settings_10_2.ironskillet_shared_log_settings_log_forwarding
+-   name: panorama_shared_log_settings_11_0.ironskillet_shared_log_settings_log_forwarding
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/shared/log-settings
     element: |-
         <config>
@@ -460,7 +460,7 @@ snippets:
         </config>
     cmd: set
 
--   name: panorama_shared_log_settings_10_2.ironskillet_shared_log_settings_userid_forwarding
+-   name: panorama_shared_log_settings_11_0.ironskillet_shared_log_settings_userid_forwarding
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/shared/log-settings
     element: |-
         <userid>
@@ -473,7 +473,7 @@ snippets:
         </userid>
     cmd: set
 
--   name: panorama_shared_log_settings_10_2.ironskillet_shared_log_settings_hip_forwarding
+-   name: panorama_shared_log_settings_11_0.ironskillet_shared_log_settings_hip_forwarding
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/shared/log-settings
     element: |-
         <hipmatch>
@@ -486,7 +486,7 @@ snippets:
         </hipmatch>
     cmd: set
 
--   name: panorama_shared_log_settings_10_2.ironskillet_shared_log_settings_correlation_forwarding
+-   name: panorama_shared_log_settings_11_0.ironskillet_shared_log_settings_correlation_forwarding
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/shared/log-settings
     element: |-
         <correlation>
@@ -501,7 +501,7 @@ snippets:
         </correlation>
     cmd: set
 
--   name: panorama_shared_log_settings_10_2.ironskillet_shared_log_settings_gp_forwarding
+-   name: panorama_shared_log_settings_11_0.ironskillet_shared_log_settings_gp_forwarding
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/shared/log-settings
     element: |-
         <globalprotect>
@@ -514,7 +514,7 @@ snippets:
         </globalprotect>
     cmd: set
 
--   name: panorama_shared_log_settings_10_2.ironskillet_shared_log_settings_ip_tag_forwarding
+-   name: panorama_shared_log_settings_11_0.ironskillet_shared_log_settings_ip_tag_forwarding
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/shared/log-settings
     element: |-
         <iptag>
@@ -527,7 +527,7 @@ snippets:
         </iptag>
     cmd: set
 
--   name: panorama_zone_protection_profile_10_2.ironskillet_zone_protection
+-   name: panorama_zone_protection_profile_11_0.ironskillet_zone_protection
     xpath: /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='iron-skillet']/config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile
     element: |-
         <entry name="Recommended_Zone_Protection">
@@ -646,7 +646,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_tag_10_2.ironskillet_tag_outbound
+-   name: panorama_tag_11_0.ironskillet_tag_outbound
     xpath: /config/shared/tag
     element: |-
         <entry name="Outbound">
@@ -654,7 +654,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_tag_10_2.ironskillet_tag_inbound
+-   name: panorama_tag_11_0.ironskillet_tag_inbound
     xpath: /config/shared/tag
     element: |-
         <entry name="Inbound">
@@ -662,7 +662,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_tag_10_2.ironskillet_tag_internal
+-   name: panorama_tag_11_0.ironskillet_tag_internal
     xpath: /config/shared/tag
     element: |-
         <entry name="Internal">
@@ -670,15 +670,15 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_tag_10_2.ironskillet_tag_ironskillet_version
+-   name: panorama_tag_11_0.ironskillet_tag_ironskillet_version
     xpath: /config/shared/tag
     element: |-
         <entry name="iron-skillet-version">
-            <comments>version 0.0.1 for 10.2 - version of this IronSkillet template file</comments>
+            <comments>version 0.0.1 for 11.0 - version of this IronSkillet template file</comments>
         </entry>
     cmd: set
 
--   name: panorama_log_settings_profiles_10_2.ironskillet_log_settings_profiles
+-   name: panorama_log_settings_profiles_11_0.ironskillet_log_settings_profiles
     xpath: /config/shared/log-settings/profiles
     element: |-
         <entry name="default">
@@ -722,7 +722,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_profiles_custom_url_category_10_2.ironskillet_custom_url_category_block
+-   name: panorama_profiles_custom_url_category_11_0.ironskillet_custom_url_category_block
     xpath: /config/shared/profiles/custom-url-category
     element: |-
         <entry name="Block">
@@ -730,7 +730,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_profiles_custom_url_category_10_2.ironskillet_custom_url_category_allow
+-   name: panorama_profiles_custom_url_category_11_0.ironskillet_custom_url_category_allow
     xpath: /config/shared/profiles/custom-url-category
     element: |-
         <entry name="Allow">
@@ -738,7 +738,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_profiles_custom_url_category_10_2.ironskillet_custom_url_category_no_decrypt
+-   name: panorama_profiles_custom_url_category_11_0.ironskillet_custom_url_category_no_decrypt
     xpath: /config/shared/profiles/custom-url-category
     element: |-
         <entry name="Custom-No-Decrypt">
@@ -746,7 +746,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_profiles_decryption_10_2.ironskillet_decryption_profile
+-   name: panorama_profiles_decryption_11_0.ironskillet_decryption_profile
     xpath: /config/shared/profiles/decryption
     element: |-
         <entry name="Recommended_Decryption_Profile">
@@ -781,7 +781,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_profiles_virus_10_2.ironskillet_antivirus_alert_all
+-   name: panorama_profiles_virus_11_0.ironskillet_antivirus_alert_all
     xpath: /config/shared/profiles/virus
     element: |-
         <entry name="Alert-Only-AV">
@@ -845,7 +845,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_profiles_virus_10_2.ironskillet_antivirus_outbound
+-   name: panorama_profiles_virus_11_0.ironskillet_antivirus_outbound
     xpath: /config/shared/profiles/virus
     element: |-
         <entry name="Outbound-AV">
@@ -909,7 +909,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_profiles_virus_10_2.ironskillet_antivirus_inbound
+-   name: panorama_profiles_virus_11_0.ironskillet_antivirus_inbound
     xpath: /config/shared/profiles/virus
     element: |-
         <entry name="Inbound-AV">
@@ -973,7 +973,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_profiles_virus_10_2.ironskillet_antivirus_internal
+-   name: panorama_profiles_virus_11_0.ironskillet_antivirus_internal
     xpath: /config/shared/profiles/virus
     element: |-
         <entry name="Internal-AV">
@@ -1037,7 +1037,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_profiles_spyware_10_2.ironskillet_spyware_outbound
+-   name: panorama_profiles_spyware_11_0.ironskillet_spyware_outbound
     xpath: /config/shared/profiles/spyware
     element: |-
         <entry name="Outbound-AS">
@@ -1132,7 +1132,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_profiles_spyware_10_2.ironskillet_spyware_inbound
+-   name: panorama_profiles_spyware_11_0.ironskillet_spyware_inbound
     xpath: /config/shared/profiles/spyware
     element: |-
         <entry name="Inbound-AS">
@@ -1227,7 +1227,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_profiles_spyware_10_2.ironskillet_spyware_internal
+-   name: panorama_profiles_spyware_11_0.ironskillet_spyware_internal
     xpath: /config/shared/profiles/spyware
     element: |-
         <entry name="Internal-AS">
@@ -1322,7 +1322,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_profiles_spyware_10_2.ironskillet_spyware_alert_all
+-   name: panorama_profiles_spyware_11_0.ironskillet_spyware_alert_all
     xpath: /config/shared/profiles/spyware
     element: |-
         <entry name="Alert-Only-AS">
@@ -1403,7 +1403,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_profiles_vulnerability_10_2.ironskillet_vulnerability_outbound
+-   name: panorama_profiles_vulnerability_11_0.ironskillet_vulnerability_outbound
     xpath: /config/shared/profiles/vulnerability
     element: |-
         <entry name="Outbound-VP">
@@ -1448,10 +1448,19 @@ snippets:
               <packet-capture>disable</packet-capture>
             </entry>
           </rules>
+          <cloud-inline-analysis>yes</cloud-inline-analysis>
+            <mica-engine-vulnerability-enabled>
+          <entry name="SQL Injection">
+            <inline-policy-action>reset-both</inline-policy-action>
+          </entry>
+          <entry name="Command Injection">
+            <inline-policy-action>reset-both</inline-policy-action>
+          </entry>
+          </mica-engine-vulnerability-enabled>
         </entry>
     cmd: set
 
--   name: panorama_profiles_vulnerability_10_2.ironskillet_vulnerability_inbound
+-   name: panorama_profiles_vulnerability_11_0.ironskillet_vulnerability_inbound
     xpath: /config/shared/profiles/vulnerability
     element: |-
         <entry name="Inbound-VP">
@@ -1496,10 +1505,19 @@ snippets:
               <packet-capture>disable</packet-capture>
             </entry>
           </rules>
+          <cloud-inline-analysis>yes</cloud-inline-analysis>
+            <mica-engine-vulnerability-enabled>
+          <entry name="SQL Injection">
+            <inline-policy-action>reset-both</inline-policy-action>
+          </entry>
+          <entry name="Command Injection">
+            <inline-policy-action>reset-both</inline-policy-action>
+          </entry>
+          </mica-engine-vulnerability-enabled>
         </entry>
     cmd: set
 
--   name: panorama_profiles_vulnerability_10_2.ironskillet_vulnerability_internal
+-   name: panorama_profiles_vulnerability_11_0.ironskillet_vulnerability_internal
     xpath: /config/shared/profiles/vulnerability
     element: |-
         <entry name="Internal-VP">
@@ -1544,10 +1562,19 @@ snippets:
               <packet-capture>disable</packet-capture>
             </entry>
           </rules>
+          <cloud-inline-analysis>yes</cloud-inline-analysis>
+            <mica-engine-vulnerability-enabled>
+          <entry name="SQL Injection">
+            <inline-policy-action>reset-both</inline-policy-action>
+          </entry>
+          <entry name="Command Injection">
+            <inline-policy-action>reset-both</inline-policy-action>
+          </entry>
+          </mica-engine-vulnerability-enabled>
         </entry>
     cmd: set
 
--   name: panorama_profiles_vulnerability_10_2.ironskillet_vulnerability_alert_all
+-   name: panorama_profiles_vulnerability_11_0.ironskillet_vulnerability_alert_all
     xpath: /config/shared/profiles/vulnerability
     element: |-
         <entry name="Alert-Only-VP">
@@ -1571,10 +1598,19 @@ snippets:
               <packet-capture>disable</packet-capture>
             </entry>
           </rules>
+          <cloud-inline-analysis>yes</cloud-inline-analysis>
+            <mica-engine-vulnerability-enabled>
+          <entry name="SQL Injection">
+            <inline-policy-action>alert</inline-policy-action>
+          </entry>
+          <entry name="Command Injection">
+            <inline-policy-action>alert</inline-policy-action>
+          </entry>
+          </mica-engine-vulnerability-enabled>
         </entry>
     cmd: set
 
--   name: panorama_profiles_file_blocking_10_2.ironskillet_file_blocking_outbound
+-   name: panorama_profiles_file_blocking_11_0.ironskillet_file_blocking_outbound
     xpath: /config/shared/profiles/file-blocking
     element: |-
         <entry name="Outbound-FB">
@@ -1617,7 +1653,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_profiles_file_blocking_10_2.ironskillet_file_blocking_inbound
+-   name: panorama_profiles_file_blocking_11_0.ironskillet_file_blocking_inbound
     xpath: /config/shared/profiles/file-blocking
     element: |-
         <entry name="Inbound-FB">
@@ -1660,7 +1696,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_profiles_file_blocking_10_2.ironskillet_file_blocking_internal
+-   name: panorama_profiles_file_blocking_11_0.ironskillet_file_blocking_internal
     xpath: /config/shared/profiles/file-blocking
     element: |-
         <entry name="Internal-FB">
@@ -1702,7 +1738,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_profiles_file_blocking_10_2.ironskillet_file_blocking_alert_all
+-   name: panorama_profiles_file_blocking_11_0.ironskillet_file_blocking_alert_all
     xpath: /config/shared/profiles/file-blocking
     element: |-
         <entry name="Alert-Only-FB">
@@ -1721,7 +1757,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_profiles_url_filtering_10_2.ironskillet_url_outbound
+-   name: panorama_profiles_url_filtering_11_0.ironskillet_url_outbound
     xpath: /config/shared/profiles/url-filtering
     element: |-
         <entry name="Outbound-URL">
@@ -1747,6 +1783,7 @@ snippets:
               <member>dating</member>
               <member>dynamic-dns</member>
               <member>educational-institutions</member>
+              <member>encrypted-dns</member>
               <member>entertainment-and-arts</member>
               <member>extremism</member>
               <member>financial-services</member>
@@ -1783,6 +1820,7 @@ snippets:
               <member>private-ip-addresses</member>
               <member>proxy-avoidance-and-anonymizers</member>
               <member>questionable</member>
+              <member>ransomware</member>
               <member>real-estate</member>
               <member>real-time-detection</member>
               <member>recreation-and-hobbies</member>
@@ -1828,6 +1866,7 @@ snippets:
             <member>dating</member>
             <member>dynamic-dns</member>
             <member>educational-institutions</member>
+            <member>encrypted-dns</member>
             <member>entertainment-and-arts</member>
             <member>extremism</member>
             <member>financial-services</member>
@@ -1891,11 +1930,12 @@ snippets:
             <member>grayware</member>
             <member>malware</member>
             <member>phishing</member>
+            <member>ransomware</member>
           </block>
         </entry>
     cmd: set
 
--   name: panorama_profiles_url_filtering_10_2.ironskillet_url_alert_all
+-   name: panorama_profiles_url_filtering_11_0.ironskillet_url_alert_all
     xpath: /config/shared/profiles/url-filtering
     element: |-
         <entry name="Alert-Only-URL">
@@ -1921,6 +1961,7 @@ snippets:
               <member>dating</member>
               <member>dynamic-dns</member>
               <member>educational-institutions</member>
+              <member>encrypted-dns</member>
               <member>entertainment-and-arts</member>
               <member>extremism</member>
               <member>financial-services</member>
@@ -1957,6 +1998,7 @@ snippets:
               <member>private-ip-addresses</member>
               <member>proxy-avoidance-and-anonymizers</member>
               <member>questionable</member>
+              <member>ransomware</member>
               <member>real-estate</member>
               <member>real-time-detection</member>
               <member>recreation-and-hobbies</member>
@@ -2004,6 +2046,7 @@ snippets:
             <member>dating</member>
             <member>dynamic-dns</member>
             <member>educational-institutions</member>
+            <member>encrypted-dns</member>
             <member>entertainment-and-arts</member>
             <member>extremism</member>
             <member>financial-services</member>
@@ -2040,6 +2083,7 @@ snippets:
             <member>private-ip-addresses</member>
             <member>proxy-avoidance-and-anonymizers</member>
             <member>questionable</member>
+            <member>ransomware</member>
             <member>real-estate</member>
             <member>real-time-detection</member>
             <member>recreation-and-hobbies</member>
@@ -2067,7 +2111,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_profiles_wildfire_analysis_10_2.ironskillet_wildfire_outbound
+-   name: panorama_profiles_wildfire_analysis_11_0.ironskillet_wildfire_outbound
     xpath: /config/shared/profiles/wildfire-analysis
     element: |-
         <entry name="Outbound-WF">
@@ -2086,7 +2130,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_profiles_wildfire_analysis_10_2.ironskillet_wildfire_inbound
+-   name: panorama_profiles_wildfire_analysis_11_0.ironskillet_wildfire_inbound
     xpath: /config/shared/profiles/wildfire-analysis
     element: |-
         <entry name="Inbound-WF">
@@ -2105,7 +2149,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_profiles_wildfire_analysis_10_2.ironskillet_wildfire_internal
+-   name: panorama_profiles_wildfire_analysis_11_0.ironskillet_wildfire_internal
     xpath: /config/shared/profiles/wildfire-analysis
     element: |-
         <entry name="Internal-WF">
@@ -2124,7 +2168,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_profiles_wildfire_analysis_10_2.ironskillet_wildfire_alert_all
+-   name: panorama_profiles_wildfire_analysis_11_0.ironskillet_wildfire_alert_all
     xpath: /config/shared/profiles/wildfire-analysis
     element: |-
         <entry name="Alert-Only-WF">
@@ -2143,7 +2187,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_profile_group_10_2.ironskillet_profile_group_outbound
+-   name: panorama_profile_group_11_0.ironskillet_profile_group_outbound
     xpath: /config/shared/profile-group
     element: |-
         <entry name="Outbound">
@@ -2168,7 +2212,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_profile_group_10_2.ironskillet_profile_group_inbound
+-   name: panorama_profile_group_11_0.ironskillet_profile_group_inbound
     xpath: /config/shared/profile-group
     element: |-
         <entry name="Inbound">
@@ -2190,7 +2234,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_profile_group_10_2.ironskillet_profile_group_internal
+-   name: panorama_profile_group_11_0.ironskillet_profile_group_internal
     xpath: /config/shared/profile-group
     element: |-
         <entry name="Internal">
@@ -2212,7 +2256,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_profile_group_10_2.ironskillet_profile_group_alert_all
+-   name: panorama_profile_group_11_0.ironskillet_profile_group_alert_all
     xpath: /config/shared/profile-group
     element: |-
         <entry name="Alert-Only">
@@ -2237,7 +2281,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_profile_group_10_2.ironskillet_profile_group_default
+-   name: panorama_profile_group_11_0.ironskillet_profile_group_default
     xpath: /config/shared/profile-group
     element: |-
         <entry name="default">
@@ -2262,7 +2306,7 @@ snippets:
         </entry>
     cmd: set
 
--   name: panorama_post_rulebase_default_security_rules_10_2.ironskillet_post_rulebase_default_security_rules
+-   name: panorama_post_rulebase_default_security_rules_11_0.ironskillet_post_rulebase_default_security_rules
     xpath: /config/shared/post-rulebase/default-security-rules
     element: |-
         <rules>
@@ -2286,7 +2330,7 @@ snippets:
         </rules>
     cmd: set
 
--   name: panorama_pre_rulebase_security_10_2.ironskillet_pre_rulebase_security
+-   name: panorama_pre_rulebase_security_11_0.ironskillet_pre_rulebase_security
     xpath: /config/shared/pre-rulebase
     element: |-
         <security>
@@ -2373,7 +2417,7 @@ snippets:
         </security>
     cmd: set
 
--   name: panorama_pre_rulebase_decryption_10_2.ironskillet_pre_rulebase_decryption
+-   name: panorama_pre_rulebase_decryption_11_0.ironskillet_pre_rulebase_decryption
     xpath: /config/shared/pre-rulebase/decryption
     element: |-
         <rules>

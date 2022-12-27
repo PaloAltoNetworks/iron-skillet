@@ -1,4 +1,4 @@
-<config version="10.2.0" urldb="paloaltonetworks">
+<config version="11.0.0" urldb="paloaltonetworks">
   <mgt-config>
     <devices/>
     <users>
@@ -995,14 +995,6 @@
                 <vsys>
                   <entry name="vsys1"/>
                 </vsys>
-              </entry>
-            </devices>
-        </config>
-      </entry>
-        <entry name="{{STACK}}">
-          <config>
-            <devices>
-              <entry name="localhost.localdomain">
                 <deviceconfig>
                   <system>
                   {%- if MGMT_TYPE == "static" %}
@@ -1021,6 +1013,7 @@
                        <accept-dhcp-domain>no</accept-dhcp-domain>
                      </dhcp-client>
                   </type>
+                  <hostname>{{FW_NAME}}</hostname>
                   {% else %}
                   <type>
                      <dhcp-client>
@@ -1030,14 +1023,14 @@
                        <accept-dhcp-domain>no</accept-dhcp-domain>
                      </dhcp-client>
                   </type>
-                  {% endif %}
                   <hostname>{{FW_NAME}}</hostname>
+                  {% endif %}
                   </system>
                 </deviceconfig>
               </entry>
             </devices>
-          </config>
-        </entry>
+        </config>
+      </entry>
       </template-stack>
     </entry>
   </devices>
@@ -1110,7 +1103,7 @@
   <shared>
     <tag>
     <entry name="iron-skillet-version">
-        <comments>version 0.0.1 for 10.2 - version of this IronSkillet template file</comments>
+        <comments>version 0.0.1 for 11.0 - version of this IronSkillet template file</comments>
     </entry>
     <entry name="Internal">
         <comments>Internal to Internal</comments>
@@ -1817,6 +1810,15 @@
             <packet-capture>disable</packet-capture>
           </entry>
         </rules>
+        <cloud-inline-analysis>yes</cloud-inline-analysis>
+          <mica-engine-vulnerability-enabled>
+        <entry name="SQL Injection">
+          <inline-policy-action>alert</inline-policy-action>
+        </entry>
+        <entry name="Command Injection">
+          <inline-policy-action>alert</inline-policy-action>
+        </entry>
+        </mica-engine-vulnerability-enabled>
       </entry>
       <entry name="Internal-VP">
         <rules>
@@ -1860,6 +1862,15 @@
             <packet-capture>disable</packet-capture>
           </entry>
         </rules>
+        <cloud-inline-analysis>yes</cloud-inline-analysis>
+          <mica-engine-vulnerability-enabled>
+        <entry name="SQL Injection">
+          <inline-policy-action>reset-both</inline-policy-action>
+        </entry>
+        <entry name="Command Injection">
+          <inline-policy-action>reset-both</inline-policy-action>
+        </entry>
+        </mica-engine-vulnerability-enabled>
       </entry>
       <entry name="Inbound-VP">
         <rules>
@@ -1903,6 +1914,15 @@
             <packet-capture>disable</packet-capture>
           </entry>
         </rules>
+        <cloud-inline-analysis>yes</cloud-inline-analysis>
+          <mica-engine-vulnerability-enabled>
+        <entry name="SQL Injection">
+          <inline-policy-action>reset-both</inline-policy-action>
+        </entry>
+        <entry name="Command Injection">
+          <inline-policy-action>reset-both</inline-policy-action>
+        </entry>
+        </mica-engine-vulnerability-enabled>
       </entry>
       <entry name="Outbound-VP">
         <rules>
@@ -1946,6 +1966,15 @@
             <packet-capture>disable</packet-capture>
           </entry>
         </rules>
+        <cloud-inline-analysis>yes</cloud-inline-analysis>
+          <mica-engine-vulnerability-enabled>
+        <entry name="SQL Injection">
+          <inline-policy-action>reset-both</inline-policy-action>
+        </entry>
+        <entry name="Command Injection">
+          <inline-policy-action>reset-both</inline-policy-action>
+        </entry>
+        </mica-engine-vulnerability-enabled>
       </entry>
       </vulnerability>
       <file-blocking>
@@ -2101,6 +2130,7 @@
             <member>dating</member>
             <member>dynamic-dns</member>
             <member>educational-institutions</member>
+            <member>encrypted-dns</member>
             <member>entertainment-and-arts</member>
             <member>extremism</member>
             <member>financial-services</member>
@@ -2137,6 +2167,7 @@
             <member>private-ip-addresses</member>
             <member>proxy-avoidance-and-anonymizers</member>
             <member>questionable</member>
+            <member>ransomware</member>
             <member>real-estate</member>
             <member>real-time-detection</member>
             <member>recreation-and-hobbies</member>
@@ -2184,6 +2215,7 @@
           <member>dating</member>
           <member>dynamic-dns</member>
           <member>educational-institutions</member>
+          <member>encrypted-dns</member>
           <member>entertainment-and-arts</member>
           <member>extremism</member>
           <member>financial-services</member>
@@ -2220,6 +2252,7 @@
           <member>private-ip-addresses</member>
           <member>proxy-avoidance-and-anonymizers</member>
           <member>questionable</member>
+          <member>ransomware</member>
           <member>real-estate</member>
           <member>real-time-detection</member>
           <member>recreation-and-hobbies</member>
@@ -2268,6 +2301,7 @@
             <member>dating</member>
             <member>dynamic-dns</member>
             <member>educational-institutions</member>
+            <member>encrypted-dns</member>
             <member>entertainment-and-arts</member>
             <member>extremism</member>
             <member>financial-services</member>
@@ -2304,6 +2338,7 @@
             <member>private-ip-addresses</member>
             <member>proxy-avoidance-and-anonymizers</member>
             <member>questionable</member>
+            <member>ransomware</member>
             <member>real-estate</member>
             <member>real-time-detection</member>
             <member>recreation-and-hobbies</member>
@@ -2349,6 +2384,7 @@
           <member>dating</member>
           <member>dynamic-dns</member>
           <member>educational-institutions</member>
+          <member>encrypted-dns</member>
           <member>entertainment-and-arts</member>
           <member>extremism</member>
           <member>financial-services</member>
@@ -2412,6 +2448,7 @@
           <member>grayware</member>
           <member>malware</member>
           <member>phishing</member>
+          <member>ransomware</member>
         </block>
       </entry>
       </url-filtering>

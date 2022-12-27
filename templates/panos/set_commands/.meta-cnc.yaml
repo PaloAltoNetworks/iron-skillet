@@ -1,9 +1,9 @@
 # set_commands is used to load a full NGFW configuration
 
 # snippet folder name
-name: skillet_set_command_panos_v10_2
+name: skillet_set_command_panos_v11_0
 # label used for menu selection
-label: v10.2 Iron-Skillet set commands for NGFW
+label: v11.0 Iron-Skillet set commands for NGFW
 description: Iron-Skillet baseline configuration for a firewall
 dependency:
 # type of device configuration

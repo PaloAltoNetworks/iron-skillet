@@ -1,7 +1,7 @@
-name: ironskillet_panorama_shared_10_2
-label: Panorama Shared IronSkillet 10.2
+name: ironskillet_panorama_shared_11_0
+label: Panorama Shared IronSkillet 11.0
 description: |-
-  group of snippets for ironskillet 10.2 panorama shared configuration
+  group of snippets for ironskillet 11.0 panorama shared configuration
 type: panorama
 labels:
   collection:
@@ -32,84 +32,84 @@ variables:
 
 snippets:
   # panorama settings
-  - name: panorama_system_mgmt_ip_10_2
-    include: panorama_system_mgmt_ip_10_2
+  - name: panorama_system_mgmt_ip_11_0
+    include: panorama_system_mgmt_ip_11_0
     when: config_mgmt_intf_panorama == 'yes'
-  - name: panorama_system_10_2
-    include: panorama_system_10_2
-  - name: panorama_setting_10_2
-    include: panorama_setting_10_2
-  - name: panorama_mgt_config_users_10_2
-    include: panorama_mgt_config_users_10_2
+  - name: panorama_system_11_0
+    include: panorama_system_11_0
+  - name: panorama_setting_11_0
+    include: panorama_setting_11_0
+  - name: panorama_mgt_config_users_11_0
+    include: panorama_mgt_config_users_11_0
     when: config_admin_panorama == 'yes'
-  - name: panorama_mgt_config_pwd_10_2
-    include: panorama_mgt_config_pwd_10_2
-  - name: panorama_log_settings_10_2
-    include: panorama_log_settings_10_2
+  - name: panorama_mgt_config_pwd_11_0
+    include: panorama_mgt_config_pwd_11_0
+  - name: panorama_log_settings_11_0
+    include: panorama_log_settings_11_0
   # log collector group
-  - name: panorama_log_collector_group_10_2
-    include: panorama_log_collector_group_10_2
+  - name: panorama_log_collector_group_11_0
+    include: panorama_log_collector_group_11_0
   # tag object
-  - name: panorama_tag_10_2
-    include: panorama_tag_10_2
+  - name: panorama_tag_11_0
+    include: panorama_tag_11_0
   # template
-  - name: panorama_template_10_2
-    include: panorama_template_10_2
+  - name: panorama_template_11_0
+    include: panorama_template_11_0
   # device settings
-  - name: panorama_device_system_shared_10_2
-    include: panorama_device_system_shared_10_2
-  - name: panorama_device_setting_10_2
-    include: panorama_device_setting_10_2
-  - name: panorama_device_mgt_config_10_2
-    include: panorama_device_mgt_config_10_2
+  - name: panorama_device_system_shared_11_0
+    include: panorama_device_system_shared_11_0
+  - name: panorama_device_setting_11_0
+    include: panorama_device_setting_11_0
+  - name: panorama_device_mgt_config_11_0
+    include: panorama_device_mgt_config_11_0
   # external dynamic lists
-  - name: panorama_edl_10_2
-    include: panorama_edl_10_2
+  - name: panorama_edl_11_0
+    include: panorama_edl_11_0
   # log settings
-  - name: panorama_shared_log_settings_10_2
-    include: panorama_shared_log_settings_10_2
-  - name: panorama_zone_protection_profile_10_2
-    include: panorama_zone_protection_profile_10_2
-  - name: panorama_log_settings_profiles_10_2
-    include: panorama_log_settings_profiles_10_2
+  - name: panorama_shared_log_settings_11_0
+    include: panorama_shared_log_settings_11_0
+  - name: panorama_zone_protection_profile_11_0
+    include: panorama_zone_protection_profile_11_0
+  - name: panorama_log_settings_profiles_11_0
+    include: panorama_log_settings_profiles_11_0
   # profiles
-  - name: panorama_profiles_custom_url_category_10_2
-    include: panorama_profiles_custom_url_category_10_2
-  - name: panorama_profiles_decryption_10_2
-    include: panorama_profiles_decryption_10_2
-  - name: panorama_profiles_virus_10_2
-    include: panorama_profiles_virus_10_2
-  - name: panorama_profiles_spyware_10_2
-    include: panorama_profiles_spyware_10_2
-  - name: panorama_profiles_vulnerability_10_2
-    include: panorama_profiles_vulnerability_10_2
-  - name: panorama_profiles_file_blocking_10_2
-    include: panorama_profiles_file_blocking_10_2
-  - name: panorama_profiles_url_filtering_10_2
-    include: panorama_profiles_url_filtering_10_2
-  - name: panorama_profiles_wildfire_analysis_10_2
-    include: panorama_profiles_wildfire_analysis_10_2
-  - name: panorama_profile_group_10_2
-    include: panorama_profile_group_10_2
+  - name: panorama_profiles_custom_url_category_11_0
+    include: panorama_profiles_custom_url_category_11_0
+  - name: panorama_profiles_decryption_11_0
+    include: panorama_profiles_decryption_11_0
+  - name: panorama_profiles_virus_11_0
+    include: panorama_profiles_virus_11_0
+  - name: panorama_profiles_spyware_11_0
+    include: panorama_profiles_spyware_11_0
+  - name: panorama_profiles_vulnerability_11_0
+    include: panorama_profiles_vulnerability_11_0
+  - name: panorama_profiles_file_blocking_11_0
+    include: panorama_profiles_file_blocking_11_0
+  - name: panorama_profiles_url_filtering_11_0
+    include: panorama_profiles_url_filtering_11_0
+  - name: panorama_profiles_wildfire_analysis_11_0
+    include: panorama_profiles_wildfire_analysis_11_0
+  - name: panorama_profile_group_11_0
+    include: panorama_profile_group_11_0
   # rulebase
-  - name: panorama_post_rulebase_default_security_rules_10_2
-    include: panorama_post_rulebase_default_security_rules_10_2
-  - name: panorama_pre_rulebase_security_10_2
-    include: panorama_pre_rulebase_security_10_2
-  - name: panorama_pre_rulebase_decryption_10_2
-    include: panorama_pre_rulebase_decryption_10_2
+  - name: panorama_post_rulebase_default_security_rules_11_0
+    include: panorama_post_rulebase_default_security_rules_11_0
+  - name: panorama_pre_rulebase_security_11_0
+    include: panorama_pre_rulebase_security_11_0
+  - name: panorama_pre_rulebase_decryption_11_0
+    include: panorama_pre_rulebase_decryption_11_0
   # template stack
-  - name: panorama_template_stack_10_2
-    include: panorama_template_stack_10_2
+  - name: panorama_template_stack_11_0
+    include: panorama_template_stack_11_0
   # device settings pt 2
-  - name: panorama_device_system_local_10_2
-    include: panorama_device_system_local_10_2
-  - name: panorama_device_group_10_2
-    include: panorama_device_group_10_2
+  # - name: panorama_device_system_local_11_0
+  #   include: panorama_device_system_local_11_0
+  - name: panorama_device_group_11_0
+    include: panorama_device_group_11_0
   # reports and email
-  - name: panorama_reports_simple_10_2
-    include: panorama_reports_simple_10_2
-  - name: panorama_report_group_simple_10_2
-    include: panorama_report_group_simple_10_2
-  - name: panorama_email_scheduler_simple_10_2
-    include: panorama_email_scheduler_simple_10_2
+  - name: panorama_reports_simple_11_0
+    include: panorama_reports_simple_11_0
+  - name: panorama_report_group_simple_11_0
+    include: panorama_report_group_simple_11_0
+  - name: panorama_email_scheduler_simple_11_0
+    include: panorama_email_scheduler_simple_11_0
