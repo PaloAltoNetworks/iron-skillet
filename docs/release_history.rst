@@ -7,6 +7,20 @@ Includes:
     + template releases
     + tools updates
     + documentation revisions
+    
+11.0 Template Release History
+----------------------------
+
+Template content updates are high level. Details can be found in the template guides.
+
+0.0.1
+^^^^^
+Released December 27th, 2022
+
+    + Update Vulnerability Protection Profiles to include Inline Cloud Analysis for Advanced Threat Prevention
+    + Added and configured "SQL Injection" and "Command Injection" to Vulnerability Protection Profiles
+    + Added new Advanced URL categories "ransomware" and "encrypted-dns"
+    + Fixed Panorama duplicate template stack "sample_stack" entry error
 
 10.2 Template Release History
 ----------------------------
