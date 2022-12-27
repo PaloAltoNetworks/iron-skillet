@@ -131,14 +131,14 @@ Prior to utilizing these configuration templates, it is important to
 familiarize yourself with the best practice recommendations for
 Internet Gateway, Datacenter, Wildfire, L4-L7 evasions and other use cases.
 
-[Best Practice Recommendations](https://www.paloaltonetworks.com/documentation/best-practices)
+[Best Practice Recommendations](https://docs.paloaltonetworks.com/best-practices)
 
 While useful as suggestions and recommendations, the user is still required
 to manually use the GUI or CLI to configure each recommendation.
 
 
 ## Contributing
-Please read [CONTRIBUTING.md](https://github.com/PaloAltoNetworks/iron-skillet/CONTRIBUTING.md) for details on how you can help contribute to this project.
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on how you can help contribute to this project.
 
 ## Support
 This is a Palo Alto Networks contributed project.
@@ -152,4 +152,4 @@ See also the list of [contributors](https://github.com/PaloAltoNetworks/iron-ski
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
