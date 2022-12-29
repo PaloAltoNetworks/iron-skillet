@@ -523,6 +523,38 @@
             </global-protect-app-crypto-profiles>
           </crypto-profiles>
         </ike>
+        <qos>
+          <profile>
+            <entry name="default">
+              <class>
+                <entry name="class1">
+                  <priority>real-time</priority>
+                </entry>
+                <entry name="class2">
+                  <priority>high</priority>
+                </entry>
+                <entry name="class3">
+                  <priority>high</priority>
+                </entry>
+                <entry name="class4">
+                  <priority>medium</priority>
+                </entry>
+                <entry name="class5">
+                  <priority>medium</priority>
+                </entry>
+                <entry name="class6">
+                  <priority>low</priority>
+                </entry>
+                <entry name="class7">
+                  <priority>low</priority>
+                </entry>
+                <entry name="class8">
+                  <priority>low</priority>
+                </entry>
+              </class>
+            </entry>
+          </profile>
+        </qos>
         <virtual-router>
           <entry name="default">
             <protocol>
@@ -1981,6 +2013,7 @@
                   <member>dating</member>
                   <member>dynamic-dns</member>
                   <member>educational-institutions</member>
+                  <member>encrypted-dns</member>
                   <member>entertainment-and-arts</member>
                   <member>extremism</member>
                   <member>financial-services</member>
@@ -2017,6 +2050,7 @@
                   <member>private-ip-addresses</member>
                   <member>proxy-avoidance-and-anonymizers</member>
                   <member>questionable</member>
+                  <member>ransomware</member>
                   <member>real-estate</member>
                   <member>real-time-detection</member>
                   <member>recreation-and-hobbies</member>
@@ -2060,6 +2094,7 @@
                 <member>dating</member>
                 <member>dynamic-dns</member>
                 <member>educational-institutions</member>
+                <member>encrypted-dns</member>
                 <member>entertainment-and-arts</member>
                 <member>extremism</member>
                 <member>financial-services</member>
@@ -2123,6 +2158,7 @@
                 <member>grayware</member>
                 <member>malware</member>
                 <member>phishing</member>
+                <member>ransomware</member>
               </block>
               <mlav-engine-urlbased-enabled>
                 <entry name="Phishing Detection">
@@ -2156,6 +2192,7 @@
                   <member>dating</member>
                   <member>dynamic-dns</member>
                   <member>educational-institutions</member>
+                  <member>encrypted-dns</member>
                   <member>entertainment-and-arts</member>
                   <member>extremism</member>
                   <member>financial-services</member>
@@ -2192,6 +2229,7 @@
                   <member>private-ip-addresses</member>
                   <member>proxy-avoidance-and-anonymizers</member>
                   <member>questionable</member>
+                  <member>ransomware</member>
                   <member>real-estate</member>
                   <member>real-time-detection</member>
                   <member>recreation-and-hobbies</member>
@@ -2234,6 +2272,7 @@
                 <member>dating</member>
                 <member>dynamic-dns</member>
                 <member>educational-institutions</member>
+                <member>encrypted-dns</member>
                 <member>entertainment-and-arts</member>
                 <member>extremism</member>
                 <member>financial-services</member>
@@ -2270,6 +2309,7 @@
                 <member>private-ip-addresses</member>
                 <member>proxy-avoidance-and-anonymizers</member>
                 <member>questionable</member>
+                <member>ransomware</member>
                 <member>real-estate</member>
                 <member>real-time-detection</member>
                 <member>recreation-and-hobbies</member>
@@ -2326,6 +2366,7 @@
                   <member>dating</member>
                   <member>dynamic-dns</member>
                   <member>educational-institutions</member>
+                  <member>encrypted-dns</member>
                   <member>entertainment-and-arts</member>
                   <member>extremism</member>
                   <member>financial-services</member>
@@ -2362,6 +2403,7 @@
                   <member>private-ip-addresses</member>
                   <member>proxy-avoidance-and-anonymizers</member>
                   <member>questionable</member>
+                  <member>ransomware</member>
                   <member>real-estate</member>
                   <member>real-time-detection</member>
                   <member>recreation-and-hobbies</member>
@@ -2405,6 +2447,7 @@
                 <member>dating</member>
                 <member>dynamic-dns</member>
                 <member>educational-institutions</member>
+                <member>encrypted-dns</member>
                 <member>entertainment-and-arts</member>
                 <member>extremism</member>
                 <member>financial-services</member>
@@ -2468,6 +2511,7 @@
                 <member>grayware</member>
                 <member>malware</member>
                 <member>phishing</member>
+                <member>ransomware</member>
               </block>
               <mlav-engine-urlbased-enabled>
                 <entry name="Phishing Detection">
