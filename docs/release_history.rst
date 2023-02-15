@@ -27,6 +27,13 @@ Released December 27th, 2022
 
 Template content updates are high level. Details can be found in the template guides.
 
+0.0.2
+^^^^^
+Released February 15th, 2023
+
+    + Updated AS profiles to enable cloud inline analysis
+    + Set all cloud inline analysis engine models with the respective best-practice actions for each AS profile
+
 0.0.1
 ^^^^^
 Released March 30th, 2022
