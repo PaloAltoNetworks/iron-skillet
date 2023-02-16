@@ -1129,6 +1129,24 @@ snippets:
               <packet-capture>disable</packet-capture>
             </entry>
           </rules>
+          <mica-engine-spyware-enabled>
+            <entry name="HTTP Command and Control detector">
+              <inline-policy-action>reset-both</inline-policy-action>
+            </entry>
+            <entry name="HTTP2 Command and Control detector">
+              <inline-policy-action>reset-both</inline-policy-action>
+            </entry>
+            <entry name="SSL Command and Control detector">
+              <inline-policy-action>reset-both</inline-policy-action>
+            </entry>
+            <entry name="Unknown-TCP Command and Control detector">
+              <inline-policy-action>reset-both</inline-policy-action>
+            </entry>
+            <entry name="Unknown-UDP Command and Control detector">
+              <inline-policy-action>reset-both</inline-policy-action>
+            </entry>
+          </mica-engine-spyware-enabled>
+          <cloud-inline-analysis>yes</cloud-inline-analysis>
         </entry>
     cmd: set
 
@@ -1224,6 +1242,24 @@ snippets:
               <packet-capture>disable</packet-capture>
             </entry>
           </rules>
+          <mica-engine-spyware-enabled>
+            <entry name="HTTP Command and Control detector">
+              <inline-policy-action>reset-both</inline-policy-action>
+            </entry>
+            <entry name="HTTP2 Command and Control detector">
+              <inline-policy-action>reset-both</inline-policy-action>
+            </entry>
+            <entry name="SSL Command and Control detector">
+              <inline-policy-action>reset-both</inline-policy-action>
+            </entry>
+            <entry name="Unknown-TCP Command and Control detector">
+              <inline-policy-action>reset-both</inline-policy-action>
+            </entry>
+            <entry name="Unknown-UDP Command and Control detector">
+              <inline-policy-action>reset-both</inline-policy-action>
+            </entry>
+          </mica-engine-spyware-enabled>
+          <cloud-inline-analysis>yes</cloud-inline-analysis>
         </entry>
     cmd: set
 
@@ -1319,6 +1355,24 @@ snippets:
               <packet-capture>disable</packet-capture>
             </entry>
           </rules>
+          <mica-engine-spyware-enabled>
+            <entry name="HTTP Command and Control detector">
+              <inline-policy-action>reset-both</inline-policy-action>
+            </entry>
+            <entry name="HTTP2 Command and Control detector">
+              <inline-policy-action>reset-both</inline-policy-action>
+            </entry>
+            <entry name="SSL Command and Control detector">
+              <inline-policy-action>reset-both</inline-policy-action>
+            </entry>
+            <entry name="Unknown-TCP Command and Control detector">
+              <inline-policy-action>reset-both</inline-policy-action>
+            </entry>
+            <entry name="Unknown-UDP Command and Control detector">
+              <inline-policy-action>reset-both</inline-policy-action>
+            </entry>
+          </mica-engine-spyware-enabled>
+          <cloud-inline-analysis>yes</cloud-inline-analysis>
         </entry>
     cmd: set
 
@@ -1400,6 +1454,24 @@ snippets:
               <packet-capture>disable</packet-capture>
             </entry>
           </rules>
+          <mica-engine-spyware-enabled>
+            <entry name="HTTP Command and Control detector">
+              <inline-policy-action>alert</inline-policy-action>
+            </entry>
+            <entry name="HTTP2 Command and Control detector">
+              <inline-policy-action>alert</inline-policy-action>
+            </entry>
+            <entry name="SSL Command and Control detector">
+              <inline-policy-action>alert</inline-policy-action>
+            </entry>
+            <entry name="Unknown-TCP Command and Control detector">
+              <inline-policy-action>alert</inline-policy-action>
+            </entry>
+            <entry name="Unknown-UDP Command and Control detector">
+              <inline-policy-action>alert</inline-policy-action>
+            </entry>
+          </mica-engine-spyware-enabled>
+          <cloud-inline-analysis>yes</cloud-inline-analysis>
         </entry>
     cmd: set
 
