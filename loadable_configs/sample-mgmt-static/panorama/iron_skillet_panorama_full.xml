@@ -3,7 +3,7 @@
     <devices/>
     <users>
     <entry name="adminuser">
-      <phash>$1$LE5KIrxK$iolwC4x5wfsMTSxc4Z9eu.</phash>
+      <phash>$1$p6UQw1yW$RjcYOjE1ioKNGqj5SoDdo1</phash>
       <permissions>
         <role-based>
           <superuser>yes</superuser>
@@ -619,7 +619,7 @@
             </password-complexity>
             <users>
               <entry name="adminuser">
-                <phash>$1$RzklSovr$bqPRp5CkERWcfTM8BNsKe/</phash>
+                <phash>$1$YSpzo5/U$74Dew2EMVkIOR48mhzjoE1</phash>
                 <permissions>
                   <role-based>
                     <superuser>yes</superuser>
@@ -1474,6 +1474,24 @@
             <packet-capture>disable</packet-capture>
           </entry>
         </rules>
+        <mica-engine-spyware-enabled>
+          <entry name="HTTP Command and Control detector">
+            <inline-policy-action>alert</inline-policy-action>
+          </entry>
+          <entry name="HTTP2 Command and Control detector">
+            <inline-policy-action>alert</inline-policy-action>
+          </entry>
+          <entry name="SSL Command and Control detector">
+            <inline-policy-action>alert</inline-policy-action>
+          </entry>
+          <entry name="Unknown-TCP Command and Control detector">
+            <inline-policy-action>alert</inline-policy-action>
+          </entry>
+          <entry name="Unknown-UDP Command and Control detector">
+            <inline-policy-action>alert</inline-policy-action>
+          </entry>
+        </mica-engine-spyware-enabled>
+        <cloud-inline-analysis>yes</cloud-inline-analysis>
       </entry>
       <entry name="Internal-AS">
         <botnet-domains>
@@ -1564,6 +1582,24 @@
             <packet-capture>disable</packet-capture>
           </entry>
         </rules>
+        <mica-engine-spyware-enabled>
+          <entry name="HTTP Command and Control detector">
+            <inline-policy-action>reset-both</inline-policy-action>
+          </entry>
+          <entry name="HTTP2 Command and Control detector">
+            <inline-policy-action>reset-both</inline-policy-action>
+          </entry>
+          <entry name="SSL Command and Control detector">
+            <inline-policy-action>reset-both</inline-policy-action>
+          </entry>
+          <entry name="Unknown-TCP Command and Control detector">
+            <inline-policy-action>reset-both</inline-policy-action>
+          </entry>
+          <entry name="Unknown-UDP Command and Control detector">
+            <inline-policy-action>reset-both</inline-policy-action>
+          </entry>
+        </mica-engine-spyware-enabled>
+        <cloud-inline-analysis>yes</cloud-inline-analysis>
       </entry>
       <entry name="Inbound-AS">
         <botnet-domains>
@@ -1654,6 +1690,24 @@
             <packet-capture>disable</packet-capture>
           </entry>
         </rules>
+        <mica-engine-spyware-enabled>
+          <entry name="HTTP Command and Control detector">
+            <inline-policy-action>reset-both</inline-policy-action>
+          </entry>
+          <entry name="HTTP2 Command and Control detector">
+            <inline-policy-action>reset-both</inline-policy-action>
+          </entry>
+          <entry name="SSL Command and Control detector">
+            <inline-policy-action>reset-both</inline-policy-action>
+          </entry>
+          <entry name="Unknown-TCP Command and Control detector">
+            <inline-policy-action>reset-both</inline-policy-action>
+          </entry>
+          <entry name="Unknown-UDP Command and Control detector">
+            <inline-policy-action>reset-both</inline-policy-action>
+          </entry>
+        </mica-engine-spyware-enabled>
+        <cloud-inline-analysis>yes</cloud-inline-analysis>
       </entry>
       <entry name="Outbound-AS">
         <botnet-domains>
@@ -1744,6 +1798,24 @@
             <packet-capture>disable</packet-capture>
           </entry>
         </rules>
+        <mica-engine-spyware-enabled>
+          <entry name="HTTP Command and Control detector">
+            <inline-policy-action>reset-both</inline-policy-action>
+          </entry>
+          <entry name="HTTP2 Command and Control detector">
+            <inline-policy-action>reset-both</inline-policy-action>
+          </entry>
+          <entry name="SSL Command and Control detector">
+            <inline-policy-action>reset-both</inline-policy-action>
+          </entry>
+          <entry name="Unknown-TCP Command and Control detector">
+            <inline-policy-action>reset-both</inline-policy-action>
+          </entry>
+          <entry name="Unknown-UDP Command and Control detector">
+            <inline-policy-action>reset-both</inline-policy-action>
+          </entry>
+        </mica-engine-spyware-enabled>
+        <cloud-inline-analysis>yes</cloud-inline-analysis>
       </entry>
       </spyware>
       <vulnerability>
