@@ -4,6 +4,6 @@ oyaml==0.7
 passlib==1.7.1
 PyYAML==5.4
 XlsxWriter==1.1.2
-requests==2.22.0
+requests==2.31.0
 pexpect==4.7.0
 pan-python==0.14.0
